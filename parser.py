@@ -1,23 +1,23 @@
 """
-voynich-state-viewer: Complete Corpus Parser & Automatic Downloader
-Ingests the entire 100% manuscript corpus across all folios (f1r to f116v).
+voynich-state-viewer: Complete Corpus Parser
+Ingests the entire manuscript across all folios (f1r through f116v).
 """
 
 import os
 import re
 import urllib.request
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 import pandas as pd
 
-CORPUS_URL = "https://raw.githubusercontent.com/rws/voynich/master/data/ZL3b-n.txt"
 DEFAULT_DATA_PATH = os.path.join("data", "ZL3b-n.txt")
+FALLBACK_URL = "https://raw.githubusercontent.com/frogging-art/voynich/master/data/ZL3b-n.txt"
 
 STATE_COLORS = {
-    "C": "#FF6B6B",  # Transform / Processive
-    "L": "#4D96FF",  # Connect / Relational
-    "P": "#6BCB77",  # Maintain / Stative
-    "R": "#FFD93D",  # Resolve / Terminal
-    "?": "#9E9E9E"   # Unmapped
+    "C": "#FF6B6B",
+    "L": "#4D96FF",
+    "P": "#6BCB77",
+    "R": "#FFD93D",
+    "?": "#9E9E9E"
 }
 
 STATE_LABELS = {
@@ -25,27 +25,36 @@ STATE_LABELS = {
 }
 
 
-def ensure_full_corpus_exists(filepath: str = DEFAULT_DATA_PATH) -> str:
-    """Verifies if the full corpus exists. If missing or only a test sample, downloads the full text."""
+def ensure_corpus_loaded(filepath: str = DEFAULT_DATA_PATH) -> str:
+    """Verifies that the full text exists. If it is only the 17-line stub, fetches the full corpus."""
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
-    needs_download = False
-
+    
+    # Check if the file is missing or contains fewer than 100 lines
+    needs_full_text = False
     if not os.path.exists(filepath):
-        needs_download = True
-    elif os.path.getsize(filepath) < 50000:  # If smaller than 50 KB, it's just a test sample
-        needs_download = True
+        needs_full_text = True
+    else:
+        with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+            line_count = sum(1 for _ in f)
+        if line_count < 100:
+            needs_full_text = True
 
-    if needs_download:
+    if needs_full_text:
+        headers = {"User-Agent": "Mozilla/5.0"}
+        req = urllib.request.Request(FALLBACK_URL, headers=headers)
         try:
-            urllib.request.urlretrieve(CORPUS_URL, filepath)
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                content = resp.read().decode("utf-8", errors="ignore")
+                if len(content) > 100000:
+                    with open(filepath, "w", encoding="utf-8") as f:
+                        f.write(content)
         except Exception:
-            pass  # Fall back to existing local file if offline
+            pass
+
     return filepath
 
 
 class VoynichParser:
-    """Systematic morphological tokenizer isolating carriers (Lambda) and routing ports (rho)."""
-
     CONTROL_PREFIXES = ('qk', 'dk', 'q', 'k', 'd')
     REALIZATION_PORTS = ('aiin', 'aiiin', 'ain', 'ar', 'al', 'am', 'm', 'y')
     INVARIANT_CORES = ('otcheod', 'oteod', 'oeeod', 'otod', 'cheod', 'opair', 'pch', 'ch', 'ot', 't')
@@ -122,7 +131,7 @@ def get_section_from_folio(folio: str) -> str:
     f = folio.lower().replace('f', '')
     num_match = re.match(r'(\d+)', f)
     if not num_match:
-        return "Cosmological" if 'ros' in f else "Unknown"
+        return "Cosmological" if 'ros' in f else "General"
     num = int(num_match.group(1))
     if 1 <= num <= 66:
         return "Herbal"
@@ -136,23 +145,27 @@ def get_section_from_folio(folio: str) -> str:
         return "Pharmaceutical"
     elif 103 <= num <= 116:
         return "Stars/Recipes"
-    return "Unknown"
+    return "General"
 
 
-def parse_zl3b(filepath: Optional[str] = None) -> pd.DataFrame:
-    """Parses all folios in the manuscript into a structured pandas DataFrame."""
-    target_file = filepath or DEFAULT_DATA_PATH
-    ensure_full_corpus_exists(target_file)
-
+def parse_zl3b(filepath_or_buffer) -> pd.DataFrame:
     records = []
     current_currier = "UNKNOWN"
     current_quire = "UNKNOWN"
 
-    if not os.path.exists(target_file):
-        return pd.DataFrame()
+    # Support filepath string or Streamlit UploadedFile buffer
+    if isinstance(filepath_or_buffer, str):
+        filepath = ensure_corpus_loaded(filepath_or_buffer)
+        if not os.path.exists(filepath):
+            return pd.DataFrame()
+        f = open(filepath, 'r', encoding='utf-8', errors='ignore')
+    else:
+        f = filepath_or_buffer
 
-    with open(target_file, 'r', encoding='utf-8', errors='ignore') as f:
+    try:
         for line in f:
+            if isinstance(line, bytes):
+                line = line.decode('utf-8', errors='ignore')
             line = line.strip()
             if not line:
                 continue
@@ -201,6 +214,9 @@ def parse_zl3b(filepath: Optional[str] = None) -> pd.DataFrame:
                     "state": state,
                     **decomp
                 })
+    finally:
+        if isinstance(filepath_or_buffer, str) and not f.closed:
+            f.close()
 
     df = pd.DataFrame(records)
     if not df.empty:
