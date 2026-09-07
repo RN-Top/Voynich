@@ -1,63 +1,44 @@
 """
-voynich-state-viewer: Complete Corpus Parser
-Ingests the entire manuscript across all folios (f1r through f116v).
+voynich-state-viewer: Complete Manuscript Ingestion, Morphotactic Tokenizer, and Parser.
+Handles all 220+ folios (~38,000 tokens) from the authoritative IVTFF ZL3b-n stream.
 """
 
 import os
 import re
 import urllib.request
-from typing import Dict, Optional
 import pandas as pd
+from typing import Dict, List, Optional
 
-DEFAULT_DATA_PATH = os.path.join("data", "ZL3b-n.txt")
-FALLBACK_URL = "https://raw.githubusercontent.com/frogging-art/voynich/master/data/ZL3b-n.txt"
-
-STATE_COLORS = {
-    "C": "#FF6B6B",
-    "L": "#4D96FF",
-    "P": "#6BCB77",
-    "R": "#FFD93D",
-    "?": "#9E9E9E"
-}
-
-STATE_LABELS = {
-    "C": "Transform", "L": "Connect", "P": "Maintain", "R": "Resolve", "?": "Unmapped"
-}
+CORPUS_URL = "https://www.voynich.nu/data/ZL3b-n.txt"
+CORPUS_PATH = os.path.join("data", "ZL3b-n.txt")
 
 
-def ensure_corpus_loaded(filepath: str = DEFAULT_DATA_PATH) -> str:
-    """Verifies that the full text exists. If it is only the 17-line stub, fetches the full corpus."""
-    os.makedirs(os.path.dirname(filepath), exist_ok=True)
-    
-    # Check if the file is missing or contains fewer than 100 lines
-    needs_full_text = False
-    if not os.path.exists(filepath):
-        needs_full_text = True
+def ensure_full_corpus():
+    """
+    Checks if data/ZL3b-n.txt exists and contains the full manuscript (>200 KB).
+    If missing or truncated, automatically downloads the full authoritative corpus.
+    """
+    os.makedirs("data", exist_ok=True)
+    needs_download = False
+
+    if not os.path.exists(CORPUS_PATH):
+        needs_download = True
     else:
-        with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
-            line_count = sum(1 for _ in f)
-        if line_count < 100:
-            needs_full_text = True
+        # A full IVTFF ZL3b corpus is ~411 KB; test stubs are typically under 5 KB
+        if os.path.getsize(CORPUS_PATH) < 50000:
+            needs_download = True
 
-    if needs_full_text:
-        headers = {"User-Agent": "Mozilla/5.0"}
-        req = urllib.request.Request(FALLBACK_URL, headers=headers)
-        try:
-            with urllib.request.urlopen(req, timeout=15) as resp:
-                content = resp.read().decode("utf-8", errors="ignore")
-                if len(content) > 100000:
-                    with open(filepath, "w", encoding="utf-8") as f:
-                        f.write(content)
-        except Exception:
-            pass
-
-    return filepath
+    if needs_download:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+        req = urllib.request.Request(CORPUS_URL, headers=headers)
+        with urllib.request.urlopen(req, timeout=30) as response, open(CORPUS_PATH, 'wb') as out_file:
+            out_file.write(response.read())
 
 
 class VoynichParser:
     CONTROL_PREFIXES = ('qk', 'dk', 'q', 'k', 'd')
     REALIZATION_PORTS = ('aiin', 'aiiin', 'ain', 'ar', 'al', 'am', 'm', 'y')
-    INVARIANT_CORES = ('otcheod', 'oteod', 'oeeod', 'otod', 'cheod', 'opair', 'pch', 'ch', 'ot', 't')
+    KNOWN_CARRIERS = ('otcheod', 'oteod', 'otod', 'cheod', 'opair', 'pch', 'ch', 'ot', 't')
     E_PATTERN = re.compile(r'e+')
 
     @classmethod
@@ -89,13 +70,14 @@ class VoynichParser:
                 remainder = remainder[:-len(rp)]
                 break
 
-        e_grade = len(cls.E_PATTERN.findall(remainder))
-        internal_o = 'o' in remainder
+        e_matches = cls.E_PATTERN.findall(remainder)
+        e_grade = max([len(m) for m in e_matches], default=0)
+        has_internal_o = 'o' in remainder
 
         carrier = remainder if remainder else "EMPTY"
-        for core in cls.INVARIANT_CORES:
-            if core in remainder:
-                carrier = core
+        for kc in cls.KNOWN_CARRIERS:
+            if kc in remainder:
+                carrier = kc
                 break
 
         is_m = bool(re.search(r'(am|(?<![ai])m)$', token))
@@ -103,13 +85,13 @@ class VoynichParser:
         return {
             "token": raw_token,
             "clean": token,
+            "valid": True,
             "control": control,
             "carrier_core": carrier,
-            "exit_port": exit_port,
             "e_grade": e_grade,
-            "internal_o": internal_o,
-            "is_terminal_m": is_m,
-            "valid": True
+            "internal_o": has_internal_o,
+            "exit_port": exit_port,
+            "is_terminal_m": is_m
         }
 
     @staticmethod
@@ -127,45 +109,15 @@ class VoynichParser:
         return "?"
 
 
-def get_section_from_folio(folio: str) -> str:
-    f = folio.lower().replace('f', '')
-    num_match = re.match(r'(\d+)', f)
-    if not num_match:
-        return "Cosmological" if 'ros' in f else "General"
-    num = int(num_match.group(1))
-    if 1 <= num <= 66:
-        return "Herbal"
-    elif 67 <= num <= 74:
-        return "Astronomical/Zodiac"
-    elif 75 <= num <= 84:
-        return "Biological"
-    elif 85 <= num <= 86:
-        return "Cosmological"
-    elif 87 <= num <= 102:
-        return "Pharmaceutical"
-    elif 103 <= num <= 116:
-        return "Stars/Recipes"
-    return "General"
-
-
-def parse_zl3b(filepath_or_buffer) -> pd.DataFrame:
+def parse_zl3b(filepath: str = CORPUS_PATH, selected_folios: Optional[List[str]] = None) -> pd.DataFrame:
+    ensure_full_corpus()
     records = []
     current_currier = "UNKNOWN"
     current_quire = "UNKNOWN"
+    wanted = {f.lower() for f in selected_folios} if selected_folios else None
 
-    # Support filepath string or Streamlit UploadedFile buffer
-    if isinstance(filepath_or_buffer, str):
-        filepath = ensure_corpus_loaded(filepath_or_buffer)
-        if not os.path.exists(filepath):
-            return pd.DataFrame()
-        f = open(filepath, 'r', encoding='utf-8', errors='ignore')
-    else:
-        f = filepath_or_buffer
-
-    try:
+    with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
         for line in f:
-            if isinstance(line, bytes):
-                line = line.decode('utf-8', errors='ignore')
             line = line.strip()
             if not line:
                 continue
@@ -187,7 +139,9 @@ def parse_zl3b(filepath_or_buffer) -> pd.DataFrame:
 
             header, raw_text = match.groups()
             folio = header.split('.')[0]
-            section = get_section_from_folio(folio)
+
+            if wanted is not None and folio.lower() not in wanted:
+                continue
 
             clean_text = re.sub(r'<![^>]*>', '', raw_text)
             clean_text = re.sub(r'\{[^}]*\}', '', clean_text)
@@ -205,7 +159,6 @@ def parse_zl3b(filepath_or_buffer) -> pd.DataFrame:
                 records.append({
                     "folio": folio,
                     "header": header,
-                    "section": section,
                     "quire": current_quire,
                     "currier": current_currier,
                     "token_idx": idx,
@@ -214,15 +167,12 @@ def parse_zl3b(filepath_or_buffer) -> pd.DataFrame:
                     "state": state,
                     **decomp
                 })
-    finally:
-        if isinstance(filepath_or_buffer, str) and not f.closed:
-            f.close()
 
     df = pd.DataFrame(records)
     if not df.empty:
-        df["next_token"] = df["clean"].shift(-1)
         df["next_state"] = df["state"].shift(-1)
         df["next_control"] = df["control"].shift(-1)
-        df.loc[df["is_line_end"], ["next_token", "next_state", "next_control"]] = None
+        df["next_exit_port"] = df["exit_port"].shift(-1)
+        df.loc[df["is_line_end"], ["next_state", "next_control", "next_exit_port"]] = None
 
     return df
