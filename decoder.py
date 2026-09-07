@@ -1,6 +1,10 @@
 """
-voynich-state-viewer: Astronomical Alignment & Grounded Decipherment Oracle
-Bridges normalized morphological carriers to the 12-fold celestial zodiac grid.
+Astronomical-domain analysis tools for the Voynich corpus.
+
+This module measures whether token carriers are unusually associated
+with astronomical/zodiac manuscript sections.
+
+It does NOT infer zodiac identities or claim semantic decipherment.
 """
 
 import numpy as np
@@ -8,95 +12,219 @@ import pandas as pd
 
 
 class ZodiacDeciphermentOracle:
-    """Empirical alignment solver between isolated carriers and celestial structures."""
+    """
+    Exploratory statistical tools for astronomical-domain analysis.
 
-    ZODIAC_CANONICAL = [
-        "Aries", "Taurus", "Gemini", "Cancer",
-        "Leo", "Virgo", "Libra", "Scorpio",
-        "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+    Zodiac labels and clock positions are only used when explicit
+    metadata exists. They are never fabricated from token structure.
+    """
+
+    CANONICAL_ZODIAC = [
+        "Aries",
+        "Taurus",
+        "Gemini",
+        "Cancer",
+        "Leo",
+        "Virgo",
+        "Libra",
+        "Scorpio",
+        "Sagittarius",
+        "Capricorn",
+        "Aquarius",
+        "Pisces",
     ]
 
-    def __init__(self, corpus_df: pd.DataFrame):
+    def __init__(self, corpus_df):
         self.df = corpus_df.copy()
 
-    def get_zodiac_carrier_matrix(self, min_freq: int = 1) -> pd.DataFrame:
+        # Normalize carrier naming so this module works with
+        # both older and rebuilt parser output.
+        if (
+            "carrier" not in self.df.columns
+            and "carrier_core" in self.df.columns
+        ):
+            self.df["carrier"] = self.df["carrier_core"]
+
+        if (
+            "carrier_core" not in self.df.columns
+            and "carrier" in self.df.columns
+        ):
+            self.df["carrier_core"] = self.df["carrier"]
+
+        if "carrier_core" not in self.df.columns:
+            raise ValueError(
+                "Corpus DataFrame requires a "
+                "'carrier_core' or 'carrier' column."
+            )
+
+        # Derive only broad astronomical-domain membership.
+        if "is_astro" not in self.df.columns:
+            if "section" in self.df.columns:
+                section_text = (
+                    self.df["section"]
+                    .fillna("")
+                    .astype(str)
+                    .str.lower()
+                )
+
+                self.df["is_astro"] = section_text.str.contains(
+                    "astronom|zodiac",
+                    regex=True,
+                )
+            else:
+                self.df["is_astro"] = False
+
+        # These fields remain unknown unless the source data
+        # explicitly provides them.
+        if "zodiac_sign" not in self.df.columns:
+            self.df["zodiac_sign"] = None
+
+        if "clock_pos" not in self.df.columns:
+            self.df["clock_pos"] = None
+
+    def get_zodiac_carrier_matrix(self, min_freq=1):
         """
-        Cross-tabulates isolated lexical carriers (Lambda) across canonical Zodiac folios.
-        Identifies stable celestial nouns vs variable grammatical noise.
+        Build a carrier-by-zodiac matrix only when explicit
+        zodiac-sign metadata exists.
+
+        No zodiac sign is guessed from folio number or token form.
         """
-        z_df = self.df[self.df["zodiac_sign"].isin(self.ZODIAC_CANONICAL)].copy()
-        if z_df.empty:
+
+        explicit = self.df[
+            self.df["zodiac_sign"].notna()
+        ].copy()
+
+        if explicit.empty:
             return pd.DataFrame()
 
-        ct = pd.crosstab(z_df["carrier"], z_df["zodiac_sign"])
-        ct = ct[ct.sum(axis=1) >= min_freq]
+        explicit = explicit[
+            explicit["carrier_core"].notna()
+            &
+            (explicit["carrier_core"] != "EMPTY")
+        ]
 
-        ordered_cols = [c for c in self.ZODIAC_CANONICAL if c in ct.columns]
-        ct = ct.reindex(columns=ordered_cols)
-        return ct
-
-    def compute_carrier_astronomical_specificity(self) -> pd.DataFrame:
-        """
-        Computes Pointwise Mutual Information (PMI) of carriers in Astronomical folios
-        versus the rest of the manuscript.
-        Safely handles datasets with zero or small astronomical counts.
-        """
-        valid = self.df[self.df["carrier"] != "EMPTY"].copy()
-        if valid.empty:
+        if explicit.empty:
             return pd.DataFrame()
 
-        # Check if any astronomical folios are present in the loaded corpus
-        has_astro = valid["is_astro"].any()
-        has_prose = (~valid["is_astro"]).any()
+        matrix = pd.crosstab(
+            explicit["carrier_core"],
+            explicit["zodiac_sign"],
+        )
 
-        if not has_astro or not has_prose:
-            # Fallback: calculate raw frequency ranking if only one domain exists
-            counts = valid["carrier"].value_counts().to_frame(name="Occurrences")
-            counts["Astronomical"] = 0.0
-            return counts.head(30)
+        matrix = matrix[
+            matrix.sum(axis=1) >= min_freq
+        ]
 
-        valid["domain"] = np.where(valid["is_astro"], "Astronomical", "General_Prose")
-
-        contingency = pd.crosstab(valid["carrier"], valid["domain"])
-        contingency = contingency[contingency.sum(axis=1) >= 2]
-
-        if contingency.empty or "Astronomical" not in contingency.columns:
+        if matrix.empty:
             return pd.DataFrame()
 
-        total = contingency.values.sum()
-        p_carrier = contingency.sum(axis=1).values / total
-        p_domain = contingency.sum(axis=0).values / total
-        p_joint = contingency.values / total
+        return matrix.sort_index()
 
-        expected = np.outer(p_carrier, p_domain)
-        pmi = np.log2((p_joint + 1e-9) / (expected + 1e-9))
-
-        pmi_df = pd.DataFrame(pmi, index=contingency.index, columns=contingency.columns)
-        
-        # Safely sort by Astronomical column
-        if "Astronomical" in pmi_df.columns:
-            return pmi_df.sort_values(by="Astronomical", ascending=False).round(3)
-        return pmi_df.round(3)
-
-    def decode_zodiac_labels(self) -> pd.DataFrame:
+    def compute_carrier_astronomical_specificity(
+        self,
+        min_occurrences=2,
+    ):
         """
-        Extracts high-confidence astronomical nouns (e.g. OTCHEOD, OEEOD, OPAIR)
-        along with their realization parameters and physical clock/ring positions.
-        """
-        z_df = self.df[self.df["zodiac_sign"].isin(self.ZODIAC_CANONICAL)].copy()
-        if z_df.empty:
-            # If no zodiac labels loaded, show astronomical candidates from any folio
-            key_carriers = ("otcheod", "oeeod", "opair", "oteod", "otod")
-            targeted = self.df[self.df["carrier"].isin(key_carriers)].copy()
-        else:
-            key_carriers = ("otcheod", "oeeod", "opair", "oteod", "otod")
-            targeted = z_df[z_df["carrier"].isin(key_carriers)].copy()
+        Calculate PMI-like specificity between carrier forms and
+        broad corpus domains:
 
-        if targeted.empty:
+            Astronomical
+            General_Prose
+
+        Positive values indicate that a carrier occurs more often
+        in that domain than expected under independence.
+        """
+
+        working = self.df[
+            self.df["carrier_core"].notna()
+            &
+            (self.df["carrier_core"] != "EMPTY")
+        ].copy()
+
+        if working.empty:
             return pd.DataFrame()
 
-        summary = targeted[[
-            "folio", "zodiac_sign", "clock_pos", "raw", "clean", 
-            "carrier", "control", "exit_port"
-        ]].drop_duplicates()
-        return summary
+        working["domain"] = np.where(
+            working["is_astro"].fillna(False),
+            "Astronomical",
+            "General_Prose",
+        )
+
+        contingency = pd.crosstab(
+            working["carrier_core"],
+            working["domain"],
+        )
+
+        contingency = contingency[
+            contingency.sum(axis=1)
+            >= min_occurrences
+        ]
+
+        if contingency.empty:
+            return pd.DataFrame()
+
+        total = contingency.to_numpy().sum()
+
+        p_carrier = (
+            contingency.sum(axis=1).to_numpy()
+            / total
+        )
+
+        p_domain = (
+            contingency.sum(axis=0).to_numpy()
+            / total
+        )
+
+        p_joint = (
+            contingency.to_numpy()
+            / total
+        )
+
+        expected = np.outer(
+            p_carrier,
+            p_domain,
+        )
+
+        pmi = np.log2(
+            (p_joint + 1e-12)
+            /
+            (expected + 1e-12)
+        )
+
+        return pd.DataFrame(
+            pmi,
+            index=contingency.index,
+            columns=contingency.columns,
+        ).round(3)
+
+    def top_astronomical_carriers(self, limit=30):
+        """
+        Return the most frequent carrier forms in rows marked as
+        astronomical-domain material.
+        """
+
+        astro = self.df[
+            self.df["is_astro"].fillna(False)
+            &
+            self.df["carrier_core"].notna()
+            &
+            (self.df["carrier_core"] != "EMPTY")
+        ].copy()
+
+        if astro.empty:
+            return pd.DataFrame(
+                columns=[
+                    "carrier_core",
+                    "occurrences",
+                ]
+            )
+
+        counts = (
+            astro["carrier_core"]
+            .value_counts()
+            .head(limit)
+            .rename_axis("carrier_core")
+            .reset_index(name="occurrences")
+        )
+
+        return counts
