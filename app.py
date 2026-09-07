@@ -16,24 +16,25 @@ from parser import parse_zl3b, STATE_COLORS
 from engine_decipher import WholeManuscriptDecipherer
 
 st.set_page_config(
-    page_title="Voynich Manuscript Complete Decipherment Engine",
-    page_icon="📖",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+    page_title="Voynich Manuscript Complete Decipherment # -----------------------------------------------------------------------------
+# Dynamic Corpus Loader
+# -----------------------------------------------------------------------------
+uploaded_file = st.sidebar.file_uploader("Upload Full ZL3b-n.txt (All Folios)", type=["txt"])
 
-DEFAULT_DATA_PATH = os.path.join("data", "ZL3b-n.txt")
-
-
-@st.cache_resource(show_spinner="Compiling 100% Manuscript Corpus and Training Alignment Engine...")
-def load_and_train():
-    df_corpus = parse_zl3b(DEFAULT_DATA_PATH)
+@st.cache_resource(show_spinner="Processing Full Manuscript Corpus...")
+def load_and_train(uploaded_buffer=None):
+    if uploaded_buffer is not None:
+        df_corpus = parse_zl3b(uploaded_buffer)
+    else:
+        df_corpus = parse_zl3b(DEFAULT_DATA_PATH)
+        
     tokens = df_corpus["clean"].dropna().tolist()
     engine = WholeManuscriptDecipherer(tokens)
     return df_corpus, engine
 
+df, engine = load_and_train(uploaded_file)
+dict_table = engine.get_full_dictionary()
 
-st.title("Voynich Complete Manuscript Decipherment Engine")
 st.caption("Mathematical Grammar Induction, PPMI Semantic Alignment, and Full Manuscript English Translation")
 
 df, engine = load_and_train()
