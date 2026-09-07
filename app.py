@@ -1,6 +1,6 @@
 """
 VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH
-Scales across all 220+ folios:
+Scales across all folios:
 - Full Manuscript Browser (Herbal, Astronomical, Biological, Pharmaceutical, Recipes)
 - Line-by-Line English Translation & Syntactic Gloss
 - Whole-Manuscript Translation Export (CSV)
@@ -8,18 +8,29 @@ Scales across all 220+ folios:
 """
 
 import os
-import io
 import pandas as pd
 import streamlit as st
 
 from parser import parse_zl3b, STATE_COLORS
 from engine_decipher import WholeManuscriptDecipherer
 
+# -----------------------------------------------------------------------------
+# Streamlit App Configuration
+# -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="Voynich Manuscript Complete Decipherment # -----------------------------------------------------------------------------
-# Dynamic Corpus Loader
+    page_title="Voynich Manuscript Complete Decipherment Engine",
+    page_icon="📖",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+DEFAULT_DATA_PATH = os.path.join("data", "ZL3b-n.txt")
+
+# -----------------------------------------------------------------------------
+# Dynamic Corpus Loader & Model Initialization
 # -----------------------------------------------------------------------------
 uploaded_file = st.sidebar.file_uploader("Upload Full ZL3b-n.txt (All Folios)", type=["txt"])
+
 
 @st.cache_resource(show_spinner="Processing Full Manuscript Corpus...")
 def load_and_train(uploaded_buffer=None):
@@ -27,23 +38,22 @@ def load_and_train(uploaded_buffer=None):
         df_corpus = parse_zl3b(uploaded_buffer)
     else:
         df_corpus = parse_zl3b(DEFAULT_DATA_PATH)
-        
+
     tokens = df_corpus["clean"].dropna().tolist()
     engine = WholeManuscriptDecipherer(tokens)
     return df_corpus, engine
 
-df, engine = load_and_train(uploaded_file)
-dict_table = engine.get_full_dictionary()
 
+st.title("Voynich Complete Manuscript Decipherment Engine")
 st.caption("Mathematical Grammar Induction, PPMI Semantic Alignment, and Full Manuscript English Translation")
 
-df, engine = load_and_train()
+df, engine = load_and_train(uploaded_file)
 dict_table = engine.get_full_dictionary()
 
 # Sidebar Overview
 st.sidebar.markdown("### Manuscript Ingestion Metrics")
 st.sidebar.markdown(f"**Total Tokens:** {len(df):,}")
-folios = sorted(df["folio"].unique())
+folios = sorted(df["folio"].unique()) if not df.empty else []
 st.sidebar.markdown(f"**Folios Ingested:** {len(folios)} / ~225")
 st.sidebar.markdown(f"**Vocabulary Deciphered:** {len(dict_table):,} words")
 
@@ -59,36 +69,39 @@ tabs = st.tabs([
 # -----------------------------------------------------------------------------
 with tabs[0]:
     st.subheader("Manuscript Folio-by-Folio English Translation")
-    
+
     col_sel1, col_sel2 = st.columns([1, 2])
     with col_sel1:
         chosen_section = st.selectbox(
             "Filter by Section:",
             ["All Sections", "Herbal", "Astronomical/Zodiac", "Biological", "Pharmaceutical", "Stars/Recipes"]
         )
-    
+
     filtered_df = df if chosen_section == "All Sections" else df[df["section"] == chosen_section]
-    available_folios = sorted(filtered_df["folio"].unique())
+    available_folios = sorted(filtered_df["folio"].unique()) if not filtered_df.empty else []
 
-    with col_sel2:
-        selected_folio = st.selectbox("Select Folio:", available_folios, index=0)
+    if available_folios:
+        with col_sel2:
+            selected_folio = st.selectbox("Select Folio:", available_folios, index=0)
 
-    folio_rows = df[df["folio"] == selected_folio]
-    hand_type = folio_rows["currier"].iloc[0] if not folio_rows.empty else "UNKNOWN"
-    sec_type = folio_rows["section"].iloc[0] if not folio_rows.empty else "UNKNOWN"
+        folio_rows = df[df["folio"] == selected_folio]
+        hand_type = folio_rows["currier"].iloc[0] if not folio_rows.empty else "UNKNOWN"
+        sec_type = folio_rows["section"].iloc[0] if not folio_rows.empty else "UNKNOWN"
 
-    st.markdown(f"#### Folio `{selected_folio}` | Section: **{sec_type}** | Currier Mode: **Hand {hand_type}**")
-    st.markdown("---")
+        st.markdown(f"#### Folio `{selected_folio}` | Section: **{sec_type}** | Currier Mode: **Hand {hand_type}**")
+        st.markdown("---")
 
-    for header, group in folio_rows.groupby("header"):
-        raw_line = " ".join(group["clean"].tolist())
-        res = engine.translate_phrase(raw_line)
+        for header, group in folio_rows.groupby("header"):
+            raw_line = " ".join(group["clean"].tolist())
+            res = engine.translate_phrase(raw_line)
 
-        st.markdown(f"**Line `{header}`**")
-        st.code(raw_line, language="text")
-        st.success(f"**English:** {res['translation']}")
-        st.caption(f"Syntactic Gloss: `{res['gloss']}`")
-        st.markdown("<br/>", unsafe_allow_html=True)
+            st.markdown(f"**Line `{header}`**")
+            st.code(raw_line, language="text")
+            st.success(f"**English:** {res['translation']}")
+            st.caption(f"Syntactic Gloss: `{res['gloss']}`")
+            st.markdown("<br/>", unsafe_allow_html=True)
+    else:
+        st.warning("No folios found matching the selected section.")
 
 # -----------------------------------------------------------------------------
 # TAB 2: Live Interactive Translator
@@ -124,7 +137,7 @@ with tabs[1]:
 with tabs[2]:
     st.subheader("Complete Induced Mathematical Dictionary")
     st.markdown("Every unique token in the manuscript, aligned to 15th-century Latin scientific lemmas and rendered into English.")
-    
+
     search = st.text_input("Search dictionary by Voynich token, Latin lemma, or English meaning:", "")
     view_table = dict_table.copy()
     if search:
