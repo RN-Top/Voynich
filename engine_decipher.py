@@ -1,92 +1,355 @@
 """
-voynich-state-viewer: Whole-Manuscript Decipherment Engine
-Latent SVD Bigram Grammar Induction & PPMI Manifold Alignment.
+Exploratory lexical hypothesis engine for Voynich tokens.
+
+This module does NOT claim the Voynich manuscript has been deciphered.
+It separates curated hypotheses from transparent morphology heuristics
+and returns an evidence label plus confidence for every interpretation.
 """
 
 import re
-import numpy as np
-import pandas as pd
 from collections import Counter
 
-HISTORICAL_LATIN_PAIRS = [
-    ("qokedy", "coquere", "cook / boil", "OPERATOR_VERB"),
-    ("qokeey", "calfacere", "apply heat", "OPERATOR_VERB"),
-    ("okedy", "coquatur", "let it boil", "OPERATOR_VERB"),
-    ("daiin", "aquam", "water / decoction", "OPERAND_NOUN"),
-    ("shedy", "radicem", "root", "OPERAND_NOUN"),
-    ("chedy", "herbam", "herb / plant", "OPERAND_NOUN"),
-    ("otcheody", "vasculum", "vessel / jar", "OPERAND_NOUN"),
-    ("qokal", "distillare", "distill", "OPERATOR_VERB"),
-    ("chdam", "resolvere", "dissolve completely", "TERMINAL_FLUSH"),
-    ("am", "terminare", "finish / end", "TERMINAL_FLUSH"),
-    ("ydaraishy", "auctor", "author / composed by", "OPERAND_NOUN"),
-    ("ytchas", "scriptor", "scribe / written by", "OPERAND_NOUN"),
-    ("oraiin", "oratio", "prayer / blessing", "OPERAND_NOUN"),
-    ("chkor", "finitus", "completed / sealed", "TERMINAL_FLUSH"),
-    ("shol", "calidus", "warm / dry", "MODIFIER_ADJ"),
-    ("shory", "siccus", "desiccated", "MODIFIER_ADJ"),
-    ("cthores", "compositum", "mixture", "OPERAND_NOUN"),
-    ("chol", "succus", "extracted juice", "OPERAND_NOUN"),
-    ("kor", "cor / centrum", "core / heart", "OPERAND_NOUN"),
-    ("sholdy", "infusio", "steeped infusion", "OPERAND_NOUN"),
-    ("dair", "oleum", "oil / spirit", "OPERAND_NOUN"),
-    ("chedain", "folium", "leaf / foliage", "OPERAND_NOUN"),
-    ("ataiin", "stella", "star / celestial body", "OPERAND_NOUN"),
-    ("fachys", "facies", "aspect / phase", "OPERAND_NOUN"),
-    ("ykal", "sumere", "take / ingest", "OPERATOR_VERB"),
-]
+import pandas as pd
+
+
+CURATED_HYPOTHESES = {
+    "qokedy": {
+        "latin_lemma": "coquere",
+        "english_hypothesis": "cook / boil",
+        "induced_role": "OPERATOR_VERB",
+        "evidence": "curated hypothesis",
+        "confidence": 0.35,
+    },
+    "qokeey": {
+        "latin_lemma": "calfacere",
+        "english_hypothesis": "apply heat",
+        "induced_role": "OPERATOR_VERB",
+        "evidence": "curated hypothesis",
+        "confidence": 0.30,
+    },
+    "okedy": {
+        "latin_lemma": "coquatur",
+        "english_hypothesis": "let it boil",
+        "induced_role": "OPERATOR_VERB",
+        "evidence": "curated hypothesis",
+        "confidence": 0.30,
+    },
+    "daiin": {
+        "latin_lemma": "aquam",
+        "english_hypothesis": "water / decoction",
+        "induced_role": "OPERAND_NOUN",
+        "evidence": "curated hypothesis",
+        "confidence": 0.30,
+    },
+    "shedy": {
+        "latin_lemma": "radicem",
+        "english_hypothesis": "root",
+        "induced_role": "OPERAND_NOUN",
+        "evidence": "curated hypothesis",
+        "confidence": 0.25,
+    },
+    "chedy": {
+        "latin_lemma": "herbam",
+        "english_hypothesis": "herb / plant",
+        "induced_role": "OPERAND_NOUN",
+        "evidence": "curated hypothesis",
+        "confidence": 0.25,
+    },
+    "otcheody": {
+        "latin_lemma": "vasculum",
+        "english_hypothesis": "vessel / jar",
+        "induced_role": "OPERAND_NOUN",
+        "evidence": "curated hypothesis",
+        "confidence": 0.25,
+    },
+    "qokal": {
+        "latin_lemma": "distillare",
+        "english_hypothesis": "distill",
+        "induced_role": "OPERATOR_VERB",
+        "evidence": "curated hypothesis",
+        "confidence": 0.25,
+    },
+    "chdam": {
+        "latin_lemma": "resolvere",
+        "english_hypothesis": "dissolve completely",
+        "induced_role": "TERMINAL_FLUSH",
+        "evidence": "curated hypothesis",
+        "confidence": 0.20,
+    },
+    "am": {
+        "latin_lemma": "terminare",
+        "english_hypothesis": "finish / end",
+        "induced_role": "TERMINAL_FLUSH",
+        "evidence": "curated hypothesis",
+        "confidence": 0.20,
+    },
+    "ydaraishy": {
+        "latin_lemma": "auctor",
+        "english_hypothesis": "author / composed by",
+        "induced_role": "OPERAND_NOUN",
+        "evidence": "speculative attribution hypothesis",
+        "confidence": 0.10,
+    },
+    "ytchas": {
+        "latin_lemma": "scriptor",
+        "english_hypothesis": "scribe / written by",
+        "induced_role": "OPERAND_NOUN",
+        "evidence": "speculative attribution hypothesis",
+        "confidence": 0.10,
+    },
+    "oraiin": {
+        "latin_lemma": "oratio",
+        "english_hypothesis": "prayer / blessing",
+        "induced_role": "OPERAND_NOUN",
+        "evidence": "curated hypothesis",
+        "confidence": 0.15,
+    },
+    "chkor": {
+        "latin_lemma": "finitus",
+        "english_hypothesis": "completed / sealed",
+        "induced_role": "TERMINAL_FLUSH",
+        "evidence": "curated hypothesis",
+        "confidence": 0.15,
+    },
+}
 
 
 class WholeManuscriptDecipherer:
-    def __init__(self, token_list):
-        self.raw_tokens = [str(t).strip() for t in token_list if str(t).strip()]
-        self.vocab = [w for w, _ in Counter(self.raw_tokens).most_common(1200)]
-        self.word2idx = {w: i for i, w in enumerate(self.vocab)}
-        self.dict_lookup = {item[0]: (item[1], item[2], item[3]) for item in HISTORICAL_LATIN_PAIRS}
+    """
+    Builds an exploratory lexical table from corpus vocabulary.
 
-    def infer_role_and_meaning(self, token: str):
-        if token in self.dict_lookup:
-            return self.dict_lookup[token]
+    Known entries use explicitly curated hypotheses.
+    Unknown entries receive only conservative morphology-based labels.
+    """
 
-        # Suffix-directed heuristic fallback
-        if token.endswith("m") or token.endswith("am"):
-            return ("terminare", "flush / resolve", "TERMINAL_FLUSH")
-        elif token.endswith("edy") or token.endswith("eey"):
-            return ("operari", "process / heat", "OPERATOR_VERB")
-        elif token.endswith("ol") or token.endswith("or") or token.endswith("ar"):
-            return ("qualitas", "graduated / tempered", "MODIFIER_ADJ")
-        elif token.startswith("q"):
-            return ("coquere", "infuse / extract", "OPERATOR_VERB")
-        else:
-            return ("materia", "substance / plant part", "OPERAND_NOUN")
+    def __init__(self, tokens):
+        cleaned = []
 
-    def translate_phrase(self, phrase: str):
-        toks = [t for t in re.split(r"[.,\s]+", phrase) if t]
-        if not toks:
-            return {"translation": "", "gloss": ""}
+        for token in tokens:
+            token = str(token).strip().lower()
 
-        trans_words = []
-        gloss_tags = []
+            if not token:
+                continue
 
-        for tok in toks:
-            lemma, eng, role = self.infer_role_and_meaning(tok)
-            trans_words.append(eng)
-            tag = role[:3]
-            gloss_tags.append(f"{tok}[{tag}]")
+            token = re.sub(r"[^a-z]", "", token)
+
+            if token:
+                cleaned.append(token)
+
+        self.token_counts = Counter(cleaned)
+
+        self.vocabulary = [
+            token
+            for token, _ in self.token_counts.most_common(1200)
+        ]
+
+        self.lookup = {}
+
+        for token in self.vocabulary:
+            self.lookup[token] = self._interpret_token(token)
+
+    def _interpret_token(self, token):
+        """
+        Return one hypothesis record for a token.
+        """
+
+        if token in CURATED_HYPOTHESES:
+            row = CURATED_HYPOTHESES[token].copy()
+            row["voynich_token"] = token
+            return row
+
+        if token.endswith(("am", "m")):
+            return {
+                "voynich_token": token,
+                "latin_lemma": "",
+                "english_hypothesis": (
+                    "[terminal / closure-like form]"
+                ),
+                "induced_role": "TERMINAL_FLUSH",
+                "evidence": "morphology heuristic",
+                "confidence": 0.08,
+            }
+
+        if token.endswith(("edy", "eey")):
+            return {
+                "voynich_token": token,
+                "latin_lemma": "",
+                "english_hypothesis": (
+                    "[process-like form]"
+                ),
+                "induced_role": "OPERATOR_VERB",
+                "evidence": "morphology heuristic",
+                "confidence": 0.08,
+            }
+
+        if token.endswith(("ol", "or", "ar", "al")):
+            return {
+                "voynich_token": token,
+                "latin_lemma": "",
+                "english_hypothesis": (
+                    "[modifier-like form]"
+                ),
+                "induced_role": "MODIFIER_ADJ",
+                "evidence": "morphology heuristic",
+                "confidence": 0.06,
+            }
+
+        if token.startswith("q"):
+            return {
+                "voynich_token": token,
+                "latin_lemma": "",
+                "english_hypothesis": (
+                    "[q-prefixed operator-like form]"
+                ),
+                "induced_role": "OPERATOR_VERB",
+                "evidence": "morphology heuristic",
+                "confidence": 0.06,
+            }
 
         return {
-            "translation": " ".join(trans_words),
-            "gloss": " ".join(gloss_tags)
+            "voynich_token": token,
+            "latin_lemma": "",
+            "english_hypothesis": (
+                "[unresolved lexical item]"
+            ),
+            "induced_role": "UNKNOWN",
+            "evidence": "no semantic evidence",
+            "confidence": 0.00,
+        }
+
+    def interpret_token(self, token):
+        """
+        Interpret one token.
+
+        Tokens outside the top corpus vocabulary are still handled
+        using the same conservative rules.
+        """
+
+        cleaned = re.sub(
+            r"[^a-z]",
+            "",
+            str(token).strip().lower(),
+        )
+
+        if not cleaned:
+            return {
+                "voynich_token": "",
+                "latin_lemma": "",
+                "english_hypothesis": "",
+                "induced_role": "UNKNOWN",
+                "evidence": "empty input",
+                "confidence": 0.00,
+            }
+
+        if cleaned in self.lookup:
+            return self.lookup[cleaned].copy()
+
+        return self._interpret_token(cleaned)
+
+    def interpret_phrase(self, phrase):
+        """
+        Interpret a sequence of Voynich tokens.
+
+        Returns:
+            interpretation: human-readable hypothesis string
+            gloss: compact token-by-token gloss
+            rows: detailed per-token records
+        """
+
+        raw_tokens = str(phrase).split()
+
+        rows = [
+            self.interpret_token(token)
+            for token in raw_tokens
+        ]
+
+        rows = [
+            row
+            for row in rows
+            if row["voynich_token"]
+        ]
+
+        if not rows:
+            return {
+                "interpretation": "",
+                "gloss": "",
+                "rows": [],
+            }
+
+        interpretation = " ".join(
+            row["english_hypothesis"]
+            for row in rows
+        )
+
+        gloss = " | ".join(
+            (
+                f'{row["voynich_token"]}: '
+                f'{row["english_hypothesis"]}'
+            )
+            for row in rows
+        )
+
+        return {
+            "interpretation": interpretation,
+            "gloss": gloss,
+            "rows": rows,
+        }
+
+    def translate_phrase(self, phrase):
+        """
+        Backward-compatible alias.
+
+        The result is still an exploratory interpretation,
+        not a validated translation.
+        """
+
+        result = self.interpret_phrase(phrase)
+
+        return {
+            "translation": result["interpretation"],
+            "gloss": result["gloss"],
+            "rows": result["rows"],
         }
 
     def get_full_dictionary(self):
-        records = []
-        for w in self.vocab:
-            lemma, eng, role = self.infer_role_and_meaning(w)
-            records.append({
-                "voynich_token": w,
-                "latin_lemma": lemma,
-                "english": eng,
-                "induced_role": role
-            })
-        return pd.DataFrame(records)
+        """
+        Return the current corpus vocabulary and hypotheses
+        as a DataFrame.
+        """
+
+        rows = []
+
+        for token in self.vocabulary:
+            row = self.lookup[token].copy()
+            row["frequency"] = self.token_counts[token]
+            rows.append(row)
+
+        if not rows:
+            return pd.DataFrame(
+                columns=[
+                    "voynich_token",
+                    "frequency",
+                    "latin_lemma",
+                    "english_hypothesis",
+                    "induced_role",
+                    "evidence",
+                    "confidence",
+                ]
+            )
+
+        df = pd.DataFrame(rows)
+
+        return df[
+            [
+                "voynich_token",
+                "frequency",
+                "latin_lemma",
+                "english_hypothesis",
+                "induced_role",
+                "evidence",
+                "confidence",
+            ]
+        ].sort_values(
+            ["frequency", "voynich_token"],
+            ascending=[False, True],
+        ).reset_index(drop=True)
