@@ -14,7 +14,12 @@ from typing import Dict, List, Optional
 
 import pandas as pd
 
-CORPUS_URL = "https://www.voynich.nu/data/ZL3b-n.txt"
+CORPUS_URLS = (
+    "https://raw.githubusercontent.com/matthewdgreen/cipher_benchmark/main/benchmark/unsolved/sources/voynich/transcriptions/ZL3b-n.txt",
+    "https://www.voynich.nu/data/ZL3b-n.txt",
+    "http://www.voynich.nu/data/ZL3b-n.txt",
+)
+CORPUS_URL = CORPUS_URLS[0]
 CORPUS_PATH = os.path.join("data", "ZL3b-n.txt")
 MIN_CORPUS_BYTES = 50_000
 
@@ -56,27 +61,35 @@ def ensure_full_corpus(path: str = CORPUS_PATH) -> str:
     if not needs_download:
         return str(path_obj)
 
-    request = urllib.request.Request(
-        CORPUS_URL,
-        headers={"User-Agent": "Mozilla/5.0"},
-    )
+    errors = []
 
-    try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            data = response.read()
-    except Exception as exc:
-        raise RuntimeError(
-            "The local Voynich corpus is missing/truncated and the "
-            f"automatic download failed: {exc}"
-        ) from exc
-
-    if len(data) < MIN_CORPUS_BYTES:
-        raise RuntimeError(
-            f"Downloaded corpus is unexpectedly small ({len(data)} bytes)."
+    for url in CORPUS_URLS:
+        request = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Mozilla/5.0"},
         )
 
-    path_obj.write_bytes(data)
-    return str(path_obj)
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                data = response.read()
+        except Exception as exc:
+            errors.append(f"{url}: {exc}")
+            continue
+
+        if len(data) < MIN_CORPUS_BYTES:
+            errors.append(
+                f"{url}: downloaded only {len(data)} bytes"
+            )
+            continue
+
+        path_obj.write_bytes(data)
+        return str(path_obj)
+
+    details = " | ".join(errors)
+    raise RuntimeError(
+        "The local Voynich corpus is missing/truncated and all automatic "
+        f"download sources failed. {details}"
+    )
 
 
 class VoynichParser:
