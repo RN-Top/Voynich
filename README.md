@@ -1,8 +1,8 @@
 # Voynich Computational Decipherment & State-Space Engine
 
-An automated, reproducible computational pipeline and interactive workbench for the Voynich Manuscript (Beinecke MS 408).
+An automated computational pipeline and interactive research workbench for the structural and lexical analysis of the Voynich Manuscript (Beinecke MS 408).
 
-The project bypasses arbitrary anagramming and subjective glossing by combining **unsupervised grammar induction**, **PPMI vector space embedding**, and **manifold alignment** against 15th-century medieval technical corpora.
+The framework combines **unsupervised grammar induction**, **PPMI vector space embedding**, **Procrustes manifold alignment**, and a specialized **Author Signature & Scribal Colophon Decipher** module to analyze both primary ciphertext dynamics and historical provenance markers.
 
 ---
 
@@ -28,19 +28,20 @@ $$\text{Surface Token } W = \mathcal{C}\big([\Lambda \times N_E \times O_I] + \r
 │  - Enforces terminal line flushes (A2: terminal -m)    │
 └───────────────────────────┬────────────────────────────┘
                             │
-        ┌───────────────────┴────────────────────┐
-        ▼                                        ▼
-┌──────────────────────────────┐ ┌──────────────────────────────┐
-│     STATISTICAL GROUNDING    │ │    ASTRONOMICAL ALIGNMENT    │
-│        (analyzer.py)         │ │        (decoder.py)          │
-│ - Slot Omega Syntactic Mining│ │ - 12 Zodiac House Invariance │
-│ - Pointwise Mutual Info (PMI)│ │ - Clock/Rota Positional Map  │
-│ - Cross-Modal Domain Entropy │ │ - Celestial Label Matrix     │
-└──────────────┬───────────────┘ └──────────────┬───────────────┘
-               │                                │
-               └────────────────┬───────────────┘
-                                │
-                                ▼
+        ┌───────────────────┼────────────────────┐
+        ▼                   ▼                    ▼
+┌─────────────────┐ ┌─────────────────┐ ┌──────────────────────┐
+│  STATISTICAL    │ │   ASTRONOMICAL  │ │    AUTHOR / COLOPHON │
+│   GROUNDING     │ │    ALIGNMENT    │ │       DECIPHER       │
+│  (analyzer.py)  │ │  (decoder.py)   │ │(engine_decipher.py)  │
+│ - Slot Omega    │ │ - 12 Zodiac Rota│ │ - Colophon (=Pt/+Pc) │
+│ - PMI Discovery │ │ - House Bounds  │ │ - Tepenecz & Margins │
+│ - Cross-Domain  │ │ - Star Clusters │ │ - Vocabulary Isolation│
+└────────┬────────┘ └────────┬────────┘ └──────────┬───────────┘
+         │                   │                     │
+         └───────────────────┼─────────────────────┘
+                             │
+                             ▼
 ┌────────────────────────────────────────────────────────┐
 │         COMPUTATIONAL DECIPHERMENT ENGINE              │
 │               (engine_decipher.py)                     │
@@ -48,6 +49,7 @@ $$\text{Surface Token } W = \mathcal{C}\big([\Lambda \times N_E \times O_I] + \r
 │  - Positive Pointwise Mutual Information (PPMI) Space  │
 │  - Grammar-Gated Procrustes Manifold Alignment         │
 │  - Aligned Lexicon: Voynich -> Latin Lemma -> English  │
+│  - Scribal & Attribution Audit (f1r, f8r, f9r, f116v)  │
 └───────────────────────────┬────────────────────────────┘
                             │
                             ▼
@@ -56,6 +58,6 @@ $$\text{Surface Token } W = \mathcal{C}\big([\Lambda \times N_E \times O_I] + \r
 │                      (app.py)                          │
 │  - Live English Translator & Morphosyntactic Glosser   │
 │  - Derived Mathematical Dictionary Key                 │
-│  - Syntactic Category Distribution Viewer              │
+│  - Author Signature & Terminal Colophon Inspector     │
 │  - Full Manuscript Parallel Reader Edition             │
-└────────────────────────────────────────────────────────┘
+└───────────────────────────┘
