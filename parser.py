@@ -1,6 +1,6 @@
 """
 voynich-state-viewer: Systematic Morphological Parser and State-Space Mapper.
-Implements the grounded v4.0-v6.0 structural factorization:
+Implements the grounded structural factorization:
     W = C( [Lambda x N_E x O_I] + rho )
 """
 
@@ -38,9 +38,7 @@ class VoynichParser:
     @classmethod
     def clean_token(cls, raw: str) -> str:
         """Strips editorial and certainty brackets from EVA/IVTFF tokens."""
-        # Resolve alternate readings [a:b] -> pick primary
         t = re.sub(r'\[([^:]+):[^\]]+\]', r'\1', raw)
-        # Strip editorial tags, character comments, and inline glyph IDs
         t = re.sub(r'[{}\[\]<!>]', '', t)
         t = re.sub(r'@[0-9]+;', '', t)
         t = re.sub(r'[@\d;%+=*?$,^~-]', '', t)
@@ -57,7 +55,7 @@ class VoynichParser:
             return {"token": raw_token, "clean": "", "valid": False}
 
         remainder = token
-        
+
         # 1. Control Header (C)
         control = "NONE"
         for cp in cls.CONTROL_PREFIXES:
@@ -86,7 +84,7 @@ class VoynichParser:
                 carrier = kc
                 break
 
-        # Systematic detection of A2 boundary flusher (-m / -am)
+        # Systematic detection of boundary flusher (-m / -am)
         is_m = bool(re.search(r'(am|(?<![ai])m)$', token))
 
         return {
@@ -110,7 +108,7 @@ class VoynichParser:
         if not token_clean:
             return "?"
 
-        # R: Resolve / Terminal flush (must exclude false matches from -ain / -aiin)
+        # R: Resolve / Terminal flush (excludes false matches from -ain / -aiin)
         if re.search(r'(am|(?<![ai])m)$', token_clean):
             return "R"
 
@@ -199,7 +197,7 @@ def parse_zl3b(filepath: str, selected_folios: Optional[List[str]] = None) -> pd
         df["next_state"] = df["state"].shift(-1)
         df["next_control"] = df["control"].shift(-1)
         df["next_exit_port"] = df["exit_port"].shift(-1)
-        
+
         # Enforce line buffer resets: transitions cannot cross physical line ends
         df.loc[df["is_line_end"], ["next_state", "next_control", "next_exit_port"]] = None
 
