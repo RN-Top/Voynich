@@ -1,4 +1,4 @@
-# Voynich Computational Research Workbench
+#  Voynich Computational Research Workbench
 
 A reproducible Python and Streamlit research environment for exploring structural patterns in the Voynich Manuscript transcription.
 
