@@ -1,117 +1,266 @@
 """
-voynich-state-viewer: Author Signature & Scribal Colophon Auditor
-Searches ZL3b-n.txt for structural signatures, paragraph-final colophons,
-and non-Voynich scribal marginalia.
+Author, colophon, and marginalia audit tools for the Voynich corpus.
+
+This module searches for possible author/scribe-related annotations
+and structurally unusual manuscript-end loci.
+
+It does not claim that any detected token is a verified author name.
 """
 
 import re
+
 import pandas as pd
-from typing import Dict, List
 
 
 class AuthorSignatureAuditor:
-    def __init__(self, filepath: str = "data/ZL3b-n.txt"):
+    """
+    Lightweight audit helper for possible signature, scribe,
+    colophon, and marginalia evidence.
+    """
+
+    def __init__(self, filepath="data/ZL3b-n.txt"):
         self.filepath = filepath
-        self.lines = []
-        self._load_corpus()
+        self.lines = self._load_lines()
 
-    def _load_corpus(self):
-        with open(self.filepath, "r", encoding="utf-8", errors="ignore") as f:
-            self.lines = f.readlines()
+    def _load_lines(self):
+        """
+        Read the corpus file safely.
+        """
 
-    def audit_marginalia_and_comments(self) -> List[Dict[str, str]]:
+        with open(
+            self.filepath,
+            "r",
+            encoding="utf-8",
+            errors="ignore",
+        ) as handle:
+            return handle.readlines()
+
+    def audit_marginalia_and_comments(self):
         """
-        Extracts IVTFF comments explicitly referencing signatures, external scripts,
-        or author-name candidates (e.g., Jacobus de Tepenecz, marginal alphabets).
+        Search IVTFF comment lines for author/scribe-related terms.
+
+        This only reports textual annotations already present
+        in the transcription/comments.
         """
+
+        keywords = (
+            "signature",
+            "author",
+            "jacobus",
+            "tepenecz",
+            "name",
+            "hand",
+            "latin",
+            "roman",
+        )
+
         findings = []
-        current_folio = "unknown"
 
-        for line in self.lines:
-            line_str = line.strip()
-            folio_match = re.match(r"<f(\d+[rv]\d*)>", line_str)
-            if folio_match:
-                current_folio = f"f{folio_match.group(1)}"
+        for line_number, raw_line in enumerate(
+            self.lines,
+            start=1,
+        ):
+            line = raw_line.strip()
 
-            # Detect comments discussing hands, signatures, or Latin/Roman scripts
-            if line_str.startswith("###"):
-                lower = line_str.lower()
-                if any(k in lower for k in ["signature", "author", "jacobus", "tepenecz", "name", "hand"]):
-                    findings.append({
-                        "folio": current_folio,
-                        "type": "CORPUS_COMMENT",
-                        "content": line_str.replace("###", "").strip()
-                    })
-        return findings
-
-    def find_structural_signature_slots(self) -> pd.DataFrame:
-        """
-        Locates tokens appearing in dedicated structural exit/colophon positions:
-        - Line types =Pt (paragraph terminal) or +Pc (closing colophon lines)
-        - Standalone indented/right-flushed lines containing 1-3 tokens
-        """
-        records = []
-        token_line_regex = re.compile(r"<f(\d+[rv]\d*)\.(\d+),([@=+*][A-Za-z0-9_]+)>\s*(.*)")
-
-        for line in self.lines:
-            m = token_line_regex.match(line.strip())
-            if not m:
+            if not line.startswith("###"):
                 continue
 
-            folio = f"f{m.group(1)}"
-            line_no = m.group(2)
-            locus = m.group(3)
-            raw_text = m.group(4)
+            lower = line.lower()
 
-            # Clean markup to extract raw surface tokens
-            clean = re.sub(r"<[%$!@].*?>", "", raw_text)
-            clean = re.sub(r"<!.*?>", "", clean)
-            tokens = [t for t in re.split(r"[.,\s]+", clean) if t and not t.startswith("<")]
+            matched_keywords = [
+                keyword
+                for keyword in keywords
+                if keyword in lower
+            ]
 
-            # Colophon loci (+Pc, =Pt) or ultra-short terminal paragraph lines
-            is_colophon_locus = ("Pc" in locus) or ("Pt" in locus)
-            is_short_tail = len(tokens) <= 2 and locus.startswith("+")
+            if matched_keywords:
+                findings.append(
+                    {
+                        "line_number": line_number,
+                        "matched_keywords": ", ".join(
+                            matched_keywords
+                        ),
+                        "comment": line,
+                    }
+                )
 
-            if is_colophon_locus or is_short_tail:
-                records.append({
-                    "folio": folio,
-                    "line": line_no,
+        return findings
+
+    def find_structural_signature_slots(self):
+        """
+        Find structurally unusual short text loci that may deserve
+        manual inspection as possible colophon/signature candidates.
+
+        Detection is intentionally conservative.
+        """
+
+        rows = []
+
+        token_line_pattern = re.compile(
+            r"^<([^>]+)>\s*(.*)$"
+        )
+
+        for line_number, raw_line in enumerate(
+            self.lines,
+            start=1,
+        ):
+            line = raw_line.rstrip("\n")
+
+            match = token_line_pattern.match(line)
+
+            if not match:
+                continue
+
+            locus = match.group(1).strip()
+            text = match.group(2).strip()
+
+            cleaned_text = re.sub(
+                r"\{[^}]*\}",
+                " ",
+                text,
+            )
+
+            cleaned_text = re.sub(
+                r"<[^>]*>",
+                " ",
+                cleaned_text,
+            )
+
+            cleaned_text = re.sub(
+                r"[\[\](),;]",
+                " ",
+                cleaned_text,
+            )
+
+            tokens = [
+                token
+                for token in re.split(
+                    r"[.\s]+",
+                    cleaned_text,
+                )
+                if token
+            ]
+
+            locus_lower = locus.lower()
+
+            is_colophon_locus = (
+                "pc" in locus_lower
+                or "pt" in locus_lower
+            )
+
+            is_short_tail = (
+                len(tokens) <= 2
+                and locus.startswith(("+", "="))
+            )
+
+            if not (
+                is_colophon_locus
+                or is_short_tail
+            ):
+                continue
+
+            rows.append(
+                {
+                    "line_number": line_number,
                     "locus": locus,
                     "token_count": len(tokens),
                     "tokens": " ".join(tokens),
-                    "raw_line": raw_text
-                })
+                    "raw_text": text,
+                    "reason": (
+                        "colophon-like locus"
+                        if is_colophon_locus
+                        else "short terminal locus"
+                    ),
+                }
+            )
 
-        return pd.DataFrame(records)
+        if not rows:
+            return pd.DataFrame(
+                columns=[
+                    "line_number",
+                    "locus",
+                    "token_count",
+                    "tokens",
+                    "raw_text",
+                    "reason",
+                ]
+            )
 
-    def cross_check_vocabulary_isolation(self, signature_candidates: List[str]) -> pd.DataFrame:
+        return pd.DataFrame(rows)
+
+    def cross_check_vocabulary_isolation(
+        self,
+        candidate_tokens,
+    ):
         """
-        Checks whether signature-slot tokens appear anywhere else in running prose.
-        True proper names/signatures are far more likely to have extremely low
-        prose recurrence (singletons or localized to that specific folio).
+        Count candidate token occurrences across the full corpus.
+
+        Very low-frequency forms can be flagged for manual inspection,
+        but rarity alone is not evidence of authorship.
         """
-        all_text = " ".join(self.lines)
+
+        corpus_text = "\n".join(self.lines).lower()
+
         results = []
-        for cand in set(signature_candidates):
-            if not cand:
+
+        for candidate in candidate_tokens:
+            token = str(candidate).strip().lower()
+
+            if not token:
                 continue
-            # Count exact matches bounded by typical IVTFF separators
-            pattern = re.compile(rf"[.,\s<]{re.escape(cand)}[.,\s>]")
-            count = len(pattern.findall(all_text))
-            results.append({
-                "candidate_token": cand,
-                "total_manuscript_occurrences": count,
-                "is_isolated_hapax": count <= 2
-            })
-        return pd.DataFrame(results).sort_values(by="total_manuscript_occurrences")
+
+            pattern = re.compile(
+                rf"(?<![a-z]){re.escape(token)}(?![a-z])"
+            )
+
+            count = len(
+                pattern.findall(corpus_text)
+            )
+
+            results.append(
+                {
+                    "token": token,
+                    "occurrences": count,
+                    "isolated_hapax": count <= 2,
+                }
+            )
+
+        return pd.DataFrame(results)
 
 
 if __name__ == "__main__":
     auditor = AuthorSignatureAuditor()
-    print("=== CORPUS EVIDENCE / PROVENANCE NOTES ===")
-    for note in auditor.audit_marginalia_and_comments()[:5]:
-        print(f"[{note['folio']}] {note['content']}")
 
-    print("\n=== CANDIDATE SIGNATURE / COLOPHON LOCI ===")
-    slots_df = auditor.find_structural_signature_slots()
-    print(slots_df.head(10)[["folio", "line", "locus", "tokens"]])
+    print(
+        "\n=== Marginalia / Comment Evidence ==="
+    )
+
+    notes = auditor.audit_marginalia_and_comments()
+
+    if notes:
+        for item in notes:
+            print(
+                f'Line {item["line_number"]}: '
+                f'{item["comment"]}'
+            )
+    else:
+        print(
+            "No matching author/scribe-related "
+            "comment annotations found."
+        )
+
+    print(
+        "\n=== Structural Candidate Loci ==="
+    )
+
+    slots = auditor.find_structural_signature_slots()
+
+    if slots.empty:
+        print(
+            "No structural signature/colophon "
+            "candidates detected."
+        )
+    else:
+        print(
+            slots.to_string(index=False)
+        )
