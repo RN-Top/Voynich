@@ -1,14 +1,17 @@
 """
-voynich-state-viewer: Morphological Parser & Astronomical Ring Extractor
-Implements token decomposition W = C([Lambda x N_E x O_I] + rho) and 
-extracts angular/clock positions from IVTFF cosmological loci.
+voynich-state-viewer: Complete Corpus Parser & Automatic Downloader
+Ingests the entire 100% manuscript corpus across all folios (f1r to f116v).
 """
 
+import os
 import re
+import urllib.request
 from typing import Dict, List, Optional
 import pandas as pd
 
-# Functional macrostate mappings for reference
+CORPUS_URL = "https://raw.githubusercontent.com/rws/voynich/master/data/ZL3b-n.txt"
+DEFAULT_DATA_PATH = os.path.join("data", "ZL3b-n.txt")
+
 STATE_COLORS = {
     "C": "#FF6B6B",  # Transform / Processive
     "L": "#4D96FF",  # Connect / Relational
@@ -17,9 +20,31 @@ STATE_COLORS = {
     "?": "#9E9E9E"   # Unmapped
 }
 
+STATE_LABELS = {
+    "C": "Transform", "L": "Connect", "P": "Maintain", "R": "Resolve", "?": "Unmapped"
+}
 
-class VoynichMorphology:
-    """Isolates invariant lexical carriers (Lambda) and realization ports (rho)."""
+
+def ensure_full_corpus_exists(filepath: str = DEFAULT_DATA_PATH) -> str:
+    """Verifies if the full corpus exists. If missing or only a test sample, downloads the full text."""
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    needs_download = False
+
+    if not os.path.exists(filepath):
+        needs_download = True
+    elif os.path.getsize(filepath) < 50000:  # If smaller than 50 KB, it's just a test sample
+        needs_download = True
+
+    if needs_download:
+        try:
+            urllib.request.urlretrieve(CORPUS_URL, filepath)
+        except Exception:
+            pass  # Fall back to existing local file if offline
+    return filepath
+
+
+class VoynichParser:
+    """Systematic morphological tokenizer isolating carriers (Lambda) and routing ports (rho)."""
 
     CONTROL_PREFIXES = ('qk', 'dk', 'q', 'k', 'd')
     REALIZATION_PORTS = ('aiin', 'aiiin', 'ain', 'ar', 'al', 'am', 'm', 'y')
@@ -28,7 +53,6 @@ class VoynichMorphology:
 
     @classmethod
     def clean_token(cls, raw: str) -> str:
-        """Strips certainty brackets, line-end markup, and editorial symbols."""
         t = re.sub(r'\[([^:]+):[^\]]+\]', r'\1', raw)
         t = re.sub(r'[{}\[\]<!>]', '', t)
         t = re.sub(r'@[0-9]+;', '', t)
@@ -36,15 +60,12 @@ class VoynichMorphology:
         return t.strip().lower()
 
     @classmethod
-    def extract_carrier(cls, raw_token: str) -> Dict[str, object]:
-        """Decomposes token W into C, Lambda, E-grade, internal O, and rho."""
+    def decompose_morphology(cls, raw_token: str) -> Dict[str, object]:
         token = cls.clean_token(raw_token)
         if not token:
-            return {"raw": raw_token, "clean": "", "valid": False}
+            return {"token": raw_token, "clean": "", "valid": False}
 
         remainder = token
-
-        # 1. Control Header Strip
         control = "NONE"
         for cp in cls.CONTROL_PREFIXES:
             if remainder.startswith(cp):
@@ -52,7 +73,6 @@ class VoynichMorphology:
                 remainder = remainder[len(cp):]
                 break
 
-        # 2. Exit Port Strip (A2/A4 Successor Routers)
         exit_port = "BARE"
         for rp in cls.REALIZATION_PORTS:
             if remainder.endswith(rp):
@@ -60,11 +80,9 @@ class VoynichMorphology:
                 remainder = remainder[:-len(rp)]
                 break
 
-        # 3. Internal Registers
         e_grade = len(cls.E_PATTERN.findall(remainder))
         internal_o = 'o' in remainder
 
-        # 4. Lexical Stop Rule: Invariant Carrier Core (Lambda)
         carrier = remainder if remainder else "EMPTY"
         for core in cls.INVARIANT_CORES:
             if core in remainder:
@@ -74,10 +92,10 @@ class VoynichMorphology:
         is_m = bool(re.search(r'(am|(?<![ai])m)$', token))
 
         return {
-            "raw": raw_token,
+            "token": raw_token,
             "clean": token,
             "control": control,
-            "carrier": carrier,
+            "carrier_core": carrier,
             "exit_port": exit_port,
             "e_grade": e_grade,
             "internal_o": internal_o,
@@ -100,21 +118,40 @@ class VoynichMorphology:
         return "?"
 
 
-# Canonical Folio Domain Mapping
-FOLIO_DOMAIN_MAP = {
-    "f70r1": "Aries", "f70r2": "Aries", "f70v1": "Taurus", "f70v2": "Taurus",
-    "f71r": "Gemini", "f71v": "Cancer", "f72r1": "Leo", "f72r2": "Virgo",
-    "f72r3": "Cancer", "f72v1": "Libra", "f72v2": "Virgo", "f72v3": "Scorpio",
-    "f73r": "Sagittarius", "f73v": "Capricorn", "f74r": "Aquarius", "f74v": "Pisces"
-}
+def get_section_from_folio(folio: str) -> str:
+    f = folio.lower().replace('f', '')
+    num_match = re.match(r'(\d+)', f)
+    if not num_match:
+        return "Cosmological" if 'ros' in f else "Unknown"
+    num = int(num_match.group(1))
+    if 1 <= num <= 66:
+        return "Herbal"
+    elif 67 <= num <= 74:
+        return "Astronomical/Zodiac"
+    elif 75 <= num <= 84:
+        return "Biological"
+    elif 85 <= num <= 86:
+        return "Cosmological"
+    elif 87 <= num <= 102:
+        return "Pharmaceutical"
+    elif 103 <= num <= 116:
+        return "Stars/Recipes"
+    return "Unknown"
 
 
-def parse_zl3b(filepath: str) -> pd.DataFrame:
-    """Parses raw IVTFF ZL3b lines into structured morphological and spatial records."""
+def parse_zl3b(filepath: Optional[str] = None) -> pd.DataFrame:
+    """Parses all folios in the manuscript into a structured pandas DataFrame."""
+    target_file = filepath or DEFAULT_DATA_PATH
+    ensure_full_corpus_exists(target_file)
+
     records = []
     current_currier = "UNKNOWN"
+    current_quire = "UNKNOWN"
 
-    with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+    if not os.path.exists(target_file):
+        return pd.DataFrame()
+
+    with open(target_file, 'r', encoding='utf-8', errors='ignore') as f:
         for line in f:
             line = line.strip()
             if not line:
@@ -124,6 +161,9 @@ def parse_zl3b(filepath: str) -> pd.DataFrame:
                 l_match = re.search(r'\$L=([AB])', line)
                 if l_match:
                     current_currier = l_match.group(1)
+                q_match = re.search(r'\$Q=([A-Z0-9]+)', line)
+                if q_match:
+                    current_quire = q_match.group(1)
 
             if line.startswith('#'):
                 continue
@@ -134,12 +174,8 @@ def parse_zl3b(filepath: str) -> pd.DataFrame:
 
             header, raw_text = match.groups()
             folio = header.split('.')[0]
+            section = get_section_from_folio(folio)
 
-            # Extract angular clock indicators if present (e.g. <!09:30>)
-            clock_match = re.search(r'<!(\d{2}:\d{2})>', raw_text)
-            clock_pos = clock_match.group(1) if clock_match else "UNKNOWN"
-
-            # Clean annotations
             clean_text = re.sub(r'<![^>]*>', '', raw_text)
             clean_text = re.sub(r'\{[^}]*\}', '', clean_text)
             clean_text = re.sub(r'<[%+=*][^>]*>', '', clean_text)
@@ -147,26 +183,18 @@ def parse_zl3b(filepath: str) -> pd.DataFrame:
             raw_tokens = [t for t in re.split(r'[.,\s]+', clean_text) if t and not t.startswith('<')]
             total = len(raw_tokens)
 
-            # Assign Illustrated Zodiac Sign or General Domain
-            zodiac_target = FOLIO_DOMAIN_MAP.get(folio, "Non-Zodiac")
-            is_astro = (folio.startswith("f67") or folio.startswith("f68") or 
-                        folio.startswith("f69") or folio.startswith("f70") or 
-                        folio.startswith("f71") or folio.startswith("f72") or 
-                        folio.startswith("f73") or folio.startswith("f74"))
-
             for idx, raw_t in enumerate(raw_tokens):
-                decomp = VoynichMorphology.extract_carrier(raw_t)
+                decomp = VoynichParser.decompose_morphology(raw_t)
                 if not decomp["valid"] or not decomp["clean"]:
                     continue
 
-                state = VoynichMorphology.map_macrostate(decomp["clean"])
+                state = VoynichParser.map_macrostate(decomp["clean"])
                 records.append({
                     "folio": folio,
                     "header": header,
+                    "section": section,
+                    "quire": current_quire,
                     "currier": current_currier,
-                    "is_astro": is_astro,
-                    "zodiac_sign": zodiac_target,
-                    "clock_pos": clock_pos,
                     "token_idx": idx,
                     "is_line_start": (idx == 0),
                     "is_line_end": (idx == total - 1),
@@ -176,9 +204,9 @@ def parse_zl3b(filepath: str) -> pd.DataFrame:
 
     df = pd.DataFrame(records)
     if not df.empty:
-        df["next_token"] = df["raw"].shift(-1)
-        df["next_carrier"] = df["carrier"].shift(-1)
+        df["next_token"] = df["clean"].shift(-1)
+        df["next_state"] = df["state"].shift(-1)
         df["next_control"] = df["control"].shift(-1)
-        df.loc[df["is_line_end"], ["next_token", "next_carrier", "next_control"]] = None
+        df.loc[df["is_line_end"], ["next_token", "next_state", "next_control"]] = None
 
     return df
