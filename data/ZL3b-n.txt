@@ -1,0 +1,24 @@
+#=IVTFF Eva- 2.0 M 5
+### ZL transliteration file, updated from EVMT project
+### Version 3b of 13/05/2025
+<f1r>      <! $Q=A $P=A $F=a $B=1 $I=T $L=A $H=1 $C=1 $X=V>
+<f1r.1,@P0>       <%>fachys.ykal.ar.ataiin.shol.shory.[cth:oto]res.y.kor.sholdy<!@254;>
+<f1r.2,+P0>       sory.ckhar.or,y.kair.chtaiin.shar.ase.cthar.cthar,dan
+<f1r.3,+P0>       syaiir.sheky.or.ykaiin.shod.cthoary.cthes.daraiin.sy
+<f1r.4,+P0>       soiin.oteey.oteo[s:r],roloty.cthiar,daiin.okaiin.or.okan
+<f1r.5,+P0>       sair,y.chear.cthaiin.cphar.cfhaiin
+<f1r.6,=Pt>       ydaraishy<$>
+<f75r>     <! $Q=M $P=A $F=a $B=1 $I=B $L=B $H=2 $C=2>
+<f76r>     <! $Q=M $P=C $F=b $B=2 $I=T $L=B $H=2 $C=2 $X=S>
+<f76r.1,@P0>      <%>potchokor.chcfhdy.opshdy.qolp.chcphy.chcphdy.opshey.qofshy.opchdy.sain.as,y
+<f76r.2,+P0>      dshedy.qotddyar.cthar.chep.dain.okain.qokeor.shedy.qol.ain.sheals,qokeey
+<f76r.3,+P0>      yshey.qokeey.qokey.qokeed.okedy.shky.qotedy.otedy.shol,qoty.ol,chedy.aiiny
+<f76r.4,*L0>      s
+<f76r.5,=P0>      qokedy.qokeey.or,or.or.chkorol.otey.qokedy.lkedy.chdy.qokchdy.qokal.chdam
+<f76r.6,+P0>      solchedy.qokeedy.qopchedy.qokeeo.rol.shedy.qokedy.sheey.okees.al.al.chedain.dar
+<f114v>    <! $Q=T $P=T $F=x $B=3 $I=S $L=B $H=3>
+<f114v.1,@P0>     <%>pchdol.dar.chedain.chodalr.fcheey.dchedy.qocphdy.otdady.qotedar.daiin
+<f114v.2,+P0>     dshedal.qoteody.choddy.otol.chedal.otain.chedol.chedain.shedy.qotched.dl
+<f114v.3,+P0>     oeos.qotcheo.odain.qotain.otar.qotchd.dol.qotchedy.choty.ol.lchdaiin.dal
+<f114v.4,+P0>     qokedy.cheocthedy.qoted.qotedol.chedar.qotedy.okeedy.daiin.chedaiin.oky
+<f114v.5,+P0>     chedy.qokeedy.okaly.cheedain.shedy<$>
