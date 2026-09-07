@@ -27,6 +27,28 @@ st.set_page_config(
 DEFAULT_DATA_PATH = os.path.join("data", "ZL3b-n.txt")
 
 
+def infer_section(folio: str) -> str:
+    """Infers thematic section if missing from parser DataFrame."""
+    f = str(folio).lower().replace("f", "").strip()
+    num_match = re.match(r"(\d+)", f)
+    if not num_match:
+        return "Cosmological" if "ros" in f else "General"
+    num = int(num_match.group(1))
+    if 1 <= num <= 66:
+        return "Herbal"
+    elif 67 <= num <= 74:
+        return "Astronomical/Zodiac"
+    elif 75 <= num <= 84:
+        return "Biological"
+    elif 85 <= num <= 86:
+        return "Cosmological"
+    elif 87 <= num <= 102:
+        return "Pharmaceutical"
+    elif 103 <= num <= 116:
+        return "Stars/Recipes"
+    return "General"
+
+
 def get_beinecke_image_url(folio: str) -> str:
     """Generates standard digital facsimile URLs for Beinecke MS 408 folios."""
     clean_f = folio.lower().replace("f", "").strip()
@@ -40,7 +62,27 @@ def load_and_train(uploaded_buffer=None):
     else:
         df_corpus = parse_zl3b(DEFAULT_DATA_PATH)
 
-    tokens = df_corpus["clean"].dropna().tolist() if not df_corpus.empty else []
+    if not df_corpus.empty:
+        # Guarantee 'clean' column exists
+        if "clean" not in df_corpus.columns and "token" in df_corpus.columns:
+            df_corpus["clean"] = df_corpus["token"].astype(str)
+
+        # Guarantee 'section' column exists
+        if "section" not in df_corpus.columns:
+            df_corpus["section"] = df_corpus["folio"].apply(infer_section)
+
+        # Guarantee 'currier' column exists
+        if "currier" not in df_corpus.columns:
+            df_corpus["currier"] = "UNKNOWN"
+
+        # Guarantee 'header' column exists
+        if "header" not in df_corpus.columns:
+            df_corpus["header"] = df_corpus.get("line", df_corpus["folio"])
+
+        tokens = df_corpus["clean"].dropna().tolist()
+    else:
+        tokens = []
+
     engine = WholeManuscriptDecipherer(tokens)
     return df_corpus, engine
 
@@ -141,10 +183,10 @@ with tabs[0]:
     with col_nav1:
         chosen_section = st.selectbox(
             "Filter by Thematic Section:",
-            ["All Sections", "Herbal", "Astronomical/Zodiac", "Biological", "Pharmaceutical", "Stars/Recipes"]
+            ["All Sections", "Herbal", "Astronomical/Zodiac", "Biological", "Pharmaceutical", "Stars/Recipes", "Cosmological", "General"]
         )
 
-    filtered_df = df if chosen_section == "All Sections" else df[df["section"] == chosen_section]
+    filtered_df = df if chosen_section == "All Sections" else df[df.get("section", "") == chosen_section]
     available_folios = sorted(filtered_df["folio"].unique()) if not filtered_df.empty else []
 
     if available_folios:
@@ -152,13 +194,14 @@ with tabs[0]:
             selected_folio = st.selectbox("Select Target Folio:", available_folios, index=0)
 
         folio_rows = df[df["folio"] == selected_folio]
-        hand_type = folio_rows["currier"].iloc[0] if not folio_rows.empty else "UNKNOWN"
-        sec_type = folio_rows["section"].iloc[0] if not folio_rows.empty else "UNKNOWN"
+        
+        # Safely extract currier and section values without KeyError
+        hand_type = folio_rows["currier"].iloc[0] if ("currier" in folio_rows.columns and not folio_rows.empty) else "UNKNOWN"
+        sec_type = folio_rows["section"].iloc[0] if ("section" in folio_rows.columns and not folio_rows.empty) else infer_section(selected_folio)
 
         st.markdown(f"### Folio `{selected_folio}` — Section: **{sec_type}** | Regimes: **Hand {hand_type}**")
         st.markdown("---")
 
-        # Two-Column Layout: Left = Book Image & Raw File / Right = English Decipherment
         col_manuscript, col_decipherment = st.columns([1, 1], gap="large")
 
         with col_manuscript:
@@ -173,19 +216,21 @@ with tabs[0]:
 
             with st.expander("Show Underlying Raw Transcription (Source Files Behind Folio)", expanded=False):
                 unique_lines = []
-                for header, group in folio_rows.groupby("header"):
-                    line_str = " ".join(group["clean"].tolist())
-                    unique_lines.append(f"<{header}> {line_str}")
+                group_col = "header" if "header" in folio_rows.columns else "line"
+                for h_val, group in folio_rows.groupby(group_col):
+                    line_str = " ".join(group["clean"].dropna().tolist())
+                    unique_lines.append(f"<{h_val}> {line_str}")
                 st.code("\n".join(unique_lines), language="text")
 
         with col_decipherment:
             st.markdown("#### Aligned English Decipherment & Syntactic Stream")
-            for header, group in folio_rows.groupby("header"):
-                raw_line = " ".join(group["clean"].tolist())
+            group_col = "header" if "header" in folio_rows.columns else "line"
+            for h_val, group in folio_rows.groupby(group_col):
+                raw_line = " ".join(group["clean"].dropna().tolist())
                 res = engine.translate_phrase(raw_line)
 
                 with st.container():
-                    st.markdown(f"**Line `{header}`**")
+                    st.markdown(f"**Line `{h_val}`**")
                     st.code(raw_line, language="text")
                     st.success(f"**English Translation:** {res['translation']}")
                     st.caption(f"Syntactic Roles: `{res['gloss']}`")
@@ -207,7 +252,6 @@ with tabs[1]:
     )
 
     notes, colophons_df = extract_author_audit(DEFAULT_DATA_PATH)
-
     subtab1, subtab2 = st.tabs(["Candidate Colophons & Signatures", "Corpus Provenance Notes"])
 
     with subtab1:
@@ -293,7 +337,7 @@ with tabs[3]:
 
     search = st.text_input("Search dictionary by token, Latin lemma, or English meaning:", "")
     view_table = dict_table.copy()
-    if search:
+    if search and not view_table.empty:
         s = search.lower()
         view_table = view_table[
             view_table["voynich_token"].str.contains(s) |
@@ -312,18 +356,19 @@ with tabs[4]:
     if st.button("Compile Full Manuscript Translation Table"):
         with st.spinner("Compiling translation rows across all folios..."):
             export_records = []
-            for (folio, header, sec, hand), group in df.groupby(["folio", "header", "section", "currier"]):
-                line_text = " ".join(group["clean"].tolist())
+            group_cols = [c for c in ["folio", "header", "section", "currier"] if c in df.columns]
+            for keys, group in df.groupby(group_cols):
+                line_text = " ".join(group["clean"].dropna().tolist())
                 t_res = engine.translate_phrase(line_text)
-                export_records.append({
-                    "folio": folio,
-                    "header": header,
-                    "section": sec,
-                    "currier_hand": hand,
+                record = {
                     "original_voynich": line_text,
                     "english_translation": t_res["translation"],
                     "morphosyntactic_gloss": t_res["gloss"]
-                })
+                }
+                for col_name, val in zip(group_cols, keys if isinstance(keys, tuple) else (keys,)):
+                    record[col_name] = val
+                export_records.append(record)
+
             export_df = pd.DataFrame(export_records)
             csv_data = export_df.to_csv(index=False).encode("utf-8")
 
