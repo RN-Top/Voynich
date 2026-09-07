@@ -1,6 +1,6 @@
 """
-voynich-state-viewer: Systematic Morphological Parser and State-Space Mapper.
-Implements the grounded structural factorization:
+voynich-state-viewer: Grounded Morphological Parser & Carrier Core Isolator
+Implements the canonical structural factorization:
     W = C( [Lambda x N_E x O_I] + rho )
 """
 
@@ -8,36 +8,35 @@ import re
 from typing import Dict, List, Optional, Tuple
 import pandas as pd
 
-
-# Operational Macrostate Regimes (C / L / P / R)
+# Canonical macrostate color schemes
 STATE_COLORS = {
-    "C": "#FF6B6B",  # Transform / Processive (Red)
-    "L": "#4D96FF",  # Connect / Relational (Blue)
-    "P": "#6BCB77",  # Maintain / Stative (Green)
-    "R": "#FFD93D",  # Resolve / Terminal (Yellow)
-    "?": "#9E9E9E"   # Unmapped / Residual (Gray)
+    "C": "#FF6B6B",  # Transform / Processive
+    "L": "#4D96FF",  # Connect / Relational
+    "P": "#6BCB77",  # Maintain / Stative
+    "R": "#FFD93D",  # Resolve / Terminal
+    "?": "#9E9E9E"   # Unmapped
 }
 
 STATE_LABELS = {
-    "C": "Transform (Compute/Loop)",
-    "L": "Connect (Bus/Junction)",
-    "P": "Maintain (Stative Hold)",
-    "R": "Resolve (Terminal Flush)",
+    "C": "Transform",
+    "L": "Connect",
+    "P": "Maintain",
+    "R": "Resolve",
     "?": "Unmapped"
 }
 
 
 class VoynichParser:
-    """Empirical slot-and-feature morphological parser grounded in measurable token dynamics."""
+    """Slot-and-feature morphological parser and carrier extractor."""
 
     CONTROL_PREFIXES = ('qk', 'dk', 'q', 'k', 'd')
     REALIZATION_PORTS = ('aiin', 'aiiin', 'ain', 'ar', 'al', 'am', 'm', 'y')
-    KNOWN_CARRIERS = ('otcheod', 'oteod', 'otod', 'cheod', 'opair', 'pch', 'ch', 'ot', 't')
+    INVARIANT_CORES = ('otcheod', 'oteod', 'otod', 'cheod', 'opair', 'pch', 'ch', 'ot', 't')
     E_PATTERN = re.compile(r'e+')
 
     @classmethod
     def clean_token(cls, raw: str) -> str:
-        """Strips editorial and certainty brackets from EVA/IVTFF tokens."""
+        """Strips editorial tags, line artifacts, and brackets."""
         t = re.sub(r'\[([^:]+):[^\]]+\]', r'\1', raw)
         t = re.sub(r'[{}\[\]<!>]', '', t)
         t = re.sub(r'@[0-9]+;', '', t)
@@ -46,10 +45,7 @@ class VoynichParser:
 
     @classmethod
     def decompose_morphology(cls, raw_token: str) -> Dict[str, object]:
-        """
-        Decomposes a surface token into C, Lambda, E-grade, internal O, and exit port rho.
-        Adheres to the Lexical Stop Rule to avoid artificial over-segmentation.
-        """
+        """Factorizes token W into C, Lambda, E-grade, internal O, and exit port rho."""
         token = cls.clean_token(raw_token)
         if not token:
             return {"token": raw_token, "clean": "", "valid": False}
@@ -77,14 +73,14 @@ class VoynichParser:
         e_grade = max([len(m) for m in e_matches], default=0)
         has_internal_o = 'o' in remainder
 
-        # 4. Carrier Core (Lambda) with Lexical Stop Rule
+        # 4. Conserved Carrier Stem (Lambda) - Enforces Lexical Stop Rule
         carrier = remainder if remainder else "EMPTY"
-        for kc in cls.KNOWN_CARRIERS:
-            if kc in remainder:
-                carrier = kc
+        for core in cls.INVARIANT_CORES:
+            if core in remainder:
+                carrier = core
                 break
 
-        # Systematic detection of boundary flusher (-m / -am)
+        # Terminal -m flush detection (A2 Effect)
         is_m = bool(re.search(r'(am|(?<![ai])m)$', token))
 
         return {
@@ -101,37 +97,49 @@ class VoynichParser:
 
     @staticmethod
     def map_macrostate(token_clean: str) -> str:
-        """
-        Maps a cleaned token to one of the 4 operational macrostates (C/L/P/R).
-        Labels represent observed behavioral regimes, not plaintext translations.
-        """
+        """Maps cleaned surface tokens to C, L, P, or R functional regimes."""
         if not token_clean:
             return "?"
 
-        # R: Resolve / Terminal flush (excludes false matches from -ain / -aiin)
         if re.search(r'(am|(?<![ai])m)$', token_clean):
             return "R"
-
-        # C: Transform / Processive compute loops
         if re.search(r'(eedy|edy|eey|ey|dy)$', token_clean):
             return "C"
-
-        # L: Connect / Relational bus/junction state
         if re.search(r'(ain|aiin|aiiin|or|ar)$', token_clean):
             return "L"
-
-        # P: Maintain / Stative holding state
         if re.search(r'(y|ol|al)$', token_clean) or token_clean in ("ol", "al", "y"):
             return "P"
 
         return "?"
 
 
+def get_section_from_folio(folio: str) -> str:
+    """Categorizes folios into canonical manuscript domains based on catalog records."""
+    f = folio.lower().replace('f', '')
+    num_match = re.match(r'(\d+)', f)
+    if not num_match:
+        if 'ros' in f:
+            return "Cosmological"
+        return "Unknown"
+
+    num = int(num_match.group(1))
+    if 1 <= num <= 66:
+        return "Herbal"
+    elif 67 <= num <= 73:
+        return "Astronomical/Zodiac"
+    elif 75 <= num <= 84:
+        return "Biological"
+    elif 85 <= num <= 86:
+        return "Cosmological"
+    elif 87 <= num <= 102:
+        return "Pharmaceutical"
+    elif 103 <= num <= 116:
+        return "Stars/Recipes"
+    return "Unknown"
+
+
 def parse_zl3b(filepath: str, selected_folios: Optional[List[str]] = None) -> pd.DataFrame:
-    """
-    Parses an authoritative IVTFF ZL3b transliteration file into a structured DataFrame.
-    Accurately tracks line boundaries, Currier operating modes ($L=A vs $L=B), and quires ($Q).
-    """
+    """Parses IVTFF transliteration files with locus, section, and morphological tagging."""
     records = []
     current_currier = "UNKNOWN"
     current_quire = "UNKNOWN"
@@ -143,7 +151,7 @@ def parse_zl3b(filepath: str, selected_folios: Optional[List[str]] = None) -> pd
             if not line:
                 continue
 
-            # Extract Currier language ($L=A/B) and Quire ($Q=...) from IVTFF header lines
+            # Check for header metadata
             if line.startswith('#') or line.startswith('<!') or '<f' in line:
                 l_match = re.search(r'\$L=([AB])', line)
                 if l_match:
@@ -165,12 +173,12 @@ def parse_zl3b(filepath: str, selected_folios: Optional[List[str]] = None) -> pd
             if wanted is not None and folio.lower() not in wanted:
                 continue
 
-            # Strip inline annotations, comments, and IVTFF locators
+            section = get_section_from_folio(folio)
+
             clean_text = re.sub(r'<![^>]*>', '', raw_text)
             clean_text = re.sub(r'\{[^}]*\}', '', clean_text)
             clean_text = re.sub(r'<[%+=*][^>]*>', '', clean_text)
 
-            # Split on standard IVTFF token separators: period, comma, or space
             raw_tokens = [t for t in re.split(r'[.,\s]+', clean_text) if t and not t.startswith('<')]
             total = len(raw_tokens)
 
@@ -183,6 +191,7 @@ def parse_zl3b(filepath: str, selected_folios: Optional[List[str]] = None) -> pd
                 records.append({
                     "folio": folio,
                     "header": header,
+                    "section": section,
                     "quire": current_quire,
                     "currier": current_currier,
                     "token_idx": idx,
@@ -194,11 +203,14 @@ def parse_zl3b(filepath: str, selected_folios: Optional[List[str]] = None) -> pd
 
     df = pd.DataFrame(records)
     if not df.empty:
+        df["next_token"] = df["token"].shift(-1)
         df["next_state"] = df["state"].shift(-1)
         df["next_control"] = df["control"].shift(-1)
         df["next_exit_port"] = df["exit_port"].shift(-1)
+        df["prev_control"] = df["control"].shift(1)
 
-        # Enforce line buffer resets: transitions cannot cross physical line ends
-        df.loc[df["is_line_end"], ["next_state", "next_control", "next_exit_port"]] = None
+        # Enforce physical line boundaries
+        df.loc[df["is_line_end"], ["next_token", "next_state", "next_control", "next_exit_port"]] = None
+        df.loc[df["is_line_start"], ["prev_control"]] = None
 
     return df
