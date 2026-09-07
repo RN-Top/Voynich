@@ -47,9 +47,11 @@ def infer_section(folio: str) -> str:
 
 
 def get_beinecke_image_url(folio: str) -> str:
-    """Generates standard digital facsimile URLs for Beinecke MS 408 folios."""
-    clean_f = folio.lower().replace("f", "").strip()
-    return f"https://raw.githubusercontent.com/richardgrant/voynich-images/master/images/highres/f{clean_f}.jpg"
+    """Generates standard digital facsimile URLs for Beinecke MS 408 folios via Wikimedia Commons."""
+    clean_f = folio.lower().strip()
+    if not clean_f.startswith("f"):
+        clean_f = f"f{clean_f}"
+    return f"https://commons.wikimedia.org/wiki/Special:FilePath/Voynich_manuscript_{clean_f}.jpg"
 
 
 @st.cache_resource(show_spinner="Compiling Full Manuscript Corpus & Manifold Alignments...")
@@ -191,7 +193,7 @@ with tabs[0]:
 
             with st.expander("Show Underlying Raw Transcription (Source Files Behind Folio)", expanded=False):
                 unique_lines = []
-                group_col = "header" if "header" in folio_rows.columns else "line"
+                group_col = "header" if "header" in folio_rows.columns else ("line" if "line" in folio_rows.columns else "folio")
                 for h_val, group in folio_rows.groupby(group_col):
                     line_str = " ".join(group["clean"].dropna().tolist())
                     unique_lines.append(f"<{h_val}> {line_str}")
@@ -199,7 +201,7 @@ with tabs[0]:
 
         with col_decipherment:
             st.markdown("#### Aligned English Decipherment & Syntactic Stream")
-            group_col = "header" if "header" in folio_rows.columns else "line"
+            group_col = "header" if "header" in folio_rows.columns else ("line" if "line" in folio_rows.columns else "folio")
             for h_val, group in folio_rows.groupby(group_col):
                 raw_line = " ".join(group["clean"].dropna().tolist())
                 res = engine.translate_phrase(raw_line)
