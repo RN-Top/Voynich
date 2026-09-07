@@ -1,7 +1,8 @@
 """
-voynich-state-viewer: Statistical Grounding & Decipherment Engine
-Extracts syntactic content slots (Slot Omega) and measures carrier specificity
-against illustrated manuscript sections.
+Statistical evidence tools for Voynich token structure.
+
+These functions measure corpus patterns.
+They do not claim semantic decipherment.
 """
 
 import numpy as np
@@ -9,82 +10,184 @@ import pandas as pd
 
 
 class DeciphermentEngine:
-    """Statistical alignment tools to evaluate carrier candidates."""
 
-    def __init__(self, corpus_df: pd.DataFrame):
+    def __init__(self, corpus_df):
         self.df = corpus_df.copy()
 
-    def find_slot_omega_candidates(self) -> pd.DataFrame:
-        """
-        Discovers instances of the canonical syntactic frame:
-            Q-ACTIVE -> [ X-AIIN ] -> Q-ACTIVE
-        Holding the control frame invariant isolates the carrier class X.
-        """
-        # A token matches Slot Omega if:
-        # 1. Previous token starts with Q-control
-        # 2. Current token has exit port 'aiin' or 'aiiin'
-        # 3. Next token starts with Q-control
-        mask = (
-            (self.df["prev_control"].isin(["q", "qk"])) &
-            (self.df["exit_port"].isin(["aiin", "aiiin"])) &
-            (self.df["next_control"].isin(["q", "qk"]))
-        )
-        omega_matches = self.df[mask].copy()
+        required = {
+            "carrier_core",
+            "section",
+            "control",
+            "prev_control",
+            "next_control",
+            "exit_port",
+        }
 
-        if omega_matches.empty:
+        missing = sorted(
+            required - set(self.df.columns)
+        )
+
+        if missing:
+            raise ValueError(
+                "Corpus DataFrame is missing "
+                f"required columns: {missing}"
+            )
+
+    def find_slot_omega_candidates(self):
+
+        mask = (
+            self.df["prev_control"].isin(
+                ["q", "qk"]
+            )
+            &
+            self.df["exit_port"].isin(
+                ["aiin", "aiiin"]
+            )
+            &
+            self.df["next_control"].isin(
+                ["q", "qk"]
+            )
+        )
+
+        matches = self.df.loc[mask].copy()
+
+        if matches.empty:
             return pd.DataFrame()
 
-        summary = (
-            omega_matches.groupby("carrier_core")
+        result = (
+            matches
+            .groupby("carrier_core")
             .agg(
-                occurrences=("token", "count"),
-                sample_tokens=("clean", lambda s: ", ".join(s.unique()[:3])),
-                sections=("section", lambda s: ", ".join(s.unique())),
-                folios=("folio", lambda s: ", ".join(s.unique()[:4]))
+                occurrences=("clean", "count"),
+
+                sample_tokens=(
+                    "clean",
+                    lambda values:
+                    ", ".join(
+                        pd.unique(values)[:5]
+                    ),
+                ),
+
+                sections=(
+                    "section",
+                    lambda values:
+                    ", ".join(
+                        pd.unique(values)
+                    ),
+                ),
+
+                folios=(
+                    "folio",
+                    lambda values:
+                    ", ".join(
+                        pd.unique(values)[:8]
+                    ),
+                ),
             )
-            .sort_values(by="occurrences", ascending=False)
+            .sort_values(
+                "occurrences",
+                ascending=False,
+            )
             .reset_index()
         )
-        return summary
 
-    def compute_carrier_excess_specificity(self, min_occurrences: int = 5) -> pd.DataFrame:
-        """
-        Calculates Pointwise Mutual Information (PMI) between carrier stems (Lambda)
-        and manuscript sections.
-        PMI > 0 indicates excess domain specificity above chance.
-        """
-        df_valid = self.df[self.df["carrier_core"] != "EMPTY"].copy()
-        contingency = pd.crosstab(df_valid["carrier_core"], df_valid["section"])
+        return result
 
-        # Filter low-frequency carriers
-        contingency = contingency[contingency.sum(axis=1) >= min_occurrences]
-        if contingency.empty:
-            return pd.DataFrame()
+    def compute_carrier_excess_specificity(
+        self,
+        min_occurrences=5,
+    ):
 
-        # Probabilities
-        total = contingency.values.sum()
-        p_carrier = contingency.sum(axis=1).values / total
-        p_section = contingency.sum(axis=0).values / total
-        p_joint = contingency.values / total
-
-        expected = np.outer(p_carrier, p_section)
-        # Pointwise Mutual Information
-        pmi = np.log2((p_joint + 1e-9) / (expected + 1e-9))
-
-        pmi_df = pd.DataFrame(pmi, index=contingency.index, columns=contingency.columns)
-        return pmi_df.round(3)
-
-    def audit_successor_routing(self) -> pd.DataFrame:
-        """
-        Calculates conditional routing probabilities P(C_{n+1} | rho_n).
-        Measures the empirical A4 successor routing effect (-al vs -ar).
-        """
         valid = self.df[
-            self.df["exit_port"].isin(["al", "ar", "y", "aiin"]) &
-            self.df["next_control"].notna()
-        ]
+            self.df["carrier_core"] != "EMPTY"
+        ].copy()
+
         if valid.empty:
             return pd.DataFrame()
 
-        ct = pd.crosstab(valid["exit_port"], valid["next_control"], normalize="index")
-        return ct.round(4)
+        contingency = pd.crosstab(
+            valid["carrier_core"],
+            valid["section"],
+        )
+
+        contingency = contingency[
+            contingency.sum(axis=1)
+            >= min_occurrences
+        ]
+
+        if contingency.empty:
+            return pd.DataFrame()
+
+        total = contingency.to_numpy().sum()
+
+        p_carrier = (
+            contingency.sum(axis=1).to_numpy()
+            / total
+        )
+
+        p_section = (
+            contingency.sum(axis=0).to_numpy()
+            / total
+        )
+
+        p_joint = (
+            contingency.to_numpy()
+            / total
+        )
+
+        expected = np.outer(
+            p_carrier,
+            p_section,
+        )
+
+        pmi = np.log2(
+            (p_joint + 1e-12)
+            /
+            (expected + 1e-12)
+        )
+
+        return pd.DataFrame(
+            pmi,
+            index=contingency.index,
+            columns=contingency.columns,
+        ).round(3)
+
+    def audit_successor_routing(self):
+
+        valid = self.df[
+            self.df["exit_port"].isin(
+                [
+                    "al",
+                    "ar",
+                    "y",
+                    "aiin",
+                    "aiiin",
+                ]
+            )
+            &
+            self.df["next_control"].notna()
+        ]
+
+        if valid.empty:
+            return pd.DataFrame()
+
+        return pd.crosstab(
+            valid["exit_port"],
+            valid["next_control"],
+            normalize="index",
+        ).round(4)
+
+    def state_transition_matrix(self):
+
+        valid = self.df[
+            self.df["next_state"].notna()
+        ]
+
+        if valid.empty:
+            return pd.DataFrame()
+
+        return pd.crosstab(
+            valid["state"],
+            valid["next_state"],
+            normalize="index",
+        ).round(4)
