@@ -1,22 +1,23 @@
 """
-VOYNICH COMPLETE MATHEMATICAL DECIPHERMENT ENGINE
-Scale: Operates across the full manuscript (~38,000 tokens, 220+ folios).
-Mathematical Pipeline:
+VOYNICH COMPLETE COMPUTATIONAL DECIPHERMENT ENGINE (decipher.py)
+-------------------------------------------------------------------------
+Pipeline Architecture:
 1. Bigram Transition SVD -> Induces 4 Latent Part-of-Speech Categories.
-2. Positive Pointwise Mutual Information (PPMI) -> Constructs semantic vector coordinates.
-3. Orthogonal Procrustes Projection -> Aligns Voynich tokens with a comprehensive 15th-century Latin control corpus.
-4. Generates word-by-word glosses and continuous, fluent English translations.
+2. Positive Pointwise Mutual Information (PPMI) -> Builds semantic embeddings.
+3. Grammar-Gated Procrustes Alignment -> Maps tokens to a 15th-century Latin control prior.
+4. Synthesizes word-by-word morphosyntactic glosses and continuous English translations.
+Includes resource capping to avoid Streamlit Community Cloud CPU/memory throttling.
 """
 
 import re
+from typing import Dict, List
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Tuple
 from scipy.spatial.distance import cdist
 
 
 class ComprehensiveMedievalLexicon:
-    """15th-century Latin scientific anchor vocabulary spanning Herbal, Astro, Bio, and Pharma domains."""
+    """15th-century Latin scientific anchor vocabulary across Herbal, Astro, Bio, and Pharma domains."""
 
     PRIORS = {
         # Operands / Nouns (Herbal, Astronomical, Materials, Anatomy)
@@ -74,32 +75,33 @@ class ComprehensiveMedievalLexicon:
 class LatentGrammarInducer:
     """Induces latent grammatical classes from token bigram transitions via SVD."""
 
-    def __init__(self, n_roles: int = 4):
+    def __init__(self, n_roles: int = 4, max_vocab: int = 1500):
         self.n_roles = n_roles
+        self.max_vocab = max_vocab
         self.role_names = ["OPERAND_NOUN", "OPERATOR_VERB", "MODIFIER_ADJ", "TERMINAL_FLUSH"]
         self.role_assignments = {}
 
     def fit(self, tokens: List[str]):
         clean = [t for t in tokens if t]
         counts = pd.Series(clean).value_counts()
-        # Top 1,500 recurring tokens form the primary structural graph
-        vocab = list(counts.head(1500).index)
+        # Cap vocabulary to prevent CPU spikes / container throttling
+        vocab = list(counts.head(self.max_vocab).index)
         w2i = {w: i for i, w in enumerate(vocab)}
-        V = len(vocab)
+        v_len = len(vocab)
 
-        if V < self.n_roles:
+        if v_len < self.n_roles:
             for w in set(clean):
                 self.role_assignments[w] = "OPERAND_NOUN"
             return
 
-        T = np.zeros((V, V), dtype=np.float32)
+        transition_matrix = np.zeros((v_len, v_len), dtype=np.float32)
         for w1, w2 in zip(clean[:-1], clean[1:]):
             if w1 in w2i and w2 in w2i:
-                T[w2i[w1], w2i[w2]] += 1.0
+                transition_matrix[w2i[w1], w2i[w2]] += 1.0
 
-        row_sums = T.sum(axis=1, keepdims=True)
-        T_norm = np.divide(T, row_sums, where=row_sums > 0)
-        u, _, _ = np.linalg.svd(T_norm, full_matrices=False)
+        row_sums = transition_matrix.sum(axis=1, keepdims=True)
+        t_norm = np.divide(transition_matrix, row_sums, where=row_sums > 0)
+        u, _, _ = np.linalg.svd(t_norm, full_matrices=False)
 
         clusters = np.argmax(np.abs(u[:, :self.n_roles]), axis=1)
 
@@ -118,28 +120,29 @@ class LatentGrammarInducer:
 class WholeManuscriptDecipherer:
     """Computes continuous PPMI vector embeddings and aligns the whole manuscript vocabulary."""
 
-    def __init__(self, corpus_tokens: List[str], dim: int = 24):
+    def __init__(self, corpus_tokens: List[str], dim: int = 16, max_vocab: int = 1500):
         self.tokens = [t for t in corpus_tokens if t]
         self.dim = dim
-        self.grammar = LatentGrammarInducer(n_roles=4)
+        self.max_vocab = max_vocab
+        self.grammar = LatentGrammarInducer(n_roles=4, max_vocab=max_vocab)
         self.dictionary_key = {}
 
         # 1. Induce grammar across whole corpus
         self.grammar.fit(self.tokens)
 
-        # 2. Build PPMI vector space
+        # 2. Build PPMI vector space and align dictionary
         self._build_aligned_dictionary()
 
     def _build_aligned_dictionary(self, window: int = 3):
         counts = pd.Series(self.tokens).value_counts()
-        vocab = [w for w, c in counts.items() if c >= 2]
+        vocab = [w for w, c in counts.head(self.max_vocab).items() if c >= 2]
         w2i = {w: i for i, w in enumerate(vocab)}
-        V = len(vocab)
+        v_len = len(vocab)
 
-        if V < 5:
+        if v_len < 5:
             return
 
-        cooc = np.zeros((V, V), dtype=np.float32)
+        cooc = np.zeros((v_len, v_len), dtype=np.float32)
         for idx, w in enumerate(self.tokens):
             if w not in w2i:
                 continue
@@ -156,7 +159,7 @@ class WholeManuscriptDecipherer:
         ppmi = np.maximum(0, np.log2((cooc * total + 1e-9) / (expected + 1e-9)))
 
         u, s, _ = np.linalg.svd(ppmi, full_matrices=False)
-        eff_dim = min(self.dim, V)
+        eff_dim = min(self.dim, v_len)
         voynich_vectors = u[:, :eff_dim] * np.sqrt(s[:eff_dim])
         norms = np.linalg.norm(voynich_vectors, axis=1, keepdims=True)
         voynich_vectors = np.divide(voynich_vectors, norms, where=norms > 0)
@@ -178,7 +181,7 @@ class WholeManuscriptDecipherer:
             for t_idx, l_word in enumerate(latin_words):
                 d = dists[v_idx, t_idx]
                 if priors[l_word]["role"] == role:
-                    d *= 0.35  # Heavy weight bonus for matching the induced syntactic part-of-speech
+                    d *= 0.35  # Syntactic role match incentive
                 if d < best_dist:
                     best_dist = d
                     best_idx = t_idx
@@ -195,7 +198,7 @@ class WholeManuscriptDecipherer:
     def get_full_dictionary(self) -> pd.DataFrame:
         df = pd.DataFrame.from_dict(self.dictionary_key, orient="index")
         if df.empty:
-            return pd.DataFrame(columns=["token", "latin_lemma", "english", "role", "domain", "confidence"])
+            return pd.DataFrame(columns=["voynich_token", "latin_lemma", "english", "role", "domain", "confidence"])
         df.index.name = "voynich_token"
         return df.reset_index().sort_values(by="confidence", ascending=False)
 
