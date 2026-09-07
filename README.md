@@ -1,63 +1,59 @@
-# Voynich Computational Decipherment & State-Space Engine
+# Voynich Computational Research Workbench
 
-An automated computational pipeline and interactive research workbench for the structural and lexical analysis of the Voynich Manuscript (Beinecke MS 408).
+A reproducible Python and Streamlit research environment for exploring structural patterns in the Voynich Manuscript transcription.
 
-The framework combines **unsupervised grammar induction**, **PPMI vector space embedding**, **Procrustes manifold alignment**, and a specialized **Author Signature & Scribal Colophon Decipher** module to analyze both primary ciphertext dynamics and historical provenance markers.
+This project analyzes token morphology, positional behavior, state transitions, section specificity, astronomical-domain associations, and possible colophon or marginalia evidence.
+
+> **Research status:** This project does not claim that the Voynich Manuscript has been deciphered. Statistical measurements are kept separate from exploratory semantic hypotheses.
 
 ---
 
-## 1. System Pipeline Architecture
+## What This Project Does
 
-Surface tokens decompose through a parameterized instruction framework:
+The workbench provides:
 
-$$\text{Surface Token } W = \mathcal{C}\big([\Lambda \times N_E \times O_I] + \rho\big)$$
+- IVTFF / ZL-style Voynich corpus ingestion
+- Automatic recovery of the default transcription if the local corpus is missing or truncated
+- Token cleaning and morphological decomposition
+- Control-prefix analysis
+- Carrier-core extraction
+- Exit-port classification
+- Macrostate classification
+- Previous/next-token structural context
+- Folio and manuscript-section classification
+- Carrier × section PMI analysis
+- State-transition analysis
+- Exit-port → successor-control routing
+- Astronomical-domain carrier analysis
+- Author / colophon / marginalia auditing
+- Exploratory lexical hypotheses with explicit evidence and confidence labels
+- Interactive Streamlit interface
+- CSV export of parsed corpus data and lexical hypotheses
+
+---
+
+## Research Architecture
 
 ```text
-┌────────────────────────────────────────────────────────┐
-│               RAW TRANSLITERATION CORPUS               │
-│                     (data/ZL3b-n.txt)                  │
-└───────────────────────────┬────────────────────────────┘
-                            │
-                            ▼
-┌────────────────────────────────────────────────────────┐
-│           MORPHOTACTIC TOKENIZER & PARSER              │
-│                     (parser.py)                        │
-│  - Strips Control Headers C in {q, k, d}               │
-│  - Isolates Invariant Carrier Cores (Lambda)           │
-│  - Tracks Successor Realization Ports rho in {al, ar}  │
-│  - Enforces terminal line flushes (A2: terminal -m)    │
-└───────────────────────────┬────────────────────────────┘
-                            │
-        ┌───────────────────┼────────────────────┐
-        ▼                   ▼                    ▼
-┌─────────────────┐ ┌─────────────────┐ ┌──────────────────────┐
-│  STATISTICAL    │ │   ASTRONOMICAL  │ │    AUTHOR / COLOPHON │
-│   GROUNDING     │ │    ALIGNMENT    │ │       DECIPHER       │
-│  (analyzer.py)  │ │  (decoder.py)   │ │(engine_decipher.py)  │
-│ - Slot Omega    │ │ - 12 Zodiac Rota│ │ - Colophon (=Pt/+Pc) │
-│ - PMI Discovery │ │ - House Bounds  │ │ - Tepenecz & Margins │
-│ - Cross-Domain  │ │ - Star Clusters │ │ - Vocabulary Isolation│
-└────────┬────────┘ └────────┬────────┘ └──────────┬───────────┘
-         │                   │                     │
-         └───────────────────┼─────────────────────┘
-                             │
-                             ▼
-┌────────────────────────────────────────────────────────┐
-│         COMPUTATIONAL DECIPHERMENT ENGINE              │
-│               (engine_decipher.py)                     │
-│  - Latent SVD Bigram Grammar Induction (4 Roles)       │
-│  - Positive Pointwise Mutual Information (PPMI) Space  │
-│  - Grammar-Gated Procrustes Manifold Alignment         │
-│  - Aligned Lexicon: Voynich -> Latin Lemma -> English  │
-│  - Scribal & Attribution Audit (f1r, f8r, f9r, f116v)  │
-└───────────────────────────┬────────────────────────────┘
-                            │
-                            ▼
-┌────────────────────────────────────────────────────────┐
-│          INTERACTIVE TRANSLATION WORKBENCH             │
-│                      (app.py)                          │
-│  - Live English Translator & Morphosyntactic Glosser   │
-│  - Derived Mathematical Dictionary Key                 │
-│  - Author Signature & Terminal Colophon Inspector     │
-│  - Full Manuscript Parallel Reader Edition             │
-└───────────────────────────┘
+data/ZL3b-n.txt
+      |
+      v
+  parser.py
+      |
+      +--> analyzer.py
+      |      Structural and transition evidence
+      |
+      +--> decoder.py
+      |      Astronomical-domain comparisons
+      |
+      +--> author_audit.py
+      |      Colophon and marginalia audit
+      |
+      +--> engine_decipher.py
+      |      Exploratory lexical hypotheses
+      |
+      v
+    app.py
+      |
+      v
+ Streamlit Workbench
