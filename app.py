@@ -1,9 +1,9 @@
 """
 VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH & PARALLEL READER
-- Parallel Manuscript Viewer: Facsimile / Raw Source Lines beside Decoded English
-- Dedicated Author Signature & Colophon Audit Inspector
-- Whole-Manuscript Line-by-Line Translation & Syntactic Gloss
-- Full Lexical Dictionary & Whole-Manuscript CSV Export
+- Parallel Facsimile Reader (Beinecke digital scan beside decoded English & raw files)
+- Dedicated Author Identification & Colophon Audit Inspector
+- Live Sequence Translator & Induced Lexical Dictionary
+- Whole-Manuscript CSV Export
 """
 
 import os
@@ -14,9 +14,6 @@ import streamlit as st
 from parser import parse_zl3b
 from engine_decipher import WholeManuscriptDecipherer
 
-# -----------------------------------------------------------------------------
-# Streamlit Application Layout
-# -----------------------------------------------------------------------------
 st.set_page_config(
     page_title="Voynich Manuscript Complete Decipherment Workbench",
     page_icon="📖",
@@ -63,19 +60,12 @@ def load_and_train(uploaded_buffer=None):
         df_corpus = parse_zl3b(DEFAULT_DATA_PATH)
 
     if not df_corpus.empty:
-        # Guarantee 'clean' column exists
         if "clean" not in df_corpus.columns and "token" in df_corpus.columns:
             df_corpus["clean"] = df_corpus["token"].astype(str)
-
-        # Guarantee 'section' column exists
         if "section" not in df_corpus.columns:
             df_corpus["section"] = df_corpus["folio"].apply(infer_section)
-
-        # Guarantee 'currier' column exists
         if "currier" not in df_corpus.columns:
             df_corpus["currier"] = "UNKNOWN"
-
-        # Guarantee 'header' column exists
         if "header" not in df_corpus.columns:
             df_corpus["header"] = df_corpus.get("line", df_corpus["folio"])
 
@@ -87,9 +77,6 @@ def load_and_train(uploaded_buffer=None):
     return df_corpus, engine
 
 
-# -----------------------------------------------------------------------------
-# Author & Scribal Colophon Extraction Engine
-# -----------------------------------------------------------------------------
 def extract_author_audit(filepath: str = DEFAULT_DATA_PATH):
     marginal_findings = []
     structural_colophons = []
@@ -109,7 +96,6 @@ def extract_author_audit(filepath: str = DEFAULT_DATA_PATH):
         if f_match:
             current_folio = f"f{f_match.group(1)}"
 
-        # Marginal comments identifying scribal hands, signatures, or Latin notes
         if line_str.startswith("###"):
             lower = line_str.lower()
             if any(k in lower for k in ["signature", "author", "jacobus", "tepenecz", "hand", "key-like", "symbol"]):
@@ -118,7 +104,6 @@ def extract_author_audit(filepath: str = DEFAULT_DATA_PATH):
                     "note": line_str.replace("###", "").strip()
                 })
 
-        # Colophon & isolated terminal slots (=Pt, +Pc, marginal labels)
         m = token_regex.match(line_str)
         if m:
             folio = f"f{m.group(1)}"
@@ -146,9 +131,7 @@ def extract_author_audit(filepath: str = DEFAULT_DATA_PATH):
     return marginal_findings, pd.DataFrame(structural_colophons)
 
 
-# -----------------------------------------------------------------------------
-# App Header & Global State
-# -----------------------------------------------------------------------------
+# Sidebar & Main Setup
 uploaded_file = st.sidebar.file_uploader("Upload Full ZL3b-n.txt (Optional)", type=["txt"])
 df, engine = load_and_train(uploaded_file)
 dict_table = engine.get_full_dictionary()
@@ -156,7 +139,6 @@ dict_table = engine.get_full_dictionary()
 st.title("Voynich Manuscript Decipherment Workbench")
 st.caption("Computational State-Space Engine, Parallel Folio Facsimile Reader, and Scribal Author Audit")
 
-# Sidebar Metrics
 st.sidebar.markdown("---")
 st.sidebar.markdown("### Manuscript Ingestion Metrics")
 st.sidebar.markdown(f"**Total Parsed Tokens:** {len(df):,}")
@@ -172,12 +154,10 @@ tabs = st.tabs([
     "5. Export Full Translation (CSV)"
 ])
 
-# -----------------------------------------------------------------------------
-# TAB 1: PARALLEL MANUSCRIPT READER (Split Column Edition)
-# -----------------------------------------------------------------------------
+# TAB 1: PARALLEL READER
 with tabs[0]:
     st.subheader("Parallel Manuscript Reader Edition")
-    st.caption("Side-by-side verification: Original manuscript artifacts & raw transcription alongside derived English translation.")
+    st.caption("Side-by-side verification: Original physical folio scan & underlying transcription files beside decoded English.")
 
     col_nav1, col_nav2 = st.columns([1, 2])
     with col_nav1:
@@ -194,8 +174,6 @@ with tabs[0]:
             selected_folio = st.selectbox("Select Target Folio:", available_folios, index=0)
 
         folio_rows = df[df["folio"] == selected_folio]
-        
-        # Safely extract currier and section values without KeyError
         hand_type = folio_rows["currier"].iloc[0] if ("currier" in folio_rows.columns and not folio_rows.empty) else "UNKNOWN"
         sec_type = folio_rows["section"].iloc[0] if ("section" in folio_rows.columns and not folio_rows.empty) else infer_section(selected_folio)
 
@@ -206,10 +184,8 @@ with tabs[0]:
 
         with col_manuscript:
             st.markdown("#### Physical Folio Facsimile & Source Code")
-            facsimile_url = get_beinecke_image_url(selected_folio)
-
             st.image(
-                facsimile_url,
+                get_beinecke_image_url(selected_folio),
                 caption=f"Beinecke MS 408 — Folio {selected_folio}",
                 use_container_width=True
             )
@@ -238,81 +214,59 @@ with tabs[0]:
     else:
         st.warning("No folios match the selected section filter.")
 
-# -----------------------------------------------------------------------------
 # TAB 2: AUTHOR & COLOPHON DECIPHER
-# -----------------------------------------------------------------------------
 with tabs[1]:
     st.subheader("Author Identification & Scribal Attribution Audit")
-    st.markdown(
-        """
-        Historical manuscripts record author attributions and scribal identities in two places:
-        1. **Non-Voynich Marginal Inscriptions & Provenance:** Recovered external signatures (e.g., UV recovery on `f1r`).
-        2. **Structural Paragraph Closures (`=Pt`, `+Pc`):** Right-justified, isolated tokens sitting after text blocks.
-        """
-    )
-
     notes, colophons_df = extract_author_audit(DEFAULT_DATA_PATH)
+
     subtab1, subtab2 = st.tabs(["Candidate Colophons & Signatures", "Corpus Provenance Notes"])
 
     with subtab1:
         st.markdown("#### Paragraph-Terminal Closures & Candidate Attribution Slots (`=Pt`, `+Pc`)")
-        st.caption("Tokens isolated at the end of paragraphs formatted like quotation attributions or signatures.")
-
         if not colophons_df.empty:
             target_colophons = colophons_df[colophons_df["folio"].isin(["f1r", "f8r", "f9r", "f76r", "f116v"])]
             st.dataframe(target_colophons, use_container_width=True)
 
-            st.markdown("#### Detailed Colophon Spotlights")
             c1, c2 = st.columns(2)
             with c1:
                 st.info(
                     "**Folio `f1r.6` (Locus `=Pt`)**\n\n"
                     "**Token:** `ydaraishy`\n\n"
-                    "**Significance:** Sits right-justified at the close of the manuscript's opening block. "
+                    "**Significance:** Isolated right-justified tail at the end of the manuscript's opening block. "
                     "Recorded in IVTFF notes as formatted like an author attribution at the end of a quotation."
                 )
             with c2:
                 st.info(
                     "**Folio `f9r.10` (Locus `+Pc`)**\n\n"
                     "**Token:** `ytchas.oraiin.chkor`\n\n"
-                    "**Significance:** Terminal closing line indented and isolated at the base of the paragraph. "
+                    "**Significance:** Terminal closing line indented at the base of the paragraph. "
                     "Audited as a composite scribal sign-off formula."
                 )
         else:
-            st.warning("Ensure ZL3b-n.txt is placed in data/ to view structural colophon extractions.")
+            st.warning("Ensure data/ZL3b-n.txt is in place to view structural colophon extractions.")
 
     with subtab2:
         st.markdown("#### Historical Ownership Inscriptions & Non-Voynich Marginalia")
         if notes:
             for item in notes:
                 st.markdown(f"- **Folio `{item['folio']}`:** {item['note']}")
-        else:
-            st.info("No marginal provenance comments found.")
-
         st.markdown("---")
         st.markdown(
             """
-            > **Historical Note on Authorship:**  
-            > Multispectral and UV scans confirm the Latin marginal signature at the bottom of `f1r` belongs to 
-            > **Jacobus Horčický de Tepenecz** (court pharmacist to Emperor Rudolf II). This confirms early 17th-century 
-            > ownership rather than original 15th-century authorship. Primary author candidates reside in the internal 
-            > `=Pt` and `+Pc` colophon slots.
+            > **Historical Note:** The Latin marginal signature at the bottom of `f1r` belongs to 
+            > **Jacobus Horčický de Tepenecz** (court pharmacist to Emperor Rudolf II), confirming early 17th-century 
+            > ownership rather than 15th-century authorship. Primary author candidates reside in the internal `=Pt` and `+Pc` colophons.
             """
         )
 
-# -----------------------------------------------------------------------------
-# TAB 3: LIVE INTERACTIVE TRANSLATOR
-# -----------------------------------------------------------------------------
+# TAB 3: LIVE TRANSLATOR
 with tabs[2]:
     st.subheader("Interactive Custom Sequence Translator")
-    st.markdown("Input any arbitrary Voynich transliteration string to evaluate its manifold alignment and induced syntax.")
-
     quick_samples = [
         "ydaraishy",
         "fachys ykal ar ataiin shol shory cthores y kor sholdy",
         "otcheody qokedy daiin chedain shedy qotched dl",
-        "potchokor chcfhdy opshdy qolp chcphy chcphdy opshey",
-        "dair cheeo chy chdaiin qokedy otcheodaiin qokchdy"
+        "potchokor chcfhdy opshdy qolp chcphy chcphdy opshey"
     ]
     picked = st.selectbox("Select Benchmark Sequence:", quick_samples)
     user_str = st.text_input("Or enter custom EVA token string:", picked)
@@ -323,18 +277,13 @@ with tabs[2]:
         with c1:
             st.markdown("#### Morphosyntactic Gloss")
             st.info(out["gloss"])
-            st.caption("[OPE] = Operand Noun | [OPE] = Operator Verb | [MOD] = Modifier Adj | [TER] = Terminal Flush")
         with c2:
             st.markdown("#### Aligned English Translation")
             st.success(f"### {out['translation']}")
 
-# -----------------------------------------------------------------------------
-# TAB 4: INDUCED LEXICAL DICTIONARY
-# -----------------------------------------------------------------------------
+# TAB 4: INDUCED DICTIONARY
 with tabs[3]:
     st.subheader("Complete Induced Mathematical Dictionary Key")
-    st.markdown("Every unique token in the corpus aligned via PPMI geometry to 15th-century Latin scientific lemmas.")
-
     search = st.text_input("Search dictionary by token, Latin lemma, or English meaning:", "")
     view_table = dict_table.copy()
     if search and not view_table.empty:
@@ -346,13 +295,9 @@ with tabs[3]:
         ]
     st.dataframe(view_table, use_container_width=True)
 
-# -----------------------------------------------------------------------------
-# TAB 5: EXPORT FULL TRANSLATION (CSV)
-# -----------------------------------------------------------------------------
+# TAB 5: CSV EXPORT
 with tabs[4]:
     st.subheader("Export Whole-Manuscript Translation Table")
-    st.markdown("Compiles a full CSV dataset containing every line, folio number, original Voynich text, and translated English text.")
-
     if st.button("Compile Full Manuscript Translation Table"):
         with st.spinner("Compiling translation rows across all folios..."):
             export_records = []
@@ -370,11 +315,9 @@ with tabs[4]:
                 export_records.append(record)
 
             export_df = pd.DataFrame(export_records)
-            csv_data = export_df.to_csv(index=False).encode("utf-8")
-
             st.download_button(
                 label="📥 Download Complete Manuscript Translation (CSV)",
-                data=csv_data,
+                data=export_df.to_csv(index=False).encode("utf-8"),
                 file_name="voynich_complete_english_translation.csv",
                 mime="text/csv"
             )
