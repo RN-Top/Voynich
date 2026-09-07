@@ -8,7 +8,6 @@ They do not claim semantic decipherment.
 import numpy as np
 import pandas as pd
 
-
 class DeciphermentEngine:
 
     def __init__(self, corpus_df):
