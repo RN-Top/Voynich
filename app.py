@@ -5,6 +5,7 @@ VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH & PARALLEL READER
 - Live Sequence Translator & Induced Lexical Dictionary
 - Whole-Manuscript CSV Export
 - Executive Findings & 600-Year Decipherment Verdict
+- Null model / holdout structure tests
 """
 
 import os
@@ -14,6 +15,7 @@ import streamlit as st
 
 from parser import parse_zl3b
 from engine_decipher import WholeManuscriptDecipherer
+from analyzer import DeciphermentEngine
 
 st.set_page_config(
     page_title="Voynich Manuscript Complete Decipherment Workbench",
@@ -134,10 +136,14 @@ def extract_author_audit(filepath: str = DEFAULT_DATA_PATH):
     return marginal_findings, pd.DataFrame(structural_colophons)
 
 
-# Sidebar & Corpus Loading
 uploaded_file = st.sidebar.file_uploader("Upload Full ZL3b-n.txt (Optional)", type=["txt"])
 df, engine = load_and_train(uploaded_file)
 dict_table = engine.get_full_dictionary()
+
+try:
+    stats_engine = DeciphermentEngine(df) if not df.empty else None
+except Exception:
+    stats_engine = None
 
 st.title("Voynich Manuscript Decipherment Workbench")
 st.caption("Computational State-Space Engine, Parallel Folio Facsimile Reader, and Scribal Author Audit")
@@ -155,10 +161,10 @@ tabs = st.tabs([
     "3. Live Interactive Translator",
     "4. Induced Lexical Dictionary",
     "5. Export Full Translation (CSV)",
-    "6. Findings & 600-Year Verdict"
+    "6. Findings & 600-Year Verdict",
+    "7. Structure Tests"
 ])
 
-# TAB 1: PARALLEL READER
 with tabs[0]:
     st.subheader("Parallel Manuscript Reader Edition")
     st.caption("Side-by-side verification: Original physical folio scan & underlying transcription files beside decoded English.")
@@ -218,7 +224,6 @@ with tabs[0]:
     else:
         st.warning("No folios match the selected section filter.")
 
-# TAB 2: AUTHOR & COLOPHON DECIPHER
 with tabs[1]:
     st.subheader("Author Identification & Scribal Attribution Audit")
     notes, colophons_df = extract_author_audit(DEFAULT_DATA_PATH)
@@ -263,7 +268,6 @@ with tabs[1]:
             """
         )
 
-# TAB 3: LIVE TRANSLATOR
 with tabs[2]:
     st.subheader("Interactive Custom Sequence Translator")
     quick_samples = [
@@ -285,7 +289,6 @@ with tabs[2]:
             st.markdown("#### Aligned English Translation")
             st.success(f"### {out['translation']}")
 
-# TAB 4: INDUCED DICTIONARY
 with tabs[3]:
     st.subheader("Complete Induced Mathematical Dictionary Key")
     search = st.text_input("Search dictionary by token, Latin lemma, or English meaning:", "")
@@ -299,7 +302,6 @@ with tabs[3]:
         ]
     st.dataframe(view_table, use_container_width=True)
 
-# TAB 5: CSV EXPORT
 with tabs[4]:
     st.subheader("Export Whole-Manuscript Translation Table")
     if st.button("Compile Full Manuscript Translation Table"):
@@ -320,14 +322,13 @@ with tabs[4]:
 
             export_df = pd.DataFrame(export_records)
             st.download_button(
-                label="📥 Download Complete Manuscript Translation (CSV)",
+                label="Download Complete Manuscript Translation (CSV)",
                 data=export_df.to_csv(index=False).encode("utf-8"),
                 file_name="voynich_complete_english_translation.csv",
                 mime="text/csv"
             )
             st.success(f"Successfully compiled {len(export_df):,} translated lines!")
 
-# TAB 6: FINDINGS & 600-YEAR VERDICT
 with tabs[5]:
     st.subheader("Synthesized Conclusions & 600-Year Decipherment Verdict")
     st.markdown(
@@ -406,3 +407,79 @@ with tabs[5]:
         > ***Preserve the meaning. Release the form. Nothing remains to be carried.”***
         """
     )
+
+with tabs[6]:
+    st.subheader("Structure Tests")
+    st.caption("These tests measure pattern strength. They do not translate the manuscript.")
+
+    if stats_engine is None:
+        st.warning("Stats engine could not load. Check that parser columns exist.")
+    else:
+        test_choice = st.radio(
+            "Pick a test",
+            ["Null model", "Folio holdout", "Section carriers"],
+            horizontal=True,
+        )
+
+        if test_choice == "Null model":
+            st.write("Shuffle carriers and ask whether the real PMI beats chance.")
+            n_shuffles = st.slider("Shuffle runs", 10, 100, 50, 10)
+            if st.button("Run null model"):
+                with st.spinner("Shuffling carriers and re-scoring PMI..."):
+                    result = stats_engine.run_null_model(n_shuffles=n_shuffles)
+                if result is None:
+                    st.warning("Not enough data to test.")
+                else:
+                    c1, c2, c3 = st.columns(3)
+                    c1.metric("Real max PMI", result["real_max_pmi"])
+                    c2.metric("Shuffled mean", result["shuffled_mean"])
+                    c3.metric("Shuffled max", result["shuffled_max"])
+                    if result["beats_chance"]:
+                        st.success("Beats chance: YES")
+                    else:
+                        st.error("Beats chance: NO")
+
+        elif test_choice == "Folio holdout":
+            st.write("Hide 20% of folios. Score the hidden pages.")
+            if st.button("Run folio holdout"):
+                with st.spinner("Splitting folios and scoring unseen pages..."):
+                    result = stats_engine.run_folio_holdout()
+                if result is None:
+                    st.warning("Not enough folios to split.")
+                else:
+                    c1, c2, c3 = st.columns(3)
+                    c1.metric("Train folios", result.get("train_folios", 0))
+                    c2.metric("Test folios", result.get("test_folios", 0))
+                    c3.metric("Shared carriers", result.get("shared_carriers", 0))
+                    d1, d2 = st.columns(2)
+                    d1.metric("Train max PMI", result.get("train_max_pmi"))
+                    d2.metric("Test max PMI", result.get("test_max_pmi"))
+                    if result.get("holdout_holds"):
+                        st.success("Holdout holds.")
+                    else:
+                        st.error("Holdout did not hold.")
+                    if result.get("note"):
+                        st.caption(result["note"])
+
+        else:
+            section_name = st.selectbox(
+                "Section",
+                [
+                    "Herbal",
+                    "Astronomical/Zodiac",
+                    "Biological",
+                    "Pharmaceutical",
+                    "Stars/Recipes",
+                    "Cosmological",
+                    "General",
+                ],
+            )
+            table = stats_engine.top_section_carriers(section_name)
+            st.dataframe(table, use_container_width=True)
+            pmi = stats_engine.compute_carrier_excess_specificity()
+            if not pmi.empty and section_name in pmi.columns:
+                st.markdown(f"PMI for **{section_name}**")
+                st.dataframe(
+                    pmi[[section_name]].sort_values(section_name, ascending=False).head(20),
+                    use_container_width=True,
+                )
