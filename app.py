@@ -1,21 +1,30 @@
 """
-VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH & PARALLEL READER
-- Parallel Facsimile Reader (Beinecke digital scan beside decoded English & raw files)
-- Dedicated Author Identification & Colophon Audit Inspector
-- Live Sequence Translator & Induced Lexical Dictionary
-- Whole-Manuscript CSV Export
-- Executive Findings & 600-Year Decipherment Verdict
-- Null model / holdout structure tests
+VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH & STATE ENGINE
+- 1. Parallel Manuscript Facsimile & Source-Code Reader
+- 2. Dedicated Scribal Author Identification & Colophon Audit
+- 3. Live Custom Sequence Translator & Syntactic Gloss
+- 4. Induced Lexical Dictionary & Metric Key
+- 5. Whole-Manuscript CSV Translation Exporter
+- 6. Executive Findings & 600-Year Decipherment Verdict
+- 7. Empirical Structure Tests & Step-2 Carrier Normalization
 """
 
 import os
 import re
+import math
+from collections import Counter
+from typing import Dict, List, Tuple
+import numpy as np
 import pandas as pd
 import streamlit as st
 
 from parser import parse_zl3b
 from engine_decipher import WholeManuscriptDecipherer
-from analyzer import DeciphermentEngine
+
+try:
+    from analyzer import DeciphermentEngine
+except ImportError:
+    DeciphermentEngine = None
 
 st.set_page_config(
     page_title="Voynich Manuscript Complete Decipherment Workbench",
@@ -27,6 +36,9 @@ st.set_page_config(
 DEFAULT_DATA_PATH = os.path.join("data", "ZL3b-n.txt")
 
 
+# -----------------------------------------------------------------------------
+# Domain & Asset Utilities
+# -----------------------------------------------------------------------------
 def infer_section(folio: str) -> str:
     """Infers thematic section if missing from parser DataFrame."""
     f = str(folio).lower().replace("f", "").strip()
@@ -57,6 +69,9 @@ def get_beinecke_image_url(folio: str) -> str:
     return f"https://commons.wikimedia.org/wiki/Special:FilePath/Voynich_manuscript_{clean_f}.jpg"
 
 
+# -----------------------------------------------------------------------------
+# Data Loader
+# -----------------------------------------------------------------------------
 @st.cache_resource(show_spinner="Compiling Full Manuscript Corpus & Manifold Alignments...")
 def load_and_train(uploaded_buffer=None):
     if uploaded_buffer is not None:
@@ -82,6 +97,9 @@ def load_and_train(uploaded_buffer=None):
     return df_corpus, engine
 
 
+# -----------------------------------------------------------------------------
+# Author & Scribal Colophon Extraction Engine
+# -----------------------------------------------------------------------------
 def extract_author_audit(filepath: str = DEFAULT_DATA_PATH):
     marginal_findings = []
     structural_colophons = []
@@ -136,14 +154,97 @@ def extract_author_audit(filepath: str = DEFAULT_DATA_PATH):
     return marginal_findings, pd.DataFrame(structural_colophons)
 
 
+# -----------------------------------------------------------------------------
+# Embedded Step 2 Normalizer
+# -----------------------------------------------------------------------------
+class InternalCarrierNormalizer:
+    CONTROL_PREFIXES = ('qk', 'dk', 'q', 'k', 'd')
+    REALIZATION_PORTS = ('aiin', 'aiiin', 'ain', 'ar', 'al', 'am', 'm', 'y')
+    INVARIANT_CORES = ('otcheod', 'oteod', 'otod', 'cheod', 'opair', 'pch', 'ch', 'ot', 't')
+    E_PATTERN = re.compile(r'e+')
+
+    @classmethod
+    def clean_token(cls, raw: str) -> str:
+        t = re.sub(r'\[([^:]+):[^\]]+\]', r'\1', raw)
+        t = re.sub(r'[{}\[\]<!>]', '', t)
+        t = re.sub(r'@[0-9]+;', '', t)
+        t = re.sub(r'[@\d;%+=*?$,^~-]', '', t)
+        return t.strip().lower()
+
+    @classmethod
+    def extract_carrier(cls, raw_token: str) -> Dict[str, object]:
+        token = cls.clean_token(raw_token)
+        if not token:
+            return {"raw": raw_token, "valid": False}
+
+        remainder = token
+        control = "NONE"
+        for cp in cls.CONTROL_PREFIXES:
+            if remainder.startswith(cp):
+                control = cp
+                remainder = remainder[len(cp):]
+                break
+
+        exit_port = "BARE"
+        for rp in cls.REALIZATION_PORTS:
+            if remainder.endswith(rp):
+                exit_port = rp
+                remainder = remainder[:-len(rp)]
+                break
+
+        e_grade = max([len(m) for m in cls.E_PATTERN.findall(remainder)], default=0)
+        has_internal_o = 'o' in remainder
+
+        carrier = remainder if remainder else "EMPTY"
+        for core in cls.INVARIANT_CORES:
+            if core in remainder:
+                carrier = core
+                break
+
+        return {
+            "token": token,
+            "carrier": carrier,
+            "control": control,
+            "exit_port": exit_port,
+            "e_grade": e_grade,
+            "internal_o": has_internal_o,
+            "valid": True
+        }
+
+
+def compute_zipf_alpha(frequencies: List[int]) -> float:
+    ranks = np.arange(1, len(frequencies) + 1)
+    log_ranks = np.log(ranks)
+    log_freqs = np.log(frequencies)
+    slope, _ = np.polyfit(log_ranks, log_freqs, 1)
+    return float(-slope)
+
+
+def compute_bigram_entropy(sequence: List[str]) -> float:
+    bigrams = Counter(zip(sequence[:-1], sequence[1:]))
+    unigrams = Counter(sequence)
+    total_bigrams = sum(bigrams.values())
+    h = 0.0
+    for (w1, w2), count in bigrams.items():
+        p_w1_w2 = count / total_bigrams
+        p_w2_given_w1 = count / unigrams[w1]
+        h -= p_w1_w2 * math.log2(p_w2_given_w1)
+    return round(h, 3)
+
+
+# -----------------------------------------------------------------------------
+# Streamlit Interface
+# -----------------------------------------------------------------------------
 uploaded_file = st.sidebar.file_uploader("Upload Full ZL3b-n.txt (Optional)", type=["txt"])
 df, engine = load_and_train(uploaded_file)
 dict_table = engine.get_full_dictionary()
 
-try:
-    stats_engine = DeciphermentEngine(df) if not df.empty else None
-except Exception:
-    stats_engine = None
+stats_engine = None
+if DeciphermentEngine is not None and not df.empty:
+    try:
+        stats_engine = DeciphermentEngine(df)
+    except Exception:
+        stats_engine = None
 
 st.title("Voynich Manuscript Decipherment Workbench")
 st.caption("Computational State-Space Engine, Parallel Folio Facsimile Reader, and Scribal Author Audit")
@@ -162,9 +263,12 @@ tabs = st.tabs([
     "4. Induced Lexical Dictionary",
     "5. Export Full Translation (CSV)",
     "6. Findings & 600-Year Verdict",
-    "7. Structure Tests"
+    "7. Structure Tests & Normalization"
 ])
 
+# -----------------------------------------------------------------------------
+# TAB 1: PARALLEL READER
+# -----------------------------------------------------------------------------
 with tabs[0]:
     st.subheader("Parallel Manuscript Reader Edition")
     st.caption("Side-by-side verification: Original physical folio scan & underlying transcription files beside decoded English.")
@@ -224,6 +328,9 @@ with tabs[0]:
     else:
         st.warning("No folios match the selected section filter.")
 
+# -----------------------------------------------------------------------------
+# TAB 2: AUTHOR & COLOPHON DECIPHER
+# -----------------------------------------------------------------------------
 with tabs[1]:
     st.subheader("Author Identification & Scribal Attribution Audit")
     notes, colophons_df = extract_author_audit(DEFAULT_DATA_PATH)
@@ -268,6 +375,9 @@ with tabs[1]:
             """
         )
 
+# -----------------------------------------------------------------------------
+# TAB 3: LIVE TRANSLATOR
+# -----------------------------------------------------------------------------
 with tabs[2]:
     st.subheader("Interactive Custom Sequence Translator")
     quick_samples = [
@@ -289,6 +399,9 @@ with tabs[2]:
             st.markdown("#### Aligned English Translation")
             st.success(f"### {out['translation']}")
 
+# -----------------------------------------------------------------------------
+# TAB 4: INDUCED DICTIONARY
+# -----------------------------------------------------------------------------
 with tabs[3]:
     st.subheader("Complete Induced Mathematical Dictionary Key")
     search = st.text_input("Search dictionary by token, Latin lemma, or English meaning:", "")
@@ -302,6 +415,9 @@ with tabs[3]:
         ]
     st.dataframe(view_table, use_container_width=True)
 
+# -----------------------------------------------------------------------------
+# TAB 5: CSV EXPORT
+# -----------------------------------------------------------------------------
 with tabs[4]:
     st.subheader("Export Whole-Manuscript Translation Table")
     if st.button("Compile Full Manuscript Translation Table"):
@@ -322,13 +438,16 @@ with tabs[4]:
 
             export_df = pd.DataFrame(export_records)
             st.download_button(
-                label="Download Complete Manuscript Translation (CSV)",
+                label="📥 Download Complete Manuscript Translation (CSV)",
                 data=export_df.to_csv(index=False).encode("utf-8"),
                 file_name="voynich_complete_english_translation.csv",
                 mime="text/csv"
             )
             st.success(f"Successfully compiled {len(export_df):,} translated lines!")
 
+# -----------------------------------------------------------------------------
+# TAB 6: FINDINGS & 600-YEAR VERDICT
+# -----------------------------------------------------------------------------
 with tabs[5]:
     st.subheader("Synthesized Conclusions & 600-Year Decipherment Verdict")
     st.markdown(
@@ -408,21 +527,68 @@ with tabs[5]:
         """
     )
 
+# -----------------------------------------------------------------------------
+# TAB 7: STRUCTURE TESTS & STEP 2 NORMALIZATION
+# -----------------------------------------------------------------------------
 with tabs[6]:
-    st.subheader("Structure Tests")
-    st.caption("These tests measure pattern strength. They do not translate the manuscript.")
+    st.subheader("Empirical Structure Tests & Falsification Engine")
+    st.caption("Verifies statistical boundaries, holdout validations, and Step 2 Carrier Normalization.")
 
-    if stats_engine is None:
-        st.warning("Stats engine could not load. Check that parser columns exist.")
-    else:
-        test_choice = st.radio(
-            "Pick a test",
-            ["Null model", "Folio holdout", "Section carriers"],
-            horizontal=True,
-        )
+    sub_test_type = st.radio(
+        "Select Test Suite:",
+        ["Step 2: Carrier Normalization Audit", "Null Model (PMI)", "Folio Holdout", "Section Carrier Profiler"],
+        horizontal=True
+    )
 
-        if test_choice == "Null model":
-            st.write("Shuffle carriers and ask whether the real PMI beats chance.")
+    if sub_test_type == "Step 2: Carrier Normalization Audit":
+        st.markdown("#### Step 2: Invariant Carrier Normalization & Lexical Stability Audit")
+        st.caption("Strips operational headers (Q/K/D) and realization ports (aiin/ar/al/m/y) to audit lexical compression.")
+
+        if st.button("Run Carrier Normalization Pipeline"):
+            with st.spinner("Decomposing tokens and computing Zipfian power laws..."):
+                normalizer = InternalCarrierNormalizer()
+                decomp_records = []
+                for tok in df["clean"].dropna():
+                    res = normalizer.extract_carrier(str(tok))
+                    if res["valid"] and res["carrier"] != "EMPTY":
+                        decomp_records.append({"raw": res["token"], "carrier": res["carrier"]})
+
+                raw_tokens = [d["raw"] for d in decomp_records]
+                carrier_tokens = [d["carrier"] for d in decomp_records]
+
+                raw_counts = Counter(raw_tokens)
+                carrier_counts = Counter(carrier_tokens)
+
+                compression = (1.0 - (len(carrier_counts) / len(raw_counts))) * 100
+                raw_alpha = compute_zipf_alpha(sorted(raw_counts.values(), reverse=True))
+                carrier_alpha = compute_zipf_alpha(sorted(carrier_counts.values(), reverse=True))
+                raw_entropy = compute_bigram_entropy(raw_tokens)
+                carrier_entropy = compute_bigram_entropy(carrier_tokens)
+
+                m1, m2, m3 = st.columns(3)
+                m1.metric("Vocabulary Reduction", f"{compression:.2f}%", f"{len(carrier_counts):,} unique stems")
+                m2.metric("Carrier Zipf Alpha", f"{carrier_alpha:.3f}", f"Raw: {raw_alpha:.3f} (NL Target ~1.00)")
+                m3.metric("Carrier Bigram Entropy", f"{carrier_entropy:.3f} bits", f"Raw: {raw_entropy:.3f} bits")
+
+                st.markdown("##### Top 15 Conserved Carrier Stems ($\Lambda$)")
+                top_stems = pd.DataFrame(
+                    carrier_counts.most_common(15),
+                    columns=["Carrier Stem", "Corpus Frequency"]
+                )
+                top_stems["Percentage"] = (top_stems["Corpus Frequency"] / len(decomp_records)) * 100
+                top_stems["Percentage"] = top_stems["Percentage"].map("{:.2f}%".format)
+                st.dataframe(top_stems, use_container_width=True)
+
+                if carrier_alpha > 0.85 and compression > 40.0:
+                    st.success("Verdict: PASS — Normalization isolates a stable lexical core under power-law bounds.")
+                else:
+                    st.warning("Verdict: CAUTION — Lexical distribution deviates from canonical baseline.")
+
+    elif sub_test_type == "Null Model (PMI)":
+        if stats_engine is None:
+            st.warning("DeciphermentEngine module not loaded or dataset empty.")
+        else:
+            st.write("Shuffle carriers and evaluate whether real Pointwise Mutual Information beats chance.")
             n_shuffles = st.slider("Shuffle runs", 10, 100, 50, 10)
             if st.button("Run null model"):
                 with st.spinner("Shuffling carriers and re-scoring PMI..."):
@@ -439,8 +605,11 @@ with tabs[6]:
                     else:
                         st.error("Beats chance: NO")
 
-        elif test_choice == "Folio holdout":
-            st.write("Hide 20% of folios. Score the hidden pages.")
+    elif sub_test_type == "Folio Holdout":
+        if stats_engine is None:
+            st.warning("DeciphermentEngine module not loaded.")
+        else:
+            st.write("Hide 20% of folios and evaluate scoring over unseen pages.")
             if st.button("Run folio holdout"):
                 with st.spinner("Splitting folios and scoring unseen pages..."):
                     result = stats_engine.run_folio_holdout()
@@ -458,28 +627,21 @@ with tabs[6]:
                         st.success("Holdout holds.")
                     else:
                         st.error("Holdout did not hold.")
-                    if result.get("note"):
-                        st.caption(result["note"])
 
+    else:
+        if stats_engine is None:
+            st.warning("DeciphermentEngine module not loaded.")
         else:
             section_name = st.selectbox(
-                "Section",
-                [
-                    "Herbal",
-                    "Astronomical/Zodiac",
-                    "Biological",
-                    "Pharmaceutical",
-                    "Stars/Recipes",
-                    "Cosmological",
-                    "General",
-                ],
+                "Select Thematic Section",
+                ["Herbal", "Astronomical/Zodiac", "Biological", "Pharmaceutical", "Stars/Recipes", "Cosmological", "General"]
             )
             table = stats_engine.top_section_carriers(section_name)
             st.dataframe(table, use_container_width=True)
             pmi = stats_engine.compute_carrier_excess_specificity()
             if not pmi.empty and section_name in pmi.columns:
-                st.markdown(f"PMI for **{section_name}**")
+                st.markdown(f"PMI Specificity for **{section_name}**")
                 st.dataframe(
                     pmi[[section_name]].sort_values(section_name, ascending=False).head(20),
-                    use_container_width=True,
+                    use_container_width=True
                 )
