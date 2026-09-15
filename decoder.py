@@ -1,84 +1,101 @@
 """
-voynich-state-viewer: Astronomical Grounding & Zodiac Decipherment Oracle
-Bridges normalized carrier stems to the 12-fold celestial zodiac rotas.
+voynich-state-viewer: Zodiac Topological Grounding Oracle (f70r-f74v)
+Aligns stripped carrier stems against the physical circular geometry of the 12 signs.
 """
 
+import math
+import re
+from collections import Counter
 import numpy as np
 import pandas as pd
 
 
 class ZodiacDeciphermentOracle:
-    """Empirical alignment solver between isolated carriers and celestial structures."""
-
-    ZODIAC_CANONICAL = [
-        "Aries", "Taurus", "Gemini", "Cancer",
-        "Leo", "Virgo", "Libra", "Scorpio",
-        "Sagittarius", "Capricorn", "Aquarius", "Pisces"
-    ]
-
     def __init__(self, corpus_df: pd.DataFrame):
         self.df = corpus_df.copy()
+        if "clean" not in self.df.columns and "token" in self.df.columns:
+            self.df["clean"] = self.df["token"].astype(str)
         if "carrier_core" not in self.df.columns:
-            self.df["carrier_core"] = self.df["clean"].astype(str)
-
-        # Flag astronomical and zodiac folios
-        self.df["is_astro"] = self.df["section"].isin(["Astronomical/Zodiac", "Cosmological"])
-        self.df["zodiac_sign"] = self.df["folio"].apply(self._infer_zodiac_sign)
+            self.df["carrier_core"] = self.df["clean"].apply(self._extract_carrier)
 
     @staticmethod
-    def _infer_zodiac_sign(folio: str) -> str:
-        f = str(folio).lower().strip()
-        z_map = {
-            "f70v1": "Aries", "f70v2": "Aries",
-            "f71r": "Taurus", "f71v": "Taurus",
-            "f72r1": "Gemini", "f72r2": "Cancer", "f72r3": "Cancer",
-            "f72v1": "Libra", "f72v2": "Virgo", "f72v3": "Leo",
-            "f73r": "Scorpio", "f73v": "Sagittarius",
-            "f74r": "Capricorn", "f74v": "Aquarius"
-        }
-        for k, v in z_map.items():
-            if k in f:
-                return v
-        return "Unknown"
+    def _extract_carrier(tok: str) -> str:
+        s = str(tok).lower().strip()
+        for p in ("qk", "dk", "qo", "ch", "sh", "q", "k", "d", "t"):
+            if s.startswith(p):
+                s = s[len(p):]
+                break
+        for ep in ("aiiin", "aiin", "ain", "eedy", "edy", "eey", "ey", "al", "ar", "am", "or", "ol", "m", "y"):
+            if s.endswith(ep):
+                s = s[:-len(ep)]
+                break
+        return s if s else "core"
 
-    def get_zodiac_carrier_matrix(self, min_freq: int = 2) -> pd.DataFrame:
-        """Cross-tabulates isolated carriers across canonical Zodiac signs."""
-        z_df = self.df[self.df["zodiac_sign"].isin(self.ZODIAC_CANONICAL)].copy()
-        if z_df.empty:
+    def compute_carrier_astronomical_specificity(self, min_occ: int = 3) -> pd.DataFrame:
+        """
+        Calculates Pointwise Mutual Information (PMI) of carrier cores in Astronomical/Zodiac
+        sections relative to the general corpus.
+        """
+        valid = self.df[self.df["carrier_core"] != "core"].copy()
+        if "section" not in valid.columns:
             return pd.DataFrame()
 
-        ct = pd.crosstab(z_df["carrier_core"], z_df["zodiac_sign"])
-        ct = ct[ct.sum(axis=1) >= min_freq]
-        ordered_cols = [c for c in self.ZODIAC_CANONICAL if c in ct.columns]
-        return ct.reindex(columns=ordered_cols)
+        total_tokens = len(valid)
+        carrier_counts = valid["carrier_core"].value_counts()
+        astro_mask = valid["section"].astype(str).str.contains("Astro|Zodiac", case=False, na=False)
+        astro_tokens = valid[astro_mask]
 
-    def compute_carrier_astronomical_specificity(self) -> pd.DataFrame:
-        """Computes PMI of carriers in Astronomical folios vs general prose."""
-        valid = self.df[self.df["carrier_core"] != "EMPTY"].copy()
-        valid["domain"] = np.where(valid["is_astro"], "Astronomical", "General_Prose")
-
-        contingency = pd.crosstab(valid["carrier_core"], valid["domain"])
-        contingency = contingency[contingency.sum(axis=1) >= 5]
-        if contingency.empty:
+        total_astro = len(astro_tokens)
+        if total_astro == 0:
             return pd.DataFrame()
 
-        total = contingency.values.sum()
-        p_c = contingency.sum(axis=1).values / total
-        p_d = contingency.sum(axis=0).values / total
-        p_joint = contingency.values / total
+        results = []
+        for carrier, count in carrier_counts.items():
+            if count < min_occ:
+                continue
+            astro_count = (astro_tokens["carrier_core"] == carrier).sum()
+            if astro_count == 0:
+                continue
 
-        expected = np.outer(p_c, p_d)
-        pmi = np.log2((p_joint + 1e-9) / (expected + 1e-9))
-        pmi_df = pd.DataFrame(pmi, index=contingency.index, columns=contingency.columns)
-        return pmi_df.sort_values(by="Astronomical", ascending=False).round(3)
+            p_carrier = count / total_tokens
+            p_astro = total_astro / total_tokens
+            p_joint = astro_count / total_tokens
+
+            pmi = math.log2(p_joint / (p_carrier * p_astro))
+            results.append({
+                "Carrier Core (Lambda)": carrier,
+                "Astro Count": astro_count,
+                "Total Count": count,
+                "Astronomical PMI": round(pmi, 3)
+            })
+
+        res_df = pd.DataFrame(results)
+        if not res_df.empty:
+            res_df = res_df.sort_values(by="Astronomical PMI", ascending=False).reset_index(drop=True)
+        return res_df
 
     def decode_zodiac_labels(self) -> pd.DataFrame:
-        """Extracts high-confidence astronomical carriers (OTCHEOD, OEEOD, AIR, AL, OTEOD)."""
-        z_df = self.df[self.df["zodiac_sign"].isin(self.ZODIAC_CANONICAL)].copy()
-        if z_df.empty:
+        """
+        Extracts candidate isolated label strings from folios f70r through f74v.
+        """
+        zodiac_folios = [f"f{i}r" for i in range(70, 75)] + [f"f{i}v" for i in range(70, 75)]
+        zodiac_df = self.df[self.df["folio"].isin(zodiac_folios)].copy()
+
+        if zodiac_df.empty:
             return pd.DataFrame()
 
-        key_carriers = ("otcheod", "oeeod", "opair", "oteod", "air", "al", "aiir")
-        targeted = z_df[z_df["carrier_core"].isin(key_carriers)].copy()
-        cols = [c for c in ["folio", "header", "zodiac_sign", "clean", "carrier_core", "control", "exit_port"] if c in targeted.columns]
-        return targeted[cols].drop_duplicates()
+        # Labels are typically short lines (1-3 tokens) or ring-annotated loci
+        records = []
+        group_col = "header" if "header" in zodiac_df.columns else "folio"
+        for locus, grp in zodiac_df.groupby(group_col):
+            tokens = grp["clean"].tolist()
+            if 1 <= len(tokens) <= 3:
+                records.append({
+                    "Locus / Ring Slot": locus,
+                    "Tokens": " ".join(tokens),
+                    "Carrier Stems": " ".join(grp["carrier_core"].tolist()),
+                    "Token Count": len(tokens)
+                })
+
+        label_df = pd.DataFrame(records)
+        return label_df.head(25) if not label_df.empty else pd.DataFrame()
