@@ -8,6 +8,7 @@ VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH & PARALLEL READER
 - Structure Tests (Null Model & Folio Holdout)
 - Automated Cross-Section Carrier Core Analysis Matrix
 - Permutation Falsification Suite
+- Zodiac Topological Grounding Oracle (f70r-f74v)
 """
 
 import glob
@@ -23,15 +24,18 @@ import streamlit as st
 from parser import parse_zl3b
 from engine_decipher import WholeManuscriptDecipherer
 
-# Defensive import for analyzer functions
 try:
     from analyzer import DeciphermentEngine
 except Exception:
     DeciphermentEngine = None
 
+try:
+    from decoder import ZodiacDeciphermentOracle
+except Exception:
+    ZodiacDeciphermentOracle = None
+
 
 def auto_compile_cross_section_table(export_dir: str = ".") -> pd.DataFrame:
-    """Fallback loader for carrier analysis tables."""
     csv_candidates = glob.glob(os.path.join(export_dir, "*export*.csv")) + glob.glob(os.path.join(export_dir, "*.csv"))
     valid_tables = []
     for path in csv_candidates:
@@ -71,7 +75,6 @@ DEFAULT_DATA_PATH = os.path.join("data", "ZL3b-n.txt")
 
 
 def infer_section(folio: str) -> str:
-    """Infers thematic section if missing from parser DataFrame."""
     f = str(folio).lower().replace("f", "").strip()
     num_match = re.match(r"(\d+)", f)
     if not num_match:
@@ -93,7 +96,6 @@ def infer_section(folio: str) -> str:
 
 
 def get_beinecke_image_url(folio: str) -> str:
-    """Generates digital facsimile URLs for Beinecke MS 408 folios."""
     clean_f = folio.lower().strip()
     if not clean_f.startswith("f"):
         clean_f = f"f{clean_f}"
@@ -190,6 +192,13 @@ if DeciphermentEngine is not None and not df.empty:
     except Exception:
         stats_engine = None
 
+oracle = None
+if ZodiacDeciphermentOracle is not None and not df.empty:
+    try:
+        oracle = ZodiacDeciphermentOracle(df)
+    except Exception:
+        oracle = None
+
 st.title("Voynich Manuscript Decipherment Workbench")
 st.caption("Computational State-Space Engine, Cross-Modal Carrier Grounding, and Scribal Author Audit")
 
@@ -208,7 +217,8 @@ tabs = st.tabs([
     "5. Export CSV",
     "6. 600-Yr Verdict",
     "7. Structure Tests",
-    "8. Section Carrier Matrix"
+    "8. Section Carrier Matrix",
+    "9. Zodiac Grounding (f70r-f74v)"
 ])
 
 with tabs[0]:
@@ -401,6 +411,30 @@ with tabs[7]:
         file_name="voynich_cross_section_carrier_summary.csv",
         mime="text/csv"
     )
+
+with tabs[8]:
+    st.subheader("🌌 Zodiac Topological Grounding (f70r–f74v)")
+    st.caption("Testing isolated carrier stems against the physical 12-sign and 36-decan rotas.")
+
+    if oracle is not None:
+        c1, c2 = st.columns(2)
+        with c1:
+            st.markdown("#### Carrier Astronomical Specificity (PMI)")
+            pmi_astro = oracle.compute_carrier_astronomical_specificity(min_occ=3)
+            if not pmi_astro.empty:
+                st.dataframe(pmi_astro, use_container_width=True)
+            else:
+                st.info("No astronomical excess detected above threshold.")
+
+        with c2:
+            st.markdown("#### Isolated Zodiac Label Matches")
+            labels = oracle.decode_zodiac_labels()
+            if not labels.empty:
+                st.dataframe(labels, use_container_width=True)
+            else:
+                st.info("No isolated zodiac ring labels found.")
+    else:
+        st.warning("ZodiacDeciphermentOracle could not be initialized from decoder.py.")
 
 # -----------------------------------------------------------------------------
 # PERMUTATION FALSIFICATION TEST PANEL
