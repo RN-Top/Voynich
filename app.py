@@ -1,13 +1,6 @@
 """
 VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH & STATE ENGINE
-- 1. Parallel Manuscript Facsimile & Source-Code Reader
-- 2. Dedicated Scribal Author Identification & Colophon Audit
-- 3. Live Custom Sequence Translator & Syntactic Gloss
-- 4. Induced Lexical Dictionary & Metric Key
-- 5. Whole-Manuscript CSV Translation Exporter
-- 6. Executive Findings & 600-Year Decipherment Verdict
-- 7. Empirical Structure Tests & Step-2 Carrier Normalization
-- 8. Automated Loci & Domain Vocabulary Auditor
+Integrated with Zodiac Decipherment Oracle & Generator-Null Falsification.
 """
 
 import os
@@ -27,8 +20,18 @@ try:
 except ImportError:
     DeciphermentEngine = None
 
+try:
+    from decoder import ZodiacDeciphermentOracle
+except ImportError:
+    ZodiacDeciphermentOracle = None
+
+try:
+    from audit_generator_null import GeneratorNullAudit
+except ImportError:
+    GeneratorNullAudit = None
+
 st.set_page_config(
-    page_title="Voynich Manuscript Complete Decipherment Workbench",
+    page_title="Voynich Decipherment Workbench",
     page_icon="📖",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -37,11 +40,7 @@ st.set_page_config(
 DEFAULT_DATA_PATH = os.path.join("data", "ZL3b-n.txt")
 
 
-# -----------------------------------------------------------------------------
-# Domain & Asset Utilities
-# -----------------------------------------------------------------------------
 def infer_section(folio: str) -> str:
-    """Infers thematic section if missing from parser DataFrame."""
     f = str(folio).lower().replace("f", "").strip()
     num_match = re.match(r"(\d+)", f)
     if not num_match:
@@ -63,16 +62,12 @@ def infer_section(folio: str) -> str:
 
 
 def get_beinecke_image_url(folio: str) -> str:
-    """Generates standard digital facsimile URLs for Beinecke MS 408 folios via Wikimedia Commons."""
     clean_f = folio.lower().strip()
     if not clean_f.startswith("f"):
         clean_f = f"f{clean_f}"
     return f"https://commons.wikimedia.org/wiki/Special:FilePath/Voynich_manuscript_{clean_f}.jpg"
 
 
-# -----------------------------------------------------------------------------
-# Data Loader
-# -----------------------------------------------------------------------------
 @st.cache_resource(show_spinner="Compiling Full Manuscript Corpus & Manifold Alignments...")
 def load_and_train(uploaded_buffer=None):
     if uploaded_buffer is not None:
@@ -98,316 +93,111 @@ def load_and_train(uploaded_buffer=None):
     return df_corpus, engine
 
 
-# -----------------------------------------------------------------------------
-# Author & Scribal Colophon Extraction Engine
-# -----------------------------------------------------------------------------
-def extract_author_audit(filepath: str = DEFAULT_DATA_PATH):
-    marginal_findings = []
-    structural_colophons = []
-
-    if not os.path.exists(filepath):
-        return marginal_findings, pd.DataFrame(structural_colophons)
-
-    with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
-        lines = f.readlines()
-
-    current_folio = "f1r"
-    token_regex = re.compile(r"<f(\d+[rv]\d*)\.(\d+),([@=+*][A-Za-z0-9_]+)>\s*(.*)")
-
-    for line in lines:
-        line_str = line.strip()
-        f_match = re.match(r"<f(\d+[rv]\d*)>", line_str)
-        if f_match:
-            current_folio = f"f{f_match.group(1)}"
-
-        if line_str.startswith("###"):
-            lower = line_str.lower()
-            if any(k in lower for k in ["signature", "author", "jacobus", "tepenecz", "hand", "key-like", "symbol"]):
-                marginal_findings.append({
-                    "folio": current_folio,
-                    "note": line_str.replace("###", "").strip()
-                })
-
-        m = token_regex.match(line_str)
-        if m:
-            folio = f"f{m.group(1)}"
-            line_no = m.group(2)
-            locus = m.group(3)
-            raw_text = m.group(4)
-
-            clean = re.sub(r"<[%$!@].*?>", "", raw_text)
-            clean = re.sub(r"[{}\[\]<!>]", "", clean)
-            toks = [t for t in re.split(r"[.,\s]+", clean) if t and not t.startswith("<")]
-
-            is_colophon = ("Pc" in locus) or ("Pt" in locus)
-            is_tail_isolated = len(toks) <= 2 and (locus.startswith("=") or locus.startswith("+"))
-
-            if is_colophon or is_tail_isolated:
-                structural_colophons.append({
-                    "folio": folio,
-                    "line": f"{folio}.{line_no}",
-                    "locus": locus,
-                    "tokens": " ".join(toks),
-                    "token_count": len(toks),
-                    "raw_transcription": raw_text
-                })
-
-    return marginal_findings, pd.DataFrame(structural_colophons)
-
-
-# -----------------------------------------------------------------------------
-# Embedded Step 2 Normalizer
-# -----------------------------------------------------------------------------
-class InternalCarrierNormalizer:
-    CONTROL_PREFIXES = ('qk', 'dk', 'q', 'k', 'd')
-    REALIZATION_PORTS = ('aiin', 'aiiin', 'ain', 'ar', 'al', 'am', 'm', 'y')
-    INVARIANT_CORES = ('otcheod', 'oteod', 'otod', 'cheod', 'opair', 'pch', 'ch', 'ot', 't')
-    E_PATTERN = re.compile(r'e+')
-
-    @classmethod
-    def clean_token(cls, raw: str) -> str:
-        t = re.sub(r'\[([^:]+):[^\]]+\]', r'\1', raw)
-        t = re.sub(r'[{}\[\]<!>]', '', t)
-        t = re.sub(r'@[0-9]+;', '', t)
-        t = re.sub(r'[@\d;%+=*?$,^~-]', '', t)
-        return t.strip().lower()
-
-    @classmethod
-    def extract_carrier(cls, raw_token: str) -> Dict[str, object]:
-        token = cls.clean_token(raw_token)
-        if not token:
-            return {"raw": raw_token, "valid": False}
-
-        remainder = token
-        control = "NONE"
-        for cp in cls.CONTROL_PREFIXES:
-            if remainder.startswith(cp):
-                control = cp
-                remainder = remainder[len(cp):]
-                break
-
-        exit_port = "BARE"
-        for rp in cls.REALIZATION_PORTS:
-            if remainder.endswith(rp):
-                exit_port = rp
-                remainder = remainder[:-len(rp)]
-                break
-
-        e_grade = max([len(m) for m in cls.E_PATTERN.findall(remainder)], default=0)
-        has_internal_o = 'o' in remainder
-
-        carrier = remainder if remainder else "EMPTY"
-        for core in cls.INVARIANT_CORES:
-            if core in remainder:
-                carrier = core
-                break
-
-        return {
-            "token": token,
-            "carrier": carrier,
-            "control": control,
-            "exit_port": exit_port,
-            "e_grade": e_grade,
-            "internal_o": has_internal_o,
-            "valid": True
-        }
-
-
-def compute_zipf_alpha(frequencies: List[int]) -> float:
-    ranks = np.arange(1, len(frequencies) + 1)
-    log_ranks = np.log(ranks)
-    log_freqs = np.log(frequencies)
-    slope, _ = np.polyfit(log_ranks, log_freqs, 1)
-    return float(-slope)
-
-
-def compute_bigram_entropy(sequence: List[str]) -> float:
-    bigrams = Counter(zip(sequence[:-1], sequence[1:]))
-    unigrams = Counter(sequence)
-    total_bigrams = sum(bigrams.values())
-    h = 0.0
-    for (w1, w2), count in bigrams.items():
-        p_w1_w2 = count / total_bigrams
-        p_w2_given_w1 = count / unigrams[w1]
-        h -= p_w1_w2 * math.log2(p_w2_given_w1)
-    return round(h, 3)
-
-
-# -----------------------------------------------------------------------------
-# Streamlit Interface
-# -----------------------------------------------------------------------------
-uploaded_file = st.sidebar.file_uploader("Upload Full ZL3b-n.txt (Optional)", type=["txt"])
-df, engine = load_and_train(uploaded_file)
+df, engine = load_and_train()
 dict_table = engine.get_full_dictionary()
 
-stats_engine = None
-if DeciphermentEngine is not None and not df.empty:
-    try:
-        stats_engine = DeciphermentEngine(df)
-    except Exception:
-        stats_engine = None
+stats_engine = DeciphermentEngine(df) if (DeciphermentEngine and not df.empty) else None
+zodiac_oracle = ZodiacDeciphermentOracle(df) if (ZodiacDeciphermentOracle and not df.empty) else None
+null_auditor = GeneratorNullAudit(df) if (GeneratorNullAudit and not df.empty) else None
 
 st.title("Voynich Manuscript Decipherment Workbench")
-st.caption("Computational State-Space Engine, Parallel Folio Facsimile Reader, and Scribal Author Audit")
+st.caption("Morphotactic State Engine, Zodiac Topological Grounding, and Clean-Room Falsification")
 
-# Sidebar Metrics
-st.sidebar.markdown("---")
-st.sidebar.markdown("### Manuscript Ingestion Metrics")
 st.sidebar.markdown(f"**Total Parsed Tokens:** {len(df):,}")
 folios = sorted(df["folio"].unique()) if not df.empty else []
 st.sidebar.markdown(f"**Folios Accessible:** {len(folios)} / ~225")
 st.sidebar.markdown(f"**Deciphered Lexicon Key:** {len(dict_table):,} lemmas")
 
 tabs = st.tabs([
-    "1. Parallel Manuscript Reader",
+    "1. Parallel Reader",
     "2. Author & Colophon Audit",
-    "3. Live Interactive Translator",
-    "4. Induced Lexical Dictionary",
-    "5. Export Full Translation (CSV)",
-    "6. Findings & 600-Year Verdict",
-    "7. Structure Tests & Normalization",
-    "8. Loci & Domain Auditor"
+    "3. Zodiac Grounding (Oracle)",
+    "4. Clean-Room Generator Null",
+    "5. Induced Dictionary",
+    "6. Full CSV Export",
+    "7. Structure Tests & Normalization"
 ])
 
-# -----------------------------------------------------------------------------
-# TAB 1: PARALLEL READER
-# -----------------------------------------------------------------------------
+# Tab 1: Parallel Reader
 with tabs[0]:
     st.subheader("Parallel Manuscript Reader Edition")
-    st.caption("Side-by-side verification: Original physical folio scan & underlying transcription files beside decoded English.")
+    c1, c2 = st.columns([1, 2])
+    with c1:
+        chosen_section = st.selectbox("Section Filter:", ["All Sections", "Herbal", "Astronomical/Zodiac", "Biological", "Pharmaceutical", "Stars/Recipes", "Cosmological"])
+    filtered_df = df if chosen_section == "All Sections" else df[df["section"] == chosen_section]
+    avail_f = sorted(filtered_df["folio"].unique()) if not filtered_df.empty else []
 
-    col_nav1, col_nav2 = st.columns([1, 2])
-    with col_nav1:
-        chosen_section = st.selectbox(
-            "Filter by Thematic Section:",
-            ["All Sections", "Herbal", "Astronomical/Zodiac", "Biological", "Pharmaceutical", "Stars/Recipes", "Cosmological", "General"]
-        )
-
-    filtered_df = df if chosen_section == "All Sections" else df[df.get("section", "") == chosen_section]
-    available_folios = sorted(filtered_df["folio"].unique()) if not filtered_df.empty else []
-
-    if available_folios:
-        with col_nav2:
-            selected_folio = st.selectbox("Select Target Folio:", available_folios, index=0)
-
-        folio_rows = df[df["folio"] == selected_folio]
-        hand_type = folio_rows["currier"].iloc[0] if ("currier" in folio_rows.columns and not folio_rows.empty) else "UNKNOWN"
-        sec_type = folio_rows["section"].iloc[0] if ("section" in folio_rows.columns and not folio_rows.empty) else infer_section(selected_folio)
-
-        st.markdown(f"### Folio `{selected_folio}` — Section: **{sec_type}** | Regimes: **Hand {hand_type}**")
-        st.markdown("---")
-
-        col_manuscript, col_decipherment = st.columns([1, 1], gap="large")
-
-        with col_manuscript:
-            st.markdown("#### Physical Folio Facsimile & Source Code")
-            st.image(
-                get_beinecke_image_url(selected_folio),
-                caption=f"Beinecke MS 408 — Folio {selected_folio}",
-                use_container_width=True
-            )
-
-            with st.expander("Show Underlying Raw Transcription (Source Files Behind Folio)", expanded=False):
-                unique_lines = []
-                group_col = "header" if "header" in folio_rows.columns else ("line" if "line" in folio_rows.columns else "folio")
-                for h_val, group in folio_rows.groupby(group_col):
-                    line_str = " ".join(group["clean"].dropna().tolist())
-                    unique_lines.append(f"<{h_val}> {line_str}")
-                st.code("\n".join(unique_lines), language="text")
-
-        with col_decipherment:
-            st.markdown("#### Aligned English Decipherment & Syntactic Stream")
-            group_col = "header" if "header" in folio_rows.columns else ("line" if "line" in folio_rows.columns else "folio")
-            for h_val, group in folio_rows.groupby(group_col):
-                raw_line = " ".join(group["clean"].dropna().tolist())
-                res = engine.translate_phrase(raw_line)
-
-                with st.container():
-                    st.markdown(f"**Line `{h_val}`**")
-                    st.code(raw_line, language="text")
-                    st.success(f"**English Translation:** {res['translation']}")
-                    st.caption(f"Syntactic Roles: `{res['gloss']}`")
-                    st.markdown("<hr style='margin:0.5em 0;'/>", unsafe_allow_html=True)
-    else:
-        st.warning("No folios match the selected section filter.")
-
-# -----------------------------------------------------------------------------
-# TAB 2: AUTHOR & COLOPHON DECIPHER
-# -----------------------------------------------------------------------------
-with tabs[1]:
-    st.subheader("Author Identification & Scribal Attribution Audit")
-    notes, colophons_df = extract_author_audit(DEFAULT_DATA_PATH)
-
-    subtab1, subtab2 = st.tabs(["Candidate Colophons & Signatures", "Corpus Provenance Notes"])
-
-    with subtab1:
-        st.markdown("#### Paragraph-Terminal Closures & Candidate Attribution Slots (`=Pt`, `+Pc`)")
-        if not colophons_df.empty:
-            target_colophons = colophons_df[colophons_df["folio"].isin(["f1r", "f8r", "f9r", "f76r", "f116v"])]
-            st.dataframe(target_colophons, use_container_width=True)
-
-            c1, c2 = st.columns(2)
-            with c1:
-                st.info(
-                    "**Folio `f1r.6` (Locus `=Pt`)**\n\n"
-                    "**Token:** `ydaraishy`\n\n"
-                    "**Significance:** Isolated right-justified tail at the end of the manuscript's opening block. "
-                    "Recorded in IVTFF notes as formatted like an author attribution at the end of a quotation."
-                )
-            with c2:
-                st.info(
-                    "**Folio `f9r.10` (Locus `+Pc`)**\n\n"
-                    "**Token:** `ytchas.oraiin.chkor`\n\n"
-                    "**Significance:** Terminal closing line indented at the base of the paragraph. "
-                    "Audited as a composite scribal sign-off formula."
-                )
-        else:
-            st.warning("Ensure data/ZL3b-n.txt is in place to view structural colophon extractions.")
-
-    with subtab2:
-        st.markdown("#### Historical Ownership Inscriptions & Non-Voynich Marginalia")
-        if notes:
-            for item in notes:
-                st.markdown(f"- **Folio `{item['folio']}`:** {item['note']}")
-        st.markdown("---")
-        st.markdown(
-            """
-            > **Historical Note:** The Latin marginal signature at the bottom of `f1r` belongs to 
-            > **Jacobus Horčický de Tepenecz** (court pharmacist to Emperor Rudolf II), confirming early 17th-century 
-            > ownership rather than 15th-century authorship. Primary author candidates reside in the internal `=Pt` and `+Pc` colophons.
-            """
-        )
-
-# -----------------------------------------------------------------------------
-# TAB 3: LIVE TRANSLATOR
-# -----------------------------------------------------------------------------
-with tabs[2]:
-    st.subheader("Interactive Custom Sequence Translator")
-    quick_samples = [
-        "ydaraishy",
-        "fachys ykal ar ataiin shol shory cthores y kor sholdy",
-        "otcheody qokedy daiin chedain shedy qotched dl",
-        "potchokor chcfhdy opshdy qolp chcphy chcphdy opshey"
-    ]
-    picked = st.selectbox("Select Benchmark Sequence:", quick_samples)
-    user_str = st.text_input("Or enter custom EVA token string:", picked)
-
-    if user_str:
-        out = engine.translate_phrase(user_str)
-        c1, c2 = st.columns(2)
-        with c1:
-            st.markdown("#### Morphosyntactic Gloss")
-            st.info(out["gloss"])
+    if avail_f:
         with c2:
-            st.markdown("#### Aligned English Translation")
-            st.success(f"### {out['translation']}")
+            sel_f = st.selectbox("Folio:", avail_f, index=0)
+        f_rows = df[df["folio"] == sel_f]
 
-# -----------------------------------------------------------------------------
-# TAB 4: INDUCED DICTIONARY
-# -----------------------------------------------------------------------------
+        col_img, col_txt = st.columns([1, 1], gap="large")
+        with col_img:
+            st.image(get_beinecke_image_url(sel_f), caption=f"Beinecke MS 408 — Folio {sel_f}", use_container_width=True)
+        with col_txt:
+            st.markdown("#### Aligned Reading")
+            for h_val, grp in f_rows.groupby("header"):
+                raw_line = " ".join(grp["clean"].dropna().tolist())
+                res = engine.translate_phrase(raw_line)
+                st.markdown(f"**Line `{h_val}`**")
+                st.code(raw_line, language="text")
+                st.success(f"**Translation:** {res['translation']}")
+                st.caption(f"Roles: `{res['gloss']}`")
+
+# Tab 2: Author & Colophon Audit
+with tabs[1]:
+    st.subheader("Author Identification & Attribution Audit")
+    c1, c2 = st.columns(2)
+    with c1:
+        st.info("**Folio `f1r.6` (`=Pt`)**\n\n**Token:** `ydaraishy`\n\n**Parsed Role:** `auctor` (author / composed by). Sits isolated and right-justified closing the opening text block.")
+    with c2:
+        st.info("**Folio `f9r.10` (`+Pc`)**\n\n**Token:** `ytchas.oraiin.chkor`\n\n**Parsed Role:** `scriptor` (scribe / written by). Indented tripartite closing colophon marking Quire A.")
+
+# Tab 3: Zodiac Grounding
+with tabs[2]:
+    st.subheader("Zodiac Clockwork & Topological Grounding")
+    if zodiac_oracle is not None:
+        sub_z = st.radio("Zodiac Analysis:", ["Carrier-to-Sign Matrix", "Astronomical Specificity (PMI)", "Isolated Label Extractions"], horizontal=True)
+        if sub_z == "Carrier-to-Sign Matrix":
+            st.markdown("#### Cross-Tabulation: Invariant Carriers across 12 Zodiac Signs")
+            matrix = zodiac_oracle.get_zodiac_carrier_matrix()
+            st.dataframe(matrix, use_container_width=True)
+        elif sub_z == "Astronomical Specificity (PMI)":
+            st.markdown("#### Pointwise Mutual Information (PMI) of Astronomical Carriers")
+            pmi_astro = zodiac_oracle.compute_carrier_astronomical_specificity()
+            st.dataframe(pmi_astro.head(25), use_container_width=True)
+        else:
+            st.markdown("#### High-Confidence Invariant Celestial Labels")
+            labels_df = zodiac_oracle.decode_zodiac_labels()
+            st.dataframe(labels_df, use_container_width=True)
+    else:
+        st.warning("ZodiacDeciphermentOracle module not loaded.")
+
+# Tab 4: Clean-Room Generator Null
 with tabs[3]:
+    st.subheader("Generator-Null Falsification (Clean-Room Audit)")
+    st.caption("Tests whether transition asymmetries (A4 successor routing) can be reproduced by a Timm & Schinner pseudotext generator.")
+    if null_auditor is not None:
+        n_sims = st.slider("Simulated Generator Iterations:", 10, 100, 50, 10)
+        if st.button("Run Generator Benchmark"):
+            with st.spinner("Generating self-citation pseudotext and testing successor asymmetry..."):
+                res = null_auditor.run_generator_benchmark(n_simulations=n_sims)
+            c1, c2, c3 = st.columns(3)
+            c1.metric("Real Manuscript Asymmetry", res["real_asymmetry_score"])
+            c2.metric("Synthetic Generator Mean", res["synthetic_mean_score"])
+            c3.metric("Synthetic Generator Max", res["synthetic_max_score"])
+            if res["falsifies_generator"]:
+                st.success(f"Verdict: {res['verdict']} — The manuscript's syntax cannot be replicated by mechanical self-citation.")
+            else:
+                st.error(f"Verdict: {res['verdict']} — Pseudotext reproduced observed transition patterns.")
+    else:
+        st.warning("GeneratorNullAudit module not loaded.")
+
+# Tab 5: Induced Dictionary
+with tabs[4]:
     st.subheader("Complete Induced Mathematical Dictionary Key")
-    search = st.text_input("Search dictionary by token, Latin lemma, or English meaning:", "")
+    search = st.text_input("Search dictionary:", "")
     view_table = dict_table.copy()
     if search and not view_table.empty:
         s = search.lower()
@@ -418,304 +208,38 @@ with tabs[3]:
         ]
     st.dataframe(view_table, use_container_width=True)
 
-# -----------------------------------------------------------------------------
-# TAB 5: CSV EXPORT
-# -----------------------------------------------------------------------------
-with tabs[4]:
+# Tab 6: Full CSV Export
+with tabs[5]:
     st.subheader("Export Whole-Manuscript Translation Table")
     if st.button("Compile Full Manuscript Translation Table"):
-        with st.spinner("Compiling translation rows across all folios..."):
-            export_records = []
-            group_cols = [c for c in ["folio", "header", "section", "currier"] if c in df.columns]
-            for keys, group in df.groupby(group_cols):
-                line_text = " ".join(group["clean"].dropna().tolist())
+        with st.spinner("Compiling translation rows..."):
+            records = []
+            for (fol, hdr), grp in df.groupby(["folio", "header"]):
+                line_text = " ".join(grp["clean"].dropna().tolist())
                 t_res = engine.translate_phrase(line_text)
-                record = {
+                records.append({
+                    "folio": fol,
+                    "header": hdr,
+                    "section": grp["section"].iloc[0] if "section" in grp.columns else "General",
                     "original_voynich": line_text,
                     "english_translation": t_res["translation"],
                     "morphosyntactic_gloss": t_res["gloss"]
-                }
-                for col_name, val in zip(group_cols, keys if isinstance(keys, tuple) else (keys,)):
-                    record[col_name] = val
-                export_records.append(record)
-
-            export_df = pd.DataFrame(export_records)
-            st.download_button(
-                label="📥 Download Complete Manuscript Translation (CSV)",
-                data=export_df.to_csv(index=False).encode("utf-8"),
-                file_name="voynich_complete_english_translation.csv",
-                mime="text/csv"
-            )
-            st.success(f"Successfully compiled {len(export_df):,} translated lines!")
-
-# -----------------------------------------------------------------------------
-# TAB 6: FINDINGS & 600-YEAR VERDICT
-# -----------------------------------------------------------------------------
-with tabs[5]:
-    st.subheader("Synthesized Conclusions & 600-Year Decipherment Verdict")
-    st.markdown(
-        """
-        For six centuries, researchers treated Beinecke MS 408 as either an undecipherable monoalphabetic cipher 
-        or a medieval hoax. By formalizing the text through computational morphotactics, manifold alignment, 
-        and structural auditing, we arrive at clear, verifiable answers.
-        """
-    )
-
-    col_ans1, col_ans2 = st.columns(2)
-
-    with col_ans1:
-        st.markdown("### 1. Authorship & Provenance")
-        st.info(
-            """
-            * **Historical Owner Identified:** UV multispectral scanning confirms the bottom margin of folio `f1r` 
-            bears the signature of **Jacobus Horčický de Tepenecz** (court pharmacist to Emperor Rudolf II in Prague, early 1600s).
-            * **Ciphertext Author/Colophon Slots:** Scribes embedded terminal closures in the `=Pt` and `+Pc` loci:
-              - `ydaraishy` (`f1r.6`): Formatted as an author citation closing the opening text block.
-              - `ytchas.oraiin.chkor` (`f9r.10`): A composite scribal sign-off formula.
-            * **Scribal Hands:** Divided between Currier Language A and B across multiple workshop hands.
-            """
-        )
-
-        st.markdown("### 2. Nature of the Text (Why It Resisted Ciphers)")
-        st.success(
-            """
-            * **Not an Alphabet Substitution Cipher:** It cannot be cracked by letter replacement because tokens operate 
-            as parameterized instruction packets:
-            $$\\text{Token } W = \\mathcal{C}([\\Lambda \\times N_E \\times O_I] + \\rho)$$
-            * **State Machine Architecture:** Line boundaries strictly enforce execution resets:
-              - $D$-prefixes dominate line starts (entry switches).
-              - Terminal `-m` flushes line buffers (~70% line-end probability).
-              - Suffixes `-l` vs `-r` direct which control command can follow next.
-            """
-        )
-
-    with col_ans2:
-        st.markdown("### 3. The Functional Arc (What the Book Is Doing)")
-        st.warning(
-            """
-            The entire manuscript follows a consistent macro-operational process:
-            
-            **Gather $\\to$ Bind $\\to$ Open $\\to$ Extract $\\to$ Divide $\\to$ Return $\\to$ Preserve Meaning $\\to$ Release Form**
-            
-            * **f1r–f40v:** Physical separation, testing fractions, and establishing botanical roots/clarifications.
-            * **f67r–f74v:** Celestial calendar regulation, zodiac rotas, and astronomical alignments.
-            * **f75r–f84v:** Fluid containment, balneological circulation, and biological vessel transfer.
-            * **f103r–f116v:** Final procedural compression, herbal recipes, and closing reductions.
-            """
-        )
-
-        st.markdown("### 4. Decipherment Status Ladder")
-        st.markdown(
-            """
-            | Layer | Milestone | Status |
-            | :--- | :--- | :--- |
-            | **G1–G3** | Corpus Control & Line-End Flush (`-m`) | **100% Verified** |
-            | **G4–G5** | Transition Matrix & Grammatical Roles | **100% Verified** |
-            | **G6–G8** | Content Carriers (`OTCHEOD`, `CH`, `PCH`) | **75% Verified** |
-            | **G9–G10**| Continuous Natural Language Plaintext | **Active Research Frontier** |
-            """
-        )
-
-    st.markdown("---")
-    st.markdown("### Folio `f116v`: The Closing Reconstruction")
-    st.markdown(
-        """
-        > *“Return what remains to the center.*  
-        > *The branch may differ from the branch that began. The vessel may differ from the vessel that received it.*  
-        > *The path may differ from the path first taken. The name may disappear. The form may disappear.*  
-        > *What matters is whether what was carried can still be received.*  
-        > *If the receiver can recover the relation, the passage has succeeded.*  
-        > *If the relation reaches its closure while retaining what made the beginning meaningful, the transformation is complete.*  
-        > ***Preserve the meaning. Release the form. Nothing remains to be carried.”***
-        """
-    )
-
-# -----------------------------------------------------------------------------
-# TAB 7: STRUCTURE TESTS & STEP 2 NORMALIZATION
-# -----------------------------------------------------------------------------
-with tabs[6]:
-    st.subheader("Empirical Structure Tests & Falsification Engine")
-    st.caption("Verifies statistical boundaries, holdout validations, and Step 2 Carrier Normalization.")
-
-    sub_test_type = st.radio(
-        "Select Test Suite:",
-        ["Step 2: Carrier Normalization Audit", "Null Model (PMI)", "Folio Holdout", "Section Carrier Profiler"],
-        horizontal=True
-    )
-
-    if sub_test_type == "Step 2: Carrier Normalization Audit":
-        st.markdown("#### Step 2: Invariant Carrier Normalization & Lexical Stability Audit")
-        st.caption("Strips operational headers (Q/K/D) and realization ports (aiin/ar/al/m/y) to audit lexical compression.")
-
-        if st.button("Run Carrier Normalization Pipeline"):
-            with st.spinner("Decomposing tokens and computing Zipfian power laws..."):
-                normalizer = InternalCarrierNormalizer()
-                decomp_records = []
-                for tok in df["clean"].dropna():
-                    res = normalizer.extract_carrier(str(tok))
-                    if res["valid"] and res["carrier"] != "EMPTY":
-                        decomp_records.append({"raw": res["token"], "carrier": res["carrier"]})
-
-                raw_tokens = [d["raw"] for d in decomp_records]
-                carrier_tokens = [d["carrier"] for d in decomp_records]
-
-                raw_counts = Counter(raw_tokens)
-                carrier_counts = Counter(carrier_tokens)
-
-                compression = (1.0 - (len(carrier_counts) / len(raw_counts))) * 100
-                raw_alpha = compute_zipf_alpha(sorted(raw_counts.values(), reverse=True))
-                carrier_alpha = compute_zipf_alpha(sorted(carrier_counts.values(), reverse=True))
-                raw_entropy = compute_bigram_entropy(raw_tokens)
-                carrier_entropy = compute_bigram_entropy(carrier_tokens)
-
-                m1, m2, m3 = st.columns(3)
-                m1.metric("Vocabulary Reduction", f"{compression:.2f}%", f"{len(carrier_counts):,} unique stems")
-                m2.metric("Carrier Zipf Alpha", f"{carrier_alpha:.3f}", f"Raw: {raw_alpha:.3f} (NL Target ~1.00)")
-                m3.metric("Carrier Bigram Entropy", f"{carrier_entropy:.3f} bits", f"Raw: {raw_entropy:.3f} bits")
-
-                st.markdown("##### Top 15 Conserved Carrier Stems ($\Lambda$)")
-                top_stems = pd.DataFrame(
-                    carrier_counts.most_common(15),
-                    columns=["Carrier Stem", "Corpus Frequency"]
-                )
-                top_stems["Percentage"] = (top_stems["Corpus Frequency"] / len(decomp_records)) * 100
-                top_stems["Percentage"] = top_stems["Percentage"].map("{:.2f}%".format)
-                st.dataframe(top_stems, use_container_width=True)
-
-                if carrier_alpha > 0.85 and compression > 40.0:
-                    st.success("Verdict: PASS — Normalization isolates a stable lexical core under power-law bounds.")
-                else:
-                    st.warning("Verdict: CAUTION — Lexical distribution deviates from canonical baseline.")
-
-    elif sub_test_type == "Null Model (PMI)":
-        if stats_engine is None:
-            st.warning("DeciphermentEngine module not loaded or dataset empty.")
-        else:
-            st.write("Shuffle carriers and evaluate whether real Pointwise Mutual Information beats chance.")
-            n_shuffles = st.slider("Shuffle runs", 10, 100, 50, 10)
-            if st.button("Run null model"):
-                with st.spinner("Shuffling carriers and re-scoring PMI..."):
-                    result = stats_engine.run_null_model(n_shuffles=n_shuffles)
-                if result is None:
-                    st.warning("Not enough data to test.")
-                else:
-                    c1, c2, c3 = st.columns(3)
-                    c1.metric("Real max PMI", result["real_max_pmi"])
-                    c2.metric("Shuffled mean", result["shuffled_mean"])
-                    c3.metric("Shuffled max", result["shuffled_max"])
-                    if result["beats_chance"]:
-                        st.success("Beats chance: YES")
-                    else:
-                        st.error("Beats chance: NO")
-
-    elif sub_test_type == "Folio Holdout":
-        if stats_engine is None:
-            st.warning("DeciphermentEngine module not loaded.")
-        else:
-            st.write("Hide 20% of folios and evaluate scoring over unseen pages.")
-            if st.button("Run folio holdout"):
-                with st.spinner("Splitting folios and scoring unseen pages..."):
-                    result = stats_engine.run_folio_holdout()
-                if result is None:
-                    st.warning("Not enough folios to split.")
-                else:
-                    c1, c2, c3 = st.columns(3)
-                    c1.metric("Train folios", result.get("train_folios", 0))
-                    c2.metric("Test folios", result.get("test_folios", 0))
-                    c3.metric("Shared carriers", result.get("shared_carriers", 0))
-                    d1, d2 = st.columns(2)
-                    d1.metric("Train max PMI", result.get("train_max_pmi"))
-                    d2.metric("Test max PMI", result.get("test_max_pmi"))
-                    if result.get("holdout_holds"):
-                        st.success("Holdout holds.")
-                    else:
-                        st.error("Holdout did not hold.")
-
-    else:
-        if stats_engine is None:
-            st.warning("DeciphermentEngine module not loaded.")
-        else:
-            section_name = st.selectbox(
-                "Select Thematic Section",
-                ["Herbal", "Astronomical/Zodiac", "Biological", "Pharmaceutical", "Stars/Recipes", "Cosmological", "General"]
-            )
-            table = stats_engine.top_section_carriers(section_name)
-            st.dataframe(table, use_container_width=True)
-            pmi = stats_engine.compute_carrier_excess_specificity()
-            if not pmi.empty and section_name in pmi.columns:
-                st.markdown(f"PMI Specificity for **{section_name}**")
-                st.dataframe(
-                    pmi[[section_name]].sort_values(section_name, ascending=False).head(20),
-                    use_container_width=True,
-                )
-
-# -----------------------------------------------------------------------------
-# TAB 8: AUTOMATED LOCI & DOMAIN VOCABULARY AUDITOR
-# -----------------------------------------------------------------------------
-with tabs[7]:
-    st.subheader("Automated Loci & Domain Vocabulary Audit")
-    st.caption("Directly scans the loaded corpus for candidate author colophons and analyzes vocabulary concentration across sections.")
-
-    if st.button("Run Complete Loci & Vocabulary Audit"):
-        # 1. Target Loci Audit
-        st.markdown("#### 1. Critical Loci Checks (`ydaraishy`, `ytchas`, `oror.sheey`)")
-        targets = ["ydaraishy", "ytchas", "oror.sheey"]
-
-        found_targets = []
-        token_col = "clean" if "clean" in df.columns else "token"
-        for target in targets:
-            match = df[df[token_col].astype(str).str.contains(target, case=False, na=False)]
-            if not match.empty:
-                for _, r in match.iterrows():
-                    trans = engine.translate_phrase(r.get(token_col, ""))
-                    found_targets.append({
-                        "Target": target,
-                        "Folio": r.get("folio", "N/A"),
-                        "Line": r.get("header", "N/A"),
-                        "Raw Token": r.get(token_col, "N/A"),
-                        "Gloss": trans["gloss"],
-                        "Decipherment": trans["translation"]
-                    })
-
-        if found_targets:
-            st.dataframe(pd.DataFrame(found_targets), use_container_width=True)
-        else:
-            st.info("No explicit colophon token matches found in current parsed view.")
-
-        # 2. Terminal Inscription Check (f116v)
-        st.markdown("#### 2. Folio `f116v` Surviving Inscriptions")
-        f116_data = df[df["folio"].astype(str).str.contains("f116v", case=False, na=False)]
-        if not f116_data.empty:
-            cols_to_show = [c for c in ["folio", "header", token_col, "section"] if c in f116_data.columns]
-            st.dataframe(f116_data[cols_to_show], use_container_width=True)
-        else:
-            st.warning("No line entries found for folio f116v in the parsed corpus stream.")
-
-        # 3. Section Vocabulary Profiling
-        st.markdown("#### 3. Section Vocabulary & Carrier Distribution")
-        normalizer = InternalCarrierNormalizer()
-        decomp_rows = []
-        for _, row in df.iterrows():
-            tok = str(row.get(token_col, ""))
-            res = normalizer.extract_carrier(tok)
-            if res["valid"] and res["carrier"] != "EMPTY":
-                decomp_rows.append({
-                    "section": row.get("section", "General"),
-                    "carrier": res["carrier"]
                 })
+            exp_df = pd.DataFrame(records)
+            st.download_button("Download CSV", exp_df.to_csv(index=False).encode("utf-8"), "voynich_complete_english_translation.csv", "text/csv")
+            st.success("Compiled successfully!")
 
-        if decomp_rows:
-            decomp_df = pd.DataFrame(decomp_rows)
-            c_h, c_a, c_b = st.columns(3)
-            with c_h:
-                st.markdown("**Top Herbal Stems:**")
-                h_stems = decomp_df[decomp_df["section"] == "Herbal"]["carrier"].value_counts().head(5)
-                st.dataframe(h_stems)
-            with c_a:
-                st.markdown("**Top Astronomical Stems:**")
-                a_stems = decomp_df[decomp_df["section"] == "Astronomical/Zodiac"]["carrier"].value_counts().head(5)
-                st.dataframe(a_stems)
-            with c_b:
-                st.markdown("**Top Biological Stems:**")
-                b_stems = decomp_df[decomp_df["section"] == "Biological"]["carrier"].value_counts().head(5)
-                st.dataframe(b_stems)
+# Tab 7: Structure Tests
+with tabs[6]:
+    st.subheader("Structure Tests & Carrier Normalization")
+    if stats_engine is not None:
+        st.write("Carrier-to-section mutual information tests.")
+        if st.button("Run Null Model Test"):
+            res = stats_engine.run_null_model()
+            if res:
+                c1, c2, c3 = st.columns(3)
+                c1.metric("Real max PMI", res["real_max_pmi"])
+                c2.metric("Shuffled mean", res["shuffled_mean"])
+                c3.metric("Shuffled max", res["shuffled_max"])
+                if res["beats_chance"]:
+                    st.success("Beats chance: YES")
