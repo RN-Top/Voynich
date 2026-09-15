@@ -7,6 +7,7 @@ VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH & STATE ENGINE
 - 5. Whole-Manuscript CSV Translation Exporter
 - 6. Executive Findings & 600-Year Decipherment Verdict
 - 7. Empirical Structure Tests & Step-2 Carrier Normalization
+- 8. Automated Loci & Domain Vocabulary Auditor
 """
 
 import os
@@ -249,6 +250,7 @@ if DeciphermentEngine is not None and not df.empty:
 st.title("Voynich Manuscript Decipherment Workbench")
 st.caption("Computational State-Space Engine, Parallel Folio Facsimile Reader, and Scribal Author Audit")
 
+# Sidebar Metrics
 st.sidebar.markdown("---")
 st.sidebar.markdown("### Manuscript Ingestion Metrics")
 st.sidebar.markdown(f"**Total Parsed Tokens:** {len(df):,}")
@@ -263,7 +265,8 @@ tabs = st.tabs([
     "4. Induced Lexical Dictionary",
     "5. Export Full Translation (CSV)",
     "6. Findings & 600-Year Verdict",
-    "7. Structure Tests & Normalization"
+    "7. Structure Tests & Normalization",
+    "8. Loci & Domain Auditor"
 ])
 
 # -----------------------------------------------------------------------------
@@ -643,5 +646,76 @@ with tabs[6]:
                 st.markdown(f"PMI Specificity for **{section_name}**")
                 st.dataframe(
                     pmi[[section_name]].sort_values(section_name, ascending=False).head(20),
-                    use_container_width=True
+                    use_container_width=True,
                 )
+
+# -----------------------------------------------------------------------------
+# TAB 8: AUTOMATED LOCI & DOMAIN VOCABULARY AUDITOR
+# -----------------------------------------------------------------------------
+with tabs[7]:
+    st.subheader("Automated Loci & Domain Vocabulary Audit")
+    st.caption("Directly scans the loaded corpus for candidate author colophons and analyzes vocabulary concentration across sections.")
+
+    if st.button("Run Complete Loci & Vocabulary Audit"):
+        # 1. Target Loci Audit
+        st.markdown("#### 1. Critical Loci Checks (`ydaraishy`, `ytchas`, `oror.sheey`)")
+        targets = ["ydaraishy", "ytchas", "oror.sheey"]
+
+        found_targets = []
+        token_col = "clean" if "clean" in df.columns else "token"
+        for target in targets:
+            match = df[df[token_col].astype(str).str.contains(target, case=False, na=False)]
+            if not match.empty:
+                for _, r in match.iterrows():
+                    trans = engine.translate_phrase(r.get(token_col, ""))
+                    found_targets.append({
+                        "Target": target,
+                        "Folio": r.get("folio", "N/A"),
+                        "Line": r.get("header", "N/A"),
+                        "Raw Token": r.get(token_col, "N/A"),
+                        "Gloss": trans["gloss"],
+                        "Decipherment": trans["translation"]
+                    })
+
+        if found_targets:
+            st.dataframe(pd.DataFrame(found_targets), use_container_width=True)
+        else:
+            st.info("No explicit colophon token matches found in current parsed view.")
+
+        # 2. Terminal Inscription Check (f116v)
+        st.markdown("#### 2. Folio `f116v` Surviving Inscriptions")
+        f116_data = df[df["folio"].astype(str).str.contains("f116v", case=False, na=False)]
+        if not f116_data.empty:
+            cols_to_show = [c for c in ["folio", "header", token_col, "section"] if c in f116_data.columns]
+            st.dataframe(f116_data[cols_to_show], use_container_width=True)
+        else:
+            st.warning("No line entries found for folio f116v in the parsed corpus stream.")
+
+        # 3. Section Vocabulary Profiling
+        st.markdown("#### 3. Section Vocabulary & Carrier Distribution")
+        normalizer = InternalCarrierNormalizer()
+        decomp_rows = []
+        for _, row in df.iterrows():
+            tok = str(row.get(token_col, ""))
+            res = normalizer.extract_carrier(tok)
+            if res["valid"] and res["carrier"] != "EMPTY":
+                decomp_rows.append({
+                    "section": row.get("section", "General"),
+                    "carrier": res["carrier"]
+                })
+
+        if decomp_rows:
+            decomp_df = pd.DataFrame(decomp_rows)
+            c_h, c_a, c_b = st.columns(3)
+            with c_h:
+                st.markdown("**Top Herbal Stems:**")
+                h_stems = decomp_df[decomp_df["section"] == "Herbal"]["carrier"].value_counts().head(5)
+                st.dataframe(h_stems)
+            with c_a:
+                st.markdown("**Top Astronomical Stems:**")
+                a_stems = decomp_df[decomp_df["section"] == "Astronomical/Zodiac"]["carrier"].value_counts().head(5)
+                st.dataframe(a_stems)
+            with c_b:
+                st.markdown("**Top Biological Stems:**")
+                b_stems = decomp_df[decomp_df["section"] == "Biological"]["carrier"].value_counts().head(5)
+                st.dataframe(b_stems)
