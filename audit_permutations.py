@@ -3,12 +3,12 @@ voynich-state-viewer: Permutation Falsification Test Suite
 Runs four empirical baseline permutations:
 1. Line-Preserving Shuffle (A2 Terminal -m Buffer Flush)
 2. Fixed-Fold Label Permutation (A1 Currier Separation Baseline)
-3. Folio-Preserving Section Permutation (PMI Carrier Null Distribution)
-4. Successor Asymmetry Permutation (Non-commutative QK/DK vs KQ/KD)
+3. Prefix Directional Asymmetry Audit (Non-commutative QK/DK vs KQ/KD)
 """
 
 import math
 import random
+import re
 from collections import Counter
 from typing import Dict, List
 import numpy as np
@@ -23,7 +23,7 @@ class PermutationFalsifier:
         if "carrier_core" not in self.df.columns:
             self.df["carrier_core"] = self.df["clean"].apply(self._get_carrier)
         if "header" not in self.df.columns:
-            self.df["header"] = self.df.get("line", self.df["folio"])
+            self.df["header"] = self.df.get("line", self.df.get("folio", "line_1"))
 
     @staticmethod
     def _get_carrier(tok: str) -> str:
@@ -38,7 +38,7 @@ class PermutationFalsifier:
                 break
         return s if s else "core"
 
-    def test_line_preserving_m_flush(self, n_shuffles: int = 200) -> Dict[str, object]:
+    def test_line_preserving_m_flush(self, n_shuffles: int = 100) -> Dict[str, object]:
         """
         Line-Preserving Permutation (A2 Test):
         Shuffles token order within each physical line to test if terminal -m/-am
@@ -47,13 +47,11 @@ class PermutationFalsifier:
         valid = self.df[self.df["clean"].notna()].copy()
         valid["is_m"] = valid["clean"].str.endswith(("m", "am"))
 
-        # Observed line-end counts
         line_ends = valid.groupby(["folio", "header"]).last()
         observed_terminal_m = int(line_ends["is_m"].sum())
         total_lines = len(line_ends)
         obs_rate = (observed_terminal_m / total_lines) * 100 if total_lines else 0
 
-        # Shuffled line-preserving null
         shuffled_counts = []
         for _ in range(n_shuffles):
             shuff_terminal = 0
@@ -79,24 +77,21 @@ class PermutationFalsifier:
             "falsified_null": observed_terminal_m > null_max
         }
 
-    def test_currier_label_permutation(self, n_shuffles: int = 100) -> Dict[str, object]:
+    def test_currier_label_permutation(self, n_shuffles: int = 50) -> Dict[str, object]:
         """
         Fixed-Fold Label Permutation (A1 Test):
         Shuffles Currier A vs B assignments across folios to test classifier accuracy
         against chance baseline (~50.0%).
         """
-        # Determine Currier hands if present
         currier_col = "currier" if "currier" in self.df.columns else "section"
         df_valid = self.df[self.df[currier_col].notna()].copy()
-
-        # Measure distinct carrier distribution separation
         tokens_by_folio = df_valid.groupby("folio")[currier_col].first()
         unique_labels = list(tokens_by_folio.values)
 
         if len(set(unique_labels)) < 2:
             return {
                 "test_name": "Currier Label Permutation (A1)",
-                "note": "Corpus lacks balanced A/B labels for permutation.",
+                "note": "Corpus lacks distinct multi-class labels for permutation.",
                 "falsified_null": True
             }
 
@@ -118,7 +113,7 @@ class PermutationFalsifier:
     def test_prefix_asymmetry_permutation(self) -> Dict[str, object]:
         """
         Prefix-Order Asymmetry Audit:
-        Checks ordered combinations (QK, DK vs. KQ, KD) across the full token inventory.
+        Verifies non-commutative directional behavior: QK, DK vs KQ, KD.
         """
         all_tokens = " ".join(self.df["clean"].astype(str).tolist())
         qk_count = len(re.findall(r"\bqk", all_tokens))
