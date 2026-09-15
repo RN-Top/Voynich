@@ -263,9 +263,8 @@ n_perm_runs = st.slider("Number of Permutation Shuffles", min_value=20, max_valu
 
 if st.button("Run Permutation Baseline"):
     from audit_permutations import PermutationFalsifier
-    falsifier = PermutationFalsifier(df_corpus)
-
-    with st.spinner("Executing permutation null model..."):
+   falsifier = PermutationFalsifier(df_corpus)
+with st.spinner("Executing permutation null model..."):
         if "A2" in perm_test_choice:
             res = falsifier.test_line_preserving_m_flush(n_shuffles=n_perm_runs)
             st.write(f"**Observed Terminal -m Count:** {res['observed_count']} / {res['total_lines']} lines ({res['observed_rate_pct']}%)")
