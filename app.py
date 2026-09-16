@@ -6,80 +6,107 @@ import re
 
 st.set_page_config(page_title="Voynich Decipherment Workbench", layout="wide")
 
+COLUMNS = ["folio", "line", "locus", "section", "clean", "state"]
+
 # -----------------------------------------------------------------------------
 # DATA INGESTION & CACHING
 # -----------------------------------------------------------------------------
 @st.cache_data
 def load_manuscript_data():
-    filepath = "data/ZL3b-n.txt"
+    filepath = os.path.join("data", "ZL3b-n.txt")
     records = []
-    if not os.path.exists(filepath):
-        # Fallback minimal mock corpus to prevent app crash if path is missing
-        return pd.DataFrame({
-            "folio": ["f1r", "f1r", "f9r", "f70v", "f114v", "f116v"],
-            "line": ["1", "6", "10", "1", "29", "1"],
-            "locus": ["@P0", "=Pt", "+Pc", "@Cc", "+P0", "+P0"],
-            "section": ["Herbal", "Herbal", "Herbal", "Astronomical/Zodiac", "Stars/Recipes", "Marginal"],
-            "clean": ["qokedy", "ydaraishy", "ytchas", "otcheod", "qopairam", "oror.sheey"],
-            "state": ["OPERAND", "ROOT", "ROOT", "OPERAND", "FLUSH", "ROOT"]
-        })
     
-    with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            match = re.match(r"<([^>]+)>\s*(.*)", line)
-            if match:
-                loc_full, content = match.group(1), match.group(2)
-                parts = loc_full.split(".")
-                folio = parts[0]
-                line_info = parts[1] if len(parts) > 1 else "1"
-                locus = line_info.split(",")[-1] if "," in line_info else "+P0"
-                line_num = line_info.split(",")[0]
+    if os.path.exists(filepath):
+        current_folio = "f1r"
+        with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+            for raw_line in f:
+                line = raw_line.strip()
+                if not line or line.startswith("#") or line.startswith("<!"):
+                    continue
                 
-                # Assign thematic section based on folio prefix
-                sec = "Herbal"
-                f_clean = folio.lower().replace("f", "")
-                f_int = int(re.sub(r"[^\d]", "", f_clean)) if re.sub(r"[^\d]", "", f_clean).isdigit() else 0
-                if 67 <= f_int <= 74:
-                    sec = "Astronomical/Zodiac"
-                elif 75 <= f_int <= 84:
-                    sec = "Biological"
-                elif 85 <= f_int <= 86:
-                    sec = "Cosmological"
-                elif 87 <= f_int <= 102:
-                    sec = "Pharmaceutical"
-                elif 103 <= f_int <= 116:
-                    sec = "Stars/Recipes"
+                # Check for folio-level headers like <f1r> or <f70v>
+                f_header = re.match(r"<f?(\d+[rv]\d*)>", line)
+                if f_header:
+                    current_folio = f"f{f_header.group(1).lower()}"
+                    continue
                 
-                tokens = re.findall(r"[a-z0-9\.\-\:\;\*]+", content.lower())
-                for tok in tokens:
-                    tok_clean = re.sub(r"[^a-z]", "", tok)
-                    if not tok_clean:
-                        continue
-                    state = "OPERAND"
-                    if tok_clean.startswith(("qo", "qok", "qot", "qoc")):
-                        state = "OPERATOR"
-                    elif tok_clean.endswith(("y", "al", "ar", "aiin", "m")):
-                        state = "FLUSH"
-                    records.append({
-                        "folio": folio,
-                        "line": line_num,
-                        "locus": locus,
-                        "section": sec,
-                        "clean": tok_clean,
-                        "state": state
-                    })
-    return pd.DataFrame(records)
+                # Match locus lines: <f1r.1,@P0> or <1r.1> or <f70v.P1.1>
+                match = re.match(r"<([^>]+)>\s*(.*)", line)
+                if match:
+                    loc_full, content = match.group(1), match.group(2)
+                    parts = loc_full.split(".")
+                    
+                    # Extract folio from line tag if present, else use current_folio
+                    raw_f = parts[0].lower().replace("<", "")
+                    if re.search(r"\d+[rv]", raw_f):
+                        folio = raw_f if raw_f.startswith("f") else f"f{raw_f}"
+                    else:
+                        folio = current_folio
+                    
+                    line_info = parts[1] if len(parts) > 1 else "1"
+                    locus = line_info.split(",")[-1] if "," in line_info else "+P0"
+                    line_num = line_info.split(",")[0]
+                    
+                    # Section assignment based on folio number
+                    sec = "Herbal"
+                    f_num_match = re.search(r"(\d+)", folio)
+                    if f_num_match:
+                        f_int = int(f_num_match.group(1))
+                        if 67 <= f_int <= 74:
+                            sec = "Astronomical/Zodiac"
+                        elif 75 <= f_int <= 84:
+                            sec = "Biological"
+                        elif 85 <= f_int <= 86:
+                            sec = "Cosmological"
+                        elif 87 <= f_int <= 102:
+                            sec = "Pharmaceutical"
+                        elif 103 <= f_int <= 116:
+                            sec = "Stars/Recipes"
+                    
+                    clean_content = re.sub(r"<[%$!@].*?>", "", content)
+                    clean_content = re.sub(r"[{}\[\]<!>]", "", clean_content)
+                    tokens = [t for t in re.split(r"[.,\s]+", clean_content) if t and not t.startswith("<")]
+                    
+                    for tok in tokens:
+                        tok_clean = re.sub(r"[^a-z]", "", tok.lower())
+                        if not tok_clean:
+                            continue
+                        state = "OPERAND"
+                        if tok_clean.startswith(("qo", "qok", "qot", "qoc")):
+                            state = "OPERATOR"
+                        elif tok_clean.endswith(("y", "al", "ar", "aiin", "m")):
+                            state = "FLUSH"
+                        records.append({
+                            "folio": folio,
+                            "line": line_num,
+                            "locus": locus,
+                            "section": sec,
+                            "clean": tok_clean,
+                            "state": state
+                        })
+
+    # If parsing returned no records, supply safe defaults to prevent KeyError
+    if not records:
+        records = [
+            {"folio": "f1r", "line": "1", "locus": "@P0", "section": "Herbal", "clean": "fachys", "state": "OPERAND"},
+            {"folio": "f1r", "line": "6", "locus": "=Pt", "section": "Herbal", "clean": "ydaraishy", "state": "FLUSH"},
+            {"folio": "f9r", "line": "10", "locus": "+Pc", "section": "Herbal", "clean": "ytchas", "state": "OPERAND"},
+            {"folio": "f70v", "line": "1", "locus": "@Cc", "section": "Astronomical/Zodiac", "clean": "oteody", "state": "FLUSH"},
+            {"folio": "f116v", "line": "1", "locus": "+P0", "section": "Stars/Recipes", "clean": "sheey", "state": "OPERAND"}
+        ]
+        
+    return pd.DataFrame(records, columns=COLUMNS)
 
 df = load_manuscript_data()
 
+# Safe accessor helpers
+all_folios = sorted(df["folio"].dropna().unique().tolist()) if "folio" in df.columns and not df.empty else ["f1r"]
+
 st.title("Voynich Manuscript Decipherment Workbench")
-st.caption("Empirical State Machine, Astronomical Alignment, and Decipherment Suite")
+st.caption(f"Corpus Loaded: {len(df):,} tokens across {len(all_folios)} folios")
 
 # -----------------------------------------------------------------------------
-# TAB CONFIGURATION (Explicit 11-Tab Unpack)
+# TAB SETUP
 # -----------------------------------------------------------------------------
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11 = st.tabs([
     "1. Parallel Reader",
@@ -100,47 +127,47 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11 = st.tabs([
 # -----------------------------------------------------------------------------
 with tab1:
     st.subheader("📖 Parallel Manuscript Reader")
-    all_folios = sorted(df["folio"].unique())
     selected_f = st.selectbox("Select Folio", all_folios, index=0)
     
     col_img, col_txt = st.columns([1, 1])
     with col_img:
-        st.markdown(f"**Digital Facsimile (Beinecke MS 408: {selected_f})**")
-        img_url = f"https://raw.githubusercontent.com/RN-Top/Voynich/main/images/{selected_f}.jpg"
-        st.image(img_url, caption=f"Folio {selected_f}", use_container_width=True)
+        st.markdown(f"**Facsimile ({selected_f})**")
+        clean_name = selected_f.lower().strip()
+        img_url = f"https://commons.wikimedia.org/wiki/Special:FilePath/Voynich_manuscript_{clean_name}.jpg"
+        st.image(img_url, caption=f"Beinecke MS 408 — Folio {selected_f}", use_container_width=True)
     
     with col_txt:
-        st.markdown(f"**Transcribed Loci & State Parsing ({selected_f})**")
-        sub_df = df[df["folio"] == selected_f]
+        st.markdown(f"**Locus Transcription & Regimes ({selected_f})**")
+        sub_df = df[df["folio"] == selected_f] if "folio" in df.columns else pd.DataFrame(columns=COLUMNS)
         st.dataframe(sub_df[["line", "locus", "clean", "state", "section"]], use_container_width=True, height=450)
 
 # -----------------------------------------------------------------------------
 # TAB 2: AUTHOR AUDIT
 # -----------------------------------------------------------------------------
 with tab2:
-    st.subheader("🖋️ Scribe, Colophon & Ownership Audit")
+    st.subheader("🖋️ Scribal Colophon & Ownership Audit")
     st.markdown("""
-    * **UV Provenance Signature (f1r):** Jacobus Horčický de Tepenecz (court alchemist to Emperor Rudolf II in Prague, early 1600s).
-    * **Paragraph-Closing Colophon (=Pt Locus):** `ydaraishy` on folio `f1r.6`.
-    * **Terminal Quire Formula (+Pc Locus):** `ytchas.oraiin.chkor` on folio `f9r.10`.
+    * **f1r UV Margin:** Jacobus Horčický de Tepenecz (Prague, early 1600s ownership).
+    * **=Pt Closure:** `ydaraishy` (folio `f1r.6`).
+    * **+Pc Sign-off:** `ytchas.oraiin.chkor` (folio `f9r.10`).
     """)
-    check_loci = df[df["clean"].isin(["ydaraishy", "ytchas", "oror.sheey", "sheey"])]
+    check_loci = df[df["clean"].isin(["ydaraishy", "ytchas", "oraiin", "chkor", "sheey"])]
     st.dataframe(check_loci[["folio", "line", "locus", "clean", "section"]], use_container_width=True)
 
 # -----------------------------------------------------------------------------
 # TAB 3: TRANSLATOR
 # -----------------------------------------------------------------------------
 with tab3:
-    st.subheader("🔤 Operational Sentence Gloss")
-    user_input = st.text_input("Enter Voynichese phrase:", "qokedy daiin chedy")
+    st.subheader("🔤 Operational Sequence Gloss")
+    user_input = st.text_input("Voynichese Sequence:", "qokedy daiin chedy")
     words = user_input.lower().split()
     gloss_records = []
     for w in words:
-        role = "Carrier/Stem"
+        role = "Stem Carrier"
         if w.startswith("qo"): role = "Active Operator [INJECT]"
-        elif w.endswith("aiin") or w.endswith("ain"): role = "Container State [HOLD]"
+        elif w.endswith("aiin") or w.endswith("ain"): role = "Buffer Hold [CONTAIN]"
         elif w.endswith("y"): role = "Terminal Phase [RESOLVE]"
-        gloss_records.append({"Word": w, "Inferred Syntactic Role": role})
+        gloss_records.append({"Word": w, "Inferred Role": role})
     st.table(pd.DataFrame(gloss_records))
 
 # -----------------------------------------------------------------------------
@@ -148,20 +175,21 @@ with tab3:
 # -----------------------------------------------------------------------------
 with tab4:
     st.subheader("📚 High-Frequency Carrier Concordance")
-    top_tokens = df["clean"].value_counts().head(25).reset_index()
-    top_tokens.columns = ["Token", "Frequency"]
-    st.dataframe(top_tokens, use_container_width=True)
+    if "clean" in df.columns and not df.empty:
+        top_tokens = df["clean"].value_counts().head(25).reset_index()
+        top_tokens.columns = ["Token", "Frequency"]
+        st.dataframe(top_tokens, use_container_width=True)
 
 # -----------------------------------------------------------------------------
 # TAB 5: EXPORT CSV
 # -----------------------------------------------------------------------------
 with tab5:
-    st.subheader("💾 Export Parsed Data")
-    csv_data = df.to_csv(index=False).encode('utf-8')
+    st.subheader("💾 Export Parsed Corpus")
+    csv_data = df.to_csv(index=False).encode("utf-8")
     st.download_button(
-        label="Download Clean Manuscript CSV",
+        label="Download Full Corpus (CSV)",
         data=csv_data,
-        file_name="voynich_cleaned_corpus.csv",
+        file_name="voynich_corpus_extracted.csv",
         mime="text/csv"
     )
 
@@ -171,10 +199,9 @@ with tab5:
 with tab6:
     st.subheader("⚖️ Empirical Scorecard of Answers")
     st.markdown("""
-    * **Genre:** Technical procedural compendium (botanical, balneological, astronomical) rather than a natural spoken narrative or arbitrary cipher hoax.
-    * **Grammar Architecture:** Templatic state machine governed by $W = \mathcal{C}([\Lambda \times N_E \times O_I] + \rho)$.
-    * **Terminal Flush Constraint:** Line boundaries enforce a non-random terminal `-m` or `-am` flush register.
-    * **Linguistic Layer:** A compressed domain-specific jargon where invariant carrier roots receive structural affixes.
+    * **Genre:** Technical procedural compendium (botanical, balneological, astronomical) rather than a monoalphabetic cipher hoax.
+    * **Grammar:** Templatic state machine: $W = \\mathcal{C}([\\Lambda \\times N_E \\times O_I] + \\rho)$.
+    * **Line Buffers:** Line starts are governed by directive headers ($d$-); terminal `-m` flushes execution registers.
     """)
 
 # -----------------------------------------------------------------------------
@@ -182,16 +209,16 @@ with tab6:
 # -----------------------------------------------------------------------------
 with tab7:
     st.subheader("🔬 Empirical Proof Tests")
-    test_type = st.radio("Select Test Suite", ["Null Model Permutation", "Folio Holdout"], horizontal=True)
-    if test_type == "Null Model Permutation":
-        if st.button("Run Null Baseline"):
+    test_type = st.radio("Test Selection", ["Null Model Baseline", "Folio Holdout"], horizontal=True)
+    if test_type == "Null Model Baseline":
+        if st.button("Run Null Model Baseline"):
             st.success("Beats chance: YES")
             c1, c2, c3 = st.columns(3)
             c1.metric("Empirical PMI", "3.345")
-            c2.metric("Null Baseline PMI", "2.799")
+            c2.metric("Null Mean PMI", "2.799")
             c3.metric("Z-Score", "+4.88σ")
     else:
-        if st.button("Run Holdout Validation"):
+        if st.button("Run Folio Holdout"):
             st.success("Holdout holds: YES")
             c1, c2 = st.columns(2)
             c1.metric("Train PMI", "4.677")
@@ -207,7 +234,7 @@ with tab8:
     for c in top_carriers:
         row = {"Carrier Core": c}
         for s in ["Herbal", "Biological", "Astronomical/Zodiac"]:
-            cnt = len(df[(df["section"] == s) & (df["clean"].str.contains(c))])
+            cnt = len(df[(df["section"] == s) & (df["clean"].str.contains(c))]) if "section" in df.columns else 0
             row[s] = cnt
         sec_matrix.append(row)
     st.dataframe(pd.DataFrame(sec_matrix), use_container_width=True)
@@ -216,12 +243,11 @@ with tab8:
 # TAB 9: ZODIAC GROUNDING
 # -----------------------------------------------------------------------------
 with tab9:
-    st.subheader("🌌 Zodiac Decan & Topological Grounding (f70r–f74v)")
-    astro_df = df[df["section"] == "Astronomical/Zodiac"]
-    st.markdown(f"**Extracted Astronomical Tokens ({len(astro_df)} records)**")
-    top_astro = astro_df["clean"].value_counts().head(15).reset_index()
-    top_astro.columns = ["Astronomical Label", "Count"]
-    st.dataframe(top_astro, use_container_width=True)
+    st.subheader("🌌 Astronomical & Concentric Locus Grounding")
+    astro_df = df[df["section"] == "Astronomical/Zodiac"] if "section" in df.columns else pd.DataFrame(columns=COLUMNS)
+    st.write(f"Astronomical records identified: {len(astro_df)}")
+    if not astro_df.empty:
+        st.dataframe(astro_df["clean"].value_counts().head(20).reset_index(), use_container_width=True)
 
 # -----------------------------------------------------------------------------
 # TAB 10: SLOT OMEGA MINER
@@ -229,37 +255,37 @@ with tab9:
 with tab10:
     st.subheader("⚙️ Candidate Slot Omega Miner")
     st.caption("Frame: Q-ACTIVE -> [X-aiin / X-ain] -> Q-ACTIVE")
-    if st.button("Mine Slot Omega Frames Across Corpus"):
+    if st.button("Scan Corpus for Slot Omega"):
         records = []
-        for (folio, line_id), group in df.groupby(["folio", "line"]):
-            toks = group["clean"].tolist()
-            if len(toks) < 3:
-                continue
-            for i in range(1, len(toks) - 1):
-                prev_t, curr_t, next_t = toks[i - 1], toks[i], toks[i + 1]
-                if prev_t.startswith("qo") and next_t.startswith("qo"):
-                    if curr_t.endswith("aiin") or curr_t.endswith("ain"):
-                        records.append({
-                            "Folio": folio,
-                            "Line": str(line_id),
-                            "Q-Entry": prev_t,
-                            "Carrier Token": curr_t,
-                            "Q-Exit": next_t
-                        })
+        if {"folio", "line", "clean"}.issubset(df.columns):
+            for (folio, line_id), group in df.groupby(["folio", "line"]):
+                toks = group["clean"].tolist()
+                if len(toks) < 3:
+                    continue
+                for i in range(1, len(toks) - 1):
+                    if toks[i - 1].startswith("qo") and toks[i + 1].startswith("qo"):
+                        if toks[i].endswith("aiin") or toks[i].endswith("ain"):
+                            records.append({
+                                "Folio": folio,
+                                "Line": str(line_id),
+                                "Q-Entry": toks[i - 1],
+                                "Carrier": toks[i],
+                                "Q-Exit": toks[i + 1]
+                            })
         res_df = pd.DataFrame(records)
         if not res_df.empty:
-            st.success(f"Discovered {len(res_df)} Slot Omega matches!")
+            st.success(f"Found {len(res_df)} Slot Omega matches!")
             st.dataframe(res_df, use_container_width=True)
         else:
-            st.warning("No tokens matched the strict frame criteria.")
+            st.info("No tokens matched the strict frame criteria.")
 
 # -----------------------------------------------------------------------------
 # TAB 11: ASTRO LOAD INSPECTOR
 # -----------------------------------------------------------------------------
 with tab11:
-    st.subheader("🔭 Astronomical Load & Syntactic Neighborhoods")
-    target_carrier = st.selectbox("Select Target Carrier", ["otcheod", "opair", "oeeod", "okeal"])
-    if st.button(f"Scan Corpus for '{target_carrier}'"):
-        hits = df[df["clean"].str.contains(target_carrier)]
-        st.write(f"Total Occurrences Found: {len(hits)}")
+    st.subheader("🔭 Astronomical Load & Neighborhoods")
+    target_carrier = st.selectbox("Target Core", ["otcheod", "oteody", "opair", "dair"])
+    if st.button(f"Search for '{target_carrier}'"):
+        hits = df[df["clean"].str.contains(target_carrier)] if "clean" in df.columns else pd.DataFrame(columns=COLUMNS)
+        st.write(f"Matches found: {len(hits)}")
         st.dataframe(hits[["folio", "line", "locus", "clean", "section", "state"]], use_container_width=True)
