@@ -625,3 +625,27 @@ if st.button("Run Permutation Baseline"):
                     st.success("✅ Strict Directional Asymmetry: Non-commutative control headers verified.")
     except Exception as e:
         st.error(f"Error running permutation test: {e}")
+with tab11:
+    st.markdown("---")
+    st.subheader("Step 2: Invariant Astronomical Grounding Matrix")
+    if st.button("Generate Step 2 Grounding Matrix"):
+        TARGET_CARRIERS = ["otcheod", "opair", "oteod", "air", "aiir", "okeal", "oeeod"]
+        audit_rows = []
+        for c in TARGET_CARRIERS:
+            sub = df_corpus[df_corpus["clean"].str.contains(rf"\b\w*{re.escape(c)}\w*\b", regex=True, na=False)]
+            total = len(sub)
+            if total > 0:
+                circ = sub[sub["locus"].astype(str).str.contains("@P|@C|\\+P") | sub["folio"].astype(str).str.contains("f67|f68|f69|f70|f71|f72|f73")]
+                circ_count = len(circ)
+                m_flush = len(sub[sub["clean"].str.endswith("m") | sub["clean"].str.endswith("am")])
+                aiin_slot = len(sub[sub["clean"].str.endswith("aiin") | sub["clean"].str.endswith("ain")])
+                audit_rows.append({
+                    "Carrier Core (Lambda)": c,
+                    "Total Matches": total,
+                    "Circular Loci": circ_count,
+                    "Linear Prose": total - circ_count,
+                    "Buffer Flush (-m)": m_flush,
+                    "Omega (-aiin)": aiin_slot,
+                    "Astro Affinity": f"{(circ_count / total * 100):.1f}%"
+                })
+        st.dataframe(pd.DataFrame(audit_rows), use_container_width=True)
