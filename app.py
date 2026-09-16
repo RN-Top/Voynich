@@ -1,14 +1,15 @@
 """
-VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH & PARALLEL READER
+VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH
 - Parallel Facsimile Reader & Transcription Expander
-- Dedicated Author Identification & Colophon Audit
+- Author Identification & Colophon Audit
 - Live Sequence Translator & Induced Lexical Dictionary
-- Whole-Manuscript CSV Export
+- Whole-Manuscript CSV Export (Step 3)
 - Executive Findings & 600-Year Decipherment Verdict
 - Structure Tests (Null Model & Folio Holdout)
-- Automated Cross-Section Carrier Core Analysis Matrix
+- Cross-Section Carrier Analysis Matrix
 - Permutation Falsification Suite
-- Zodiac Topological Grounding Oracle (f70r-f74v)
+- Zodiac Topological Grounding Oracle (Step 2: f70r-f74v)
+- Candidate Slot Omega Content-Class Miner (Step 1)
 """
 
 import glob
@@ -218,9 +219,11 @@ tabs = st.tabs([
     "6. 600-Yr Verdict",
     "7. Structure Tests",
     "8. Section Carrier Matrix",
-    "9. Zodiac Grounding (f70r-f74v)"
+    "9. Zodiac Grounding (f70r-f74v)",
+    "10. Slot Omega Miner"
 ])
 
+# 1. PARALLEL READER
 with tabs[0]:
     st.subheader("Parallel Manuscript Reader Edition")
     col_nav1, col_nav2 = st.columns([1, 2])
@@ -275,6 +278,7 @@ with tabs[0]:
     else:
         st.warning("No folios match the selected section filter.")
 
+# 2. AUTHOR AUDIT
 with tabs[1]:
     st.subheader("Author Identification & Scribal Attribution Audit")
     notes, colophons_df = extract_author_audit(DEFAULT_DATA_PATH)
@@ -291,6 +295,7 @@ with tabs[1]:
             for item in notes:
                 st.markdown(f"- **Folio `{item['folio']}`:** {item['note']}")
 
+# 3. TRANSLATOR
 with tabs[2]:
     st.subheader("Interactive Custom Sequence Translator")
     quick_samples = [
@@ -311,6 +316,7 @@ with tabs[2]:
             st.markdown("#### Aligned English Translation")
             st.success(f"### {out['translation']}")
 
+# 4. LEXICON KEY
 with tabs[3]:
     st.subheader("Complete Induced Mathematical Dictionary Key")
     search = st.text_input("Search dictionary by token, Latin lemma, or English meaning:", "")
@@ -324,6 +330,7 @@ with tabs[3]:
         ]
     st.dataframe(view_table, use_container_width=True)
 
+# 5. EXPORT CSV (STEP 3)
 with tabs[4]:
     st.subheader("Export Whole-Manuscript Translation Table")
     if st.button("Compile Full Manuscript Translation Table"):
@@ -351,6 +358,7 @@ with tabs[4]:
             )
             st.success(f"Successfully compiled {len(export_df):,} translated lines!")
 
+# 6. VERDICT
 with tabs[5]:
     st.subheader("Synthesized Conclusions & 600-Year Decipherment Verdict")
     c1, c2 = st.columns(2)
@@ -367,6 +375,7 @@ with tabs[5]:
             "* **Line Buffers:** Line-starts are governed by $D$-headers; line ends are flushed by terminal `-m` (>20x odds ratio)."
         )
 
+# 7. STRUCTURE TESTS
 with tabs[6]:
     st.subheader("Structure Tests")
     if stats_engine is None:
@@ -398,6 +407,7 @@ with tabs[6]:
                     if result.get("holdout_holds"):
                         st.success("Holdout confirmed: Carrier morphology generalizes across unseen pages.")
 
+# 8. SECTION CARRIER MATRIX
 with tabs[7]:
     st.subheader("Automated Cross-Section Carrier Core Analysis")
     st.caption("Aggregates distribution tables across Herbal, Biological, Astronomical, and Recipe domains.")
@@ -412,6 +422,7 @@ with tabs[7]:
         mime="text/csv"
     )
 
+# 9. ZODIAC TOPOLOGICAL GROUNDING (STEP 2)
 with tabs[8]:
     st.subheader("🌌 Zodiac Topological Grounding (f70r–f74v)")
     st.caption("Testing isolated carrier stems against the physical 12-sign and 36-decan rotas.")
@@ -435,6 +446,68 @@ with tabs[8]:
                 st.info("No isolated zodiac ring labels found.")
     else:
         st.warning("ZodiacDeciphermentOracle could not be initialized from decoder.py.")
+
+# 10. SLOT OMEGA MINER (STEP 1)
+with tabs[9]:
+    st.subheader("🔬 Candidate Slot Omega Miner")
+    st.caption("Scanning corpus for the structural frame: Q-ACTIVE -> [X-aiin / X-ain] -> Q-ACTIVE")
+
+    if st.button("Mine Slot Omega Frames Across Corpus"):
+        with st.spinner("Scanning all lines and extracting syntactic substitutions..."):
+            def is_q_active(tok: str) -> bool:
+                t = str(tok).lower().strip()
+                return t.startswith(("qo", "qok", "qot", "qoc", "qob", "qod"))
+
+            def extract_carrier(tok: str) -> str:
+                t = str(tok).lower().strip()
+                if t.endswith("aiin"):
+                    return t[:-4]
+                elif t.endswith("ain"):
+                    return t[:-3]
+                return ""
+
+            records = []
+            group_col = "header" if "header" in df.columns else ("line" if "line" in df.columns else "folio")
+
+            for (folio, line_id), group in df.groupby(["folio", group_col]):
+                tokens = group["clean"].dropna().astype(str).tolist()
+                n = len(tokens)
+                if n < 3:
+                    continue
+                for i in range(1, n - 1):
+                    prev_t = tokens[i - 1]
+                    curr_t = tokens[i]
+                    next_t = tokens[i + 1]
+
+                    if is_q_active(prev_t) and is_q_active(next_t):
+                        core = extract_carrier(curr_t)
+                        if core:
+                            records.append({
+                                "Folio": folio,
+                                "Line": str(line_id),
+                                "Q-Entry": prev_t,
+                                "Slot Omega Token": curr_t,
+                                "Substituted Root (X)": core,
+                                "Q-Exit": next_t,
+                                "Section": group["section"].iloc[0] if "section" in group.columns else "Unknown"
+                            })
+
+            omega_df = pd.DataFrame(records)
+
+            if not omega_df.empty:
+                st.success(f"Found {len(omega_df)} Slot Omega occurrences across the codex!")
+                c1, c2 = st.columns([1, 2])
+                with c1:
+                    st.markdown("#### Top Substituted Stems (X)")
+                    top_stems = omega_df["Substituted Root (X)"].value_counts().reset_index()
+                    top_stems.columns = ["Root Stem (X)", "Frame Count"]
+                    st.dataframe(top_stems, use_container_width=True)
+
+                with c2:
+                    st.markdown("#### Full Occurrence Ledger")
+                    st.dataframe(omega_df[["Folio", "Line", "Q-Entry", "Slot Omega Token", "Substituted Root (X)", "Q-Exit", "Section"]], use_container_width=True)
+            else:
+                st.warning("No tokens matched the strict Q-ACTIVE -> X-aiin -> Q-ACTIVE condition.")
 
 # -----------------------------------------------------------------------------
 # PERMUTATION FALSIFICATION TEST PANEL
