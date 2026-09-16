@@ -1,15 +1,16 @@
 """
-VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH
-- Parallel Facsimile Reader & Transcription Expander
-- Author Identification & Colophon Audit
-- Live Sequence Translator & Induced Lexical Dictionary
-- Whole-Manuscript CSV Export (Step 3)
-- Executive Findings & 600-Year Decipherment Verdict
-- Structure Tests (Null Model & Folio Holdout)
-- Cross-Section Carrier Analysis Matrix
-- Permutation Falsification Suite
-- Zodiac Topological Grounding Oracle (Step 2: f70r-f74v)
-- Candidate Slot Omega Content-Class Miner (Step 1)
+VOYNICH COMPLETE MANUSCRIPT DECIPHERMENT WORKBENCH & STATE ENGINE
+- 1. Parallel Manuscript Facsimile & Source-Code Reader
+- 2. Author Identification & Scribal Colophon Audit
+- 3. Live Custom Sequence Translator & Syntactic Gloss
+- 4. Induced Lexical Dictionary & Metric Key
+- 5. Whole-Manuscript CSV Export Table
+- 6. Executive Findings & 600-Year Decipherment Verdict
+- 7. Empirical Structure Tests (Null Model & Folio Holdout)
+- 8. Cross-Section Carrier Core Analysis Matrix
+- 9. Zodiac Topological Grounding Oracle (f70r-f74v)
+- 10. Candidate Slot Omega Frame Miner
+- 11. Specialized Astronomical Load & Loci Inspector
 """
 
 import glob
@@ -201,7 +202,7 @@ if ZodiacDeciphermentOracle is not None and not df.empty:
         oracle = None
 
 st.title("Voynich Manuscript Decipherment Workbench")
-st.caption("Computational State-Space Engine, Cross-Modal Carrier Grounding, and Scribal Author Audit")
+st.caption("Computational State-Space Engine, Cross-Modal Astronomical Carrier Grounding, and Scribal Author Audit")
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### Manuscript Ingestion Metrics")
@@ -220,7 +221,8 @@ tabs = st.tabs([
     "7. Structure Tests",
     "8. Section Carrier Matrix",
     "9. Zodiac Grounding (f70r-f74v)",
-    "10. Slot Omega Miner"
+    "10. Slot Omega Miner",
+    "11. Astro Load Inspector"
 ])
 
 # 1. PARALLEL READER
@@ -330,7 +332,7 @@ with tabs[3]:
         ]
     st.dataframe(view_table, use_container_width=True)
 
-# 5. EXPORT CSV (STEP 3)
+# 5. EXPORT CSV
 with tabs[4]:
     st.subheader("Export Whole-Manuscript Translation Table")
     if st.button("Compile Full Manuscript Translation Table"):
@@ -422,7 +424,7 @@ with tabs[7]:
         mime="text/csv"
     )
 
-# 9. ZODIAC TOPOLOGICAL GROUNDING (STEP 2)
+# 9. ZODIAC GROUNDING
 with tabs[8]:
     st.subheader("🌌 Zodiac Topological Grounding (f70r–f74v)")
     st.caption("Testing isolated carrier stems against the physical 12-sign and 36-decan rotas.")
@@ -447,7 +449,7 @@ with tabs[8]:
     else:
         st.warning("ZodiacDeciphermentOracle could not be initialized from decoder.py.")
 
-# 10. SLOT OMEGA MINER (STEP 1)
+# 10. SLOT OMEGA MINER
 with tabs[9]:
     st.subheader("🔬 Candidate Slot Omega Miner")
     st.caption("Scanning corpus for the structural frame: Q-ACTIVE -> [X-aiin / X-ain] -> Q-ACTIVE")
@@ -508,6 +510,69 @@ with tabs[9]:
                     st.dataframe(omega_df[["Folio", "Line", "Q-Entry", "Slot Omega Token", "Substituted Root (X)", "Q-Exit", "Section"]], use_container_width=True)
             else:
                 st.warning("No tokens matched the strict Q-ACTIVE -> X-aiin -> Q-ACTIVE condition.")
+
+# 11. SPECIALIZED ASTRONOMICAL LOAD & LOCI INSPECTOR
+with tabs[10]:
+    st.subheader("🔭 Specialized Astronomical Load & Loci Inspector")
+    st.caption("Directly tracks high-PMI astronomical carriers across circular diagrams (f68r–f74v) and Stars prose (f114v).")
+
+    astro_carrier_target = st.selectbox(
+        "Select Target Astronomical Carrier Root:",
+        ["otcheod", "opair", "okeal", "oeeod", "air", "aiir", "oteod"]
+    )
+    window_size = st.slider("Neighborhood Window Size (Tokens Pre/Post)", min_value=1, max_value=5, value=3)
+
+    if st.button(f"Scan Corpus for '{astro_carrier_target}' Occurrences"):
+        with st.spinner(f"Extracting syntactic contexts for '{astro_carrier_target}'..."):
+            occurrences = []
+            group_col = "header" if "header" in df.columns else ("line" if "line" in df.columns else "folio")
+
+            for (folio, line_id), group in df.groupby(["folio", group_col]):
+                tokens = group["clean"].dropna().astype(str).tolist()
+                for idx, t in enumerate(tokens):
+                    clean_lower = t.lower()
+                    if astro_carrier_target in clean_lower:
+                        start_idx = max(0, idx - window_size)
+                        end_idx = min(len(tokens), idx + window_size + 1)
+
+                        pre_ctx = " ".join(tokens[start_idx:idx]) if idx > 0 else "<LINE-START>"
+                        post_ctx = " ".join(tokens[idx + 1:end_idx]) if idx < len(tokens) - 1 else "<LINE-END>"
+
+                        sec_label = group["section"].iloc[0] if "section" in group.columns else infer_section(folio)
+                        is_circular = any(c in str(line_id).lower() for c in ["&lz", "@lz", "cc", "spiral"]) or ("f70" in folio or "f71" in folio or "f72" in folio or "f73" in folio or "f74" in folio or "f68" in folio)
+
+                        occurrences.append({
+                            "Folio": folio,
+                            "Line / Locus": str(line_id),
+                            "Section": sec_label,
+                            "Context Type": "Circular Ring / Label" if is_circular else "Running Linear Text",
+                            "Pre-Context": pre_ctx,
+                            "Matched Surface Token": t,
+                            "Post-Context": post_ctx
+                        })
+
+            occ_df = pd.DataFrame(occurrences)
+
+            if not occ_df.empty:
+                st.success(f"Found {len(occ_df)} occurrences of carrier '{astro_carrier_target}' across the manuscript!")
+
+                m1, m2 = st.columns(2)
+                m1.metric("Total Matches", len(occ_df))
+                circ_count = (occ_df["Context Type"] == "Circular Ring / Label").sum()
+                m2.metric("In Circular / Astro Loci", f"{circ_count} ({circ_count / len(occ_df) * 100:.1f}%)")
+
+                st.markdown("#### Occurrence & Syntactic Neighborhood Ledger")
+                st.dataframe(occ_df, use_container_width=True)
+
+                csv_occ = occ_df.to_csv(index=False).encode("utf-8")
+                st.download_button(
+                    label=f"Download '{astro_carrier_target}' Neighborhoods (CSV)",
+                    data=csv_occ,
+                    file_name=f"voynich_{astro_carrier_target}_neighborhoods.csv",
+                    mime="text/csv"
+                )
+            else:
+                st.info(f"No occurrences of '{astro_carrier_target}' detected in the parsed text.")
 
 # -----------------------------------------------------------------------------
 # PERMUTATION FALSIFICATION TEST PANEL
