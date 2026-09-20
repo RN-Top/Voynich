@@ -1,23 +1,21 @@
-ModuleNotFoundError: No module named 'scipy'
-File "/mount/src/voynich/app.py", line 7, in <module>
-    from scipy.linalg import orthogonal_procrustes
+SyntaxError: unterminated string literal (detected at line 6)
+File "/mount/src/voynich/app.py", line 6
+    Streamlit Community Cloud does not have 'scipy' pre-installed in your app's Python container.
 ```[span_0](start_span)[span_0](end_span)
 
-Streamlit Community Cloud does not have `scipy` pre-installed in your app's Python container. 
-
-Rather than requiring edits to a separate `requirements.txt` file, the clean solution is to compute the exact **Orthogonal Procrustes** solution directly using standard NumPy singular value decomposition (`np.linalg.svd`), which is already installed and running in your container.
+When copying the code, the conversational explanation text above the code block was accidentally pasted directly into line 6 of `app.py` in your GitHub repository[span_1](start_span)[span_1](end_span). Python attempted to execute English prose as code and crashed with a `SyntaxError`[span_2](start_span)[span_2](end_span).
 
 ---
 
 ### Step 1: Open `app.py` on GitHub
-1. Go to your repository: **[https://github.com/RN-Top/Voynich](https://github.com/RN-Top/Voynich)**.
+1. Open your repository: **[https://github.com/RN-Top/Voynich](https://github.com/RN-Top/Voynich)**.
 2. Click on **`app.py`**.
 3. Click the **Pencil icon** (Edit this file).
 
 ---
 
-### Step 2: Paste the Fixed Code
-Select all code (Ctrl+A / Cmd+A), replace it with this complete, zero-dependency script, and commit:
+### Step 2: Replace with Clean Code
+Select everything in the file (Ctrl+A / Cmd+A), delete it, and paste this pure Python code with no conversational header text:
 
 ```python
 import streamlit as st
@@ -483,10 +481,8 @@ with tabs[12]:
     )
 
     if st.button("Compute Manifold Procrustes Distance"):
-        # Top 7 universal carriers
         carriers = ["ch", "ot", "ok", "t", "ol", "shed", "air"]
         
-        # Build manuscript transition/distribution vector across domains
         m_matrix = []
         for c in carriers:
             cnt_h = len(df[(df["section"] == "Herbal") & (df["clean"].str.contains(c))])
@@ -498,26 +494,25 @@ with tabs[12]:
         A = np.array(m_matrix, dtype=float)
         A = (A - np.mean(A, axis=0)) / (np.std(A, axis=0) + 1e-9)
 
-        # Reference manifolds based on historical genre frequency profiles
         if "Alfonsine" in control_choice:
             B_ref = np.array([
-                [0.2, 0.1, 0.7],  # ch -> central operational axis
-                [0.1, 0.1, 0.8],  # ot -> coordinate degrees
-                [0.3, 0.1, 0.6],  # ok -> quadrant arcs
-                [0.2, 0.2, 0.6],  # t  -> temporal aspects
-                [0.1, 0.1, 0.8],  # ol -> orbital nodes
-                [0.05, 0.05, 0.9],# shed -> eclipse/shadow phases
-                [0.05, 0.05, 0.9] # air -> stellar rays
+                [0.2, 0.1, 0.7],
+                [0.1, 0.1, 0.8],
+                [0.3, 0.1, 0.6],
+                [0.2, 0.2, 0.6],
+                [0.1, 0.1, 0.8],
+                [0.05, 0.05, 0.9],
+                [0.05, 0.05, 0.9]
             ])
         elif "Macer" in control_choice:
             B_ref = np.array([
-                [0.7, 0.2, 0.1],  # ch -> recipe preparation
-                [0.6, 0.3, 0.1],  # ot -> plant part
-                [0.5, 0.4, 0.1],  # ok -> dosage / measurement
-                [0.6, 0.3, 0.1],  # t  -> boiling / heating step
-                [0.7, 0.2, 0.1],  # ol -> oils / fluids
-                [0.2, 0.7, 0.1],  # shed -> bodily humor application
-                [0.6, 0.3, 0.1]   # air -> drying in air
+                [0.7, 0.2, 0.1],
+                [0.6, 0.3, 0.1],
+                [0.5, 0.4, 0.1],
+                [0.6, 0.3, 0.1],
+                [0.7, 0.2, 0.1],
+                [0.2, 0.7, 0.1],
+                [0.6, 0.3, 0.1]
             ])
         else:
             np.random.seed(99)
@@ -525,7 +520,6 @@ with tabs[12]:
 
         B = (B_ref - np.mean(B_ref, axis=0)) / (np.std(B_ref, axis=0) + 1e-9)
 
-        # Pure NumPy Orthogonal Procrustes via SVD: R = U @ Vh
         M = B.T @ A
         U, S, Vh = np.linalg.svd(M)
         R = Vh.T @ U.T
