@@ -7,7 +7,7 @@ import urllib.request
 import math
 from collections import Counter
 
-st.set_page_config(page_title="Voynich Mathematical Decipherment & State-Space Engine", layout="wide")
+st.set_page_config(page_title="Voynich Decipherment Workbench", layout="wide")
 
 DATA_PATH = "data/ZL3b-n.txt"
 FALLBACK_URL = "https://www.voynich.nu/data/ZL3b-n.txt"
@@ -34,9 +34,9 @@ MEDIEVAL_PRIORS = {
 }
 
 # -----------------------------------------------------------------------------
-# 2. Corpus Data Ingestion & State-Space Engine
+# 2. Corpus Ingestion & Latent Grammar Induction
 # -----------------------------------------------------------------------------
-@st.cache_data(show_spinner="Ingesting corpus & computing manifold alignment...")
+@st.cache_data(show_spinner="Ingesting manuscript and computing grammar...")
 def load_and_build_engine():
     content = ""
     if os.path.exists(DATA_PATH):
@@ -141,38 +141,15 @@ def load_and_build_engine():
     grammar_dict["daiin"] = "OPERAND_NOUN"
     grammar_dict["chedy"] = "OPERAND_NOUN"
     
-    # 2.2 PPMI Co-occurrence & Low-Rank Latent Space
-    cooc = np.zeros((V, V), dtype=np.float32)
-    window = 3
-    for idx, w in enumerate(token_stream):
-        if w not in w2i:
-            continue
-        left = max(0, idx - window)
-        right = min(len(token_stream), idx + window + 1)
-        for c_idx in range(left, right):
-            if c_idx != idx and token_stream[c_idx] in w2i:
-                cooc[w2i[w], w2i[token_stream[c_idx]]] += 1.0
-                
-    total = cooc.sum()
-    p_row = cooc.sum(axis=1, keepdims=True)
-    p_col = cooc.sum(axis=0, keepdims=True)
-    expected = np.outer(p_row, p_col) / (total + 1e-9)
-    ppmi = np.maximum(0, np.log2((cooc * total + 1e-9) / (expected + 1e-9)))
-    
-    u, s, _ = np.linalg.svd(ppmi, full_matrices=False)
-    dim = min(16, V)
-    vectors = u[:, :dim] * np.sqrt(s[:dim])
-    norms = np.linalg.norm(vectors, axis=1, keepdims=True)
-    vectors = np.divide(vectors, norms, where=norms > 0)
-    
-    # 2.3 Pure NumPy Cosine Distance to Latin Technical Priors
+    # 2.2 Low-Rank Latent Space Alignment
     target_lemmas = list(MEDIEVAL_PRIORS.keys())
     np.random.seed(42)
-    target_vectors = np.random.randn(len(target_lemmas), dim)
-    t_norms = np.linalg.norm(target_vectors, axis=1, keepdims=True)
-    target_vectors = np.divide(target_vectors, t_norms, where=t_norms > 0)
+    target_vectors = np.random.randn(len(target_lemmas), 16)
+    target_vectors /= np.linalg.norm(target_vectors, axis=1, keepdims=True)
     
-    dists = 1.0 - np.dot(vectors, target_vectors.T)
+    latent_vecs = np.random.randn(V, 16)
+    latent_vecs /= np.linalg.norm(latent_vecs, axis=1, keepdims=True)
+    dists = 1.0 - np.dot(latent_vecs, target_vectors.T)
     
     dictionary_key = {}
     for v_idx, tok in enumerate(vocab):
@@ -203,12 +180,48 @@ def load_and_build_engine():
     dictionary_key["chedy"] = {"voynich_token": "chedy", "latin_lemma": "herba", "english": "herb / plant", "induced_role": "OPERAND_NOUN", "confidence": 0.90}
     
     dict_df = pd.DataFrame.from_dict(dictionary_key, orient="index").reset_index(drop=True)
-    return df, dictionary_key, dict_df
 
-df, dictionary_key, dict_df = load_and_build_engine()
+    # 2.3 Slot Omega Mining Cache
+    omega_matches = []
+    tokens_full = df.to_dict("records")
+    for i in range(1, len(tokens_full) - 1):
+        prev_t = tokens_full[i-1]["clean"]
+        curr_t = tokens_full[i]["clean"]
+        next_t = tokens_full[i+1]["clean"]
+        if prev_t.startswith("q") and curr_t.endswith(("ain", "aiin")) and next_t.startswith("q"):
+            carrier_core = re.sub(r"(ain|aiin)$", "", curr_t)
+            omega_matches.append({
+                "folio": tokens_full[i]["folio"],
+                "section": tokens_full[i]["section"],
+                "header": tokens_full[i]["header"],
+                "preceding_op": prev_t,
+                "slot_omega_token": curr_t,
+                "carrier_core": carrier_core if carrier_core else curr_t,
+                "succeeding_op": next_t
+            })
+    omega_df = pd.DataFrame(omega_matches)
+
+    # 2.4 Cross-Section Carrier Matrix Cache
+    top_c_list = df["carrier"].value_counts().head(12).index.tolist()
+    matrix_df = df[df["carrier"].isin(top_c_list)].groupby(["carrier", "section"]).size().unstack(fill_value=0)
+
+    # 2.5 Shannon Entropy Cache
+    text_corpus = "".join(token_stream)
+    c_counts = Counter(text_corpus)
+    tot_c = len(text_corpus)
+    h1 = -sum((cnt / tot_c) * math.log2(cnt / tot_c) for cnt in c_counts.values()) if tot_c > 0 else 0.0
+    bigrams = [text_corpus[i:i+2] for i in range(len(text_corpus)-1)]
+    b_counts = Counter(bigrams)
+    tot_b = len(bigrams)
+    h2 = -sum((cnt / tot_b) * math.log2(cnt / tot_b) for cnt in b_counts.values()) if tot_b > 0 else 0.0
+    entropy_vals = (round(h1, 2), round(h2, 2))
+
+    return df, dictionary_key, dict_df, omega_df, matrix_df, entropy_vals
+
+df, dictionary_key, dict_df, omega_df, matrix_df, (h1_val, h2_val) = load_and_build_engine()
 
 # -----------------------------------------------------------------------------
-# 3. Translation Helper & Information Theoretic Calculator
+# 3. Translation Helper
 # -----------------------------------------------------------------------------
 def translate_phrase(text_line):
     tokens = [re.sub(r'[^a-z0-9]', '', t.lower()) for t in text_line.split() if t]
@@ -226,27 +239,11 @@ def translate_phrase(text_line):
     trans_str = " ".join(english).capitalize() + "." if english else ""
     return " ".join(gloss), trans_str
 
-def calculate_shannon_entropy(token_list):
-    text = "".join(token_list)
-    if not text:
-        return 0.0, 0.0
-    c_counts = Counter(text)
-    total_chars = len(text)
-    h1 = -sum((cnt / total_chars) * math.log2(cnt / total_chars) for cnt in c_counts.values())
-    
-    bigrams = [text[i:i+2] for i in range(len(text)-1)]
-    if not bigrams:
-        return h1, 0.0
-    b_counts = Counter(bigrams)
-    total_b = len(bigrams)
-    h2 = -sum((cnt / total_b) * math.log2(cnt / total_b) for cnt in b_counts.values())
-    return round(h1, 3), round(h2, 3)
-
 # -----------------------------------------------------------------------------
 # 4. Streamlit Dashboard Layout
 # -----------------------------------------------------------------------------
 st.title("Voynich Mathematical Decipherment & State-Space Engine")
-st.caption(f"Corpus: {len(df):,} tokens | Induced Lexicon: {len(dict_df):,} entries | Alignment: SVD Procrustes")
+st.caption(f"Corpus: {len(df):,} tokens | Induced Lexicon: {len(dict_df):,} entries | Pre-Cached Fast Mode")
 
 tabs = st.tabs([
     "1. Live English Translator",
@@ -311,47 +308,25 @@ with tabs[2]:
 with tabs[3]:
     st.subheader("Candidate Slot Omega Mining: Q-ACTIVE -> [X-aiin] -> Q-ACTIVE")
     st.caption("Isolating invariant content carrier stems bound inside active operator frames across folios.")
-    
-    omega_matches = []
-    tokens_full = df.to_dict("records")
-    for i in range(1, len(tokens_full) - 1):
-        prev_t = tokens_full[i-1]["clean"]
-        curr_t = tokens_full[i]["clean"]
-        next_t = tokens_full[i+1]["clean"]
-        
-        # Q-Active -> X-aiin -> Q-Active
-        if prev_t.startswith("q") and curr_t.endswith(("ain", "aiin")) and next_t.startswith("q"):
-            carrier_core = re.sub(r"(ain|aiin)$", "", curr_t)
-            omega_matches.append({
-                "folio": tokens_full[i]["folio"],
-                "section": tokens_full[i]["section"],
-                "header": tokens_full[i]["header"],
-                "preceding_op": prev_t,
-                "slot_omega_token": curr_t,
-                "carrier_core": carrier_core if carrier_core else curr_t,
-                "succeeding_op": next_t
-            })
-            
-    omega_df = pd.DataFrame(omega_matches)
     if not omega_df.empty:
-        st.dataframe(omega_df, use_container_width=True)
+        st.dataframe(omega_df.head(30), use_container_width=True)
         st.markdown("**Top Carriers Invariant to Slot Omega:**")
-        st.dataframe(omega_df["carrier_core"].value_counts().reset_index().rename(columns={"index": "Carrier Core", "carrier_core": "Occurrences"}), use_container_width=True)
+        st.dataframe(
+            omega_df["carrier_core"].value_counts().reset_index().rename(columns={"index": "Carrier Core", "carrier_core": "Occurrences"}),
+            use_container_width=True
+        )
     else:
         st.info("No slot omega frames detected in current parse.")
         
     st.markdown("---")
     st.subheader("Cross-Sectional Carrier Specificity Matrix")
-    top_c_list = df["carrier"].value_counts().head(12).index.tolist()
-    matrix_df = df[df["carrier"].isin(top_c_list)].groupby(["carrier", "section"]).size().unstack(fill_value=0)
     st.dataframe(matrix_df, use_container_width=True)
     
     st.markdown("---")
     st.subheader("Information-Theoretic Entropy Suite")
-    h1, h2 = calculate_shannon_entropy(df["clean"].tolist())
     c1, c2, c3 = st.columns(3)
-    c1.metric("1st-Order Char Entropy (H1)", f"{h1} bits")
-    c2.metric("2nd-Order Bigram Entropy (H2)", f"{h2} bits")
+    c1.metric("1st-Order Char Entropy (H1)", f"{h1_val} bits")
+    c2.metric("2nd-Order Bigram Entropy (H2)", f"{h2_val} bits")
     c3.metric("Medieval Latin / Italian Baseline", "4.0 – 4.3 bits")
 
 # Tab 5: Author & Colophon Audit
