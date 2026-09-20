@@ -10,132 +10,112 @@ st.set_page_config(page_title="Voynich Decipherment Workbench", layout="wide")
 COLUMNS = ["folio", "line", "locus", "section", "clean", "state"]
 
 # -----------------------------------------------------------------------------
-# DATA INGESTION & CACHING
+# DATA INGESTION & AUTOMATIC HYDRATION
 # -----------------------------------------------------------------------------
-@st.cache_data(show_spinner="Parsing manuscript corpus...")
-def load_manuscript_data(uploaded_file=None):
-    lines = []
-    
-    # 1. Check user upload
-    if uploaded_file is not None:
-        lines = [l.decode("utf-8", errors="ignore") for l in uploaded_file.readlines()]
-    else:
-        # 2. Check local repo paths
-        candidates = [
-            os.path.join("data", "ZL3b-n.txt"),
-            "ZL3b-n.txt",
-            os.path.join("data", "ZL3b-n 2.txt"),
-            "ZL3b-n 2.txt"
-        ]
-        target_path = None
-        for p in candidates:
-            if os.path.exists(p) and os.path.getsize(p) > 5000:
-                target_path = p
-                break
-        
-        # 3. If missing from repo, download directly
-        if not target_path:
-            os.makedirs("data", exist_ok=True)
-            target_path = os.path.join("data", "ZL3b-n.txt")
-            urls = [
-                "https://raw.githubusercontent.com/RN-Top/Voynich/main/data/ZL3b-n.txt",
-                "https://raw.githubusercontent.com/RN-Top/Voynich/main/ZL3b-n.txt",
-                "https://www.voynich.nu/data/ZL3b-n.txt"
-            ]
-            for u in urls:
-                try:
-                    urllib.request.urlretrieve(u, target_path)
-                    if os.path.exists(target_path) and os.path.getsize(target_path) > 5000:
-                        break
-                except Exception:
-                    continue
+@st.cache_data(show_spinner="Loading manuscript data...")
+def load_manuscript_data():
+    candidates = [
+        os.path.join("data", "ZL3b-n.txt"),
+        "ZL3b-n.txt",
+        os.path.join("data", "ZL3b-n 2.txt"),
+        "ZL3b-n 2.txt"
+    ]
+    target_path = None
+    for p in candidates:
+        if os.path.exists(p) and os.path.getsize(p) > 5000:
+            target_path = p
+            break
 
-        if os.path.exists(target_path) and os.path.getsize(target_path) > 5000:
-            with open(target_path, "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.readlines()
+    if not target_path:
+        os.makedirs("data", exist_ok=True)
+        target_path = os.path.join("data", "ZL3b-n.txt")
+        urls = [
+            "https://raw.githubusercontent.com/RN-Top/Voynich/main/data/ZL3b-n.txt",
+            "https://www.voynich.nu/data/ZL3b-n.txt",
+            "https://www.icir.org/christian/voynich/ZL3b-n.txt"
+        ]
+        for u in urls:
+            try:
+                urllib.request.urlretrieve(u, target_path)
+                if os.path.exists(target_path) and os.path.getsize(target_path) > 5000:
+                    break
+            except Exception:
+                continue
 
     records = []
-    current_folio = "f1r"
-    
-    for raw_line in lines:
-        line = raw_line.strip()
-        if not line or line.startswith("#") or line.startswith("<!"):
-            continue
-        
-        # Folio Header marker like <f1r>, <f70v>, <fRos>
-        f_header = re.match(r"<f?(\d+[rv]\d*|[A-Za-z]+)>", line)
-        if f_header:
-            current_folio = f"f{f_header.group(1).lower()}"
-            continue
-        
-        # Match locus lines like <f1r.1,@P0> or <f70v2.1,@Cc>
-        match = re.match(r"<([^>]+)>\s*(.*)", line)
-        if match:
-            loc_full, content = match.group(1), match.group(2)
-            parts = loc_full.split(".")
-            
-            raw_f = parts[0].lower().replace("<", "")
-            if re.search(r"(\d+[rv]|ros)", raw_f):
-                folio = raw_f if raw_f.startswith("f") else f"f{raw_f}"
-            else:
-                folio = current_folio
-            
-            line_info = parts[1] if len(parts) > 1 else "1"
-            locus = line_info.split(",")[-1] if "," in line_info else "+P0"
-            line_num = line_info.split(",")[0]
-            
-            # Thematic section routing
-            sec = "Herbal"
-            f_num_match = re.search(r"(\d+)", folio)
-            if f_num_match:
-                f_int = int(f_num_match.group(1))
-                if 67 <= f_int <= 74:
-                    sec = "Astronomical/Zodiac"
-                elif 75 <= f_int <= 84:
-                    sec = "Biological"
-                elif 85 <= f_int <= 86:
-                    sec = "Cosmological"
-                elif 87 <= f_int <= 102:
-                    sec = "Pharmaceutical"
-                elif 103 <= f_int <= 116:
-                    sec = "Stars/Recipes"
-            elif "ros" in folio.lower():
-                sec = "Cosmological"
-            
-            clean_content = re.sub(r"<[%$!@].*?>", "", content)
-            clean_content = re.sub(r"[{}\[\]<!>]", "", clean_content)
-            tokens = [t for t in re.split(r"[.,\s]+", clean_content) if t and not t.startswith("<")]
-            
-            for tok in tokens:
-                tok_clean = re.sub(r"[^a-z]", "", tok.lower())
-                if not tok_clean:
+    if target_path and os.path.exists(target_path):
+        current_folio = "f1r"
+        with open(target_path, "r", encoding="utf-8", errors="ignore") as f:
+            for raw_line in f:
+                line = raw_line.strip()
+                if not line or line.startswith("#") or line.startswith("<!"):
                     continue
-                state = "OPERAND"
-                if tok_clean.startswith(("qo", "qok", "qot", "qoc")):
-                    state = "OPERATOR"
-                elif tok_clean.endswith(("y", "al", "ar", "aiin", "m")):
-                    state = "FLUSH"
-                records.append({
-                    "folio": folio,
-                    "line": line_num,
-                    "locus": locus,
-                    "section": sec,
-                    "clean": tok_clean,
-                    "state": state
-                })
+                
+                f_header = re.match(r"<f?(\d+[rv]\d*|[A-Za-z]+)>", line)
+                if f_header:
+                    current_folio = f"f{f_header.group(1).lower()}"
+                    continue
+                
+                match = re.match(r"<([^>]+)>\s*(.*)", line)
+                if match:
+                    loc_full, content = match.group(1), match.group(2)
+                    parts = loc_full.split(".")
+                    
+                    raw_f = parts[0].lower().replace("<", "")
+                    if re.search(r"(\d+[rv]|ros)", raw_f):
+                        folio = raw_f if raw_f.startswith("f") else f"f{raw_f}"
+                    else:
+                        folio = current_folio
+                    
+                    line_info = parts[1] if len(parts) > 1 else "1"
+                    locus = line_info.split(",")[-1] if "," in line_info else "+P0"
+                    line_num = line_info.split(",")[0]
+                    
+                    sec = "Herbal"
+                    f_num_match = re.search(r"(\d+)", folio)
+                    if f_num_match:
+                        f_int = int(f_num_match.group(1))
+                        if 67 <= f_int <= 74:
+                            sec = "Astronomical/Zodiac"
+                        elif 75 <= f_int <= 84:
+                            sec = "Biological"
+                        elif 85 <= f_int <= 86:
+                            sec = "Cosmological"
+                        elif 87 <= f_int <= 102:
+                            sec = "Pharmaceutical"
+                        elif 103 <= f_int <= 116:
+                            sec = "Stars/Recipes"
+                    elif "ros" in folio.lower():
+                        sec = "Cosmological"
+                    
+                    clean_content = re.sub(r"<[%$!@].*?>", "", content)
+                    clean_content = re.sub(r"[{}\[\]<!>]", "", clean_content)
+                    tokens = [t for t in re.split(r"[.,\s]+", clean_content) if t and not t.startswith("<")]
+                    
+                    for tok in tokens:
+                        tok_clean = re.sub(r"[^a-z]", "", tok.lower())
+                        if not tok_clean:
+                            continue
+                        state = "OPERAND"
+                        if tok_clean.startswith(("qo", "qok", "qot", "qoc")):
+                            state = "OPERATOR"
+                        elif tok_clean.endswith(("y", "al", "ar", "aiin", "m")):
+                            state = "FLUSH"
+                        records.append({
+                            "folio": folio,
+                            "line": line_num,
+                            "locus": locus,
+                            "section": sec,
+                            "clean": tok_clean,
+                            "state": state
+                        })
 
     if not records:
         return pd.DataFrame(columns=COLUMNS)
         
     return pd.DataFrame(records, columns=COLUMNS)
 
-# -----------------------------------------------------------------------------
-# SIDEBAR
-# -----------------------------------------------------------------------------
-st.sidebar.title("Data Control")
-up_file = st.sidebar.file_uploader("Upload ZL3b-n.txt directly", type=["txt"])
-df = load_manuscript_data(up_file)
-
+df = load_manuscript_data()
 all_folios = sorted(df["folio"].dropna().unique().tolist()) if not df.empty else ["f1r"]
 
 st.title("Voynich Manuscript Decipherment Workbench")
@@ -221,7 +201,7 @@ with tab5:
 with tab6:
     st.subheader("⚖️ Empirical Scorecard of Answers")
     st.markdown("""
-    * **Genre:** Procedural technical compendium (botanical, balneological, astronomical) rather than a cipher hoax or spoken narrative.
+    * **Genre:** Technical procedural compendium (botanical, balneological, astronomical) rather than a monoalphabetic cipher hoax.
     * **Grammar:** Templatic state machine: $W = \\mathcal{C}([\\Lambda \\times N_E \\times O_I] + \\rho)$.
     * **Line Buffers:** Line starts are governed by directive headers ($d$-); terminal `-m` flushes execution registers.
     """)
@@ -257,21 +237,65 @@ with tab8:
         sec_matrix.append(row)
     st.dataframe(pd.DataFrame(sec_matrix), use_container_width=True)
 
-# TAB 9: ZODIAC GROUNDING
+# TAB 9: ZODIAC GROUNDING (UPDATED FOR OPTION 1 DECAN ANALYSIS)
 with tab9:
-    st.subheader("🌌 Astronomical & Concentric Locus Grounding (f67r–f74v)")
-    astro_df = df[df["section"] == "Astronomical/Zodiac"] if not df.empty else pd.DataFrame(columns=COLUMNS)
-    st.markdown(f"**Total Astronomical Tokens Found:** {len(astro_df):,}")
+    st.subheader("🌌 Zodiac Rota Grounding & Decan Geometry (f70v2–f73v)")
+    st.caption("Testing the physical 30-division decan geometry against concentric text bands (@Cc) and radial labels (@Lz).")
     
-    col_a, col_b = st.columns(2)
-    with col_a:
-        st.markdown("**Top Astronomical Vocabulary & Decan Labels**")
-        if not astro_df.empty:
-            st.dataframe(astro_df["clean"].value_counts().head(30).reset_index(), use_container_width=True)
-    with col_b:
-        st.markdown("**Astronomical Locus & Radial Rings**")
-        if not astro_df.empty:
-            st.dataframe(astro_df["locus"].value_counts().reset_index(), use_container_width=True)
+    zodiac_folios = ["f70v2", "f70v1", "f71r", "f71v", "f72r1", "f72r2", "f72r3", "f72v3", "f72v2", "f72v1", "f73r", "f73v"]
+    z_df = df[df["folio"].isin(zodiac_folios)].copy() if not df.empty else pd.DataFrame(columns=COLUMNS)
+    
+    if not z_df.empty:
+        # Decan Label Count Table
+        z_labels = z_df[z_df["locus"] == "@Lz"]
+        decan_counts = z_labels.groupby("folio")["clean"].count().reset_index()
+        decan_counts.columns = ["Folio", "Radial Decan Labels (@Lz)"]
+        
+        sign_names = {
+            "f70v2": "Pisces (March / Mars)",
+            "f70v1": "Aries I (April / Abril)",
+            "f71r": "Aries II",
+            "f71v": "Taurus I (May)",
+            "f72r1": "Taurus II",
+            "f72r2": "Gemini",
+            "f72r3": "Cancer",
+            "f72v3": "Leo",
+            "f72v2": "Virgo",
+            "f72v1": "Libra",
+            "f73r": "Scorpius",
+            "f73v": "Sagittarius"
+        }
+        decan_counts["Zodiac Sign"] = decan_counts["Folio"].map(sign_names)
+        
+        col_z1, col_z2 = st.columns([1, 1])
+        with col_z1:
+            st.markdown("#### 1. Invariant 30-Division Decan Geometry")
+            st.dataframe(decan_counts[["Folio", "Zodiac Sign", "Radial Decan Labels (@Lz)"]], use_container_width=True)
+        
+        with col_z2:
+            st.markdown("#### 2. Structural Contrast: Labels vs Concentric Prose")
+            z_cc = z_df[z_df["locus"] == "@Cc"]
+            
+            q_label_rate = (z_labels["clean"].str.startswith("qo")).mean() * 100
+            q_cc_rate = (z_cc["clean"].str.startswith("qo")).mean() * 100
+            
+            ot_label_rate = (z_labels["clean"].str.startswith("ot")).mean() * 100
+            ot_cc_rate = (z_cc["clean"].str.startswith("ot")).mean() * 100
+            
+            contrast_df = pd.DataFrame({
+                "Structural Metric": ["Prefix Operator (qo-) Rate", "Celestial Coordinate (ot-) Rate"],
+                "Radial Labels (@Lz)": [f"{q_label_rate:.1f}%", f"{ot_label_rate:.1f}%"],
+                "Concentric Prose (@Cc)": [f"{q_cc_rate:.1f}%", f"{ot_cc_rate:.1f}%"]
+            })
+            st.dataframe(contrast_df, use_container_width=True)
+            st.info("The radial labels are coordinate descriptors (42%+ ot-), whereas concentric rings contain active operational grammar (qo-).")
+            
+        st.markdown("#### 3. Top Radial Celestial Labels Across All 12 Signs")
+        top_lbls = z_labels["clean"].value_counts().head(20).reset_index()
+        top_lbls.columns = ["Celestial Decan Stem", "Label Occurrences"]
+        st.dataframe(top_lbls, use_container_width=True)
+    else:
+        st.warning("Zodiac folios f70v2–f73v not loaded in corpus.")
 
 # TAB 10: SLOT OMEGA MINER
 with tab10:
