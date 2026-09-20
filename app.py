@@ -42,11 +42,15 @@ def load_and_build_engine():
     # Try local repository paths first
     for path in [DATA_PATH, "voynich_processed_tokens.csv", "voynich_corpus_extracted.csv"]:
         if os.path.exists(path):
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                content = f.read()
-            break
+            try:
+                with open(path, "r", encoding="utf-8", errors="ignore") as f:
+                    content = f.read()
+                if len(content.strip()) > 500:
+                    break
+            except Exception:
+                pass
     
-    # Fallback to official voynich.nu mirror if missing or small
+    # Fallback to official mirror
     if len(content.strip()) < 500:
         try:
             req = urllib.request.Request(FALLBACK_URL, headers={'User-Agent': 'Mozilla/5.0'})
@@ -173,7 +177,7 @@ def load_and_build_engine():
     norms = np.linalg.norm(vectors, axis=1, keepdims=True)
     vectors = np.divide(vectors, norms, where=norms > 0)
     
-    # 2.3 Pure NumPy Cosine Distance Alignment to Latin Technical Priors
+    # 2.3 Pure NumPy Cosine Distance Alignment
     target_lemmas = list(MEDIEVAL_PRIORS.keys())
     np.random.seed(42)
     target_vectors = np.random.randn(len(target_lemmas), dim)
@@ -237,19 +241,19 @@ def load_and_build_engine():
     matrix_df = df[df["carrier"].isin(top_c_list)].groupby(["carrier", "section"]).size().unstack(fill_value=0)
 
     # 2.6 Precompute Sukhotin Vowel/Consonant Inventory
-    clean_chars = [c for c in "".join(token_stream) if 'a' <= c <= 'z']
-    chars = sorted(list(set(clean_chars)))
+    clean_text = "".join(re.findall(r"[a-z]", "".join(token_stream)))
+    chars = sorted(list(set(clean_text)))
     c2i = {c: i for i, c in enumerate(chars)}
     M = np.zeros((len(chars), len(chars)), dtype=int)
     for tok in token_stream:
-        tok_c = [c for c in tok if 'a' <= c <= 'z']
-        for c1, c2 in zip(tok_c[:-1], tok_c[1:]):
+        tok_clean = re.sub(r"[^a-z]", "", tok)
+        for c1, c2 in zip(tok_clean[:-1], tok_clean[1:]):
             if c1 in c2i and c2 in c2i:
                 M[c2i[c1], c2i[c2]] += 1
                 M[c2i[c2], c2i[c1]] += 1
 
     vowels = set()
-    f_counts = Counter(clean_chars)
+    f_counts = Counter(clean_text)
     for _ in range(len(chars)):
         scores = {}
         for c in chars:
@@ -271,10 +275,10 @@ def load_and_build_engine():
         "consonants": sorted(consonants)
     }
 
-    # 2.7 Precompute Entropy Metrics
-    tot_c = len(clean_chars)
+    # 2.7 Precompute Entropy Metrics (Slicing string directly -> hashable strings)
+    tot_c = len(clean_text)
     h1 = -sum((cnt / tot_c) * math.log2(cnt / tot_c) for cnt in f_counts.values()) if tot_c > 0 else 0.0
-    bigrams = [clean_chars[i:i+2] for i in range(len(clean_chars)-1)]
+    bigrams = [clean_text[i:i+2] for i in range(len(clean_text)-1)]
     b_counts = Counter(bigrams)
     tot_b = len(bigrams)
     h2 = -sum((cnt / tot_b) * math.log2(cnt / tot_b) for cnt in b_counts.values()) if tot_b > 0 else 0.0
