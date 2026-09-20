@@ -1,522 +1,253 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import os
+import math
 import re
-import urllib.request
+from collections import Counter
+import altair as alt
 
-st.set_page_config(page_title="Voynich Decipherment Workbench", layout="wide")
+st.set_page_config(
+    page_title="Voynich Decipherment Workbench",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-COLUMNS = ["folio", "line", "locus", "section", "clean", "state"]
+# ---------------------------------------------------------
+# CORE ANALYTICAL FUNCTIONS
+# ---------------------------------------------------------
 
-# -----------------------------------------------------------------------------
-# DATA INGESTION & CACHING
-# -----------------------------------------------------------------------------
-@st.cache_data(show_spinner="Loading manuscript data...")
-def load_manuscript_data():
-    candidates = [
-        os.path.join("data", "ZL3b-n.txt"),
-        "ZL3b-n.txt",
-        os.path.join("data", "ZL3b-n 2.txt"),
-        "ZL3b-n 2.txt"
-    ]
-    target_path = None
-    for p in candidates:
-        if os.path.exists(p) and os.path.getsize(p) > 5000:
-            target_path = p
-            break
+def clean_eva_tokens(raw_text: str):
+    """Clean and tokenize EVA-transcribed Voynich text."""
+    # Strip comments, folio markers <f1r...>, and punctuation tags
+    text = re.sub(r"<[^>]+>", "", raw_text)
+    text = re.sub(r"[!=?,;:\$#@]", "", text)
+    # Split on whitespace, periods, or hyphen connectors common in EVA transcripts
+    tokens = [t.strip().lower() for t in re.split(r"[\s\.\-]+", text) if t.strip()]
+    return tokens
 
-    if not target_path:
-        os.makedirs("data", exist_ok=True)
-        target_path = os.path.join("data", "ZL3b-n.txt")
-        urls = [
-            "https://raw.githubusercontent.com/RN-Top/Voynich/main/data/ZL3b-n.txt",
-            "https://www.voynich.nu/data/ZL3b-n.txt",
-            "https://www.icir.org/christian/voynich/ZL3b-n.txt"
-        ]
-        for u in urls:
-            try:
-                urllib.request.urlretrieve(u, target_path)
-                if os.path.exists(target_path) and os.path.getsize(target_path) > 5000:
-                    break
-            except Exception:
-                continue
+def calculate_shannon_entropy(tokens, level="char"):
+    """Calculate Shannon Entropy in bits for characters or tokens."""
+    if not tokens:
+        return 0.0
+    if level == "char":
+        units = "".join(tokens)
+    else:
+        units = tokens
 
-    records = []
-    if target_path and os.path.exists(target_path):
-        current_folio = "f1r"
-        with open(target_path, "r", encoding="utf-8", errors="ignore") as f:
-            for raw_line in f:
-                line = raw_line.strip()
-                if not line or line.startswith("#") or line.startswith("<!"):
-                    continue
+    total = len(units)
+    if total == 0:
+        return 0.0
+    
+    counts = Counter(units)
+    entropy = -sum((count / total) * math.log2(count / total) for count in counts.values())
+    return round(entropy, 4)
+
+def get_ngram_frequencies(tokens, n=2, level="char"):
+    """Compute n-gram frequencies for characters or words."""
+    ngrams = []
+    if level == "char":
+        for token in tokens:
+            if len(token) >= n:
+                for i in range(len(token) - n + 1):
+                    ngrams.append(token[i:i+n])
+    else:
+        if len(tokens) >= n:
+            for i in range(len(tokens) - n + 1):
+                ngrams.append(" ".join(tokens[i:i+n]))
+    return Counter(ngrams)
+
+def analyze_character_positions(tokens):
+    """Examine character frequency by word position: initial, medial, final."""
+    initials = Counter()
+    medials = Counter()
+    finals = Counter()
+    
+    for token in tokens:
+        if len(token) == 1:
+            initials[token] += 1
+            finals[token] += 1
+        elif len(token) == 2:
+            initials[token[0]] += 1
+            finals[token[1]] += 1
+        else:
+            initials[token[0]] += 1
+            finals[token[-1]] += 1
+            for char in token[1:-1]:
+                medials[char] += 1
                 
-                f_header = re.match(r"<f?(\d+[rv]\d*|[A-Za-z]+)>", line)
-                if f_header:
-                    current_folio = f"f{f_header.group(1).lower()}"
-                    continue
-                
-                match = re.match(r"<([^>]+)>\s*(.*)", line)
-                if match:
-                    loc_full, content = match.group(1), match.group(2)
-                    parts = loc_full.split(".")
-                    
-                    raw_f = parts[0].lower().replace("<", "")
-                    if re.search(r"(\d+[rv]|ros)", raw_f):
-                        folio = raw_f if raw_f.startswith("f") else f"f{raw_f}"
-                    else:
-                        folio = current_folio
-                    
-                    line_info = parts[1] if len(parts) > 1 else "1"
-                    locus = line_info.split(",")[-1] if "," in line_info else "+P0"
-                    line_num = line_info.split(",")[0]
-                    
-                    clock_match = re.search(r"<!(\d{2}:\d{2})", content)
-                    clock_pos = clock_match.group(1) if clock_match else "N/A"
-                    
-                    sec = "Herbal"
-                    f_num_match = re.search(r"(\d+)", folio)
-                    if f_num_match:
-                        f_int = int(f_num_match.group(1))
-                        if 67 <= f_int <= 74:
-                            sec = "Astronomical/Zodiac"
-                        elif 75 <= f_int <= 84:
-                            sec = "Biological"
-                        elif 85 <= f_int <= 86:
-                            sec = "Cosmological"
-                        elif 87 <= f_int <= 102:
-                            sec = "Pharmaceutical"
-                        elif 103 <= f_int <= 116:
-                            sec = "Stars/Recipes"
-                    elif "ros" in folio.lower():
-                        sec = "Cosmological"
-                    
-                    clean_content = re.sub(r"<[%$!@].*?>", "", content)
-                    clean_content = re.sub(r"[{}\[\]<!>]", "", clean_content)
-                    tokens = [t for t in re.split(r"[.,\s]+", clean_content) if t and not t.startswith("<")]
-                    
-                    for tok in tokens:
-                        tok_clean = re.sub(r"[^a-z]", "", tok.lower())
-                        if not tok_clean:
-                            continue
-                        state = "OPERAND"
-                        if tok_clean.startswith(("qo", "qok", "qot", "qoc")):
-                            state = "OPERATOR"
-                        elif tok_clean.endswith(("y", "al", "ar", "aiin", "m")):
-                            state = "FLUSH"
-                        records.append({
-                            "folio": folio,
-                            "line": line_num,
-                            "locus": locus,
-                            "clock": clock_pos,
-                            "section": sec,
-                            "clean": tok_clean,
-                            "state": state
-                        })
+    chars = sorted(list(set(initials.keys()) | set(medials.keys()) | set(finals.keys())))
+    data = []
+    for c in chars:
+        data.append({
+            "Glyph": c,
+            "Initial": initials[c],
+            "Medial": medials[c],
+            "Final": finals[c],
+            "Total": initials[c] + medials[c] + finals[c]
+        })
+    return pd.DataFrame(data).sort_values(by="Total", ascending=False)
 
-    if not records:
-        return pd.DataFrame(columns=COLUMNS + ["clock"])
-        
-    return pd.DataFrame(records)
+def apply_substitution(tokens, mapping):
+    """Replace EVA characters based on user hypothesis mapping."""
+    substituted = []
+    for token in tokens:
+        translated_token = "".join(mapping.get(c, c) for c in token)
+        substituted.append(translated_token)
+    return substituted
 
-df = load_manuscript_data()
-all_folios = sorted(df["folio"].dropna().unique().tolist()) if not df.empty else ["f1r"]
+# ---------------------------------------------------------
+# UI & WORKBENCH LAYOUT
+# ---------------------------------------------------------
 
-st.title("Voynich Manuscript Decipherment Workbench")
-st.caption(f"Corpus Loaded: **{len(df):,}** tokens across **{len(all_folios)}** folios")
+st.title("Voynich Analysis & Decipherment Workbench")
+st.caption("Information Theory, Frequency Distributions, and Hypothesis Testing")
 
-# -----------------------------------------------------------------------------
-# 13 TABS SETUP
-# -----------------------------------------------------------------------------
-tabs = st.tabs([
-    "1. Parallel Reader",
-    "2. Author Audit",
-    "3. Translator",
-    "4. Lexicon Key",
-    "5. Export CSV",
-    "6. 600-Yr Verdict",
-    "7. Structure Tests",
-    "8. Carrier Matrix",
-    "9. Decan Cross-Alignment",
-    "10. Slot Omega Miner",
-    "11. Astro Load Inspector",
-    "12. Generator Null Benchmark",
-    "13. External Procrustes Benchmark"
+sidebar = st.sidebar
+sidebar.header("Input Data")
+
+sample_eva = """
+fachys ykal ar ataiin shol shory cthephos ychey rshey
+qokain ol chedy qokedy chedy chey keol cheol
+daiin daiin cthey shey or aiin chal ar chor
+cthor shey qokeey dain qokal ctheor chckhy
+"""
+
+input_mode = sidebar.radio("Data Source", ["Sample Text", "Paste Raw EVA", "Upload File"])
+
+if input_mode == "Sample Text":
+    raw_input = sample_eva
+elif input_mode == "Paste Raw EVA":
+    raw_input = sidebar.text_area("Paste EVA / Currier Transcript Here", height=250)
+else:
+    uploaded = sidebar.file_uploader("Upload .txt file", type=["txt"])
+    raw_input = uploaded.read().decode("utf-8") if uploaded else ""
+
+tokens = clean_eva_tokens(raw_input)
+
+# Metrics Ribbon
+col1, col2, col3, col4 = st.columns(4)
+col1.metric("Total Word Tokens", len(tokens))
+col2.metric("Unique Word Tokens", len(set(tokens)))
+col3.metric("Char Entropy (H)", f"{calculate_shannon_entropy(tokens, 'char')} bits")
+col4.metric("Word Entropy (H)", f"{calculate_shannon_entropy(tokens, 'word')} bits")
+
+st.divider()
+
+# Tab Navigation
+tab_pos, tab_ngrams, tab_currier, tab_cipher = st.tabs([
+    "Positional Rules",
+    "N-Gram & Frequency",
+    "Currier A vs B Flags",
+    "Substitution Sandbox"
 ])
 
-# TAB 1: PARALLEL READER
-with tabs[0]:
-    st.subheader("📖 Parallel Manuscript Reader")
-    selected_f = st.selectbox("Select Folio", all_folios, index=0)
-    col_img, col_txt = st.columns([1, 1])
-    with col_img:
-        st.markdown(f"**Facsimile ({selected_f})**")
-        clean_name = selected_f.lower().strip()
-        img_url = f"https://commons.wikimedia.org/wiki/Special:FilePath/Voynich_manuscript_{clean_name}.jpg"
-        st.image(img_url, caption=f"Beinecke MS 408 — Folio {selected_f}", use_container_width=True)
-    with col_txt:
-        st.markdown(f"**Locus Transcription & Regimes ({selected_f})**")
-        sub_df = df[df["folio"] == selected_f] if not df.empty else pd.DataFrame(columns=COLUMNS)
-        st.dataframe(sub_df[["line", "locus", "clean", "state", "section"]], use_container_width=True, height=450)
-
-# TAB 2: AUTHOR AUDIT
-with tabs[1]:
-    st.subheader("🖋️ Scribal Colophon & Ownership Audit")
-    st.markdown("""
-    * **f1r UV Margin:** Jacobus Horčický de Tepenecz (court alchemist to Rudolf II, Prague).
-    * **=Pt Closure:** `ydaraishy` on folio `f1r.6`.
-    * **+Pc Sign-off:** `ytchas.oraiin.chkor` on folio `f9r.10`.
-    """)
-    check_loci = df[df["clean"].isin(["ydaraishy", "ytchas", "oraiin", "chkor", "sheey"])] if not df.empty else pd.DataFrame(columns=COLUMNS)
-    st.dataframe(check_loci[["folio", "line", "locus", "clean", "section"]], use_container_width=True)
-
-# TAB 3: TRANSLATOR
-with tabs[2]:
-    st.subheader("🔤 Operational Sequence Gloss")
-    user_input = st.text_input("Voynichese Sequence:", "qokedy daiin chedy")
-    words = user_input.lower().split()
-    gloss_records = []
-    for w in words:
-        role = "Stem Carrier"
-        if w.startswith("qo"): role = "Active Operator [INJECT]"
-        elif w.endswith("aiin") or w.endswith("ain"): role = "Buffer Hold [CONTAIN]"
-        elif w.endswith("y"): role = "Terminal Phase [RESOLVE]"
-        gloss_records.append({"Word": w, "Inferred Role": role})
-    st.table(pd.DataFrame(gloss_records))
-
-# TAB 4: LEXICON KEY
-with tabs[3]:
-    st.subheader("📚 High-Frequency Carrier Concordance")
-    if not df.empty:
-        top_tokens = df["clean"].value_counts().head(25).reset_index()
-        top_tokens.columns = ["Token", "Frequency"]
-        st.dataframe(top_tokens, use_container_width=True)
-
-# TAB 5: EXPORT CSV
-with tabs[4]:
-    st.subheader("💾 Export Parsed Corpus")
-    csv_data = df.to_csv(index=False).encode("utf-8")
-    st.download_button(
-        label="Download Full Corpus (CSV)",
-        data=csv_data,
-        file_name="voynich_corpus_extracted.csv",
-        mime="text/csv"
-    )
-
-# TAB 6: 600-YR VERDICT
-with tabs[5]:
-    st.subheader("⚖️ Empirical Scorecard of Answers")
-    st.markdown("""
-    * **Genre:** Technical procedural compendium (botanical, balneological, astronomical) rather than a monoalphabetic cipher hoax.
-    * **Grammar:** Templatic state machine: $W = \\mathcal{C}([\\Lambda \\times N_E \\times O_I] + \\rho)$.
-    * **Line Buffers:** Line starts are governed by directive headers ($d$-); terminal `-m` flushes execution registers.
-    """)
-
-# TAB 7: STRUCTURE TESTS
-with tabs[6]:
-    st.subheader("🔬 Empirical Proof Tests")
-    test_type = st.radio("Test Selection", ["Null Model Baseline", "Folio Holdout"], horizontal=True)
-    if test_type == "Null Model Baseline":
-        if st.button("Run Null Model Baseline"):
-            st.success("Beats chance: YES")
-            c1, c2, c3 = st.columns(3)
-            c1.metric("Empirical PMI", "3.345")
-            c2.metric("Null Mean PMI", "2.799")
-            c3.metric("Z-Score", "+4.88σ")
-    else:
-        if st.button("Run Folio Holdout"):
-            st.success("Holdout holds: YES")
-            c1, c2 = st.columns(2)
-            c1.metric("Train PMI", "4.677")
-            c2.metric("Test PMI", "4.210")
-
-# TAB 8: CARRIER MATRIX
-with tabs[7]:
-    st.subheader("📊 Cross-Section Carrier Root Distribution")
-    top_carriers = ["ch", "ot", "ok", "t", "ol", "shed", "air"]
-    sec_matrix = []
-    for c in top_carriers:
-        row = {"Carrier Core": c}
-        for s in ["Herbal", "Biological", "Astronomical/Zodiac"]:
-            cnt = len(df[(df["section"] == s) & (df["clean"].str.contains(c))]) if not df.empty else 0
-            row[s] = cnt
-        sec_matrix.append(row)
-    st.dataframe(pd.DataFrame(sec_matrix), use_container_width=True)
-
-# TAB 9: DECAN CROSS-ALIGNMENT
-with tabs[8]:
-    st.subheader("🔭 12 Zodiac Rotas: 36 Decan & Historical Calendar Alignment")
-    st.caption("Direct mapping between the 30-part radial labels and the historical medieval Ptolemaic/Picatrix decan coordinate system.")
-
-    CLASSICAL_DECANS = {
-        "Pisces (March / Mars)": [
-            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Saturn", "Degree Arc": "330°–340°"},
-            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Jupiter", "Degree Arc": "340°–350°"},
-            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Mars", "Degree Arc": "350°–360°"}
-        ],
-        "Aries I (April / Abril)": [
-            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Mars", "Degree Arc": "0°–10°"},
-            {"Decan": "2nd Decan (10°–15° split)", "Classical Ruler": "Sun", "Degree Arc": "10°–15°"}
-        ],
-        "Aries II": [
-            {"Decan": "2nd Decan (15°–20° split)", "Classical Ruler": "Sun", "Degree Arc": "15°–20°"},
-            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Venus", "Degree Arc": "20°–30°"}
-        ],
-        "Taurus I (May)": [
-            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Mercury", "Degree Arc": "30°–40°"},
-            {"Decan": "2nd Decan (10°–15° split)", "Classical Ruler": "Moon", "Degree Arc": "40°–45°"}
-        ],
-        "Taurus II": [
-            {"Decan": "2nd Decan (15°–20° split)", "Classical Ruler": "Moon", "Degree Arc": "45°–50°"},
-            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Saturn", "Degree Arc": "50°–60°"}
-        ],
-        "Gemini": [
-            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Jupiter", "Degree Arc": "60°–70°"},
-            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Mars", "Degree Arc": "70°–80°"},
-            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Sun", "Degree Arc": "80°–90°"}
-        ],
-        "Cancer": [
-            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Venus", "Degree Arc": "90°–100°"},
-            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Mercury", "Degree Arc": "100°–110°"},
-            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Moon", "Degree Arc": "110°–120°"}
-        ],
-        "Leo": [
-            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Saturn", "Degree Arc": "120°–130°"},
-            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Jupiter", "Degree Arc": "130°–140°"},
-            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Mars", "Degree Arc": "140°–150°"}
-        ],
-        "Virgo": [
-            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Sun", "Degree Arc": "150°–160°"},
-            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Venus", "Degree Arc": "160°–170°"},
-            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Mercury", "Degree Arc": "170°–180°"}
-        ],
-        "Libra": [
-            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Moon", "Degree Arc": "180°–190°"},
-            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Saturn", "Degree Arc": "190°–200°"},
-            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Jupiter", "Degree Arc": "200°–210°"}
-        ],
-        "Scorpius": [
-            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Mars", "Degree Arc": "210°–220°"},
-            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Sun", "Degree Arc": "220°–230°"},
-            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Venus", "Degree Arc": "230°–240°"}
-        ],
-        "Sagittarius": [
-            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Mercury", "Degree Arc": "240°–250°"},
-            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Moon", "Degree Arc": "250°–260°"},
-            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Saturn", "Degree Arc": "260°–270°"}
-        ]
-    }
-
-    zodiac_map = {
-        "f70v2": "Pisces (March / Mars)",
-        "f70v1": "Aries I (April / Abril)",
-        "f71r": "Aries II",
-        "f71v": "Taurus I (May)",
-        "f72r1": "Taurus II",
-        "f72r2": "Gemini",
-        "f72r3": "Cancer",
-        "f72v3": "Leo",
-        "f72v2": "Virgo",
-        "f72v1": "Libra",
-        "f73r": "Scorpius",
-        "f73v": "Sagittarius"
-    }
-
-    selected_sign = st.selectbox("Select Target Zodiac Rota", list(zodiac_map.values()), index=0)
-    target_folio = [f for f, s in zodiac_map.items() if s == selected_sign][0]
-
-    z_sub = df[(df["folio"] == target_folio) & (df["locus"].str.contains(r"L[zsa]|R[io]", regex=True))].copy()
-
-    col_align1, col_align2 = st.columns([1, 1])
-
-    with col_align1:
-        st.markdown(f"#### Classical Decan Model: **{selected_sign}**")
-        st.table(pd.DataFrame(CLASSICAL_DECANS[selected_sign]))
-        st.markdown(f"**Total Mined Voynich Labels on Folio `{target_folio}`:** **{len(z_sub)}**")
-        st.dataframe(z_sub[["line", "locus", "clock", "clean", "state"]], use_container_width=True)
-
-    with col_align2:
-        st.markdown("#### Morphological Grounding Profile")
-        if not z_sub.empty:
-            ot_count = z_sub["clean"].str.startswith("ot").sum()
-            ok_count = z_sub["clean"].str.startswith("ok").sum()
-            al_count = z_sub["clean"].str.endswith("al").sum()
-            ar_count = z_sub["clean"].str.endswith("ar").sum()
-            
-            st.metric("Total Positional Roots (ot- / ok-)", f"{ot_count + ok_count} / {len(z_sub)} ({((ot_count + ok_count)/len(z_sub)*100):.1f}%)")
-            st.metric("Rotational Sector Suffixes (-al / -ar)", f"{al_count + ar_count} / {len(z_sub)} ({((al_count + ar_count)/len(z_sub)*100):.1f}%)")
-            
-            st.markdown("**Top Radial Label Stems:**")
-            st.dataframe(z_sub["clean"].value_counts().head(10).reset_index(), use_container_width=True)
-
-# TAB 10: SLOT OMEGA MINER
-with tabs[9]:
-    st.subheader("⚙️ Candidate Slot Omega Miner")
-    st.caption("Frame: Q-ACTIVE -> [X-aiin / X-ain] -> Q-ACTIVE")
-    if st.button("Scan Corpus for Slot Omega"):
-        records = []
-        if not df.empty:
-            for (folio, line_id), group in df.groupby(["folio", "line"]):
-                toks = group["clean"].tolist()
-                if len(toks) < 3:
-                    continue
-                for i in range(1, len(toks) - 1):
-                    if toks[i - 1].startswith("qo") and toks[i + 1].startswith("qo"):
-                        if toks[i].endswith("aiin") or toks[i].endswith("ain"):
-                            records.append({
-                                "Folio": folio,
-                                "Line": str(line_id),
-                                "Q-Entry": toks[i - 1],
-                                "Carrier": toks[i],
-                                "Q-Exit": toks[i + 1]
-                            })
-        res_df = pd.DataFrame(records)
-        if not res_df.empty:
-            st.success(f"Found {len(res_df)} Slot Omega matches!")
-            st.dataframe(res_df, use_container_width=True)
-        else:
-            st.info("No tokens matched the strict frame criteria.")
-
-# TAB 11: ASTRO LOAD INSPECTOR
-with tabs[10]:
-    st.subheader("🔭 Astronomical Load & Neighborhoods")
-    target_carrier = st.selectbox("Target Core", ["otcheod", "oteody", "opair", "dair", "air"])
-    if st.button(f"Search for '{target_carrier}'"):
-        hits = df[df["clean"].str.contains(target_carrier)] if not df.empty else pd.DataFrame(columns=COLUMNS)
-        st.write(f"Matches found: {len(hits)}")
-        st.dataframe(hits[["folio", "line", "locus", "clean", "section", "state"]], use_container_width=True)
-
-# TAB 12: GENERATOR NULL BENCHMARK
-with tabs[11]:
-    st.subheader("🤖 Clean-Room Generator Null Benchmark")
-    st.caption("Falsifies the Timm & Schinner self-citation pseudo-text generator hypothesis against empirical Effect A3 gating.")
+# ---------------------------------------------------------
+# TAB 1: POSITIONAL RULES (Morphology check)
+# ---------------------------------------------------------
+with tab_pos:
+    st.subheader("Glyph Positional Distribution (Initial vs. Medial vs. Final)")
+    st.write("Identifies strictly positional characters (e.g., gallows characters like `t`, `p`, `k`, `f` vs. suffixes like `y`, `n`).")
     
-    if st.button("Run Generator Null Benchmark"):
-        toks = df["clean"].tolist()
+    if tokens:
+        pos_df = analyze_character_positions(tokens)
         
-        # Real corpus measurement
-        k_count = sum(1 for t in toks if t.startswith("ok") or t.startswith("k"))
-        t_count = sum(1 for t in toks if t.startswith("ot") or t.startswith("t"))
-        qo_k = sum(1 for t in toks if t.startswith("qok"))
-        qo_t = sum(1 for t in toks if t.startswith("qot"))
+        top_n = st.slider("Top Glyphs to Display", 5, 35, 15)
+        top_pos = pos_df.head(top_n)
+        
+        melted_pos = top_pos.melt(id_vars=["Glyph"], value_vars=["Initial", "Medial", "Final"], 
+                                  var_name="Position", value_name="Count")
+        
+        chart = alt.Chart(melted_pos).mark_bar().encode(
+            x=alt.X("Position:N", axis=alt.Axis(title=None)),
+            y=alt.Y("Count:Q"),
+            color=alt.Color("Position:N"),
+            column=alt.Column("Glyph:N", header=alt.Header(titleOrient="bottom"))
+        ).resolve_scale(y="independent")
+        
+        st.altair_chart(chart, use_container_width=True)
+        st.dataframe(top_pos, use_container_width=True)
+    else:
+        st.info("Input text to view positional rules.")
 
-        real_base = k_count / max(1, t_count)
-        real_qo = qo_k / max(1, qo_t)
-        real_mult = real_qo / max(0.001, real_base)
+# ---------------------------------------------------------
+# TAB 2: N-GRAM & FREQUENCY
+# ---------------------------------------------------------
+with tab_ngrams:
+    st.subheader("Frequency Analysis")
+    sub_col1, sub_col2 = st.columns([1, 2])
+    
+    with sub_col1:
+        ngram_level = st.selectbox("Unit", ["char", "word"])
+        n_val = st.slider("N-Gram Length (N)", 1, 4, 2)
+        top_k = st.slider("Results to Show", 10, 50, 20)
+        
+    with sub_col2:
+        if tokens:
+            ngrams = get_ngram_frequencies(tokens, n=n_val, level=ngram_level)
+            ngram_df = pd.DataFrame(ngrams.most_common(top_k), columns=["N-Gram", "Frequency"])
+            
+            bar_chart = alt.Chart(ngram_df).mark_bar().encode(
+                x=alt.X("Frequency:Q"),
+                y=alt.Y("N-Gram:N", sort="-x")
+            )
+            st.altair_chart(bar_chart, use_container_width=True)
+            st.dataframe(ngram_df, use_container_width=True)
 
-        # Timm & Schinner Null Simulator
-        np.random.seed(42)
-        synth_tokens = []
-        pool = toks[:500] if len(toks) >= 500 else toks
+# ---------------------------------------------------------
+# TAB 3: CURRIER A vs. B SEPARATION
+# ---------------------------------------------------------
+with tab_currier:
+    st.subheader("Currier Dialect Split Detector")
+    st.write("Measures marker tokens that typically distinguish Currier A (herbal/simple) from Currier B (balneological/complex).")
+    
+    # Classic Currier vocabulary signatures in EVA
+    currier_a_markers = {"daiin", "chol", "chor", "shol", "cthor"}
+    currier_b_markers = {"chedy", "shedy", "qokedy", "qokain", "chey"}
+    
+    token_set = Counter(tokens)
+    a_count = sum(token_set[word] for word in currier_a_markers)
+    b_count = sum(token_set[word] for word in currier_b_markers)
+    total_markers = a_count + b_count
+    
+    c_col1, c_col2 = st.columns(2)
+    with c_col1:
+        st.metric("Currier A Signature Count", a_count)
+        for w in currier_a_markers:
+            st.write(f"- `{w}`: {token_set[w]}")
+            
+    with c_col2:
+        st.metric("Currier B Signature Count", b_count)
+        for w in currier_b_markers:
+            st.write(f"- `{w}`: {token_set[w]}")
+            
+    if total_markers > 0:
+        ratio_b = round((b_count / total_markers) * 100, 1)
+        st.progress(ratio_b / 100)
+        st.caption(f"Dialect Lean: {100 - ratio_b}% Currier A | {ratio_b}% Currier B")
 
-        for _ in range(min(15000, len(toks))):
-            if len(synth_tokens) > 50 and np.random.rand() < 0.70:
-                offset = int(np.random.geometric(p=0.05))
-                offset = max(1, min(offset, len(synth_tokens)))
-                base = synth_tokens[-offset]
-                chars = list(base)
-                if chars and np.random.rand() < 0.3:
-                    chars[np.random.randint(0, len(chars))] = np.random.choice(list("aodechkqtsrly"))
-                synth_tokens.append("".join(chars))
-            else:
-                synth_tokens.append(np.random.choice(pool))
-
-        synth_k = sum(1 for t in synth_tokens if t.startswith("ok") or t.startswith("k"))
-        synth_t = sum(1 for t in synth_tokens if t.startswith("ot") or t.startswith("t"))
-        synth_qo_k = sum(1 for t in synth_tokens if t.startswith("qok"))
-        synth_qo_t = sum(1 for t in synth_tokens if t.startswith("qot"))
-
-        synth_base = synth_k / max(1, synth_t)
-        synth_qo = synth_qo_k / max(1, synth_qo_t)
-        synth_mult = synth_qo / max(0.001, synth_base)
-
-        col_a, col_b = st.columns(2)
-        with col_a:
-            st.markdown("#### Real Manuscript Measurements")
-            st.metric("Base K : T Ratio", f"{real_base:.2f}")
-            st.metric("QO-Gated K : T Ratio", f"{real_qo:.2f}")
-            st.metric("Empirical A3 Multiplier", f"{real_mult:.2f}x")
-
-        with col_b:
-            st.markdown("#### Synthetic Null (Timm & Schinner)")
-            st.metric("Synthetic Base Ratio", f"{synth_base:.2f}")
-            st.metric("Synthetic QO-Gated Ratio", f"{synth_qo:.2f}")
-            st.metric("Synthetic Multiplier", f"{synth_mult:.2f}x")
-
-        st.markdown("---")
-        if abs(synth_mult - 1.0) < abs(real_mult - 1.0) / 2:
-            st.success("✅ **VERDICT: GENERATOR NULL FALSIFIED**")
-            st.markdown("The Timm & Schinner self-citation algorithm fails to replicate the empirical $QO \\times K/T$ gating effect, confirming the manuscript's state-machine grammar is not an artifact of mechanical pseudotext generation.")
-        else:
-            st.error("❌ **VERDICT: GENERATOR NULL HOLDS**")
-
-# TAB 13: EXTERNAL PROCRUSTES BENCHMARK (Pure NumPy SVD)
-with tabs[12]:
-    st.subheader("🌐 Orthogonal Procrustes Manifold Alignment")
-    st.caption("Measures geometric alignment between Voynich carrier distributions and 15th-century historical Latin technical controls.")
-
-    control_choice = st.selectbox(
-        "Select Historical Control Corpus",
-        ["Alfonsine Astronomical Tables (Latin)", "Macer Floridus De Viribus Herbarum (Latin Herbal)", "Random Permutation Control"]
+# ---------------------------------------------------------
+# TAB 4: SUBSTITUTION SANDBOX
+# ---------------------------------------------------------
+with tab_cipher:
+    st.subheader("Interactive Substitution Cipher Sandbox")
+    st.write("Map EVA characters to test languages (Latin, Italian, Hebrew transliteration, etc.).")
+    
+    mapping_str = st.text_input(
+        "Mapping dictionary (comma separated, e.g., o:a, l:r, d:t, ch:s)",
+        value="o:a, l:r, d:t"
     )
-
-    if st.button("Compute Manifold Procrustes Distance"):
-        carriers = ["ch", "ot", "ok", "t", "ol", "shed", "air"]
-        
-        m_matrix = []
-        for c in carriers:
-            cnt_h = len(df[(df["section"] == "Herbal") & (df["clean"].str.contains(c))])
-            cnt_b = len(df[(df["section"] == "Biological") & (df["clean"].str.contains(c))])
-            cnt_a = len(df[(df["section"] == "Astronomical/Zodiac") & (df["clean"].str.contains(c))])
-            tot = max(1, cnt_h + cnt_b + cnt_a)
-            m_matrix.append([cnt_h / tot, cnt_b / tot, cnt_a / tot])
-        
-        A = np.array(m_matrix, dtype=float)
-        A = (A - np.mean(A, axis=0)) / (np.std(A, axis=0) + 1e-9)
-
-        if "Alfonsine" in control_choice:
-            B_ref = np.array([
-                [0.2, 0.1, 0.7],
-                [0.1, 0.1, 0.8],
-                [0.3, 0.1, 0.6],
-                [0.2, 0.2, 0.6],
-                [0.1, 0.1, 0.8],
-                [0.05, 0.05, 0.9],
-                [0.05, 0.05, 0.9]
-            ])
-        elif "Macer" in control_choice:
-            B_ref = np.array([
-                [0.7, 0.2, 0.1],
-                [0.6, 0.3, 0.1],
-                [0.5, 0.4, 0.1],
-                [0.6, 0.3, 0.1],
-                [0.7, 0.2, 0.1],
-                [0.2, 0.7, 0.1],
-                [0.6, 0.3, 0.1]
-            ])
-        else:
-            np.random.seed(99)
-            B_ref = np.random.rand(7, 3)
-
-        B = (B_ref - np.mean(B_ref, axis=0)) / (np.std(B_ref, axis=0) + 1e-9)
-
-        # Pure NumPy SVD Procrustes solution (zero scipy dependencies)
-        M = B.T @ A
-        U, S, Vh = np.linalg.svd(M)
-        R = Vh.T @ U.T
-        
-        procrustes_disparity = float(np.sum(np.square(A @ R - B)) / np.sum(np.square(B)))
-
-        col_p1, col_p2 = st.columns(2)
-        with col_p1:
-            st.metric("Procrustes Disparity (d²)", f"{procrustes_disparity:.4f}")
-            st.metric("Isomorphic Congruence", f"{max(0.0, (1.0 - procrustes_disparity)) * 100:.1f}%")
-        
-        with col_p2:
-            st.markdown("#### Manifold Alignment Assessment")
-            if procrustes_disparity < 0.45:
-                st.success("✅ **CONGRUENT MANIFOLD ALIGNMENT**")
-                st.markdown("The carrier distribution exhibits low Procrustes disparity with the historical Latin technical profile, indicating structural preservation of domain-specific lexical topology.")
-            else:
-                st.warning("⚠️ **DIVERGENT MANIFOLD**")
-                st.markdown("The geometric disparity exceeds the isometric threshold, indicating divergence from this specific reference genre profile.")
+    
+    # Parse mapping
+    mapping = {}
+    if mapping_str.strip():
+        for pair in mapping_str.split(","):
+            if ":" in pair:
+                k, v = pair.split(":")
+                mapping[k.strip()] = v.strip()
+                
+    st.write("Active Mapping:", mapping)
+    
+    if tokens:
+        transformed = apply_substitution(tokens, mapping)
+        st.markdown("**Transformed Text Stream:**")
+        st.write(" ".join(transformed[:200]) + ("..." if len(transformed) > 200 else ""))
