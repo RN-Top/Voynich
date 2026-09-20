@@ -154,15 +154,26 @@ with tab_pos:
         top_n = st.slider("Top Glyphs to Display", 5, 35, 15)
         top_pos = pos_df.head(top_n)
         
-        melted_pos = top_pos.melt(id_vars=["Glyph"], value_vars=["Initial", "Medial", "Final"], 
-                                  var_name="Position", value_name="Count")
+        melted_pos = top_pos.melt(
+            id_vars=["Glyph"], 
+            value_vars=["Initial", "Medial", "Final"], 
+            var_name="Position", 
+            value_name="Count"
+        )
         
+        # Grouped bar chart with readable spacing and hover tooltips
         chart = alt.Chart(melted_pos).mark_bar().encode(
-            x=alt.X("Position:N", axis=alt.Axis(title=None)),
-            y=alt.Y("Count:Q"),
-            color=alt.Color("Position:N"),
-            column=alt.Column("Glyph:N", header=alt.Header(titleOrient="bottom"))
-        ).resolve_scale(y="independent")
+            x=alt.X("Glyph:N", title="Glyph", sort=None),
+            xOffset="Position:N",
+            y=alt.Y("Count:Q", title="Occurrences"),
+            color=alt.Color(
+                "Position:N", 
+                scale=alt.Scale(domain=["Initial", "Medial", "Final"], range=["#4C78A8", "#F58518", "#54A24B"])
+            ),
+            tooltip=["Glyph", "Position", "Count"]
+        ).properties(
+            height=420
+        ).interactive()
         
         st.altair_chart(chart, use_container_width=True)
         st.dataframe(top_pos, use_container_width=True)
@@ -187,8 +198,11 @@ with tab_ngrams:
             ngram_df = pd.DataFrame(ngrams.most_common(top_k), columns=["N-Gram", "Frequency"])
             
             bar_chart = alt.Chart(ngram_df).mark_bar().encode(
-                x=alt.X("Frequency:Q"),
-                y=alt.Y("N-Gram:N", sort="-x")
+                x=alt.X("Frequency:Q", title="Count"),
+                y=alt.Y("N-Gram:N", sort="-x", title="Token / Sequence"),
+                tooltip=["N-Gram", "Frequency"]
+            ).properties(
+                height=max(400, top_k * 18)
             )
             st.altair_chart(bar_chart, use_container_width=True)
             st.dataframe(ngram_df, use_container_width=True)
@@ -200,7 +214,6 @@ with tab_currier:
     st.subheader("Currier Dialect Split Detector")
     st.write("Measures marker tokens that typically distinguish Currier A (herbal/simple) from Currier B (balneological/complex).")
     
-    # Classic Currier vocabulary signatures in EVA
     currier_a_markers = {"daiin", "chol", "chor", "shol", "cthor"}
     currier_b_markers = {"chedy", "shedy", "qokedy", "qokain", "chey"}
     
