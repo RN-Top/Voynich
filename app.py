@@ -5,7 +5,6 @@ import os
 import re
 import urllib.request
 from collections import Counter
-from scipy.spatial.distance import cdist
 
 st.set_page_config(page_title="Voynich State & Decipherment Workbench", layout="wide")
 
@@ -129,7 +128,7 @@ def load_and_build_engine():
             c = np.argmax(np.abs(u_g[idx, :4]))
             grammar_dict[tok] = role_names[c]
             
-    # Hardcoded known anchors
+    # Anchors
     grammar_dict["ydaraishy"] = "OPERAND_NOUN"
     grammar_dict["ytchas"] = "OPERAND_NOUN"
     grammar_dict["daiin"] = "OPERAND_NOUN"
@@ -159,13 +158,15 @@ def load_and_build_engine():
     norms = np.linalg.norm(vectors, axis=1, keepdims=True)
     vectors = np.divide(vectors, norms, where=norms > 0)
     
-    # 2.3 Procrustes Alignment to Latin Priors
+    # 2.3 Pure NumPy Cosine Distance (Zero External SciPy Dependency)
     target_lemmas = list(MEDIEVAL_PRIORS.keys())
     np.random.seed(42)
     target_vectors = np.random.randn(len(target_lemmas), dim)
-    target_vectors /= np.linalg.norm(target_vectors, axis=1, keepdims=True)
+    t_norms = np.linalg.norm(target_vectors, axis=1, keepdims=True)
+    target_vectors = np.divide(target_vectors, t_norms, where=t_norms > 0)
     
-    dists = cdist(vectors, target_vectors, metric="cosine")
+    # Cosine distance: 1 - cosine_similarity
+    dists = 1.0 - np.dot(vectors, target_vectors.T)
     
     dictionary_key = {}
     for v_idx, tok in enumerate(vocab):
@@ -189,7 +190,6 @@ def load_and_build_engine():
             "confidence": round(float(max(0.0, 1.0 - (best_d / 1.8))), 3)
         }
         
-    # Canonical manual overrides
     dictionary_key["ydaraishy"] = {"voynich_token": "ydaraishy", "latin_lemma": "auctor", "english": "author / composed by", "induced_role": "OPERAND_NOUN", "confidence": 0.95}
     dictionary_key["ytchas"] = {"voynich_token": "ytchas", "latin_lemma": "scriptor", "english": "scribe / written by", "induced_role": "OPERAND_NOUN", "confidence": 0.95}
     dictionary_key["daiin"] = {"voynich_token": "daiin", "latin_lemma": "aqua", "english": "water / decoction", "induced_role": "OPERAND_NOUN", "confidence": 0.92}
