@@ -126,9 +126,9 @@ st.title("Voynich Manuscript Decipherment Workbench")
 st.caption(f"Corpus Loaded: **{len(df):,}** tokens across **{len(all_folios)}** folios")
 
 # -----------------------------------------------------------------------------
-# 11 TABS SETUP
+# 12 TABS SETUP
 # -----------------------------------------------------------------------------
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11 = st.tabs([
+tabs = st.tabs([
     "1. Parallel Reader",
     "2. Author Audit",
     "3. Translator",
@@ -139,11 +139,12 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11 = st.tabs([
     "8. Carrier Matrix",
     "9. Decan Cross-Alignment",
     "10. Slot Omega Miner",
-    "11. Astro Load Inspector"
+    "11. Astro Load Inspector",
+    "12. Generator Null Benchmark"
 ])
 
 # TAB 1: PARALLEL READER
-with tab1:
+with tabs[0]:
     st.subheader("📖 Parallel Manuscript Reader")
     selected_f = st.selectbox("Select Folio", all_folios, index=0)
     col_img, col_txt = st.columns([1, 1])
@@ -158,7 +159,7 @@ with tab1:
         st.dataframe(sub_df[["line", "locus", "clean", "state", "section"]], use_container_width=True, height=450)
 
 # TAB 2: AUTHOR AUDIT
-with tab2:
+with tabs[1]:
     st.subheader("🖋️ Scribal Colophon & Ownership Audit")
     st.markdown("""
     * **f1r UV Margin:** Jacobus Horčický de Tepenecz (court alchemist to Rudolf II, Prague).
@@ -169,7 +170,7 @@ with tab2:
     st.dataframe(check_loci[["folio", "line", "locus", "clean", "section"]], use_container_width=True)
 
 # TAB 3: TRANSLATOR
-with tab3:
+with tabs[2]:
     st.subheader("🔤 Operational Sequence Gloss")
     user_input = st.text_input("Voynichese Sequence:", "qokedy daiin chedy")
     words = user_input.lower().split()
@@ -183,7 +184,7 @@ with tab3:
     st.table(pd.DataFrame(gloss_records))
 
 # TAB 4: LEXICON KEY
-with tab4:
+with tabs[3]:
     st.subheader("📚 High-Frequency Carrier Concordance")
     if not df.empty:
         top_tokens = df["clean"].value_counts().head(25).reset_index()
@@ -191,7 +192,7 @@ with tab4:
         st.dataframe(top_tokens, use_container_width=True)
 
 # TAB 5: EXPORT CSV
-with tab5:
+with tabs[4]:
     st.subheader("💾 Export Parsed Corpus")
     csv_data = df.to_csv(index=False).encode("utf-8")
     st.download_button(
@@ -202,7 +203,7 @@ with tab5:
     )
 
 # TAB 6: 600-YR VERDICT
-with tab6:
+with tabs[5]:
     st.subheader("⚖️ Empirical Scorecard of Answers")
     st.markdown("""
     * **Genre:** Technical procedural compendium (botanical, balneological, astronomical) rather than a monoalphabetic cipher hoax.
@@ -211,7 +212,7 @@ with tab6:
     """)
 
 # TAB 7: STRUCTURE TESTS
-with tab7:
+with tabs[6]:
     st.subheader("🔬 Empirical Proof Tests")
     test_type = st.radio("Test Selection", ["Null Model Baseline", "Folio Holdout"], horizontal=True)
     if test_type == "Null Model Baseline":
@@ -229,7 +230,7 @@ with tab7:
             c2.metric("Test PMI", "4.210")
 
 # TAB 8: CARRIER MATRIX
-with tab8:
+with tabs[7]:
     st.subheader("📊 Cross-Section Carrier Root Distribution")
     top_carriers = ["ch", "ot", "ok", "t", "ol", "shed", "air"]
     sec_matrix = []
@@ -241,10 +242,8 @@ with tab8:
         sec_matrix.append(row)
     st.dataframe(pd.DataFrame(sec_matrix), use_container_width=True)
 
-# -----------------------------------------------------------------------------
-# TAB 9: DECAN CROSS-ALIGNMENT (EXTERNAL GROUNDING)
-# -----------------------------------------------------------------------------
-with tab9:
+# TAB 9: DECAN CROSS-ALIGNMENT
+with tabs[8]:
     st.subheader("🔭 12 Zodiac Rotas: 36 Decan & Historical Calendar Alignment")
     st.caption("Direct mapping between the 30-part radial labels and the historical medieval Ptolemaic/Picatrix decan coordinate system.")
 
@@ -350,7 +349,7 @@ with tab9:
             st.dataframe(z_sub["clean"].value_counts().head(10).reset_index(), use_container_width=True)
 
 # TAB 10: SLOT OMEGA MINER
-with tab10:
+with tabs[9]:
     st.subheader("⚙️ Candidate Slot Omega Miner")
     st.caption("Frame: Q-ACTIVE -> [X-aiin / X-ain] -> Q-ACTIVE")
     if st.button("Scan Corpus for Slot Omega"):
@@ -378,10 +377,72 @@ with tab10:
             st.info("No tokens matched the strict frame criteria.")
 
 # TAB 11: ASTRO LOAD INSPECTOR
-with tab11:
+with tabs[10]:
     st.subheader("🔭 Astronomical Load & Neighborhoods")
     target_carrier = st.selectbox("Target Core", ["otcheod", "oteody", "opair", "dair", "air"])
     if st.button(f"Search for '{target_carrier}'"):
         hits = df[df["clean"].str.contains(target_carrier)] if not df.empty else pd.DataFrame(columns=COLUMNS)
         st.write(f"Matches found: {len(hits)}")
         st.dataframe(hits[["folio", "line", "locus", "clean", "section", "state"]], use_container_width=True)
+
+# TAB 12: GENERATOR NULL BENCHMARK
+with tabs[11]:
+    st.subheader("🤖 Clean-Room Generator Null Benchmark")
+    st.caption("Falsifies the Timm & Schinner self-citation pseudo-text generator hypothesis against empirical Effect A3 gating.")
+    
+    if st.button("Run Generator Null Benchmark"):
+        toks = df["clean"].tolist()
+        
+        # Real corpus measurement
+        k_count = sum(1 for t in toks if t.startswith("ok") or t.startswith("k"))
+        t_count = sum(1 for t in toks if t.startswith("ot") or t.startswith("t"))
+        qo_k = sum(1 for t in toks if t.startswith("qok"))
+        qo_t = sum(1 for t in toks if t.startswith("qot"))
+
+        real_base = k_count / max(1, t_count)
+        real_qo = qo_k / max(1, qo_t)
+        real_mult = real_qo / max(0.001, real_base)
+
+        # Timm & Schinner Null Simulator
+        np.random.seed(42)
+        synth_tokens = []
+        pool = toks[:500] if len(toks) >= 500 else toks
+
+        for _ in range(min(15000, len(toks))):
+            if len(synth_tokens) > 50 and np.random.rand() < 0.70:
+                base = synth_tokens[-int(np.random.geometric(p=0.05))]
+                chars = list(base)
+                if chars and np.random.rand() < 0.3:
+                    chars[np.random.randint(0, len(chars))] = np.random.choice(list("aodechkqtsrly"))
+                synth_tokens.append("".join(chars))
+            else:
+                synth_tokens.append(np.random.choice(pool))
+
+        synth_k = sum(1 for t in synth_tokens if t.startswith("ok") or t.startswith("k"))
+        synth_t = sum(1 for t in synth_tokens if t.startswith("ot") or t.startswith("t"))
+        synth_qo_k = sum(1 for t in synth_tokens if t.startswith("qok"))
+        synth_qo_t = sum(1 for t in synth_tokens if t.startswith("qot"))
+
+        synth_base = synth_k / max(1, synth_t)
+        synth_qo = synth_qo_k / max(1, synth_qo_t)
+        synth_mult = synth_qo / max(0.001, synth_base)
+
+        col_a, col_b = st.columns(2)
+        with col_a:
+            st.markdown("#### Real Manuscript Measurements")
+            st.metric("Base K : T Ratio", f"{real_base:.2f}")
+            st.metric("QO-Gated K : T Ratio", f"{real_qo:.2f}")
+            st.metric("Empirical A3 Multiplier", f"{real_mult:.2f}x")
+
+        with col_b:
+            st.markdown("#### Synthetic Null (Timm & Schinner)")
+            st.metric("Synthetic Base Ratio", f"{synth_base:.2f}")
+            st.metric("Synthetic QO-Gated Ratio", f"{synth_qo:.2f}")
+            st.metric("Synthetic Multiplier", f"{synth_mult:.2f}x")
+
+        st.markdown("---")
+        if abs(synth_mult - 1.0) < abs(real_mult - 1.0) / 2:
+            st.success("✅ **VERDICT: GENERATOR NULL FALSIFIED**")
+            st.markdown("The Timm & Schinner self-citation algorithm fails to replicate the empirical $QO \\times K/T$ gating effect, confirming the manuscript's state-machine grammar is not an artifact of mechanical pseudotext generation.")
+        else:
+            st.error("❌ **VERDICT: GENERATOR NULL HOLDS**")
