@@ -1,22 +1,23 @@
-File "/mount/src/voynich/app.py", line 3
+File "/mount/src/voynich/app.py", line 2
     Streamlit Community Cloud does not have 'scipy' pre-installed in your app's Python container.
-SyntaxError: unterminated string literal (detected at line 3)
+SyntaxError: unterminated string literal (detected at line 2)
 ```[span_0](start_span)[span_0](end_span)
 
-The explanatory text from the previous message was accidentally copied along with the code into lines 1–4 of `app.py` on GitHub[span_1](start_span)[span_1](end_span). Python cannot execute English sentences, which triggers a `SyntaxError` immediately upon startup[span_2](start_span)[span_2](end_span).
+The chat message explanation sentence was pasted directly into the top of `app.py` in your GitHub repository[span_1](start_span)[span_1](end_span). Because that sentence begins with an apostrophe in `'scipy'`, Python interprets it as an unclosed string and halts execution immediately on startup[span_2](start_span)[span_2](end_span).
 
 ---
 
-### Step 1: Open and Clear `app.py` on GitHub
-1. In your browser on your laptop, switch to your GitHub tab: **[https://github.com/RN-Top/Voynich](https://github.com/RN-Top/Voynich)**.
+### Step 1: Open `app.py` on GitHub
+1. In your browser, switch to the GitHub tab: **[https://github.com/RN-Top/Voynich](https://github.com/RN-Top/Voynich)**.
 2. Click on **`app.py`**.
 3. Click the **Pencil icon** (Edit this file).
-4. Press **Ctrl + A** (or **Cmd + A**) and hit **Delete / Backspace** to empty the file completely.
+4. Look at the very top (lines 1, 2, 3). Delete every single line of text above the first Python import.
+5. Or, press **Ctrl + A** (or **Cmd + A**) and hit **Delete** so the file is completely empty.
 
 ---
 
-### Step 2: Paste the Clean Python Code
-Copy the code block below, starting exactly at `import streamlit as st`:
+### Step 2: Paste the Code
+Copy the code block below. Ensure line 1 begins with `import streamlit as st`:
 
 ```python
 import streamlit as st
@@ -147,7 +148,7 @@ st.title("Voynich Manuscript Decipherment Workbench")
 st.caption(f"Corpus Loaded: **{len(df):,}** tokens across **{len(all_folios)}** folios")
 
 # -----------------------------------------------------------------------------
-# 13 TABS SETUP
+# 12 TABS SETUP
 # -----------------------------------------------------------------------------
 tabs = st.tabs([
     "1. Parallel Reader",
@@ -161,8 +162,7 @@ tabs = st.tabs([
     "9. Decan Cross-Alignment",
     "10. Slot Omega Miner",
     "11. Astro Load Inspector",
-    "12. Generator Null Benchmark",
-    "13. External Procrustes Benchmark"
+    "12. Generator Null Benchmark"
 ])
 
 # TAB 1: PARALLEL READER
@@ -470,74 +470,3 @@ with tabs[11]:
             st.markdown("The Timm & Schinner self-citation algorithm fails to replicate the empirical $QO \\times K/T$ gating effect, confirming the manuscript's state-machine grammar is not an artifact of mechanical pseudotext generation.")
         else:
             st.error("❌ **VERDICT: GENERATOR NULL HOLDS**")
-
-# TAB 13: EXTERNAL PROCRUSTES BENCHMARK
-with tabs[12]:
-    st.subheader("🌐 Orthogonal Procrustes Manifold Alignment")
-    st.caption("Measures geometric alignment between Voynich carrier distributions and 15th-century historical Latin technical controls.")
-
-    control_choice = st.selectbox(
-        "Select Historical Control Corpus",
-        ["Alfonsine Astronomical Tables (Latin)", "Macer Floridus De Viribus Herbarum (Latin Herbal)", "Random Permutation Control"]
-    )
-
-    if st.button("Compute Manifold Procrustes Distance"):
-        carriers = ["ch", "ot", "ok", "t", "ol", "shed", "air"]
-        
-        m_matrix = []
-        for c in carriers:
-            cnt_h = len(df[(df["section"] == "Herbal") & (df["clean"].str.contains(c))])
-            cnt_b = len(df[(df["section"] == "Biological") & (df["clean"].str.contains(c))])
-            cnt_a = len(df[(df["section"] == "Astronomical/Zodiac") & (df["clean"].str.contains(c))])
-            tot = max(1, cnt_h + cnt_b + cnt_a)
-            m_matrix.append([cnt_h / tot, cnt_b / tot, cnt_a / tot])
-        
-        A = np.array(m_matrix, dtype=float)
-        A = (A - np.mean(A, axis=0)) / (np.std(A, axis=0) + 1e-9)
-
-        if "Alfonsine" in control_choice:
-            B_ref = np.array([
-                [0.2, 0.1, 0.7],
-                [0.1, 0.1, 0.8],
-                [0.3, 0.1, 0.6],
-                [0.2, 0.2, 0.6],
-                [0.1, 0.1, 0.8],
-                [0.05, 0.05, 0.9],
-                [0.05, 0.05, 0.9]
-            ])
-        elif "Macer" in control_choice:
-            B_ref = np.array([
-                [0.7, 0.2, 0.1],
-                [0.6, 0.3, 0.1],
-                [0.5, 0.4, 0.1],
-                [0.6, 0.3, 0.1],
-                [0.7, 0.2, 0.1],
-                [0.2, 0.7, 0.1],
-                [0.6, 0.3, 0.1]
-            ])
-        else:
-            np.random.seed(99)
-            B_ref = np.random.rand(7, 3)
-
-        B = (B_ref - np.mean(B_ref, axis=0)) / (np.std(B_ref, axis=0) + 1e-9)
-
-        # Pure NumPy SVD Procrustes solution
-        M = B.T @ A
-        U, S, Vh = np.linalg.svd(M)
-        R = Vh.T @ U.T
-        
-        procrustes_disparity = float(np.sum(np.square(A @ R - B)) / np.sum(np.square(B)))
-
-        col_p1, col_p2 = st.columns(2)
-        with col_p1:
-            st.metric("Procrustes Disparity (d²)", f"{procrustes_disparity:.4f}")
-            st.metric("Isomorphic Congruence", f"{max(0.0, (1.0 - procrustes_disparity)) * 100:.1f}%")
-        
-        with col_p2:
-            st.markdown("#### Manifold Alignment Assessment")
-            if procrustes_disparity < 0.45:
-                st.success("✅ **CONGRUENT MANIFOLD ALIGNMENT**")
-                st.markdown("The carrier distribution exhibits low Procrustes disparity with the historical Latin technical profile, indicating structural preservation of domain-specific lexical topology.")
-            else:
-                st.warning("⚠️ **DIVERGENT MANIFOLD**")
-                st.markdown("The geometric disparity exceeds the isometric threshold, indicating divergence from this specific reference genre profile.")
