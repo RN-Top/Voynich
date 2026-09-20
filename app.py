@@ -1,10 +1,31 @@
+ModuleNotFoundError: No module named 'scipy'
+File "/mount/src/voynich/app.py", line 7, in <module>
+    from scipy.linalg import orthogonal_procrustes
+```[span_0](start_span)[span_0](end_span)
+
+Streamlit Community Cloud does not have `scipy` pre-installed in your app's Python container. 
+
+Rather than requiring edits to a separate `requirements.txt` file, the clean solution is to compute the exact **Orthogonal Procrustes** solution directly using standard NumPy singular value decomposition (`np.linalg.svd`), which is already installed and running in your container.
+
+---
+
+### Step 1: Open `app.py` on GitHub
+1. Go to your repository: **[https://github.com/RN-Top/Voynich](https://github.com/RN-Top/Voynich)**.
+2. Click on **`app.py`**.
+3. Click the **Pencil icon** (Edit this file).
+
+---
+
+### Step 2: Paste the Fixed Code
+Select all code (Ctrl+A / Cmd+A), replace it with this complete, zero-dependency script, and commit:
+
+```python
 import streamlit as st
 import pandas as pd
 import numpy as np
 import os
 import re
 import urllib.request
-from scipy.linalg import orthogonal_procrustes
 
 st.set_page_config(page_title="Voynich Decipherment Workbench", layout="wide")
 
@@ -127,7 +148,7 @@ st.title("Voynich Manuscript Decipherment Workbench")
 st.caption(f"Corpus Loaded: **{len(df):,}** tokens across **{len(all_folios)}** folios")
 
 # -----------------------------------------------------------------------------
-# TABS SETUP
+# 13 TABS SETUP
 # -----------------------------------------------------------------------------
 tabs = st.tabs([
     "1. Parallel Reader",
@@ -451,7 +472,7 @@ with tabs[11]:
         else:
             st.error("❌ **VERDICT: GENERATOR NULL HOLDS**")
 
-# TAB 13: EXTERNAL PROCRUSTES BENCHMARK
+# TAB 13: EXTERNAL PROCRUSTES BENCHMARK (NumPy Pure Implementation)
 with tabs[12]:
     st.subheader("🌐 Orthogonal Procrustes Manifold Alignment")
     st.caption("Measures geometric alignment between Voynich carrier distributions and 15th-century historical Latin technical controls.")
@@ -474,13 +495,11 @@ with tabs[12]:
             tot = max(1, cnt_h + cnt_b + cnt_a)
             m_matrix.append([cnt_h / tot, cnt_b / tot, cnt_a / tot])
         
-        A = np.array(m_matrix)
-        # Normalize A
-        A = (A - np.mean(A, axis=0)) / np.std(A, axis=0)
+        A = np.array(m_matrix, dtype=float)
+        A = (A - np.mean(A, axis=0)) / (np.std(A, axis=0) + 1e-9)
 
         # Reference manifolds based on historical genre frequency profiles
         if "Alfonsine" in control_choice:
-            # Astronomical heavy profile
             B_ref = np.array([
                 [0.2, 0.1, 0.7],  # ch -> central operational axis
                 [0.1, 0.1, 0.8],  # ot -> coordinate degrees
@@ -491,7 +510,6 @@ with tabs[12]:
                 [0.05, 0.05, 0.9] # air -> stellar rays
             ])
         elif "Macer" in control_choice:
-            # Herbal procedural profile
             B_ref = np.array([
                 [0.7, 0.2, 0.1],  # ch -> recipe preparation
                 [0.6, 0.3, 0.1],  # ot -> plant part
@@ -505,11 +523,14 @@ with tabs[12]:
             np.random.seed(99)
             B_ref = np.random.rand(7, 3)
 
-        B = (B_ref - np.mean(B_ref, axis=0)) / np.std(B_ref, axis=0)
+        B = (B_ref - np.mean(B_ref, axis=0)) / (np.std(B_ref, axis=0) + 1e-9)
 
-        # Compute Orthogonal Procrustes
-        R, sca = orthogonal_procrustes(A, B)
-        procrustes_disparity = np.sum(np.square(A @ R - B)) / np.sum(np.square(B))
+        # Pure NumPy Orthogonal Procrustes via SVD: R = U @ Vh
+        M = B.T @ A
+        U, S, Vh = np.linalg.svd(M)
+        R = Vh.T @ U.T
+        
+        procrustes_disparity = float(np.sum(np.square(A @ R - B)) / np.sum(np.square(B)))
 
         col_p1, col_p2 = st.columns(2)
         with col_p1:
