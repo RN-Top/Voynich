@@ -153,34 +153,49 @@ tab_pos, tab_ngrams, tab_currier, tab_cipher = st.tabs([
 # ---------------------------------------------------------
 with tab_pos:
     st.subheader("Glyph Positional Distribution (Initial vs. Medial vs. Final)")
-    st.write("Identifies strictly positional characters (e.g., gallows characters like `t`, `p`, `k`, `f` vs. suffixes like `y`, `n`).")
+    st.write("Identifies positional preferences (e.g., initial gallows characters vs. suffixes like `y`, `n`).")
     
     if tokens:
         pos_df = analyze_character_positions(tokens)
         
         if not pos_df.empty:
-            max_glyphs = min(35, len(pos_df))
-            top_n = st.slider("Top Glyphs to Display", min_value=1, max_value=max_glyphs, value=min(15, max_glyphs))
+            ctrl_col1, ctrl_col2 = st.columns([2, 1])
+            with ctrl_col1:
+                max_glyphs = min(35, len(pos_df))
+                top_n = st.slider("Top Glyphs to Display", min_value=1, max_value=max_glyphs, value=min(15, max_glyphs))
+            with ctrl_col2:
+                stack_type = st.radio("Chart Type", ["Stacked Total", "100% Normalized (%)"], horizontal=True)
+
             top_pos = pos_df.head(top_n)
-            
             glyph_order = top_pos["Glyph"].tolist()
             
+            # Filter out 0 counts so Altair doesn't allocate blank padding
             melted_pos = top_pos.melt(
                 id_vars=["Glyph"], 
                 value_vars=["Initial", "Medial", "Final"], 
                 var_name="Position", 
                 value_name="Count"
             )
+            melted_pos = melted_pos[melted_pos["Count"] > 0]
             
-            # Grouped bar chart with xOffset for distinct side-by-side columns
-            chart = alt.Chart(melted_pos).mark_bar().encode(
+            y_encoding = (
+                alt.Y("Count:Q", stack="normalize", axis=alt.Axis(format="%", title="Share of Occurrences"))
+                if stack_type == "100% Normalized (%)"
+                else alt.Y("Count:Q", stack="zero", axis=alt.Axis(title="Occurrences"))
+            )
+
+            chart = alt.Chart(melted_pos).mark_bar(size=26).encode(
                 x=alt.X("Glyph:N", sort=glyph_order, axis=alt.Axis(title="Glyph", labelAngle=0)),
-                y=alt.Y("Count:Q", axis=alt.Axis(title="Occurrences")),
+                y=y_encoding,
                 color=alt.Color(
                     "Position:N", 
-                    scale=alt.Scale(domain=["Initial", "Medial", "Final"], range=["#4C78A8", "#F58518", "#54A24B"])
+                    scale=alt.Scale(
+                        domain=["Initial", "Medial", "Final"],
+                        range=["#4C78A8", "#F58518", "#54A24B"]
+                    ),
+                    legend=alt.Legend(title="Position")
                 ),
-                xOffset=alt.XOffset("Position:N", sort=["Initial", "Medial", "Final"]),
+                order=alt.Order("Position:N", sort="ascending"),
                 tooltip=["Glyph", "Position", "Count"]
             ).properties(
                 height=380
