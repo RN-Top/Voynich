@@ -71,7 +71,6 @@ def load_manuscript_data():
                     locus = line_info.split(",")[-1] if "," in line_info else "+P0"
                     line_num = line_info.split(",")[0]
                     
-                    # Extract clock position comments if present (e.g. <!10:30>)
                     clock_match = re.search(r"<!(\d{2}:\d{2})", content)
                     clock_pos = clock_match.group(1) if clock_match else "N/A"
                     
@@ -326,7 +325,6 @@ with tab9:
     selected_sign = st.selectbox("Select Target Zodiac Rota", list(zodiac_map.values()), index=0)
     target_folio = [f for f, s in zodiac_map.items() if s == selected_sign][0]
 
-    # Filter labels for this specific rota
     z_sub = df[(df["folio"] == target_folio) & (df["locus"].str.contains(r"L[zsa]|R[io]", regex=True))].copy()
 
     col_align1, col_align2 = st.columns([1, 1])
