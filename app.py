@@ -4,6 +4,7 @@ import numpy as np
 import os
 import re
 import urllib.request
+import math
 from collections import Counter
 
 st.set_page_config(page_title="Voynich Mathematical Decipherment & State-Space Engine", layout="wide")
@@ -207,7 +208,7 @@ def load_and_build_engine():
 df, dictionary_key, dict_df = load_and_build_engine()
 
 # -----------------------------------------------------------------------------
-# 3. Translation Helper
+# 3. Translation Helper & Information Theoretic Calculator
 # -----------------------------------------------------------------------------
 def translate_phrase(text_line):
     tokens = [re.sub(r'[^a-z0-9]', '', t.lower()) for t in text_line.split() if t]
@@ -225,6 +226,22 @@ def translate_phrase(text_line):
     trans_str = " ".join(english).capitalize() + "." if english else ""
     return " ".join(gloss), trans_str
 
+def calculate_shannon_entropy(token_list):
+    text = "".join(token_list)
+    if not text:
+        return 0.0, 0.0
+    c_counts = Counter(text)
+    total_chars = len(text)
+    h1 = -sum((cnt / total_chars) * math.log2(cnt / total_chars) for cnt in c_counts.values())
+    
+    bigrams = [text[i:i+2] for i in range(len(text)-1)]
+    if not bigrams:
+        return h1, 0.0
+    b_counts = Counter(bigrams)
+    total_b = len(bigrams)
+    h2 = -sum((cnt / total_b) * math.log2(cnt / total_b) for cnt in b_counts.values())
+    return round(h1, 3), round(h2, 3)
+
 # -----------------------------------------------------------------------------
 # 4. Streamlit Dashboard Layout
 # -----------------------------------------------------------------------------
@@ -235,8 +252,9 @@ tabs = st.tabs([
     "1. Live English Translator",
     "2. Derived Dictionary Key",
     "3. Parallel Folio Reader",
-    "4. Author & Colophon Audit",
-    "5. Export Datasets"
+    "4. Slot Omega & Domain Matrix",
+    "5. Author & Colophon Audit",
+    "6. Export Datasets"
 ])
 
 # Tab 1: Live Translator
@@ -289,21 +307,65 @@ with tabs[2]:
         st.caption(f"Gloss: {g}")
         st.markdown("---")
 
-# Tab 4: Author & Colophon Audit
+# Tab 4: Slot Omega & Domain Matrix
 with tabs[3]:
+    st.subheader("Candidate Slot Omega Mining: Q-ACTIVE -> [X-aiin] -> Q-ACTIVE")
+    st.caption("Isolating invariant content carrier stems bound inside active operator frames across folios.")
+    
+    omega_matches = []
+    tokens_full = df.to_dict("records")
+    for i in range(1, len(tokens_full) - 1):
+        prev_t = tokens_full[i-1]["clean"]
+        curr_t = tokens_full[i]["clean"]
+        next_t = tokens_full[i+1]["clean"]
+        
+        # Q-Active -> X-aiin -> Q-Active
+        if prev_t.startswith("q") and curr_t.endswith(("ain", "aiin")) and next_t.startswith("q"):
+            carrier_core = re.sub(r"(ain|aiin)$", "", curr_t)
+            omega_matches.append({
+                "folio": tokens_full[i]["folio"],
+                "section": tokens_full[i]["section"],
+                "header": tokens_full[i]["header"],
+                "preceding_op": prev_t,
+                "slot_omega_token": curr_t,
+                "carrier_core": carrier_core if carrier_core else curr_t,
+                "succeeding_op": next_t
+            })
+            
+    omega_df = pd.DataFrame(omega_matches)
+    if not omega_df.empty:
+        st.dataframe(omega_df, use_container_width=True)
+        st.markdown("**Top Carriers Invariant to Slot Omega:**")
+        st.dataframe(omega_df["carrier_core"].value_counts().reset_index().rename(columns={"index": "Carrier Core", "carrier_core": "Occurrences"}), use_container_width=True)
+    else:
+        st.info("No slot omega frames detected in current parse.")
+        
+    st.markdown("---")
+    st.subheader("Cross-Sectional Carrier Specificity Matrix")
+    top_c_list = df["carrier"].value_counts().head(12).index.tolist()
+    matrix_df = df[df["carrier"].isin(top_c_list)].groupby(["carrier", "section"]).size().unstack(fill_value=0)
+    st.dataframe(matrix_df, use_container_width=True)
+    
+    st.markdown("---")
+    st.subheader("Information-Theoretic Entropy Suite")
+    h1, h2 = calculate_shannon_entropy(df["clean"].tolist())
+    c1, c2, c3 = st.columns(3)
+    c1.metric("1st-Order Char Entropy (H1)", f"{h1} bits")
+    c2.metric("2nd-Order Bigram Entropy (H2)", f"{h2} bits")
+    c3.metric("Medieval Latin / Italian Baseline", "4.0 – 4.3 bits")
+
+# Tab 5: Author & Colophon Audit
+with tabs[4]:
     st.subheader("Author Loci & Sign-Off Audits")
     st.markdown("Auditing isolated slots: `ydaraishy` (f1r.6) and `ytchas` (f9r.10)")
     
-    # Substring matching to catch punctuated transcription tags
     matches = df[df["clean"].str.contains("ydaraishy|ytchas|oror", case=False, na=False)].copy()
-    
     if not matches.empty:
         matches["attribution_gloss"] = matches["clean"].apply(
             lambda x: "author / composed by" if "ydaraishy" in x else ("scribe / written by" if "ytchas" in x else "closure marker")
         )
         st.dataframe(matches[["folio", "header", "clean", "attribution_gloss", "section"]], use_container_width=True)
     else:
-        # Grounded structural fallback table from IVTFF parse
         colophon_records = pd.DataFrame([
             {"folio": "f1r", "header": "f1r.6,=Pt", "clean": "ydaraishy", "attribution_gloss": "author / composed by", "section": "Herbal"},
             {"folio": "f9r", "header": "f9r.10,+Pc", "clean": "ytchas", "attribution_gloss": "scribe / written by", "section": "Herbal"},
@@ -311,8 +373,8 @@ with tabs[3]:
         ])
         st.dataframe(colophon_records, use_container_width=True)
 
-# Tab 5: Export Data
-with tabs[4]:
+# Tab 6: Export Data
+with tabs[5]:
     st.subheader("Export System Tables")
     c1, c2 = st.columns(2)
     with c1:
