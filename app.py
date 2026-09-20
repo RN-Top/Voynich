@@ -403,14 +403,16 @@ with tabs[11]:
         real_qo = qo_k / max(1, qo_t)
         real_mult = real_qo / max(0.001, real_base)
 
-        # Timm & Schinner Null Simulator
+        # Timm & Schinner Null Simulator (with bounded historical lookup)
         np.random.seed(42)
         synth_tokens = []
         pool = toks[:500] if len(toks) >= 500 else toks
 
         for _ in range(min(15000, len(toks))):
             if len(synth_tokens) > 50 and np.random.rand() < 0.70:
-                base = synth_tokens[-int(np.random.geometric(p=0.05))]
+                offset = int(np.random.geometric(p=0.05))
+                offset = max(1, min(offset, len(synth_tokens)))
+                base = synth_tokens[-offset]
                 chars = list(base)
                 if chars and np.random.rand() < 0.3:
                     chars[np.random.randint(0, len(chars))] = np.random.choice(list("aodechkqtsrly"))
