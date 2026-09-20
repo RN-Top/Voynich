@@ -10,7 +10,7 @@ st.set_page_config(page_title="Voynich Decipherment Workbench", layout="wide")
 COLUMNS = ["folio", "line", "locus", "section", "clean", "state"]
 
 # -----------------------------------------------------------------------------
-# DATA INGESTION & AUTOMATIC HYDRATION
+# DATA INGESTION & CACHING
 # -----------------------------------------------------------------------------
 @st.cache_data(show_spinner="Loading manuscript data...")
 def load_manuscript_data():
@@ -122,7 +122,7 @@ st.title("Voynich Manuscript Decipherment Workbench")
 st.caption(f"Corpus Loaded: **{len(df):,}** tokens across **{len(all_folios)}** folios")
 
 # -----------------------------------------------------------------------------
-# 11 TABS
+# 11 TABS SETUP
 # -----------------------------------------------------------------------------
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11 = st.tabs([
     "1. Parallel Reader",
@@ -237,19 +237,21 @@ with tab8:
         sec_matrix.append(row)
     st.dataframe(pd.DataFrame(sec_matrix), use_container_width=True)
 
-# TAB 9: ZODIAC GROUNDING (UPDATED FOR OPTION 1 DECAN ANALYSIS)
+# TAB 9: ZODIAC GROUNDING (FULL 30-DECAN RECOVERY)
 with tab9:
     st.subheader("🌌 Zodiac Rota Grounding & Decan Geometry (f70v2–f73v)")
-    st.caption("Testing the physical 30-division decan geometry against concentric text bands (@Cc) and radial labels (@Lz).")
+    st.caption("Testing the physical 30-division decan geometry against concentric text bands (@Cc) and radial labels (Lz, Ls, La, Ri, Ro).")
     
     zodiac_folios = ["f70v2", "f70v1", "f71r", "f71v", "f72r1", "f72r2", "f72r3", "f72v3", "f72v2", "f72v1", "f73r", "f73v"]
     z_df = df[df["folio"].isin(zodiac_folios)].copy() if not df.empty else pd.DataFrame(columns=COLUMNS)
     
     if not z_df.empty:
-        # Decan Label Count Table
-        z_labels = z_df[z_df["locus"] == "@Lz"]
+        # Match all decan and celestial label loci (Lz, &Lz, Ls, &Ls, La, Ri, Ro)
+        is_label = z_df["locus"].str.contains(r"L[zsa]|R[io]", regex=True)
+        z_labels = z_df[is_label].copy()
+        
         decan_counts = z_labels.groupby("folio")["clean"].count().reset_index()
-        decan_counts.columns = ["Folio", "Radial Decan Labels (@Lz)"]
+        decan_counts.columns = ["Folio", "Radial Decan Labels"]
         
         sign_names = {
             "f70v2": "Pisces (March / Mars)",
@@ -270,28 +272,28 @@ with tab9:
         col_z1, col_z2 = st.columns([1, 1])
         with col_z1:
             st.markdown("#### 1. Invariant 30-Division Decan Geometry")
-            st.dataframe(decan_counts[["Folio", "Zodiac Sign", "Radial Decan Labels (@Lz)"]], use_container_width=True)
+            st.dataframe(decan_counts[["Folio", "Zodiac Sign", "Radial Decan Labels"]], use_container_width=True)
         
         with col_z2:
             st.markdown("#### 2. Structural Contrast: Labels vs Concentric Prose")
-            z_cc = z_df[z_df["locus"] == "@Cc"]
+            z_cc = z_df[z_df["locus"].str.contains("Cc", regex=True)]
             
-            q_label_rate = (z_labels["clean"].str.startswith("qo")).mean() * 100
-            q_cc_rate = (z_cc["clean"].str.startswith("qo")).mean() * 100
+            q_label_rate = (z_labels["clean"].str.startswith("qo")).mean() * 100 if len(z_labels) > 0 else 0
+            q_cc_rate = (z_cc["clean"].str.startswith("qo")).mean() * 100 if len(z_cc) > 0 else 0
             
-            ot_label_rate = (z_labels["clean"].str.startswith("ot")).mean() * 100
-            ot_cc_rate = (z_cc["clean"].str.startswith("ot")).mean() * 100
+            ot_label_rate = (z_labels["clean"].str.startswith("ot")).mean() * 100 if len(z_labels) > 0 else 0
+            ot_cc_rate = (z_cc["clean"].str.startswith("ot")).mean() * 100 if len(z_cc) > 0 else 0
             
             contrast_df = pd.DataFrame({
                 "Structural Metric": ["Prefix Operator (qo-) Rate", "Celestial Coordinate (ot-) Rate"],
-                "Radial Labels (@Lz)": [f"{q_label_rate:.1f}%", f"{ot_label_rate:.1f}%"],
+                "Radial Labels": [f"{q_label_rate:.1f}%", f"{ot_label_rate:.1f}%"],
                 "Concentric Prose (@Cc)": [f"{q_cc_rate:.1f}%", f"{ot_cc_rate:.1f}%"]
             })
             st.dataframe(contrast_df, use_container_width=True)
-            st.info("The radial labels are coordinate descriptors (42%+ ot-), whereas concentric rings contain active operational grammar (qo-).")
+            st.info("The radial labels are coordinate descriptors (ot- dominant), whereas concentric rings contain active operational grammar (qo-).")
             
         st.markdown("#### 3. Top Radial Celestial Labels Across All 12 Signs")
-        top_lbls = z_labels["clean"].value_counts().head(20).reset_index()
+        top_lbls = z_labels["clean"].value_counts().head(25).reset_index()
         top_lbls.columns = ["Celestial Decan Stem", "Label Occurrences"]
         st.dataframe(top_lbls, use_container_width=True)
     else:
