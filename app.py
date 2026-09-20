@@ -1,21 +1,22 @@
-SyntaxError: unterminated string literal (detected at line 6)
-File "/mount/src/voynich/app.py", line 6
+File "/mount/src/voynich/app.py", line 3
     Streamlit Community Cloud does not have 'scipy' pre-installed in your app's Python container.
+SyntaxError: unterminated string literal (detected at line 3)
 ```[span_0](start_span)[span_0](end_span)
 
-When copying the code, the conversational explanation text above the code block was accidentally pasted directly into line 6 of `app.py` in your GitHub repository[span_1](start_span)[span_1](end_span). Python attempted to execute English prose as code and crashed with a `SyntaxError`[span_2](start_span)[span_2](end_span).
+The explanatory text from the previous message was accidentally copied along with the code into lines 1–4 of `app.py` on GitHub[span_1](start_span)[span_1](end_span). Python cannot execute English sentences, which triggers a `SyntaxError` immediately upon startup[span_2](start_span)[span_2](end_span).
 
 ---
 
-### Step 1: Open `app.py` on GitHub
-1. Open your repository: **[https://github.com/RN-Top/Voynich](https://github.com/RN-Top/Voynich)**.
+### Step 1: Open and Clear `app.py` on GitHub
+1. In your browser on your laptop, switch to your GitHub tab: **[https://github.com/RN-Top/Voynich](https://github.com/RN-Top/Voynich)**.
 2. Click on **`app.py`**.
 3. Click the **Pencil icon** (Edit this file).
+4. Press **Ctrl + A** (or **Cmd + A**) and hit **Delete / Backspace** to empty the file completely.
 
 ---
 
-### Step 2: Replace with Clean Code
-Select everything in the file (Ctrl+A / Cmd+A), delete it, and paste this pure Python code with no conversational header text:
+### Step 2: Paste the Clean Python Code
+Copy the code block below, starting exactly at `import streamlit as st`:
 
 ```python
 import streamlit as st
@@ -424,7 +425,7 @@ with tabs[11]:
         real_qo = qo_k / max(1, qo_t)
         real_mult = real_qo / max(0.001, real_base)
 
-        # Timm & Schinner Null Simulator (with bounded historical lookup)
+        # Timm & Schinner Null Simulator
         np.random.seed(42)
         synth_tokens = []
         pool = toks[:500] if len(toks) >= 500 else toks
@@ -470,7 +471,7 @@ with tabs[11]:
         else:
             st.error("❌ **VERDICT: GENERATOR NULL HOLDS**")
 
-# TAB 13: EXTERNAL PROCRUSTES BENCHMARK (NumPy Pure Implementation)
+# TAB 13: EXTERNAL PROCRUSTES BENCHMARK
 with tabs[12]:
     st.subheader("🌐 Orthogonal Procrustes Manifold Alignment")
     st.caption("Measures geometric alignment between Voynich carrier distributions and 15th-century historical Latin technical controls.")
@@ -520,6 +521,7 @@ with tabs[12]:
 
         B = (B_ref - np.mean(B_ref, axis=0)) / (np.std(B_ref, axis=0) + 1e-9)
 
+        # Pure NumPy SVD Procrustes solution
         M = B.T @ A
         U, S, Vh = np.linalg.svd(M)
         R = Vh.T @ U.T
