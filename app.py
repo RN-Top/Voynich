@@ -71,6 +71,10 @@ def load_manuscript_data():
                     locus = line_info.split(",")[-1] if "," in line_info else "+P0"
                     line_num = line_info.split(",")[0]
                     
+                    # Extract clock position comments if present (e.g. <!10:30>)
+                    clock_match = re.search(r"<!(\d{2}:\d{2})", content)
+                    clock_pos = clock_match.group(1) if clock_match else "N/A"
+                    
                     sec = "Herbal"
                     f_num_match = re.search(r"(\d+)", folio)
                     if f_num_match:
@@ -105,15 +109,16 @@ def load_manuscript_data():
                             "folio": folio,
                             "line": line_num,
                             "locus": locus,
+                            "clock": clock_pos,
                             "section": sec,
                             "clean": tok_clean,
                             "state": state
                         })
 
     if not records:
-        return pd.DataFrame(columns=COLUMNS)
+        return pd.DataFrame(columns=COLUMNS + ["clock"])
         
-    return pd.DataFrame(records, columns=COLUMNS)
+    return pd.DataFrame(records)
 
 df = load_manuscript_data()
 all_folios = sorted(df["folio"].dropna().unique().tolist()) if not df.empty else ["f1r"]
@@ -133,7 +138,7 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11 = st.tabs([
     "6. 600-Yr Verdict",
     "7. Structure Tests",
     "8. Carrier Matrix",
-    "9. Zodiac Grounding",
+    "9. Decan Cross-Alignment",
     "10. Slot Omega Miner",
     "11. Astro Load Inspector"
 ])
@@ -237,67 +242,114 @@ with tab8:
         sec_matrix.append(row)
     st.dataframe(pd.DataFrame(sec_matrix), use_container_width=True)
 
-# TAB 9: ZODIAC GROUNDING (FULL 30-DECAN RECOVERY)
+# -----------------------------------------------------------------------------
+# TAB 9: DECAN CROSS-ALIGNMENT (EXTERNAL GROUNDING)
+# -----------------------------------------------------------------------------
 with tab9:
-    st.subheader("🌌 Zodiac Rota Grounding & Decan Geometry (f70v2–f73v)")
-    st.caption("Testing the physical 30-division decan geometry against concentric text bands (@Cc) and radial labels (Lz, Ls, La, Ri, Ro).")
-    
-    zodiac_folios = ["f70v2", "f70v1", "f71r", "f71v", "f72r1", "f72r2", "f72r3", "f72v3", "f72v2", "f72v1", "f73r", "f73v"]
-    z_df = df[df["folio"].isin(zodiac_folios)].copy() if not df.empty else pd.DataFrame(columns=COLUMNS)
-    
-    if not z_df.empty:
-        # Match all decan and celestial label loci (Lz, &Lz, Ls, &Ls, La, Ri, Ro)
-        is_label = z_df["locus"].str.contains(r"L[zsa]|R[io]", regex=True)
-        z_labels = z_df[is_label].copy()
-        
-        decan_counts = z_labels.groupby("folio")["clean"].count().reset_index()
-        decan_counts.columns = ["Folio", "Radial Decan Labels"]
-        
-        sign_names = {
-            "f70v2": "Pisces (March / Mars)",
-            "f70v1": "Aries I (April / Abril)",
-            "f71r": "Aries II",
-            "f71v": "Taurus I (May)",
-            "f72r1": "Taurus II",
-            "f72r2": "Gemini",
-            "f72r3": "Cancer",
-            "f72v3": "Leo",
-            "f72v2": "Virgo",
-            "f72v1": "Libra",
-            "f73r": "Scorpius",
-            "f73v": "Sagittarius"
-        }
-        decan_counts["Zodiac Sign"] = decan_counts["Folio"].map(sign_names)
-        
-        col_z1, col_z2 = st.columns([1, 1])
-        with col_z1:
-            st.markdown("#### 1. Invariant 30-Division Decan Geometry")
-            st.dataframe(decan_counts[["Folio", "Zodiac Sign", "Radial Decan Labels"]], use_container_width=True)
-        
-        with col_z2:
-            st.markdown("#### 2. Structural Contrast: Labels vs Concentric Prose")
-            z_cc = z_df[z_df["locus"].str.contains("Cc", regex=True)]
+    st.subheader("🔭 12 Zodiac Rotas: 36 Decan & Historical Calendar Alignment")
+    st.caption("Direct mapping between the 30-part radial labels and the historical medieval Ptolemaic/Picatrix decan coordinate system.")
+
+    CLASSICAL_DECANS = {
+        "Pisces (March / Mars)": [
+            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Saturn", "Degree Arc": "330°–340°"},
+            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Jupiter", "Degree Arc": "340°–350°"},
+            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Mars", "Degree Arc": "350°–360°"}
+        ],
+        "Aries I (April / Abril)": [
+            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Mars", "Degree Arc": "0°–10°"},
+            {"Decan": "2nd Decan (10°–15° split)", "Classical Ruler": "Sun", "Degree Arc": "10°–15°"}
+        ],
+        "Aries II": [
+            {"Decan": "2nd Decan (15°–20° split)", "Classical Ruler": "Sun", "Degree Arc": "15°–20°"},
+            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Venus", "Degree Arc": "20°–30°"}
+        ],
+        "Taurus I (May)": [
+            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Mercury", "Degree Arc": "30°–40°"},
+            {"Decan": "2nd Decan (10°–15° split)", "Classical Ruler": "Moon", "Degree Arc": "40°–45°"}
+        ],
+        "Taurus II": [
+            {"Decan": "2nd Decan (15°–20° split)", "Classical Ruler": "Moon", "Degree Arc": "45°–50°"},
+            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Saturn", "Degree Arc": "50°–60°"}
+        ],
+        "Gemini": [
+            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Jupiter", "Degree Arc": "60°–70°"},
+            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Mars", "Degree Arc": "70°–80°"},
+            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Sun", "Degree Arc": "80°–90°"}
+        ],
+        "Cancer": [
+            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Venus", "Degree Arc": "90°–100°"},
+            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Mercury", "Degree Arc": "100°–110°"},
+            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Moon", "Degree Arc": "110°–120°"}
+        ],
+        "Leo": [
+            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Saturn", "Degree Arc": "120°–130°"},
+            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Jupiter", "Degree Arc": "130°–140°"},
+            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Mars", "Degree Arc": "140°–150°"}
+        ],
+        "Virgo": [
+            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Sun", "Degree Arc": "150°–160°"},
+            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Venus", "Degree Arc": "160°–170°"},
+            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Mercury", "Degree Arc": "170°–180°"}
+        ],
+        "Libra": [
+            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Moon", "Degree Arc": "180°–190°"},
+            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Saturn", "Degree Arc": "190°–200°"},
+            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Jupiter", "Degree Arc": "200°–210°"}
+        ],
+        "Scorpius": [
+            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Mars", "Degree Arc": "210°–220°"},
+            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Sun", "Degree Arc": "220°–230°"},
+            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Venus", "Degree Arc": "230°–240°"}
+        ],
+        "Sagittarius": [
+            {"Decan": "1st Decan (0°–10°)", "Classical Ruler": "Mercury", "Degree Arc": "240°–250°"},
+            {"Decan": "2nd Decan (10°–20°)", "Classical Ruler": "Moon", "Degree Arc": "250°–260°"},
+            {"Decan": "3rd Decan (20°–30°)", "Classical Ruler": "Saturn", "Degree Arc": "260°–270°"}
+        ]
+    }
+
+    zodiac_map = {
+        "f70v2": "Pisces (March / Mars)",
+        "f70v1": "Aries I (April / Abril)",
+        "f71r": "Aries II",
+        "f71v": "Taurus I (May)",
+        "f72r1": "Taurus II",
+        "f72r2": "Gemini",
+        "f72r3": "Cancer",
+        "f72v3": "Leo",
+        "f72v2": "Virgo",
+        "f72v1": "Libra",
+        "f73r": "Scorpius",
+        "f73v": "Sagittarius"
+    }
+
+    selected_sign = st.selectbox("Select Target Zodiac Rota", list(zodiac_map.values()), index=0)
+    target_folio = [f for f, s in zodiac_map.items() if s == selected_sign][0]
+
+    # Filter labels for this specific rota
+    z_sub = df[(df["folio"] == target_folio) & (df["locus"].str.contains(r"L[zsa]|R[io]", regex=True))].copy()
+
+    col_align1, col_align2 = st.columns([1, 1])
+
+    with col_align1:
+        st.markdown(f"#### Classical Decan Model: **{selected_sign}**")
+        st.table(pd.DataFrame(CLASSICAL_DECANS[selected_sign]))
+        st.markdown(f"**Total Mined Voynich Labels on Folio `{target_folio}`:** **{len(z_sub)}**")
+        st.dataframe(z_sub[["line", "locus", "clock", "clean", "state"]], use_container_width=True)
+
+    with col_align2:
+        st.markdown("#### Morphological Grounding Profile")
+        if not z_sub.empty:
+            ot_count = z_sub["clean"].str.startswith("ot").sum()
+            ok_count = z_sub["clean"].str.startswith("ok").sum()
+            al_count = z_sub["clean"].str.endswith("al").sum()
+            ar_count = z_sub["clean"].str.endswith("ar").sum()
             
-            q_label_rate = (z_labels["clean"].str.startswith("qo")).mean() * 100 if len(z_labels) > 0 else 0
-            q_cc_rate = (z_cc["clean"].str.startswith("qo")).mean() * 100 if len(z_cc) > 0 else 0
+            st.metric("Total Positional Roots (ot- / ok-)", f"{ot_count + ok_count} / {len(z_sub)} ({((ot_count + ok_count)/len(z_sub)*100):.1f}%)")
+            st.metric("Rotational Sector Suffixes (-al / -ar)", f"{al_count + ar_count} / {len(z_sub)} ({((al_count + ar_count)/len(z_sub)*100):.1f}%)")
             
-            ot_label_rate = (z_labels["clean"].str.startswith("ot")).mean() * 100 if len(z_labels) > 0 else 0
-            ot_cc_rate = (z_cc["clean"].str.startswith("ot")).mean() * 100 if len(z_cc) > 0 else 0
-            
-            contrast_df = pd.DataFrame({
-                "Structural Metric": ["Prefix Operator (qo-) Rate", "Celestial Coordinate (ot-) Rate"],
-                "Radial Labels": [f"{q_label_rate:.1f}%", f"{ot_label_rate:.1f}%"],
-                "Concentric Prose (@Cc)": [f"{q_cc_rate:.1f}%", f"{ot_cc_rate:.1f}%"]
-            })
-            st.dataframe(contrast_df, use_container_width=True)
-            st.info("The radial labels are coordinate descriptors (ot- dominant), whereas concentric rings contain active operational grammar (qo-).")
-            
-        st.markdown("#### 3. Top Radial Celestial Labels Across All 12 Signs")
-        top_lbls = z_labels["clean"].value_counts().head(25).reset_index()
-        top_lbls.columns = ["Celestial Decan Stem", "Label Occurrences"]
-        st.dataframe(top_lbls, use_container_width=True)
-    else:
-        st.warning("Zodiac folios f70v2–f73v not loaded in corpus.")
+            st.markdown("**Top Radial Label Stems:**")
+            st.dataframe(z_sub["clean"].value_counts().head(10).reset_index(), use_container_width=True)
 
 # TAB 10: SLOT OMEGA MINER
 with tab10:
