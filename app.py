@@ -1,13 +1,11 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly.express as px
 from collections import Counter
 import math
 
 st.set_page_config(page_title="Voynich Analysis & Decipherment Workbench", layout="wide")
 
-# Embedded sample Voynich EVA transcription lines (Currier A and B samples)
 DEFAULT_VOYNICH_TEXT = """
 fachys ykal ar ataiin shol shory cthees ar taiin cthy daiin chor cphaiin
 fachys ykal ar ataiin shol shory cthees ar taiin cthy daiin chor cphaiin
@@ -26,18 +24,15 @@ dair cheor shey cphaiin otaiin sheor qokain daiin shey cphaiin
 st.title("Voynich Analysis & Decipherment Workbench")
 st.caption("Information Theory, Frequency Distributions, and Hypothesis Testing")
 
-# Allow file upload or default fallback
 uploaded_file = st.sidebar.file_uploader("Upload EVA Transcription (.txt)", type=["txt"])
 if uploaded_file is not None:
     raw_text = uploaded_file.read().decode("utf-8")
 else:
     raw_text = DEFAULT_VOYNICH_TEXT
 
-# Tokenize words
 words = [w.strip() for w in raw_text.replace("\n", " ").split(" ") if w.strip()]
 chars = [c for c in "".join(words)]
 
-# Metrics Calculation
 total_tokens = len(words)
 unique_tokens = len(set(words))
 
@@ -51,7 +46,6 @@ def calculate_entropy(elements):
 char_entropy = calculate_entropy(chars)
 word_entropy = calculate_entropy(words)
 
-# Top KPI row
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Total Word Tokens", f"{total_tokens:,}")
 c2.metric("Unique Word Tokens", f"{unique_tokens:,}")
@@ -72,7 +66,6 @@ with tab1:
     with col_ctrl2:
         chart_mode = st.radio("Chart Type", ["Stacked Total", "100% Normalized (%)"], horizontal=True)
 
-    # Calculate positions
     glyph_initial = Counter()
     glyph_medial = Counter()
     glyph_final = Counter()
@@ -89,7 +82,7 @@ with tab1:
     all_glyphs = Counter(chars)
     common_glyphs = [g for g, _ in all_glyphs.most_common(top_n)]
 
-    plot_rows = []
+    pos_data = []
     for g in common_glyphs:
         init_cnt = glyph_initial[g]
         med_cnt = glyph_medial[g]
@@ -97,33 +90,25 @@ with tab1:
         total = init_cnt + med_cnt + fin_cnt
 
         if chart_mode == "100% Normalized (%)" and total > 0:
-            plot_rows.append({"Glyph": g, "Position": "Initial", "Frequency": (init_cnt / total) * 100})
-            plot_rows.append({"Glyph": g, "Position": "Medial", "Frequency": (med_cnt / total) * 100})
-            plot_rows.append({"Glyph": g, "Position": "Final", "Frequency": (fin_cnt / total) * 100})
+            pos_data.append({
+                "Glyph": g,
+                "Initial": (init_cnt / total) * 100,
+                "Medial": (med_cnt / total) * 100,
+                "Final": (fin_cnt / total) * 100
+            })
         else:
-            plot_rows.append({"Glyph": g, "Position": "Initial", "Frequency": init_cnt})
-            plot_rows.append({"Glyph": g, "Position": "Medial", "Frequency": med_cnt})
-            plot_rows.append({"Glyph": g, "Position": "Final", "Frequency": fin_cnt})
+            pos_data.append({
+                "Glyph": g,
+                "Initial": init_cnt,
+                "Medial": med_cnt,
+                "Final": fin_cnt
+            })
 
-    df_pos = pd.DataFrame(plot_rows)
+    df_pos = pd.DataFrame(pos_data)
 
     if not df_pos.empty:
-        fig = px.bar(
-            df_pos,
-            x="Glyph",
-            y="Frequency",
-            color="Position",
-            barmode="stack",
-            color_discrete_map={"Initial": "#3b82f6", "Medial": "#10b981", "Final": "#f59e0b"},
-            height=450
-        )
-        fig.update_layout(
-            plot_bgcolor="rgba(0,0,0,0)",
-            paper_bgcolor="rgba(0,0,0,0)",
-            xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=True, gridcolor="#334155")
-        )
-        st.plotly_chart(fig, use_container_width=True)
+        df_pos = df_pos.set_index("Glyph")
+        st.bar_chart(df_pos, color=["#3b82f6", "#10b981", "#f59e0b"], stack=True)
     else:
         st.info("No character data found to display.")
 
