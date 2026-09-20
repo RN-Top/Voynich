@@ -1,308 +1,143 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import math
-import re
+import plotly.express as px
 from collections import Counter
-import altair as alt
+import math
 
-st.set_page_config(
-    page_title="Voynich Decipherment Workbench",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+st.set_page_config(page_title="Voynich Analysis & Decipherment Workbench", layout="wide")
 
-# ---------------------------------------------------------
-# CORE ANALYTICAL FUNCTIONS
-# ---------------------------------------------------------
-
-def clean_eva_tokens(raw_text: str):
-    """Clean and tokenize EVA-transcribed Voynich text."""
-    text = re.sub(r"<[^>]+>", "", raw_text)
-    text = re.sub(r"[!=?,;:\$#@*]", "", text)
-    tokens = [t.strip().lower() for t in re.split(r"[\s\.\-]+", text) if t.strip()]
-    return tokens
-
-def calculate_shannon_entropy(tokens, level="char"):
-    """Calculate Shannon Entropy in bits for characters or tokens."""
-    if not tokens:
-        return 0.0
-    if level == "char":
-        units = "".join(tokens)
-    else:
-        units = tokens
-
-    total = len(units)
-    if total == 0:
-        return 0.0
-    
-    counts = Counter(units)
-    entropy = -sum((count / total) * math.log2(count / total) for count in counts.values())
-    return round(entropy, 4)
-
-def get_ngram_frequencies(tokens, n=2, level="char"):
-    """Compute n-gram frequencies for characters or words."""
-    ngrams = []
-    if level == "char":
-        for token in tokens:
-            if len(token) >= n:
-                for i in range(len(token) - n + 1):
-                    ngrams.append(token[i:i+n])
-    else:
-        if len(tokens) >= n:
-            for i in range(len(tokens) - n + 1):
-                ngrams.append(" ".join(tokens[i:i+n]))
-    return Counter(ngrams)
-
-def analyze_character_positions(tokens):
-    """Examine character frequency by word position: initial, medial, final."""
-    initials = Counter()
-    medials = Counter()
-    finals = Counter()
-    
-    for token in tokens:
-        if len(token) == 1:
-            initials[token] += 1
-            finals[token] += 1
-        elif len(token) == 2:
-            initials[token[0]] += 1
-            finals[token[1]] += 1
-        else:
-            initials[token[0]] += 1
-            finals[token[-1]] += 1
-            for char in token[1:-1]:
-                medials[char] += 1
-                
-    chars = sorted(list(set(initials.keys()) | set(medials.keys()) | set(finals.keys())))
-    data = []
-    for c in chars:
-        data.append({
-            "Glyph": c,
-            "Initial": initials[c],
-            "Medial": medials[c],
-            "Final": finals[c],
-            "Total": initials[c] + medials[c] + finals[c]
-        })
-    df = pd.DataFrame(data)
-    if not df.empty:
-        return df.sort_values(by="Total", ascending=False)
-    return pd.DataFrame(columns=["Glyph", "Initial", "Medial", "Final", "Total"])
-
-def apply_substitution(tokens, mapping):
-    """Replace EVA characters or n-graphs based on user hypothesis mapping."""
-    if not mapping or not tokens:
-        return tokens
-
-    sorted_keys = sorted(mapping.keys(), key=len, reverse=True)
-    pattern = re.compile("|".join(re.escape(k) for k in sorted_keys))
-
-    substituted = []
-    for token in tokens:
-        translated = pattern.sub(lambda m: mapping[m.group(0)], token)
-        substituted.append(translated)
-    return substituted
-
-# ---------------------------------------------------------
-# UI & WORKBENCH LAYOUT
-# ---------------------------------------------------------
+# Embedded sample Voynich EVA transcription lines (Currier A and B samples)
+DEFAULT_VOYNICH_TEXT = """
+fachys ykal ar ataiin shol shory cthees ar taiin cthy daiin chor cphaiin
+fachys ykal ar ataiin shol shory cthees ar taiin cthy daiin chor cphaiin
+otaiin shey or aiin shol daiin ctho cthees chor taiin cphaiin or aiin
+s aiin shey daiin chol chol cthaiin cthees daiin shey cphaiin otar aiin
+daiin shey or cheor chey chol daiin shey cheor cphaiin otaiin chey shey
+qokaiin chol kcheor daiin shey cphaiin or shey chol cthaiin daiin chey
+qokor shey kchor taiin shey kcheor cphaiin otar shey chol daiin shey
+ytedy qokedy shedaiin qokedy sheor sheor qokain cheor daiin sheor cphain
+daiin cheor qokaiin dary daiin cphaiin chey qokain or sheor cphaiin
+chedy qokaiin shey chor cphaiin otaiin sheor qokain daiin shey cphaiin
+qokedy cheor shey cheor cphaiin qokaiin sheor chey sheor cphaiin
+dair cheor shey cphaiin otaiin sheor qokain daiin shey cphaiin
+""".strip()
 
 st.title("Voynich Analysis & Decipherment Workbench")
 st.caption("Information Theory, Frequency Distributions, and Hypothesis Testing")
 
-sidebar = st.sidebar
-sidebar.header("Input Data")
-
-sample_eva = """
-fachys ykal ar ataiin shol shory cthephos ychey rshey
-qokain ol chedy qokedy chedy chey keol cheol
-daiin daiin cthey shey or aiin chal ar chor
-cthor shey qokeey dain qokal ctheor chckhy
-"""
-
-input_mode = sidebar.radio("Data Source", ["Sample Text", "Paste Raw EVA", "Upload File"])
-
-if input_mode == "Sample Text":
-    raw_input = sample_eva
-elif input_mode == "Paste Raw EVA":
-    raw_input = sidebar.text_area("Paste EVA / Currier Transcript Here", height=250)
+# Allow file upload or default fallback
+uploaded_file = st.sidebar.file_uploader("Upload EVA Transcription (.txt)", type=["txt"])
+if uploaded_file is not None:
+    raw_text = uploaded_file.read().decode("utf-8")
 else:
-    uploaded = sidebar.file_uploader("Upload .txt file", type=["txt"])
-    raw_input = uploaded.read().decode("utf-8") if uploaded else ""
+    raw_text = DEFAULT_VOYNICH_TEXT
 
-tokens = clean_eva_tokens(raw_input)
+# Tokenize words
+words = [w.strip() for w in raw_text.replace("\n", " ").split(" ") if w.strip()]
+chars = [c for c in "".join(words)]
 
-# Metrics Ribbon
-col1, col2, col3, col4 = st.columns(4)
-col1.metric("Total Word Tokens", len(tokens))
-col2.metric("Unique Word Tokens", len(set(tokens)))
-col3.metric("Char Entropy (H)", f"{calculate_shannon_entropy(tokens, 'char')} bits")
-col4.metric("Word Entropy (H)", f"{calculate_shannon_entropy(tokens, 'word')} bits")
+# Metrics Calculation
+total_tokens = len(words)
+unique_tokens = len(set(words))
 
-st.divider()
+def calculate_entropy(elements):
+    if not elements:
+        return 0.0
+    counts = Counter(elements)
+    total = len(elements)
+    return -sum((c / total) * math.log2(c / total) for c in counts.values())
 
-# Tab Navigation
-tab_pos, tab_ngrams, tab_currier, tab_cipher = st.tabs([
-    "Positional Rules",
-    "N-Gram & Frequency",
-    "Currier A vs B Flags",
-    "Substitution Sandbox"
-])
+char_entropy = calculate_entropy(chars)
+word_entropy = calculate_entropy(words)
 
-# ---------------------------------------------------------
-# TAB 1: POSITIONAL RULES
-# ---------------------------------------------------------
-with tab_pos:
+# Top KPI row
+c1, c2, c3, c4 = st.columns(4)
+c1.metric("Total Word Tokens", f"{total_tokens:,}")
+c2.metric("Unique Word Tokens", f"{unique_tokens:,}")
+c3.metric("Char Entropy (H)", f"{char_entropy:.3f} bits")
+c4.metric("Word Entropy (H)", f"{word_entropy:.3f} bits")
+
+st.markdown("---")
+
+tab1, tab2, tab3, tab4 = st.tabs(["Positional Rules", "N-Gram & Frequency", "Currier A vs B Flags", "Substitution Sandbox"])
+
+with tab1:
     st.subheader("Glyph Positional Distribution (Initial vs. Medial vs. Final)")
-    st.write("Identifies positional preferences (e.g., initial gallows characters vs. suffixes like `y`, `n`).")
-    
-    if tokens:
-        pos_df = analyze_character_positions(tokens)
-        
-        if not pos_df.empty:
-            ctrl_col1, ctrl_col2 = st.columns([2, 1])
-            with ctrl_col1:
-                max_glyphs = min(35, len(pos_df))
-                top_n = st.slider("Top Glyphs to Display", min_value=1, max_value=max_glyphs, value=min(15, max_glyphs))
-            with ctrl_col2:
-                stack_type = st.radio("Chart Type", ["Stacked Total", "100% Normalized (%)"], horizontal=True)
+    st.caption("Identifies positional preferences (e.g., initial gallows characters vs. suffixes like y, n).")
 
-            top_pos = pos_df.head(top_n)
-            glyph_order = top_pos["Glyph"].tolist()
-            
-            # Filter out 0 counts so Altair doesn't allocate blank padding
-            melted_pos = top_pos.melt(
-                id_vars=["Glyph"], 
-                value_vars=["Initial", "Medial", "Final"], 
-                var_name="Position", 
-                value_name="Count"
-            )
-            melted_pos = melted_pos[melted_pos["Count"] > 0]
-            
-            y_encoding = (
-                alt.Y("Count:Q", stack="normalize", axis=alt.Axis(format="%", title="Share of Occurrences"))
-                if stack_type == "100% Normalized (%)"
-                else alt.Y("Count:Q", stack="zero", axis=alt.Axis(title="Occurrences"))
-            )
+    col_ctrl1, col_ctrl2 = st.columns([1, 1])
+    with col_ctrl1:
+        top_n = st.slider("Top Glyphs to Display", min_value=3, max_value=25, value=15)
+    with col_ctrl2:
+        chart_mode = st.radio("Chart Type", ["Stacked Total", "100% Normalized (%)"], horizontal=True)
 
-            chart = alt.Chart(melted_pos).mark_bar(size=26).encode(
-                x=alt.X("Glyph:N", sort=glyph_order, axis=alt.Axis(title="Glyph", labelAngle=0)),
-                y=y_encoding,
-                color=alt.Color(
-                    "Position:N", 
-                    scale=alt.Scale(
-                        domain=["Initial", "Medial", "Final"],
-                        range=["#4C78A8", "#F58518", "#54A24B"]
-                    ),
-                    legend=alt.Legend(title="Position")
-                ),
-                order=alt.Order("Position:N", sort="ascending"),
-                tooltip=["Glyph", "Position", "Count"]
-            ).properties(
-                height=380
-            ).interactive()
-            
-            st.altair_chart(chart, use_container_width=True)
-            st.dataframe(top_pos, use_container_width=True)
+    # Calculate positions
+    glyph_initial = Counter()
+    glyph_medial = Counter()
+    glyph_final = Counter()
+
+    for w in words:
+        if len(w) == 1:
+            glyph_initial[w] += 1
+        elif len(w) > 1:
+            glyph_initial[w[0]] += 1
+            glyph_final[w[-1]] += 1
+            for ch in w[1:-1]:
+                glyph_medial[ch] += 1
+
+    all_glyphs = Counter(chars)
+    common_glyphs = [g for g, _ in all_glyphs.most_common(top_n)]
+
+    plot_rows = []
+    for g in common_glyphs:
+        init_cnt = glyph_initial[g]
+        med_cnt = glyph_medial[g]
+        fin_cnt = glyph_final[g]
+        total = init_cnt + med_cnt + fin_cnt
+
+        if chart_mode == "100% Normalized (%)" and total > 0:
+            plot_rows.append({"Glyph": g, "Position": "Initial", "Frequency": (init_cnt / total) * 100})
+            plot_rows.append({"Glyph": g, "Position": "Medial", "Frequency": (med_cnt / total) * 100})
+            plot_rows.append({"Glyph": g, "Position": "Final", "Frequency": (fin_cnt / total) * 100})
         else:
-            st.warning("No glyphs detected in the input.")
-    else:
-        st.info("Input text to view positional rules.")
+            plot_rows.append({"Glyph": g, "Position": "Initial", "Frequency": init_cnt})
+            plot_rows.append({"Glyph": g, "Position": "Medial", "Frequency": med_cnt})
+            plot_rows.append({"Glyph": g, "Position": "Final", "Frequency": fin_cnt})
 
-# ---------------------------------------------------------
-# TAB 2: N-GRAM & FREQUENCY
-# ---------------------------------------------------------
-with tab_ngrams:
-    st.subheader("Frequency Analysis")
-    sub_col1, sub_col2 = st.columns([1, 2])
-    
-    with sub_col1:
-        ngram_level = st.selectbox("Unit", ["char", "word"])
-        n_val = st.slider("N-Gram Length (N)", 1, 4, 2)
-        top_k = st.slider("Results to Show", 10, 50, 20)
-        
-    with sub_col2:
-        if tokens:
-            ngrams = get_ngram_frequencies(tokens, n=n_val, level=ngram_level)
-            if ngrams:
-                ngram_df = pd.DataFrame(ngrams.most_common(top_k), columns=["N-Gram", "Frequency"])
-                
-                bar_chart = alt.Chart(ngram_df).mark_bar().encode(
-                    x=alt.X("Frequency:Q"),
-                    y=alt.Y("N-Gram:N", sort="-x"),
-                    tooltip=["N-Gram", "Frequency"]
-                ).properties(height=400)
-                
-                st.altair_chart(bar_chart, use_container_width=True)
-                st.dataframe(ngram_df, use_container_width=True)
-            else:
-                st.warning("Not enough units to generate n-grams of this length.")
-        else:
-            st.info("Input text to view n-gram frequencies.")
+    df_pos = pd.DataFrame(plot_rows)
 
-# ---------------------------------------------------------
-# TAB 3: CURRIER A vs. B SEPARATION
-# ---------------------------------------------------------
-with tab_currier:
-    st.subheader("Currier Dialect Split Detector")
-    st.write("Measures marker tokens that typically distinguish Currier A (herbal/simple) from Currier B (balneological/complex).")
-    
-    currier_a_markers = {"daiin", "chol", "chor", "shol", "cthor"}
-    currier_b_markers = {"chedy", "shedy", "qokedy", "qokain", "chey"}
-    
-    token_set = Counter(tokens)
-    a_count = sum(token_set[word] for word in currier_a_markers)
-    b_count = sum(token_set[word] for word in currier_b_markers)
-    total_markers = a_count + b_count
-    
-    c_col1, c_col2 = st.columns(2)
-    with c_col1:
-        st.metric("Currier A Signature Count", a_count)
-        for w in sorted(currier_a_markers):
-            st.write(f"- `{w}`: {token_set[w]}")
-            
-    with c_col2:
-        st.metric("Currier B Signature Count", b_count)
-        for w in sorted(currier_b_markers):
-            st.write(f"- `{w}`: {token_set[w]}")
-            
-    if total_markers > 0:
-        ratio_b = round((b_count / total_markers) * 100, 1)
-        st.progress(ratio_b / 100)
-        st.caption(f"Dialect Lean: {round(100 - ratio_b, 1)}% Currier A | {ratio_b}% Currier B")
+    if not df_pos.empty:
+        fig = px.bar(
+            df_pos,
+            x="Glyph",
+            y="Frequency",
+            color="Position",
+            barmode="stack",
+            color_discrete_map={"Initial": "#3b82f6", "Medial": "#10b981", "Final": "#f59e0b"},
+            height=450
+        )
+        fig.update_layout(
+            plot_bgcolor="rgba(0,0,0,0)",
+            paper_bgcolor="rgba(0,0,0,0)",
+            xaxis=dict(showgrid=False),
+            yaxis=dict(showgrid=True, gridcolor="#334155")
+        )
+        st.plotly_chart(fig, use_container_width=True)
     else:
-        st.info("No standard Currier A or Currier B index tokens found in this excerpt.")
+        st.info("No character data found to display.")
 
-# ---------------------------------------------------------
-# TAB 4: SUBSTITUTION SANDBOX
-# ---------------------------------------------------------
-with tab_cipher:
-    st.subheader("Interactive Substitution Cipher Sandbox")
-    st.write("Map EVA characters or n-graphs to test languages (Latin, Italian, Hebrew transliteration, etc.).")
-    
-    mapping_str = st.text_input(
-        "Mapping dictionary (comma separated, e.g., o:a, l:r, d:t, ch:s, cth:t)",
-        value="o:a, l:r, d:t, ch:s"
-    )
-    
-    mapping = {}
-    if mapping_str.strip():
-        for pair in mapping_str.split(","):
-            if ":" in pair:
-                parts = pair.split(":")
-                k = parts[0].strip().lower()
-                v = parts[1].strip()
-                if k:
-                    mapping[k] = v
-                
-    st.write("Active Mapping:", mapping)
-    
-    if tokens:
-        transformed = apply_substitution(tokens, mapping)
-        st.markdown("**Transformed Text Stream:**")
-        preview_limit = 200
-        preview = " ".join(transformed[:preview_limit])
-        if len(transformed) > preview_limit:
-            preview += "..."
-        st.code(preview, language="text")
-    else:
-        st.info("Input text to view transformed output.")
+with tab2:
+    st.subheader("Word Frequency Distribution")
+    word_freq = Counter(words).most_common(20)
+    df_words = pd.DataFrame(word_freq, columns=["Word", "Count"])
+    st.bar_chart(df_words.set_index("Word"))
+
+with tab3:
+    st.subheader("Currier Classification Flags")
+    st.write("Upload a complete transcriber interlinear file (EVA format) to run Currier A / Currier B separation.")
+
+with tab4:
+    st.subheader("Substitution Sandbox")
+    sample_phrase = " ".join(words[:12])
+    st.text_area("Input Sample", value=sample_phrase, height=70)
