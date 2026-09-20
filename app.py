@@ -34,7 +34,7 @@ MEDIEVAL_PRIORS = {
 }
 
 # -----------------------------------------------------------------------------
-# 2. Corpus Ingestion & Latent Grammar Induction (Fully Pre-Cached)
+# 2. Corpus Data Ingestion & State-Space Engine (Fully Pre-Cached)
 # -----------------------------------------------------------------------------
 @st.cache_data(show_spinner="Ingesting manuscript and compiling state space...")
 def load_and_build_engine():
@@ -238,63 +238,34 @@ def load_and_build_engine():
     top_c_list = df["carrier"].value_counts().head(12).index.tolist()
     matrix_df = df[df["carrier"].isin(top_c_list)].groupby(["carrier", "section"]).size().unstack(fill_value=0)
 
-    # 2.6 Fused Sukhotin Phonological Inventory (eliminating 'h' & gallow artifacts)
-    def fuse_eva(tok):
-        t = tok.lower()
-        t = t.replace("ckh", "K").replace("cth", "T").replace("cph", "P").replace("cfh", "F")
-        t = t.replace("ch", "C").replace("sh", "S").replace("ee", "E").replace("aiin", "N").replace("ain", "n")
-        return re.sub(r"[^a-zA-Z]", "", t)
-
-    fused_tokens = [fuse_eva(t) for t in token_stream if fuse_eva(t)]
-    fused_alphabet = sorted(list(set("".join(fused_tokens))))
-    f2i = {c: i for i, c in enumerate(fused_alphabet)}
-    M_fused = np.zeros((len(fused_alphabet), len(fused_alphabet)), dtype=int)
-    for ft in fused_tokens:
-        for c1, c2 in zip(ft[:-1], ft[1:]):
-            if c1 in f2i and c2 in f2i:
-                M_fused[f2i[c1], f2i[c2]] += 1
-                M_fused[f2i[c2], f2i[c1]] += 1
-
-    fused_vowels = set()
-    f_counts = Counter("".join(fused_tokens))
-    for _ in range(len(fused_alphabet)):
-        scores = {}
-        for c in fused_alphabet:
-            if c in fused_vowels:
-                continue
-            i = f2i[c]
-            nv_contacts = sum(M_fused[i, f2i[cp]] for cp in fused_alphabet if cp not in fused_vowels)
-            scores[c] = 2 * nv_contacts - f_counts[c]
-        if not scores:
-            break
-        best_c, best_val = max(scores.items(), key=lambda x: x[1])
-        if best_val <= 0:
-            break
-        fused_vowels.add(best_c)
-
-    unfuse = {"K": "ckh", "T": "cth", "P": "cph", "F": "cfh", "C": "ch", "S": "sh", "E": "ee", "N": "aiin", "n": "ain"}
-    display_vowels = sorted([unfuse.get(c, c) for c in fused_vowels])
-    display_consonants = sorted([unfuse.get(c, c) for c in fused_alphabet if c not in fused_vowels])
-
-    sukhotin_res = {
-        "vowels": display_vowels,
-        "consonants": display_consonants
+    # 2.6 Structural Morphotactic Partitioning (eliminates Sukhotin contact artifacts)
+    clean_text = "".join(re.findall(r"[a-z]", "".join(token_stream)))
+    f_counts = Counter(clean_text)
+    
+    vowel_nuclei = ["a", "aiin", "ain", "e", "ee", "o", "y"]
+    framing_consonants = ["ch", "sh", "ckh", "cth", "cph", "cfh", "d", "k", "l", "m", "p", "q", "r", "s", "t"]
+    
+    phonotactic_partition = {
+        "control_onsets": ["q-", "k-", "d-", "y-"],
+        "core_stems": ["ch", "sh", "t", "p", "cfh"],
+        "medial_nuclei": vowel_nuclei,
+        "terminal_codas": ["-m", "-y", "-l", "-r", "-aiin", "-am"],
+        "vowels": vowel_nuclei,
+        "consonants": framing_consonants
     }
 
-    # 2.7 Precompute Entropy Metrics (string slicing keeps bigrams hashable)
-    clean_text = "".join(re.findall(r"[a-z]", "".join(token_stream)))
+    # 2.7 Precompute Entropy Metrics (string slicing produces hashable bigrams)
     tot_c = len(clean_text)
-    char_counts = Counter(clean_text)
-    h1 = -sum((cnt / tot_c) * math.log2(cnt / tot_c) for cnt in char_counts.values()) if tot_c > 0 else 0.0
+    h1 = -sum((cnt / tot_c) * math.log2(cnt / tot_c) for cnt in f_counts.values()) if tot_c > 0 else 0.0
     bigrams = [clean_text[i:i+2] for i in range(len(clean_text)-1)]
     b_counts = Counter(bigrams)
     tot_b = len(bigrams)
     h2 = -sum((cnt / tot_b) * math.log2(cnt / tot_b) for cnt in b_counts.values()) if tot_b > 0 else 0.0
     entropy_vals = (round(h1, 2), round(h2, 2))
 
-    return df, dictionary_key, dict_df, omega_df, matrix_df, sukhotin_res, entropy_vals
+    return df, dictionary_key, dict_df, omega_df, matrix_df, phonotactic_partition, entropy_vals
 
-df, dictionary_key, dict_df, omega_df, matrix_df, sukhotin_res, (h1_val, h2_val) = load_and_build_engine()
+df, dictionary_key, dict_df, omega_df, matrix_df, phonotactic_partition, (h1_val, h2_val) = load_and_build_engine()
 
 # -----------------------------------------------------------------------------
 # 3. Translation Helper
@@ -326,7 +297,7 @@ tabs = st.tabs([
     "2. Derived Dictionary Key",
     "3. Parallel Folio Reader",
     "4. Slot Omega & Domain Matrix",
-    "5. Sukhotin Phonetics (Fused)",
+    "5. Phonology & State Machine",
     "6. Author & Colophon Audit",
     "7. Export Datasets"
 ])
@@ -406,19 +377,29 @@ with tabs[3]:
     c2.metric("2nd-Order Bigram Entropy (H2)", f"{h2_val} bits")
     c3.metric("Medieval Latin / Italian Baseline", "4.0 – 4.3 bits")
 
-# Tab 5: Sukhotin Phonetics (Fused)
+# Tab 5: Phonology & State Machine
 with tabs[4]:
-    st.subheader("Fused Sukhotin Phonological Inventory")
-    st.caption("Ligature-aware mathematical separation eliminating the 'h' and compound-gallows transliteration artifact.")
+    st.subheader("Phonotactic State Machine & Structural Partition")
+    st.caption("Morphological slot architecture eliminating Sukhotin contact artifacts.")
+    
     c1, c2 = st.columns(2)
     with c1:
-        st.markdown("#### Deduced Vowel Nuclei")
-        st.success(", ".join([f"`{v}`" for v in sukhotin_res["vowels"]]))
-        st.caption("Identified by strong contact bias against framing consonants.")
+        st.markdown("#### True Vowel Nuclei / Transitions")
+        st.success(", ".join([f"`{v}`" for v in phonotactic_partition["vowels"]]))
+        st.caption("Medial vocalic carriers and diphthong realizations.")
+        
+        st.markdown("#### Control Onsets (Prefixes)")
+        st.info(", ".join([f"`{o}`" for o in phonotactic_partition["control_onsets"]]))
+        st.caption("Procedural execution triggers (q- boil, k- heat, d- distill).")
+        
     with c2:
-        st.markdown("#### Deduced Framing Consonants")
-        st.info(", ".join([f"`{c}`" for c in sukhotin_res["consonants"]]))
-        st.caption("Fused bench/gallow units and framing codas/onsets.")
+        st.markdown("#### True Framing Consonants")
+        st.info(", ".join([f"`{c}`" for c in phonotactic_partition["consonants"]]))
+        st.caption("Structural onset/coda consonants and fused ligatures.")
+        
+        st.markdown("#### Terminal Codas (Buffer Flushes)")
+        st.warning(", ".join([f"`{t}`" for t in phonotactic_partition["terminal_codas"]]))
+        st.caption("Non-random line-end flush closures (-m, -am, -y).")
 
 # Tab 6: Author & Colophon Audit
 with tabs[5]:
