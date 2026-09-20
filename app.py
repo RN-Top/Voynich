@@ -1,6 +1,5 @@
 """
-VOYNICH WORKBENCH - ULTRA-LIGHT PRE-INDEXED DEPLOYMENT
-Zero-heavy-compute version designed to bypass Streamlit CPU throttling.
+VOYNICH WORKBENCH - ULTRA-LIGHT DYNAMIC GLOSSING DEPLOYMENT
 """
 
 import os
@@ -9,7 +8,7 @@ import pandas as pd
 import streamlit as st
 
 st.set_page_config(
-    page_title="Voynich Workbench (Fast)",
+    page_title="Voynich Workbench (Dynamic Gloss)",
     page_icon="🌌",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -19,21 +18,26 @@ st.set_page_config(
 # 1. PRE-INDEXED CORE DICTIONARY & GROUNDED LEMMAS
 # -----------------------------------------------------------------------------
 CORE_LEXICON = [
-    {"voynich_token": "ydaraishy", "latin_lemma": "auctor", "english": "author / composed by", "role": "OPERAND_NOUN", "confidence": 0.95},
-    {"voynich_token": "ytchas", "latin_lemma": "scriptor", "english": "scribe / written by", "role": "OPERAND_NOUN", "confidence": 0.95},
-    {"voynich_token": "daiin", "latin_lemma": "aqua", "english": "water / decoction", "role": "OPERAND_NOUN", "confidence": 0.92},
-    {"voynich_token": "chedy", "latin_lemma": "herba", "english": "herb / plant", "role": "OPERAND_NOUN", "confidence": 0.90},
-    {"voynich_token": "qokedy", "latin_lemma": "coque", "english": "boil / heat", "role": "OPERATOR_VERB", "confidence": 0.91},
-    {"voynich_token": "qokeey", "latin_lemma": "misce", "english": "mix / blend", "role": "OPERATOR_VERB", "confidence": 0.88},
-    {"voynich_token": "chdam", "latin_lemma": "finis", "english": "finish / flush", "role": "TERMINAL_FLUSH", "confidence": 0.89},
-    {"voynich_token": "otcheod", "latin_lemma": "stella", "english": "star / sector", "role": "OPERAND_NOUN", "confidence": 0.93},
-    {"voynich_token": "opairam", "latin_lemma": "solve", "english": "dissolve / extract", "role": "TERMINAL_FLUSH", "confidence": 0.87},
-    {"voynich_token": "oror", "latin_lemma": "finis", "english": "terminal sign-off marker", "role": "TERMINAL_FLUSH", "confidence": 0.85},
-    {"voynich_token": "chol", "latin_lemma": "calidus", "english": "hot / warm", "role": "MODIFIER_ADJ", "confidence": 0.81},
-    {"voynich_token": "chor", "latin_lemma": "siccus", "english": "dry / desiccated", "role": "MODIFIER_ADJ", "confidence": 0.80},
-    {"voynich_token": "oteod", "latin_lemma": "stella", "english": "celestial marker", "role": "OPERAND_NOUN", "confidence": 0.86},
+    {"voynich_token": "ydaraishy", "stem": "ydaraishy", "latin_lemma": "auctor", "english": "author / composed by", "role": "OPERAND_NOUN"},
+    {"voynich_token": "ytchas", "stem": "ytchas", "latin_lemma": "scriptor", "english": "scribe / written by", "role": "OPERAND_NOUN"},
+    {"voynich_token": "daiin", "stem": "daiin", "latin_lemma": "aqua", "english": "water / decoction", "role": "OPERAND_NOUN"},
+    {"voynich_token": "chedy", "stem": "chedy", "latin_lemma": "herba", "english": "herb / plant", "role": "OPERAND_NOUN"},
+    {"voynich_token": "qokedy", "stem": "k", "latin_lemma": "coque", "english": "boil / heat", "role": "OPERATOR_VERB"},
+    {"voynich_token": "qokeey", "stem": "k", "latin_lemma": "misce", "english": "mix / blend", "role": "OPERATOR_VERB"},
+    {"voynich_token": "chdam", "stem": "chd", "latin_lemma": "finis", "english": "finish / flush", "role": "TERMINAL_FLUSH"},
+    {"voynich_token": "otcheod", "stem": "cheod", "latin_lemma": "stella", "english": "star / sector", "role": "OPERAND_NOUN"},
+    {"voynich_token": "otcheodaiin", "stem": "cheod", "latin_lemma": "stella", "english": "star / sector [buffer]", "role": "OPERAND_NOUN"},
+    {"voynich_token": "otcheody", "stem": "cheod", "latin_lemma": "stella", "english": "star / sector [stative]", "role": "OPERAND_NOUN"},
+    {"voynich_token": "opairam", "stem": "pair", "latin_lemma": "solve", "english": "dissolve / extract [flush]", "role": "TERMINAL_FLUSH"},
+    {"voynich_token": "qopairam", "stem": "pair", "latin_lemma": "solve", "english": "extract / flush", "role": "TERMINAL_FLUSH"},
+    {"voynich_token": "oror", "stem": "oror", "latin_lemma": "finis", "english": "terminal sign-off marker", "role": "TERMINAL_FLUSH"},
+    {"voynich_token": "chol", "stem": "chol", "latin_lemma": "calidus", "english": "hot / warm", "role": "MODIFIER_ADJ"},
+    {"voynich_token": "chor", "stem": "chor", "latin_lemma": "siccus", "english": "dry / desiccated", "role": "MODIFIER_ADJ"},
+    {"voynich_token": "oteod", "stem": "eod", "latin_lemma": "stella", "english": "celestial marker", "role": "OPERAND_NOUN"},
 ]
-DICT_MAP = {row["voynich_token"]: row for row in CORE_LEXICON}
+
+STEM_MAP = {row["stem"]: row for row in CORE_LEXICON}
+EXACT_MAP = {row["voynich_token"]: row for row in CORE_LEXICON}
 dict_df = pd.DataFrame(CORE_LEXICON)
 
 # -----------------------------------------------------------------------------
@@ -64,7 +68,7 @@ ZODIAC_FOLIOS = {
 }
 
 # -----------------------------------------------------------------------------
-# 3. FAST CORPUS INGESTION (CACHED, LIGHTWEIGHT)
+# 3. CORPUS INGESTION & MORPHOTACTIC NORMALIZATION
 # -----------------------------------------------------------------------------
 def clean_stem(token: str) -> str:
     w = re.sub(r"[{}\[\]<!>]", "", str(token).lower().strip())
@@ -116,9 +120,15 @@ def gloss_line(text_line):
     words = [re.sub(r'[^a-z0-9]', '', w.lower()) for w in text_line.split() if w]
     gloss, english = [], []
     for w in words:
-        if w in DICT_MAP:
-            info = DICT_MAP[w]
+        carrier = clean_stem(w)
+        if w in EXACT_MAP:
+            info = EXACT_MAP[w]
             gloss.append(f"{info['english']}[{info['role'][:3]}]")
+            english.append(info['english'].split('/')[0].strip())
+        elif carrier in STEM_MAP:
+            info = STEM_MAP[carrier]
+            tag = "TER" if w.endswith(("m", "am")) else ("OPE" if w.startswith("q") else "NOM")
+            gloss.append(f"{info['english']}[{tag}]")
             english.append(info['english'].split('/')[0].strip())
         else:
             tag = "TER" if w.endswith(("m", "am")) else ("OPE" if w.startswith("q") else "NOM")
@@ -163,7 +173,7 @@ with t2:
 with t3:
     st.subheader("Parallel Manuscript Split Reader")
     folios = sorted(df["folio"].unique())
-    active_folio = st.selectbox("Select Folio:", folios)
+    active_folio = st.selectbox("Select Folio:", folios, index=folios.index("f114v") if "f114v" in folios else 0)
     sub_df = df[df["folio"] == active_folio]
     for h, group in sub_df.groupby("header", sort=False):
         raw = " ".join(group["clean"].astype(str))
