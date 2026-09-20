@@ -30,6 +30,7 @@ if uploaded_file is not None:
 else:
     raw_text = DEFAULT_VOYNICH_TEXT
 
+# Clean tokens
 words = [w.strip() for w in raw_text.replace("\n", " ").split(" ") if w.strip()]
 chars = [c for c in "".join(words)]
 
@@ -54,12 +55,10 @@ c4.metric("Word Entropy (H)", f"{word_entropy:.3f} bits")
 
 st.markdown("---")
 
-tab1, tab2, tab3, tab4 = st.tabs(["Positional Rules", "N-Gram & Frequency", "Currier A vs B Flags", "Substitution Sandbox"])
+tab1, tab2, tab3, tab4 = st.tabs(["Positional Rules", "N-Gram & Frequency", "Currier A vs B Separation", "Substitution Sandbox"])
 
 with tab1:
     st.subheader("Glyph Positional Distribution (Initial vs. Medial vs. Final)")
-    st.caption("Identifies positional preferences (e.g., initial gallows characters vs. suffixes like y, n).")
-
     col_ctrl1, col_ctrl2 = st.columns([1, 1])
     with col_ctrl1:
         top_n = st.slider("Top Glyphs to Display", min_value=3, max_value=25, value=15)
@@ -105,24 +104,64 @@ with tab1:
             })
 
     df_pos = pd.DataFrame(pos_data)
-
     if not df_pos.empty:
         df_pos = df_pos.set_index("Glyph")
         st.bar_chart(df_pos, color=["#3b82f6", "#10b981", "#f59e0b"], stack=True)
-    else:
-        st.info("No character data found to display.")
 
 with tab2:
-    st.subheader("Word Frequency Distribution")
-    word_freq = Counter(words).most_common(20)
-    df_words = pd.DataFrame(word_freq, columns=["Word", "Count"])
-    st.bar_chart(df_words.set_index("Word"))
+    st.subheader("Character Bigram Transition Matrix")
+    st.caption("Rows show current character; columns show the character that immediately follows it.")
+    
+    bigrams = Counter()
+    for w in words:
+        for i in range(len(w) - 1):
+            bigrams[(w[i], w[i+1])] += 1
+
+    top_chars = [g for g, _ in Counter(chars).most_common(12)]
+    matrix_data = {c2: [bigrams.get((c1, c2), 0) for c1 in top_chars] for c2 in top_chars}
+    df_matrix = pd.DataFrame(matrix_data, index=top_chars)
+    st.dataframe(df_matrix, use_container_width=True)
+
+    st.subheader("Top Word Frequencies")
+    df_words = pd.DataFrame(Counter(words).most_common(15), columns=["Token", "Count"]).set_index("Token")
+    st.bar_chart(df_words)
 
 with tab3:
-    st.subheader("Currier Classification Flags")
-    st.write("Upload a complete transcriber interlinear file (EVA format) to run Currier A / Currier B separation.")
+    st.subheader("Currier Language Diagnostic")
+    st.caption("Classifies vocabulary into Currier A (botanical/herbal marker heavy) vs Currier B (balneological marker heavy).")
+    
+    currier_a_markers = {"daiin", "chor", "cthy", "ataiin", "ar"}
+    currier_b_markers = {"shey", "chey", "cheor", "qokedy", "shedaiin"}
+
+    currier_a_words = [w for w in words if any(m in w for m in currier_a_markers)]
+    currier_b_words = [w for w in words if any(m in w for m in currier_b_markers)]
+
+    c_col1, c_col2 = st.columns(2)
+    c_col1.metric("Currier A Word Matches", len(currier_a_words))
+    c_col2.metric("Currier B Word Matches", len(currier_b_words))
+
+    st.write("**Currier A Sample Tokens Detected:**", list(set(currier_a_words))[:10])
+    st.write("**Currier B Sample Tokens Detected:**", list(set(currier_b_words))[:10])
 
 with tab4:
-    st.subheader("Substitution Sandbox")
-    sample_phrase = " ".join(words[:12])
-    st.text_area("Input Sample", value=sample_phrase, height=70)
+    st.subheader("Interactive Decryption / Substitution Sandbox")
+    st.caption("Map EVA transcription letters to phonetic candidates. Non-mapped characters remain uppercase or marked.")
+
+    sub_input = st.text_input("Mapping Rules (comma-separated, format: voynich=target)", value="o=a, d=t, y=s, ch=c, sh=x")
+    
+    # Build dictionary
+    mapping = {}
+    for rule in sub_input.split(","):
+        if "=" in rule:
+            src, tgt = rule.strip().split("=", 1)
+            mapping[src.strip()] = tgt.strip()
+
+    sample_text = st.text_area("Source EVA Text to Decode", value=" ".join(words[:24]), height=100)
+    
+    # Process substitution (longest keys first to handle multi-char like 'ch' before 'c')
+    decoded = sample_text
+    for src in sorted(mapping.keys(), key=len, reverse=True):
+        decoded = decoded.replace(src, mapping[src].upper())
+
+    st.markdown("### Decoded Output:")
+    st.code(decoded, language="text")
