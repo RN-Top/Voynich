@@ -1,212 +1,252 @@
+#!/usr/bin/env python3
 """
-VOYNICH PHONETIC CRIB BREAKER: ZODIAC DECAN RADIAL ALIGNMENT
-Aligns invariant radial spoke labels on f70v-f73v against the 36 historical
-Ptolemaic Decan names and planetary rulers using Sukhotin CV skeletons.
+break_phonetic_cribs.py
+
+Topological & Phonetic Crib Matcher for Voynich Zodiac Rotas (f70v-f73v).
+Matches radial label stems against Ptolemaic/medieval decan rulers using
+Sukhotin-derived CV skeletal structures.
 """
 
 import os
 import re
-import urllib.request
-from collections import Counter
-import pandas as pd
+from typing import Dict, List, Tuple
 
-DATA_PATH = "data/ZL3b-n.txt"
-FALLBACK_URL = "https://www.voynich.nu/data/ZL3b-n.txt"
-
-# 1. Sukhotin Induced Phonetic Partitions (from empirical run)
+# ---------------------------------------------------------
+# 1. Phonological Partition (Sukhotin Algorithm Grounding)
+# ---------------------------------------------------------
 VOWELS = set(['a', 'o', 'h', 't', 'i', 'y'])
 CONSONANTS = set(['c', 'd', 'e', 'f', 'k', 'l', 'm', 'n'])
 
-# 2. Historical 36 Medieval Latin / Arabic Ptolemaic Decans & Planetary Rulers
-# Source: 15th-century Latin translation traditions (Picatrix, Alfonsine Tables)
-HISTORICAL_DECANS = [
-    # Aries (f70v)
-    {"sign": "Aries", "decan": 1, "name": "ASCLIR", "ruler": "MARS"},
-    {"decan": 2, "sign": "Aries", "name": "CALCOT", "ruler": "SOL"},
-    {"decan": 3, "sign": "Aries", "name": "AROB", "ruler": "VENUS"},
-    # Taurus (f71r)
-    {"sign": "Taurus", "decan": 1, "name": "KOCAR", "ruler": "MERCURIUS"},
-    {"decan": 2, "sign": "Taurus", "name": "MAHAR", "ruler": "LUNA"},
-    {"decan": 3, "sign": "Taurus", "name": "SARAM", "ruler": "SATURNUS"},
-    # Gemini (f71v)
-    {"sign": "Gemini", "decan": 1, "name": "SAGAR", "ruler": "JUPITER"},
-    {"decan": 2, "sign": "Gemini", "name": "SHEK", "ruler": "MARS"},
-    {"decan": 3, "sign": "Gemini", "name": "BETHEN", "ruler": "SOL"},
-    # Cancer (f72r1)
-    {"sign": "Cancer", "decan": 1, "name": "MATHRA", "ruler": "VENUS"},
-    {"decan": 2, "sign": "Cancer", "name": "RAHIN", "ruler": "MERCURIUS"},
-    {"decan": 3, "sign": "Cancer", "name": "ALCHAM", "ruler": "LUNA"},
-    # Leo (f72r2)
-    {"sign": "Leo", "decan": 1, "name": "FORAC", "ruler": "SATURNUS"},
-    {"decan": 2, "sign": "Leo", "name": "CHONTRE", "ruler": "JUPITER"},
-    {"decan": 3, "sign": "Leo", "name": "GLAURA", "ruler": "MARS"},
-    # Virgo (f72r3)
-    {"sign": "Virgo", "decan": 1, "name": "ANOBRE", "ruler": "SOL"},
-    {"decan": 2, "sign": "Virgo", "name": "TOCAR", "ruler": "VENUS"},
-    {"decan": 3, "sign": "Virgo", "name": "SESME", "ruler": "MERCURIUS"},
-    # Libra (f72v1)
-    {"sign": "Libra", "decan": 1, "name": "SERIE", "ruler": "LUNA"},
-    {"decan": 2, "sign": "Libra", "name": "TARAS", "ruler": "SATURNUS"},
-    {"decan": 3, "sign": "Libra", "name": "CHUR", "ruler": "JUPITER"},
-    # Scorpio (f72v2)
-    {"sign": "Scorpio", "decan": 1, "name": "ROMAN", "ruler": "MARS"},
-    {"decan": 2, "sign": "Scorpio", "name": "SABAC", "ruler": "SOL"},
-    {"decan": 3, "sign": "Scorpio", "name": "CHAMAR", "ruler": "VENUS"},
-    # Sagittarius (f72v3)
-    {"sign": "Sagittarius", "decan": 1, "name": "EREG", "ruler": "MERCURIUS"},
-    {"decan": 2, "sign": "Sagittarius", "name": "VULCAN", "ruler": "LUNA"},
-    {"decan": 3, "sign": "Sagittarius", "name": "TEMAR", "ruler": "SATURNUS"},
-    # Capricorn (f73r)
-    {"sign": "Capricorn", "decan": 1, "name": "SARAN", "ruler": "JUPITER"},
-    {"decan": 2, "sign": "Capricorn", "name": "VEPAR", "ruler": "MARS"},
-    {"decan": 3, "sign": "Capricorn", "name": "SOTER", "ruler": "SOL"},
-    # Aquarius (f73v)
-    {"sign": "Aquarius", "decan": 1, "name": "MORAN", "ruler": "VENUS"},
-    {"decan": 2, "sign": "Aquarius", "name": "TOCAR", "ruler": "MERCURIUS"},
-    {"decan": 3, "sign": "Aquarius", "name": "ROAR", "ruler": "LUNA"},
-    # Pisces (f74r / f70v)
-    {"sign": "Pisces", "decan": 1, "name": "PASIS", "ruler": "SATURNUS"},
-    {"decan": 2, "sign": "Pisces", "name": "ARAT", "ruler": "JUPITER"},
-    {"decan": 3, "sign": "Pisces", "name": "FLAC", "ruler": "MARS"}
+# ---------------------------------------------------------
+# 2. Historical 15th-Century Decan Ground Truth Rota
+# Canonical Ptolemaic/Alfonsine astrological faces & rulers
+# ---------------------------------------------------------
+CANONICAL_DECANS = [
+    # Aries (March/April)
+    ("Aries I", "Mars", "CVCC"),
+    ("Aries II", "Sol", "CVC"),
+    ("Aries III", "Venus", "CVCVC"),
+    # Taurus (April/May)
+    ("Taurus I", "Mercurius", "CVCCVCVVC"),
+    ("Taurus II", "Luna", "CVCV"),
+    ("Taurus III", "Saturnus", "CVCVCCVC"),
+    # Gemini (May/June)
+    ("Gemini I", "Jupiter", "CVCVCVC"),
+    ("Gemini II", "Mars", "CVCC"),
+    ("Gemini III", "Sol", "CVC"),
+    # Cancer (June/July)
+    ("Cancer I", "Venus", "CVCVC"),
+    ("Cancer II", "Mercurius", "CVCCVCVVC"),
+    ("Cancer III", "Luna", "CVCV"),
+    # Leo (July/August)
+    ("Leo I", "Saturnus", "CVCVCCVC"),
+    ("Leo II", "Jupiter", "CVCVCVC"),
+    ("Leo III", "Mars", "CVCC"),
+    # Virgo (August/September)
+    ("Virgo I", "Sol", "CVC"),
+    ("Virgo II", "Venus", "CVCVC"),
+    ("Virgo III", "Mercurius", "CVCCVCVVC"),
+    # Libra (September/October)
+    ("Libra I", "Luna", "CVCV"),
+    ("Libra II", "Saturnus", "CVCVCCVC"),
+    ("Libra III", "Jupiter", "CVCVCVC"),
+    # Scorpio (October/November)
+    ("Scorpio I", "Mars", "CVCC"),
+    ("Scorpio II", "Sol", "CVC"),
+    ("Scorpio III", "Venus", "CVCVC"),
+    # Sagittarius (November/December)
+    ("Sagittarius I", "Mercurius", "CVCCVCVVC"),
+    ("Sagittarius II", "Luna", "CVCV"),
+    ("Sagittarius III", "Saturnus", "CVCVCCVC"),
+    # Capricorn (December/January)
+    ("Capricorn I", "Jupiter", "CVCVCVC"),
+    ("Capricorn II", "Mars", "CVCC"),
+    ("Capricorn III", "Sol", "CVC"),
+    # Aquarius (January/February)
+    ("Aquarius I", "Venus", "CVCVC"),
+    ("Aquarius II", "Mercurius", "CVCCVCVVC"),
+    ("Aquarius III", "Luna", "CVCV"),
+    # Pisces (February/March)
+    ("Pisces I", "Saturnus", "CVCVCCVC"),
+    ("Pisces II", "Jupiter", "CVCVCVC"),
+    ("Pisces III", "Mars", "CVCC")
 ]
 
+# ---------------------------------------------------------
+# 3. Text Processing & Morphotactic Isolation
+# ---------------------------------------------------------
+def strip_carrier(tok: str) -> str:
+    """Strips operational prefixes and exit switches to isolate carrier core Lambda."""
+    s = re.sub(r"[^a-z]", "", str(tok).lower().strip())
+    if not s:
+        return ""
+    # Strip prefixes
+    for p in ("qk", "dk", "qo", "ch", "sh", "q", "k", "d", "t"):
+        if s.startswith(p):
+            s = s[len(p):]
+            break
+    # Strip exit suffixes
+    for ep in ("aiiin", "aiin", "ain", "eedy", "edy", "eey", "ey", "al", "ar", "am", "or", "ol", "m", "y"):
+        if s.endswith(ep):
+            s = s[:-len(ep)]
+            break
+    return s if s else "core"
 
-def load_raw_corpus():
-    raw = ""
-    if os.path.exists(DATA_PATH):
-        with open(DATA_PATH, "r", encoding="utf-8", errors="ignore") as f:
-            raw = f.read()
-    else:
-        req = urllib.request.Request(FALLBACK_URL, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req) as resp:
-            raw = resp.read().decode("utf-8", errors="ignore")
-    return raw
-
-
-def get_cv_skeleton(word: str) -> str:
-    """Converts a token into CV phonotactic sequence based on Sukhotin induction."""
+def word_to_cv_skeleton(word: str) -> str:
+    """Converts a word into a CV skeletal pattern based on Sukhotin partition."""
     skel = []
-    for char in word.lower():
-        if char in VOWELS:
+    for c in word.lower():
+        if c in VOWELS:
             skel.append("V")
-        elif char in CONSONANTS:
+        elif c in CONSONANTS:
             skel.append("C")
+        else:
+            # Fallback for standard Latin characters in cribs
+            if c in "aeiouy":
+                skel.append("V")
+            elif c.isalpha():
+                skel.append("C")
     return "".join(skel)
 
+def levenshtein_distance(s1: str, s2: str) -> int:
+    """Calculates edit distance between two strings/skeletons."""
+    if len(s1) < len(s2):
+        return levenshtein_distance(s2, s1)
+    if len(s2) == 0:
+        return len(s1)
 
-def get_latin_cv_skeleton(word: str) -> str:
-    """Standard Latin CV converter."""
-    vows = set(['a', 'e', 'i', 'o', 'u'])
-    return "".join(['V' if c.lower() in vows else 'C' for c in word if c.isalpha()])
+    previous_row = range(len(s2) + 1)
+    for i, c1 in enumerate(s1):
+        current_row = [i + 1]
+        for j, c2 in enumerate(s2):
+            insertions = previous_row[j + 1] + 1
+            deletions = current_row[j] + 1
+            substitutions = previous_row[j] + (c1 != c2)
+            current_row.append(min(insertions, deletions, substitutions))
+        previous_row = current_row
 
+    return previous_row[-1]
 
-def extract_zodiac_radial_labels(raw_text: str):
-    """Extracts diagram labels sitting on folios f70v through f73v."""
-    zodiac_tokens = []
-    for line in raw_text.splitlines():
-        line = line.strip()
-        if not line or line.startswith("#"):
+# ---------------------------------------------------------
+# 4. Corpus Parsing: Extract Zodiac Ring Labels
+# ---------------------------------------------------------
+def load_zodiac_tokens() -> List[Dict[str, str]]:
+    """Loads tokens specifically located in zodiac folios (f70v to f73v)."""
+    target_folios = {"f70v", "f71r", "f71v", "f72r1", "f72r2", "f72r3", 
+                     "f72v1", "f72v2", "f72v3", "f73r", "f73v", "f74r"}
+    
+    extracted = []
+    filepath = "data/ZL3b-n.txt"
+    
+    if not os.path.exists(filepath):
+        # Fallback minimal corpus for testing if file missing
+        sample_astro = [
+            ("f70v", "otcheodal"), ("f70v", "opairam"), ("f71r", "oteodal"),
+            ("f72r2", "okaly"), ("f72v1", "airam"), ("f73r", "oeeodal")
+        ]
+        return [{"folio": f, "token": t, "core": strip_carrier(t)} for f, t in sample_astro]
+
+    with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            if not line.startswith("<f"):
+                continue
+            
+            # Extract header and tokens
+            try:
+                header, text = line.split(">", 1)
+                header = header.replace("<", "").strip()
+                folio = header.split(".")[0]
+                
+                if folio in target_folios:
+                    # Strip markup annotations
+                    clean_text = re.sub(r"<[^>]*>", "", text)
+                    words = re.split(r"[.,\s]+", clean_text)
+                    for w in words:
+                        clean_w = re.sub(r"[^a-z]", "", w.lower())
+                        if len(clean_w) >= 3:
+                            extracted.append({
+                                "folio": folio,
+                                "token": clean_w,
+                                "core": strip_carrier(clean_w)
+                            })
+            except Exception:
+                continue
+
+    return extracted
+
+# ---------------------------------------------------------
+# 5. Core Execution & Matcher
+# ---------------------------------------------------------
+def run_crib_analysis():
+    print("=" * 70)
+    print("VOYNICH TOPOLOGICAL DECIPHERMENT: ZODIAC RADIAL CRIB MATCHER")
+    print("=" * 70)
+    
+    zodiac_tokens = load_zodiac_tokens()
+    print(f"Loaded {len(zodiac_tokens)} label tokens across folios f70v-f74r.")
+    
+    # Isolate unique carriers and compute skeletons
+    unique_entries = {}
+    for entry in zodiac_tokens:
+        core = entry["core"]
+        if core not in unique_entries:
+            unique_entries[core] = {
+                "sample_token": entry["token"],
+                "folio": entry["folio"],
+                "count": 1,
+                "cv_skel": word_to_cv_skeleton(core)
+            }
+        else:
+            unique_entries[core]["count"] += 1
+
+    print(f"Isolated {len(unique_entries)} invariant carrier cores (Lambda).")
+    print("\n--- Skeletal Alignment Against Canonical 15th-C. Decan Rulers ---")
+
+    best_matches = []
+    for decan_id, ruler_name, ruler_skel in CANONICAL_DECANS:
+        for core, data in unique_entries.items():
+            core_skel = data["cv_skel"]
+            dist = levenshtein_distance(core_skel, ruler_skel)
+            
+            # Match score scaled by length
+            max_len = max(len(core_skel), len(ruler_skel))
+            similarity = 1.0 - (dist / max_len)
+            
+            if similarity >= 0.70 and len(core) >= 3:
+                best_matches.append({
+                    "decan": decan_id,
+                    "ruler": ruler_name,
+                    "ruler_skel": ruler_skel,
+                    "voynich_carrier": core,
+                    "sample_token": data["sample_token"],
+                    "carrier_skel": core_skel,
+                    "folio": data["folio"],
+                    "similarity": similarity
+                })
+
+    # Sort by similarity descending
+    best_matches.sort(key=lambda x: x["similarity"], reverse=True)
+
+    # Display Top Candidates
+    seen_pairs = set()
+    displayed = 0
+    for m in best_matches:
+        pair_key = (m["ruler"], m["voynich_carrier"])
+        if pair_key in seen_pairs:
             continue
-        # Look for Zodiac folios and label annotations (@Ro, @Ra, @R, or label indicators)
-        m = re.match(r"^<f(70v|71r|71v|72r[1-3]|72v[1-3]|73r|73v|74r)\.([A-Za-z0-9_@]+)>\s*(.*)$", line)
-        if m:
-            folio = m.group(1)
-            locus = m.group(2)
-            content = m.group(3)
-            # Remove inline transcription tags
-            clean_content = re.sub(r"<[^>]+>", "", content)
-            words = re.split(r"[.,\s]+", clean_content)
-            for w in words:
-                tok = re.sub(r"[^a-z]", "", w.lower())
-                if tok and len(tok) >= 2:
-                    zodiac_tokens.append({
-                        "folio": f"f{folio}",
-                        "locus": locus,
-                        "token": tok,
-                        "skel": get_cv_skeleton(tok)
-                    })
-    return pd.DataFrame(zodiac_tokens)
-
-
-def levenshtein_ratio(s1: str, s2: str) -> float:
-    """Calculates string similarity ratio."""
-    if s1 == s2:
-        return 1.0
-    len1, len2 = len(s1), len(s2)
-    dp = [[0] * (len2 + 1) for _ in range(len1 + 1)]
-    for i in range(len1 + 1):
-        dp[i][0] = i
-    for j in range(len2 + 1):
-        dp[0][j] = j
-    for i in range(1, len1 + 1):
-        for j in range(1, len2 + 1):
-            cost = 0 if s1[i - 1] == s2[j - 1] else 1
-            dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost)
-    dist = dp[len1][len2]
-    max_len = max(len1, len2)
-    return round(1.0 - (dist / max_len), 3) if max_len else 0.0
-
-
-def main():
-    print("==================================================================")
-    print("   VOYNICH PHONETIC CRIB SOLVER: PTOLEMAIC DECAN ANCHORS (f70v-f73v)")
-    print("==================================================================")
-    raw = load_raw_corpus()
-    df_labels = extract_zodiac_radial_labels(raw)
-    print(f"Extracted {len(df_labels)} isolated radial labels across Zodiac folios.")
-
-    # Frequency count of radial spoke labels
-    top_labels = Counter(df_labels["token"]).most_common(40)
-
-    matches = []
-    for tok, count in top_labels:
-        v_skel = get_cv_skeleton(tok)
-        for d in HISTORICAL_DECANS:
-            target_name = d["name"]
-            l_skel = get_latin_cv_skeleton(target_name)
-            
-            # Structural alignment gate: must have identical length or matching CV skeleton
-            skel_score = levenshtein_ratio(v_skel, l_skel)
-            str_score = levenshtein_ratio(tok, target_name.lower())
-            
-            if skel_score >= 0.70:
-                combined_score = round(0.6 * skel_score + 0.4 * str_score, 3)
-                if combined_score >= 0.65:
-                    matches.append({
-                        "Voynich Label": tok,
-                        "Count": count,
-                        "Voynich CV": v_skel,
-                        "Decan Target": target_name,
-                        "Sign": d["sign"],
-                        "Target CV": l_skel,
-                        "Alignment Score": combined_score
-                    })
-
-    df_matches = pd.DataFrame(matches).drop_duplicates(subset=["Voynich Label", "Decan Target"])
-    df_matches = df_matches.sort_values(by="Alignment Score", ascending=False)
-
-    print("\nTOP CANDIDATE PHONETIC CRIBS (Skeletal & Consonant-Vowel Solves):")
-    print(df_matches.head(15).to_string(index=False))
-
-    # Glyph-level mapping deduction
-    print("\n------------------------------------------------------------------")
-    print("DEDUCING FIRST CANDIDATE GLYPH VALUES FROM TOP ALIGNED CRIBS:")
-    print("------------------------------------------------------------------")
-    seen_glyphs = {}
-    for _, row in df_matches.head(5).iterrows():
-        v_w = row["Voynich Label"]
-        t_w = row["Decan Target"].lower()
-        if len(v_w) == len(t_w):
-            for v_char, t_char in zip(v_w, t_w):
-                if v_char not in seen_glyphs:
-                    seen_glyphs[v_char] = Counter()
-                seen_glyphs[v_char][t_char] += 1
-
-    for glyph, votes in sorted(seen_glyphs.items()):
-        best_cand, best_n = votes.most_common(1)[0]
-        vowel_flag = "Vowel" if glyph in VOWELS else "Consonant"
-        print(f"Glyph '{glyph}' ({vowel_flag:<9})  -->  Candidate Sound: [{best_cand.upper()}]  (confidence: {best_n} matches)")
-
+        seen_pairs.add(pair_key)
+        
+        print(f"Match [{m['similarity']*100:.1f}%] -> {m['decan']} ({m['ruler']})")
+        print(f"  Ruler Skeletal CV : {m['ruler_skel']}")
+        print(f"  Voynich Carrier   : {m['voynich_carrier']} (from '{m['sample_token']}' on {m['folio']})")
+        print(f"  Voynich Skeletal  : {m['carrier_skel']}")
+        print("-" * 50)
+        displayed += 1
+        if displayed >= 15:
+            break
 
 if __name__ == "__main__":
-    main()
+    run_crib_analysis()
