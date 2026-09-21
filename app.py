@@ -53,7 +53,7 @@ def load_full_corpus():
         except Exception:
             continue
 
-    # Canonical token sequence fallback
+    # Canonical token sequence fallback (guaranteed matching dimensions)
     tokens = [
         "fachys", "ykal", "ar", "ataiin", "shol", "shory", "cthores", "y", "kor", "sholdy",
         "ydaraishy", "daiin", "chedy", "qokedy", "chdam", "otcheodaiin", "qokchdy", "otedal",
@@ -61,11 +61,15 @@ def load_full_corpus():
         "chdy", "qokchdy", "qokal", "chdam", "otcheod", "oteodal", "opairam", "okeal", "otcheor",
         "dal", "otol", "otedy", "qokedy", "otcheodaiin", "qopairam", "otcheody", "daiin", "chedy"
     ]
+    n = len(tokens)
+    folios = (["f1r"] * 10 + ["f114v"] * 10 + ["f76r"] * 12 + ["f70v"] * 8 + ["f114v"] * 10)[:n]
+    sections = (["Herbal"] * 10 + ["Recipes"] * 10 + ["Biological"] * 12 + ["Astronomical"] * 8 + ["Recipes"] * 10)[:n]
+
     return pd.DataFrame({
-        "folio": ["f1r"] * 10 + ["f114v"] * 10 + ["f76r"] * 12 + ["f70v"] * 8 + ["f114v"] * 5,
+        "folio": folios,
         "clean": tokens,
         "carrier": [clean_stem(t) for t in tokens],
-        "section": ["Herbal"] * 10 + ["Recipes"] * 10 + ["Biological"] * 12 + ["Astronomical"] * 8 + ["Recipes"] * 5
+        "section": sections
     })
 
 corpus_df = load_full_corpus()
@@ -82,9 +86,9 @@ def calculate_token_periodicity(token_list, target_item):
     mean_l = float(np.mean(lags))
     std_l = float(np.std(lags))
     # Coefficient of Variation (CV = std / mean):
-    # CV << 1.0 -> Strictly Periodic (Metronomic / Clock frequency)
+    # CV < 0.5  -> Strictly Periodic (Metronomic / Clock frequency)
     # CV ~ 1.0  -> Geometric / Poisson Random Noise
-    # CV >> 1.0 -> Burst / Clustered Frequency
+    # CV > 1.1  -> Burst / Clustered Frequency
     cv = std_l / mean_l if mean_l > 0 else 0.0
     if cv < 0.5:
         verdict = "STRICTLY PERIODIC (Clock Pulse)"
