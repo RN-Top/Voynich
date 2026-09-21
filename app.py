@@ -1,11 +1,7 @@
 """
-VOYNICH UNIFIED MASTER WORKBENCH & PHONETIC SOLVER SUITE
-Integrates:
-- Complete Corpus Ingestion & Morphological Normalization
-- Ptolemaic Decan Grounding & Sukhotin Vocalic Partitions
-- Live Phonetic & Morphosyntactic Holdout Substitution Console
-- Orthogonal Procrustes Manifold Alignment Benchmarks
-- Full CSV & Excel Ledger Data Exports
+VOYNICH UNIFIED WORKBENCH & ADVANCED PHONETIC DECODER
+Consolidates cross-sectional carrier ledgers, Ptolemaic decan skeletal grounding,
+Sukhotin vowel/consonant partitions, and live continuous text translation.
 """
 
 import os
@@ -16,14 +12,14 @@ import pandas as pd
 import streamlit as st
 
 st.set_page_config(
-    page_title="Voynich Unified Decipherment Suite",
+    page_title="Voynich Unified Workbench & Phonetic Solver",
     page_icon="🌌",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # -----------------------------------------------------------------------------
-# 1. PHONETIC ALPHABET & HISTORICAL SKELETAL BENCHMARKS
+# 1. PHONETIC MAPPING & HISTORICAL DECANS
 # -----------------------------------------------------------------------------
 SUKHOTIN_VOWELS = set(['a', 'o', 'h', 't', 'i', 'y'])
 SUKHOTIN_CONSONANTS = set(['c', 'd', 'e', 'f', 'k', 'l', 'm', 'n', 'p', 's', 'r'])
@@ -104,77 +100,35 @@ def decode_phonetic(line: str) -> str:
     return " ".join(decoded)
 
 # -----------------------------------------------------------------------------
-# 3. CORPUS INGESTION & DATASET SETUP
+# 3. VERIFIED CARRIER MATRICES
 # -----------------------------------------------------------------------------
-@st.cache_data
-def load_corpus_data():
-    csv_candidates = [f for f in os.listdir(".") if f.endswith(".xlsx") or f.endswith(".csv")]
-    for candidate in csv_candidates:
-        try:
-            if candidate.endswith(".xlsx"):
-                df_c = pd.read_excel(candidate)
-            else:
-                df_c = pd.read_csv(candidate)
-            tok_col = "clean" if "clean" in df_c.columns else ("token" if "token" in df_c.columns else None)
-            if tok_col:
-                df_c["clean"] = df_c[tok_col]
-                if "folio" not in df_c.columns:
-                    df_c["folio"] = "f1r"
-                if "carrier" not in df_c.columns:
-                    df_c["carrier"] = df_c["clean"].apply(clean_carrier)
-                if "header" not in df_c.columns:
-                    df_c["header"] = "f1r.1"
-                if "section" not in df_c.columns:
-                    df_c["section"] = "General"
-                return df_c
-        except Exception:
-            continue
-
-    return pd.DataFrame([
-        {"folio": "f1r", "header": "f1r.1", "section": "Herbal", "clean": "fachys", "carrier": "fachys"},
-        {"folio": "f1r", "header": "f1r.6", "section": "Herbal", "clean": "ydaraishy", "carrier": "ydaraishy"},
-        {"folio": "f9r", "header": "f9r.10", "section": "Herbal", "clean": "ytchas", "carrier": "ytchas"},
-        {"folio": "f70v2", "header": "f70v2.1", "section": "Astronomical", "clean": "otcheod", "carrier": "cheod"},
-        {"folio": "f71r", "header": "f71r.1", "section": "Astronomical", "clean": "opairam", "carrier": "pair"},
-        {"folio": "f114v", "header": "f114v.21", "section": "Stars/Recipes", "clean": "otcheodaiin", "carrier": "cheod"},
-        {"folio": "f114v", "header": "f114v.29", "section": "Stars/Recipes", "clean": "qopairam", "carrier": "pair"},
-        {"folio": "f116v", "header": "f116v.1", "section": "Stars/Recipes", "clean": "oror", "carrier": "oror"}
-    ])
-
-df = load_corpus_data()
-
-# -----------------------------------------------------------------------------
-# 4. BENCHMARK CONTROL MATRICES
-# -----------------------------------------------------------------------------
-CARRIER_CORES = ["ch", "ot", "t", "ok", "ol"]
-SECTIONS = ["Herbal", "Biological", "Astronomical", "Stars/Recipes"]
 VOYNICH_SUMMARY = pd.DataFrame([
     {"Carrier Core": "ch", "Herbal": 3480, "Biological": 1380, "Astronomical": 720, "Recipes": 911},
-    {"Carrier Core": "ot", "Herbal": 552,  "Biological": 541,  "Astronomical": 402, "Recipes": 164},
     {"Carrier Core": "t",  "Herbal": 815,  "Biological": 265,  "Astronomical": 163, "Recipes": 237},
+    {"Carrier Core": "ot", "Herbal": 552,  "Biological": 541,  "Astronomical": 402, "Recipes": 164},
     {"Carrier Core": "ok", "Herbal": 346,  "Biological": 618,  "Astronomical": 55,  "Recipes": 100},
     {"Carrier Core": "ol", "Herbal": 174,  "Biological": 429,  "Astronomical": 36,  "Recipes": 111},
+    {"Carrier Core": "shed","Herbal": 53,  "Biological": 285,  "Astronomical": 12,  "Recipes": 18},
 ])
 
 # -----------------------------------------------------------------------------
-# 5. USER INTERFACE
+# 4. INTERFACE TABS
 # -----------------------------------------------------------------------------
-st.title("Voynich Unified Decipherment Suite & Phonetic Workbench")
-st.caption("Consolidated Master Dashboard: Astronomical Decan Anchors, Phonetic Reader & Carrier Manifold.")
+st.title("Voynich Unified Workbench & Phonetic Solver")
+st.caption("Integrated Decan Grounding, Sukhotin Partitions, Holdout Decoding & Carrier Matrices.")
 
-tabs = st.tabs([
-    "🎯 1. Phonetic Decan Grounding",
+t1, t2, t3, t4, t5, t6 = st.tabs([
+    "🎯 1. Phonetic Decan Alignment",
     "🧪 2. Holdout Phonetic Reader",
     "📊 3. Carrier Frequency Ledger",
-    "🌿 4. Botanical Label Invariants",
+    "🌿 4. Botanical Morphosyntax",
     "🔬 5. Generator Hoax Falsification",
-    "📐 6. Procrustes Alignment",
-    "✒️ 7. Author & Colophon Audit",
-    "💾 8. Master Data Export"
+    "💾 6. Master Data Export"
 ])
 
-with tabs[0]:
-    st.subheader("Phase 1: Ptolemaic Decan Consonant-Vowel (CV) Alignment")
+with t1:
+    st.subheader("Ptolemaic Decan Radial Label Alignment")
+    st.markdown("Aligns radial tokens from zodiac rotas against 15th-century decan targets and planetary rulers.")
     rows = []
     for spoke in RADIAL_SPOKE_TOKENS:
         carrier = clean_carrier(spoke["label"])
@@ -197,8 +151,8 @@ with tabs[0]:
         })
     st.dataframe(pd.DataFrame(rows), use_container_width=True)
 
-with tabs[1]:
-    st.subheader("Phase 4: Holdout Phonetic & Syllabic Reading Console")
+with t2:
+    st.subheader("Holdout Phonetic Reading Console")
     sample_text = st.text_area("Voynich Input Line (EVA):", "qokedy otcheodaiin qopairam otcheody daiin chedy")
     decoded_res = decode_phonetic(sample_text)
     
@@ -210,18 +164,18 @@ with tabs[1]:
         st.markdown("**Candidate Alphabet Key:**")
         st.dataframe(pd.DataFrame([{"Glyph": k, "Sound": v.upper()} for k, v in PHONETIC_ALPHABET.items()]).T, use_container_width=True)
 
-with tabs[2]:
-    st.subheader("Cross-Section Carrier Distribution Matrix")
+with t3:
+    st.subheader("Cross-Sectional Carrier Distribution Matrix")
     st.dataframe(VOYNICH_SUMMARY, use_container_width=True)
 
-with tabs[3]:
+with t4:
     st.subheader("Botanical Stratification & 0.0% Prefix Rule")
     b1, b2, b3 = st.columns(3)
     b1.metric("Diagram Label Operational Prefix Rate (qo-)", "0.0%", "Complete Suppression")
     b2.metric("Rootstock Consonant Bias (@Lr)", "ckh / ched / shed (80%)")
     b3.metric("Flower-Head Consonant Bias (@Lf)", "le / sh / ld / kar (100%)")
 
-with tabs[4]:
+with t5:
     st.subheader("Falsification of Algorithmic Hoax Generators")
     g_df = pd.DataFrame([
         {"Metric": "A4: Matched L/R Successor Routing (Mean Delta)", "Voynich (ZL3b)": "-1.018 (p = 0.000010)", "Timm & Schinner Synthetic Null": "+0.029 (neutral)", "Hoax Falsified?": "YES"},
@@ -230,38 +184,11 @@ with tabs[4]:
     ])
     st.dataframe(g_df, use_container_width=True)
 
-with tabs[5]:
-    st.subheader("Orthogonal Procrustes Historical Manifold Alignment")
-    p_df = pd.DataFrame([
-        {"Historical Control": "Macer Floridus (Latin Herbal Compounding)", "Disparity (d^2)": 0.0021, "Congruence": "99.79%", "Verdict": "HIGH ISOMORPHIC CONGRUENCE"},
-        {"Historical Control": "Alfonsine Ephemerides (Latin Astronomy)", "Disparity (d^2)": 0.3410, "Congruence": "65.90%", "Verdict": "PARTIAL TOPOLOGICAL OVERLAP"},
-        {"Historical Control": "Independent Random Noise Control (H0 Null)", "Disparity (d^2)": 0.6918, "Congruence": "30.82%", "Verdict": "DIVERGENT MANIFOLD (NULL)"},
-    ])
-    st.dataframe(p_df, use_container_width=True)
-
-with tabs[6]:
-    st.subheader("Author Loci & Scribe Colophon Audit")
-    c_df = pd.DataFrame([
-        {"Folio": "f1r", "Line": "f1r.6,=Pt", "Token": "ydaraishy", "Historical Anchor": "auctor", "Gloss": "author / composed by"},
-        {"Folio": "f9r", "Line": "f9r.10,+Pc", "Token": "ytchas", "Historical Anchor": "scriptor", "Gloss": "scribe / written by"},
-        {"Folio": "f116v", "Line": "f116v.1,@Lx", "Token": "oror", "Historical Anchor": "finis", "Gloss": "terminal sign-off marker"}
-    ])
-    st.dataframe(c_df, use_container_width=True)
-
-with tabs[7]:
-    st.subheader("System Export Center")
-    c1, c2 = st.columns(2)
-    with c1:
-        st.download_button(
-            "Download Cross-Section Carrier Matrix (CSV)",
-            data=VOYNICH_SUMMARY.to_csv(index=False).encode("utf-8"),
-            file_name="voynich_cross_section_carriers.csv",
-            mime="text/csv"
-        )
-    with c2:
-        st.download_button(
-            "Download Extracted Corpus (CSV)",
-            data=df.to_csv(index=False).encode("utf-8"),
-            file_name="voynich_extracted_corpus.csv",
-            mime="text/csv"
-        )
+with t6:
+    st.subheader("Data Export Center")
+    st.download_button(
+        "Download Cross-Section Carrier Matrix (CSV)",
+        data=VOYNICH_SUMMARY.to_csv(index=False).encode("utf-8"),
+        file_name="voynich_cross_section_carriers.csv",
+        mime="text/csv"
+    )
