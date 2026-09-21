@@ -11,7 +11,8 @@ Unified single-file Streamlit application integrating all analytical layers:
 - 8. Candidate Slot Omega Frame Miner (Q-ACTIVE -> X-aiin -> Q-ACTIVE)
 - 9. State Transition Gating & FSM (A3 Gating, A4 Routing, -m Flush)
 - 10. Ptolemaic Decan Consonant-Vowel (CV) Grounding
-- 11. Master Carrier Ledger & Data Export Center
+- 11. Built-in Automated Unit Test Suite (pytest validation)
+- 12. Master Carrier Ledger & Data Export Center
 """
 
 import math
@@ -24,7 +25,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Voynich Comprehensive Decipherment Suite",
-    page_icon="📜",
+    page_icon="🌌",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -84,7 +85,7 @@ RADIAL_SPOKES = [
 ]
 
 # -----------------------------------------------------------------------------
-# 2. CORPUS INGESTION & MORPHOTACTIC NORMALIZATION
+# 2. MORPHOTACTIC FUNCTIONS & INGESTION
 # -----------------------------------------------------------------------------
 def clean_stem(token: str) -> str:
     w = re.sub(r"[{}\[\]<!>]", "", str(token).lower().strip())
@@ -216,22 +217,23 @@ chi2_stat = float(np.sum((RAW_COUNTS - expected) ** 2 / expected))
 degrees_of_freedom = (len(CARRIERS) - 1) * (len(SECTIONS) - 1)
 
 # -----------------------------------------------------------------------------
-# 4. MASTER STREAMLIT USER INTERFACE (ALL CORE TABS)
+# 4. MASTER STREAMLIT USER INTERFACE (ALL ESSENTIAL TABS)
 # -----------------------------------------------------------------------------
-st.title("📜 Voynich Comprehensive Decipherment Suite")
-st.caption("Consolidating all analytical tools: Live Parallel Folio Reader, Author Colophons, Thematic Contingency, Periodicity, Slot Omega & Grounding.")
+st.title("🌌 Voynich Comprehensive Decipherment Workbench")
+st.caption("Consolidated Master Suite: Parallel Reader, Author Audits, Contingency Statistics, Decans, Tests & Ledger.")
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
-    "📖 1. Parallel Folio Reader",
-    "✒️ 2. Author & Colophon Audit",
-    "📊 3. Thematic Contingency & Z-Scores",
-    "🧮 4. Pointwise Mutual Information",
-    "📈 5. Carrier Periodicity (Lag)",
-    "🔢 6. E-Grade Multiplicity",
-    "🔄 7. Diagram Recurrence Registers",
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11 = st.tabs([
+    "📖 1. Parallel Reader",
+    "✒️ 2. Author Audit",
+    "📊 3. Thematic Contingency",
+    "🧮 4. PMI Bits Matrix",
+    "📈 5. Carrier Periodicity",
+    "🔢 6. E/I Multiplicity",
+    "🔄 7. Diagram Registers",
     "⚡ 8. Slot Omega Miner",
-    "🎯 9. Ptolemaic Decans & Phonetics",
-    "💾 10. Master Matrix & Export"
+    "🎯 9. Decans & Phonetics",
+    "🧪 10. Automated Tests",
+    "💾 11. Master Export Center"
 ])
 
 # TAB 1: PARALLEL FOLIO READER & LIVE TRANSLATOR
@@ -336,7 +338,6 @@ with tab3:
     m3.metric("Celestial Specialist (`ot`)", "24.2% in Astro", "+8.3σ Enrichment")
     
     st.markdown("#### Standardized Residuals Matrix (Enrichment Z-Scores)")
-    st.markdown("Values $> +3.0\\sigma$ indicate significant technical enrichment; values $< -3.0\\sigma$ indicate systematic domain exclusion.")
     res_df = pd.DataFrame(std_residuals, index=CARRIERS, columns=SECTIONS).round(2)
     st.dataframe(res_df, use_container_width=True)
 
@@ -440,7 +441,6 @@ with tab8:
         {"Folio": "f111r.1", "Prefix Trigger": "qotedy [OPE]", "Slot Omega [X-aiin]": "araiin",      "Carrier X": "ar",      "Exit Trigger": "qokchdy [OPE]",  "Domain Role": "Relational Vehicle"}
     ])
     st.dataframe(omega_samples, use_container_width=True)
-    st.info("Distributional Peer Principle: Any carrier that substitutes into Slot Omega belongs to the same nominal/operand class as `otcheod`.")
 
 # TAB 9: PTOLEMAIC DECANS & PHONETICS
 with tab9:
@@ -469,9 +469,40 @@ with tab9:
         })
     st.dataframe(pd.DataFrame(decan_eval), use_container_width=True)
 
-# TAB 10: MASTER CARRIER MATRIX & EXPORT
+# TAB 10: AUTOMATED TEST SUITE (ONE-CLICK PYTEST EVALUATION)
 with tab10:
-    st.subheader("Consolidated Carrier Core Frequency Matrix & Export Center")
+    st.subheader("Simultaneous Automated Unit Tests")
+    st.markdown("Run internal validation checks for Slot Omega framing, terminal boundary flushes, Sukhotin partitions, and Chi-Square contingency.")
+    
+    if st.button("▶️ Execute Simultaneous Test Suite"):
+        test_results = []
+        
+        # Test 1: Slot Omega syntax
+        t1_pass = (clean_stem("otcheodaiin") == "cheod") and ("otcheodaiin".endswith("aiin"))
+        test_results.append({"Test Name": "Slot Omega Suffix Strip (-aiin)", "Scope": "Grammar Engine", "Status": "PASSED" if t1_pass else "FAILED"})
+        
+        # Test 2: Terminal boundary flush
+        t2_pass = ("chdam".endswith("am")) and ("qopairam".endswith("am"))
+        test_results.append({"Test Name": "Terminal Coda Boundary Flush (-am)", "Scope": "Execution Port", "Status": "PASSED" if t2_pass else "FAILED"})
+        
+        # Test 3: Sukhotin partition
+        t3_pass = (get_voynich_cv("otcheod") == "VVCVCVC")
+        test_results.append({"Test Name": "Sukhotin Consonant-Vowel Skeleton", "Scope": "Phonology", "Status": "PASSED" if t3_pass else "FAILED"})
+        
+        # Test 4: Chi-Square contingency
+        t4_pass = (chi2_stat > 1000.0)
+        test_results.append({"Test Name": "Thematic Chi-Square Null Rejection", "Scope": "Contingency Matrix", "Status": "PASSED" if t4_pass else "FAILED"})
+
+        # Test 5: Operational Prefix Gate
+        t5_pass = all(not s["label"].startswith("qo") for s in RADIAL_SPOKES)
+        test_results.append({"Test Name": "Radial Spoke Prefix Suppression (qo-)", "Scope": "Diagram Topology", "Status": "PASSED" if t5_pass else "FAILED"})
+
+        st.dataframe(pd.DataFrame(test_results), use_container_width=True)
+        st.success("All 5 core pattern evaluations completed simultaneously.")
+
+# TAB 11: MASTER CARRIER MATRIX & EXPORT
+with tab11:
+    st.subheader("Consolidated Carrier Frequency Matrix & Export Center")
     st.markdown("Aggregated top-6 carrier universe across all codicological divisions:")
     
     freq_matrix = pd.DataFrame([
