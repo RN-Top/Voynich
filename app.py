@@ -5,6 +5,7 @@ Replaces spatial coordinate hypotheses with mathematical frequency testing:
 2. E-Grade Iteration Frequency Lattice (E0 -> E1 -> E2 stroke counting).
 3. Diagram Labels as Recurrence Registers (Testing repetition checkpoints vs angular coordinates).
 4. State Machine Transition Frequencies (A3 Prefix Gating & A4 Successor Routing).
+5. Cross-Sectional Carrier Core Frequency Matrix.
 """
 
 import os
@@ -53,7 +54,7 @@ def load_full_corpus():
         except Exception:
             continue
 
-    # Canonical token sequence fallback (guaranteed matching dimensions)
+    # Canonical token sequence fallback (dimension-locked)
     tokens = [
         "fachys", "ykal", "ar", "ataiin", "shol", "shory", "cthores", "y", "kor", "sholdy",
         "ydaraishy", "daiin", "chedy", "qokedy", "chdam", "otcheodaiin", "qokchdy", "otedal",
@@ -75,7 +76,7 @@ def load_full_corpus():
 corpus_df = load_full_corpus()
 
 # -----------------------------------------------------------------------------
-# 2. FREQUENCY & PERIODICITY ANALYSIS FUNCTIONS
+# 2. PERIODICITY ANALYSIS FUNCTION
 # -----------------------------------------------------------------------------
 def calculate_token_periodicity(token_list, target_item):
     """Measures inter-arrival distances (token lag) between recurrences."""
@@ -85,10 +86,6 @@ def calculate_token_periodicity(token_list, target_item):
     lags = [indices[j] - indices[j - 1] for j in range(1, len(indices))]
     mean_l = float(np.mean(lags))
     std_l = float(np.std(lags))
-    # Coefficient of Variation (CV = std / mean):
-    # CV < 0.5  -> Strictly Periodic (Metronomic / Clock frequency)
-    # CV ~ 1.0  -> Geometric / Poisson Random Noise
-    # CV > 1.1  -> Burst / Clustered Frequency
     cv = std_l / mean_l if mean_l > 0 else 0.0
     if cv < 0.5:
         verdict = "STRICTLY PERIODIC (Clock Pulse)"
@@ -106,28 +103,23 @@ def calculate_token_periodicity(token_list, target_item):
     }
 
 # -----------------------------------------------------------------------------
-# 3. STREAMLIT INTERFACE
+# 3. STREAMLIT MULTI-TAB INTERFACE
 # -----------------------------------------------------------------------------
 st.title("⏱️ Voynich Frequency, Periodicity & Recurrence Engine")
-st.caption("Empirical testing: Evaluating periodicity, stroke multiplicity, and state registers against geometric coordinates.")
+st.caption("Testing token lag, iteration stroke counts, and circular registers against spatial coordinates.")
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "📈 1. Carrier Inter-Arrival Periodicity",
+    "📈 1. Carrier Periodicity",
     "🔢 2. E-Grade Iteration Multiplicity",
-    "🔄 3. Diagram Labels as Checkpoint Registers",
-    "⚙️ 4. State Transition Probabilities",
-    "📊 5. Cross-Section Frequency Matrix"
+    "🔄 3. Diagram Recurrence Registers",
+    "⚙️ 4. State Transition Gating",
+    "📊 5. Cross-Section Carrier Matrix"
 ])
 
 # TAB 1: PERIODICITY
 with tab1:
     st.subheader("Inter-Arrival Distance (Token Lag) Analysis")
-    st.markdown(
-        """
-        Tests whether carrier stems recur at **fixed periodic intervals** (a metronomic clock frequency, $CV < 0.5$), 
-        **stochastic Poisson intervals** ($CV \\approx 1.0$), or **burst clusters** ($CV > 1.1$).
-        """
-    )
+    st.markdown("Measures recurrence lag: $CV < 0.5$ (periodic pulse), $CV \\approx 1.0$ (Poisson process), $CV > 1.1$ (burst clustering).")
     tokens_stream = corpus_df["carrier"].tolist()
     target_stems = ["ch", "ot", "ok", "t", "ol", "shed", "cheod", "pair"]
     
@@ -142,14 +134,12 @@ with tab1:
             "Variation (CV = σ/μ)": res["cv"],
             "Frequency Regime": res["verdict"]
         })
-    
     st.dataframe(pd.DataFrame(periodicity_results), use_container_width=True)
 
 # TAB 2: E-GRADE MULTIPLICITY
 with tab2:
     st.subheader("Procedural Iteration Multiplicity (The E-Grade Lattice)")
-    st.markdown("Measures internal iteration counts ($e \\to ee \\to eee$ and $i \\to ii \\to iii$) as operational repetition markers.")
-    
+    st.markdown("Tests internal glyph multiplicity as operational cycle loop counters.")
     all_raw = corpus_df["clean"].astype(str).tolist()
     e0 = sum(1 for w in all_raw if "e" not in w)
     e1 = sum(1 for w in all_raw if re.search(r"(?<!e)e(?!e)", w))
@@ -162,11 +152,11 @@ with tab2:
     
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("**E-Grade Stroke Multiplicity ($E^0 \\to E^3$)**")
+        st.markdown("**E-Grade Multiplicity ($E^0 \\to E^3$)**")
         df_e = pd.DataFrame([
-            {"Stage": "E0 (Zero Heat/Iteration)", "Pattern": "No 'e'", "Count": e0},
-            {"Stage": "E1 (Single Iteration)", "Pattern": "Single 'e'", "Count": e1},
-            {"Stage": "E2 (Double Iteration / Compound)", "Pattern": "Double 'ee'", "Count": e2},
+            {"Stage": "E0 (Zero Iteration)", "Pattern": "No 'e'", "Count": e0},
+            {"Stage": "E1 (Base Step)", "Pattern": "Single 'e'", "Count": e1},
+            {"Stage": "E2 (Compounded Step)", "Pattern": "Double 'ee'", "Count": e2},
             {"Stage": "E3 (Extended Pulse)", "Pattern": "Triple 'eee'", "Count": e3},
         ])
         st.dataframe(df_e, use_container_width=True)
@@ -179,15 +169,10 @@ with tab2:
         ])
         st.dataframe(df_i, use_container_width=True)
 
-# TAB 3: DIAGRAM LABELS AS REGISTERS
+# TAB 3: DIAGRAM REGISTERS
 with tab3:
     st.subheader("Diagram Labels: Re-Occurrence Registers vs. Spatial Coordinates")
-    st.markdown(
-        """
-        Evaluating whether concentric circular labels represent **geometric map coordinates** or 
-        **cyclical process registers** (checkpoints around an execution loop).
-        """
-    )
+    st.markdown("Evaluating whether circular labels act as operational checkpoints across loop rotations.")
     c1, c2, c3 = st.columns(3)
     c1.metric("Angular Spatial Lock Correlation", "r = -0.04 (p = 0.72)", "No Coordinate Lock")
     c2.metric("Diagram Operational Prefix (qo-)", "0.0%", "Complete Suppression")
@@ -203,10 +188,10 @@ with tab3:
     ])
     st.dataframe(sample_rotas, use_container_width=True)
 
-# TAB 4: STATE TRANSITION FREQUENCIES
+# TAB 4: STATE GATING
 with tab4:
     st.subheader("Markov State Transition Probabilities (Finite-State Machine)")
-    st.markdown("Quantifying transition odds to test rule-based grammar vs random text generation.")
+    st.markdown("Quantifying transition rules versus random null generators.")
     m_df = pd.DataFrame([
         {"Syntactic Constraint": "Effect A3: QO x K/T Odds Ratio", "Empirical Voynich Frequency": "2.53x Gating Enrichment", "Null Random Baseline": "0.44x Flat Noise", "Verdict": "STATE GATING PROVED"},
         {"Syntactic Constraint": "Effect A4: Successor Routing (-l vs -r)", "Empirical Voynich Frequency": "-1.018 Log-Odds Delta", "Null Random Baseline": "+0.029 Neutral", "Verdict": "SUCCESSOR GATING PROVED"},
@@ -215,7 +200,7 @@ with tab4:
     ])
     st.dataframe(m_df, use_container_width=True)
 
-# TAB 5: CROSS-SECTION FREQUENCY MATRIX
+# TAB 5: CROSS-SECTION MATRIX
 with tab5:
     st.subheader("Cross-Sectional Carrier Frequencies & Domain Biases")
     freq_matrix = pd.DataFrame([
