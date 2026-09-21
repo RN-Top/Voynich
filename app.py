@@ -60,7 +60,8 @@ TECHNICAL_GRAMMAR = {
 # 2. DETERMINISTIC PARSER & OPERATIONAL TRAJECTORY ENGINE
 # -----------------------------------------------------------------------------
 def clean_token(token: str) -> str:
-    return re.sub(r"[{}\\[\\]<!>,.:;?*+=@%$]", "", str(token).lower().strip())
+    # Strictly strip all non-alphanumeric symbols cleanly without regex compiler clashes
+    return re.sub(r"[^a-z0-9]", "", str(token).lower().strip())
 
 def parse_operational_token(token: str):
     clean = clean_token(token)
@@ -205,7 +206,7 @@ with tab_proc:
             st.code(text, language="text")
             st.caption(f"**Functional Roles:** `{roles_str}`")
         with c2:
-            st.markdown(f"**Decoded Technical Operation**")
+            st.markdown("**Decoded Technical Operation**")
             st.success(f"**Trajectory:** {translation}")
         st.markdown("---")
 
