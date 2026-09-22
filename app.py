@@ -1,8 +1,8 @@
 """
-VOYNICH MANUSCRIPT COMPLETE DECIPHERMENT WORKBENCH (FULL MANUSCRIPT ENGINE)
+VOYNICH MANUSCRIPT COMPLETE DECIPHERMENT WORKBENCH (FULL CORPUS ENGINE)
 Zero-dependency architecture: Native Streamlit, Pandas, NumPy, and pure SVG.
 Preserves all legacy modules, Master Skeleton, Pi, drainage rules, apparatus mapping,
-Visual Key Hunt, Bio-Assay suite, Three-Spot Fold Test, and full whole-manuscript data.
+Visual Key Hunt, Bio-Assay suite, Three-Spot Fold Test, and Venetian/Germanic Bridge.
 """
 
 import os
@@ -18,7 +18,7 @@ import streamlit as st
 # Page Configuration
 # ---------------------------------------------------------
 st.set_page_config(
-    page_title="Voynich Whole Manuscript Decipherment Workbench",
+    page_title="Voynich Decipherment Workbench",
     page_icon="🌌",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -73,10 +73,10 @@ def tag_token_role(token: str) -> str:
     return "unmapped"
 
 # ---------------------------------------------------------
-# WHOLE-MANUSCRIPT CORPUS INGESTION (ALL QUIRES)
+# WHOLE-MANUSCRIPT CORPUS INGESTION (SAFE LOADER)
 # ---------------------------------------------------------
-@st.cache_data(show_spinner="Ingesting full Voynich manuscript corpus...")
-def load_whole_manuscript():
+@st.cache_data(show_spinner="Loading Voynich corpus...")
+def load_corpus_data():
     paths = [
         os.path.join("data", "ZL3b-n.txt"),
         "ZL3b-n.txt",
@@ -89,83 +89,86 @@ def load_whole_manuscript():
             target_path = p
             break
             
-    if not target_path:
+    if target_path is None:
         os.makedirs("data", exist_ok=True)
         target_path = os.path.join("data", "ZL3b-n.txt")
         url = "https://www.voynich.nu/data/ZL3b-n.txt"
         try:
             urllib.request.urlretrieve(url, target_path)
         except Exception:
-            pass
+            target_path = None
 
     records = []
-    if os.path.exists(target_path) and os.path.getsize(target_path) > 10000:
+    if target_path and os.path.exists(target_path) and os.path.getsize(target_path) > 10000:
         current_folio = "f1r"
         current_quire = "Q01"
-        with open(target_path, "r", encoding="utf-8", errors="ignore") as f:
-            for raw_line in f:
-                line = raw_line.strip()
-                if not line or line.startswith("#"):
-                    continue
-                q_match = re.search(r"\$Q=([A-Za-z0-9]+)", line)
-                if q_match:
-                    current_quire = f"Q{q_match.group(1).upper()}"
-                f_header = re.match(r"<f?(\d+[rv]\d*|[A-Za-z0-9]+)>", line)
-                if f_header:
-                    current_folio = f"f{f_header.group(1).lower()}"
-                    continue
-                line_match = re.match(r"<([^>]+)>\s*(.*)", line)
-                if line_match:
-                    loc_full, content = line_match.group(1), line_match.group(2)
-                    parts = loc_full.split(".")
-                    raw_f = parts[0].lower().replace("<", "")
-                    folio = raw_f if re.search(r"(\d+[rv]|ros)", raw_f) else current_folio
-                    line_info = parts[1] if len(parts) > 1 else "1"
-                    locus = line_info.split(",")[-1] if "," in line_info else "+P0"
-                    
-                    sec = "Herbal"
-                    f_num_match = re.search(r"(\d+)", folio)
-                    if f_num_match:
-                        f_int = int(f_num_match.group(1))
-                        if 67 <= f_int <= 74: sec = "Zodiac / Wheel"
-                        elif 75 <= f_int <= 84: sec = "Bath / Pipe"
-                        elif 85 <= f_int <= 86: sec = "Rosettes Foldout"
-                        elif 87 <= f_int <= 102: sec = "Pharmaceutical"
-                        elif 103 <= f_int <= 116: sec = "Recipe / Other"
-                    elif "ros" in folio.lower():
-                        sec = "Rosettes Foldout"
+        try:
+            with open(target_path, "r", encoding="utf-8", errors="ignore") as f:
+                for raw_line in f:
+                    line = raw_line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    q_match = re.search(r"\$Q=([A-Za-z0-9]+)", line)
+                    if q_match:
+                        current_quire = f"Q{q_match.group(1).upper()}"
+                    f_header = re.match(r"<f?(\d+[rv]\d*|[A-Za-z0-9]+)>", line)
+                    if f_header:
+                        current_folio = f"f{f_header.group(1).lower()}"
+                        continue
+                    line_match = re.match(r"<([^>]+)>\s*(.*)", line)
+                    if line_match:
+                        loc_full, content = line_match.group(1), line_match.group(2)
+                        parts = loc_full.split(".")
+                        raw_f = parts[0].lower().replace("<", "")
+                        folio = raw_f if re.search(r"(\d+[rv]|ros)", raw_f) else current_folio
+                        line_info = parts[1] if len(parts) > 1 else "1"
+                        locus = line_info.split(",")[-1] if "," in line_info else "+P0"
                         
-                    clean_content = re.sub(r"<[%$!@].*?>", "", content)
-                    clean_content = re.sub(r"[{}\[\]<!>]", "", clean_content)
-                    toks = [t for t in re.split(r"[.,\s]+", clean_content) if t and not t.startswith("<")]
-                    for idx, tok in enumerate(toks):
-                        clean_tok = re.sub(r"[^a-z]", "", tok.lower())
-                        if not clean_tok: continue
-                        role = tag_token_role(clean_tok)
-                        pos = "start" if idx == 0 else ("end" if idx == len(toks)-1 else "mid")
-                        
-                        if role == "heat": part = "Cucurbit / Boiler"
-                        elif role == "medium": part = "Vapor Space / Menstruum"
-                        elif role == "outlet": part = "Beak / Rostellum"
-                        elif role == "reflux": part = "Inner Wall Reflux"
-                        elif role == "retain": part = "Matras / Receiver"
-                        elif role == "drain": part = "Lute / Purge Port"
-                        else: part = "Unassigned Matrix"
-                        
-                        records.append({
-                            "folio": folio,
-                            "line": line_info.split(",")[0],
-                            "quire": current_quire,
-                            "section": sec,
-                            "token": clean_tok,
-                            "role": role,
-                            "apparatus_part": part,
-                            "pos_in_line": pos,
-                            "is_ring_label": True if ("Zodiac" in sec and any(k in locus for k in ["@L", "@R", "@C"])) else False
-                        })
+                        sec = "Herbal"
+                        f_num_match = re.search(r"(\d+)", folio)
+                        if f_num_match:
+                            f_int = int(f_num_match.group(1))
+                            if 67 <= f_int <= 74: sec = "Zodiac / Wheel"
+                            elif 75 <= f_int <= 84: sec = "Bath / Pipe"
+                            elif 85 <= f_int <= 86: sec = "Rosettes Foldout"
+                            elif 87 <= f_int <= 102: sec = "Pharmaceutical"
+                            elif 103 <= f_int <= 116: sec = "Recipe / Other"
+                        elif "ros" in folio.lower():
+                            sec = "Rosettes Foldout"
+                            
+                        clean_content = re.sub(r"<[%$!@].*?>", "", content)
+                        clean_content = re.sub(r"[{}\[\]<!>]", "", clean_content)
+                        toks = [t for t in re.split(r"[.,\s]+", clean_content) if t and not t.startswith("<")]
+                        for idx, tok in enumerate(toks):
+                            clean_tok = re.sub(r"[^a-z]", "", tok.lower())
+                            if not clean_tok:
+                                continue
+                            role = tag_token_role(clean_tok)
+                            pos = "start" if idx == 0 else ("end" if idx == len(toks)-1 else "mid")
+                            
+                            if role == "heat": part = "Cucurbit / Boiler"
+                            elif role == "medium": part = "Vapor Space / Menstruum"
+                            elif role == "outlet": part = "Beak / Rostellum"
+                            elif role == "reflux": part = "Inner Wall Reflux"
+                            elif role == "retain": part = "Matras / Receiver"
+                            elif role == "drain": part = "Lute / Purge Port"
+                            else: part = "Unassigned Matrix"
+                            
+                            records.append({
+                                "folio": folio,
+                                "line": line_info.split(",")[0],
+                                "quire": current_quire,
+                                "section": sec,
+                                "token": clean_tok,
+                                "role": role,
+                                "apparatus_part": part,
+                                "pos_in_line": pos,
+                                "is_ring_label": True if ("Zodiac" in sec and any(k in locus for k in ["@L", "@R", "@C"])) else False
+                            })
+        except Exception:
+            records = []
 
     if not records:
-        # Pre-indexed full representative corpus
         raw_lines = [
             ("f1r", "f1r.1", "Q01", "Herbal", "fachys ykal ar ataiin shol shory"),
             ("f1r", "f1r.6", "Q01", "Herbal", "okchoy otchol chocthy ydaraishy chdam"),
@@ -192,7 +195,8 @@ def load_whole_manuscript():
             ("f114v", "f114v.31", "Q20", "Recipe / Other", "otcheody lkchedy"),
             ("f116v", "f116v.1", "Q20", "Recipe / Other", "oror sheey")
         ]
-        for folio, line, quire, sec, text in raw_lines:
+        for item in raw_lines:
+            folio, line, quire, sec, text = item[0], item[1], item[2], item[3], item[4]
             toks = text.split()
             for idx, tok in enumerate(toks):
                 role = tag_token_role(tok)
@@ -209,18 +213,21 @@ def load_whole_manuscript():
                     "token": tok, "role": role, "apparatus_part": part, "pos_in_line": pos,
                     "is_ring_label": True if ("Zodiac" in sec and ".side" not in line) else False
                 })
+
     return pd.DataFrame(records)
 
-corpus_df = load_whole_manuscript()
+corpus_df = load_corpus_data()
 
 def get_svg_pie(counts_dict, size=140):
     total = sum(counts_dict.values())
-    if total == 0: return "<svg width='100' height='100'></svg>"
+    if total == 0:
+        return "<svg width='100' height='100'></svg>"
     cx, cy, r = size / 2, size / 2, (size / 2) - 10
     svg = [f"<svg width='{size}' height='{size}' viewBox='0 0 {size} {size}'>"]
     curr = 0.0
     for role, count in counts_dict.items():
-        if count == 0: continue
+        if count == 0:
+            continue
         frac = count / total
         ang = frac * 2 * math.pi
         x1 = cx + r * math.cos(curr)
