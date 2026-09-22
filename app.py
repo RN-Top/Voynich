@@ -1,7 +1,8 @@
 """
 VOYNICH MANUSCRIPT COMPLETE DECIPHERMENT WORKBENCH & VISUAL KEY HUNT
-Zero-dependency architecture: Native Streamlit, Pandas, NumPy, and pure SVG.
-Preserves all legacy modules, master skeleton, Pi, and appends the Visual Key Hunt.
+Self-contained zero-dependency architecture: Native Streamlit, Pandas, NumPy, and pure SVG.
+Preserves all legacy modules, Master Skeleton, Pi, drainage rules, apparatus mapping,
+carrier distribution matrix, and appends the Visual Key Hunt module.
 """
 
 import os
@@ -34,7 +35,6 @@ PHONETIC_ALPHABET = {
     'y': 'm', 's': 'p', 'l': 'l', 'r': 'r', 'f': 'f'
 }
 
-# EXACT LOCKED COLOR PALETTE (Strictly Enforced Everywhere)
 ROLE_COLORS = {
     "heat": "#FF0000",      # red
     "medium": "#00FFFF",    # cyan
@@ -102,8 +102,8 @@ def load_corpus_records():
         ("f104r", "f104r.35", "Q17", "Recipe / Other", "qocheol chedaiin qodal chdam"),
         ("f114v", "f114v.4", "Q20", "Recipe / Other", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin"),
         ("f114v", "f114v.21", "Q20", "Recipe / Other", "qokedy otcheodaiin qokchdy"),
-        ("f114v", "f114v.29", "Q20", "Recipe / Other", "otcheed qopairam"),
-        ("f114v", "f114v.31", "Q20", "Recipe / Other", "otcheody lkchedy"),
+        ("f114v.29", "Q20", "Recipe / Other", "otcheed qopairam"),
+        ("f114v.31", "Q20", "Recipe / Other", "otcheody lkchedy"),
         ("f116v", "f116v.1", "Q20", "Recipe / Other", "oror sheey")
     ]
     rows = []
@@ -131,7 +131,6 @@ def load_corpus_records():
 
 corpus_df = load_corpus_records()
 
-# Zero-dependency SVG Pie Generator
 def get_svg_pie(counts_dict, size=140):
     total = sum(counts_dict.values())
     if total == 0:
@@ -160,7 +159,7 @@ def get_svg_pie(counts_dict, size=140):
     return "".join(svg)
 
 # ---------------------------------------------------------
-# TAB NAVIGATION (RESTORING ALL PREVIOUS TABS + VISUAL KEY HUNT)
+# TAB NAVIGATION
 # ---------------------------------------------------------
 st.title("Voynich Manuscript Decipherment Workbench")
 
@@ -360,7 +359,7 @@ with tabs[0]:
       **Folios `f70v`, `f71r`, and `f72r1` (Zodiac Rings):** The circular radial drawings show 0.0% heat (`qo-`) and 0.0% line flushes, operating strictly as static coordinate slots.
     * **Which pages kill the idea:**  
       **Folio `f116v`:** `oror sheey` forces a full system execution closure (`TERMINAL_FLUSH`) despite having no drawings of vessels or furnaces.  
-      **Folios `f1r.6` and `f9r.10`:** `ydaraishy` and `ytchas` sit next to standard botanical plant drawings, but function as authorial and scribal attributions rather than botanical structures.
+      **Folios `f1r.6` and `f9r.10`:** `ydaraishy` and `ytchas` sit next to standard botanical plant drawings, but function as authorial and scribal attributions rather than plant structures.
     * **Whether the key looks like a still, a calendar, both, or neither:**  
       **Both, operating in stratified tandem:** A **calendar/wheel topology** on `f70v–f73v` locks static spatial coordinate registers, and an **alembic/distillation topology** across `f75r–f84v` and `f103r–f116v` manages thermal flow, fluid circulation, and receiver drainage.
     * **What you are not allowed to claim:**  
