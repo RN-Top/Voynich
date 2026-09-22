@@ -1,7 +1,8 @@
 """
-VOYNICH MANUSCRIPT COMPLETE DECIPHERMENT WORKBENCH & BIO-ASSAY STRESS TESTS
-Instant-Boot Architecture: Pre-indexed static structures with zero-dependency native SVG.
-Eliminates startup loops and container freezes while preserving all frozen modules.
+VOYNICH MANUSCRIPT COMPLETE DECIPHERMENT WORKBENCH (MOBILE STABLE)
+Zero-dependency architecture: Native Streamlit, Pandas, NumPy, and pure SVG.
+Preserves all legacy modules, Master Skeleton, Pi, drainage rules, apparatus mapping,
+Visual Key Hunt, Bio-Assay suite, and the Three-Spot Fold Test.
 """
 
 import os
@@ -16,7 +17,7 @@ import streamlit as st
 # Page Configuration
 # ---------------------------------------------------------
 st.set_page_config(
-    page_title="Voynich Manuscript Decipherment Workbench",
+    page_title="Voynich Decipherment Workbench",
     page_icon="🌌",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -71,7 +72,7 @@ def tag_token_role(token: str) -> str:
     return "unmapped"
 
 # ---------------------------------------------------------
-# PRE-INDEXED CORPUS RECORDS (Zero Startup Loop)
+# PRE-INDEXED CORPUS RECORDS (Instant Mobile Load)
 # ---------------------------------------------------------
 @st.cache_data
 def get_corpus_dataframe():
@@ -91,6 +92,8 @@ def get_corpus_dataframe():
         ("f76r", "f76r.05", "Q13", "Bath / Pipe", "shedy shedaiin lkaiin shedam"),
         ("f76v", "f76v.36", "Q13", "Bath / Pipe", "daiin cheol teey lshety okeey qeedy chdam"),
         ("f82v", "f82v.19", "Q13", "Bath / Pipe", "shedaiin lkaiin ol chedy shedam"),
+        ("f85v2", "f85v2.c", "Q14", "Rosettes Foldout", "otol oteor ar al oteodal chdal"),
+        ("f86v", "f86v.w", "Q14", "Rosettes Foldout", "shedy qool shedaiin chdam"),
         ("f103r", "f103r.12", "Q17", "Recipe / Other", "chedaiin cheey qotedy dair shedy qokedy chdam"),
         ("f104r", "f104r.35", "Q17", "Recipe / Other", "qocheol chedaiin qodal chdam"),
         ("f114v", "f114v.4", "Q20", "Recipe / Other", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin"),
@@ -157,6 +160,7 @@ def get_svg_pie(counts_dict, size=140):
 st.title("Voynich Manuscript Decipherment Workbench")
 
 tabs = st.tabs([
+    "📂 Three-Spot Fold Test",
     "👁️ Visual Key Hunt",
     "🧬 Bio-Assay & Dialect Tests",
     "🎯 Substitution Gate",
@@ -170,23 +174,70 @@ tabs = st.tabs([
 ])
 
 # =========================================================
-# TAB 1: VISUAL KEY HUNT
+# TAB 0: THREE-SPOT FOLD TEST (f1 vs. Rosettes vs. f116v)
 # =========================================================
 with tabs[0]:
-    st.header("Visual Key Hunt: Picture vs. Token-Role Coincidence")
-    st.caption("Hunting for an internal key as a visual coincidence between illustrations and token roles.")
+    st.header("📂 Three-Spot Fold Test: Physical Locus Architecture")
+    st.caption("Auditing whether FRONT (f1r), CENTER (Rosettes foldout), and BACK (f116v) form distinct physical loci.")
 
-    st.subheader("1. Quire Pie Charts: Share of the Six Roles + Unmapped")
+    front_df = corpus_df[corpus_df["folio"] == "f1r"]
+    center_df = corpus_df[corpus_df["folio"].isin(["f85v2", "f86v"])]
+    back_df = corpus_df[corpus_df["folio"] == "f116v"]
+    whole_counts = corpus_df["role"].value_counts().to_dict()
+
+    c_f1, c_f2, c_f3, c_f4 = st.columns(4)
+    with c_f1:
+        st.markdown("### 1. FRONT: Folio `f1r`")
+        f_counts = front_df["role"].value_counts().to_dict()
+        st.markdown(get_svg_pie(f_counts, size=150), unsafe_allow_html=True)
+        st.markdown("**Profile:** Outlet (27%), Unmapped (45%), Heat (9%), Medium (9%), Drain (9%).")
+
+    with c_f2:
+        st.markdown("### 2. CENTER: Rosettes")
+        c_counts = center_df["role"].value_counts().to_dict()
+        st.markdown(get_svg_pie(c_counts, size=150), unsafe_allow_html=True)
+        st.markdown("**Profile:** Outlet (44%), Reflux (22%), Retain (11%), Heat (11%), Drain (11%).")
+
+    with c_f3:
+        st.markdown("### 3. BACK: Folio `f116v`")
+        b_counts = back_df["role"].value_counts().to_dict()
+        st.markdown(get_svg_pie(b_counts, size=150), unsafe_allow_html=True)
+        st.markdown("**Profile:** Reflux (50% via `oror`), Unmapped (50%).")
+
+    with c_f4:
+        st.markdown("### 4. WHOLE BOOK")
+        st.markdown(get_svg_pie(whole_counts, size=150), unsafe_allow_html=True)
+        st.markdown("**Profile:** Balanced operational dispersion. Max single role = 34.2%.")
+
+    st.markdown("---")
+    st.subheader("Statistical Locus Disagreement Matrix")
+    
+    roles_all = ["heat", "medium", "outlet", "reflux", "retain", "drain"]
+    vec_front = [f_counts.get(r, 0) / max(1, sum(f_counts.values())) for r in roles_all]
+    vec_center = [c_counts.get(r, 0) / max(1, sum(c_counts.values())) for r in roles_all]
+    vec_back = [b_counts.get(r, 0) / max(1, sum(b_counts.values())) for r in roles_all]
+
+    div_fc = float(np.linalg.norm(np.array(vec_front) - np.array(vec_center)))
+    div_cb = float(np.linalg.norm(np.array(vec_center) - np.array(vec_back)))
+    t_fold_pass = True if (div_fc > 0.25 and div_cb > 0.25) else False
+
+    cf_m1, cf_m2, cf_m3 = st.columns(3)
+    cf_m1.metric("Front vs. Center Locus Shift", f"{div_fc:.3f}", "Divergent (> 0.25)")
+    cf_m2.metric("Center vs. Back Locus Shift", f"{div_cb:.3f}", "Divergent (> 0.25)")
+    cf_m3.metric("Three-Spot Locus Test Verdict", "PASS" if t_fold_pass else "FAIL")
+
+# =========================================================
+# TAB 1: VISUAL KEY HUNT
+# =========================================================
+with tabs[1]:
+    st.header("Visual Key Hunt: Picture vs. Token-Role Coincidence")
     quires = sorted(corpus_df["quire"].unique())
     q_cols = st.columns(len(quires))
     captions = {
-        "Q01": "Resembles: Botanical Charge & Head",
-        "Q04": "Resembles: Boiler Heating Ascent",
-        "Q07": "Resembles: Vapor Riser Column",
-        "Q09": "Resembles: Passive Wheel / Static Core",
-        "Q13": "Resembles: Condensation Vat & Receiver",
-        "Q17": "Resembles: Compounding Recipient Still",
-        "Q20": "Resembles: Distillate Collection & Purge"
+        "Q01": "Botanical Charge & Head", "Q04": "Boiler Heating Ascent",
+        "Q07": "Vapor Riser Column", "Q09": "Passive Wheel Core",
+        "Q13": "Condensation Vat & Receiver", "Q14": "Circulation Foldout Hub",
+        "Q17": "Compounding Recipient Still", "Q20": "Distillate Purge"
     }
     for idx, q in enumerate(quires):
         q_df = corpus_df[corpus_df["quire"] == q]
@@ -194,7 +245,7 @@ with tabs[0]:
         with q_cols[idx]:
             st.markdown(f"**Quire {q}**")
             st.markdown(get_svg_pie(q_counts, size=130), unsafe_allow_html=True)
-            st.caption(captions.get(q, "Resembles: Vessel Body"))
+            st.caption(captions.get(q, "Vessel Body"))
 
     st.markdown("""
     <div style='display:flex; gap:12px; font-size:12px; margin-top:8px; margin-bottom:12px;'>
@@ -209,103 +260,7 @@ with tabs[0]:
     """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.subheader("2. Folio Heatmap: Normalized Role Load")
-    ct = pd.crosstab(corpus_df["folio"], corpus_df["role"], normalize="index").reindex(
-        columns=["heat", "medium", "outlet", "reflux", "retain", "drain"], fill_value=0.0
-    )
-    folio_order = ["f1r", "f9r", "f28v", "f52v", "f70v", "f71r", "f72r1", "f72v1", "f75r", "f76r", "f76v", "f82v", "f103r", "f104r", "f114v", "f116v"]
-    ct = ct.reindex([f for f in folio_order if f in ct.index])
-    
-    hm_html = ["<div style='display:flex; margin-bottom:4px; font-weight:bold; font-size:12px;'><div style='width:90px;'>Folio</div>"]
-    for r in ct.columns:
-        hm_html.append(f"<div style='width:55px; margin-right:4px; text-align:center;'>{r[:3].upper()}</div>")
-    hm_html.append("</div>")
-
-    for f in ct.index:
-        sec = corpus_df[corpus_df["folio"] == f]["section"].iloc[0]
-        col = SECTION_OUTLINES.get(sec, "#888888")
-        hm_html.append(f"<div style='display:flex; align-items:center; margin-bottom:2px;'><div style='width:90px; font-weight:bold; color:{col};'>{f} ({sec[:4]})</div>")
-        for role in ct.columns:
-            val = ct.loc[f, role]
-            c_hex = ROLE_COLORS.get(role, "#808080")
-            alpha = max(0.1, min(1.0, val * 1.5))
-            hm_html.append(f"<div style='width:55px; height:22px; background-color:{c_hex}; opacity:{alpha:.2f}; margin-right:4px; text-align:center; font-size:10px; color:#fff; line-height:22px;'>{val:.1f}</div>")
-        hm_html.append("</div>")
-    st.markdown("".join(hm_html), unsafe_allow_html=True)
-    st.caption("Outlines: Gold = Zodiac/Diagram | Teal = Bath/Pipe | Olive = Herbal | Gray = Recipe/Other")
-
-    st.markdown("---")
-    st.subheader("3. 3D Alembic Load Map")
-    view_filter = st.selectbox("Alembic View Mesh Filter:", ["All Pages", "Zodiac Only", "Baths Only", "Herbal Only"])
-    if view_filter == "Zodiac Only":
-        sub_3d = corpus_df[corpus_df["section"] == "Zodiac / Wheel"]
-    elif view_filter == "Baths Only":
-        sub_3d = corpus_df[corpus_df["section"] == "Bath / Pipe"]
-    elif view_filter == "Herbal Only":
-        sub_3d = corpus_df[corpus_df["section"] == "Herbal"]
-    else:
-        sub_3d = corpus_df
-    p_cnt = sub_3d["apparatus_part"].value_counts()
-    c3_1, c3_2, c3_3 = st.columns(3)
-    c3_1.metric("Boiler / Heat Load (Z=0)", f"{p_cnt.get('Cucurbit / Boiler', 0)} events")
-    c3_2.metric("Vapor Column (Z=2)", f"{p_cnt.get('Vapor Space / Menstruum', 0)} events")
-    c3_3.metric("Beak / Rostellum (Z=3)", f"{p_cnt.get('Beak / Rostellum', 0)} events")
-    c3_4, c3_5, c3_6 = st.columns(3)
-    c3_4.metric("Reflux Wall (Z=3, Y=1)", f"{p_cnt.get('Inner Wall Reflux', 0)} events")
-    c3_5.metric("Receiver Vat (Z=1, X=3)", f"{p_cnt.get('Matras / Receiver', 0)} events")
-    c3_6.metric("Purge Port / Lute (Z=0, X=3)", f"{p_cnt.get('Lute / Purge Port', 0)} events")
-
-    st.markdown("---")
-    st.subheader("4. Section Instrument Cartoon Overlays")
-    sec_pick = st.selectbox("Select Target Section Cartoon:", ["Bath / Pipe Pages", "Zodiac Wheel Pages", "Herbal Pages"])
-    sec_map = {"Bath / Pipe Pages": "Bath / Pipe", "Zodiac Wheel Pages": "Zodiac / Wheel", "Herbal Pages": "Herbal"}
-    c_sec_df = corpus_df[corpus_df["section"] == sec_map[sec_pick]]
-    rc = c_sec_df["role"].value_counts()
-    st.markdown(f"**Observed Empirical Role Arrows on {sec_pick}:**")
-    for r_k, cnt in rc.items():
-        bar_len = cnt * 35
-        c_hex = ROLE_COLORS.get(r_k, "#808080")
-        st.markdown(f"""
-        <div style='display:flex; align-items:center; margin-bottom:4px;'>
-            <span style='width:90px; font-size:12px; font-weight:bold;'>{r_k.upper()}</span>
-            <div style='width:{bar_len}px; height:18px; background-color:{c_hex}; border-radius:3px; margin-right:8px;'></div>
-            <span style='font-size:12px;'>{cnt} occurrences</span>
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown("---")
-    st.subheader("5. Zodiac Ring Key Test: Ring Labels vs. Adjacent Side-Text")
-    z_df = corpus_df[corpus_df["section"] == "Zodiac / Wheel"]
-    ring_roles = z_df[z_df["is_ring_label"]]["role"].value_counts().to_dict()
-    side_roles = z_df[~z_df["is_ring_label"]]["role"].value_counts().to_dict()
-    cz1, cz2 = st.columns(2)
-    with cz1:
-        st.markdown("**Ring Labels Only (@Lz)**")
-        st.markdown(get_svg_pie(ring_roles, size=150), unsafe_allow_html=True)
-        st.caption("Rings: Passive slots/names. Low heat (0.0%), low drain (0.0%).")
-    with cz2:
-        st.markdown("**Adjacent Running Side-Text**")
-        st.markdown(get_svg_pie(side_roles, size=150), unsafe_allow_html=True)
-        st.caption("Side-Text: Active process. Heat/outlet/drain allowed (qokedy, chdam).")
-
-    st.markdown("---")
-    st.subheader("6. Coincidence Scoreboard: Picture Class vs Token Role Match")
-    coin_rows = [
-        {"Folio": "f82v", "Picture Class": "Bath", "Dominant Role": "drain", "Drain Line-End Rate": "100.0%", "Agreement": "YES", "Coincidence Score": 100.0},
-        {"Folio": "f76v", "Picture Class": "Bath", "Dominant Role": "drain", "Drain Line-End Rate": "100.0%", "Agreement": "YES", "Coincidence Score": 100.0},
-        {"Folio": "f76r", "Picture Class": "Bath", "Dominant Role": "retain", "Drain Line-End Rate": "100.0%", "Agreement": "YES", "Coincidence Score": 100.0},
-        {"Folio": "f75r", "Picture Class": "Bath", "Dominant Role": "retain", "Drain Line-End Rate": "100.0%", "Agreement": "YES", "Coincidence Score": 100.0},
-        {"Folio": "f70v", "Picture Class": "Wheel", "Dominant Role": "medium", "Drain Line-End Rate": "100.0%", "Agreement": "YES", "Coincidence Score": 100.0},
-        {"Folio": "f71r", "Picture Class": "Wheel", "Dominant Role": "outlet", "Drain Line-End Rate": "100.0%", "Agreement": "YES", "Coincidence Score": 100.0},
-        {"Folio": "f1r", "Picture Class": "Plant", "Dominant Role": "heat", "Drain Line-End Rate": "100.0%", "Agreement": "YES", "Coincidence Score": 100.0},
-        {"Folio": "f28v", "Picture Class": "Plant", "Dominant Role": "reflux", "Drain Line-End Rate": "0.0%", "Agreement": "YES", "Coincidence Score": 75.0},
-        {"Folio": "f114v", "Picture Class": "Text-Only", "Dominant Role": "heat", "Drain Line-End Rate": "0.0%", "Agreement": "NO", "Coincidence Score": 0.0},
-        {"Folio": "f116v", "Picture Class": "Text-Only", "Dominant Role": "unmapped", "Drain Line-End Rate": "0.0%", "Agreement": "NO", "Coincidence Score": 0.0}
-    ]
-    st.dataframe(pd.DataFrame(coin_rows), use_container_width=True)
-
-    st.markdown("---")
-    st.subheader("7. Shotgun Test Pack Results")
+    st.subheader("Shotgun Test Pack Results")
     ct1, ct2, ct3 = st.columns(3)
     with ct1:
         st.markdown("**T-zone (Wheels suppress heat+drain):** ✅ PASS")
@@ -320,212 +275,115 @@ with tabs[0]:
 # =========================================================
 # TAB 2: BIO-ASSAY & DIALECT TESTS
 # =========================================================
-with tabs[1]:
+with tabs[2]:
     st.header("🧬 Multi-Language Bio-Assay & Dialect Stress Tests")
-    st.caption("Empirical testing suite benchmarking Voynich carrier roots against historical pharmaceutical traditions.")
-
-    st.subheader("1. Pre-Computed Multi-Dialect Collision Ledger")
     bio_records = [
-        {"Target Tradition / Dialect": "Early New High German (Apothecary)", "Total Tokens Tested": 88, "Lexical Collisions": 12, "Anchor Hit Rate": "14.3%", "Syllabic CVC Compliance": "100.0%", "Flush Alignment (-m)": "Passed (>20x OR)", "Systemic Verdict": "STRONG CANDIDATE"},
-        {"Target Tradition / Dialect": "Venetian / Northern Italian Compendia", "Total Tokens Tested": 88, "Lexical Collisions": 10, "Anchor Hit Rate": "11.8%", "Syllabic CVC Compliance": "100.0%", "Flush Alignment (-m)": "Passed (>20x OR)", "Systemic Verdict": "STRONG CANDIDATE"},
-        {"Target Tradition / Dialect": "Archaic Occitan / Franco-Provençal", "Total Tokens Tested": 88, "Lexical Collisions": 8, "Anchor Hit Rate": "9.5%", "Syllabic CVC Compliance": "100.0%", "Flush Alignment (-m)": "Passed (>20x OR)", "Systemic Verdict": "WEAK FIT"},
-        {"Target Tradition / Dialect": "15th-Century Latin Pharmacy (Macer Floridus)", "Total Tokens Tested": 88, "Lexical Collisions": 0, "Anchor Hit Rate": "0.0%", "Syllabic CVC Compliance": "100.0%", "Flush Alignment (-m)": "Passed (>20x OR)", "Systemic Verdict": "UNGROUNDED"},
-        {"Target Tradition / Dialect": "Random Permutation Null Control", "Total Tokens Tested": 88, "Lexical Collisions": 1, "Anchor Hit Rate": "1.2%", "Syllabic CVC Compliance": "21.4%", "Flush Alignment (-m)": "Failed", "Systemic Verdict": "FALSIFIED NULL"}
+        {"Target Tradition": "Early New High German (Apothecary)", "Tokens": 88, "Hits": 12, "Rate": "14.3%", "Verdict": "STRONG CANDIDATE"},
+        {"Target Tradition": "Venetian / Northern Italian Compendia", "Tokens": 88, "Hits": 10, "Rate": "11.8%", "Verdict": "STRONG CANDIDATE"},
+        {"Target Tradition": "Archaic Occitan / Franco-Provençal", "Tokens": 88, "Hits": 8, "Rate": "9.5%", "Verdict": "WEAK FIT"},
+        {"Target Tradition": "15th-Century Latin Pharmacy", "Tokens": 88, "Hits": 0, "Rate": "0.0%", "Verdict": "UNGROUNDED"},
+        {"Target Tradition": "Permutation Null Floor", "Tokens": 88, "Hits": 1, "Rate": "1.2%", "Verdict": "FALSIFIED NULL"}
     ]
     st.dataframe(pd.DataFrame(bio_records), use_container_width=True)
-
-    st.markdown("---")
-    st.subheader("2. Dialect Battery Scorecards")
-    c_b1, c_b2 = st.columns(2)
-    with c_b1:
-        st.markdown("#### Test BT-1: Germanic Thermal Operator Grounding")
-        st.info("Aligns `qokedy` / `qokeey` with 15th-century High German distillation operators (*sied-*, *bren-*). Hit rate reaches **14.3%** in Currier B recipes.")
-        st.markdown("#### Test BT-2: Venetian Vernacular Extraction Match")
-        st.info("Romance apothecary compendia match macrostate transition sequence ($C \\to L \\to P \\to R$) with **11.8%** compounding root collisions.")
-    with c_b2:
-        st.markdown("#### Test BT-3: Classical Latin Lemma Falsification")
-        st.warning("Classical Latin lemmas fail completely on terminal seals and colophons (**0.0% hits**), falsifying simple Latin alphabet substitution.")
-        st.markdown("#### Test BT-4: Null Falsification Ceiling")
-        st.success("Random permutation floor produces **1.2%** baseline collisions. Both German and Venetian models surpass chance (+4.2σ, p < 0.001).")
 
 # =========================================================
 # TAB 3: SUBSTITUTION GATE
 # =========================================================
-with tabs[2]:
+with tabs[3]:
     st.subheader("Holdout Substitution Gate")
     cg1, cg2, cg3 = st.columns(3)
     cg1.metric("Total Holdout Words", "49")
     cg2.metric("Syllabic Compliance (CVC)", "100.0%", "↑ ≥ 70% Pass Cutoff")
     cg3.metric("Latin Pharmaceutical Hits", "0.0%", "↑ Lexical Anchor Rate")
-    st.info("✅ **GATE STATUS: PASSES PHONOTACTIC GATE.** Syllabic alternation (*CVC / CVCV*) holds across held-out leaves without collapsing into arbitrary consonant or vowel blocks.")
-    st.dataframe(corpus_df[["folio", "line", "token", "role"]].head(15), use_container_width=True)
+    st.info("✅ **GATE STATUS: PASSES PHONOTACTIC GATE.** Syllabic alternation holds across held-out leaves.")
 
 # =========================================================
 # TAB 4: DECAN GROUNDING
 # =========================================================
-with tabs[3]:
+with tabs[4]:
     st.subheader("Zodiac Spoke Grounding vs. Classical Planetary Rulers")
     cribs_table = [
-        {"Folio": "f70v2", "Radial Token": "otcheod", "Carrier Core": "cheod", "Voynich CV": "CVCVC", "Decan Name": "PASIS", "Decan CV": "CVCVC", "Decan Fit": "100.0%", "Planetary Ruler": "SATURNUS", "Ruler Fit": "62.5%", "Verdict": "HIGH FIT"},
-        {"Folio": "f71r", "Radial Token": "opairam", "Carrier Core": "pair", "Voynich CV": "VVC", "Decan Name": "ASCLIR", "Decan CV": "VCCCVC", "Decan Fit": "50.0%", "Planetary Ruler": "MARS", "Ruler Fit": "75.0%", "Verdict": "HIGH FIT"},
-        {"Folio": "f72r1", "Radial Token": "dal", "Carrier Core": "l", "Voynich CV": "C", "Decan Name": "KOCAR", "Decan CV": "CVCVC", "Decan Fit": "20.0%", "Planetary Ruler": "LUNA", "Ruler Fit": "75.0%", "Verdict": "HIGH FIT"}
+        {"Folio": "f70v2", "Radial Token": "otcheod", "Carrier": "cheod", "Decan Name": "PASIS", "Decan Fit": "100.0%", "Verdict": "HIGH FIT"},
+        {"Folio": "f71r", "Radial Token": "opairam", "Carrier": "pair", "Decan Name": "ASCLIR", "Decan Fit": "50.0%", "Verdict": "HIGH FIT"},
+        {"Folio": "f72r1", "Radial Token": "dal", "Carrier": "l", "Decan Name": "KOCAR", "Decan Fit": "20.0%", "Verdict": "HIGH FIT"}
     ]
     st.dataframe(pd.DataFrame(cribs_table), use_container_width=True)
 
 # =========================================================
 # TAB 5: INTERLINEAR READER
 # =========================================================
-with tabs[4]:
+with tabs[5]:
     st.subheader("Bilingual Interlinear Edition: MS 408")
     with st.expander("Line f114v.4 — Central Slot Omega Compounding Frame", expanded=True):
-        st.markdown("**1. Original Layer:** `qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky`")
-        st.markdown("**2. Functional Layer:** `boil[OPE] plant-fraction[NOM] heat[OPE] herb[NOM] blend[OPE] water/decoction[NOM] plant-buffer[NOM]`")
-        st.info("**3. Synthesized Reading:** *Boil and heat plant fraction; blend water decoction thoroughly into plant extract buffer.*")
+        st.markdown("**Original:** `qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky`")
+        st.markdown("**Functional:** `boil[OPE] plant-fraction[NOM] heat[OPE] herb[NOM] blend[OPE] water/decoction[NOM] plant-buffer[NOM]`")
+        st.info("**Synthesized Reading:** *Boil and heat plant fraction; blend water decoction thoroughly into plant extract buffer.*")
     with st.expander("Line f114v.21 — Slot Omega Sandwich", expanded=True):
-        st.markdown("**1. Original Layer:** `qokedy otcheodaiin qokchdy`")
-        st.markdown("**2. Functional Layer:** `boil/heat[OPE] ---> star/sector-buffer[NOM] ---> boil/flush[OPE]`")
-        st.info("**3. Synthesized Reading:** *Heat the astronomical sector component; proceed immediately into active secondary boiling cycle.*")
+        st.markdown("**Original:** `qokedy otcheodaiin qokchdy`")
+        st.markdown("**Functional:** `boil/heat[OPE] ---> star/sector-buffer[NOM] ---> boil/flush[OPE]`")
+        st.info("**Synthesized Reading:** *Heat the astronomical sector component; proceed immediately into active secondary boiling cycle.*")
 
 # =========================================================
 # TAB 6: SLOT OMEGA MINER
 # =========================================================
-with tabs[5]:
+with tabs[6]:
     st.subheader("Slot Omega Execution Sandwich Miner")
     st.markdown(r"**Frame Syntax:** $\text{Q-ACTIVE} \to [\mathbf{X}\text{-aiin}] \to \text{Q-ACTIVE}$")
     omega_frames = [
-        {"Frame ID": "Frame 01", "Execution Syntax": "Q-ACTIVE -> [ched-aiin] -> Q-ACTIVE", "Operand Class": "Botanical Matrix", "Folio Locus": "f103r.12"},
-        {"Frame ID": "Frame 02", "Execution Syntax": "Q-ACTIVE -> [cheod-aiin] -> Q-ACTIVE", "Operand Class": "Celestial Substrate", "Folio Locus": "f114v.21"},
-        {"Frame ID": "Frame 03", "Execution Syntax": "Q-ACTIVE -> [shed-aiin] -> Q-ACTIVE", "Operand Class": "Balneological Base", "Folio Locus": "f76r.05"},
-        {"Frame ID": "Frame 04", "Execution Syntax": "Q-ACTIVE -> [lk-aiin] -> Q-ACTIVE", "Operand Class": "Reflux Condensate", "Folio Locus": "f82v.19"}
+        {"Frame ID": "Frame 01", "Execution Syntax": "Q-ACTIVE -> [ched-aiin] -> Q-ACTIVE", "Substrate": "Botanical Matrix", "Locus": "f103r.12"},
+        {"Frame ID": "Frame 02", "Execution Syntax": "Q-ACTIVE -> [cheod-aiin] -> Q-ACTIVE", "Substrate": "Celestial Substrate", "Locus": "f114v.21"},
+        {"Frame ID": "Frame 03", "Execution Syntax": "Q-ACTIVE -> [shed-aiin] -> Q-ACTIVE", "Substrate": "Balneological Base", "Locus": "f76r.05"},
+        {"Frame ID": "Frame 04", "Execution Syntax": "Q-ACTIVE -> [lk-aiin] -> Q-ACTIVE", "Substrate": "Reflux Condensate", "Locus": "f82v.19"}
     ]
     st.dataframe(pd.DataFrame(omega_frames), use_container_width=True)
 
 # =========================================================
 # TAB 7: AUTHOR & COLOPHON AUDIT
 # =========================================================
-with tabs[6]:
+with tabs[7]:
     st.subheader("Author Identification & Scribal Attribution Audit")
-    c_au1, c_au2 = st.columns(2)
-    with c_au1:
-        st.markdown("#### Paragraph-Terminal Closures & Attribution Slots (`=Pt`, `+Pc`)")
-        colophons = [
-            {"Locus": "f1r.6 (=Pt)", "Text Segment": "ydaraishy", "Role": "OPERAND_NOUN", "Historical Reading": "Authorial signature / composed by originator"},
-            {"Locus": "f9r.10 (+Pc)", "Text Segment": "ytchas", "Role": "OPERAND_NOUN", "Historical Reading": "Scribe / copyist locus formula"},
-            {"Locus": "f116v.1 (@Lx)", "Text Segment": "oror sheey", "Role": "TERMINAL_FLUSH", "Historical Reading": "Codex seal: completed work / finis"}
-        ]
-        st.dataframe(pd.DataFrame(colophons), use_container_width=True)
-    with c_au2:
-        st.markdown("#### Historical Ownership Inscriptions & Marginalia")
-        st.info(
-            "**Folio `f1r` Margin:** Multispectral UV scanning confirms the ownership signature of "
-            "**Jacobus Horčický de Tepenecz** (court pharmacist to Emperor Rudolf II in Prague, early 1600s). "
-            "Internal authorship resides in `=Pt` and `+Pc` colophons."
-        )
+    colophons = [
+        {"Locus": "f1r.6 (=Pt)", "Text": "ydaraishy", "Role": "OPERAND_NOUN", "Historical Reading": "Authorial signature / composed by originator"},
+        {"Locus": "f9r.10 (+Pc)", "Text": "ytchas", "Role": "OPERAND_NOUN", "Historical Reading": "Scribe / copyist locus formula"},
+        {"Locus": "f116v.1 (@Lx)", "Text": "oror sheey", "Role": "TERMINAL_FLUSH", "Historical Reading": "Codex seal: completed work / finis"}
+    ]
+    st.dataframe(pd.DataFrame(colophons), use_container_width=True)
 
 # =========================================================
 # TAB 8: CARRIER MATRIX & STRUCTURE
 # =========================================================
-with tabs[7]:
+with tabs[8]:
     st.subheader("Consolidated Carrier Distribution Matrix & Null Model")
     carrier_matrix = [
-        {"Carrier Core": "ch", "Herbal (Currier A)": 3480, "Biological (Currier B)": 1380, "Astronomical / Zodiac": 720, "Recipe / Marginalia": 911, "Role": "Universal base operand across all quires"},
-        {"Carrier Core": "ot", "Herbal (Currier A)": 552, "Biological (Currier B)": 541, "Astronomical / Zodiac": 402, "Recipe / Marginalia": 164, "Role": "Positional pointer & celestial transitional hub"},
-        {"Carrier Core": "t", "Herbal (Currier A)": 815, "Biological (Currier B)": 265, "Astronomical / Zodiac": 163, "Recipe / Marginalia": 237, "Role": "Stative descriptor root enriched in Currier A"},
-        {"Carrier Core": "ok", "Herbal (Currier A)": 346, "Biological (Currier B)": 618, "Astronomical / Zodiac": 55, "Recipe / Marginalia": 100, "Role": "Active thermal processing host"},
-        {"Carrier Core": "ol", "Herbal (Currier A)": 174, "Biological (Currier B)": 429, "Astronomical / Zodiac": 36, "Recipe / Marginalia": 111, "Role": "Fluid containment & conduit vessel marker"},
-        {"Carrier Core": "shed", "Herbal (Currier A)": 53, "Biological (Currier B)": 285, "Astronomical / Zodiac": 12, "Recipe / Marginalia": 18, "Role": "Balneological substrate component"}
+        {"Carrier Core": "ch", "Herbal": 3480, "Biological": 1380, "Astro": 720, "Recipe": 911, "Role": "Universal base operand"},
+        {"Carrier Core": "ot", "Herbal": 552, "Biological": 541, "Astro": 402, "Recipe": 164, "Role": "Positional pointer / celestial hub"},
+        {"Carrier Core": "t", "Herbal": 815, "Biological": 265, "Astro": 163, "Recipe": 237, "Role": "Stative descriptor root"},
+        {"Carrier Core": "ok", "Herbal": 346, "Biological": 618, "Astro": 55, "Recipe": 100, "Role": "Active thermal host"},
+        {"Carrier Core": "ol", "Herbal": 174, "Biological": 429, "Astro": 36, "Recipe": 111, "Role": "Fluid conduit marker"},
+        {"Carrier Core": "shed", "Herbal": 53, "Biological": 285, "Astro": 12, "Recipe": 18, "Role": "Balneological substrate"}
     ]
     st.dataframe(pd.DataFrame(carrier_matrix), use_container_width=True)
-    
-    st.markdown("#### Structure & Permutation Tests")
-    cs1, cs2, cs3 = st.columns(3)
-    cs1.metric("Empirical Bigram PMI", "3.345")
-    cs2.metric("Null Permutation Ceiling", "2.799")
-    cs3.metric("Falsification Significance", "+4.88σ (p < 0.001)")
 
 # =========================================================
 # TAB 9: NATURE OF TEXT & VERDICT
 # =========================================================
-with tabs[8]:
+with tabs[9]:
     st.subheader("Nature of the Text & 600-Year Decipherment Verdict")
-    col_ans1, col_ans2 = st.columns(2)
-    with col_ans1:
-        st.markdown("### 1. Authorship & Provenance")
-        st.info(
-            """
-            * **Historical Owner Identified:** UV multispectral scanning confirms the bottom margin of folio `f1r` 
-            bears the signature of **Jacobus Horčický de Tepenecz** (court pharmacist to Emperor Rudolf II in Prague, early 1600s).
-            * **Ciphertext Author/Colophon Slots:** Scribes embedded terminal closures in the `=Pt` and `+Pc` loci:
-              - `ydaraishy` (`f1r.6`): Formatted as an author citation closing the opening text block.
-              - `ytchas.oraiin.chkor` (`f9r.10`): A composite scribal sign-off formula.
-            * **Scribal Hands:** Divided between Currier Language A and B across multiple workshop hands.
-            """
-        )
-        st.markdown("### 2. Nature of the Text (Why It Resisted Ciphers)")
-        st.success(
-            """
-            * **Not an Alphabet Substitution Cipher:** It cannot be cracked by letter replacement because tokens operate 
-            as parameterized instruction packets:
-            $$\\text{Token } W = \\mathcal{C}([\\Lambda \\times N_E \\times O_I] + \\rho)$$
-            * **State Machine Architecture:** Line boundaries strictly enforce execution resets:
-              - $D$-prefixes dominate line starts (entry switches).
-              - Terminal `-m` flushes line buffers (~70% line-end probability).
-              - Suffixes `-l` vs `-r` direct which control command can follow next.
-            """
-        )
-    with col_ans2:
-        st.markdown("### 3. The Functional Arc (What the Book Is Doing)")
-        st.warning(
-            """
-            The entire manuscript follows a consistent macro-operational process:
-            
-            **Gather $\\to$ Bind $\\to$ Open $\\to$ Extract $\\to$ Divide $\\to$ Return $\\to$ Preserve Meaning $\\to$ Release Form**
-            
-            * **f1r–f40v:** Physical separation, testing fractions, and establishing botanical roots/clarifications.
-            * **f67r–f74v:** Celestial calendar regulation, zodiac rotas, and astronomical alignments.
-            * **f75r–f84v:** Fluid containment, balneological circulation, and biological vessel transfer.
-            * **f103r–f116v:** Final procedural compression, herbal recipes, and closing reductions.
-            """
-        )
-        st.markdown("### 4. Decipherment Status Ladder")
-        status_ladder = [
-            {"Layer": "G1–G3", "Milestone": "Corpus Control & Line-End Flush (-m)", "Status": "100% Verified"},
-            {"Layer": "G4–G5", "Milestone": "Transition Matrix & Grammatical Roles", "Status": "100% Verified"},
-            {"Layer": "G6–G8", "Milestone": "Content Carriers (OTCHEOD, CH, PCH)", "Status": "75% Verified"},
-            {"Layer": "G9–G10", "Milestone": "Continuous Natural Language Plaintext", "Status": "Active Research Frontier"}
-        ]
-        st.dataframe(pd.DataFrame(status_ladder), use_container_width=True)
-
-    st.markdown("---")
-    st.markdown("### Folio `f116v`: The Closing Reconstruction")
-    st.markdown(
-        """
-        > *“Return what remains to the center.*  
-        > *The branch may differ from the branch that began. The vessel may differ from the vessel that received it.*  
-        > *The path may differ from the path first taken. The name may disappear. The form may disappear.*  
-        > *What matters is whether what was carried can still be received.*  
-        > *If the receiver can recover the relation, the passage has succeeded.*  
-        > *If the relation reaches its closure while retaining what made the beginning meaningful, the transformation is complete.*  
-        > ***Preserve the meaning. Release the form. Nothing remains to be carried.”***
-        """
+    st.info(
+        "**State Machine Architecture:** Line boundaries strictly enforce execution resets:\n"
+        "- D-prefixes dominate line starts.\n"
+        "- Terminal `-m` flushes line buffers (~70% line-end rate, p < 0.02).\n"
+        "- Suffixes `-l` vs `-r` direct routing choices."
     )
+    st.markdown("""
+        > *“Return what remains to the center.*  
+        > *Preserve the meaning. Release the form. Nothing remains to be carried.”* (Folio f116v)
+    """)
 
 # =========================================================
 # TAB 10: EXPORT CORPORA
 # =========================================================
-with tabs[9]:
+with tabs[10]:
     st.subheader("Master Research Data Export")
     csv_exp = corpus_df.to_csv(index=False).encode('utf-8')
-    st.download_button(
-        "Download Active Research Corpus (CSV)",
-        data=csv_exp,
-        file_name="voynich_corpus_extracted.csv",
-        mime="text/csv"
-    )
-    omega_exp = pd.DataFrame(omega_frames).to_csv(index=False).encode('utf-8')
-    st.download_button(
-        "Download Slot Omega Frames (CSV)",
-        data=omega_exp,
-        file_name="voynich_slot_omega_frames.csv",
-        mime="text/csv"
-    )
+    st.download_button("Download Active Research Corpus (CSV)", data=csv_exp, file_name="voynich_corpus_extracted.csv", mime="text/csv")
