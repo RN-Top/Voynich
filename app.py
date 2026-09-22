@@ -1,13 +1,13 @@
 """
 VOYNICH UNIFIED DECIPHERMENT WORKBENCH: MASTER SUITE & PHONETIC HOLDOUT TESTER
-Combines:
+Consolidates:
 1. Automated Clean-Room Blind Holdout Phonetic Decoder (Syllabic CVC & Latin Root Audit)
 2. Fourier Spectral De-Looping & Harmonic Comb Filter
 3. Topological Decan Rota Alignment & Sukhotin Skeletal Solver
 4. Orthogonal Procrustes Historical Manifold Alignment (PPMI 50-D Space)
 5. Dynamic State Transitions & Alembic Flow Topology (Slot Omega Execution Frames)
 6. Algorithmic Hoax Generator Benchmarks (Timm & Schinner Refutation)
-7. Master Structural Data Ledger & CSV Exporter
+7. Master Structural Data Ledger & Multi-Format CSV Exporter
 """
 
 import os
@@ -121,7 +121,7 @@ def evaluate_phonotactics(word: str) -> bool:
     """Checks if output contains pronounceable syllabic alternating vowels/consonants."""
     vows = set(['a', 'e', 'i', 'o', 'u', 'y'])
     skel = "".join(['V' if ch in vows else 'C' for ch in word if ch.isalpha()])
-    if "CCCC" in skel or "VVVV" in skel:
+    if "CCCC" in skel or "VVVV" in skel or not skel:
         return False
     return True
 
