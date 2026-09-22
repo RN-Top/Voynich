@@ -1,7 +1,8 @@
 """
 VOYNICH UNIFIED DECIPHERMENT WORKBENCH: MASTER SUITE & HARMONIC FILTER
+Self-healing corpus loader with defensive array length alignment.
 Preserves all historical mappings, Procrustes manifold, Slot Omega frames,
-Decan radial alignment, and adds the Fourier Spectral De-Looping & Comb Filter.
+Decan radial alignment, and Fourier Spectral De-Looping / Comb Filtering.
 """
 
 import os
@@ -64,7 +65,7 @@ GENERATOR_BENCHMARK = [
 ]
 
 # -----------------------------------------------------------------------------
-# 2. INGESTION & MORPHOTACTIC NORMALIZATION
+# 2. INGESTION & MORPHOTACTIC NORMALIZATION (SELF-HEALING)
 # -----------------------------------------------------------------------------
 def clean_stem(token: str) -> str:
     w = re.sub(r"[{}\[\]<!>]", "", str(token).lower().strip())
@@ -120,7 +121,7 @@ def load_full_corpus():
         except Exception:
             continue
 
-    # Canonical baseline token stream
+    # Canonical baseline token stream with defensively aligned lengths
     tokens = [
         "fachys", "ykal", "ar", "ataiin", "shol", "shory", "cthores", "y", "kor", "sholdy",
         "ydaraishy", "daiin", "chedy", "qokedy", "chdam", "otcheodaiin", "qokchdy", "otedal",
@@ -129,11 +130,20 @@ def load_full_corpus():
         "dal", "otol", "otedy", "qokedy", "otcheodaiin", "qopairam", "otcheody", "daiin", "chedy",
         "cthar", "cthar", "or", "or", "or", "chedy", "chedy", "ee", "eee", "ii", "iii"
     ]
+    
+    n_tokens = len(tokens)
+    raw_folios = ["f1r"] * 10 + ["f114v"] * 10 + ["f76r"] * 12 + ["f70v"] * 8 + ["f114v"] * 6 + ["f114v"] * 11
+    raw_sections = ["Herbal"] * 10 + ["Recipes"] * 10 + ["Biological"] * 12 + ["Astronomical"] * 8 + ["Recipes"] * 17
+    
+    # Defensive slicing ensures exact dimensional match
+    folios = (raw_folios + ["f114v"] * n_tokens)[:n_tokens]
+    sections = (raw_sections + ["Recipes"] * n_tokens)[:n_tokens]
+
     return pd.DataFrame({
-        "folio": ["f1r"] * 10 + ["f114v"] * 10 + ["f76r"] * 12 + ["f70v"] * 8 + ["f114v"] * 6 + ["f114v"] * 10,
+        "folio": folios,
         "clean": tokens,
         "carrier": [clean_stem(t) for t in tokens],
-        "section": ["Herbal"] * 10 + ["Recipes"] * 10 + ["Biological"] * 12 + ["Astronomical"] * 8 + ["Recipes"] * 16
+        "section": sections
     })
 
 corpus_df = load_full_corpus()
@@ -150,36 +160,24 @@ def compute_entropy(text_tokens):
     n_c = len(all_chars)
     h1 = -sum((cnt / n_c) * math.log2(cnt / n_c) for cnt in c_counts.values())
 
-    # Gemination rate (identical adjacent characters)
     gem_hits = sum(1 for i in range(len(all_chars) - 1) if all_chars[i] == all_chars[i + 1])
     gem_rate = (gem_hits / (n_c - 1)) * 100.0 if n_c > 1 else 0.0
 
-    # Immediate word doubling (w_i == w_{i+1})
     doubles = sum(1 for i in range(len(text_tokens) - 1) if text_tokens[i] == text_tokens[i + 1])
     doubling_rate = (doubles / (len(text_tokens) - 1)) * 100.0 if len(text_tokens) > 1 else 0.0
 
     return round(h1, 3), round(gem_rate, 2), round(doubling_rate, 2)
 
 def apply_comb_filter(tokens):
-    """
-    Weeds out iterative loop abnormalities:
-    1. Collapses immediate token repetitions (w_i == w_{i+1} -> single w)
-    2. Flattens geminate stroke iterations (eee -> e, iii -> i)
-    3. Strips line-terminal purge buffer flushes (-m, -am)
-    """
+    """Weeds out iterative loop abnormalities."""
     filtered = []
     prev_tok = None
     for tok in tokens:
-        # Step 1: De-double identical consecutive words
         if tok == prev_tok:
             continue
         prev_tok = tok
-
-        # Step 2: Flatten stroke gemination tiers
         t_clean = re.sub(r"e{2,}", "e", tok)
         t_clean = re.sub(r"i{2,}", "i", t_clean)
-
-        # Step 3: Strip terminal flush boundary flags
         t_clean = re.sub(r"(am|m)$", "", t_clean)
         if t_clean:
             filtered.append(t_clean)
@@ -198,7 +196,7 @@ def compute_spectral_fft(tokens, sample_size=256):
 # -----------------------------------------------------------------------------
 # 4. STREAMLIT INTERFACE
 # -----------------------------------------------------------------------------
-st.title("🌌 Voynich Master Research Suite & Spectral Filter")
+st.title("🌌 Voynich Unified Workbench & Spectral Filter")
 st.caption("Consolidating Phonetic Decan Cribs, State Transitions, Manifolds, and Harmonic Filtering.")
 
 t_filter, t_decans, t_mani, t_fsm, t_hoax, t_export = st.tabs([
