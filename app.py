@@ -1,6 +1,6 @@
 """
 VOYNICH MANUSCRIPT COMPLETE DECIPHERMENT WORKBENCH & VISUAL KEY HUNT
-Self-contained zero-dependency architecture: Native Streamlit, Pandas, NumPy, and pure SVG.
+Zero-dependency architecture: Native Streamlit, Pandas, NumPy, and pure SVG.
 Preserves all legacy modules, Master Skeleton, Pi, drainage rules, apparatus mapping,
 carrier distribution matrix, and appends the Visual Key Hunt module.
 """
@@ -78,7 +78,7 @@ def tag_token_role(token: str) -> str:
     return "unmapped"
 
 # ---------------------------------------------------------
-# INGESTION & DATA CORPUS
+# INGESTION & DATA CORPUS (DEFENSIVE 5-TUPLES)
 # ---------------------------------------------------------
 @st.cache_data
 def load_corpus_records():
@@ -102,12 +102,20 @@ def load_corpus_records():
         ("f104r", "f104r.35", "Q17", "Recipe / Other", "qocheol chedaiin qodal chdam"),
         ("f114v", "f114v.4", "Q20", "Recipe / Other", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin"),
         ("f114v", "f114v.21", "Q20", "Recipe / Other", "qokedy otcheodaiin qokchdy"),
-        ("f114v.29", "Q20", "Recipe / Other", "otcheed qopairam"),
-        ("f114v.31", "Q20", "Recipe / Other", "otcheody lkchedy"),
+        ("f114v", "f114v.29", "Q20", "Recipe / Other", "otcheed qopairam"),
+        ("f114v", "f114v.31", "Q20", "Recipe / Other", "otcheody lkchedy"),
         ("f116v", "f116v.1", "Q20", "Recipe / Other", "oror sheey")
     ]
     rows = []
-    for folio, line, quire, sec, text in raw_lines:
+    for item in raw_lines:
+        if len(item) == 5:
+            folio, line, quire, sec, text = item
+        elif len(item) == 4:
+            folio, line, sec, text = item
+            quire = "Q20"
+        else:
+            continue
+            
         toks = text.split()
         for idx, tok in enumerate(toks):
             role = tag_token_role(tok)
