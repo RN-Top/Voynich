@@ -1,31 +1,46 @@
 import streamlit as st
 import pandas as pd
 
-# Page configuration
 st.set_page_config(
     page_title="Voynich Decipherment Workbench",
     page_icon="📜",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 # -----------------------------------------------------------------------------
-# Core Datasets & Constants
+# Master Datasets & Tables
 # -----------------------------------------------------------------------------
-SUKHOTIN_VOWELS = {"a", "o", "h", "t", "i", "y"}
-SUKHOTIN_CONSONANTS = {"c", "d", "e", "f", "k", "l", "m", "n", "p", "s", "r"}
-
-MACROSTATES_DATA = [
-    {"macrostate": "unmapped", "count": 16433, "percentage": "42.99%"},
-    {"macrostate": "heat",     "count": 7594,  "percentage": "19.87%"},
-    {"macrostate": "outlet",   "count": 4350,  "percentage": "11.38%"},
-    {"macrostate": "medium",   "count": 4190,  "percentage": "10.96%"},
-    {"macrostate": "reflux",   "count": 4123,  "percentage": "10.79%"},
-    {"macrostate": "drain",    "count": 1021,  "percentage": "2.67%"},
-    {"macrostate": "retain",   "count": 512,   "percentage": "1.34%"},
+EXCEL_PHONETIC_MATRIX = [
+    {"Voynich Glyph": "o", "Phonetic Sound": "O", "Class": "Vowel", "Affix Role": "Prefix operational"},
+    {"Voynich Glyph": "t", "Phonetic Sound": "T", "Class": "Vowel", "Affix Role": "Connective"},
+    {"Voynich Glyph": "c", "Phonetic Sound": "S", "Class": "Consonant", "Affix Role": "Stem core"},
+    {"Voynich Glyph": "h", "Phonetic Sound": "A", "Class": "Vowel", "Affix Role": "Stem nucleus"},
+    {"Voynich Glyph": "e", "Phonetic Sound": "R", "Class": "Consonant", "Affix Role": "Stem core"},
+    {"Voynich Glyph": "d", "Phonetic Sound": "N", "Class": "Consonant", "Affix Role": "Terminal marker"},
+    {"Voynich Glyph": "a", "Phonetic Sound": "U", "Class": "Vowel", "Affix Role": "Stem nucleus"},
+    {"Voynich Glyph": "i", "Phonetic Sound": "I", "Class": "Vowel", "Affix Role": "Iterative inflection"},
+    {"Voynich Glyph": "q", "Phonetic Sound": "C", "Class": "Consonant", "Affix Role": "Prefix procedural"},
+    {"Voynich Glyph": "k", "Phonetic Sound": "O", "Class": "Consonant", "Affix Role": "Thermal marker"},
+    {"Voynich Glyph": "p", "Phonetic Sound": "M", "Class": "Consonant", "Affix Role": "Stem core"},
+    {"Voynich Glyph": "m", "Phonetic Sound": "S", "Class": "Consonant", "Affix Role": "Terminal buffer flush"},
+    {"Voynich Glyph": "y", "Phonetic Sound": "M", "Class": "Vowel", "Affix Role": "Terminal affix"},
+    {"Voynich Glyph": "s", "Phonetic Sound": "P", "Class": "Consonant", "Affix Role": "Stem core"},
+    {"Voynich Glyph": "l", "Phonetic Sound": "L", "Class": "Consonant", "Affix Role": "Liquid coda"},
+    {"Voynich Glyph": "r", "Phonetic Sound": "R", "Class": "Consonant", "Affix Role": "Liquid coda"},
 ]
 
-EXECUTION_SANDWICHES = [
+MACROSTATES_DATA = [
+    {"role": "unmapped", "count": 16433, "percentage": "42.99%"},
+    {"role": "heat",     "count": 7594,  "percentage": "19.87%"},
+    {"role": "outlet",   "count": 4350,  "percentage": "11.38%"},
+    {"role": "medium",   "count": 4190,  "percentage": "10.96%"},
+    {"role": "reflux",   "count": 4123,  "percentage": "10.79%"},
+    {"role": "drain",    "count": 1021,  "percentage": "2.67%"},
+    {"role": "retain",   "count": 512,   "percentage": "1.34%"},
+]
+
+PROCEDURAL_FRAME_DATA = [
     {"role": "medium", "folio": "f1r", "token": "ataiin"},
     {"role": "medium", "folio": "f1r", "token": "chtaiin"},
     {"role": "medium", "folio": "f1r", "token": "ykaiin"},
@@ -50,69 +65,86 @@ ZODIAC_SPOKES_DATA = [
 ]
 
 # -----------------------------------------------------------------------------
-# Navigation Tabs
+# Tabs Layout
 # -----------------------------------------------------------------------------
-tabs = st.tabs([
+tab_phonetics, tab_roles, tab_hoax, tab_spokes, tab_colophons, tab_engine = st.tabs([
+    "Phonetic Matrix",
     "Roles & Macrostates",
-    "Hoax Falsification & Proofs",
+    "6. 🏛️ Hoax Falsification & Proofs",
     "Astrological Spokes",
-    "Colophons & Signatures",
-    "Interactive Translation Engine",
+    "7. 🤝 Colophons & Signatures",
+    "Translation Engine",
 ])
 
 # -----------------------------------------------------------------------------
-# Tab 1: Roles & Macrostates
+# Tab 1: Phonetic Matrix (Excel Export Restored)
 # -----------------------------------------------------------------------------
-with tabs[0]:
+with tab_phonetics:
+    st.subheader("16-Glyph Phonetic & Grammatical Matrix")
+    st.dataframe(pd.DataFrame(EXCEL_PHONETIC_MATRIX), use_container_width=True)
+
+    st.markdown("""
+    * **Dual-Sound Identifications:**
+      * `S` sound: `c` (root consonant) and `m` (terminal buffer flush)
+      * `M` sound: `p` (root consonant) and `y` (vocalic/inflection affix)
+      * `R` sound: `e` (internal consonant) and `r` (terminal liquid coda)
+      * `O` sound: `o` (operational vowel) and `k` (thermal modifier consonant)
+    """)
+
+# -----------------------------------------------------------------------------
+# Tab 2: Roles & Macrostates
+# -----------------------------------------------------------------------------
+with tab_roles:
     st.subheader("Corpus Macrostate Distribution")
     st.dataframe(pd.DataFrame(MACROSTATES_DATA), use_container_width=True)
 
     st.markdown("### Sukhotin Vowel Induction")
-    st.markdown("""
-    * **Vocalic Nuclei:** `{"a", "o", "h", "t", "i", "y"}`
-    * **Consonantal Frame:** `{"c", "d", "e", "f", "k", "l", "m", "n", "p", "s", "r"}`
+    st.markdown(r"""
+    * **Vocalic Nuclei:** $\{a, o, h, t, i, y\}$
+    * **Consonantal Frame:** $\{c, d, e, f, k, l, m, n, p, s, r\}$
     * **Vocalic Ratio:** Evaluates consistently to **33.3%**, conforming strictly to natural Romance/Latin phonotactic balance rather than random numbers or cipher stuffing.
     """)
 
 # -----------------------------------------------------------------------------
-# Tab 2: Hoax Falsification & Proofs
+# Tab 3: Hoax Falsification & Proofs
 # -----------------------------------------------------------------------------
-with tabs[1]:
-    st.subheader("Empirical Hardware Proofs & Hoax Model Falsification")
-    st.markdown("""
+with tab_hoax:
+    st.markdown("## Empirical Hardware Proofs & Hoax Model Falsification")
+    st.markdown(r"""
     * **Line-Preserving `-m` / `-am` Buffer Flush:** Real-world line boundaries force terminal flushes at a rate of 13.3% to 70.0% ($p < 0.001$), decisively falsifying unconstrained prose and proving physical line-register limits.
     * **Rejection of the Timm & Schinner Hoax Generator:** Successor routing asymmetry evaluates to $A_4 = -1.018$ log-odds ($p < 0.00001$), formally ruling out self-citation and mechanical Cardan-grille hoax mechanisms.
     * **Procrustes Manifold Congruence:** The carrier co-occurrence network achieves a **99.79% match** ($d^2 = 0.0021$) against 15th-century Latin pharmaceutical compounding (*Macer Floridus*), while diverging from random controls ($d^2 = 1.489$).
     """)
 
+    st.markdown("---")
     st.markdown("### Procedural Execution Frame: `Q-ACTIVE → [X-aiin] → Q-ACTIVE`")
-    st.dataframe(pd.DataFrame(EXECUTION_SANDWICHES), use_container_width=True)
+    st.dataframe(pd.DataFrame(PROCEDURAL_FRAME_DATA), use_container_width=True)
 
     st.markdown("### Verified Execution Sandwiches:")
     st.markdown("""
-    * **Botanical Substrate:** `qokedy → chedaiin → qokchdy` *(Folio f103r.12)*
-    * **Celestial Coordinate:** `qokedy → otcheodaiin → qokchdy` *(Folio f114v.21)*
-    * **Balneological Base:** `qokedy → shedaiin → qokchdy` *(Folio f76r.05)*
+    * **Botanical Substrate:** `qokedy` $\\rightarrow$ `chedaiin` $\\rightarrow$ `qokchdy` *(Folio f103r.12)*
+    * **Celestial Coordinate:** `qokedy` $\\rightarrow$ `otcheodaiin` $\\rightarrow$ `qokchdy` *(Folio f114v.21)*
+    * **Balneological Base:** `qokedy` $\\rightarrow$ `shedaiin` $\\rightarrow$ `qokchdy` *(Folio f76r.05)*
     """)
 
 # -----------------------------------------------------------------------------
-# Tab 3: Astrological Spokes
+# Tab 4: Astrological Spokes
 # -----------------------------------------------------------------------------
-with tabs[2]:
-    st.subheader("Zodiac Spoke Stems & Positional Alignments")
+with tab_spokes:
+    st.markdown("## Astrological Spokes & Radial Alignment")
     st.dataframe(pd.DataFrame(ZODIAC_SPOKES_DATA), use_container_width=True)
 
     st.info(
         "**Primary Anchor:** `otcheod` on Pisces (*f70v2*) achieves a 100% consonant-vowel "
-        "skeletal lock with **PASIS** (`CVCVC`), anchoring candidate sound values for "
+        "skeletal lock with **PASIS** (`cvcvc`), anchoring candidate sound values for "
         "`{c, h, e, o, d}`."
     )
 
 # -----------------------------------------------------------------------------
-# Tab 4: Colophons & Signatures
+# Tab 5: Colophons & Signatures
 # -----------------------------------------------------------------------------
-with tabs[3]:
-    st.subheader("Codicological Signatures & Author Loci Audit")
+with tab_colophons:
+    st.markdown("## Codicological Signatures & Author Loci Audit")
     st.markdown("Three structural colophon positions sitting in isolated, right-flushed line ends:")
     st.markdown("""
     * **Folio f1r.6 (=Pt):** `ydaraishy` — Isolated terminal incipit slot formatted like an author attribution in quotations.
@@ -121,10 +153,10 @@ with tabs[3]:
     """)
 
 # -----------------------------------------------------------------------------
-# Tab 5: Interactive Folio Reader & Dual-Dialect Translation Engine
+# Tab 6: Dual-Dialect Translation Engine
 # -----------------------------------------------------------------------------
-with tabs[4]:
-    st.subheader("Interactive Folio Reader & Dual-Dialect Translation Engine")
+with tab_engine:
+    st.markdown("## Interactive Folio Reader & Dual-Dialect Translation Engine")
 
     with st.expander("Folio f114v Line 4 — Distillation Procedure", expanded=True):
         st.markdown("**Raw IVTFF:** `qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam`")
