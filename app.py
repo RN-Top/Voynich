@@ -12,11 +12,19 @@ An interactive decipherment dashboard integrating:
   6. Codicological Signatures & Author Loci Audit (f1r.6, f9r.10, f116v.1)
   7. Dual-Dialect Translation Engine (Venetian & Early German Pharmacy Registers)
   8. Interactive Multi-Line Recipe Decoder Sandbox
+  9. In-Memory Academic Evidence Dossier PDF Exporter
 ========================================================================================
 """
 
+import io
 import streamlit as st
 import pandas as pd
+
+# ReportLab for in-memory PDF generation
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, HRFlowable
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib import colors
 
 # Page Configuration
 st.set_page_config(
@@ -26,7 +34,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Custom Styling for High-Contrast Clean Display
+# Custom Styling
 st.markdown("""
 <style>
     .metric-box {
@@ -44,7 +52,6 @@ st.markdown("""
 # 1. GROUND TRUTH DATASETS
 # -----------------------------------------------------------------------------
 
-# 16-Glyph Matrix (Ground truth from 2026-09-23T20-08_export copy.xlsx)
 PHONETIC_MATRIX_DATA = [
     {"Voynich Glyph": "o", "Phonetic Sound": "O", "Class": "Vowel",     "Affix Role": "Prefix operational"},
     {"Voynich Glyph": "t", "Phonetic Sound": "T", "Class": "Vowel",     "Affix Role": "Connective"},
@@ -58,7 +65,7 @@ PHONETIC_MATRIX_DATA = [
     {"Voynich Glyph": "k", "Phonetic Sound": "O", "Class": "Consonant", "Affix Role": "Thermal marker"},
     {"Voynich Glyph": "p", "Phonetic Sound": "M", "Class": "Consonant", "Affix Role": "Stem core"},
     {"Voynich Glyph": "m", "Phonetic Sound": "S", "Class": "Consonant", "Affix Role": "Terminal buffer flush"},
-    {"Voynich Glyph": "y", "Phonetic Sound": "M", "Class": "Vowel",     "Affix Role": "Terminal affix"},
+    {"Voynich Glyph": "y", "Phonetic Sound": "M", "Vowel": "Vowel",     "Affix Role": "Terminal affix"},
     {"Voynich Glyph": "s", "Phonetic Sound": "P", "Class": "Consonant", "Affix Role": "Stem core"},
     {"Voynich Glyph": "l", "Phonetic Sound": "L", "Class": "Consonant", "Affix Role": "Liquid coda"},
     {"Voynich Glyph": "r", "Phonetic Sound": "R", "Class": "Consonant", "Affix Role": "Liquid coda"},
@@ -98,20 +105,16 @@ ZODIAC_SPOKES_DATA = [
     {"folio": "f72v2", "spoke_label": "otedy",   "core_stem": "edy",   "voynich_cv": "CCV",   "target_candidate": "SAGITTARIUS / RAM (240°-270°)"},
 ]
 
-# Translation Lexicon
 APOTHECARY_LEXICON = {
-    # Thermal Verbs (Q-ACTIVE)
     "qokedy":   {"venetian": "coci",            "german": "sied",        "action": "boil / heat gently"},
     "qokchdy":  {"venetian": "coci_qokchdy",    "german": "sied_qokchdy","action": "active secondary boiling cycle"},
     "qoted":    {"venetian": "scalda",          "german": "waerme",      "action": "warm / infuse gently"},
     "okeedy":   {"venetian": "incorpora",       "german": "menge",       "action": "compound / blend thoroughly"},
     "qokeey":   {"venetian": "distilla",        "german": "brenn",       "action": "distill / collect condensed vapors"},
     "chdam":    {"venetian": "saldo",           "german": "beschliess",  "action": "seal vessel hermetically"},
-    # Fractions & Parts
     "cheocthedy": {"venetian": "fraturo de erba","german": "kruttheil",   "action": "plant fraction"},
     "chedar":     {"venetian": "fiori",          "german": "bluemen",     "action": "blossoms"},
     "oky":        {"venetian": "d'erba",         "german": "krutwazzer",  "action": "herb decoction menstruum"},
-    # Carrier Menstruums ([X-aiin] core)
     "daiin":       {"venetian": "agva",           "german": "wazzer",      "action": "distilled water base"},
     "chedaiin":    {"venetian": "decocto",        "german": "krutwazzer",  "action": "herbal decoction substrate"},
     "otcheodaiin": {"venetian": "licore de stella","german": "sternauszug", "action": "astronomical sector component"},
@@ -124,7 +127,7 @@ APOTHECARY_LEXICON = {
 }
 
 # -----------------------------------------------------------------------------
-# 2. HELPER FUNCTIONS
+# 2. HELPER & PDF FUNCTIONS
 # -----------------------------------------------------------------------------
 VOWELS = {"a", "o", "h", "t", "i", "y"}
 CONSONANTS = {"c", "d", "e", "f", "k", "l", "m", "n", "p", "s", "r"}
@@ -160,17 +163,116 @@ def translate_sentence(raw_text: str):
         "reading": "; ".join(actions).capitalize() + "."
     }
 
+def generate_dossier_pdf_bytes():
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=letter, rightMargin=40, leftMargin=40, topMargin=40, bottomMargin=40)
+    styles = getSampleStyleSheet()
+
+    title_style = ParagraphStyle('DocTitle', parent=styles['Heading1'], fontSize=18, leading=22, textColor=colors.HexColor('#0F172A'), spaceAfter=4)
+    subtitle_style = ParagraphStyle('DocSub', parent=styles['Normal'], fontSize=9.5, leading=13, textColor=colors.HexColor('#475569'), spaceAfter=10)
+    h1_style = ParagraphStyle('SectionH1', parent=styles['Heading2'], fontSize=12, leading=16, textColor=colors.HexColor('#0F172A'), spaceBefore=10, spaceAfter=5, keepWithNext=True)
+    body_style = ParagraphStyle('Body', parent=styles['Normal'], fontSize=8, leading=11, textColor=colors.HexColor('#334155'), spaceAfter=4)
+    code_style = ParagraphStyle('CodeStyle', parent=styles['Normal'], fontName='Courier', fontSize=7.5, leading=9, textColor=colors.HexColor('#0F172A'), spaceAfter=2)
+
+    story = []
+    story.append(Paragraph("THE VOYNICH MANUSCRIPT DECIPHERMENT DOSSIER", title_style))
+    story.append(Paragraph("<b>Empirical Evidence, Mathematical Hoax Refutation, and Corpus Transcription</b>", subtitle_style))
+    story.append(Paragraph("<b>Codicological Register:</b> 15th-Century Venetian & Early German Pharmacy", body_style))
+    story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#CBD5E1'), spaceAfter=8))
+
+    # Hoax Tests
+    story.append(Paragraph("1. Mathematical Falsification of Hoax Generators", h1_style))
+    hoax_data = [
+        ["Empirical Test", "Statistical Metric", "Significance", "Cryptographic Implication"],
+        ["Line Buffer Flush", "-m / -am at line end: 13.3% - 70.0%", "p < 0.001", "Proves physical line-register limits."],
+        ["Timm & Schinner Rejection", "Routing asymmetry A4 = -1.018", "p < 0.00001", "Rules out Cardan-grille hoax mechanisms."],
+        ["Procrustes Manifold", "Manifold match: 99.79% (d^2 = 0.0021)", "Control d^2=1.489", "Matches Macer Floridus carrier network."]
+    ]
+    t_hoax = Table(hoax_data, colWidths=[110, 130, 80, 210])
+    t_hoax.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#0F172A')),
+        ('TEXTCOLOR', (0,0), (-1,0), colors.white),
+        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0,0), (-1,-1), 7.5),
+        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#CBD5E1')),
+        ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8FAFC')),
+    ]))
+    story.append(t_hoax)
+    story.append(Spacer(1, 8))
+
+    # Matrix
+    story.append(Paragraph("2. 16-Glyph Phonetic & Grammatical Matrix", h1_style))
+    mat_rows = [["Glyph", "Sound", "Class", "Affix & Role"]] + [
+        [r["Voynich Glyph"], r["Phonetic Sound"], r["Class"], r["Affix Role"]] for r in PHONETIC_MATRIX_DATA
+    ]
+    t_mat = Table(mat_rows, colWidths=[60, 60, 80, 330])
+    t_mat.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#1E293B')),
+        ('TEXTCOLOR', (0,0), (-1,0), colors.white),
+        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0,0), (-1,-1), 7),
+        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#E2E8F0')),
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, colors.HexColor('#F1F5F9')])
+    ]))
+    story.append(t_mat)
+    story.append(Spacer(1, 8))
+
+    story.append(PageBreak())
+
+    # Zodiac
+    story.append(Paragraph("3. 30-Degree Zodiac Radial Geometry & Primary Anchor Lock", h1_style))
+    story.append(Paragraph("<b>Primary Anchor:</b> <code>otcheod</code> on Pisces (<i>f70v2</i>) yields <code>cheod</code> -> <b>PASIS</b> (CVCVC, 330°-360°).", body_style))
+    zod_rows = [["Folio", "Spoke", "Stem", "CV", "Target / Sign"]] + [
+        [r["folio"], r["spoke_label"], r["core_stem"], r["voynich_cv"], r["target_candidate"]] for r in ZODIAC_SPOKES_DATA
+    ]
+    t_zod = Table(zod_rows, colWidths=[50, 70, 60, 60, 290])
+    t_zod.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#0F172A')),
+        ('TEXTCOLOR', (0,0), (-1,0), colors.white),
+        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0,0), (-1,-1), 7.5),
+        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#CBD5E1')),
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, colors.HexColor('#F8FAFC')])
+    ]))
+    story.append(t_zod)
+    story.append(Spacer(1, 8))
+
+    # Recipes
+    story.append(Paragraph("4. Dual-Dialect Compounding Recipes", h1_style))
+    recipes = [
+        ("Folio f114v Line 4 (Distillation)", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam",
+         "Venetian: coci fraturo de erba scalda fiori d'erba incorpora agva decocto d'erba saldo",
+         "Instruction: Boil plant fraction, warm blossoms, compound with water menstruum and herb decoction, and seal."),
+        ("Folio f114v Line 21 (Celestial Link)", "qokedy otcheodaiin qokchdy",
+         "Venetian: coci licore de stella coci_qokchdy",
+         "Instruction: Heat astronomical sector component; proceed into secondary boiling cycle."),
+        ("Folio f103r Line 12 (Botanical Substrate)", "qokedy chedaiin qokchdy",
+         "Venetian: coci decocto coci_qokchdy",
+         "Instruction: Boil herbal decoction substrate and proceed immediately to secondary heat.")
+    ]
+    for rtitle, raw, ven, inst in recipes:
+        story.append(Paragraph(f"<b>{rtitle}</b>", ParagraphStyle('RHead', parent=body_style, fontName='Helvetica-Bold')))
+        story.append(Paragraph(f"Raw: <code>{raw}</code>", code_style))
+        story.append(Paragraph(f"• {ven}", body_style))
+        story.append(Paragraph(f"• <i>{inst}</i>", ParagraphStyle('RInst', parent=body_style, textColor=colors.HexColor('#0284C7'))))
+        story.append(Spacer(1, 3))
+
+    doc.build(story)
+    buf.seek(0)
+    return buf.getvalue()
+
 # -----------------------------------------------------------------------------
 # 3. NAVIGATION TABS
 # -----------------------------------------------------------------------------
-tab_matrix, tab_roles, tab_hoax, tab_spokes, tab_colophons, tab_engine, tab_sandbox = st.tabs([
+tab_matrix, tab_roles, tab_hoax, tab_spokes, tab_colophons, tab_engine, tab_sandbox, tab_download = st.tabs([
     "Phonetic Matrix",
     "Roles & Macrostates",
     "6. 🏛️ Hoax Falsification & Proofs",
     "Astrological Spokes",
     "7. 🤝 Colophons & Signatures",
     "Translation Engine",
-    "8. 🔬 Interactive Decoder Sandbox"
+    "8. 🔬 Interactive Decoder Sandbox",
+    "9. 📥 Export Evidence Dossier (PDF)"
 ])
 
 # Tab 1: Phonetic Matrix
@@ -340,3 +442,19 @@ with tab_sandbox:
             st.markdown(f"**Venetian Pharmacy:** `{res['venetian']}`")
             st.markdown(f"**Early German Pharmacy:** `{res['german']}`")
         st.success(f"**Operational Instruction:** {res['reading']}")
+
+# Tab 8: Instant In-Memory PDF Export
+with tab_download:
+    st.subheader("Export Formal Research Evidence Dossier")
+    st.markdown("""
+    Generate and download the publication-grade academic PDF report containing all empirical mathematical proofs, 
+    the 16-glyph phonetic matrix, 30° radial zodiac spoke alignments, and verified apothecary translations.
+    """)
+
+    pdf_bytes = generate_dossier_pdf_bytes()
+    st.download_button(
+        label="📄 Download Evidence Dossier (PDF)",
+        data=pdf_bytes,
+        file_name="voynich_decipherment_evidence_dossier.pdf",
+        mime="application/pdf"
+    )
