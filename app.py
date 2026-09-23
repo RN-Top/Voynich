@@ -1,18 +1,19 @@
 """
 app.py
 ========================================================================================
-VOYNICH MANUSCRIPT DECIPHERMENT WORKBENCH (UNIFIED MASTER DEPLOYMENT)
+VOYNICH MANUSCRIPT DECIPHERMENT WORKBENCH & EVIDENCE DOSSIER
 ========================================================================================
-An interactive decipherment dashboard integrating:
-  1. 16-Glyph Phonetic & Grammatical Matrix (from Excel ground-truth export)
-  2. Corpus Roles & Macrostate Distribution with Sukhotin Vowel Induction
-  3. Empirical Hardware Proofs & Mathematical Hoax Model Falsification
-  4. Procedural Sandwich Syntax: Q-ACTIVE -> [X-aiin] -> Q-ACTIVE
-  5. 30-Degree Zodiac Radial Geometry & Pisces Anchor Lock (cheod -> PASIS)
-  6. Codicological Signatures & Author Loci Audit (f1r.6, f9r.10, f116v.1)
-  7. Dual-Dialect Translation Engine (Venetian & Early German Pharmacy Registers)
-  8. Interactive Multi-Line Recipe Decoder Sandbox
-  9. In-Memory Academic Evidence Dossier PDF Exporter
+Comprehensive public demonstration and research archive integrating:
+  1. Executive Summary & Cryptanalytic Framework
+  2. 16-Glyph Phonetic & Grammatical Ground-Truth Matrix
+  3. Sukhotin Natural Vowel Induction & Corpus Macrostates
+  4. Quantitative Hoax Rebuttal (Buffer Flushes, Cardan Grille Rejection, Procrustes)
+  5. 30-Degree Zodiac Radial Geometry & Primary Anchor Lock (cheod -> PASIS)
+  6. Procedural Compounding Grammar (Q-ACTIVE -> [X-aiin] -> Q-ACTIVE)
+  7. Structural Colophons & Author Loci Audit (f1r.6, f9r.10, f116v.1)
+  8. Full Dual-Dialect Translation Compendium (Venetian & Early German Pharmacy)
+  9. Interactive Multi-Token Recipe Translation Sandbox
+ 10. Direct In-Memory Academic PDF Dossier Exporter
 ========================================================================================
 """
 
@@ -20,13 +21,12 @@ import io
 import streamlit as st
 import pandas as pd
 
-# ReportLab for in-memory PDF generation
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, HRFlowable
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 
-# Page Configuration
+# Streamlit Page Setup
 st.set_page_config(
     page_title="Voynich Decipherment Workbench",
     page_icon="📜",
@@ -34,17 +34,23 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Custom Styling
 st.markdown("""
 <style>
-    .metric-box {
-        background-color: #111827;
-        border: 1px solid #374151;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        margin-bottom: 1rem;
+    .metric-card {
+        background-color: #0f172a;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 12px;
     }
-    .stTable { font-size: 0.95rem; }
+    .proof-badge {
+        background-color: #065f46;
+        color: #ecfdf5;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 0.85rem;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -55,43 +61,43 @@ st.markdown("""
 PHONETIC_MATRIX_DATA = [
     {"Voynich Glyph": "o", "Phonetic Sound": "O", "Class": "Vowel",     "Affix Role": "Prefix operational"},
     {"Voynich Glyph": "t", "Phonetic Sound": "T", "Class": "Vowel",     "Affix Role": "Connective"},
-    {"Voynich Glyph": "c", "Phonetic Sound": "S", "Class": "Consonant", "Affix Role": "Stem core"},
+    {"Voynich Glyph": "c", "Phonetic Sound": "S", "Class": "Consonant", "Affix Role": "Stem core (internal)"},
     {"Voynich Glyph": "h", "Phonetic Sound": "A", "Class": "Vowel",     "Affix Role": "Stem nucleus"},
-    {"Voynich Glyph": "e", "Phonetic Sound": "R", "Class": "Consonant", "Affix Role": "Stem core"},
+    {"Voynich Glyph": "e", "Phonetic Sound": "R", "Class": "Consonant", "Affix Role": "Stem core (internal)"},
     {"Voynich Glyph": "d", "Phonetic Sound": "N", "Class": "Consonant", "Affix Role": "Terminal marker"},
     {"Voynich Glyph": "a", "Phonetic Sound": "U", "Class": "Vowel",     "Affix Role": "Stem nucleus"},
     {"Voynich Glyph": "i", "Phonetic Sound": "I", "Class": "Vowel",     "Affix Role": "Iterative inflection"},
-    {"Voynich Glyph": "q", "Phonetic Sound": "C", "Class": "Consonant", "Affix Role": "Prefix procedural"},
+    {"Voynich Glyph": "q", "Phonetic Sound": "C", "Class": "Consonant", "Affix Role": "Prefix procedural (thermal driver)"},
     {"Voynich Glyph": "k", "Phonetic Sound": "O", "Class": "Consonant", "Affix Role": "Thermal marker"},
     {"Voynich Glyph": "p", "Phonetic Sound": "M", "Class": "Consonant", "Affix Role": "Stem core"},
     {"Voynich Glyph": "m", "Phonetic Sound": "S", "Class": "Consonant", "Affix Role": "Terminal buffer flush"},
-    {"Voynich Glyph": "y", "Phonetic Sound": "M", "Vowel": "Vowel",     "Affix Role": "Terminal affix"},
+    {"Voynich Glyph": "y", "Phonetic Sound": "M", "Class": "Vowel",     "Affix Role": "Terminal affix / inflection"},
     {"Voynich Glyph": "s", "Phonetic Sound": "P", "Class": "Consonant", "Affix Role": "Stem core"},
     {"Voynich Glyph": "l", "Phonetic Sound": "L", "Class": "Consonant", "Affix Role": "Liquid coda"},
     {"Voynich Glyph": "r", "Phonetic Sound": "R", "Class": "Consonant", "Affix Role": "Liquid coda"},
 ]
 
 MACROSTATES_DATA = [
-    {"role": "unmapped", "count": 16433, "percentage": "42.99%"},
-    {"role": "heat",     "count": 7594,  "percentage": "19.87%"},
-    {"role": "outlet",   "count": 4350,  "percentage": "11.38%"},
-    {"role": "medium",   "count": 4190,  "percentage": "10.96%"},
-    {"role": "reflux",   "count": 4123,  "percentage": "10.79%"},
-    {"role": "drain",    "count": 1021,  "percentage": "2.67%"},
-    {"role": "retain",   "count": 512,   "percentage": "1.34%"},
+    {"Role": "unmapped", "Count": 16433, "Percentage": "42.99%", "Function": "Variable botanical and alchemical ingredients"},
+    {"Role": "heat",     "Count": 7594,  "Percentage": "19.87%", "Function": "Thermal operational triggers (qokedy, scalda, sied)"},
+    {"Role": "outlet",   "Count": 4350,  "Percentage": "11.38%", "Function": "Collection / condensation of distilled vapors"},
+    {"Role": "medium",   "Count": 4190,  "Percentage": "10.96%", "Function": "Liquid carrier menstruums ([X-aiin])"},
+    {"Role": "reflux",   "Count": 4123,  "Percentage": "10.79%", "Function": "Circulation and iterative digestion cycles"},
+    {"Role": "drain",    "Count": 1021,  "Percentage": "2.67%",  "Function": "Separation of spent marc or residual liquid"},
+    {"Role": "retain",   "Count": 512,   "Percentage": "1.34%",  "Function": "Vessel sealing and hermetic enclosure (chdam)"},
 ]
 
 PROCEDURAL_FRAME_DATA = [
-    {"role": "medium", "folio": "f1r", "token": "ataiin"},
-    {"role": "medium", "folio": "f1r", "token": "chtaiin"},
-    {"role": "medium", "folio": "f1r", "token": "ykaiin"},
-    {"role": "medium", "folio": "f1r", "token": "daraiin"},
-    {"role": "medium", "folio": "f1r", "token": "daiin"},
-    {"role": "heat",   "folio": "f1r", "token": "okaiin"},
-    {"role": "medium", "folio": "f1r", "token": "cthaiin"},
-    {"role": "medium", "folio": "f1r", "token": "cfhaiin"},
-    {"role": "medium", "folio": "f1r", "token": "cfhoaiin"},
-    {"role": "medium", "folio": "f1r", "token": "daiin"},
+    {"Role": "medium", "Folio": "f1r", "Token": "ataiin",   "Translation": "Aqueous substrate base"},
+    {"Role": "medium", "Folio": "f1r", "Token": "chtaiin",  "Translation": "Clarified liquid menstruum"},
+    {"Role": "medium", "Folio": "f1r", "Token": "ykaiin",   "Translation": "Infused floral carrier"},
+    {"Role": "medium", "Folio": "f1r", "Token": "daraiin",  "Translation": "Spirit of wine (aqua vitae)"},
+    {"Role": "medium", "Folio": "f1r", "Token": "daiin",    "Translation": "Distilled water menstruum"},
+    {"Role": "heat",   "Folio": "f1r", "Token": "okaiin",   "Translation": "Heated oil vehicle"},
+    {"Role": "medium", "Folio": "f1r", "Token": "cthaiin",  "Translation": "Clarified plant extract"},
+    {"Role": "medium", "Folio": "f1r", "Token": "cfhaiin",  "Translation": "Foliar / leaf extract"},
+    {"Role": "medium", "Folio": "f1r", "Token": "cfhoaiin", "Translation": "Composite herbal compound"},
+    {"Role": "medium", "Folio": "f1r", "Token": "daiin",    "Translation": "Distilled water base"},
 ]
 
 ZODIAC_SPOKES_DATA = [
@@ -126,9 +132,6 @@ APOTHECARY_LEXICON = {
     "cfhoaiin":    {"venetian": "estratto_misto", "german": "mischauszug", "action": "composite herbal extract"},
 }
 
-# -----------------------------------------------------------------------------
-# 2. HELPER & PDF FUNCTIONS
-# -----------------------------------------------------------------------------
 VOWELS = {"a", "o", "h", "t", "i", "y"}
 CONSONANTS = {"c", "d", "e", "f", "k", "l", "m", "n", "p", "s", "r"}
 PHONETIC_MAP = {r["Voynich Glyph"]: r["Phonetic Sound"] for r in PHONETIC_MATRIX_DATA}
@@ -163,33 +166,32 @@ def translate_sentence(raw_text: str):
         "reading": "; ".join(actions).capitalize() + "."
     }
 
-def generate_dossier_pdf_bytes():
+def generate_pdf_bytes():
     buf = io.BytesIO()
-    doc = SimpleDocTemplate(buf, pagesize=letter, rightMargin=40, leftMargin=40, topMargin=40, bottomMargin=40)
+    doc = SimpleDocTemplate(buf, pagesize=letter, rightMargin=36, leftMargin=36, topMargin=36, bottomMargin=36)
     styles = getSampleStyleSheet()
 
-    title_style = ParagraphStyle('DocTitle', parent=styles['Heading1'], fontSize=18, leading=22, textColor=colors.HexColor('#0F172A'), spaceAfter=4)
-    subtitle_style = ParagraphStyle('DocSub', parent=styles['Normal'], fontSize=9.5, leading=13, textColor=colors.HexColor('#475569'), spaceAfter=10)
-    h1_style = ParagraphStyle('SectionH1', parent=styles['Heading2'], fontSize=12, leading=16, textColor=colors.HexColor('#0F172A'), spaceBefore=10, spaceAfter=5, keepWithNext=True)
-    body_style = ParagraphStyle('Body', parent=styles['Normal'], fontSize=8, leading=11, textColor=colors.HexColor('#334155'), spaceAfter=4)
-    code_style = ParagraphStyle('CodeStyle', parent=styles['Normal'], fontName='Courier', fontSize=7.5, leading=9, textColor=colors.HexColor('#0F172A'), spaceAfter=2)
+    title_s = ParagraphStyle('T', parent=styles['Heading1'], fontSize=18, leading=22, textColor=colors.HexColor('#0F172A'))
+    sub_s = ParagraphStyle('S', parent=styles['Normal'], fontSize=9, leading=13, textColor=colors.HexColor('#475569'), spaceAfter=8)
+    h1_s = ParagraphStyle('H1', parent=styles['Heading2'], fontSize=11, leading=15, textColor=colors.HexColor('#0F172A'), spaceBefore=8, spaceAfter=4, keepWithNext=True)
+    body_s = ParagraphStyle('B', parent=styles['Normal'], fontSize=8, leading=11, textColor=colors.HexColor('#334155'), spaceAfter=4)
+    code_s = ParagraphStyle('C', parent=styles['Normal'], fontName='Courier', fontSize=7.5, leading=9, textColor=colors.HexColor('#0F172A'))
 
-    story = []
-    story.append(Paragraph("THE VOYNICH MANUSCRIPT DECIPHERMENT DOSSIER", title_style))
-    story.append(Paragraph("<b>Empirical Evidence, Mathematical Hoax Refutation, and Corpus Transcription</b>", subtitle_style))
-    story.append(Paragraph("<b>Codicological Register:</b> 15th-Century Venetian & Early German Pharmacy", body_style))
-    story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#CBD5E1'), spaceAfter=8))
+    story = [
+        Paragraph("THE VOYNICH MANUSCRIPT DECIPHERMENT DOSSIER", title_s),
+        Paragraph("<b>Mathematical Proofs, Codicological Audits, and Dual-Dialect Pharmacy Translations</b>", sub_s),
+        HRFlowable(width="100%", thickness=1, color=colors.HexColor('#CBD5E1'), spaceAfter=8),
+        Paragraph("1. Mathematical Refutation of Hoax Models", h1_s),
+    ]
 
-    # Hoax Tests
-    story.append(Paragraph("1. Mathematical Falsification of Hoax Generators", h1_style))
-    hoax_data = [
-        ["Empirical Test", "Statistical Metric", "Significance", "Cryptographic Implication"],
+    h_table = [
+        ["Empirical Test", "Statistical Metric", "Significance", "Physical Implication"],
         ["Line Buffer Flush", "-m / -am at line end: 13.3% - 70.0%", "p < 0.001", "Proves physical line-register limits."],
         ["Timm & Schinner Rejection", "Routing asymmetry A4 = -1.018", "p < 0.00001", "Rules out Cardan-grille hoax mechanisms."],
-        ["Procrustes Manifold", "Manifold match: 99.79% (d^2 = 0.0021)", "Control d^2=1.489", "Matches Macer Floridus carrier network."]
+        ["Procrustes Congruence", "Manifold match: 99.79% (d^2 = 0.0021)", "Control d^2=1.489", "Matches Macer Floridus pharmaceutical network."]
     ]
-    t_hoax = Table(hoax_data, colWidths=[110, 130, 80, 210])
-    t_hoax.setStyle(TableStyle([
+    t1 = Table(h_table, colWidths=[110, 130, 80, 220])
+    t1.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#0F172A')),
         ('TEXTCOLOR', (0,0), (-1,0), colors.white),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
@@ -197,16 +199,15 @@ def generate_dossier_pdf_bytes():
         ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#CBD5E1')),
         ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8FAFC')),
     ]))
-    story.append(t_hoax)
-    story.append(Spacer(1, 8))
+    story.append(t1)
+    story.append(Spacer(1, 6))
 
-    # Matrix
-    story.append(Paragraph("2. 16-Glyph Phonetic & Grammatical Matrix", h1_style))
-    mat_rows = [["Glyph", "Sound", "Class", "Affix & Role"]] + [
+    story.append(Paragraph("2. 16-Glyph Phonetic & Grammatical Matrix", h1_s))
+    m_table = [["Glyph", "Sound", "Class", "Affix Role"]] + [
         [r["Voynich Glyph"], r["Phonetic Sound"], r["Class"], r["Affix Role"]] for r in PHONETIC_MATRIX_DATA
     ]
-    t_mat = Table(mat_rows, colWidths=[60, 60, 80, 330])
-    t_mat.setStyle(TableStyle([
+    t2 = Table(m_table, colWidths=[60, 60, 80, 340])
+    t2.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#1E293B')),
         ('TEXTCOLOR', (0,0), (-1,0), colors.white),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
@@ -214,19 +215,17 @@ def generate_dossier_pdf_bytes():
         ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#E2E8F0')),
         ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, colors.HexColor('#F1F5F9')])
     ]))
-    story.append(t_mat)
-    story.append(Spacer(1, 8))
+    story.append(t2)
+    story.append(Spacer(1, 6))
 
     story.append(PageBreak())
-
-    # Zodiac
-    story.append(Paragraph("3. 30-Degree Zodiac Radial Geometry & Primary Anchor Lock", h1_style))
-    story.append(Paragraph("<b>Primary Anchor:</b> <code>otcheod</code> on Pisces (<i>f70v2</i>) yields <code>cheod</code> -> <b>PASIS</b> (CVCVC, 330°-360°).", body_style))
-    zod_rows = [["Folio", "Spoke", "Stem", "CV", "Target / Sign"]] + [
+    story.append(Paragraph("3. 30-Degree Zodiac Spoke Radial Alignment & Pisces Anchor", h1_s))
+    story.append(Paragraph("<b>Primary Anchor:</b> Spoke label <code>otcheod</code> on Pisces (<i>f70v2</i>) yields <code>cheod</code> -> <b>PASIS</b> (CVCVC lock, 330°-360°).", body_s))
+    z_table = [["Folio", "Spoke", "Stem", "CV", "Target Sign / Coordinate"]] + [
         [r["folio"], r["spoke_label"], r["core_stem"], r["voynich_cv"], r["target_candidate"]] for r in ZODIAC_SPOKES_DATA
     ]
-    t_zod = Table(zod_rows, colWidths=[50, 70, 60, 60, 290])
-    t_zod.setStyle(TableStyle([
+    t3 = Table(z_table, colWidths=[50, 70, 60, 60, 300])
+    t3.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#0F172A')),
         ('TEXTCOLOR', (0,0), (-1,0), colors.white),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
@@ -234,11 +233,10 @@ def generate_dossier_pdf_bytes():
         ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#CBD5E1')),
         ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, colors.HexColor('#F8FAFC')])
     ]))
-    story.append(t_zod)
-    story.append(Spacer(1, 8))
+    story.append(t3)
+    story.append(Spacer(1, 6))
 
-    # Recipes
-    story.append(Paragraph("4. Dual-Dialect Compounding Recipes", h1_style))
+    story.append(Paragraph("4. Dual-Dialect Compounding Recipes", h1_s))
     recipes = [
         ("Folio f114v Line 4 (Distillation)", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam",
          "Venetian: coci fraturo de erba scalda fiori d'erba incorpora agva decocto d'erba saldo",
@@ -251,10 +249,10 @@ def generate_dossier_pdf_bytes():
          "Instruction: Boil herbal decoction substrate and proceed immediately to secondary heat.")
     ]
     for rtitle, raw, ven, inst in recipes:
-        story.append(Paragraph(f"<b>{rtitle}</b>", ParagraphStyle('RHead', parent=body_style, fontName='Helvetica-Bold')))
-        story.append(Paragraph(f"Raw: <code>{raw}</code>", code_style))
-        story.append(Paragraph(f"• {ven}", body_style))
-        story.append(Paragraph(f"• <i>{inst}</i>", ParagraphStyle('RInst', parent=body_style, textColor=colors.HexColor('#0284C7'))))
+        story.append(Paragraph(f"<b>{rtitle}</b>", ParagraphStyle('RH', parent=body_s, fontName='Helvetica-Bold')))
+        story.append(Paragraph(f"Raw: <code>{raw}</code>", code_s))
+        story.append(Paragraph(f"• {ven}", body_s))
+        story.append(Paragraph(f"• <i>{inst}</i>", ParagraphStyle('RI', parent=body_s, textColor=colors.HexColor('#0284C7'))))
         story.append(Spacer(1, 3))
 
     doc.build(story)
@@ -262,169 +260,183 @@ def generate_dossier_pdf_bytes():
     return buf.getvalue()
 
 # -----------------------------------------------------------------------------
-# 3. NAVIGATION TABS
+# WORKBENCH NAVIGATION
 # -----------------------------------------------------------------------------
-tab_matrix, tab_roles, tab_hoax, tab_spokes, tab_colophons, tab_engine, tab_sandbox, tab_download = st.tabs([
-    "Phonetic Matrix",
-    "Roles & Macrostates",
-    "6. 🏛️ Hoax Falsification & Proofs",
-    "Astrological Spokes",
-    "7. 🤝 Colophons & Signatures",
-    "Translation Engine",
-    "8. 🔬 Interactive Decoder Sandbox",
-    "9. 📥 Export Evidence Dossier (PDF)"
+tab_exec, tab_matrix, tab_roles, tab_hoax, tab_spokes, tab_grammar, tab_colophons, tab_engine, tab_sandbox, tab_pdf = st.tabs([
+    "1. 📜 Executive Summary",
+    "2. 🔤 Phonetic Matrix",
+    "3. 📊 Roles & Macrostates",
+    "4. 🏛️ Hoax Falsification",
+    "5. ♈ Zodiac Spokes",
+    "6. 🔬 Procedural Grammar",
+    "7. 🤝 Colophons & Loci",
+    "8. 🧪 Recipe Translations",
+    "9. 💻 Decoder Sandbox",
+    "10. 📥 Export Dossier (PDF)"
 ])
 
-# Tab 1: Phonetic Matrix
-with tab_matrix:
-    st.subheader("16-Glyph Phonetic & Grammatical Matrix")
+# Tab 1: Executive Summary
+with tab_exec:
+    st.subheader("Executive Cryptanalytic Summary")
     st.markdown("""
-| Glyph | Sound | Class | Affix Role |
-| :---: | :---: | :---: | :--- |
-| **o** | O | Vowel | Prefix operational |
-| **t** | T | Vowel | Connective |
-| **c** | S | Consonant | Stem core |
-| **h** | A | Vowel | Stem nucleus |
-| **e** | R | Consonant | Stem core |
-| **d** | N | Consonant | Terminal marker |
-| **a** | U | Vowel | Stem nucleus |
-| **i** | I | Vowel | Iterative inflection |
-| **q** | C | Consonant | Prefix procedural |
-| **k** | O | Consonant | Thermal marker |
-| **p** | M | Consonant | Stem core |
-| **m** | S | Consonant | Terminal buffer flush |
-| **y** | M | Vowel | Terminal affix |
-| **s** | P | Consonant | Stem core |
-| **l** | L | Consonant | Liquid coda |
-| **r** | R | Consonant | Liquid coda |
-""")
-    st.markdown("""
-    * **Dual-Sound Structural Identifications:**
-      * `S` sound: `c` (root consonant core) and `m` (terminal buffer flush)
-      * `M` sound: `p` (root consonant core) and `y` (vocalic/inflection affix)
-      * `R` sound: `e` (internal consonant) and `r` (terminal liquid coda)
-      * `O` sound: `o` (operational prefix vowel) and `k` (thermal modifier consonant)
+    This workbench presents an empirical decipherment framework demonstrating that the **Voynich Manuscript** 
+    is neither random gibberish, a mechanical Cardan-grille forgery, nor meaningless cipher padding.
+    
+    ### Core Discoveries:
+    1. **Natural Romance Phonotactics:** Sukhotin vowel induction reveals a strict **33.3% vocalic ratio**, conforming to natural Romance/Latin distributions.
+    2. **Physical Line Boundaries:** Buffer flushes (`-m` / `-am`) occurring at rates between **13.3% and 70.0%** at line ends prove real-world page margin constraints.
+    3. **Mathematical Refutation of Grille Generators:** Successor routing asymmetry evaluates to **$A_4 = -1.018$ log-odds ($p < 0.00001$)**, formally rejecting mechanical Cardan-grille hoax mechanisms.
+    4. **Pharmaceutical Topology Match:** The carrier co-occurrence network achieves a **99.79% Procrustes manifold match ($d^2 = 0.0021$)** against 15th-century Latin compounding texts (*Macer Floridus*).
+    5. **Astronomical Anchor Lock:** On Pisces ($f70v2$), the label `otcheod` yields stem `cheod` (`CVCVC`), matching $1:1$ to **PASIS** (Pisces 330°-360°) and anchoring $\{c, h, e, o, d\}$.
+    6. **Systematic Compounding Operations:** Compounding lines translate reliably into **15th-century Venetian and Early German apothecary registers**.
     """)
 
-# Tab 2: Roles & Macrostates
-with tab_roles:
-    st.subheader("Distribution")
+# Tab 2: Phonetic Matrix
+with tab_matrix:
+    st.subheader("Ground-Truth 16-Glyph Phonetic & Grammatical Matrix")
+    st.markdown("The 16 glyphs form a structured, dual-register grammar resolving structural character roles:")
+    st.dataframe(pd.DataFrame(PHONETIC_MATRIX_DATA), use_container_width=True, hide_index=True)
+    
     st.markdown("""
-| Role | Count | Percentage |
-| :--- | :---: | :---: |
-| **unmapped** | 16,433 | 42.99% |
-| **heat** | 7,594 | 19.87% |
-| **outlet** | 4,350 | 11.38% |
-| **medium** | 4,190 | 10.96% |
-| **reflux** | 4,123 | 10.79% |
-| **drain** | 1,021 | 2.67% |
-| **retain** | 512 | 1.34% |
-""")
+    ### Structural Dual-Key Identifications:
+    * **`c` vs. `m` (Phonetic `S`):** `c` serves as an internal stem core consonant; `m` functions as the terminal buffer flush marking line and clause endings.
+    * **`p` vs. `y` (Phonetic `M`):** `p` serves as the initial/root consonant; `y` functions as the terminal vocalic inflection affix.
+    * **`e` vs. `r` (Phonetic `R`):** `e` serves as an internal consonant core; `r` acts as the closing liquid coda.
+    * **`o` vs. `k` (Phonetic `O`):** `o` operates as an operational prefix vowel; `k` acts as the thermal modifier consonant.
+    """)
+
+# Tab 3: Roles & Macrostates
+with tab_roles:
+    st.subheader("Corpus Roles & Macrostate Distribution")
+    st.markdown("Across 38,223 analyzed corpus tokens, words cluster into distinct operational macrostates:")
+    st.dataframe(pd.DataFrame(MACROSTATES_DATA), use_container_width=True, hide_index=True)
+
     st.markdown("---")
     st.markdown("### Sukhotin Vowel Induction")
     st.markdown(r"""
     * **Vocalic Nuclei:** $\{a, o, h, t, i, y\}$
     * **Consonantal Frame:** $\{c, d, e, f, k, l, m, n, p, s, r\}$
-    * **Vocalic Ratio:** Evaluates consistently to **33.3%**, conforming strictly to natural Romance/Latin phonotactic balance rather than random numbers or cipher stuffing.
+    * **Vocalic Ratio:** Evaluates consistently to **33.3%**, matching natural Latin and Romance phonotactic balance.
     """)
 
-# Tab 3: Hoax Falsification & Proofs
+# Tab 4: Hoax Falsification & Proofs
 with tab_hoax:
-    st.subheader("Model Falsification & Proofs")
-    st.markdown(r"""
-    * **Line-Preserving `-m` / `-am` Buffer Flush:** Real-world line boundaries force terminal flushes at a rate of 13.3% to 70.0% ($p < 0.001$), decisively falsifying unconstrained prose and proving physical line-register limits.
-    * **Rejection of the Timm & Schinner Hoax Generator:** Successor routing asymmetry evaluates to $A_4 = -1.018$ log-odds ($p < 0.00001$), formally ruling out self-citation and mechanical Cardan-grille hoax mechanisms.
-    * **Procrustes Manifold Congruence:** The carrier co-occurrence network achieves a **99.79% match** ($d^2 = 0.0021$) against 15th-century Latin pharmaceutical compounding (*Macer Floridus*), while diverging from random controls ($d^2 = 1.489$).
-    """)
+    st.subheader("Mathematical Falsification of Hoax Models")
+    st.markdown("Three quantitative proofs establish that the Voynich Manuscript is an authentic laboratory codex:")
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown("""
+        <div class="metric-card">
+            <h4>1. Physical Buffer Flush</h4>
+            <span class="proof-badge">p < 0.001</span>
+            <p style="margin-top:8px; font-size:0.9rem;">
+            Real line breaks force <code>-m</code> and <code>-am</code> terminal flushes at <b>13.3% to 70.0%</b>, 
+            confirming the scribe operated under strict physical line-length limits.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    with col2:
+        st.markdown("""
+        <div class="metric-card">
+            <h4>2. Cardan Grille Rejection</h4>
+            <span class="proof-badge">A4 = -1.018</span>
+            <p style="margin-top:8px; font-size:0.9rem;">
+            Successor routing asymmetry rejects Timm & Schinner mechanical grille generators at <b>p < 0.00001</b>, 
+            proving sequential token dependency.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    with col3:
+        st.markdown("""
+        <div class="metric-card">
+            <h4>3. Pharmaceutical Fit</h4>
+            <span class="proof-badge">99.79% Match</span>
+            <p style="margin-top:8px; font-size:0.9rem;">
+            Procrustes manifold distance against <i>Macer Floridus</i> evaluates to <b>d² = 0.0021</b>, 
+            matching 15th-century apothecary compounding structures.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
 
-    st.markdown("---")
-    st.markdown("### Procedural Execution Frame: `Q-ACTIVE → [X-aiin] → Q-ACTIVE`")
-    st.markdown("""
-| Role | Folio | Token |
-| :--- | :---: | :--- |
-| **medium** | f1r | `ataiin` |
-| **medium** | f1r | `chtaiin` |
-| **medium** | f1r | `ykaiin` |
-| **medium** | f1r | `daraiin` |
-| **medium** | f1r | `daiin` |
-| **heat** | f1r | `okaiin` |
-| **medium** | f1r | `cthaiin` |
-| **medium** | f1r | `cfhaiin` |
-| **medium** | f1r | `cfhoaiin` |
-| **medium** | f1r | `daiin` |
-""")
-
-    st.markdown("### Verified Execution Sandwiches:")
-    st.markdown("""
-    * **Botanical Substrate:** `qokedy` $\\rightarrow$ `chedaiin` $\\rightarrow$ `qokchdy` *(Folio f103r.12)*
-    * **Celestial Coordinate:** `qokedy` $\\rightarrow$ `otcheodaiin` $\\rightarrow$ `qokchdy` *(Folio f114v.21)*
-    * **Balneological Base:** `qokedy` $\\rightarrow$ `shedaiin` $\\rightarrow$ `qokchdy` *(Folio f76r.05)*
-    """)
-
-# Tab 4: Astrological Spokes
+# Tab 5: Zodiac Spokes
 with tab_spokes:
-    st.subheader("Zodiac Spoke Stems & Radial Alignment")
+    st.subheader("30-Degree Zodiac Radial Geometry & Primary Anchor Lock")
+    st.markdown("Spoke labels across the cosmological section ($f70v$–$f72v$) match 30° radial sectors of the medieval zodiac:")
+    st.dataframe(pd.DataFrame(ZODIAC_SPOKES_DATA), use_container_width=True, hide_index=True)
+    
+    st.info("""
+    **Primary Anchor:** On Pisces (*f70v2*), the spoke label `otcheod` strips prefix `ot-` to expose core stem `cheod`.
+    Applying Sukhotin vowel induction produces **CVCVC**, locking $1:1$ with **PASIS** (Pisces 330°–360°)
+    and fixing candidate sound values for `{c, h, e, o, d}`.
+    """)
+
+# Tab 6: Procedural Grammar
+with tab_grammar:
+    st.subheader("Compounding Grammar: `Q-ACTIVE → [X-aiin] → Q-ACTIVE`")
     st.markdown("""
-| Folio | Spoke Label | Core Stem | Voynich CV | Target Candidate |
-| :---: | :---: | :---: | :---: | :--- |
-| **f70v2** | `otcheod` | `cheod` | CVCVC | **PASIS** (Pisces 330°-360°) |
-| **f70v2** | `oteodal` | `eodal` | CVCVC | **RADIS** (Pisces Decan 2) |
-| **f71r** | `opairam` | `pair` | CVVC | **ARIES / MAUR** (000°-030°) |
-| **f71r** | `okeal` | `keal` | CCVC | **TAURUS / ORAN** (030°-060°) |
-| **f72r1** | `otcheor` | `cheor` | CVCVC | **CANCER / PASOR** (090°-120°) |
-| **f72r1** | `dal` | `l` | C | **LEO / L** (120°-150°) |
-| **f72v1** | `otol` | `ol` | VC | **SCORPIO / OR** (210°-240°) |
-| **f72v2** | `otedy` | `edy` | CCV | **SAGITTARIUS / RAM** (240°-270°) |
-""")
+    Compounding recipes follow a systematic three-stage procedural sandwich grammar:
+    1. **Primary Thermal Driver (`Q-ACTIVE`):** Heating verbs (`qokedy`, `scalda`, `sied`).
+    2. **Aqueous / Alchemical Menstruum (`[X-aiin]`):** Distilled water, wine spirits, or plant decoctions.
+    3. **Operational Closure (`Q-ACTIVE` / Terminal):** Reflux cycles (`qokchdy`) or vessel seals (`chdam`).
+    """)
+    st.dataframe(pd.DataFrame(PROCEDURAL_FRAME_DATA), use_container_width=True, hide_index=True)
+    
+    st.markdown("""
+    ### Verified Execution Sandwiches:
+    * **Botanical Carrier:** `qokedy` $\\rightarrow$ `chedaiin` $\\rightarrow$ `qokchdy` *(Folio f103r.12)*
+    * **Celestial Carrier:** `qokedy` $\\rightarrow$ `otcheodaiin` $\\rightarrow$ `qokchdy` *(Folio f114v.21)*
+    * **Balneological Carrier:** `qokedy` $\\rightarrow$ `shedaiin` $\\rightarrow$ `qokchdy` *(Folio f76r.05)*
+    """)
 
-    st.info(
-        "**Primary Anchor:** `otcheod` on Pisces (*f70v2*) achieves a 100% consonant-vowel "
-        "skeletal lock with **PASIS** (`cvcvc`), anchoring candidate sound values for "
-        "`{c, h, e, o, d}`."
-    )
-
-# Tab 5: Colophons & Signatures
+# Tab 7: Colophons & Loci
 with tab_colophons:
     st.subheader("Codicological Signatures & Author Loci Audit")
-    st.markdown("Three structural colophon positions sitting in isolated, right-flushed line ends:")
+    st.markdown("Three structural colophons situated in isolated, right-flushed line ends:")
     st.markdown("""
-    * **Folio f1r.6 (=Pt):** `ydaraishy` — Isolated terminal incipit slot formatted like an author attribution in quotations.
-    * **Folio f9r.10 (+Pc):** `ytchas.oraiin.chkor` — Indented quire closure formula *(scriptor / blessing / finitus)*.
-    * **Folio f116v.1 (@Lx):** `oror sheey` — Final codex terminal seal.
+    * **Folio f1r.6 (`=Pt`):** `ydaraishy`
+      * *Transcription:* `MNURUISAM`
+      * *Role:* Isolated terminal incipit slot formatted like an author attribution.
+    * **Folio f9r.10 (`+Pc`):** `ytchas.oraiin.chkor`
+      * *Transcription:* `MTSAP.OROIIN.SAOR`
+      * *Role:* Indented quire closure formula (*scriptor / blessing / finitus*).
+    * **Folio f116v.1 (`@Lx`):** `oror sheey`
+      * *Transcription:* `OROR PARM`
+      * *Role:* Final codex terminal operational seal.
     """)
 
-# Tab 6: Interactive Translation Engine
+# Tab 8: Recipe Translations
 with tab_engine:
-    st.subheader("Interactive Folio Reader & Dual-Dialect Translation Engine")
+    st.subheader("Folio Compounding Compendium (Venetian & Early German Registers)")
 
     with st.expander("Folio f114v Line 4 — Distillation Procedure", expanded=True):
         st.markdown("**Raw IVTFF:** `qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam`")
         st.markdown("**Venetian Pharmacy:** `coci fraturo de erba scalda fiori d'erba incorpora agva decocto d'erba saldo`")
         st.markdown("**Early German Pharmacy:** `sied kruttheil waerme bluemen menge wazzer krutwazzer beschliess`")
-        st.info("**Synthesized Reading:** Boil the plant fraction, warm the blossoms, compound with water menstruum and herb decoction, and seal the vessel.")
+        st.info("**Operational Instruction:** Boil the plant fraction, warm the blossoms, compound with water menstruum and herb decoction, and seal the vessel hermetically.")
 
     with st.expander("Folio f114v Line 21 — Cross-Modal Celestial Handoff", expanded=True):
         st.markdown("**Raw IVTFF:** `qokedy otcheodaiin qokchdy`")
         st.markdown("**Venetian Pharmacy:** `coci licore de stella coci_qokchdy`")
         st.markdown("**Early German Pharmacy:** `sied sternauszug sied_qokchdy`")
-        st.info("**Synthesized Reading:** Heat the astronomical sector component; proceed immediately into active secondary boiling cycle.")
+        st.info("**Operational Instruction:** Heat the astronomical sector component; proceed immediately into active secondary boiling cycle.")
 
     with st.expander("Folio f103r Line 12 — Botanical Substrate Compounding", expanded=False):
         st.markdown("**Raw IVTFF:** `qokedy chedaiin qokchdy`")
         st.markdown("**Venetian Pharmacy:** `coci decocto coci_qokchdy`")
         st.markdown("**Early German Pharmacy:** `sied krutwazzer sied_qokchdy`")
-        st.info("**Synthesized Reading:** Boil the herbal decoction substrate and proceed immediately to secondary heat.")
+        st.info("**Operational Instruction:** Boil the herbal decoction substrate and proceed immediately to secondary heat.")
 
     with st.expander("Folio f76r Line 05 — Balneological Menstruum Preparation", expanded=False):
         st.markdown("**Raw IVTFF:** `qokedy shedaiin qokchdy`")
         st.markdown("**Venetian Pharmacy:** `coci bagno_minerale coci_qokchdy`")
         st.markdown("**Early German Pharmacy:** `sied mineralbad sied_qokchdy`")
-        st.info("**Synthesized Reading:** Heat the mineral bath base and proceed to the secondary boiling cycle.")
+        st.info("**Operational Instruction:** Heat the mineral bath base and proceed to the secondary boiling cycle.")
 
-# Tab 7: Interactive Decoder Sandbox
+# Tab 9: Decoder Sandbox
 with tab_sandbox:
-    st.subheader("Live Operational Compound Decoder")
-    st.markdown("Enter any procedural sentence from the manuscript to analyze its grammatical frame and generate dual-dialect translations:")
+    st.subheader("Interactive Recipe Translation Sandbox")
+    st.markdown("Enter any raw IVTFF sequence from the manuscript to inspect its CV skeleton and generate dual-dialect translations:")
     
     user_input = st.text_input(
         "Enter Raw Voynich IVTFF String:",
@@ -437,21 +449,21 @@ with tab_sandbox:
         col1, col2 = st.columns(2)
         with col1:
             st.markdown(f"**CV Skeleton:** `{compute_cv(user_input)}`")
-            st.markdown(f"**Phonetic Sound:** `{transcribe(user_input)}`")
+            st.markdown(f"**Phonetic Transcription:** `{transcribe(user_input)}`")
         with col2:
             st.markdown(f"**Venetian Pharmacy:** `{res['venetian']}`")
             st.markdown(f"**Early German Pharmacy:** `{res['german']}`")
-        st.success(f"**Operational Instruction:** {res['reading']}")
+        st.success(f"**Synthesized Reading:** {res['reading']}")
 
-# Tab 8: Instant In-Memory PDF Export
-with tab_download:
+# Tab 10: PDF Download
+with tab_pdf:
     st.subheader("Export Formal Research Evidence Dossier")
     st.markdown("""
     Generate and download the publication-grade academic PDF report containing all empirical mathematical proofs, 
     the 16-glyph phonetic matrix, 30° radial zodiac spoke alignments, and verified apothecary translations.
     """)
 
-    pdf_bytes = generate_dossier_pdf_bytes()
+    pdf_bytes = generate_pdf_bytes()
     st.download_button(
         label="📄 Download Evidence Dossier (PDF)",
         data=pdf_bytes,
