@@ -77,11 +77,12 @@ tab_phonetics, tab_roles, tab_hoax, tab_spokes, tab_colophons, tab_engine = st.t
 ])
 
 # -----------------------------------------------------------------------------
-# Tab 1: Phonetic Matrix (Excel Export Restored)
+# Tab 1: Phonetic Matrix
 # -----------------------------------------------------------------------------
 with tab_phonetics:
     st.subheader("16-Glyph Phonetic & Grammatical Matrix")
-    st.dataframe(pd.DataFrame(EXCEL_PHONETIC_MATRIX), use_container_width=True)
+    df_phonetic = pd.DataFrame(EXCEL_PHONETIC_MATRIX)
+    st.dataframe(df_phonetic, use_container_width=True, hide_index=True)
 
     st.markdown("""
     * **Dual-Sound Identifications:**
@@ -95,8 +96,8 @@ with tab_phonetics:
 # Tab 2: Roles & Macrostates
 # -----------------------------------------------------------------------------
 with tab_roles:
-    st.subheader("Corpus Macrostate Distribution")
-    st.dataframe(pd.DataFrame(MACROSTATES_DATA), use_container_width=True)
+    st.subheader("Distribution")
+    st.dataframe(pd.DataFrame(MACROSTATES_DATA), use_container_width=True, hide_index=True)
 
     st.markdown("### Sukhotin Vowel Induction")
     st.markdown(r"""
@@ -109,7 +110,7 @@ with tab_roles:
 # Tab 3: Hoax Falsification & Proofs
 # -----------------------------------------------------------------------------
 with tab_hoax:
-    st.markdown("## Empirical Hardware Proofs & Hoax Model Falsification")
+    st.subheader("Model Falsification & Proofs")
     st.markdown(r"""
     * **Line-Preserving `-m` / `-am` Buffer Flush:** Real-world line boundaries force terminal flushes at a rate of 13.3% to 70.0% ($p < 0.001$), decisively falsifying unconstrained prose and proving physical line-register limits.
     * **Rejection of the Timm & Schinner Hoax Generator:** Successor routing asymmetry evaluates to $A_4 = -1.018$ log-odds ($p < 0.00001$), formally ruling out self-citation and mechanical Cardan-grille hoax mechanisms.
@@ -118,7 +119,7 @@ with tab_hoax:
 
     st.markdown("---")
     st.markdown("### Procedural Execution Frame: `Q-ACTIVE → [X-aiin] → Q-ACTIVE`")
-    st.dataframe(pd.DataFrame(PROCEDURAL_FRAME_DATA), use_container_width=True)
+    st.dataframe(pd.DataFrame(PROCEDURAL_FRAME_DATA), use_container_width=True, hide_index=True)
 
     st.markdown("### Verified Execution Sandwiches:")
     st.markdown("""
@@ -131,8 +132,8 @@ with tab_hoax:
 # Tab 4: Astrological Spokes
 # -----------------------------------------------------------------------------
 with tab_spokes:
-    st.markdown("## Astrological Spokes & Radial Alignment")
-    st.dataframe(pd.DataFrame(ZODIAC_SPOKES_DATA), use_container_width=True)
+    st.subheader("Zodiac Spoke Stems & Radial Alignment")
+    st.dataframe(pd.DataFrame(ZODIAC_SPOKES_DATA), use_container_width=True, hide_index=True)
 
     st.info(
         "**Primary Anchor:** `otcheod` on Pisces (*f70v2*) achieves a 100% consonant-vowel "
@@ -144,7 +145,7 @@ with tab_spokes:
 # Tab 5: Colophons & Signatures
 # -----------------------------------------------------------------------------
 with tab_colophons:
-    st.markdown("## Codicological Signatures & Author Loci Audit")
+    st.subheader("Codicological Signatures & Author Loci Audit")
     st.markdown("Three structural colophon positions sitting in isolated, right-flushed line ends:")
     st.markdown("""
     * **Folio f1r.6 (=Pt):** `ydaraishy` — Isolated terminal incipit slot formatted like an author attribution in quotations.
@@ -156,7 +157,7 @@ with tab_colophons:
 # Tab 6: Dual-Dialect Translation Engine
 # -----------------------------------------------------------------------------
 with tab_engine:
-    st.markdown("## Interactive Folio Reader & Dual-Dialect Translation Engine")
+    st.subheader("Interactive Folio Reader & Dual-Dialect Translation Engine")
 
     with st.expander("Folio f114v Line 4 — Distillation Procedure", expanded=True):
         st.markdown("**Raw IVTFF:** `qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam`")
