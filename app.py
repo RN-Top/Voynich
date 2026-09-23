@@ -2,6 +2,7 @@
 VOYNICH MANUSCRIPT MASTER WORKBENCH (INSTANT-BOOT CONTAINER)
 Zero-dependency architecture: Native Streamlit, Pandas, NumPy, pure SVG.
 Strips outbound urllib hangs and integrates Spot Pies directly to prevent boot freezes.
+Supports all master corpus CSV file variants across root and data/ directories.
 """
 
 import os
@@ -64,27 +65,56 @@ def tag_token(token: str) -> str:
     return "unmapped"
 
 # ---------------------------------------------------------
-# LOCAL FAST CORPUS LOADER (NO NETWORK FETCH CALLS)
+# COMPREHENSIVE LOCAL CORPUS LOADER
 # ---------------------------------------------------------
 @st.cache_data
 def load_corpus():
-    files = [
+    candidate_files = [
+        "voynich_master_corpus_extracted_3.csv",
+        "voynich_master_corpus_extracted (2)_2.csv",
+        "voynich_master_corpus_extracted (1).csv",
+        "voynich_master_corpus_extracted (2).csv",
         "voynich_master_corpus_extracted_2.csv",
         "voynich_master_corpus_extracted.csv",
         "voynich_corpus_extracted (5).csv",
-        "voynich_master_corpus_extracted (2).csv"
+        "voynich_corpus_extracted.csv",
+        os.path.join("data", "voynich_master_corpus_extracted_3.csv"),
+        os.path.join("data", "voynich_master_corpus_extracted (2)_2.csv"),
+        os.path.join("data", "voynich_master_corpus_extracted (1).csv"),
+        os.path.join("data", "voynich_master_corpus_extracted (2).csv"),
+        os.path.join("data", "voynich_master_corpus_extracted_2.csv"),
+        os.path.join("data", "voynich_master_corpus_extracted.csv")
     ]
-    for f in files:
+    
+    # 1. Check all specific file candidates
+    for f in candidate_files:
         if os.path.exists(f) and os.path.getsize(f) > 5000:
             try:
                 df = pd.read_csv(f)
-                if "role" not in df.columns and "token" in df.columns:
-                    df["role"] = df["token"].apply(tag_token)
-                return df
+                if "token" in df.columns and "folio" in df.columns:
+                    if "role" not in df.columns:
+                        df["role"] = df["token"].apply(tag_token)
+                    return df
             except Exception:
                 continue
 
-    # Fallback pre-indexed records (zero CPU load, instant mount)
+    # 2. Dynamic scan of root and data/ folder for any CSV matching 'corpus'
+    for s_dir in [".", "data"]:
+        if os.path.exists(s_dir):
+            for fname in os.listdir(s_dir):
+                if fname.endswith(".csv") and "corpus" in fname.lower():
+                    full_path = os.path.join(s_dir, fname)
+                    if os.path.getsize(full_path) > 5000:
+                        try:
+                            df = pd.read_csv(full_path)
+                            if "token" in df.columns and "folio" in df.columns:
+                                if "role" not in df.columns:
+                                    df["role"] = df["token"].apply(tag_token)
+                                return df
+                        except Exception:
+                            continue
+
+    # 3. Fallback pre-indexed records if no CSV file is found
     sample_data = [
         {"folio": "f1r", "token": "fachys", "role": "unmapped", "quire": "Q01", "section": "Herbal"},
         {"folio": "f1r", "token": "ykal", "role": "outlet", "quire": "Q01", "section": "Herbal"},
