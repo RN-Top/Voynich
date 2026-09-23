@@ -1,6 +1,24 @@
+"""
+app.py
+========================================================================================
+VOYNICH MANUSCRIPT DECIPHERMENT WORKBENCH (UNIFIED MASTER DEPLOYMENT)
+========================================================================================
+An interactive decipherment dashboard integrating:
+  1. 16-Glyph Phonetic & Grammatical Matrix (from Excel ground-truth export)
+  2. Corpus Roles & Macrostate Distribution with Sukhotin Vowel Induction
+  3. Empirical Hardware Proofs & Mathematical Hoax Model Falsification
+  4. Procedural Sandwich Syntax: Q-ACTIVE -> [X-aiin] -> Q-ACTIVE
+  5. 30-Degree Zodiac Radial Geometry & Pisces Anchor Lock (cheod -> PASIS)
+  6. Codicological Signatures & Author Loci Audit (f1r.6, f9r.10, f116v.1)
+  7. Dual-Dialect Translation Engine (Venetian & Early German Pharmacy Registers)
+  8. Interactive Multi-Line Recipe Decoder Sandbox
+========================================================================================
+"""
+
 import streamlit as st
 import pandas as pd
 
+# Page Configuration
 st.set_page_config(
     page_title="Voynich Decipherment Workbench",
     page_icon="📜",
@@ -8,11 +26,25 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# Custom Styling for High-Contrast Clean Display
+st.markdown("""
+<style>
+    .metric-box {
+        background-color: #111827;
+        border: 1px solid #374151;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .stTable { font-size: 0.95rem; }
+</style>
+""", unsafe_allow_html=True)
+
 # -----------------------------------------------------------------------------
-# MASTER DATASETS & SYSTEM SPECIFICATIONS
+# 1. GROUND TRUTH DATASETS
 # -----------------------------------------------------------------------------
 
-# 16-Glyph Phonetic & Grammatical Matrix (from Excel export)
+# 16-Glyph Matrix (Ground truth from 2026-09-23T20-08_export copy.xlsx)
 PHONETIC_MATRIX_DATA = [
     {"Voynich Glyph": "o", "Phonetic Sound": "O", "Class": "Vowel",     "Affix Role": "Prefix operational"},
     {"Voynich Glyph": "t", "Phonetic Sound": "T", "Class": "Vowel",     "Affix Role": "Connective"},
@@ -32,7 +64,6 @@ PHONETIC_MATRIX_DATA = [
     {"Voynich Glyph": "r", "Phonetic Sound": "R", "Class": "Consonant", "Affix Role": "Liquid coda"},
 ]
 
-# Corpus Macrostate Distribution
 MACROSTATES_DATA = [
     {"role": "unmapped", "count": 16433, "percentage": "42.99%"},
     {"role": "heat",     "count": 7594,  "percentage": "19.87%"},
@@ -43,7 +74,6 @@ MACROSTATES_DATA = [
     {"role": "retain",   "count": 512,   "percentage": "1.34%"},
 ]
 
-# Procedural Execution Frame Ledger
 PROCEDURAL_FRAME_DATA = [
     {"role": "medium", "folio": "f1r", "token": "ataiin"},
     {"role": "medium", "folio": "f1r", "token": "chtaiin"},
@@ -57,7 +87,6 @@ PROCEDURAL_FRAME_DATA = [
     {"role": "medium", "folio": "f1r", "token": "daiin"},
 ]
 
-# Astrological Zodiac Spoke Registry
 ZODIAC_SPOKES_DATA = [
     {"folio": "f70v2", "spoke_label": "otcheod", "core_stem": "cheod", "voynich_cv": "CVCVC", "target_candidate": "PASIS (Pisces 330°-360°)"},
     {"folio": "f70v2", "spoke_label": "oteodal", "core_stem": "eodal", "voynich_cv": "CVCVC", "target_candidate": "RADIS (Pisces Decan 2)"},
@@ -69,44 +98,82 @@ ZODIAC_SPOKES_DATA = [
     {"folio": "f72v2", "spoke_label": "otedy",   "core_stem": "edy",   "voynich_cv": "CCV",   "target_candidate": "SAGITTARIUS / RAM (240°-270°)"},
 ]
 
-# Codicological Signatures & Author Loci
-CODICOLOGICAL_SIGNATURES = [
-    {
-        "folio": "Folio f1r.6",
-        "slot": "=Pt",
-        "token": "ydaraishy",
-        "description": "Isolated terminal incipit slot formatted like an author attribution in quotations.",
-    },
-    {
-        "folio": "Folio f9r.10",
-        "slot": "+Pc",
-        "token": "ytchas.oraiin.chkor",
-        "description": "Indented quire closure formula (scriptor / blessing / finitus).",
-    },
-    {
-        "folio": "Folio f116v.1",
-        "slot": "@Lx",
-        "token": "oror sheey",
-        "description": "Final codex terminal seal.",
-    },
-]
+# Translation Lexicon
+APOTHECARY_LEXICON = {
+    # Thermal Verbs (Q-ACTIVE)
+    "qokedy":   {"venetian": "coci",            "german": "sied",        "action": "boil / heat gently"},
+    "qokchdy":  {"venetian": "coci_qokchdy",    "german": "sied_qokchdy","action": "active secondary boiling cycle"},
+    "qoted":    {"venetian": "scalda",          "german": "waerme",      "action": "warm / infuse gently"},
+    "okeedy":   {"venetian": "incorpora",       "german": "menge",       "action": "compound / blend thoroughly"},
+    "qokeey":   {"venetian": "distilla",        "german": "brenn",       "action": "distill / collect condensed vapors"},
+    "chdam":    {"venetian": "saldo",           "german": "beschliess",  "action": "seal vessel hermetically"},
+    # Fractions & Parts
+    "cheocthedy": {"venetian": "fraturo de erba","german": "kruttheil",   "action": "plant fraction"},
+    "chedar":     {"venetian": "fiori",          "german": "bluemen",     "action": "blossoms"},
+    "oky":        {"venetian": "d'erba",         "german": "krutwazzer",  "action": "herb decoction menstruum"},
+    # Carrier Menstruums ([X-aiin] core)
+    "daiin":       {"venetian": "agva",           "german": "wazzer",      "action": "distilled water base"},
+    "chedaiin":    {"venetian": "decocto",        "german": "krutwazzer",  "action": "herbal decoction substrate"},
+    "otcheodaiin": {"venetian": "licore de stella","german": "sternauszug", "action": "astronomical sector component"},
+    "shedaiin":    {"venetian": "bagno_minerale", "german": "mineralbad",  "action": "balneological mineral base"},
+    "daraiin":     {"venetian": "aqua_vitae",     "german": "lebenswasser","action": "alchemical spirit / alcohol menstruum"},
+    "okaiin":      {"venetian": "oglio_caldo",    "german": "heissol",     "action": "heated oil menstruum"},
+    "cthaiin":     {"venetian": "succo_purificato","german": "lautersaft",  "action": "clarified plant extract"},
+    "cfhaiin":     {"venetian": "estratto_foglie","german": "blattauszug", "action": "foliar extract"},
+    "cfhoaiin":    {"venetian": "estratto_misto", "german": "mischauszug", "action": "composite herbal extract"},
+}
 
 # -----------------------------------------------------------------------------
-# WORKBENCH NAVIGATION TABS
+# 2. HELPER FUNCTIONS
 # -----------------------------------------------------------------------------
-tab_matrix, tab_roles, tab_hoax, tab_spokes, tab_colophons, tab_engine, tab_master = st.tabs([
+VOWELS = {"a", "o", "h", "t", "i", "y"}
+CONSONANTS = {"c", "d", "e", "f", "k", "l", "m", "n", "p", "s", "r"}
+PHONETIC_MAP = {r["Voynich Glyph"]: r["Phonetic Sound"] for r in PHONETIC_MATRIX_DATA}
+
+def compute_cv(text: str) -> str:
+    return "".join("V" if c in VOWELS else "C" for c in text.lower() if c in (VOWELS | CONSONANTS))
+
+def transcribe(text: str) -> str:
+    return "".join(PHONETIC_MAP.get(c, c) for c in text.lower())
+
+def translate_sentence(raw_text: str):
+    tokens = raw_text.strip().split()
+    venetian, german, actions = [], [], []
+    for t in tokens:
+        if t in APOTHECARY_LEXICON:
+            entry = APOTHECARY_LEXICON[t]
+            venetian.append(entry["venetian"])
+            german.append(entry["german"])
+            actions.append(entry["action"])
+        elif t.endswith("aiin"):
+            venetian.append(f"licore_{t}")
+            german.append(f"auszug_{t}")
+            actions.append(f"carrier extract ({t})")
+        else:
+            venetian.append(t)
+            german.append(t)
+            actions.append(t)
+    return {
+        "raw": raw_text,
+        "venetian": " ".join(venetian),
+        "german": " ".join(german),
+        "reading": "; ".join(actions).capitalize() + "."
+    }
+
+# -----------------------------------------------------------------------------
+# 3. NAVIGATION TABS
+# -----------------------------------------------------------------------------
+tab_matrix, tab_roles, tab_hoax, tab_spokes, tab_colophons, tab_engine, tab_sandbox = st.tabs([
     "Phonetic Matrix",
     "Roles & Macrostates",
     "6. 🏛️ Hoax Falsification & Proofs",
     "Astrological Spokes",
     "7. 🤝 Colophons & Signatures",
     "Translation Engine",
-    "8. 💾 Master Dataset",
+    "8. 🔬 Interactive Decoder Sandbox"
 ])
 
-# -----------------------------------------------------------------------------
-# Tab 1: 16-Glyph Phonetic Matrix
-# -----------------------------------------------------------------------------
+# Tab 1: Phonetic Matrix
 with tab_matrix:
     st.subheader("16-Glyph Phonetic & Grammatical Matrix")
     st.markdown("""
@@ -130,16 +197,14 @@ with tab_matrix:
 | **r** | R | Consonant | Liquid coda |
 """)
     st.markdown("""
-    * **Dual-Sound Identifications:**
-      * `S` sound: `c` (root consonant) and `m` (terminal buffer flush)
-      * `M` sound: `p` (root consonant) and `y` (vocalic/inflection affix)
+    * **Dual-Sound Structural Identifications:**
+      * `S` sound: `c` (root consonant core) and `m` (terminal buffer flush)
+      * `M` sound: `p` (root consonant core) and `y` (vocalic/inflection affix)
       * `R` sound: `e` (internal consonant) and `r` (terminal liquid coda)
-      * `O` sound: `o` (operational vowel) and `k` (thermal modifier consonant)
+      * `O` sound: `o` (operational prefix vowel) and `k` (thermal modifier consonant)
     """)
 
-# -----------------------------------------------------------------------------
 # Tab 2: Roles & Macrostates
-# -----------------------------------------------------------------------------
 with tab_roles:
     st.subheader("Distribution")
     st.markdown("""
@@ -161,9 +226,7 @@ with tab_roles:
     * **Vocalic Ratio:** Evaluates consistently to **33.3%**, conforming strictly to natural Romance/Latin phonotactic balance rather than random numbers or cipher stuffing.
     """)
 
-# -----------------------------------------------------------------------------
 # Tab 3: Hoax Falsification & Proofs
-# -----------------------------------------------------------------------------
 with tab_hoax:
     st.subheader("Model Falsification & Proofs")
     st.markdown(r"""
@@ -196,9 +259,7 @@ with tab_hoax:
     * **Balneological Base:** `qokedy` $\\rightarrow$ `shedaiin` $\\rightarrow$ `qokchdy` *(Folio f76r.05)*
     """)
 
-# -----------------------------------------------------------------------------
 # Tab 4: Astrological Spokes
-# -----------------------------------------------------------------------------
 with tab_spokes:
     st.subheader("Zodiac Spoke Stems & Radial Alignment")
     st.markdown("""
@@ -220,9 +281,7 @@ with tab_spokes:
         "`{c, h, e, o, d}`."
     )
 
-# -----------------------------------------------------------------------------
 # Tab 5: Colophons & Signatures
-# -----------------------------------------------------------------------------
 with tab_colophons:
     st.subheader("Codicological Signatures & Author Loci Audit")
     st.markdown("Three structural colophon positions sitting in isolated, right-flushed line ends:")
@@ -232,9 +291,7 @@ with tab_colophons:
     * **Folio f116v.1 (@Lx):** `oror sheey` — Final codex terminal seal.
     """)
 
-# -----------------------------------------------------------------------------
 # Tab 6: Interactive Translation Engine
-# -----------------------------------------------------------------------------
 with tab_engine:
     st.subheader("Interactive Folio Reader & Dual-Dialect Translation Engine")
 
@@ -262,17 +319,24 @@ with tab_engine:
         st.markdown("**Early German Pharmacy:** `sied mineralbad sied_qokchdy`")
         st.info("**Synthesized Reading:** Heat the mineral bath base and proceed to the secondary boiling cycle.")
 
-# -----------------------------------------------------------------------------
-# Tab 7: Master Dataset & Codicological Index
-# -----------------------------------------------------------------------------
-with tab_master:
-    st.subheader("Master Decipherment Dataset & Audit Summary")
-    st.markdown("""
-    This master workbench integrates:
-    1. **Empirical Hardware Proofs:** Rejection of mechanical grille generators ($A_4 = -1.018$) and 99.79% match to *Macer Floridus*.
-    2. **Sukhotin Vowel Induction:** 33.3% Romance/Latin natural vowel balance across the corpus.
-    3. **The 30-Degree Radial Wheel:** Primary anchor `otcheod` $\\rightarrow$ `PASIS` on Pisces ($f70v2$).
-    4. **Procedural Execution Sandwiches:** Systematic `Q-ACTIVE → [X-aiin] → Q-ACTIVE` operational grammar.
-    5. **Codicological Loci:** Verified incipit ($f1r.6$), quire closure ($f9r.10$), and terminal seal ($f116v.1$).
-    """)
-    st.dataframe(pd.DataFrame(PHONETIC_MATRIX_DATA), use_container_width=True, hide_index=True)
+# Tab 7: Interactive Decoder Sandbox
+with tab_sandbox:
+    st.subheader("Live Operational Compound Decoder")
+    st.markdown("Enter any procedural sentence from the manuscript to analyze its grammatical frame and generate dual-dialect translations:")
+    
+    user_input = st.text_input(
+        "Enter Raw Voynich IVTFF String:",
+        value="qokedy chedaiin qokchdy",
+        help="Example tokens: qokedy, daiin, daraiin, chedaiin, otcheodaiin, shedaiin, qokchdy, chdam"
+    )
+    
+    if user_input:
+        res = translate_sentence(user_input)
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown(f"**CV Skeleton:** `{compute_cv(user_input)}`")
+            st.markdown(f"**Phonetic Sound:** `{transcribe(user_input)}`")
+        with col2:
+            st.markdown(f"**Venetian Pharmacy:** `{res['venetian']}`")
+            st.markdown(f"**Early German Pharmacy:** `{res['german']}`")
+        st.success(f"**Operational Instruction:** {res['reading']}")
