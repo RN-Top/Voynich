@@ -557,3 +557,53 @@ with tabs[8]:
         file_name="voynich_slot_omega_frames.csv",
         mime="text/csv"
     )
+OPTIONAL — only if you do NOT use a pages/ folder and everything is in app.py.
+
+Do NOT replace app.py. Scroll to the bottom and paste this AFTER the last line.
+
+# --- begin full corpus counts (append only) ---
+try:
+    from pathlib import Path
+    import re as _re
+    import pandas as _pd
+
+    def _fcc_role(token: str) -> str:
+        t = str(token).strip().lower()
+        if t in {"chdam", "shedam"} or t.endswith("am"):
+            return "drain"
+        if t.startswith(("qo", "qok", "ok")):
+            return "heat"
+        if t.startswith("shed"):
+            return "retain"
+        if t.endswith("daiin") or t.endswith("aiin"):
+            return "medium"
+        if t.endswith(("ol", "al")):
+            return "outlet"
+        if t.endswith(("or", "ar")):
+            return "reflux"
+        return "unmapped"
+
+    if st.sidebar.checkbox("Full corpus counts", value=False):
+        st.header("Full Corpus Role Counts")
+        _df = None
+        for _k in ("corpus", "tokens", "df", "voynich", "event_log"):
+            _obj = st.session_state.get(_k)
+            if isinstance(_obj, _pd.DataFrame) and not _obj.empty:
+                _df = _obj
+                break
+        if _df is None:
+            st.warning("No corpus in session_state. Open your data page first.")
+        else:
+            _tok = next((c for c in ("token", "word", "eva", "text") if c in _df.columns), _df.columns[-1])
+            _fol = next((c for c in ("folio", "page", "fol") if c in _df.columns), None)
+            _tmp = _df.copy()
+            _tmp["_role"] = _tmp[_tok].map(_fcc_role)
+            st.metric("Total tokens tagged", f"{len(_tmp):,}")
+            st.dataframe(_tmp["_role"].value_counts())
+            _out = Path("data/spot_pies")
+            _out.mkdir(parents=True, exist_ok=True)
+            _tmp.to_csv(_out / "full_corpus_role_counts.csv", index=False)
+            st.success(f"Wrote {_out / 'full_corpus_role_counts.csv'}")
+except Exception as _e:
+    st.sidebar.caption(f"full corpus counts skipped: {_e}")
+# --- end append ---
