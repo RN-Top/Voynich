@@ -1,14 +1,13 @@
 """
 Voynich Manuscript Decipherment Engine & Dual-Dialect Workbench
 Author: Voynich Decipherment Working Group (RN-Top/Voynich)
-Corpus Standard: IVTFF EVA 2.0 / ZL3b-n Standard (38,223 tokens)
+Corpus Standard: IVTFF EVA 2.0 / ZL3b-n Standard
 Zero external dependencies: uses only native streamlit, pandas, and numpy.
 """
 
 import os
 import re
 import urllib.request
-from collections import Counter, defaultdict
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -121,7 +120,7 @@ def predict_apparatus_role(token: str, stem: str, exit_port: str, control: str) 
     return "other"
 
 # -----------------------------------------------------------------------------
-# CACHED CORPUS LOADER
+# CACHED CORPUS LOADER (Direct Regex Extraction)
 # -----------------------------------------------------------------------------
 @st.cache_data(show_spinner=False)
 def load_corpus():
@@ -145,50 +144,28 @@ def load_corpus():
         except Exception:
             return [], "OFFLINE_FALLBACK"
 
-    current_folio = "f1r"
-    current_currier = "A"
-    current_section = "Herbal"
-
     for line in raw_text.splitlines():
         line = line.strip()
-        if not line:
-            continue
-        if line.startswith("<f") and ">" in line:
-            tag = line[1:line.index(">")]
-            parts = tag.split()
-            current_folio = parts[0]
-            if "$L=B" in line:
-                current_currier = "B"
-            elif "$L=A" in line:
-                current_currier = "A"
-            if "$I=H" in line:
-                current_section = "Herbal"
-            elif "$I=A" in line or "$I=Z" in line or "$I=C" in line:
-                current_section = "Astronomical"
-            elif "$I=B" in line:
-                current_section = "Biological"
-            elif "$I=P" in line:
-                current_section = "Pharmaceutical"
-            elif "$I=S" in line:
-                current_section = "Stars/Recipes"
+        if not line or line.startswith("#"):
             continue
 
-        if line.startswith("#"):
+        match = re.match(r"<([^>]+)>\s*(.*)", line)
+        if not match:
             continue
 
-        tokens_raw = line.split()
-        if len(tokens_raw) < 2:
-            continue
-        header = tokens_raw[0]
-        words = [clean_raw_token(t) for t in tokens_raw[1:] if clean_raw_token(t)]
+        header, text_content = match.groups()
+        folio = header.split(".")[0].lower().replace("f0", "f")
+
+        clean_text = re.sub(r"<![^>]*>|\{[^}]*\}|<[%+=*][^>]*>", "", text_content)
+        raw_tokens = [clean_raw_token(t) for t in re.split(r"[.,\s]+", clean_text) if t]
+        words = [t for t in raw_tokens if t and not t.startswith("<")]
+
         if words:
             lines.append({
-                "folio": current_folio,
+                "folio": folio,
                 "header": header,
-                "currier": current_currier,
-                "section": current_section,
                 "tokens": words,
-                "is_holdout": current_folio.lower() in HOLDOUT_FOLIOS,
+                "is_holdout": any(folio == hf or folio == hf.replace("f0", "f") for hf in HOLDOUT_FOLIOS),
             })
     return lines, source
 
@@ -235,14 +212,14 @@ with tab_paper:
             "Vocalic Ratio (Romance Alignment)"
         ],
         "Observed Metric": [
-            "Ready to audit in Tab 2",
+            "Audited in Tab 2",
             "69.4% Line-Terminal (OR > 20x)",
             "Δ = -1.018 log-odds shift",
             "0.0% qo- in radial diagrams",
             "33.3% Vocalic Ratio (6/14)"
         ],
         "Scientific Verdict": [
-            "Interactive Holdout Test",
+            "Live Empirical Test",
             "VERIFIED (Boundary effect)",
             "DIRECTIONAL BIAS OBSERVED",
             "VERIFIED (Layout-gated syntax)",
@@ -277,52 +254,52 @@ with tab_holdout:
                             "predicted": pred,
                         })
 
-            df_holdout = pd.DataFrame(holdout_tokens)
-            
-            # Map state to target class for concordance check
-            state_target_map = {"C": "reflux", "L": "medium", "P": "outlet", "R": "positional"}
-            scored = df_holdout[df_holdout["predicted"] != "other"].copy()
-            
-            if scored.empty:
-                st.error("No eligible holdout tokens found. Check data source.")
+            if not holdout_tokens:
+                st.error("No holdout tokens detected in corpus. Please check that data/ZL3b-n.txt is present.")
             else:
-                scored["expected"] = scored["state"].map(state_target_map)
-                scored["match"] = scored["predicted"] == scored["expected"]
-                
-                n_scored = len(scored)
-                observed_hits = int(scored["match"].sum())
-                observed_acc = observed_hits / n_scored
+                df_holdout = pd.DataFrame(holdout_tokens)
+                state_target_map = {"C": "reflux", "L": "medium", "P": "outlet", "R": "positional"}
+                scored = df_holdout[df_holdout["predicted"] != "other"].copy()
 
-                # Monte Carlo Permutations
-                rng = np.random.default_rng(42)
-                perm_accs = np.empty(1000)
-                matches_array = scored["match"].values
+                if scored.empty:
+                    st.warning("Holdout tokens were found, but none matched the target apparatus roles.")
+                else:
+                    scored["expected"] = scored["state"].map(state_target_map)
+                    scored["match"] = scored["predicted"] == scored["expected"]
 
-                for i in range(1000):
-                    shuffled = rng.permutation(matches_array)
-                    perm_accs[i] = np.mean(shuffled)
+                    n_scored = len(scored)
+                    observed_hits = int(scored["match"].sum())
+                    observed_acc = observed_hits / n_scored
 
-                chance_mean = float(np.mean(perm_accs))
-                chance_std = float(np.std(perm_accs))
-                p_val = float(np.sum(perm_accs >= observed_acc) / 1000)
-                z_score = (observed_acc - chance_mean) / (chance_std + 1e-12)
+                    rng = np.random.default_rng(42)
+                    perm_accs = np.empty(1000)
+                    matches_array = scored["match"].values
 
-                st.success("✅ Audit Completed!")
+                    for i in range(1000):
+                        shuffled = rng.permutation(matches_array)
+                        perm_accs[i] = np.mean(shuffled)
 
-                c1, c2, c3, c4 = st.columns(4)
-                c1.metric("Scored Tokens", f"{n_scored} Loci", "f70v2, f71r, f72r1, f72v1, f72v2")
-                c2.metric("Observed Accuracy", f"{observed_acc * 100:.1f}%", f"{observed_hits} / {n_scored} Hits")
-                c3.metric("Shuffled Baseline", f"{chance_mean * 100:.1f}%", f"± {chance_std * 100:.1f}%")
-                c4.metric("Empirical p-value", f"{p_val:.4f}", f"Z = {z_score:.2f}σ")
+                    chance_mean = float(np.mean(perm_accs))
+                    chance_std = float(np.std(perm_accs))
+                    p_val = float(np.sum(perm_accs >= observed_acc) / 1000)
+                    z_score = (observed_acc - chance_mean) / (chance_std + 1e-12)
 
-                st.subheader("Holdout Token Verification Ledger")
-                st.dataframe(scored[["folio", "token", "carrier", "predicted", "expected", "match"]].head(50), use_container_width=True)
+                    st.success("✅ Audit Completed!")
+
+                    c1, c2, c3, c4 = st.columns(4)
+                    c1.metric("Scored Tokens", f"{n_scored} Loci", "f70v2, f71r, f72r1, f72v1, f72v2")
+                    c2.metric("Observed Accuracy", f"{observed_acc * 100:.1f}%", f"{observed_hits} / {n_scored} Hits")
+                    c3.metric("Shuffled Baseline", f"{chance_mean * 100:.1f}%", f"± {chance_std * 100:.1f}%")
+                    c4.metric("Empirical p-value", f"{p_val:.4f}", f"Z = {z_score:.2f}σ")
+
+                    st.subheader("Holdout Token Verification Ledger")
+                    st.dataframe(scored[["folio", "token", "carrier", "predicted", "expected", "match"]].head(50), use_container_width=True)
 
 # =============================================================================
 # TAB 3: DUAL-DIALECT BRIDGE
 # =============================================================================
 with tab_dialect:
-    st.header("🏛️️ Dual-Dialect Linguistic Bridge Test")
+    st.header("🏛 Dual-Dialect Linguistic Bridge Test")
     test_metrics = [
         {"Statistical Dimension": "1. Character Entropy (H1)", "Whole Voynich": "3.84 bits", "Venetian (1420)": "4.09 bits", "Early German": "4.06 bits", "Verdict": "Distinct from standard narrative prose"},
         {"Statistical Dimension": "2. Immediate Word Doubling", "Whole Voynich": "2.40%", "Venetian (1420)": "0.00%", "Early German": "0.00%", "Verdict": "Conserved iterative repetition present"},
