@@ -259,11 +259,6 @@ with tab_holdout:
             else:
                 df_holdout = pd.DataFrame(holdout_tokens)
                 
-                # Corrected state target mapping:
-                # C (reflux compound) -> reflux
-                # P (stative hold in -y) -> reflux
-                # L (liquid buffer in -ain/-al) -> medium
-                # R (terminal flush in -m) -> positional
                 state_target_map = {
                     "C": "reflux",
                     "P": "reflux",
@@ -283,13 +278,15 @@ with tab_holdout:
                     observed_hits = int(scored["match"].sum())
                     observed_acc = observed_hits / n_scored
 
+                    # Monte Carlo Permutations: shuffle expected labels against fixed predictions
                     rng = np.random.default_rng(42)
                     perm_accs = np.empty(1000)
-                    matches_array = scored["match"].values
+                    pred_array = scored["predicted"].values
+                    expected_array = scored["expected"].values
 
                     for i in range(1000):
-                        shuffled = rng.permutation(matches_array)
-                        perm_accs[i] = np.mean(shuffled)
+                        shuffled_expected = rng.permutation(expected_array)
+                        perm_accs[i] = np.mean(pred_array == shuffled_expected)
 
                     chance_mean = float(np.mean(perm_accs))
                     chance_std = float(np.std(perm_accs))
