@@ -278,7 +278,7 @@ with tab_holdout:
                     observed_hits = int(scored["match"].sum())
                     observed_acc = observed_hits / n_scored
 
-                    # Monte Carlo Permutations: shuffle expected labels against fixed predictions
+                    # Monte Carlo Permutations: decouple expected labels from predictions
                     rng = np.random.default_rng(42)
                     perm_accs = np.empty(1000)
                     pred_array = scored["predicted"].values
@@ -349,8 +349,19 @@ with tab_omega:
             if f1["control"].startswith("q") and f3["control"].startswith("q"):
                 if w2.endswith(("aiin", "ain")):
                     omega_frames.append({"Folio": l["folio"], "Operator 1": w1, "Buffer [X-aiin]": w2, "Operator 2": w3})
+    
     st.metric("Detected Frames", len(omega_frames))
-    st.dataframe(pd.DataFrame(omega_frames[:25]), use_container_width=True)
+    
+    df_omega = pd.DataFrame(omega_frames)
+    st.dataframe(df_omega, use_container_width=True)
+    
+    if not df_omega.empty:
+        st.download_button(
+            "📥 Download All Slot Ω Frames (CSV)",
+            df_omega.to_csv(index=False).encode("utf-8"),
+            "all_slot_omega_frames.csv",
+            "text/csv"
+        )
 
 # =============================================================================
 # TAB 6: FOLIO READER
