@@ -1,6 +1,7 @@
 """
 Voynich corpus ingestion and morphology parser.
 Produces the shared DataFrame schema used by all analysis modules.
+Includes strict train/test holdout partitioning to prevent leakage.
 """
 
 from __future__ import annotations
@@ -10,7 +11,7 @@ import os
 import re
 import urllib.request
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 import pandas as pd
 
@@ -22,6 +23,9 @@ CORPUS_URLS = (
 CORPUS_URL = CORPUS_URLS[0]
 CORPUS_PATH = os.path.join("data", "ZL3b-n.txt")
 MIN_CORPUS_BYTES = 50_000
+
+# Canonical Holdout folios quarantined for out-of-sample testing
+HOLDOUT_FOLIOS = ("f70v2", "f71r", "f72r1", "f72v1", "f72v2")
 
 
 def infer_section(folio: str) -> str:
@@ -93,7 +97,7 @@ def ensure_full_corpus(path: str = CORPUS_PATH) -> str:
 
 
 class VoynichParser:
-    CONTROL_PREFIXES = ("qk", "dk", "q", "k", "d")
+    CONTROL_PREFIXES = ("qk", "dk", "qo", "qok", "qot", "qoc", "q", "k", "d")
 
     REALIZATION_PORTS = (
         "aiiin",
@@ -123,17 +127,10 @@ class VoynichParser:
     @classmethod
     def clean_token(cls, raw: str) -> str:
         token = str(raw)
-
-        token = re.sub(
-            r"\[([^:]+):[^\]]+\]",
-            r"\1",
-            token,
-        )
-
+        token = re.sub(r"\[([^:]+):[^\]]+\]", r"\1", token)
         token = re.sub(r"[{}\[\]<!>]", "", token)
         token = re.sub(r"@[0-9]+;", "", token)
         token = re.sub(r"[@\d;%+=*?$,^~\-]", "", token)
-
         return token.strip().lower()
 
     @classmethod
@@ -146,6 +143,7 @@ class VoynichParser:
                 "raw": raw_token,
                 "clean": "",
                 "valid": False,
+                "state": "?",
             }
 
         remainder = token
@@ -178,6 +176,8 @@ class VoynichParser:
                 carrier = known
                 break
 
+        state = cls.map_macrostate(token)
+
         return {
             "token": raw_token,
             "raw": raw_token,
@@ -189,6 +189,7 @@ class VoynichParser:
             "e_grade": e_grade,
             "internal_o": "o" in remainder,
             "exit_port": exit_port,
+            "state": state,
             "is_terminal_m": bool(
                 re.search(r"(am|(?<![ai])m)$", token)
             ),
@@ -217,21 +218,39 @@ class VoynichParser:
         return "?"
 
 
+# -----------------------------------------------------------------------------
+# STANDALONE COMPATIBILITY EXPORTS (For app.py & analysis scripts)
+# -----------------------------------------------------------------------------
+def clean_raw_token(t: str) -> str:
+    return VoynichParser.clean_token(t)
+
+
+def factorize(token: str) -> dict:
+    decomp = VoynichParser.decompose_morphology(token)
+    return {
+        "valid": decomp.get("valid", False),
+        "token": token,
+        "control": decomp.get("control", "NONE"),
+        "carrier": decomp.get("carrier", "EMPTY"),
+        "e_grade": decomp.get("e_grade", 0),
+        "internal_o": decomp.get("internal_o", False),
+        "exit_port": decomp.get("exit_port", "BARE"),
+        "state": decomp.get("state", "?"),
+        "is_flush": decomp.get("is_terminal_m", False),
+    }
+
+
 def _read_source(source):
     if hasattr(source, "getvalue"):
         data = source.getvalue()
-
         if isinstance(data, bytes):
             data = data.decode("utf-8", errors="ignore")
-
         return io.StringIO(str(data))
 
     if hasattr(source, "read"):
         data = source.read()
-
         if isinstance(data, bytes):
             data = data.decode("utf-8", errors="ignore")
-
         return io.StringIO(str(data))
 
     return open(
@@ -249,20 +268,13 @@ def parse_zl3b(
 
     if isinstance(source, (str, os.PathLike)):
         source_path = str(source)
-
-        if (
-            os.path.normpath(source_path)
-            == os.path.normpath(CORPUS_PATH)
-        ):
+        if os.path.normpath(source_path) == os.path.normpath(CORPUS_PATH):
             source_path = ensure_full_corpus(source_path)
-
         reader = _read_source(source_path)
-
     else:
         reader = _read_source(source)
 
     records = []
-
     current_currier = "UNKNOWN"
     current_quire = "UNKNOWN"
 
@@ -275,7 +287,6 @@ def parse_zl3b(
     try:
         for line in reader:
             line = str(line).strip()
-
             if not line:
                 continue
 
@@ -285,80 +296,42 @@ def parse_zl3b(
                 or "<f" in line
             ):
                 hand_match = re.search(r"\$L=([AB])", line)
-
                 if hand_match:
                     current_currier = hand_match.group(1)
 
-                quire_match = re.search(
-                    r"\$Q=([A-Z0-9]+)",
-                    line,
-                )
-
+                quire_match = re.search(r"\$Q=([A-Z0-9]+)", line)
                 if quire_match:
                     current_quire = quire_match.group(1)
 
             if line.startswith("#"):
                 continue
 
-            match = re.match(
-                r"<([^>]+)>\s*(.*)",
-                line,
-            )
-
+            match = re.match(r"<([^>]+)>\s*(.*)", line)
             if not match:
                 continue
 
             header, raw_text = match.groups()
             folio = header.split(".")[0]
 
-            if (
-                wanted is not None
-                and folio.lower() not in wanted
-            ):
+            if wanted is not None and folio.lower() not in wanted:
                 continue
 
-            clean_text = re.sub(
-                r"<![^>]*>",
-                "",
-                raw_text,
-            )
-
-            clean_text = re.sub(
-                r"\{[^}]*\}",
-                "",
-                clean_text,
-            )
-
-            clean_text = re.sub(
-                r"<[%+=*][^>]*>",
-                "",
-                clean_text,
-            )
+            clean_text = re.sub(r"<![^>]*>", "", raw_text)
+            clean_text = re.sub(r"\{[^}]*\}", "", clean_text)
+            clean_text = re.sub(r"<[%+=*][^>]*>", "", clean_text)
 
             raw_tokens = [
                 token
-                for token in re.split(
-                    r"[.,\s]+",
-                    clean_text,
-                )
-                if token
-                and not token.startswith("<")
+                for token in re.split(r"[.,\s]+", clean_text)
+                if token and not token.startswith("<")
             ]
 
             total = len(raw_tokens)
             section = infer_section(folio)
 
             for index, raw_token in enumerate(raw_tokens):
-                decomposition = (
-                    VoynichParser.decompose_morphology(
-                        raw_token
-                    )
-                )
-
-                if not decomposition.get("valid"):
-                    continue
-
-                if not decomposition.get("clean"):
+                decomposition = VoynichParser.decompose_morphology(raw_token)
+                if not decomposition.get("valid") or not decomposition.get("clean"):
                     continue
 
                 records.append(
@@ -371,13 +344,8 @@ def parse_zl3b(
                         "token_idx": index,
                         "is_line_start": index == 0,
                         "is_line_end": index == total - 1,
-                        "state":
-                            VoynichParser.map_macrostate(
-                                decomposition["clean"]
-                            ),
-                        "is_astro":
-                            section
-                            == "Astronomical/Zodiac",
+                        "is_holdout": folio.lower() in HOLDOUT_FOLIOS,
+                        "is_astro": section == "Astronomical/Zodiac",
                         "zodiac_sign": None,
                         "clock_pos": None,
                         **decomposition,
@@ -389,34 +357,34 @@ def parse_zl3b(
             reader.close()
 
     df = pd.DataFrame(records)
-
     if df.empty:
         return df
 
-    for column in (
-        "state",
-        "control",
-        "exit_port",
-    ):
+    for column in ("state", "control", "exit_port"):
         df[f"prev_{column}"] = df[column].shift(1)
         df[f"next_{column}"] = df[column].shift(-1)
 
     df.loc[
         df["is_line_start"],
-        [
-            "prev_state",
-            "prev_control",
-            "prev_exit_port",
-        ],
+        ["prev_state", "prev_control", "prev_exit_port"],
     ] = None
 
     df.loc[
         df["is_line_end"],
-        [
-            "next_state",
-            "next_control",
-            "next_exit_port",
-        ],
+        ["next_state", "next_control", "next_exit_port"],
     ] = None
 
     return df.reset_index(drop=True)
+
+
+def get_train_test_split(
+    source=CORPUS_PATH,
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """
+    Returns (train_df, test_df) strictly partitioning the corpus.
+    Test set is strictly confined to HOLDOUT_FOLIOS.
+    """
+    df = parse_zl3b(source=source)
+    train_df = df[~df["is_holdout"]].copy().reset_index(drop=True)
+    test_df = df[df["is_holdout"]].copy().reset_index(drop=True)
+    return train_df, test_df
