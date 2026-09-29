@@ -13,6 +13,9 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
+# Canonical tokenizer import from parser.py
+from parser import clean_raw_token, factorize
+
 st.set_page_config(
     page_title="Voynich Decipherment Workbench",
     page_icon="🌌",
@@ -49,62 +52,8 @@ MASTER_LEXICON = {
     "chol": {"la": "calidus", "ven": "caldo", "ger": "heiss", "en": "warm / hot property", "role": "MODIFIER_ADJ", "domain": "Humoral"},
     "chor": {"la": "siccus", "ven": "asciutto", "ger": "gedoert", "en": "dry / desiccated property", "role": "MODIFIER_ADJ", "domain": "Humoral"},
     "oteod": {"la": "gradus", "ven": "grado", "ger": "gradzaichen", "en": "degree / sector coordinate", "role": "OPERAND_NOUN", "domain": "Astronomical"},
-    "chdam": {"la": "finis", "ven": "saldo / serra", "ger": "beschliess", "en": "complete / terminal flush", "role": "TERMINAL_FLUSH", "domain": "Compounding"},
+    "chdam": {"la": "finis", "ven": "saldo / serra", "ger": "beschliess", "en": "complete / terminal marker", "role": "TERMINAL_FLUSH", "domain": "Compounding"},
 }
-
-# -----------------------------------------------------------------------------
-# MORPHOTACTIC FACTORIZATION & TOKEN CLEANER
-# -----------------------------------------------------------------------------
-def clean_raw_token(t: str) -> str:
-    t = re.sub(r"\[([^:]+):[^\]]+\]", r"\1", str(t))
-    t = re.sub(r"[{}\[\]<!>]", "", t)
-    t = re.sub(r"[@\d;%+=*?$,.]", "", t)
-    return t.strip().lower()
-
-def factorize(token: str) -> dict:
-    if not token:
-        return {"valid": False}
-    remainder = token
-    ctrl = "NONE"
-    for cp in CONTROL_HEADERS:
-        if remainder.startswith(cp):
-            ctrl = cp
-            remainder = remainder[len(cp):]
-            break
-
-    exit_port = "BARE"
-    for rp in ("aiin", "ain", "am", "m", "ar", "al", "y"):
-        if remainder.endswith(rp):
-            exit_port = rp
-            remainder = remainder[:-len(rp)]
-            break
-
-    e_count = max([len(m) for m in re.findall(r"e+", remainder)], default=0)
-    has_o = "o" in remainder
-    carrier = remainder if remainder else "EMPTY"
-
-    if token.endswith(TERMINAL_FLUSHES):
-        state = "R"
-    elif any(token.endswith(s) for s in ("ey", "eey", "edy", "eedy")):
-        state = "C"
-    elif any(token.endswith(b) for b in BUFFER_CONNECTORS):
-        state = "L"
-    elif token.endswith(STATIVE_HOLDS):
-        state = "P"
-    else:
-        state = "?"
-
-    return {
-        "valid": True,
-        "token": token,
-        "control": ctrl,
-        "carrier": carrier,
-        "e_grade": e_count,
-        "internal_o": has_o,
-        "exit_port": exit_port,
-        "state": state,
-        "is_flush": token.endswith(TERMINAL_FLUSHES),
-    }
 
 # -----------------------------------------------------------------------------
 # CACHED CORPUS LOADER
@@ -187,10 +136,10 @@ st.title("Voynich Manuscript Decipherment Engine & Dual-Dialect Workbench")
 st.caption(f"Venetian Romance Phonetics + Early High German Syntax | Corpus: {total_tokens_count:,} Tokens | Source: {corpus_source}")
 
 m1, m2, m3, m4 = st.columns(4)
-m1.metric("Blind Prediction Rate", "90.2%", "Hits: 394 / 437 (+63.3% Edge)")
-m2.metric("Currier A / B Split", "98.49%", "Machine Learning Accuracy")
-m3.metric("Manifold Congruence", "99.79%", "Macer Floridus (d²=0.0021)")
-m4.metric("Hoax Model Falsification", "Δ = -1.018", "T&S Hoax Null Rejected")
+m1.metric("Blind Prediction Rate", "Pending Audit", "Awaiting clean holdout evaluation")
+m2.metric("Currier A / B Split", "Pending Audit", "Awaiting canonical parser alignment")
+m3.metric("Manifold Congruence", "Not Computed", "Awaiting baseline corpus ingestion")
+m4.metric("Directional Routing Shift", "Δ = -1.018", "log-odds empirical shift")
 
 st.markdown("---")
 
@@ -199,7 +148,7 @@ st.markdown("---")
 # -----------------------------------------------------------------------------
 tab_paper, tab_holdout, tab_dialect, tab_tests, tab_omega, tab_reader, tab_lexicon, tab_colophons, tab_export = st.tabs([
     "📄 Academic Paper",
-    "🎯 Blind Holdout Test (90.2%)",
+    "🎯 Blind Holdout Test",
     "🏛️ Dual-Dialect Bridge",
     "🧪 Automated Verification Suite",
     "⚡ Invariant Slot Ω Miner",
@@ -233,45 +182,45 @@ with tab_paper:
         "Verification Gate": [
             "Blind Stem-Context Prediction",
             "A1: Currier Dialect Separation",
-            "A2: Buffer Flushing (-m / -am)",
+            "A2: Positional Terminal Markers (-m / -am)",
             "A4: Successor Directional Routing",
             "Lexical Core Normalization (Λ)",
-            "80/20 Holdout Generalization",
+            "Holdout Generalization",
             "Diagram Prefix Suppression (qo-)",
             "Procrustes Manifold Alignment",
             "Sukhotin Phonological Vowels"
         ],
         "Observed Metric": [
-            "90.2% Accuracy (394/437 hits)",
-            "98.49% Balanced Accuracy",
+            "Pending Clean Split",
+            "Pending Pipeline Run",
             "69.37% - 73.0% Line-Terminal",
             "Δ = -1.018 log-odds shift",
             "Zipf α = 1.065 (70.84% red.)",
-            "Test PMI = 31.274 (45 folios)",
+            "Pending Evaluation",
             "0.0% qo- on Rotas / Plants",
-            "d² = 0.0021 (99.79% Match)",
+            "Pending Historical Corpus",
             "33.3% Vocalic Ratio (6/14)"
         ],
         "Null Baseline / Control": [
-            "Chance Baseline: 26.8% (+63.3% edge)",
+            "Chance Baseline: 26.8%",
             "Random Shuffling: 50.09%",
             "Line Permutation Null: p = 0.00020",
             "Timm & Schinner Synthetic: +0.029",
             "Natural Language Threshold α ≥ 0.85",
-            "Train PMI = 30.392 (182 folios)",
+            "Train/Test Partitioning",
             "Running Recipe Prose: 14.8% - 24.6%",
-            "Astronomical Ephemerides: 65.90%",
+            "Latin Reference Baseline",
             "Romance / Latin Expected: 32% - 36%"
         ],
         "Scientific Verdict": [
-            "PREDICTIVE VALIDATION (Out-of-sample confirmed)",
-            "VERIFIED (Distinct operational runtimes)",
-            "VERIFIED (Physical line resets execution)",
-            "HOAX FALSIFIED (p < 0.00001)",
+            "IN AUDIT REVIEW",
+            "IN AUDIT REVIEW",
+            "VERIFIED (Physical line boundary effect)",
+            "DIRECTIONAL BIAS OBSERVED",
             "VERIFIED (Natural power-law scaling)",
-            "ROBUST (Codex-wide consistency)",
+            "IN AUDIT REVIEW",
             "VERIFIED (Layout-gated syntax)",
-            "ISOMORPHIC (Macer Floridus Compounding)",
+            "PENDING COMPUTATION",
             "NATURAL LANGUAGE CONFORMANT"
         ]
     }
@@ -283,59 +232,58 @@ with tab_paper:
     * **Control Header Operator ($\mathcal{C} \in \{d, q, k, t\}$):** Positional line-entry and runtime execution operators. Prefix `d-` dominates line-initial positions with an odds ratio exceeding $20\times$, serving as an execution reset. Prefix `q-` / `qo-` operates as an active procedural compounding verb. Gallows `k` and `t` route conditional logic, while compound headers (`qk`, `dk`) are non-commutative and strictly ordered ($39:2$ directional pairs codex-wide).
     * **Carrier Kernel / Operand Core ($\Lambda$):** Stable lexical stems (`otcheod`, `ched`, `shed`, `lk`, `pair`, `eod`, `ch`) preserving entity specificity across changing syntactic environments.
     * **Internal Tuning Registers ($N_E \times O_I$):** Iterative feature counters parameterizing $E$-multiplicity ($E^0$ through $E^3$) and binary internal $O$-presence flags.
-    * **Exit Ports / Successor Routers ($\rho \in \{y, ar, al, aiin, m\}$):** Interface realization suffixes parameterizing transitions into the subsequent token header ($B_n = \rho_n \to \mathcal{C}_{n+1}$). Terminal `-m` and `-am` act as hard execution buffer flushes, while the selection of `-al` vs. `-ar` directs gallows routing ($\Delta = -1.018$ log-odds, $p < 0.00001$).
+    * **Exit Ports / Successor Routers ($\rho \in \{y, ar, al, aiin, m\}$):** Interface realization suffixes parameterizing transitions into the subsequent token header ($B_n = \rho_n \to \mathcal{C}_{n+1}$). Terminal `-m` and `-am` act as line-boundary markers, while the selection of `-al` vs. `-ar` correlates with header routing ($\Delta = -1.018$ log-odds).
     """)
 
-    st.subheader("3. The 4-Macrostate Dynamic Engine")
+    st.subheader("3. Exploratory 4-Macrostate Sequence Hypothesis")
     st.latex(r"\mathbf{C} \ (\text{Transform}) \longrightarrow \mathbf{L} \ (\text{Connect}) \longrightarrow \mathbf{P} \ (\text{Maintain}) \longrightarrow \mathbf{R} \ (\text{Resolve})")
     st.markdown("""
-    Sequential token streams cycle through four discrete functional macrostates:
-    * **State `C` (Transform):** Active compute/loop register characterized by `-ey`, `-eey`, `-edy`, and `-eedy` morphology.
-    * **State `L` (Connect):** Bus/junction transfer state characterized by buffer affixes `-ain`, `-aiin`, `-or`, and `-ar`.
-    * **State `P` (Maintain):** Stative register hold characterized by `-y`, `-ol`, and `-al` morphology.
-    * **State `R` (Resolve):** Bounded frame flush dominated by terminal `-am` and `-m`.
+    Hypothesized macrostate progression across sequential token clusters:
+    * **State `C` (Transform):** Prefix/stem compounding cluster characterized by `-ey`, `-eey`, `-edy`, and `-eedy` morphology.
+    * **State `L` (Connect):** Interface transit states characterized by affixes `-ain`, `-aiin`, `-or`, and `-ar`.
+    * **State `P` (Maintain):** Stative position markers characterized by `-y`, `-ol`, and `-al` morphology.
+    * **State `R` (Resolve):** Line-terminal bounding states dominated by `-am` and `-m`.
     """)
 
 # =============================================================================
-# TAB 2: BLIND HOLDOUT TEST AUDIT (90.2%)
+# TAB 2: BLIND HOLDOUT TEST AUDIT
 # =============================================================================
 with tab_holdout:
-    st.header("🎯 Blind Stem-Context Prediction Test Audit")
+    st.header("🎯 Held-Out Folio Verification Audit")
     st.markdown("""
-    **Test Protocol:** Five held-out folios (`f70v2`, `f71r`, `f72r1`, `f72v1`, `f72v2`) were evaluated out-of-sample. 
-    The morphotactic compiler predicted the apparatus role class purely from token stems and suffix ports, 
-    achieving a **90.2% exact match rate** against observed manuscript apparatus contexts.
+    **Audit Protocol:** Evaluating five held-out folios (`f70v2`, `f71r`, `f72r1`, `f72v1`, `f72v2`). 
+    Metrics reflect the morphotactic categorization of token stems and suffix positions.
     """)
 
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Held-Out Scored Tokens", "437 Loci", "f70v2, f71r, f72r1, f72v1, f72v2")
-    c2.metric("Successful Prediction Hits", "394 Hits", "Exact Apparatus Match")
-    c3.metric("Prediction Accuracy", "90.2%", "Baseline: 26.8%")
-    c4.metric("Empirical Edge Over Chance", "+63.3%", "p < 10⁻¹²")
+    c1.metric("Held-Out Evaluated Tokens", "437 Loci", "f70v2, f71r, f72r1, f72v1, f72v2")
+    c2.metric("Concordant Categorizations", "Pending Final Run", "Awaiting frozen parser freeze")
+    c3.metric("Prediction Accuracy", "In Review", "Baseline: 26.8%")
+    c4.metric("Statistical Baseline", "Pending", "Permutation test in progress")
 
-    st.subheader("Operational Apparatus Role Breakdown")
+    st.subheader("Morphotactic Functional Class Breakdown")
     st.markdown("""
-    * **Reflux Loop (`reflux`):** Suffixes `-y`, `-dy`, `-eey`, `-eody` (stems `tey`, `ykeey`, `tchy`, `ody`, `shey`) indicate active circulatory reflux within the apparatus.
-    * **Liquid Medium / Solvent (`medium`):** Buffer suffixes `-aiin`, `-ain` (stems `aiin`, `alain`, `edaiin`, `todaiin`) identify menstruum volumes.
-    * **Conduit Outlet (`outlet`):** Suffixes `-al`, `-ar`, `-eos` (stems `tar`, `lar`, `alal`, `aldar`, `arar`) indicate delivery beaks and transfer conduits.
-    * **Terminal Vessel Drain (`drain`):** Bounded flushes `-am`, `-aim` (stems `eeam`, `am`, `alam`, `karam`, `daim`) mark receiver discharge.
-    * **Thermal Activation (`heat`):** Active prefixes `qok-`, `qo-` (stem `qokar`) govern external furnace firing.
+    * **Circulatory / Compounding (`reflux`):** Suffixes `-y`, `-dy`, `-eey`, `-eody` (stems `tey`, `ykeey`, `tchy`, `ody`, `shey`).
+    * **Liquid Medium / Solvent (`medium`):** Suffixes `-aiin`, `-ain` (stems `aiin`, `alain`, `edaiin`, `todaiin`).
+    * **Conduit / Exit Vector (`outlet`):** Suffixes `-al`, `-ar`, `-eos` (stems `tar`, `lar`, `alal`, `aldar`, `arar`).
+    * **Line-Terminal Marker (`positional`):** Terminal endings `-am`, `-aim` (stems `eeam`, `am`, `alam`, `karam`, `daim`) aligning with line boundaries.
+    * **Thermal / Primary Operator (`heat`):** Prefixes `qok-`, `qo-` (stem `qokar`).
     """)
 
     sample_test_runs = [
-        {"Folio": "f70v2", "Token": "otey", "Extracted Stem": "tey", "Predicted Role": "reflux", "Actual Context": "reflux", "Verdict": "HIT"},
-        {"Folio": "f70v2", "Token": "ykeey", "Extracted Stem": "ykeey", "Predicted Role": "reflux", "Actual Context": "reflux", "Verdict": "HIT"},
-        {"Folio": "f70v2", "Token": "tchy", "Extracted Stem": "tchy", "Predicted Role": "reflux", "Actual Context": "reflux", "Verdict": "HIT"},
-        {"Folio": "f70v2", "Token": "yteos", "Extracted Stem": "yteos", "Predicted Role": "outlet", "Actual Context": "outlet", "Verdict": "HIT"},
-        {"Folio": "f70v2", "Token": "alain", "Extracted Stem": "alain", "Predicted Role": "medium", "Actual Context": "medium", "Verdict": "HIT"},
-        {"Folio": "f70v2", "Token": "olar", "Extracted Stem": "lar", "Predicted Role": "outlet", "Actual Context": "outlet", "Verdict": "HIT"},
-        {"Folio": "f70v2", "Token": "oteeam", "Extracted Stem": "eeam", "Predicted Role": "drain", "Actual Context": "drain", "Verdict": "HIT"},
-        {"Folio": "f71r", "Token": "okeodar", "Extracted Stem": "keodar", "Predicted Role": "outlet", "Actual Context": "outlet", "Verdict": "HIT"},
-        {"Folio": "f71r", "Token": "aiin", "Extracted Stem": "aiin", "Predicted Role": "medium", "Actual Context": "medium", "Verdict": "HIT"},
-        {"Folio": "f72r1", "Token": "qokar", "Extracted Stem": "kar", "Predicted Role": "heat", "Actual Context": "heat", "Verdict": "HIT"},
-        {"Folio": "f72r1", "Token": "otam", "Extracted Stem": "tam", "Predicted Role": "drain", "Actual Context": "drain", "Verdict": "HIT"},
-        {"Folio": "f72v2", "Token": "am", "Extracted Stem": "am", "Predicted Role": "drain", "Actual Context": "drain", "Verdict": "HIT"},
-        {"Folio": "f72v1", "Token": "ypaim", "Extracted Stem": "ypaim", "Predicted Role": "drain", "Actual Context": "drain", "Verdict": "HIT"},
+        {"Folio": "f70v2", "Token": "otey", "Extracted Stem": "tey", "Predicted Class": "reflux", "Observed Context": "reflux", "Verdict": "CONCORDANT"},
+        {"Folio": "f70v2", "Token": "ykeey", "Extracted Stem": "ykeey", "Predicted Class": "reflux", "Observed Context": "reflux", "Verdict": "CONCORDANT"},
+        {"Folio": "f70v2", "Token": "tchy", "Extracted Stem": "tchy", "Predicted Class": "reflux", "Observed Context": "reflux", "Verdict": "CONCORDANT"},
+        {"Folio": "f70v2", "Token": "yteos", "Extracted Stem": "yteos", "Predicted Class": "outlet", "Observed Context": "outlet", "Verdict": "CONCORDANT"},
+        {"Folio": "f70v2", "Token": "alain", "Extracted Stem": "alain", "Predicted Class": "medium", "Observed Context": "medium", "Verdict": "CONCORDANT"},
+        {"Folio": "f70v2", "Token": "olar", "Extracted Stem": "lar", "Predicted Class": "outlet", "Observed Context": "outlet", "Verdict": "CONCORDANT"},
+        {"Folio": "f70v2", "Token": "oteeam", "Extracted Stem": "eeam", "Predicted Class": "positional", "Observed Context": "positional", "Verdict": "CONCORDANT"},
+        {"Folio": "f71r", "Token": "okeodar", "Extracted Stem": "keodar", "Predicted Class": "outlet", "Observed Context": "outlet", "Verdict": "CONCORDANT"},
+        {"Folio": "f71r", "Token": "aiin", "Extracted Stem": "aiin", "Predicted Class": "medium", "Observed Context": "medium", "Verdict": "CONCORDANT"},
+        {"Folio": "f72r1", "Token": "qokar", "Extracted Stem": "kar", "Predicted Class": "heat", "Observed Context": "heat", "Verdict": "CONCORDANT"},
+        {"Folio": "f72r1", "Token": "otam", "Extracted Stem": "tam", "Predicted Class": "positional", "Observed Context": "positional", "Verdict": "CONCORDANT"},
+        {"Folio": "f72v2", "Token": "am", "Extracted Stem": "am", "Predicted Class": "positional", "Observed Context": "positional", "Verdict": "CONCORDANT"},
+        {"Folio": "f72v1", "Token": "ypaim", "Extracted Stem": "ypaim", "Predicted Class": "positional", "Observed Context": "positional", "Verdict": "CONCORDANT"},
     ]
     st.dataframe(pd.DataFrame(sample_test_runs), use_container_width=True)
 
@@ -345,48 +293,48 @@ with tab_holdout:
 with tab_dialect:
     st.header("🏛️ Dual-Dialect Linguistic Bridge Test")
     st.markdown("""
-    Evaluating the linguistic divergence of Beinecke MS 408 across the two historical technical traditions:
+    Evaluating the linguistic characteristics of Beinecke MS 408 against comparative 15th-century corpora:
     **Northern Italian / Venetian Trade Apothecary** vs. **Early New High German Distillation Compendia**.
     """)
 
     test_metrics = [
-        {"Statistical Dimension": "1. Character Entropy (H1)", "Whole Voynich": "3.84 bits", "Venetian (1420)": "4.09 bits", "Early German": "4.06 bits", "Scientific Verdict": "REJECTS NATURAL PROSE (p < 0.001)"},
-        {"Statistical Dimension": "2. Immediate Word Doubling", "Whole Voynich": "2.40%", "Venetian (1420)": "0.00%", "Early German": "0.00%", "Scientific Verdict": "CONFIRMS REPEAT LOOPS (p < 0.0001)"},
-        {"Statistical Dimension": "3. Line-Terminal Flush (-m)", "Whole Voynich": "69.4% (OR > 20x)", "Venetian (1420)": "8.2%", "Early German": "7.4%", "Scientific Verdict": "CONFIRMS HARDWARE BUFFER (p < 0.001)"},
-        {"Statistical Dimension": "4. Compounding Transition Order", "Whole Voynich": "C -> L -> P -> R", "Venetian (1420)": "Verb -> Direct Object", "Early German": "Substrate -> Verb-Final", "Scientific Verdict": "SYNTACTIC MATCH (German Distillation)"},
-        {"Statistical Dimension": "5. Phonetic Consonant-Vowel Partition", "Whole Voynich": "33.3% Vowels (6/14)", "Venetian (1420)": "34.1% Vowels", "Early German": "29.8% Vowels", "Scientific Verdict": "PHONETIC MATCH (Venetian / Romance)"}
+        {"Statistical Dimension": "1. Character Entropy (H1)", "Whole Voynich": "3.84 bits", "Venetian (1420)": "4.09 bits", "Early German": "4.06 bits", "Scientific Verdict": "Distinct from standard narrative prose"},
+        {"Statistical Dimension": "2. Immediate Word Doubling", "Whole Voynich": "2.40%", "Venetian (1420)": "0.00%", "Early German": "0.00%", "Scientific Verdict": "Conserved iterative repetition present"},
+        {"Statistical Dimension": "3. Line-Terminal Marker (-m)", "Whole Voynich": "69.4% (OR > 20x)", "Venetian (1420)": "8.2%", "Early German": "7.4%", "Scientific Verdict": "Correlates with line-end position"},
+        {"Statistical Dimension": "4. Compounding Transition Order", "Whole Voynich": "C -> L -> P -> R", "Venetian (1420)": "Verb -> Direct Object", "Early German": "Substrate -> Verb-Final", "Scientific Verdict": "Structural parallel with Germanic technical prose"},
+        {"Statistical Dimension": "5. Phonetic Consonant-Vowel Partition", "Whole Voynich": "33.3% Vowels (6/14)", "Venetian (1420)": "34.1% Vowels", "Early German": "29.8% Vowels", "Scientific Verdict": "Vocalic distribution consistent with Romance"}
     ]
     st.dataframe(pd.DataFrame(test_metrics), use_container_width=True)
 
-    st.subheader("Dual-Dialect Translation Alignment")
+    st.subheader("Dual-Dialect Reading Comparison")
     sample_dialect_lines = [
         {
             "Locus": "f114v.4",
             "Voynich Original": "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam",
             "Venetian Trade Apothecary": "coci fraturo de erba scalda fiori d'erba incorpora agva decocto d'erba saldo",
             "Early New High German": "sied kruttheil waerme bluemen menge wazzer krutwazzer beschliess",
-            "Operational English Reading": "Boil the plant fraction, warm the blossoms, compound with water menstruum and herb decoction, and seal the vessel."
+            "Comparative Reading": "Heat the plant fraction, warm the blossoms, compound with water menstruum and herb decoction, seal vessel."
         },
         {
             "Locus": "f114v.21",
             "Voynich Original": "qokedy otcheodaiin qokchdy",
             "Venetian Trade Apothecary": "coci licore de stella coci_qokchdy",
             "Early New High German": "sied sternauszug sied_qokchdy",
-            "Operational English Reading": "Heat the astronomical sector component and proceed immediately into active secondary boiling."
+            "Comparative Reading": "Heat the celestial sector extract and transition to secondary compound heating."
         },
         {
             "Locus": "f1r.6",
             "Voynich Original": "okchoy otchol chocthy ydaraishy chdam",
             "Venetian Trade Apothecary": "coci_okchoy colato_otchol materia_chocthy fatto da l'auctor saldo",
             "Early New High German": "sied_okchoy auszug_otchol stoff_chocthy gemacht von meister beschliess",
-            "Operational English Reading": "Tempered under warmth to produce herbal compound; composed by the author; vessel sealed."
+            "Comparative Reading": "Tempered under warmth; composed by author; section concluded."
         },
         {
             "Locus": "f116v.1",
             "Voynich Original": "oror sheey",
             "Venetian Trade Apothecary": "fin / saldo stasi",
             "Early New High German": "ende / bschluss ruhe",
-            "Operational English Reading": "Terminal execution closure achieved. System at rest. Finis."
+            "Comparative Reading": "Terminal closure marker. System concluded."
         }
     ]
     st.dataframe(pd.DataFrame(sample_dialect_lines), use_container_width=True)
@@ -456,7 +404,7 @@ with tab_tests:
             else:
                 log_odds_delta = -1.018
 
-            # Battery 4: Macrostate Transitions (Bug-free DataFrame construction)
+            # Battery 4: Macrostate Transitions
             transitions = defaultdict(int)
             for l in lines_corpus:
                 states = [factorize(t)["state"] for t in l["tokens"]]
@@ -468,11 +416,11 @@ with tab_tests:
             st.success("✅ Verification Suite Executed Successfully Across the Full Codex!")
 
             c1, c2, c3 = st.columns(3)
-            c1.metric("A2: Line-Terminal Flush Rate", f"{flush_rate:.1f}%", f"{term_m}/{total_m} tokens (>20x Odds)")
+            c1.metric("A2: Line-Terminal Marker Rate", f"{flush_rate:.1f}%", f"{term_m}/{total_m} tokens")
             c2.metric("Diagram qo- Suppression", f"{diag_rate:.2f}%", f"{diagram_qo}/{diagram_total} (vs {prose_rate:.1f}% prose)")
-            c3.metric("A4: Directional Routing Shift", f"{log_odds_delta:.3f} log-odds", "Falsifies Hoax Null (+0.029)")
+            c3.metric("A4: Directional Routing Shift", f"{log_odds_delta:.3f} log-odds", "Empirical shift observed")
 
-            st.subheader("4-Macrostate Sequential Transitions")
+            st.subheader("Sequential Macrostate Transitions")
             if transitions:
                 t_list = [{"Transition Cycle": k, "Occurrences": int(v)} for k, v in transitions.items()]
                 t_df = pd.DataFrame(t_list)
@@ -497,9 +445,9 @@ with tab_omega:
     st.header("⚡ Canonical Slot Ω Execution Frame Mining")
     st.latex(r"\text{Q-ACTIVE} \longrightarrow [\mathbf{X}\text{-aiin} \ / \ \mathbf{X}\text{-ain}] \longrightarrow \text{Q-ACTIVE}")
     st.markdown("""
-    The Slot $\Omega$ sandwich isolates an interchangeable content-operand class restricted to specific carrier stems 
-    ($X \in \{\text{ched}, \text{cheod}, \text{shed}, \text{lk}, \text{r}\}$). The realization port `-aiin` functions as a relational 
-    liquid buffer holding the nominal state between active operational operators.
+    The Slot $\Omega$ pattern isolates an alternating operand class restricted to specific carrier stems 
+    ($X \in \{\text{ched}, \text{cheod}, \text{shed}, \text{lk}, \text{r}\}$). The affix `-aiin` functions as a connective 
+    ligature holding the stem position between active procedural operators.
     """)
 
     omega_frames = []
@@ -515,23 +463,23 @@ with tab_omega:
                     omega_frames.append({
                         "Folio": l["folio"],
                         "Line Locus": l["header"],
-                        "Initial Active Verb": w1,
+                        "Initial Operator": w1,
                         "Buffer Operand [X-aiin]": w2,
                         "Extracted Stem (X)": stem if stem else "[EMPTY]",
-                        "Successor Active Verb": w3,
+                        "Successor Operator": w3,
                     })
 
     if not omega_frames:
         omega_frames = [
-            {"Folio": "f103r", "Line Locus": "+P0.12", "Initial Active Verb": "qokaiin", "Buffer Operand [X-aiin]": "chedaiin", "Extracted Stem (X)": "ched", "Successor Active Verb": "qokeedy"},
-            {"Folio": "f114v", "Line Locus": "+P0.21", "Initial Active Verb": "qokedy", "Buffer Operand [X-aiin]": "otcheodaiin", "Extracted Stem (X)": "cheod", "Successor Active Verb": "qokchdy"},
-            {"Folio": "f76r", "Line Locus": "+P0.05", "Initial Active Verb": "qokedy", "Buffer Operand [X-aiin]": "shedaiin", "Extracted Stem (X)": "shed", "Successor Active Verb": "qokeedy"},
-            {"Folio": "f82v", "Line Locus": "+P0.19", "Initial Active Verb": "qokeey", "Buffer Operand [X-aiin]": "lkaiin", "Extracted Stem (X)": "lk", "Successor Active Verb": "qokaiin"},
+            {"Folio": "f103r", "Line Locus": "+P0.12", "Initial Operator": "qokaiin", "Buffer Operand [X-aiin]": "chedaiin", "Extracted Stem (X)": "ched", "Successor Operator": "qokeedy"},
+            {"Folio": "f114v", "Line Locus": "+P0.21", "Initial Operator": "qokedy", "Buffer Operand [X-aiin]": "otcheodaiin", "Extracted Stem (X)": "cheod", "Successor Operator": "qokchdy"},
+            {"Folio": "f76r", "Line Locus": "+P0.05", "Initial Operator": "qokedy", "Buffer Operand [X-aiin]": "shedaiin", "Extracted Stem (X)": "shed", "Successor Operator": "qokeedy"},
+            {"Folio": "f82v", "Line Locus": "+P0.19", "Initial Operator": "qokeey", "Buffer Operand [X-aiin]": "lkaiin", "Extracted Stem (X)": "lk", "Successor Operator": "qokaiin"},
         ]
 
-    st.metric("Total Slot Ω Frames Detected", len(omega_frames), "Invariant Syntactic Pattern")
+    st.metric("Total Slot Ω Frames Detected", len(omega_frames), "Recurrent Syntactic Pattern")
 
-    st.subheader("Top Conserved Carrier Roots in Slot Ω Nucleus")
+    st.subheader("Top Conserved Carrier Roots in Slot Ω Context")
     stem_counts = Counter(f["Extracted Stem (X)"] for f in omega_frames)
     stem_df = pd.DataFrame(stem_counts.most_common(12), columns=["Carrier Stem (X)", "Frame Occurrences"])
     st.dataframe(stem_df, use_container_width=True)
@@ -581,7 +529,7 @@ with tab_reader:
 # =============================================================================
 with tab_lexicon:
     st.header("📚 Grounded Master Lexicon & Syntactic Map")
-    st.markdown("Distributionally validated lexical items grounded via co-occurrence isomorphism with 15th-century Latin medical compilations.")
+    st.markdown("Hypothetical vocabulary mappings aligned with medieval technical compendia.")
 
     lex_rows = []
     for tok, info in MASTER_LEXICON.items():
@@ -605,8 +553,7 @@ with tab_lexicon:
 with tab_colophons:
     st.header("🖋️ Codicological Colophons & Attribution Audit")
     st.markdown("""
-    The Voynich Manuscript contains isolated structural loci functioning as scribal colophons, incipits, and signatures 
-    that systematically diverge from continuous compounding prose.
+    Analysis of specific marginal and paragraph-terminal tokens that diverge in positional distribution from standard text.
     """)
 
     targets = ["ydaraishy", "ytchas", "oror"]
@@ -626,19 +573,19 @@ with tab_colophons:
     
     if not audit_matches:
         audit_matches = [
-            {"Target Lemma": "ydaraishy", "Folio": "f1r", "Line Locus": "<f1r.6,=Pt>", "Matched Token": "ydaraishy", "Currier Dialect": "A", "Functional Assignment": "Author Incipit (fatto da l'auctor)"},
-            {"Target Lemma": "ytchas", "Folio": "f9r", "Line Locus": "<f9r.10,+Pc>", "Matched Token": "ytchas", "Currier Dialect": "A", "Functional Assignment": "Scribal Colophon (scritto da lo scriptor)"},
-            {"Target Lemma": "oror", "Folio": "f116v", "Line Locus": "<f116v.1,@Lx>", "Matched Token": "oror", "Currier Dialect": "B", "Functional Assignment": "Codex Seal (fin / bschluss)"},
+            {"Target Lemma": "ydaraishy", "Folio": "f1r", "Line Locus": "<f1r.6,=Pt>", "Matched Token": "ydaraishy", "Currier Dialect": "A", "Functional Assignment": "Author Incipit Hypothesis (fatto da l'auctor)"},
+            {"Target Lemma": "ytchas", "Folio": "f9r", "Line Locus": "<f9r.10,+Pc>", "Matched Token": "ytchas", "Currier Dialect": "A", "Functional Assignment": "Scribal Colophon Hypothesis (scritto da lo scriptor)"},
+            {"Target Lemma": "oror", "Folio": "f116v", "Line Locus": "<f116v.1,@Lx>", "Matched Token": "oror", "Currier Dialect": "B", "Functional Assignment": "Codex Seal Marker (fin / bschluss)"},
         ]
 
-    st.subheader("Audited Authorial & Scribal Signatures")
+    st.subheader("Audited Authorial & Scribal Markers")
     st.dataframe(pd.DataFrame(audit_matches), use_container_width=True)
 
     st.markdown("""
-    ### Structural Significance
-    1. **`ydaraishy` ($f1r.6$, locus `=Pt`):** Positioned at the conclusion of the manuscript's opening incipit paragraph. Demonstrates exact syntactic isolation, serving as an authorial signature anchored to Latin *auctor*.
-    2. **`ytchas` ($f9r.10$, locus `+Pc`):** Indented paragraph-tail colophon closing the first gathering, matching scribal colophon formulas (anchored to Latin *scriptor*).
-    3. **`oror.sheey` ($f116v.1$, locus `@Lx`):** Hard terminal seal marking the complete cessation of the compilation (anchored to Latin *finis*).
+    ### Structural Loci
+    1. **`ydaraishy` ($f1r.6$, locus `=Pt`):** Positioned at the conclusion of the opening paragraph. Demonstrates positional isolation at the tail of the incipit block.
+    2. **`ytchas` ($f9r.10$, locus `+Pc`):** Indented paragraph-tail locus closing the first gathering, structurally analogous to scribal colophon formulas.
+    3. **`oror.sheey` ($f116v.1$, locus `@Lx`):** Terminal marker occurring on the final folio of the manuscript.
     """)
 
 # =============================================================================
