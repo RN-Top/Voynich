@@ -13,9 +13,6 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-# Canonical tokenizer import from parser.py
-from parser import clean_raw_token, factorize
-
 st.set_page_config(
     page_title="Voynich Decipherment Workbench",
     page_icon="🌌",
@@ -54,6 +51,60 @@ MASTER_LEXICON = {
     "oteod": {"la": "gradus", "ven": "grado", "ger": "gradzaichen", "en": "degree / sector coordinate", "role": "OPERAND_NOUN", "domain": "Astronomical"},
     "chdam": {"la": "finis", "ven": "saldo / serra", "ger": "beschliess", "en": "complete / terminal marker", "role": "TERMINAL_FLUSH", "domain": "Compounding"},
 }
+
+# -----------------------------------------------------------------------------
+# MORPHOTACTIC FACTORIZATION & TOKEN CLEANER
+# -----------------------------------------------------------------------------
+def clean_raw_token(t: str) -> str:
+    t = re.sub(r"\[([^:]+):[^\]]+\]", r"\1", str(t))
+    t = re.sub(r"[{}\[\]<!>]", "", t)
+    t = re.sub(r"[@\d;%+=*?$,.]", "", t)
+    return t.strip().lower()
+
+def factorize(token: str) -> dict:
+    if not token:
+        return {"valid": False, "state": "?"}
+    remainder = token
+    ctrl = "NONE"
+    for cp in CONTROL_HEADERS:
+        if remainder.startswith(cp):
+            ctrl = cp
+            remainder = remainder[len(cp):]
+            break
+
+    exit_port = "BARE"
+    for rp in ("aiin", "ain", "am", "m", "ar", "al", "y"):
+        if remainder.endswith(rp):
+            exit_port = rp
+            remainder = remainder[:-len(rp)]
+            break
+
+    e_count = max([len(m) for m in re.findall(r"e+", remainder)], default=0)
+    has_o = "o" in remainder
+    carrier = remainder if remainder else "EMPTY"
+
+    if token.endswith(TERMINAL_FLUSHES):
+        state = "R"
+    elif any(token.endswith(s) for s in ("ey", "eey", "edy", "eedy")):
+        state = "C"
+    elif any(token.endswith(b) for b in BUFFER_CONNECTORS):
+        state = "L"
+    elif token.endswith(STATIVE_HOLDS):
+        state = "P"
+    else:
+        state = "?"
+
+    return {
+        "valid": True,
+        "token": token,
+        "control": ctrl,
+        "carrier": carrier,
+        "e_grade": e_count,
+        "internal_o": has_o,
+        "exit_port": exit_port,
+        "state": state,
+        "is_flush": token.endswith(TERMINAL_FLUSHES),
+    }
 
 # -----------------------------------------------------------------------------
 # CACHED CORPUS LOADER
@@ -257,7 +308,7 @@ with tab_holdout:
 
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Held-Out Evaluated Tokens", "437 Loci", "f70v2, f71r, f72r1, f72v1, f72v2")
-    c2.metric("Concordant Categorizations", "Pending Final Run", "Awaiting frozen parser freeze")
+    c2.metric("Concordant Categorizations", "Pending Final Run", "Awaiting clean parser freeze")
     c3.metric("Prediction Accuracy", "In Review", "Baseline: 26.8%")
     c4.metric("Statistical Baseline", "Pending", "Permutation test in progress")
 
