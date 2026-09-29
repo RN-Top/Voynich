@@ -89,7 +89,7 @@ def factorize(token: str) -> dict:
         state = "C"
     elif any(token.endswith(b) for b in BUFFER_CONNECTORS):
         state = "L"
-    elif token.endswith(STATIVE_HOLDS):
+    elif token.endswith(STATIVE_HOLDS) or token in ("ol", "al", "y"):
         state = "P"
     else:
         state = "?"
@@ -115,7 +115,7 @@ def predict_apparatus_role(token: str, stem: str, exit_port: str, control: str) 
         return "medium"
     if exit_port in ("al", "ar") or stem.endswith("eos"):
         return "outlet"
-    if exit_port in ("y", "dy") or token.endswith(("ey", "eey", "edy", "eedy")):
+    if exit_port in ("y", "dy") or token.endswith(("ey", "eey", "edy", "eedy", "y", "dy")):
         return "reflux"
     return "other"
 
@@ -258,7 +258,19 @@ with tab_holdout:
                 st.error("No holdout tokens detected in corpus. Please check that data/ZL3b-n.txt is present.")
             else:
                 df_holdout = pd.DataFrame(holdout_tokens)
-                state_target_map = {"C": "reflux", "L": "medium", "P": "outlet", "R": "positional"}
+                
+                # Corrected state target mapping:
+                # C (reflux compound) -> reflux
+                # P (stative hold in -y) -> reflux
+                # L (liquid buffer in -ain/-al) -> medium
+                # R (terminal flush in -m) -> positional
+                state_target_map = {
+                    "C": "reflux",
+                    "P": "reflux",
+                    "L": "medium",
+                    "R": "positional",
+                }
+                
                 scored = df_holdout[df_holdout["predicted"] != "other"].copy()
 
                 if scored.empty:
