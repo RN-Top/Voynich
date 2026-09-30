@@ -92,8 +92,8 @@ def build_pdf(filename="voynich_decipherment_evidence_dossier.pdf"):
     hoax_data = [
         ["Empirical Test", "Statistical Metric", "Significance", "Physical & Cryptographic Implication"],
         ["Line-Preserving Buffer Flush", "-m / -am at line end: 13.3% - 70.0%", "p < 0.001", "Falsifies unconstrained prose; proves strict physical line-register limits."],
-        ["Timm & Schinner Generator Rejection", "Successor routing asymmetry A4 = -1.018", "p < 0.00001", "Formally rules out self-citation and Cardan-grille mechanical generation."],
-        ["Procrustes Manifold Congruence", "Manifold match: 99.79% (d^2 = 0.0021)", "Control d^2 = 1.489", "Mathematical proof of carrier topology matching Macer Floridus herbal corpus."]
+        ["Timm & Schinner Generator Rejection", "Successor routing asymmetry A4 = -1.018", "p < 0.00001", "UNDER REVIEW: recomputed with the canonical parser this shift is positive (see VALIDATION.md)."],
+        ["Procrustes Manifold Congruence", "WITHDRAWN (was 99.79%)", "n/a", "Target vectors were random (np.random.randn); no Macer Floridus corpus was used."]
     ]
     t_hoax = Table(hoax_data, colWidths=[130, 130, 75, 195])
     t_hoax.setStyle(TableStyle([

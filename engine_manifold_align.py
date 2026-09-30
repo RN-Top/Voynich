@@ -8,32 +8,23 @@ Uses pure NumPy/Pandas (zero external C-library crashes on Streamlit Cloud).
 import re
 import os
 from collections import Counter
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
 
 # -----------------------------------------------------------------------------
-# 1. 15th-CENTURY HISTORICAL APOTHECARY & BOTANICAL CONTROL PROFILES
+# 1. HISTORICAL TARGET CORPORA
 # -----------------------------------------------------------------------------
-HISTORICAL_CORPORA = {
-    "Macer Floridus (15th-c. Latin Herbal Compounding)": {
-        "lemmas": ["radix", "herba", "aqua", "coque", "misce", "distilla", "calidus", "siccus", "vas", "finis"],
-        "roles": ["NOUN", "NOUN", "NOUN", "VERB", "VERB", "VERB", "ADJ", "ADJ", "NOUN", "FLUSH"],
-        "translations": ["root", "herb/plant", "water", "boil/heat", "mix", "distill", "hot", "dry", "vessel", "end"]
-    },
-    "Alfonsine Ephemerides (15th-c. Latin Ephemerides)": {
-        "lemmas": ["stella", "gradus", "motus", "circulus", "ascendens", "sol", "luna", "signum", "minutum", "finis"],
-        "roles": ["NOUN", "NOUN", "NOUN", "NOUN", "NOUN", "NOUN", "NOUN", "NOUN", "NOUN", "FLUSH"],
-        "translations": ["star", "degree", "motion", "circle", "ascendant", "sun", "moon", "sign", "minute", "end"]
-    },
-    "Timm-Schinner Synthetic Null (Mechanical Hoax Control)": {
-        "lemmas": ["rand_1", "rand_2", "rand_3", "rand_4", "rand_5", "rand_6", "rand_7", "rand_8", "rand_9", "rand_10"],
-        "roles": ["NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL"],
-        "translations": ["noise_1", "noise_2", "noise_3", "noise_4", "noise_5", "noise_6", "noise_7", "noise_8", "noise_9", "noise_10"]
-    }
-}
-
+# An earlier version of this module generated the "historical" target
+# manifolds with np.random.randn() and attached Latin lemma labels to them.
+# Aligning to random geometry cannot show resemblance to any real text, and
+# with 10 anchors in 16 dimensions an orthogonal map fits almost any target,
+# so the reported 99.79% congruence was an artefact. That claim is withdrawn.
+#
+# Target spaces must now be built from real, tokenised historical text
+# (e.g. a transcription of Macer Floridus), passed in by the caller.
+MIN_ANCHORS_PER_DIM = 3
 
 # -----------------------------------------------------------------------------
 # 2. PURE NUMPY ORTHOGONAL PROCRUSTES SOLVER
@@ -87,10 +78,7 @@ def build_ppmi_space(tokens: List[str], max_vocab: int = 200, dim: int = 16, win
     V = len(vocab)
 
     if V < 5:
-        # Canonical fallback if input corpus is too small
-        vocab = ["cheod", "pair", "le", "ckh", "shed", "chol", "chor", "daiin", "chedy", "oror"]
-        w2i = {w: i for i, w in enumerate(vocab)}
-        V = len(vocab)
+        raise ValueError(f"Corpus too small for a PPMI space ({V} usable types).")
 
     cooc = np.zeros((V, V), dtype=np.float32)
     for idx, w in enumerate(clean_tokens):
@@ -115,7 +103,7 @@ def build_ppmi_space(tokens: List[str], max_vocab: int = 200, dim: int = 16, win
     eff_dim = min(dim, V)
     vecs = u[:, :eff_dim] * np.sqrt(s[:eff_dim])
     norms = np.linalg.norm(vecs, axis=1, keepdims=True)
-    vecs = np.divide(vecs, norms, where=norms > 0)
+    vecs = np.divide(vecs, norms, out=np.zeros_like(vecs), where=norms > 0)
 
     return vocab, vecs, w2i
 
@@ -124,48 +112,53 @@ def build_ppmi_space(tokens: List[str], max_vocab: int = 200, dim: int = 16, win
 # 4. CROSS-LINGUAL ALIGNMENT PIPELINE
 # -----------------------------------------------------------------------------
 class CrossLingualManifoldAligner:
-    def __init__(self, token_list: List[str], dim: int = 16):
+    """Procrustes alignment of the Voynich PPMI space against REAL target corpora.
+
+    Anchors are paired by frequency rank (an explicit, weak assumption). The
+    observed disparity is compared with a null in which the target anchor rows
+    are shuffled, so a good fit only counts if it beats arbitrary pairings.
+    """
+
+    def __init__(self, token_list: List[str], dim: int = 8, n_anchors: int = 40):
         self.tokens = token_list
         self.dim = dim
+        self.n_anchors = n_anchors
         self.vocab, self.vectors, self.w2i = build_ppmi_space(self.tokens, max_vocab=150, dim=self.dim)
 
-    def run_alignment_benchmark(self) -> Tuple[pd.DataFrame, pd.DataFrame]:
-        benchmark_records = []
-        top_mappings = []
+    def run_alignment_benchmark(
+        self,
+        target_corpora: Optional[Dict[str, List[str]]] = None,
+        n_perms: int = 1000,
+        seed: int = 42,
+    ) -> Tuple[pd.DataFrame, pd.DataFrame]:
+        if not target_corpora:
+            return pd.DataFrame([{
+                "Historical Control Corpus": "none supplied",
+                "Status": "not computed: pass real tokenised historical text as target_corpora",
+            }]), pd.DataFrame()
 
-        np.random.seed(42)
-        v_sub = self.vectors[:10]  # Align top 10 anchors
-
-        for c_name, c_data in HISTORICAL_CORPORA.items():
-            # Build simulated control manifold topology
-            target_vecs = np.random.randn(len(c_data["lemmas"]), self.dim)
-            t_norms = np.linalg.norm(target_vecs, axis=1, keepdims=True)
-            target_vecs = np.divide(target_vecs, t_norms, where=t_norms > 0)
-
-            # Procrustes alignment
-            W, d2 = orthogonal_procrustes(v_sub, target_vecs)
-            congruence = max(0.0, (1.0 - d2)) * 100.0
-
-            verdict = "HIGH CONGRUENCE" if d2 < 0.25 else ("PARTIAL CONGRUENCE" if d2 < 0.65 else "DIVERGENT (NULL)")
-            benchmark_records.append({
-                "Historical Control Corpus": c_name,
+        rng = np.random.default_rng(seed)
+        records = []
+        for name, target_tokens in target_corpora.items():
+            t_vocab, t_vecs, _ = build_ppmi_space(target_tokens, max_vocab=150, dim=self.dim)
+            n = min(self.n_anchors, len(self.vocab), len(t_vocab))
+            if n < MIN_ANCHORS_PER_DIM * self.dim:
+                records.append({
+                    "Historical Control Corpus": name,
+                    "Status": f"not computed: {n} anchors for {self.dim} dimensions "
+                              f"(need >= {MIN_ANCHORS_PER_DIM * self.dim})",
+                })
+                continue
+            src, tgt = self.vectors[:n], t_vecs[:n]
+            _, d2 = orthogonal_procrustes(src, tgt)
+            null = np.array([orthogonal_procrustes(src, tgt[rng.permutation(n)])[1] for _ in range(n_perms)])
+            p = float((np.sum(null <= d2) + 1) / (n_perms + 1))
+            records.append({
+                "Historical Control Corpus": name,
+                "Anchors": n,
                 "Procrustes Disparity (d^2)": round(float(d2), 4),
-                "Congruence Match (%)": f"{congruence:.2f}%",
-                "Manifold Verdict": verdict
+                "Shuffled-anchor d^2 (mean)": round(float(null.mean()), 4),
+                "Empirical p (d^2 <= null)": round(p, 4),
+                "Status": "computed",
             })
-
-            # If Herbal Control, derive mapped candidate lemmas
-            if "Macer Floridus" in c_name:
-                v_rotated = np.dot(v_sub, W)
-                dists = 1.0 - np.dot(v_rotated, target_vecs.T)
-                for i, v_word in enumerate(self.vocab[:10]):
-                    best_match_idx = int(np.argmin(dists[i]))
-                    top_mappings.append({
-                        "Voynich Carrier": v_word,
-                        "Derived Latin Lemma": c_data["lemmas"][best_match_idx],
-                        "English Reading": c_data["translations"][best_match_idx],
-                        "Grammatical Role": c_data["roles"][best_match_idx],
-                        "Cosine Confidence": round(float(max(0.0, 1.0 - dists[i][best_match_idx])), 3)
-                    })
-
-        return pd.DataFrame(benchmark_records), pd.DataFrame(top_mappings)
+        return pd.DataFrame(records), pd.DataFrame()

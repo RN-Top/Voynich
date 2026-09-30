@@ -74,7 +74,14 @@ def find_corpus() -> pd.DataFrame | None:
     for p in candidates:
         if p.exists():
             return pd.read_csv(p)
-    return None
+
+    # Fall back to the canonical corpus parse (real data, not placeholder values).
+    try:
+        from parser import parse_zl3b
+        df = parse_zl3b()
+        return df.drop(columns=["token"]).rename(columns={"clean": "token"}) if not df.empty else None
+    except Exception:
+        return None
 
 
 def token_column(df: pd.DataFrame) -> str:

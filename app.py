@@ -1,19 +1,24 @@
 """
 Voynich Manuscript Decipherment Engine & Dual-Dialect Workbench
 Author: Voynich Decipherment Working Group (RN-Top/Voynich)
-Corpus Standard: IVTFF EVA 2.0 / ZL3b-n Standard (38,223 tokens)
+Corpus Standard: IVTFF EVA 2.0 / ZL3b-n Standard
 Dependencies: streamlit, pandas, numpy
+
+Every number displayed by this app is computed from the currently loaded
+corpus. When a value cannot be computed it is shown as "not computed";
+there are no numerical fallbacks. Tokenisation and morphology come from
+the canonical parser in parser.py.
 """
 
 import json
-import os
-import random
-import re
-import urllib.request
 from collections import Counter, defaultdict
 import numpy as np
 import pandas as pd
 import streamlit as st
+
+import parser as canonical
+import structural_validation as sv
+from lexicon import MASTER_LEXICON
 
 st.set_page_config(
     page_title="Voynich Decipherment Workbench",
@@ -23,138 +28,46 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# CORE STATIC DICTIONARY & CONSTANTS
+# CORE STATIC CONSTANTS
 # -----------------------------------------------------------------------------
-DATA_PATH = "data/ZL3b-n.txt"
-FALLBACK_URL = "https://www.voynich.nu/data/ZL3b-n.txt"
-
-CONTROL_HEADERS = ("qk", "dk", "qo", "qok", "qot", "qoc", "q", "k", "d")
-BUFFER_CONNECTORS = ("aiin", "ain", "al", "ar", "or", "ol")
-STATIVE_HOLDS = ("y", "dy", "eedy", "edy")
 TERMINAL_FLUSHES = ("am", "m")
 
 PREFIXES = ("qo", "ch", "sh", "da", "ot", "cth", "y", "sa")
 SUFFIXES = ("edy", "aiin", "iin", "ey", "ol", "or", "ar", "al", "y")
 
-QUARANTINED_FOLIOS = ["f70v2", "f71r", "f72r1", "f72v1", "f72v2"]
+QUARANTINED_FOLIOS = list(canonical.HOLDOUT_FOLIOS)
+NOT_COMPUTED = "not computed"
 
-MASTER_LEXICON = {
-    "ydaraishy": {"la": "auctor", "ven": "fatto da l'auctor", "ger": "gemacht von meister", "en": "author / composed by", "role": "OPERAND_NOUN", "domain": "Colophon"},
-    "ytchas": {"la": "scriptor", "ven": "scritto da lo scriptor", "ger": "geschriben vom schreiber", "en": "scribe / written by", "role": "OPERAND_NOUN", "domain": "Colophon"},
-    "oror": {"la": "finis", "ven": "fin / saldo", "ger": "ende / bschluss", "en": "terminal sign-off marker", "role": "TERMINAL_FLUSH", "domain": "Seal"},
-    "daiin": {"la": "aqua / decoctio", "ven": "agva", "ger": "wazzer", "en": "water / liquid vehicle", "role": "OPERAND_NOUN", "domain": "Solvent"},
-    "shedy": {"la": "radix", "ven": "radise", "ger": "wurtz", "en": "rootstock / apparatus base", "role": "OPERAND_NOUN", "domain": "Botanical"},
-    "chedy": {"la": "herba / planta", "ven": "erba", "ger": "krut", "en": "herb / botanical matter", "role": "OPERAND_NOUN", "domain": "Botanical"},
-    "qokedy": {"la": "coque", "ven": "coci", "ger": "sied", "en": "boil / apply heat", "role": "OPERATOR_VERB", "domain": "Compounding"},
-    "qokeey": {"la": "misce", "ven": "mescola", "ger": "mische", "en": "mix / blend thoroughly", "role": "OPERATOR_VERB", "domain": "Compounding"},
-    "qokal": {"la": "distilla", "ven": "destilla", "ger": "brenne", "en": "distill / drip extract", "role": "OPERATOR_VERB", "domain": "Compounding"},
-    "otcheod": {"la": "stella / signum", "ven": "stella", "ger": "sternort", "en": "celestial star sector", "role": "OPERAND_NOUN", "domain": "Astronomical"},
-    "otcheodaiin": {"la": "stella [rel.]", "ven": "licore de stella", "ger": "sternauszug", "en": "star sector [buffer hold]", "role": "OPERAND_NOUN", "domain": "Astronomical"},
-    "otcheody": {"la": "vas [stat.]", "ven": "vaso", "ger": "kolben", "en": "star sector [receiver vessel]", "role": "OPERAND_NOUN", "domain": "Astronomical"},
-    "opairam": {"la": "solve [term.]", "ven": "spandi / cola", "ger": "lass auslauffen", "en": "extract / dissolve [flush]", "role": "TERMINAL_FLUSH", "domain": "Compounding"},
-    "qopairam": {"la": "solve [proc.]", "ven": "spandi / cola [proc.]", "ger": "lass auslauffen [proc.]", "en": "extract / dissolve [active]", "role": "TERMINAL_FLUSH", "domain": "Compounding"},
-    "chol": {"la": "calidus", "ven": "caldo", "ger": "heiss", "en": "warm / hot property", "role": "MODIFIER_ADJ", "domain": "Humoral"},
-    "chor": {"la": "siccus", "ven": "asciutto", "ger": "gedoert", "en": "dry / desiccated property", "role": "MODIFIER_ADJ", "domain": "Humoral"},
-    "oteod": {"la": "gradus", "ven": "grado", "ger": "gradzaichen", "en": "degree / sector coordinate", "role": "OPERAND_NOUN", "domain": "Astronomical"},
-    "chdam": {"la": "finis", "ven": "saldo / serra", "ger": "beschliess", "en": "complete / terminal flush", "role": "TERMINAL_FLUSH", "domain": "Compounding"},
+
+def fmt(value, spec):
+    return NOT_COMPUTED if value is None else format(value, spec)
+
+
+# -----------------------------------------------------------------------------
+# CANONICAL PARSER (delegates to parser.py so the app and the scripts agree)
+# -----------------------------------------------------------------------------
+clean_raw_token = canonical.clean_raw_token
+
+_EMPTY_PARSE = {
+    "control": "NONE",
+    "carrier_core": "",
+    "carrier": "",
+    "e_grade": 0,
+    "internal_o": False,
+    "exit_port": "BARE",
+    "state": "?",
+    "is_terminal_m": False,
 }
 
-# -----------------------------------------------------------------------------
-# UNIFIED VOYNICH PARSER & MORPHOTACTIC FACTORIZATION
-# -----------------------------------------------------------------------------
-def clean_raw_token(t: str) -> str:
-    t = re.sub(r"\[([^:]+):[^\]]+\]", r"\1", str(t))
-    t = re.sub(r"[{}\[\]<!>]", "", t)
-    t = re.sub(r"[@\d;%+=*?$,.]", "", t)
-    return t.strip().lower()
 
 class VoynichParser:
     @staticmethod
     def parse(token: str) -> dict:
-        raw_val = str(token)
-        clean_tok = clean_raw_token(raw_val)
-        if not clean_tok:
-            return {
-                "token": raw_val,
-                "raw": raw_val,
-                "clean": "",
-                "valid": False,
-                "control": "NONE",
-                "carrier_core": "",
-                "carrier": "",
-                "e_grade": 0,
-                "internal_o": False,
-                "exit_port": "BARE",
-                "state": "?",
-                "is_terminal_m": False,
-            }
+        return {**_EMPTY_PARSE, **canonical.VoynichParser.decompose_morphology(token)}
 
-        remainder = clean_tok
-        ctrl = "NONE"
-        for cp in CONTROL_HEADERS:
-            if remainder.startswith(cp):
-                ctrl = cp
-                remainder = remainder[len(cp):]
-                break
-
-        exit_port = "BARE"
-        for rp in ("aiin", "ain", "am", "m", "ar", "al", "y", "dy"):
-            if remainder.endswith(rp):
-                exit_port = rp
-                remainder = remainder[:-len(rp)]
-                break
-
-        e_count = max([len(m) for m in re.findall(r"e+", remainder)], default=0)
-        has_o = "o" in remainder
-        carrier = remainder if remainder else "EMPTY"
-
-        is_term = clean_tok.endswith(TERMINAL_FLUSHES)
-
-        if is_term:
-            state = "R"
-        elif any(clean_tok.endswith(s) for s in ("ey", "eey", "edy", "eedy")):
-            state = "C"
-        elif any(clean_tok.endswith(b) for b in BUFFER_CONNECTORS):
-            state = "L"
-        elif clean_tok.endswith(STATIVE_HOLDS):
-            state = "P"
-        else:
-            state = "P" if exit_port in ("y", "dy") else "?"
-
-        return {
-            "token": clean_tok,
-            "raw": raw_val,
-            "clean": clean_tok,
-            "valid": True,
-            "control": ctrl,
-            "carrier_core": carrier,
-            "carrier": carrier,
-            "e_grade": e_count,
-            "internal_o": has_o,
-            "exit_port": exit_port,
-            "state": state,
-            "is_terminal_m": is_term,
-        }
 
 def factorize(token: str) -> dict:
     return VoynichParser.parse(token)
-
-def parse_affixes(word):
-    w = clean_raw_token(word)
-    prefix = ""
-    suffix = ""
-    for p in sorted(PREFIXES, key=len, reverse=True):
-        if w.startswith(p) and len(w) > len(p):
-            prefix = p
-            w = w[len(p):]
-            break
-    for s in sorted(SUFFIXES, key=len, reverse=True):
-        if w.endswith(s) and len(w) > len(s):
-            suffix = s
-            w = w[:-len(s)]
-            break
-    core = w if w else "_"
-    return prefix or "none", core, suffix or "none"
 
 def predict_apparatus_role(token: str) -> str:
     parsed = VoynichParser.parse(token)
@@ -191,194 +104,142 @@ def get_expected_role(folio: str, token: str) -> str:
         return "outlet"
     return "reflux"
 
-def compute_bigram_mutual_information(tokens):
-    if len(tokens) < 2:
-        return 0.0
-    bigrams = list(zip(tokens[:-1], tokens[1:]))
-    n_bigrams = len(bigrams)
-    n_unigrams = len(tokens)
-    bi_counts = Counter(bigrams)
-    uni_counts = Counter(tokens)
-    score = 0.0
-    for (t1, t2), count in bi_counts.items():
-        p_bi = count / n_bigrams
-        p1 = uni_counts[t1] / n_unigrams
-        p2 = uni_counts[t2] / n_unigrams
-        pmi = np.log2(p_bi / (p1 * p2) + 1e-9)
-        score += count * pmi
-    return float(score / n_bigrams)
+# -----------------------------------------------------------------------------
+# CACHED CORPUS LOADER (canonical parser only; no offline sample fallback)
+# -----------------------------------------------------------------------------
+def _rows_from_csv(df_up: pd.DataFrame) -> pd.DataFrame:
+    records = []
+    for _, row in df_up.iterrows():
+        decomps = [
+            d for d in (
+                canonical.VoynichParser.decompose_morphology(t)
+                for t in str(row.get("word", "")).split()
+            )
+            if d.get("valid") and d.get("clean")
+        ]
+        folio = str(row.get("folio", "f_up"))
+        for i, d in enumerate(decomps):
+            records.append({
+                "folio": folio,
+                "header": str(row.get("line", "line_1")),
+                "locus_type": "P",
+                "currier": str(row.get("currier", "?")),
+                "section": str(row.get("section", canonical.infer_section(folio))),
+                "token_idx": i,
+                "line_len": len(decomps),
+                "is_line_start": i == 0,
+                "is_line_end": i == len(decomps) - 1,
+                **d,
+            })
+    return pd.DataFrame(records)
 
-# -----------------------------------------------------------------------------
-# CACHED CORPUS LOADER
-# -----------------------------------------------------------------------------
+
 @st.cache_data(show_spinner=False)
 def load_corpus(uploaded_file=None):
-    lines = []
-    source = "LOCAL"
-    raw_text = ""
-
-    if uploaded_file is not None:
-        source = f"UPLOADED ({uploaded_file.name})"
-        try:
+    """Returns (token DataFrame, line list, source label, error message)."""
+    try:
+        if uploaded_file is not None:
+            source = f"UPLOADED ({uploaded_file.name})"
             if uploaded_file.name.endswith(".csv"):
-                df_up = pd.read_csv(uploaded_file)
-                for _, row in df_up.iterrows():
-                    toks = [clean_raw_token(t) for t in str(row.get("word", "")).split() if clean_raw_token(t)]
-                    if toks:
-                        lines.append({
-                            "folio": str(row.get("folio", "f_up")),
-                            "header": str(row.get("line", "line_1")),
-                            "currier": str(row.get("currier", "A")),
-                            "section": str(row.get("section", "Herbal")),
-                            "tokens": toks,
-                        })
-                return lines, source
+                df = _rows_from_csv(pd.read_csv(uploaded_file))
             else:
-                raw_text = uploaded_file.getvalue().decode("utf-8", errors="ignore")
-        except Exception as e:
-            st.sidebar.error(f"Error parsing uploaded file: {e}")
+                df = canonical.parse_zl3b(uploaded_file)
+        else:
+            path = canonical.ensure_full_corpus(canonical.CORPUS_PATH)
+            source = f"LOCAL ({path})"
+            df = canonical.parse_zl3b(path)
+    except Exception as exc:
+        return pd.DataFrame(), [], "UNAVAILABLE", str(exc)
 
-    if not raw_text:
-        candidates = [DATA_PATH, "ZL3b-n.txt", "data/ZL3b-n 2.txt", "ZL3b-n 2.txt"]
-        for path in candidates:
-            if os.path.exists(path) and os.path.getsize(path) > 1000:
-                with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                    raw_text = f.read()
-                source = f"LOCAL ({path})"
-                break
+    if df.empty:
+        return df, [], source, "The corpus parsed to zero tokens."
 
-    if not raw_text:
-        try:
-            req = urllib.request.Request(FALLBACK_URL, headers={"User-Agent": "Mozilla/5.0"})
-            with urllib.request.urlopen(req, timeout=12) as response:
-                raw_text = response.read().decode("utf-8")
-            source = "VOYNICH.NU MIRROR"
-        except Exception:
-            sample_corpus = [
-                ("f70v2", "+P0.1", "A", "Astronomical", "otey ykeey tchy yteos alain olar oteeam otaly otal arar otaldy okeoly okydy daiiamdy"),
-                ("f71r", "+P0.2", "A", "Astronomical", "okeodar aiin qokar otam am ypaim daiin chedy shedy"),
-                ("f72r1", "+P0.3", "B", "Astronomical", "qokar otam daiin chedy qokedy otcheodaiin qokchdy"),
-                ("f72v1", "+P0.4", "B", "Astronomical", "ypaim chedy qokedy daiin opairam chol chor chdam"),
-                ("f72v2", "+P0.5", "B", "Astronomical", "am oror sheey qokedy otcheod chedaiin qokeedy daiin"),
-                ("f114v", "+P0.4", "B", "Compounding", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam"),
-                ("f114v", "+P0.21", "B", "Compounding", "dair cheeo chy chdaiin qokedy otcheodaiin qokchdy otedal daiin aral"),
-                ("f1r", "=Pt", "A", "Herbal", "fachys ykal ar ataiin shol shory cthesos okchoy otchol chocthy ydaraishy chdam"),
-                ("f9r", "+Pc", "A", "Herbal", "shedy qokain or cheor chedy dar shey daiin ctheor dal ytchas chdam"),
-                ("f116v", "@Lx", "B", "Seal", "oror sheey"),
-            ]
-            for fol, hdr, curr, sec, words_str in sample_corpus:
-                lines.append({
-                    "folio": fol,
-                    "header": hdr,
-                    "currier": curr,
-                    "section": sec,
-                    "tokens": [clean_raw_token(t) for t in words_str.split() if clean_raw_token(t)],
-                })
-            return lines, "OFFLINE_SAMPLE_FALLBACK"
+    lines = [
+        {
+            "folio": folio,
+            "header": header,
+            "locus_type": grp["locus_type"].iloc[0],
+            "currier": grp["currier"].iloc[0],
+            "section": grp["section"].iloc[0],
+            "tokens": grp["clean"].tolist(),
+        }
+        for (folio, header), grp in df.groupby(["folio", "header"], sort=False)
+    ]
+    return df, lines, source, None
 
-    current_folio = "f1r"
-    current_currier = "A"
-    current_section = "Herbal"
-
-    for line in raw_text.splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        if line.startswith("<f") and ">" in line:
-            tag = line[1:line.index(">")]
-            parts = tag.split()
-            current_folio = parts[0]
-            if "$L=B" in line:
-                current_currier = "B"
-            elif "$L=A" in line:
-                current_currier = "A"
-            if "$I=H" in line:
-                current_section = "Herbal"
-            elif "$I=A" in line or "$I=Z" in line or "$I=C" in line:
-                current_section = "Astronomical"
-            elif "$I=B" in line:
-                current_section = "Biological"
-            elif "$I=P" in line:
-                current_section = "Pharmaceutical"
-            elif "$I=S" in line:
-                current_section = "Stars/Recipes"
-            continue
-
-        if line.startswith("#"):
-            continue
-
-        tokens_raw = line.split()
-        if len(tokens_raw) < 2:
-            continue
-        header = tokens_raw[0]
-        words = [clean_raw_token(t) for t in tokens_raw[1:] if clean_raw_token(t)]
-        if words:
-            lines.append({
-                "folio": current_folio,
-                "header": header,
-                "currier": current_currier,
-                "section": current_section,
-                "tokens": words,
-            })
-    return lines, source
 
 # -----------------------------------------------------------------------------
 # APPLICATION HEADER
 # -----------------------------------------------------------------------------
 uploaded_file = st.sidebar.file_uploader("Upload ZL3b Transcription / Text File", type=["txt", "csv"])
-lines_corpus, corpus_source = load_corpus(uploaded_file)
-total_tokens_count = sum(len(l["tokens"]) for l in lines_corpus)
+corpus_df, lines_corpus, corpus_source, corpus_error = load_corpus(uploaded_file)
+if corpus_error:
+    st.error(f"Corpus could not be loaded ({corpus_source}): {corpus_error}")
+    st.stop()
+st.sidebar.caption(f"Corpus source: {corpus_source}")
+total_tokens_count = len(corpus_df)
 
-total_m_count = 0
-boundary_m_count = 0
-al_count = 0
-ar_count = 0
-al_kd = 0
-ar_kd = 0
 
-for l in lines_corpus:
-    toks = l["tokens"]
-    n_t = len(toks)
-    for i, tok in enumerate(toks):
-        if tok.endswith(TERMINAL_FLUSHES):
-            total_m_count += 1
-            if i == n_t - 1:
-                boundary_m_count += 1
-        if i < n_t - 1:
-            w1, w2 = tok, toks[i+1]
+def line_end_stats(lines):
+    """-m/-am line-final counts and odds ratio over lines with >= 2 tokens."""
+    m_end = m_mid = other_end = other_mid = 0
+    for l in lines:
+        toks = l["tokens"]
+        if len(toks) < 2:
+            continue
+        for i, tok in enumerate(toks):
+            is_m = sv.ending_of(tok) in TERMINAL_FLUSHES
+            is_end = i == len(toks) - 1
+            if is_m and is_end:
+                m_end += 1
+            elif is_m:
+                m_mid += 1
+            elif is_end:
+                other_end += 1
+            else:
+                other_mid += 1
+    total_m = m_end + m_mid
+    pct = m_end / total_m * 100 if total_m else None
+    odds = (m_end * other_mid) / (m_mid * other_end) if m_mid and other_end else None
+    return {"m_end": m_end, "total_m": total_m, "pct": pct, "odds_ratio": odds}
+
+
+def directional_delta(lines, min_count=30):
+    al_count = ar_count = al_kd = ar_kd = 0
+    for l in lines:
+        toks = l["tokens"]
+        for w1, w2 in zip(toks[:-1], toks[1:]):
             if w1.endswith("al"):
                 al_count += 1
-                if w2.startswith(("k", "d")):
-                    al_kd += 1
+                al_kd += w2.startswith(("k", "d"))
             elif w1.endswith("ar"):
                 ar_count += 1
-                if w2.startswith(("k", "d")):
-                    ar_kd += 1
+                ar_kd += w2.startswith(("k", "d"))
+    if al_count < min_count or ar_count < min_count or not (0 < al_kd < al_count) or not (0 < ar_kd < ar_count):
+        return None
+    p_al, p_ar = al_kd / al_count, ar_kd / ar_count
+    return float(np.log((p_al / (1 - p_al)) / (p_ar / (1 - p_ar))))
 
-flush_pct = (boundary_m_count / total_m_count * 100) if total_m_count > 0 else 69.4
-if al_count > 30 and ar_count > 30:
-    p_al = al_kd / al_count
-    p_ar = ar_kd / ar_count
-    dir_delta = np.log((p_al / (1 - p_al + 1e-9)) / ((p_ar / (1 - p_ar + 1e-9)) + 1e-9))
-else:
-    dir_delta = -1.018
 
-st.title("Run in Tab 2")
-st.caption("↑ 5 Quarantined Folios")
+flush = line_end_stats(lines_corpus)
+dir_delta = directional_delta(lines_corpus)
+
+st.title("Voynich Decipherment Workbench")
+st.caption(f"Corpus: {corpus_source} · every figure below is computed live from this corpus")
 
 c_col1, c_col2, c_col3 = st.columns(3)
 with c_col1:
     st.markdown("### Corpus Size")
     st.markdown(f"## {total_tokens_count:,}")
-    st.caption("↑ Tokens Processed")
+    st.caption(f"↑ Tokens (canonical parser) · {len(lines_corpus):,} lines")
 with c_col2:
-    st.markdown("### Physical Line Flushes")
-    st.markdown(f"## {flush_pct:.1f}%")
-    st.caption("↑ OR > 20x at Boundary")
+    st.markdown("### -m / -am at Line End")
+    st.markdown(f"## {fmt(flush['pct'], '.1f')}{'%' if flush['pct'] is not None else ''}")
+    st.caption(f"↑ {flush['m_end']}/{flush['total_m']} tokens · odds ratio {fmt(flush['odds_ratio'], '.1f')}")
 with c_col3:
     st.markdown("### Directional Routing")
-    st.markdown(f"## Δ = {dir_delta:.3f}")
-    st.caption("↑ log-odds shift")
+    st.markdown(f"## Δ = {fmt(dir_delta, '.3f')}")
+    st.caption("↑ log-odds of k-/d- successor after -al vs -ar")
 
 st.markdown("---")
 
@@ -435,6 +296,15 @@ with tab_paper:
     procedural compounding syntax**.
     """)
     
+    st.warning(
+        "**Independent review (September 2026).** An external nine-step validation found real, "
+        "non-random positional morphology (strongest: line-final -m/-am), but did **not** establish "
+        "the four-state C→L→P→R machine beyond Markov controls, the Venetian/German semantics, the "
+        "90.2% blind-prediction figure (its holdout folios were already in the project's seen set), "
+        "or the Macer Floridus alignment (its target vectors were random). The status column below "
+        "reflects that review; see VALIDATION.md and `python structural_validation.py`."
+    )
+
     scorecard_data = {
         "Verification Gate": [
             "Blind Stem-Context Prediction",
@@ -447,7 +317,7 @@ with tab_paper:
             "Procrustes Manifold Alignment",
             "Sukhotin Phonological Vowels",
         ],
-        "Observed Metric": [
+        "Originally Reported": [
             "90.2% Accuracy (394/437 hits)",
             "98.49% Balanced Accuracy",
             "69.37% - 73.0% Line-Terminal",
@@ -458,27 +328,27 @@ with tab_paper:
             "d² = 0.0021 (99.79% Match)",
             "33.3% Vocalic Ratio (6/14)",
         ],
-        "Null Baseline / Control": [
-            "Chance Baseline: 26.8% (+63.3% edge)",
-            "Random Shuffling: 50.09%",
-            "Line Permutation Null: p = 0.00020",
-            "Timm & Schinner Synthetic: +0.029",
-            "Natural Language Threshold α ≥ 0.85",
-            "Train PMI = 30.392 (182 folios)",
-            "Running Recipe Prose: 14.8% - 24.6%",
-            "Astronomical Ephemerides: 65.90%",
-            "Romance / Latin Expected: 32% - 36%",
+        "Live Value (this corpus)": [
+            "see Holdout tab",
+            NOT_COMPUTED,
+            f"{fmt(flush['pct'], '.1f')}% ({flush['m_end']}/{flush['total_m']})",
+            f"Δ = {fmt(dir_delta, '.3f')}",
+            NOT_COMPUTED,
+            NOT_COMPUTED,
+            "see Verification Suite tab",
+            NOT_COMPUTED,
+            NOT_COMPUTED,
         ],
-        "Scientific Verdict": [
-            "PREDICTIVE VALIDATION (Out-of-sample confirmed)",
-            "VERIFIED (Distinct operational runtimes)",
-            "VERIFIED (Physical line resets execution)",
-            "HOAX FALSIFIED (p < 0.00001)",
-            "VERIFIED (Natural power-law scaling)",
-            "ROBUST (Codex-wide consistency)",
-            "VERIFIED (Layout-gated syntax)",
-            "ISOMORPHIC (Macer Floridus Compounding)",
-            "NATURAL LANGUAGE CONFORMANT",
+        "Status After Independent Review": [
+            "WITHDRAWN as blind test: holdout folios are in SEEN_FOLIOS; score compares two suffix rule sets",
+            "Not re-tested",
+            "SUPPORTED as positional structure; functional meaning ('flush') not established",
+            "Not re-tested",
+            "Not re-tested",
+            "Not re-tested",
+            "Not re-tested",
+            "WITHDRAWN: target vectors were np.random.randn(); no Macer Floridus corpus used",
+            "Not re-tested",
         ],
     }
     st.dataframe(pd.DataFrame(scorecard_data), use_container_width=True)
@@ -493,11 +363,21 @@ with tab_paper:
     """)
 
 # =============================================================================
-# TAB 2: HOLDOUT PERMUTATION AUDIT (EXACT 414 / 437 LOCI ENGINE)
+# TAB 2: HOLDOUT PERMUTATION AUDIT
 # =============================================================================
 with tab_holdout:
     st.header("🎯 Holdout Permutation Audit")
-    
+
+    seen_overlap = sorted(set(QUARANTINED_FOLIOS) & sv.SEEN_FOLIOS)
+    if seen_overlap:
+        st.error(
+            "**Not a clean blind test.** These holdout folios are also listed in the project's "
+            f"SEEN_FOLIOS (used for dossier recipes / cribs): {', '.join(seen_overlap)}. "
+            "In addition, `predict_apparatus_role` and `get_expected_role` are both suffix rules "
+            "applied to the same token string, so their agreement measures rule overlap, not "
+            "prediction of independent ground truth."
+        )
+
     holdout_tokens = []
     for l in lines_corpus:
         if l["folio"] in QUARANTINED_FOLIOS:
@@ -513,67 +393,43 @@ with tab_holdout:
                     "expected": exp,
                     "match": pred == exp,
                 })
-    
+
     if not holdout_tokens:
-        sample_quarantine = [
-            ("f70v2", "otey", "tey", "reflux", "reflux"),
-            ("f70v2", "ykeey", "keey", "reflux", "reflux"),
-            ("f70v2", "tchy", "chy", "reflux", "reflux"),
-            ("f70v2", "yteos", "teos", "outlet", "outlet"),
-            ("f70v2", "alain", "al", "medium", "medium"),
-            ("f70v2", "olar", "lar", "outlet", "outlet"),
-            ("f70v2", "oteeam", "eeam", "drain", "drain"),
-            ("f70v2", "otaly", "otal", "reflux", "outlet"),
-            ("f70v2", "otal", "ot", "outlet", "medium"),
-            ("f70v2", "arar", "ar", "outlet", "medium"),
-            ("f70v2", "otaldy", "otald", "reflux", "outlet"),
-            ("f70v2", "okeoly", "okeol", "reflux", "outlet"),
-            ("f70v2", "okydy", "okyd", "reflux", "outlet"),
-            ("f70v2", "daiiamdy", "aiiamd", "reflux", "outlet"),
-            ("f71r", "okeodar", "keodar", "outlet", "outlet"),
-            ("f71r", "aiin", "aiin", "medium", "medium"),
-            ("f72r1", "qokar", "kar", "heat", "heat"),
-            ("f72r1", "otam", "tam", "drain", "drain"),
-            ("f72v2", "am", "am", "drain", "drain"),
-            ("f72v1", "ypaim", "paim", "drain", "drain"),
-        ]
-        for fol, tok, car, pred, exp in sample_quarantine:
-            holdout_tokens.append({
-                "folio": fol,
-                "token": tok,
-                "carrier": car,
-                "predicted": pred,
-                "expected": exp,
-                "match": pred == exp,
-            })
+        st.info(f"Holdout folios not present in the loaded corpus: {NOT_COMPUTED}.")
+    else:
+        total_loci = len(holdout_tokens)
+        hits = sum(1 for x in holdout_tokens if x["match"])
+        obs_acc = hits / total_loci * 100
 
-    total_loci = len(holdout_tokens)
-    hits = sum(1 for x in holdout_tokens if x["match"])
-    obs_acc = (hits / total_loci * 100) if total_loci > 0 else 67.9
+        # Chance agreement: shuffle predicted labels against expected labels.
+        rng = np.random.default_rng(42)
+        pred_arr = np.array([x["predicted"] for x in holdout_tokens])
+        exp_arr = np.array([x["expected"] for x in holdout_tokens])
+        null = np.array([np.mean(rng.permutation(pred_arr) == exp_arr) * 100 for _ in range(5000)])
+        null_mean, null_sd = float(null.mean()), float(null.std())
+        p_val = float((np.sum(null >= obs_acc) + 1) / (len(null) + 1))
+        z_val = (obs_acc - null_mean) / null_sd if null_sd > 0 else None
 
-    st.success("✅ Audit Completed!")
+        h_col1, h_col2, h_col3, h_col4 = st.columns(4)
+        with h_col1:
+            st.markdown("### Scored Tokens")
+            st.markdown(f"## {total_loci} Loci")
+            st.caption("↑ " + ", ".join(QUARANTINED_FOLIOS))
+        with h_col2:
+            st.markdown("### Rule Agreement")
+            st.markdown(f"## {obs_acc:.1f}%")
+            st.caption(f"↑ {hits} / {total_loci} matches")
+        with h_col3:
+            st.markdown("### Shuffled Baseline")
+            st.markdown(f"## {null_mean:.1f}%")
+            st.caption(f"↑ ± {null_sd:.1f}% (5,000 label shuffles)")
+        with h_col4:
+            st.markdown("### Empirical p-value")
+            st.markdown(f"## {p_val:.4f}")
+            st.caption(f"↑ Z = {fmt(z_val, '.2f')}σ")
 
-    h_col1, h_col2, h_col3, h_col4 = st.columns(4)
-    with h_col1:
-        st.markdown("### Scored Tokens")
-        st.markdown(f"## {total_loci} Loci")
-        st.caption("↑ f70v2, f71r, f72r1, f72v1, f72v2")
-    with h_col2:
-        st.markdown("### Observed Accuracy")
-        st.markdown(f"## {obs_acc:.1f}%")
-        st.caption(f"↑ {hits} / {total_loci} Hits")
-    with h_col3:
-        st.markdown("### Shuffled Baseline")
-        st.markdown("## 30.3%")
-        st.caption("↑ ± 1.7%")
-    with h_col4:
-        st.markdown("### Empirical p-value")
-        st.markdown("## 0.0000")
-        st.caption("↑ Z = 21.84σ")
-
-    st.subheader("Holdout Token Verification Ledger")
-    df_holdout = pd.DataFrame(holdout_tokens)
-    st.dataframe(df_holdout, use_container_width=True)
+        st.subheader("Holdout Token Verification Ledger")
+        st.dataframe(pd.DataFrame(holdout_tokens), use_container_width=True)
 
 # =============================================================================
 # TAB 3: CANONICAL TOKEN BREAKDOWN (VOYNICHPARSER INSPECTOR)
@@ -604,162 +460,116 @@ with tab_parser:
         c_k3.markdown(f"**Terminal Flush (-m):** `{breakdown['is_terminal_m']}`")
 
 # =============================================================================
+# SHARED: STRUCTURAL VALIDATION CORPUS (structural_validation.py)
+# =============================================================================
+@st.cache_data(show_spinner=False)
+def validation_corpus(df: pd.DataFrame, paragraph_only: bool):
+    sub = df[df["locus_type"] == "P"] if paragraph_only else df
+    return sv.Corpus(sub)
+
+
+def validation_controls(key: str):
+    c1, c2, c3 = st.columns(3)
+    perms = c1.number_input("Permutations", min_value=500, max_value=50000, value=5000, step=500, key=f"{key}_perms")
+    seed = c2.number_input("Seed", value=42, step=1, key=f"{key}_seed")
+    para = c3.checkbox("Paragraph text only (exclude labels / rings / radii)", value=True, key=f"{key}_para")
+    return int(perms), int(seed), para
+
+
+# =============================================================================
 # TAB 4: MACROSTATE TRANSITION CONSISTENCY TOURNAMENT (C -> L -> P -> R)
 # =============================================================================
 with tab_transition_tourney:
     st.header("📊 Macrostate Transition Consistency Tournament")
-    st.markdown("""
-    Evaluates whether the procedural execution macrostate order ($C \to L \to P \to R$) exhibits 
-    statistically significant sequential directionality over Monte Carlo random permutations.
+    st.markdown(r"""
+    Does the order $C \to L \to P \to R$ occur more often than expected? The statistic is the share of
+    adjacent within-line state pairs that follow the cycle (pair score), plus the share of 4-token windows
+    that run a full cycle step. Three nulls: within-line shuffle, and Markov-1 / Markov-2 twins that
+    preserve the lower-order dependencies already present in Voynichese.
     """)
-
-    col_t1, col_t2 = st.columns(2)
-    n_sims = col_t1.number_input("Permutations", min_value=500, max_value=20000, value=10000, step=500)
-    t_seed = col_t2.number_input("Consistency Seed", value=42, step=1)
+    n_sims, t_seed, t_para = validation_controls("trans")
+    n_twins = st.number_input("Markov twins", min_value=100, max_value=5000, value=500, step=100)
 
     if st.button("Execute Transition Consistency Analysis", type="primary"):
-        np.random.seed(int(t_seed))
-        
-        all_states = []
-        for l in lines_corpus:
-            for tok in l["tokens"]:
-                all_states.append(VoynichParser.parse(tok)["state"])
-        
-        def calculate_clpr_score(state_seq):
-            transitions_valid = {("C", "L"), ("L", "P"), ("P", "R"), ("R", "C")}
-            pairs = list(zip(state_seq[:-1], state_seq[1:]))
-            if not pairs:
-                return 0.1837
-            hits_clpr = sum(1 for p in pairs if p in transitions_valid)
-            return hits_clpr / len(pairs)
+        corpus_v = validation_corpus(corpus_df, t_para)
+        with st.spinner("Generating null distributions..."):
+            res = sv.test_cycle_nulls(corpus_v, n_sims, int(n_twins), np.random.default_rng(t_seed))
+            ranks = sv.test_order_tournament(corpus_v, str(t_seed))
 
-        obs_score = calculate_clpr_score(all_states) if len(all_states) > 5 else 0.1837
+        tc1, tc2 = st.columns(2)
+        tc1.metric("Observed pair score", f"{res['observed']['pair_score']:.4f}")
+        tc2.metric("Observed 4-window cycle rate", f"{res['observed']['cycle4_rate']:.5f}")
+        rows = [
+            {
+                "Null model": name,
+                "n": res[name]["n"],
+                "Pair-score null mean": round(res[name]["pair_null_mean"], 4),
+                "Pair p": res[name]["pair_p"],
+                "4-window null mean": round(res[name]["cycle4_null_mean"], 5),
+                "4-window p": res[name]["cycle4_p"],
+            }
+            for name in ("within_line_shuffle", "markov1_twins", "markov2_twins")
+        ]
+        st.dataframe(pd.DataFrame(rows), use_container_width=True)
+        st.caption("A Markov-1 twin reproduces the bigram table by construction, so only the 4-window "
+                   "score can show structure beyond adjacent pairs.")
 
-        null_distribution = []
-        shuffled = all_states.copy() if len(all_states) > 5 else ["C", "L", "P", "R"] * 50
-        with st.spinner("Generating null transition distribution..."):
-            for _ in range(int(n_sims)):
-                np.random.shuffle(shuffled)
-                null_distribution.append(calculate_clpr_score(shuffled))
-
-        null_arr = np.array(null_distribution)
-        null_mean = float(np.mean(null_arr))
-        null_std = float(np.std(null_arr))
-        z_score_trans = (obs_score - null_mean) / (null_std + 1e-9)
-        p_val_trans = float(np.mean(null_arr >= obs_score))
-
-        tc1, tc2, tc3, tc4 = st.columns(4)
-        tc1.metric("Hypothesis Score", f"{obs_score:.4f}")
-        tc2.metric("Null Mean (Chance)", f"{null_mean:.4f}")
-        tc3.metric("Z-Score", f"{z_score_trans:+.2f}")
-        tc4.metric("Empirical p-value", f"{p_val_trans:.5f}")
-
-        if p_val_trans > 0.05:
-            st.warning(f"Not Statistically Significant (p = {p_val_trans:.5f}): The sequence does not beat chance on this token set.")
-        else:
-            st.success(f"Statistically Significant (p = {p_val_trans:.5f}): Strong sequential ordering confirmed!")
-
-        # Native Streamlit visualization replacing matplotlib
-        counts, bin_edges = np.histogram(null_arr, bins=15)
-        hist_df = pd.DataFrame({
-            "Transition Score Bin": [f"{bin_edges[i]:.4f}" for i in range(len(counts))],
-            "Frequency": counts
-        }).set_index("Transition Score Bin")
-        st.bar_chart(hist_df)
+        st.subheader("State-order tournament (rank of C→L→P→R)")
+        st.dataframe(pd.DataFrame([
+            {"Split": k, "Tokens": v["tokens"], "Linear rank (of 24)": v["linear_rank_of_CLPR"],
+             "Cyclic rank (of 6)": v["cyclic_rank_of_CLPR"],
+             "Top linear orders": ", ".join(f"{o} ({n})" for o, n in v["linear_top3"])}
+            for k, v in ranks.items()
+        ]), use_container_width=True)
 
 # =============================================================================
 # TAB 5: SEMANTIC PERMUTATION TOURNAMENT (ITEM 6)
 # =============================================================================
 with tab_semantic_tourney:
     st.subheader("Item 6: Semantic Permutation Tournament")
-    t_col1, t_col2, t_col3 = st.columns(3)
-    permutations = t_col1.number_input("Permutations", min_value=1000, max_value=50000, value=10000, step=1000)
-    seed = t_col2.number_input("Permutation Seed", value=42, step=1)
-    target_currier = t_col3.selectbox("Currier Dialect Filter", ["All", "Currier A", "Currier B"])
+    st.markdown("""
+    The structural rules stay fixed; the published glosses (domains in `lexicon.py`) are shuffled among
+    the glossed tokens. If the published assignment is right, it should place tokens in the manuscript
+    section its meaning predicts better than shuffled assignments do. The domain → section map is
+    pre-registered in `structural_validation.DOMAIN_EXPECTED_SECTIONS`.
+    """)
+    sem_perms, sem_seed, sem_para = validation_controls("sem")
 
-    all_tok_objs = []
-    for l in lines_corpus:
-        for tok in l["tokens"]:
-            all_tok_objs.append({"currier": l["currier"], "word": tok})
-
-    if all_tok_objs:
-        df_all_tokens = pd.DataFrame(all_tok_objs)
-    else:
-        df_all_tokens = pd.DataFrame(columns=["currier", "word"])
-
-    sub_tokens = df_all_tokens.copy()
-    if target_currier == "Currier A":
-        sub_tokens = sub_tokens[sub_tokens["currier"] == "A"]
-    elif target_currier == "Currier B":
-        sub_tokens = sub_tokens[sub_tokens["currier"] == "B"]
-
-    if st.button("Execute 10,000-Permutation Tournament", type="primary"):
-        if not sub_tokens.empty and "word" in sub_tokens.columns:
-            with st.spinner("Processing full corpus permutation..."):
-                np.random.seed(int(seed))
-                random.seed(int(seed))
-                tokens_list = sub_tokens["word"].dropna().tolist()
-                if len(tokens_list) >= 2:
-                    obs_stat = compute_bigram_mutual_information(tokens_list)
-                    token_arr = np.array(tokens_list)
-                    null_stats = np.empty(int(permutations), dtype=np.float32)
-                    for i in range(int(permutations)):
-                        permuted_arr = np.random.permutation(token_arr)
-                        null_stats[i] = compute_bigram_mutual_information(permuted_arr.tolist())
-
-                    null_mean = float(np.mean(null_stats))
-                    null_std = float(np.std(null_stats))
-                    z_val = (obs_stat - null_mean) / (null_std + 1e-9)
-                    empirical_p = float(np.sum(null_stats >= obs_stat) / int(permutations))
-
-                    st.subheader("Tournament Results")
-                    sm1, sm2, sm3, sm4 = st.columns(4)
-                    sm1.metric("Observed Transition Metric", f"{obs_stat:.4f}")
-                    sm2.metric("Monte Carlo Mean", f"{null_mean:.4f}")
-                    sm3.metric("Z-Score", f"{z_val:+.2f}")
-                    sm4.metric("Empirical p-value", f"{empirical_p:.6f}")
-                else:
-                    st.warning("Insufficient tokens for mutual information computation.")
+    if st.button("Execute Semantic Permutation Tournament", type="primary"):
+        res = sv.test_semantic_permutation(validation_corpus(corpus_df, sem_para), sem_perms, np.random.default_rng(sem_seed))
+        if res.get("status") == NOT_COMPUTED:
+            st.info(f"{NOT_COMPUTED}: {res['reason']}")
         else:
-            st.warning("No tokens found matching the selected dialect filter.")
+            sm1, sm2, sm3, sm4 = st.columns(4)
+            sm1.metric("Published-gloss section hit rate", f"{res['observed_section_hit_rate']:.1%}")
+            sm2.metric("Shuffled-gloss mean", f"{res['null_mean']:.1%}")
+            sm3.metric("Shuffled-gloss SD", f"{res['null_sd']:.1%}")
+            sm4.metric("Empirical p-value", f"{res['p']:.4f}")
+            st.dataframe(pd.DataFrame(res["per_token"]), use_container_width=True)
+            st.caption(res["note"])
 
 # =============================================================================
 # TAB 6: AFFIX-ROLE TOURNAMENT
 # =============================================================================
 with tab_affix_tourney:
-    st.subheader("Affix-Role Sequential Constraint Tournament")
-    col_a1, col_a2 = st.columns(2)
-    n_affix_perms = col_a1.number_input("Affix Permutations", min_value=100, max_value=20000, value=2000, step=500)
-    affix_seed = col_a2.number_input("Random Seed (Affix)", value=42, step=1)
+    st.subheader("Affix-Role Tournament")
+    st.markdown("""
+    The observed endings stay untouched; which ending belongs to which of the four states (C/L/P/R) is
+    shuffled, keeping group sizes. Each shuffled grouping gets its best of the six possible cycles. If the
+    manuscript specifically selects the published role map, it should beat most shuffled groupings.
+    """)
+    af_perms, af_seed, af_para = validation_controls("affix")
 
     if st.button("Run Affix-Role Tournament"):
-        np.random.seed(int(affix_seed))
-        all_affix_roles = []
-        for l in lines_corpus:
-            for tok in l["tokens"]:
-                p, _, s = parse_affixes(tok)
-                all_affix_roles.append(f"{p}+{s}")
-
-        if len(all_affix_roles) >= 2:
-            observed_score = compute_bigram_mutual_information(all_affix_roles)
-            shuffled = all_affix_roles.copy()
-            null_distribution = []
-            with st.spinner("Executing null permutations..."):
-                for _ in range(int(n_affix_perms)):
-                    np.random.shuffle(shuffled)
-                    null_distribution.append(compute_bigram_mutual_information(shuffled))
-
-            null_dist = np.array(null_distribution)
-            z_score = (observed_score - np.mean(null_dist)) / (np.std(null_dist) + 1e-9)
-            p_val = float(np.mean(null_dist >= observed_score))
-
-            res1, res2, res3, res4 = st.columns(4)
-            res1.metric("Observed Transition Score", f"{observed_score:.4f}")
-            res2.metric("Mean Shuffled Score", f"{np.mean(null_dist):.4f}")
-            res3.metric("Z-Score", f"{z_score:+.2f}")
-            res4.metric("Empirical p-value", f"{p_val:.6f}")
-        else:
-            st.warning("Insufficient tokens to run affix tournament.")
+        with st.spinner("Executing role-map permutations..."):
+            res = sv.test_affix_role(validation_corpus(corpus_df, af_para), af_perms, np.random.default_rng(af_seed))
+        res1, res2, res3, res4 = st.columns(4)
+        res1.metric("Published map best-cycle score", f"{res['observed_best_cycle_score']:.4f}", res["observed_best_cycle"])
+        res2.metric("Shuffled maps mean", f"{res['null_mean']:.4f}")
+        res3.metric("Shuffled maps SD", f"{res['null_sd']:.4f}")
+        res4.metric("Empirical p-value", f"{res['p']:.4f}")
+        if res["parser_consistency_mismatches"]:
+            st.error(f"Ending map disagrees with parser.map_macrostate on {res['parser_consistency_mismatches']} tokens.")
 
 # =============================================================================
 # TAB 7: DUAL-DIALECT BRIDGE TEST
@@ -771,12 +581,23 @@ with tab_dialect:
     **Northern Italian / Venetian Trade Apothecary** vs. **Early New High German Distillation Compendia**.
     """)
 
+    all_chars = Counter("".join(corpus_df["clean"]))
+    n_chars = sum(all_chars.values())
+    h1 = -sum(c / n_chars * np.log2(c / n_chars) for c in all_chars.values()) if n_chars else None
+    pairs = [(a, b) for l in lines_corpus for a, b in zip(l["tokens"][:-1], l["tokens"][1:])]
+    doubling = sum(a == b for a, b in pairs) / len(pairs) * 100 if pairs else None
+
+    st.caption(
+        "The Venetian and German columns are reference values supplied by the author; the comparison "
+        "texts are not in this repository, so those figures cannot be recomputed here. The Voynich "
+        "column is computed live where possible."
+    )
     test_metrics = [
-        {"Statistical Dimension": "1. Character Entropy (H1)", "Whole Voynich": "3.84 bits", "Venetian (1420)": "4.09 bits", "Early German": "4.06 bits", "Scientific Verdict": "REJECTS NATURAL PROSE (p < 0.001)"},
-        {"Statistical Dimension": "2. Immediate Word Doubling", "Whole Voynich": "2.40%", "Venetian (1420)": "0.00%", "Early German": "0.00%", "Scientific Verdict": "CONFIRMS REPEAT LOOPS (p < 0.0001)"},
-        {"Statistical Dimension": "3. Line-Terminal Flush (-m)", "Whole Voynich": f"{flush_pct:.1f}%", "Venetian (1420)": "8.2%", "Early German": "7.4%", "Scientific Verdict": "CONFIRMS HARDWARE BUFFER (p < 0.001)"},
-        {"Statistical Dimension": "4. Compounding Transition Order", "Whole Voynich": "C -> L -> P -> R", "Venetian (1420)": "Verb -> Direct Object", "Early German": "Substrate -> Verb-Final", "Scientific Verdict": "SYNTACTIC MATCH (German Distillation)"},
-        {"Statistical Dimension": "5. Phonetic Consonant-Vowel Partition", "Whole Voynich": "33.3% Vowels (6/14)", "Venetian (1420)": "34.1% Vowels", "Early German": "29.8% Vowels", "Scientific Verdict": "PHONETIC MATCH (Venetian / Romance)"}
+        {"Statistical Dimension": "1. Character Entropy (H1)", "Whole Voynich": f"{fmt(h1, '.2f')} bits", "Venetian (1420)": "4.09 bits", "Early German": "4.06 bits"},
+        {"Statistical Dimension": "2. Immediate Word Doubling", "Whole Voynich": f"{fmt(doubling, '.2f')}%", "Venetian (1420)": "0.00%", "Early German": "0.00%"},
+        {"Statistical Dimension": "3. Line-Terminal -m / -am", "Whole Voynich": f"{fmt(flush['pct'], '.1f')}%", "Venetian (1420)": "8.2%", "Early German": "7.4%"},
+        {"Statistical Dimension": "4. Compounding Transition Order", "Whole Voynich": "C -> L -> P -> R (not beyond Markov controls)", "Venetian (1420)": "Verb -> Direct Object", "Early German": "Substrate -> Verb-Final"},
+        {"Statistical Dimension": "5. Phonetic Consonant-Vowel Partition", "Whole Voynich": NOT_COMPUTED, "Venetian (1420)": "34.1% Vowels", "Early German": "29.8% Vowels"},
     ]
     st.dataframe(pd.DataFrame(test_metrics), use_container_width=True)
 
@@ -812,6 +633,8 @@ with tab_dialect:
         }
     ]
     st.dataframe(pd.DataFrame(sample_dialect_lines), use_container_width=True)
+    st.caption("Illustrative readings generated from the hypothesised gloss dictionary. "
+               "The glosses have not been independently validated (see Semantic Tournament tab).")
 
 # =============================================================================
 # TAB 8: AUTOMATED VERIFICATION SUITE
@@ -822,58 +645,15 @@ with tab_tests:
 
     if st.button("🚀 Execute Full Verification Suite (All Batteries)", type="primary"):
         with st.spinner("Executing statistical tests across all tokens..."):
-            total_m = 0
-            term_m = 0
-            for l in lines_corpus:
-                toks = l["tokens"]
-                for i, tok in enumerate(toks):
-                    if tok.endswith(TERMINAL_FLUSHES):
-                        total_m += 1
-                        if i == len(toks) - 1:
-                            term_m += 1
-            flush_rate = (term_m / total_m * 100) if total_m > 0 else 71.4
+            qo_prefixes = ("qo", "qok", "qot")
+            diagram_toks = [t for l in lines_corpus if l["locus_type"] != "P" for t in l["tokens"]]
+            prose_toks = [t for l in lines_corpus if l["locus_type"] == "P" for t in l["tokens"]]
+            diagram_qo = sum(t.startswith(qo_prefixes) for t in diagram_toks)
+            prose_qo = sum(t.startswith(qo_prefixes) for t in prose_toks)
+            diag_rate = diagram_qo / len(diagram_toks) * 100 if diagram_toks else None
+            prose_rate = prose_qo / len(prose_toks) * 100 if prose_toks else None
 
-            diagram_qo = 0
-            diagram_total = 0
-            prose_qo = 0
-            prose_total = 0
-            for l in lines_corpus:
-                is_diagram = l["section"] == "Astronomical" and any(r in l["header"] for r in ["@Lz", "@Ro", "@Ri", "@La", "@Ls"])
-                for tok in l["tokens"]:
-                    if is_diagram:
-                        diagram_total += 1
-                        if tok.startswith(("qo", "qok", "qot")):
-                            diagram_qo += 1
-                    else:
-                        prose_total += 1
-                        if tok.startswith(("qo", "qok", "qot")):
-                            prose_qo += 1
-            diag_rate = (diagram_qo / diagram_total * 100) if diagram_total > 0 else 0.0
-            prose_rate = (prose_qo / prose_total * 100) if prose_total > 0 else 18.2
-
-            al_follow_kd = 0
-            al_total = 0
-            ar_follow_kd = 0
-            ar_total = 0
-            for l in lines_corpus:
-                toks = l["tokens"]
-                for i in range(len(toks) - 1):
-                    w1, w2 = toks[i], toks[i+1]
-                    if w1.endswith("al"):
-                        al_total += 1
-                        if w2.startswith(("k", "d")):
-                            al_follow_kd += 1
-                    elif w1.endswith("ar"):
-                        ar_total += 1
-                        if w2.startswith(("k", "d")):
-                            ar_follow_kd += 1
-
-            if al_total > 50 and ar_total > 50:
-                p_al = al_follow_kd / al_total
-                p_ar = ar_follow_kd / ar_total
-                log_odds_delta = np.log((p_al / (1 - p_al + 1e-9)) / ((p_ar / (1 - p_ar + 1e-9)) + 1e-9))
-            else:
-                log_odds_delta = -1.018
+            log_odds_delta = directional_delta(lines_corpus, min_count=50)
 
             transitions = defaultdict(int)
             for l in lines_corpus:
@@ -883,12 +663,14 @@ with tab_tests:
                     if s1 != "?" and s2 != "?":
                         transitions[f"{s1} -> {s2}"] += 1
 
-            st.success("✅ Verification Suite Executed Successfully Across the Full Codex!")
+            st.success("✅ Verification suite executed on the loaded corpus.")
 
             c1, c2, c3 = st.columns(3)
-            c1.metric("A2: Line-Terminal Flush Rate", f"{flush_rate:.1f}%", f"{term_m}/{total_m} tokens (>20x Odds)")
-            c2.metric("Diagram qo- Suppression", f"{diag_rate:.2f}%", f"{diagram_qo}/{diagram_total} (vs {prose_rate:.1f}% prose)")
-            c3.metric("A4: Directional Routing Shift", f"{log_odds_delta:.3f} log-odds", "Falsifies Hoax Null (+0.029)")
+            c1.metric("A2: Line-Terminal -m / -am Rate", f"{fmt(flush['pct'], '.1f')}%",
+                      f"{flush['m_end']}/{flush['total_m']} tokens · OR {fmt(flush['odds_ratio'], '.1f')}")
+            c2.metric("Diagram qo- Rate (labels, rings, radii)", f"{fmt(diag_rate, '.2f')}%",
+                      f"{diagram_qo}/{len(diagram_toks)} (vs {fmt(prose_rate, '.1f')}% paragraph text)")
+            c3.metric("A4: Directional Routing Shift", f"{fmt(log_odds_delta, '.3f')} log-odds")
 
             st.subheader("4-Macrostate Sequential Transitions")
             if transitions:
@@ -896,15 +678,7 @@ with tab_tests:
                 t_df = pd.DataFrame(t_list).sort_values(by="Occurrences", ascending=False)
                 st.dataframe(t_df, use_container_width=True)
             else:
-                default_transitions = pd.DataFrame([
-                    {"Transition Cycle": "P -> P", "Occurrences": 4210},
-                    {"Transition Cycle": "C -> C", "Occurrences": 3890},
-                    {"Transition Cycle": "L -> P", "Occurrences": 2640},
-                    {"Transition Cycle": "C -> L", "Occurrences": 2180},
-                    {"Transition Cycle": "P -> R", "Occurrences": 1420},
-                    {"Transition Cycle": "R -> P", "Occurrences": 680},
-                ])
-                st.dataframe(default_transitions, use_container_width=True)
+                st.info(f"Transitions: {NOT_COMPUTED} (no adjacent classified tokens).")
 
 # =============================================================================
 # TAB 9: INVARIANT SLOT OMEGA MINER
@@ -937,15 +711,7 @@ with tab_omega:
                         "Successor Active Verb": w3,
                     })
 
-    if not omega_frames:
-        omega_frames = [
-            {"Folio": "f103r", "Line Locus": "+P0.12", "Initial Active Verb": "qokaiin", "Buffer Operand [X-aiin]": "chedaiin", "Extracted Stem (X)": "ched", "Successor Active Verb": "qokeedy"},
-            {"Folio": "f114v", "Line Locus": "+P0.21", "Initial Active Verb": "qokedy", "Buffer Operand [X-aiin]": "otcheodaiin", "Extracted Stem (X)": "cheod", "Successor Active Verb": "qokchdy"},
-            {"Folio": "f76r", "Line Locus": "+P0.05", "Initial Active Verb": "qokedy", "Buffer Operand [X-aiin]": "shedaiin", "Extracted Stem (X)": "shed", "Successor Active Verb": "qokeedy"},
-            {"Folio": "f82v", "Line Locus": "+P0.19", "Initial Active Verb": "qokeey", "Buffer Operand [X-aiin]": "lkaiin", "Extracted Stem (X)": "lk", "Successor Active Verb": "qokaiin"},
-        ]
-
-    st.metric("Total Slot Ω Frames Detected", len(omega_frames), "Invariant Syntactic Pattern")
+    st.metric("Total Slot Ω Frames Detected", len(omega_frames))
 
     st.subheader("Top Conserved Carrier Roots in Slot Ω Nucleus")
     stem_counts = Counter(f["Extracted Stem (X)"] for f in omega_frames)
@@ -960,7 +726,7 @@ with tab_omega:
 # =============================================================================
 with tab_reader:
     st.header("📖 Parallel Interlinear Manuscript Reader")
-    all_folios = sorted(list(set(l["folio"] for l in lines_corpus))) if lines_corpus else ["f1r", "f114v", "f116v"]
+    all_folios = sorted(set(l["folio"] for l in lines_corpus))
     
     col_sel1, col_sel2 = st.columns([1, 2])
     with col_sel1:
@@ -984,20 +750,14 @@ with tab_reader:
                     gloss_parts.append(f"{t} [{f['state']}]")
             st.markdown(f"**{line_header}:** " + " · ".join(gloss_parts))
     else:
-        st.markdown("""
-        **f114v.21:** dair [P] · cheeo [P] · chy [P] · chdaiin [L] · **qokedy** [boil / apply heat, OPERATOR_VERB] · **otcheodaiin** [star sector [buffer hold], OPERAND_NOUN] · qokchdy [C] · otedal [L] · **daiin** [water / liquid vehicle, OPERAND_NOUN] · aral [L]
-        
-        **f114v.29:** otcheed [P] · okar [L] · chey [P] · **qopairam** [extract / dissolve [active], TERMINAL_FLUSH] · dal [L] · **chedy** [herb / botanical matter, OPERAND_NOUN] · **daiin** [water / liquid vehicle, OPERAND_NOUN]
-        
-        **f114v.31:** olaiin [L] · cheo [P] · **otcheody** [star sector [receiver vessel], OPERAND_NOUN] · lkchedy [P] · okol [P] · okaiin [L] · otaiin [L] · otal [L] · qotar [L]
-        """)
+        st.info(f"No lines for {selected_folio} in the loaded corpus.")
 
 # =============================================================================
 # TAB 11: GROUNDED MASTER LEXICON
 # =============================================================================
 with tab_lexicon:
     st.header("📚 Grounded Master Lexicon & Syntactic Map")
-    st.markdown("Distributionally validated lexical items grounded via co-occurrence isomorphism with 15th-century Latin medical compilations.")
+    st.warning("These glosses are hypotheses. They have not been validated against the manuscript or against a historical corpus: the earlier Macer Floridus alignment used random target vectors and has been withdrawn, and the semantic permutation tournament does not currently favour these assignments over shuffled ones.")
 
     lex_rows = []
     for tok, info in MASTER_LEXICON.items():
@@ -1041,11 +801,7 @@ with tab_colophons:
                     })
     
     if not audit_matches:
-        audit_matches = [
-            {"Target Lemma": "ydaraishy", "Folio": "f1r", "Line Locus": "<f1r.6,=Pt>", "Matched Token": "ydaraishy", "Currier Dialect": "A", "Functional Assignment": "Author Incipit (fatto da l'auctor)"},
-            {"Target Lemma": "ytchas", "Folio": "f9r", "Line Locus": "<f9r.10,+Pc>", "Matched Token": "ytchas", "Currier Dialect": "A", "Functional Assignment": "Scribal Colophon (scritto da lo scriptor)"},
-            {"Target Lemma": "oror", "Folio": "f116v", "Line Locus": "<f116v.1,@Lx>", "Matched Token": "oror", "Currier Dialect": "B", "Functional Assignment": "Codex Seal (fin / bschluss)"},
-        ]
+        st.info("None of the target tokens occur in the loaded corpus.")
 
     st.subheader("Audited Authorial & Scribal Signatures")
     st.dataframe(pd.DataFrame(audit_matches), use_container_width=True)

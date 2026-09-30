@@ -318,6 +318,8 @@ def parse_zl3b(
 
             clean_text = re.sub(r"<![^>]*>", "", raw_text)
             clean_text = re.sub(r"\{[^}]*\}", "", clean_text)
+            # <-> marks a drawing interruption inside a line: it separates words.
+            clean_text = clean_text.replace("<->", ".")
             clean_text = re.sub(r"<[%+=*][^>]*>", "", clean_text)
 
             raw_tokens = [
@@ -326,22 +328,32 @@ def parse_zl3b(
                 if token and not token.startswith("<")
             ]
 
-            total = len(raw_tokens)
+            # Decompose first, so line-start / line-end flags refer to the
+            # tokens that actually survive cleaning.
+            decompositions = [
+                VoynichParser.decompose_morphology(raw_token)
+                for raw_token in raw_tokens
+            ]
+            decompositions = [
+                d for d in decompositions if d.get("valid") and d.get("clean")
+            ]
+
+            total = len(decompositions)
             section = infer_section(folio)
+            locus_match = re.search(r",(.)([A-Z])", header)
+            locus_type = locus_match.group(2) if locus_match else "?"
 
-            for index, raw_token in enumerate(raw_tokens):
-                decomposition = VoynichParser.decompose_morphology(raw_token)
-                if not decomposition.get("valid") or not decomposition.get("clean"):
-                    continue
-
+            for index, decomposition in enumerate(decompositions):
                 records.append(
                     {
                         "folio": folio,
                         "header": header,
+                        "locus_type": locus_type,
                         "quire": current_quire,
                         "currier": current_currier,
                         "section": section,
                         "token_idx": index,
+                        "line_len": total,
                         "is_line_start": index == 0,
                         "is_line_end": index == total - 1,
                         "is_holdout": folio.lower() in HOLDOUT_FOLIOS,

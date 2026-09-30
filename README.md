@@ -3,7 +3,7 @@
 
 **Repository:** `RN-Top/Voynich`  
 **Live Interactive Dashboard:** [voynich-xdbkaduqmatywumbtkdcgd.streamlit.app](https://voynich-xdbkaduqmatywumbtkdcgd.streamlit.app/)  
-**Primary Corpus Standard:** Standardized Interlinear Voynich Transliteration File Format (IVTFF) EVA 2.0 / ZL3b-n Standard ($N = 38,223$ tokens across 227 folios; SHA-256 `bf5b6d4ac1...`)
+**Primary Corpus Standard:** Standardized Interlinear Voynich Transliteration File Format (IVTFF) EVA 2.0 / ZL3b-n Standard ($N = 38,958$ tokens across 227 folios with the current `parser.py`; committed file SHA-256 `3e617b2dd4...`)
 
 ---
 
@@ -20,23 +20,33 @@ This repository hosts an end-to-end computational decipherment engine and verifi
 
 ## 2. Empirical Decipherment Scorecard
 
-Every structural milestone in this repository is confirmed via clean-room holdout testing, synthetic null models, and statistical significance benchmarks:
+> **Validation status (September 2026).** An independent nine-step review and a full-corpus
+> re-run (`python structural_validation.py`) confirmed a real positional signal (line-final
+> `-m`/`-am`). They did **not** confirm the four-state machine beyond Markov controls, the
+> semantic layer, the blind-holdout figure or the Macer Floridus alignment. The previous live
+> app also loaded zero tokens and displayed fallback constants. Details and fixes are in
+> [VALIDATION.md](VALIDATION.md). The regenerated numbers are in
+> [output/structural_validation_report.md](output/structural_validation_report.md).
 
-| Verification Gate | Observed Metric | Baseline / Null Control | Scientific Verdict |
-| :--- | :--- | :--- | :--- |
-| **Blind Holdout Test** | **90.2% Accuracy (394/437 hits)** | Chance Baseline: 26.8% | **PREDICTIVE VALIDATION (+63.3% edge, $p < 10^{-12}$)** |
-| **A1: Dialect Separation** | **98.49% Balanced Accuracy** | Random Permutation: 50.09% | **VERIFIED (Distinct operational runtimes across scribes)** |
-| **A2: Buffer Flushing (`-m`)** | **69.37% - 73.0% Line-Terminal** | Line Permutation Null: $p = 0.00020$ | **VERIFIED (Physical line resets active execution buffer)** |
-| **A4: Directional Switch** | **$\Delta = -1.018$ log-odds shift** | Synthetic Hoax Model: $+0.029$ | **HOAX FALSIFIED (Decisively rejects Cardan-grille models)** |
-| **Lexical Root ($\Lambda$)** | **70.84% Vocabulary Reduction** | Zipf $\alpha = 1.065$ | **VERIFIED (Natural-language power-law scaling confirmed)** |
-| **Holdout Generalization** | **Test PMI = 31.274 (45 folios)** | Train PMI = 30.392 (182 folios) | **ROBUST (Codex-wide consistency; zero statistical overfit)** |
-| **Prefix Gating (`qo-`)** | **0.0% on Rotas / Plants (0/85+)** | Running Prose: 14.8% - 24.6% | **VERIFIED (Layout-conditioned nominal vs. verbal gating)** |
-| **Manifold Alignment** | **$d^2 = 0.0021$ (99.79% Congruence)**| Ephemerides Null: 65.90% | **ISOMORPHIC (Isomorphic to *Macer Floridus* compounding)** |
-| **Phonological Partition** | **33.3% Vocalic Ratio (6/14)** | Romance Expected Band: 32% - 36%| **NATURAL LANGUAGE CONFORMANT** |
+| Verification Gate | Originally Reported | Status After Independent Review |
+| :--- | :--- | :--- |
+| **Blind Holdout Test** | 90.2% Accuracy (394/437 hits) | **WITHDRAWN.** The holdout folios are in `SEEN_FOLIOS`, and the score compares two suffix rule sets. |
+| **A1: Dialect Separation** | 98.49% Balanced Accuracy | Not re-tested |
+| **A2: Line-final `-m`/`-am`** | 69.37% - 73.0% Line-Terminal | **SUPPORTED** as positional structure: 605/861 line-final, OR ≈ 20.7, shuffle p ≈ 5e-5. The "buffer flush" meaning is not established. |
+| **A4: Directional Switch** | Δ = −1.018 log-odds shift | **WITHDRAWN.** This was a fallback constant; recomputed Δ ≈ +1.50 (opposite sign). |
+| **Lexical Root (Λ)** | 70.84% Vocabulary Reduction | Not re-tested |
+| **Holdout Generalization** | Test PMI = 31.274 (45 folios) | Not re-tested |
+| **Prefix Gating (`qo-`)** | 0.0% on Rotas / Plants | Live value: 1.8% on labels/rings/radii vs 14.8% in paragraph text (not significance-tested) |
+| **Manifold Alignment** | d² = 0.0021 (99.79% Congruence) | **WITHDRAWN.** Target vectors were `np.random.randn()`; no Macer Floridus text was used. |
+| **Phonological Partition** | 33.3% Vocalic Ratio (6/14) | Not re-tested |
+| **C→L→P→R cycle** | Four-state procedural arc | Beats a within-line shuffle only weakly. **Fails** Markov-1/2 twins, the affix-role tournament and the predictive-state test. |
+| **Semantic glosses** | Venetian / German readings | **Not supported** by the semantic permutation tournament (p ≈ 0.41) |
 
 ---
 
-## 3. The 90.2% Blind Out-of-Sample Prediction Proof
+## 3. The 90.2% Blind Out-of-Sample Prediction Proof (withdrawn — see VALIDATION.md)
+
+> This section is kept for the record. The five folios below were already used to build the dossier, so this was not a blind test.
 
 In a clean-room blind prediction test across five held-out folios (`f70v2`, `f71r`, `f72r1`, `f72v1`, `f72v2`), the morphotactic compiler predicted the apparatus role class purely from token stems and suffix realization ports:
 
@@ -119,8 +129,12 @@ The central nucleus $[\mathbf{X}]$ forms an interchangeable content-operand clas
 ```text
 RN-Top/Voynich/
 ├── README.md               # Unified academic paper & empirical compendium
-├── app.py                  # Zero-dependency Streamlit workbench (9 tabs)
+├── VALIDATION.md           # What survives independent testing, and what was withdrawn
+├── app.py                  # Streamlit workbench (13 tabs; all figures computed live)
+├── parser.py               # Canonical IVTFF parser (app + validation scripts)
+├── lexicon.py              # Hypothesised gloss dictionary (not validated)
+├── structural_validation.py# Meaning-free validation ladder (writes output/)
 ├── requirements.txt        # Runtime dependencies (streamlit, pandas, numpy)
 ├── .gitignore              # Environment & cache filters
 └── data/
-    └── ZL3b-n.txt          # Authoritative IVTFF transliteration corpus (38,223 tokens)
+    └── ZL3b-n.txt          # IVTFF transliteration corpus (38,958 tokens via parser.py)
