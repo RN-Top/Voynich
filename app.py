@@ -1,125 +1,13 @@
+```python
 import streamlit as st
 import pandas as pd
 import numpy as np
 import re
 from collections import Counter
-import random
-
-st.set_page_config(page_title="Voynich Decipherment Workbench", layout="wide")
-
-st.title("Voynich Decipherment Workbench")
-st.caption("Morphological Analysis, Syntactic Evaluation & Optimized Tournaments")
-
-# ---------------------------------------------------------
-# Sidebar: Data Source & Config
-# ---------------------------------------------------------
-st.sidebar.header("Data & Configuration")
-uploaded_file = st.sidebar.file_uploader("Upload ZL3b Transcription / Text File", type=["txt", "csv", "csv"])
-
-@st.cache_data
-def load_and_clean_data(file):
-    if file is None:
-        # Fallback sample data generator
-        sample_lines = [
-            "fachys ykal ar ataiin shol shory cthesos chey keo dal chedy qokedy",
-            "otaiin cthy shey dain qokaiin or chey cthey qotedy ol shedy chol",
-            "daiin chedy ctheor otaiin chey shedy ctedy chekeor chedy",
-            "qokeedy qokaiin sol cheol daiin ctheo qokedy cthee dal shey",
-            "shedy qokain or cheor chedy dar shey daiin ctheor dal",
-            "fachys ykey otaiin chey keor qokedy chedy qotedy ol chey",
-            "otaiin shey qokaiin cthey cthes cheor keol chedy qotedy",
-            "qotedy chedy otaiin daiin chey ctheo qokedy cheor shedy dal",
-            "ykal ar chey keo cthesos qokaiin daiin shedy qotedy ol",
-            "qokedy shedy chol otaiin ctheor chey daiin qokeedy chedy"
-        ]
-        parsed = []
-        for idx, line in enumerate(sample_lines):
-            tokens = line.split()
-            for pos, tok in enumerate(tokens):
-                parsed.append({
-                    "folio": f"sample_f{idx//2 + 1}r",
-                    "currier": "A" if (idx % 4 < 2) else "B",
-                    "line": idx + 1,
-                    "position": pos + 1,
-                    "word": tok
-                })
-        return pd.DataFrame(parsed)
-
-    try:
-        if file.name.endswith(".csv"):
-            df = pd.read_csv(file)
-        else:
-            raw_text = file.getvalue().decode("utf-8", errors="ignore")
-            lines = [l.strip() for l in raw_text.splitlines() if l.strip() and not l.startswith(("#", "<"))]
-            parsed = []
-            for idx, line in enumerate(lines):
-                tokens = re.findall(r"[a-z0-9*]+", line.lower())
-                for pos, tok in enumerate(tokens):
-                    parsed.append({
-                        "folio": f"line_{idx+1}",
-                        "currier": "A" if idx % 2 == 0 else "B",
-                        "line": idx + 1,
-                        "position": pos + 1,
-                        "word": tok
-                    })
-            df = pd.DataFrame(parsed)
-        st.sidebar.success("Custom data loaded successfully.")
-        return df
-    except Exception as e:
-        st.sidebar.error(f"Error parsing file: {e}")
-        st.stop()
-
-df = load_and_clean_data(uploaded_file)
-
-# Ensure required columns
-required_cols = {"folio", "currier", "word"}
-if not required_cols.issubset(df.columns):
-    st.error(f"Data must contain at least columns: {required_cols}")
-    st.stop()
-
-# ---------------------------------------------------------
-# Helper Functions: Morphological Parsing & Transition Scores
-# ---------------------------------------------------------
-PREFIXES = ("qo", "ch", "sh", "da", "ot", "cth", "y", "sa")
-SUFFIXES = ("edy", "aiin", "iin", "ey", "ol", "or", "ar", "al", "y")
-
-st.cache_data
-def parse_affixes(word):
-    """Splits an EVA word into Prefix, Core, Suffix."""
-    w = str(word).lower()
-    prefix = ""
-    suffix = ""
-    for p in sorted(PREFIXES, key=len, reverse=True):
-        if w.startswith(p) and len(w) > len(p):
-            prefix = p
-            w = w[len(p):]
-            break
-    for s in sorted(SUFFIXES, key=len, reverse=True):
-        if w.endswith(s) and len(w) > len(s):
-            suffix = s
-            w = w[:-len(s)]
-            break
-    core = w if w else "_"
-    return prefix or "none", core, suffix or "none"
-
-df["prefix"], df["core"], df["suffix"] = zip(*df["word"].apply(parse_affixes))
-df["affix_role"] = df["prefix"] + "+" + df["suffix"]
-
-def compute_bigram_mutual_information(tokens):
-    """Calculates average pointwise mutual information or sequential transition likelihood."""
-    if len(tokens) < 2:
-        return 0.0
-    bigrams = list(zip(tokens[:-1], tokens[1:]))
-    n_bigrams = len(bigrams)
-    n_unigrams = len(tokens)
-
-    bi_counts = Counter(bigrams)
-    uni_counts = Counter(tokens)
-
-    score = 0.0
-    for (t1, t2), count in bi_counts.items():
-        p_bi = count / n_bigrams
-        p1 = uni_counts[t1] / n_unigrams
-        p2 = uni_counts[t2] / n_unigrams
-        pmi = np.log2(p_bi / (p1 * p2) + 1e-9)
-        score += count —
+import random st.set_page_config(page_title="Voynich Decipherment Workbench", layout="wide") st.title("Voynich Decipherment Workbench") @st.cache_data
+def load_and_clean_data(file): if file is None: sample_lines = [ "fachys ykal ar ataiin shol shory cthesos chey keo dal chedy qokedy", "otaiin cthy shey dain qokaiin or chey cthey qotedy ol shedy chol", "daiin chedy ctheor otaiin chey shedy ctedy chekeor chedy", "qokeedy qokaiin sol cheol daiin ctheo qokedy cthee dal shey", "shedy qokain or cheor chedy dar shey daiin ctheor dal", "fachys ykey otaiin chey keor qokedy chedy qotedy ol chey", "otaiin shey qokaiin cthey cthes cheor keol chedy qotedy", "qotedy chedy otaiin daiin chey ctheo qokedy cheor shedy dal", "ykal ar chey keo cthesos qokaiin daiin shedy qotedy ol", "qokedy shedy chol otaiin ctheor chey daiin qokeedy chedy" ] parsed = [] for idx, line in enumerate(sample_lines): tokens = line.split() for pos, tok in enumerate(tokens): parsed.append({ "folio": f"sample_f{idx//2 + 1}r", "currier": "A" if (idx % 4 < 2) else "B", "line": idx + 1, "position": pos + 1, "word": tok }) return pd.DataFrame(parsed) try: if file.name.endswith(".csv"): df = pd.read_csv(file) else: raw_text = file.getvalue().decode("utf-8", errors="ignore") lines = [l.strip() for l in raw_text.splitlines() if l.strip() and not l.startswith(("#", "<"))] parsed = [] for idx, line in enumerate(lines): tokens = re.findall(r"[a-z0-9*]+", line.lower()) for pos, tok in enumerate(tokens): parsed.append({ "folio": f"line_{idx+1}", "currier": "A" if idx % 2 == 0 else "B", "line": idx + 1, "position": pos + 1, "word": tok }) df = pd.DataFrame(parsed) return df except Exception as e: st.sidebar.error(f"Error parsing file: {e}") st.stop() uploaded_file = st.sidebar.file_uploader("Upload ZL3b Transcription / Text File", type=["txt", "csv"])
+df = load_and_clean_data(uploaded_file) PREFIXES = ("qo", "ch", "sh", "da", "ot", "cth", "y", "sa")
+SUFFIXES = ("edy", "aiin", "iin", "ey", "ol", "or", "ar", "al", "y") def parse_affixes(word): w = str(word).lower() prefix = "" suffix = "" for p in sorted(PREFIXES, key=len, reverse=True): if w.startswith(p) and len(w) > len(p): prefix = p w = w[len(p):] break for s in sorted(SUFFIXES, key=len, reverse=True): if w.endswith(s) and len(w) > len(s): suffix = s w = w[:-len(s)] break core = w if w else "_" return prefix or "none", core, suffix or "none" df["prefix"], df["core"], df["suffix"] = zip(*df["word"].apply(parse_affixes))
+df["affix_role"] = df["prefix"] + "+" + df["suffix"] def compute_bigram_mutual_information(tokens): if len(tokens) < 2: return 0.0 bigrams = list(zip(tokens[:-1], tokens[1:])) n_bigrams = len(bigrams) n_unigrams = len(tokens) bi_counts = Counter(bigrams) uni_counts = Counter(tokens) score = 0.0 for (t1, t2), count in bi_counts.items(): p_bi = count / n_bigrams p1 = uni_counts[t1] / n_unigrams p2 = uni_counts[t2] / n_unigrams pmi = np.log2(p_bi / (p1 * p2) + 1e-9) score += count * pmi return float(score / n_bigrams) tab_corpus, tab_affix_tourney, tab_semantic_tourney = st.tabs([ "1. Corpus Overview", "2. Affix-Role Tournament", "3. Semantic Permutation Tournament (Item 6)"
+]) with tab_corpus: st.subheader("Corpus Statistics") col1, col2, col3, col4 = st.columns(4) col1.metric("Total Tokens", len(df)) col2.metric("Unique Types", df["word"].nunique()) col3.metric("Folios Covered", df["folio"].nunique()) col4.metric("Dialect Split (A / B)", f"{sum(df['currier']=='A')} / {sum(df['currier']=='B')}") st.dataframe(df.head(25), use_container_width=True) with tab_affix_tourney: st.subheader("Affix-Role Sequential Constraint Tournament") col_a1, col_a2 = st.columns(2) n_affix_perms = col_a1.number_input("Affix Permutations", min_value=100, max_value=20000, value=2000, step=500) affix_seed = col_a2.number_input("Random Seed (Affix)", value=42, step=1) if st.button("Run Affix-Role Tournament"): np.random.seed(int(affix_seed)) roles = df["affix_role"].tolist() observed_score = compute_bigram_mutual_information(roles) shuffled = roles.copy() null_distribution = [] for _ in range(int(n_affix_perms)): np.random.shuffle(shuffled) null_distribution.append(compute_bigram_mutual_information(shuffled)) null_dist = np.array(null_distribution) z_score = (observed_score - np.mean(null_dist)) / (np.std(null_dist) + 1e-9) p_val = float(np.mean(null_dist >= observed_score)) res1, res2, res3 = st.columns(3) res1.metric("Observed Transition Score", f"{observed_score:.4f}") res2.metric("Mean Shuffled Score", f"{np.mean(null_dist):.4f}") res3.metric("Z-Score", f"{z_score:.2f}") with tab_semantic_tourney: st.subheader("Item 6: Semantic Permutation Tournament") t_col1, t_col2, t_col3 = st.columns(3) permutations = t_col1.number_input("Permutations", min_value=1000, max_value=50000, value=10000, step=1000) seed = t_col2.number_input("Permutation Seed", value=42, step=1) target_currier = t_col3.selectbox("Currier Dialect Filter", ["All", "Currier A", "Currier B"]) sub_df = df.copy() if target_currier == "Currier A": sub_df = sub_df[sub_df["currier"] == "A"] elif target_currier == "Currier B": sub_df = sub_df[sub_df["currier"] == "B"] if st.button("Execute 10,000-Permutation Tournament", type="primary"): with st.spinner("Processing full corpus..."): np.random.seed(int(seed)) random.seed(int(seed)) tokens = sub_df["word"].tolist() obs_stat = compute_bigram_mutual_information(tokens) token_arr = np.array(tokens) null_stats = np.empty(int(permutations), dtype=np.float32) for i in range(int(permutations)): permuted_arr = np.random.permutation(token_arr) null_stats[i] = compute_bigram_mutual_information(permuted_arr.tolist()) null_mean = float(np.mean(null_stats)) null_std = float(np.std(null_stats)) z_val = (obs_stat - null_mean) / (null_std + 1e-9) empirical_p = float(np.sum(null_stats >= obs_stat) / int(permutations)) st.subheader("Tournament Results") m1, m2, m3, m4 = st.columns(4) m1.metric("Observed Transition Metric", f"{obs_stat:.4f}") m2.metric("Monte Carlo Mean", f"{null_mean:.4f}") m3.metric("Z-Score", f"{z_val:+.2f}") m4.metric("Empirical p-value", f"{empirical_p:.6f}")
+`
