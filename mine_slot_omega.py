@@ -44,7 +44,7 @@ def mine_omega_slots(corpus_path: str = "data/ZL3b-n.txt"):
     records = []
 
     # Group by folio and line to preserve physical syntactic boundaries
-    grouped = df.groupby(["folio", "line"])
+    grouped = df.groupby(["folio", "header"], sort=False)
 
     for (folio, line), group in grouped:
         tokens = group[token_col].dropna().astype(str).tolist()
