@@ -185,7 +185,7 @@ def compute_bigram_mutual_information(tokens):
     return float(score / n_bigrams)
 
 # -----------------------------------------------------------------------------
-# HIGH-PRIORITY CORPUS LOADER
+# ROBUST CORPUS PARSER & LOADER
 # -----------------------------------------------------------------------------
 def parse_ivtff_text(raw_text):
     lines = []
@@ -195,7 +195,7 @@ def parse_ivtff_text(raw_text):
 
     for line in raw_text.splitlines():
         line = line.strip()
-        if not line or line.startswith("#"):
+        if not line or line.startswith("#") or line.startswith("bplist"):
             continue
 
         if line.startswith("<f") and ">" in line:
@@ -234,7 +234,7 @@ def parse_ivtff_text(raw_text):
     return lines
 
 def load_corpus(uploaded_file=None):
-    # Priority 1: User uploaded file
+    # 1. User uploaded file override
     if uploaded_file is not None:
         try:
             uploaded_file.seek(0)
@@ -242,48 +242,27 @@ def load_corpus(uploaded_file=None):
             if not raw_bytes.startswith(b"bplist"):
                 text = raw_bytes.decode("utf-8", errors="ignore")
                 lines = parse_ivtff_text(text)
-                if lines:
+                if len(lines) > 5:
                     return lines, f"UPLOADED ({uploaded_file.name})"
         except Exception as e:
-            st.sidebar.error(f"Upload read error: {e}")
+            st.sidebar.error(f"Upload error: {e}")
 
-    # Priority 2: Direct HTTP Fetch using requests
+    # 2. Direct fetch from canonical web sources (Bypasses broken repo bookmarks)
     urls = [
-        "https://raw.githubusercontent.com/RN-Top/Voynich/main/data/ZL3b-n.txt",
-        "https://raw.githubusercontent.com/RN-Top/Voynich/main/ZL3b-n.txt",
         "https://www.voynich.nu/data/ZL3b-n.txt",
+        "https://raw.githubusercontent.com/RN-Top/Voynich/main/data/ZL3b-n.txt",
     ]
     for url in urls:
         try:
-            r = requests.get(url, timeout=12, headers={"User-Agent": "Mozilla/5.0"})
-            if r.status_code == 200 and len(r.text) > 10000 and not r.text.startswith("bplist"):
+            r = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
+            if r.status_code == 200 and len(r.text) > 50000 and not r.text.startswith("bplist"):
                 lines = parse_ivtff_text(r.text)
-                if lines:
-                    return lines, f"LIVE_HTTP ({url.split('/')[-1]})"
+                if len(lines) > 5:
+                    return lines, f"CANONICAL_NET ({url.split('/')[-1]})"
         except Exception:
             continue
 
-    # Priority 3: Local Filesystem Check
-    base_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else "."
-    candidates = [
-        os.path.join(base_dir, "data", "ZL3b-n.txt"),
-        os.path.join(base_dir, "ZL3b-n.txt"),
-        "data/ZL3b-n.txt",
-        "ZL3b-n.txt",
-    ]
-    for p in candidates:
-        if os.path.exists(p) and os.path.getsize(p) > 10000:
-            try:
-                with open(p, "r", encoding="utf-8", errors="ignore") as f:
-                    content = f.read()
-                if not content.startswith("bplist") and len(content) > 10000:
-                    lines = parse_ivtff_text(content)
-                    if lines:
-                        return lines, f"LOCAL ({os.path.basename(p)})"
-            except Exception:
-                continue
-
-    # Priority 4: Internal fallback sample
+    # 3. Fallback sample tokens if completely offline
     sample_corpus = [
         ("f70v2", "+P0.1", "A", "Astronomical", "otey ykeey tchy yteos alain olar oteeam otaly otal arar otaldy okeoly okydy daiiamdy"),
         ("f70v2", "+P0.2", "A", "Astronomical", "dair cheeo chy chdaiin qokedy otcheodaiin qokchdy otedal daiin aral"),
@@ -295,13 +274,6 @@ def load_corpus(uploaded_file=None):
         ("f72v1", "+P0.2", "B", "Astronomical", "otey ykeey tchy yteos alain olar oteeam otam"),
         ("f72v2", "+P0.1", "B", "Astronomical", "am oror sheey qokedy otcheod chedaiin qokeedy daiin"),
         ("f72v2", "+P0.2", "B", "Astronomical", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam"),
-        ("f114v", "+P0.4", "B", "Compounding", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam"),
-        ("f114v", "+P0.21", "B", "Compounding", "dair cheeo chy chdaiin qokedy otcheodaiin qokchdy otedal daiin aral"),
-        ("f114v", "+P0.29", "B", "Compounding", "otcheed okar chey qopairam dal chedy daiin"),
-        ("f114v", "+P0.31", "B", "Compounding", "olaiin cheo otcheody lkchedy okol okaiin otaiin otal qotar"),
-        ("f1r", "=Pt", "A", "Herbal", "fachys ykal ar ataiin shol shory cthesos okchoy otchol chocthy ydaraishy chdam"),
-        ("f9r", "+Pc", "A", "Herbal", "shedy qokain or cheor chedy dar shey daiin ctheor dal ytchas chdam"),
-        ("f116v", "@Lx", "B", "Seal", "oror sheey"),
     ]
     lines = []
     for fol, hdr, curr, sec, words_str in sample_corpus:
