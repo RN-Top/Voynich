@@ -682,7 +682,11 @@ with tab_semantic_tourney:
     for l in lines_corpus:
         for tok in l["tokens"]:
             all_tok_objs.append({"currier": l["currier"], "word": tok})
-    df_all_tokens = pd.DataFrame(all_tok_objs)
+
+    if all_tok_objs:
+        df_all_tokens = pd.DataFrame(all_tok_objs)
+    else:
+        df_all_tokens = pd.DataFrame(columns=["currier", "word"])
 
     sub_tokens = df_all_tokens.copy()
     if target_currier == "Currier A":
@@ -691,28 +695,34 @@ with tab_semantic_tourney:
         sub_tokens = sub_tokens[sub_tokens["currier"] == "B"]
 
     if st.button("Execute 10,000-Permutation Tournament", type="primary"):
-        with st.spinner("Processing full corpus permutation..."):
-            np.random.seed(int(seed))
-            random.seed(int(seed))
-            tokens_list = sub_tokens["word"].tolist()
-            obs_stat = compute_bigram_mutual_information(tokens_list)
-            token_arr = np.array(tokens_list)
-            null_stats = np.empty(int(permutations), dtype=np.float32)
-            for i in range(int(permutations)):
-                permuted_arr = np.random.permutation(token_arr)
-                null_stats[i] = compute_bigram_mutual_information(permuted_arr.tolist())
+        if not sub_tokens.empty and "word" in sub_tokens.columns:
+            with st.spinner("Processing full corpus permutation..."):
+                np.random.seed(int(seed))
+                random.seed(int(seed))
+                tokens_list = sub_tokens["word"].dropna().tolist()
+                if len(tokens_list) >= 2:
+                    obs_stat = compute_bigram_mutual_information(tokens_list)
+                    token_arr = np.array(tokens_list)
+                    null_stats = np.empty(int(permutations), dtype=np.float32)
+                    for i in range(int(permutations)):
+                        permuted_arr = np.random.permutation(token_arr)
+                        null_stats[i] = compute_bigram_mutual_information(permuted_arr.tolist())
 
-            null_mean = float(np.mean(null_stats))
-            null_std = float(np.std(null_stats))
-            z_val = (obs_stat - null_mean) / (null_std + 1e-9)
-            empirical_p = float(np.sum(null_stats >= obs_stat) / int(permutations))
+                    null_mean = float(np.mean(null_stats))
+                    null_std = float(np.std(null_stats))
+                    z_val = (obs_stat - null_mean) / (null_std + 1e-9)
+                    empirical_p = float(np.sum(null_stats >= obs_stat) / int(permutations))
 
-            st.subheader("Tournament Results")
-            sm1, sm2, sm3, sm4 = st.columns(4)
-            sm1.metric("Observed Transition Metric", f"{obs_stat:.4f}")
-            sm2.metric("Monte Carlo Mean", f"{null_mean:.4f}")
-            sm3.metric("Z-Score", f"{z_val:+.2f}")
-            sm4.metric("Empirical p-value", f"{empirical_p:.6f}")
+                    st.subheader("Tournament Results")
+                    sm1, sm2, sm3, sm4 = st.columns(4)
+                    sm1.metric("Observed Transition Metric", f"{obs_stat:.4f}")
+                    sm2.metric("Monte Carlo Mean", f"{null_mean:.4f}")
+                    sm3.metric("Z-Score", f"{z_val:+.2f}")
+                    sm4.metric("Empirical p-value", f"{empirical_p:.6f}")
+                else:
+                    st.warning("Insufficient tokens for mutual information computation.")
+        else:
+            st.warning("No tokens found matching the selected dialect filter.")
 
 # =============================================================================
 # TAB 6: AFFIX-ROLE TOURNAMENT
@@ -731,29 +741,32 @@ with tab_affix_tourney:
                 p, _, s = parse_affixes(tok)
                 all_affix_roles.append(f"{p}+{s}")
 
-        observed_score = compute_bigram_mutual_information(all_affix_roles)
-        shuffled = all_affix_roles.copy()
-        null_distribution = []
-        with st.spinner("Executing null permutations..."):
-            for _ in range(int(n_affix_perms)):
-                np.random.shuffle(shuffled)
-                null_distribution.append(compute_bigram_mutual_information(shuffled))
+        if len(all_affix_roles) >= 2:
+            observed_score = compute_bigram_mutual_information(all_affix_roles)
+            shuffled = all_affix_roles.copy()
+            null_distribution = []
+            with st.spinner("Executing null permutations..."):
+                for _ in range(int(n_affix_perms)):
+                    np.random.shuffle(shuffled)
+                    null_distribution.append(compute_bigram_mutual_information(shuffled))
 
-        null_dist = np.array(null_distribution)
-        z_score = (observed_score - np.mean(null_dist)) / (np.std(null_dist) + 1e-9)
-        p_val = float(np.mean(null_dist >= observed_score))
+            null_dist = np.array(null_distribution)
+            z_score = (observed_score - np.mean(null_dist)) / (np.std(null_dist) + 1e-9)
+            p_val = float(np.mean(null_dist >= observed_score))
 
-        res1, res2, res3, res4 = st.columns(4)
-        res1.metric("Observed Transition Score", f"{observed_score:.4f}")
-        res2.metric("Mean Shuffled Score", f"{np.mean(null_dist):.4f}")
-        res3.metric("Z-Score", f"{z_score:+.2f}")
-        res4.metric("Empirical p-value", f"{p_val:.6f}")
+            res1, res2, res3, res4 = st.columns(4)
+            res1.metric("Observed Transition Score", f"{observed_score:.4f}")
+            res2.metric("Mean Shuffled Score", f"{np.mean(null_dist):.4f}")
+            res3.metric("Z-Score", f"{z_score:+.2f}")
+            res4.metric("Empirical p-value", f"{p_val:.6f}")
+        else:
+            st.warning("Insufficient tokens to run affix tournament.")
 
 # =============================================================================
 # TAB 7: DUAL-DIALECT BRIDGE TEST
 # =============================================================================
 with tab_dialect:
-    st.header("🏛️ Dual-Dialect Linguistic Bridge Test")
+    st.header("🏛️️ Dual-Dialect Linguistic Bridge Test")
     st.markdown("""
     Evaluating the linguistic divergence of Beinecke MS 408 across two historical technical traditions:
     **Northern Italian / Venetian Trade Apothecary** vs. **Early New High German Distillation Compendia**.
