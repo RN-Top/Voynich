@@ -26,13 +26,6 @@ st.set_page_config(
 # -----------------------------------------------------------------------------
 # CORE STATIC CONSTANTS & STRUCTURAL REGISTERS
 # -----------------------------------------------------------------------------
-DATA_PATH = "data/ZL3b-n.txt"
-FALLBACK_URLS = [
-    "https://raw.githubusercontent.com/RN-Top/Voynich/main/data/ZL3b-n.txt",
-    "https://raw.githubusercontent.com/RN-Top/Voynich/main/ZL3b-n.txt",
-    "https://www.voynich.nu/data/ZL3b-n.txt",
-]
-
 CONTROL_HEADERS = ("qk", "dk", "qo", "qok", "qot", "qoc", "q", "k", "d")
 BUFFER_CONNECTORS = ("aiin", "ain", "al", "ar", "or", "ol")
 STATIVE_HOLDS = ("y", "dy", "eedy", "edy")
@@ -193,12 +186,12 @@ def compute_bigram_mutual_information(tokens):
     return float(score / n_bigrams)
 
 # -----------------------------------------------------------------------------
-# CACHED CORPUS LOADER (WITH ROBUST MULTI-SOURCE & BUILT-IN FALLBACK)
+# CACHED CORPUS LOADER (ABSOLUTE PATH RESOLVER + GITHUB RAW FETCH)
 # -----------------------------------------------------------------------------
 @st.cache_data(show_spinner=False)
 def load_corpus(uploaded_file=None):
     lines = []
-    source = "LOCAL"
+    source = "UNKNOWN"
     raw_text = ""
 
     if uploaded_file is not None:
@@ -220,34 +213,50 @@ def load_corpus(uploaded_file=None):
             else:
                 raw_text = uploaded_file.getvalue().decode("utf-8", errors="ignore")
         except Exception as e:
-            st.sidebar.error(f"Error parsing uploaded file: {e}")
+            st.sidebar.error(f"Error reading upload: {e}")
 
     if not raw_text:
-        candidates = [DATA_PATH, "ZL3b-n.txt", "data/ZL3b-n 2.txt", "ZL3b-n 2.txt"]
+        base_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else "."
+        candidates = [
+            os.path.join(base_dir, "ZL3b-n.txt"),
+            os.path.join(base_dir, "data", "ZL3b-n.txt"),
+            os.path.join(base_dir, "ZL3b-n 2.txt"),
+            os.path.join(base_dir, "data", "ZL3b-n 2.txt"),
+            "ZL3b-n.txt",
+            "data/ZL3b-n.txt",
+            "ZL3b-n 2.txt",
+            "data/ZL3b-n 2.txt",
+        ]
         for path in candidates:
-            if os.path.exists(path) and os.path.getsize(path) > 1000:
+            if os.path.exists(path) and os.path.getsize(path) > 10000:
                 try:
                     with open(path, "r", encoding="utf-8", errors="ignore") as f:
                         raw_text = f.read()
-                    source = f"LOCAL ({path})"
+                    source = f"LOCAL ({os.path.basename(path)})"
                     break
                 except Exception:
                     continue
 
     if not raw_text:
-        for url in FALLBACK_URLS:
+        urls = [
+            "https://raw.githubusercontent.com/RN-Top/Voynich/main/ZL3b-n.txt",
+            "https://raw.githubusercontent.com/RN-Top/Voynich/main/data/ZL3b-n.txt",
+            "https://raw.githubusercontent.com/RN-Top/Voynich/main/ZL3b-n%202.txt",
+            "https://www.voynich.nu/data/ZL3b-n.txt",
+        ]
+        for url in urls:
             try:
-                req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-                with urllib.request.urlopen(req, timeout=10) as response:
-                    raw_text = response.read().decode("utf-8", errors="ignore")
-                if len(raw_text) > 1000:
-                    source = f"MIRROR ({url.split('/')[-1]})"
+                req = urllib.request.Request(url, headers={"User-Agent": "VoynichWorkbench/2.0"})
+                with urllib.request.urlopen(req, timeout=12) as response:
+                    content = response.read().decode("utf-8", errors="ignore")
+                if len(content) > 10000:
+                    raw_text = content
+                    source = f"REMOTE ({url.split('/')[-1]})"
                     break
             except Exception:
                 continue
 
     if not raw_text:
-        # Integrated fallback containing verified lines across key folios including quarantine
         source = "INTEGRATED SYSTEM FALLBACK"
         sample_corpus = [
             ("f70v2", "+P0.1", "A", "Astronomical", "otey ykeey tchy yteos alain olar oteeam otaly otal arar otaldy okeoly okydy daiiamdy"),
@@ -284,8 +293,9 @@ def load_corpus(uploaded_file=None):
 
     for line in raw_text.splitlines():
         line = line.strip()
-        if not line:
+        if not line or line.startswith("#"):
             continue
+
         if line.startswith("<f") and ">" in line:
             tag = line[1:line.index(">")]
             parts = tag.split()
@@ -296,7 +306,7 @@ def load_corpus(uploaded_file=None):
                 current_currier = "A"
             if "$I=H" in line:
                 current_section = "Herbal"
-            elif "$I=A" in line or "$I=Z" in line or "$I=C" in line:
+            elif any(k in line for k in ("$I=A", "$I=Z", "$I=C")):
                 current_section = "Astronomical"
             elif "$I=B" in line:
                 current_section = "Biological"
@@ -304,9 +314,6 @@ def load_corpus(uploaded_file=None):
                 current_section = "Pharmaceutical"
             elif "$I=S" in line:
                 current_section = "Stars/Recipes"
-            continue
-
-        if line.startswith("#"):
             continue
 
         parts = line.split(None, 1)
@@ -578,7 +585,7 @@ with tab_transition_tourney:
 
     if st.button("Execute Transition Consistency Analysis", type="primary"):
         np.random.seed(int(t_seed))
-        all_states = [VoynichParser.parse(tok)["state"] for l in lines_corpus for tok in l["tokens"]]
+        all_states = [VoynichParser.parse(tok)["state"] for l in lines_corpus for tok in l["tokens"] if VoynichParser.parse(tok)["state"] != "?"]
         
         def calculate_clpr_score(state_seq):
             transitions_valid = {("C", "L"), ("L", "P"), ("P", "R"), ("R", "C")}
@@ -588,8 +595,8 @@ with tab_transition_tourney:
             hits_clpr = sum(1 for p in pairs if p in transitions_valid)
             return hits_clpr / len(pairs)
 
-        if len(all_states) < 5:
-            all_states = ["C", "L", "P", "R"] * 50
+        if len(all_states) < 10:
+            all_states = ["C", "L", "P", "R"] * 25 + ["L", "P", "C", "R"] * 25
 
         obs_score = calculate_clpr_score(all_states)
         shuffled = all_states.copy()
@@ -617,7 +624,7 @@ with tab_transition_tourney:
             st.success(f"Significant (p = {p_val_trans:.5f}): Macrostate ordering verified above chance!")
 
         fig, ax = plt.subplots(figsize=(8, 4))
-        ax.hist(null_arr, bins=15, color="#a0a0a0", edgecolor="black", label="Null Distribution")
+        ax.hist(null_arr, bins=25, color="#a0a0a0", edgecolor="black", label="Null Distribution")
         ax.axvline(obs_score, color="red", linestyle="--", linewidth=2, label=f"Observed ({obs_score:.4f})")
         ax.set_xlabel("Transition Consistency Score")
         ax.set_ylabel("Frequency")
@@ -648,7 +655,7 @@ with tab_semantic_tourney:
     if st.button("Execute Permutation Tournament", type="primary"):
         tokens_list = sub_tokens["word"].dropna().tolist()
         if len(tokens_list) < 2:
-            tokens_list = ["qokedy", "chedaiin", "qokeedy", "daiin", "opairam", "chedy", "shedy", "chol", "chor", "chdam"] * 5
+            tokens_list = ["qokedy", "chedaiin", "qokeedy", "daiin", "opairam", "chedy", "shedy", "chol", "chor", "chdam"] * 10
 
         with st.spinner("Executing permutation battery..."):
             np.random.seed(int(seed))
