@@ -1,0 +1,152 @@
+import numpy as np
+import pandas as pd
+from collections import Counter, defaultdict
+
+# -------------------------------------------------------------------------
+# 1. CANONICAL MORPHOLOGICAL RULES (FROZEN)
+# -------------------------------------------------------------------------
+PREFIX_RULES = {
+    'qo': 'C', 'qok': 'C', 'ok': 'C', 'ot': 'C',
+    'ch': 'P', 'sh': 'P', 'da': 'P',
+    's': 'L', 't': 'L',
+    'd': 'R', 'y': 'R'
+}
+
+SUFFIX_RULES = {
+    'am': 'R', 'm': 'R',
+    'aiin': 'L', 'ain': 'L', 'iin': 'L', 'in': 'L',
+    'al': 'P', 'ol': 'P', 'ar': 'P', 'or': 'P',
+    'edy': 'C', 'dy': 'C', 'y': 'C'
+}
+
+# Baseline assignment map: C, L, P, R -> Semantic Concepts
+ORIGINAL_SEMANTIC_MAP = {
+    'C': 'HEAT_VESSEL',     # e.g., boil, heat, vessel, source
+    'L': 'LIQUID_MEDIUM',   # e.g., water, extract, menstruum, fluid
+    'P': 'PROCESS_ACTION',  # e.g., distill, digest, circulate, sublimate
+    'R': 'RESIDUE_OUTLET'   # e.g., seal, drain, sediment, closure
+}
+
+def classify_token(token: str) -> str:
+    """Classifies a Voynich token into C, L, P, or R based on morphological priority."""
+    token = token.strip().lower()
+    if not token:
+        return 'UNKNOWN'
+
+    # Suffix check first (strongest positional anchor)
+    for sfx, role in sorted(SUFFIX_RULES.items(), key=lambda x: len(x[0]), reverse=True):
+        if token.endswith(sfx):
+            return role
+
+    # Prefix check
+    for pfx, role in sorted(PREFIX_RULES.items(), key=lambda x: len(x[0]), reverse=True):
+        if token.startswith(pfx):
+            return role
+
+    return 'UNKNOWN'
+
+
+# -------------------------------------------------------------------------
+# 2. EVALUATION METRIC: CONTEXTUAL CO-OCCURRENCE / TRANSITION SCORE
+# -------------------------------------------------------------------------
+def score_semantic_consistency(tokens: list, role_to_meaning: dict) -> float:
+    """
+    Evaluates how cleanly semantic transitions flow along physical text.
+    Standard procedural hypothesis expects directional transitions:
+    HEAT/VESSEL -> LIQUID/MEDIUM -> PROCESS -> RESIDUE/OUTLET.
+    """
+    valid_transitions = {
+        ('HEAT_VESSEL', 'LIQUID_MEDIUM'),
+        ('LIQUID_MEDIUM', 'PROCESS_ACTION'),
+        ('PROCESS_ACTION', 'RESIDUE_OUTLET'),
+        ('RESIDUE_OUTLET', 'HEAT_VESSEL')
+    }
+
+    assigned_meanings = []
+    for token in tokens:
+        role = classify_token(token)
+        if role in role_to_meaning:
+            assigned_meanings.append(role_to_meaning[role])
+
+    if len(assigned_meanings) < 2:
+        return 0.0
+
+    matches = 0
+    total_transitions = len(assigned_meanings) - 1
+
+    for i in range(total_transitions):
+        pair = (assigned_meanings[i], assigned_meanings[i+1])
+        if pair in valid_transitions:
+            matches += 1
+
+    return matches / total_transitions
+
+
+# -------------------------------------------------------------------------
+# 3. PERMUTATION TOURNAMENT HARNESS
+# -------------------------------------------------------------------------
+def run_permutation_tournament(tokens: list, num_permutations: int = 10000, seed: int = 42):
+    """
+    Runs an adversarial tournament:
+    1. Computes the score under the hypothesized semantic mapping.
+    2. Shuffles the pool of semantic roles thousands of times across the fixed morphological classes.
+    3. Calculates an empirical p-value and z-score to measure if the hypothesis beats random labelings.
+    """
+    np.random.seed(seed)
+
+    meanings_pool = list(ORIGINAL_SEMANTIC_MAP.values())
+    roles = list(ORIGINAL_SEMANTIC_MAP.keys())
+
+    # Score baseline hypothesis
+    actual_score = score_semantic_consistency(tokens, ORIGINAL_SEMANTIC_MAP)
+
+    null_scores = np.empty(num_permutations)
+
+    for i in range(num_permutations):
+        # Permute meanings across the fixed structural classes
+        shuffled_meanings = np.random.permutation(meanings_pool)
+        permuted_map = dict(zip(roles, shuffled_meanings))
+        null_scores[i] = score_semantic_consistency(tokens, permuted_map)
+
+    # Statistical evaluation
+    p_value = np.mean(null_scores >= actual_score)
+    mean_null = np.mean(null_scores)
+    std_null = np.std(null_scores)
+    z_score = (actual_score - mean_null) / std_null if std_null > 0 else 0.0
+
+    print("=" * 60)
+    print("SEMANTIC PERMUTATION TOURNAMENT RESULTS")
+    print("=" * 60)
+    print(f"Total Tokens Evaluated:      {len(tokens)}")
+    print(f"Hypothesized Alignment Score:{actual_score:.4f}")
+    print(f"Null Model Mean Score:       {mean_null:.4f} (std: {std_null:.4f})")
+    print(f"Z-Score:                     {z_score:+.2f}")
+    print(f"Empirical p-value:           {p_value:.5f} (over {num_permutations:,} permutations)")
+    print("=" * 60)
+
+    if p_value < 0.01:
+        print("VERDICT: SIGNIFICANT. The hypothesized semantic labels outperform random permutations.")
+    else:
+        print("VERDICT: NOT SIGNIFICANT. The semantic labels perform no better than arbitrary assignment.")
+
+    return {
+        'actual_score': actual_score,
+        'null_mean': mean_null,
+        'null_std': std_null,
+        'z_score': z_score,
+        'p_value': p_value
+    }
+
+
+# -------------------------------------------------------------------------
+# EXAMPLE USAGE
+# -------------------------------------------------------------------------
+if __name__ == '__main__':
+    # Sample sequence using standard EVA Voynich tokens
+    sample_voynich_tokens = [
+        "qokeey", "dal", "sain", "dam",
+        "otaiin", "chor", "shedy", "am",
+        "qokedy", "taiin", "chol", "am"
+    ]
+
+    run_permutation_tournament(sample_voynich_tokens, num_permutations=5000)
