@@ -4,4 +4,5 @@ openpyxl
 reportlab
 matplotlib
 numpy
-requests scipy
+requests
+scipy
