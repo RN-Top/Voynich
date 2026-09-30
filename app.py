@@ -1,398 +1,203 @@
-"""
-Voynich Manuscript Decipherment Engine & Dual-Dialect Workbench
-Author: Voynich Decipherment Working Group (RN-Top/Voynich)
-Corpus Standard: IVTFF EVA 2.0 / ZL3b-n Standard
-Zero external dependencies: uses only native streamlit, pandas, and numpy.
-"""
-
-import os
-import re
-import urllib.request
+import io
+from collections import Counter
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(
-    page_title="Voynich Decipherment Workbench",
-    page_icon="🌌",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
+st.set_page_config(page_title="Voynich Decipherment Workbench", layout="wide")
 
-# -----------------------------------------------------------------------------
-# CORE CONSTANTS & GROUNDED LEXICON
-# -----------------------------------------------------------------------------
-DATA_PATH = "data/ZL3b-n.txt"
-FALLBACK_URL = "https://www.voynich.nu/data/ZL3b-n.txt"
-HOLDOUT_FOLIOS = ("f70v2", "f71r", "f72r1", "f72v1", "f72v2")
+# -------------------------------------------------------------------------
+# DEFAULT EVALUATION DATASET (f70v2)
+# -------------------------------------------------------------------------
+DEFAULT_CSV = """,folio,token,carrier,predicted,expected,match
+1,f70v2,dar,EMPTY,outlet,medium,false
+2,f70v2,otey,ote,reflux,reflux,true
+3,f70v2,ykeey,ykee,reflux,reflux,true
+4,f70v2,tchy,tch,reflux,reflux,true
+6,f70v2,oteotey,oteote,reflux,reflux,true
+7,f70v2,shey,she,reflux,reflux,true
+10,f70v2,dateey,atee,reflux,reflux,true
+11,f70v2,sal,s,outlet,medium,false
+12,f70v2,ody,od,reflux,reflux,true
+13,f70v2,choteey,chotee,reflux,reflux,true
+14,f70v2,choeteedy,choeteed,reflux,reflux,true
+16,f70v2,yteos,yteos,outlet,,false
+17,f70v2,alain,al,medium,medium,true
+18,f70v2,sheodaly,sheodal,reflux,reflux,true
+20,f70v2,aiin,EMPTY,medium,medium,true
+21,f70v2,cholkal,cholk,outlet,medium,false
+22,f70v2,chokear,choke,outlet,medium,false
+23,f70v2,oteody,oteod,reflux,reflux,true
+24,f70v2,cholaiin,chol,medium,medium,true
+25,f70v2,oteeoal,oteeo,outlet,medium,false
+26,f70v2,al,EMPTY,outlet,medium,false
+27,f70v2,sheeos,sheeos,outlet,,false
+28,f70v2,okey,oke,reflux,reflux,true
+30,f70v2,dy,EMPTY,reflux,reflux,true
+34,f70v2,olar,ol,outlet,medium,false
+35,f70v2,otoaiin,oto,medium,medium,true
+36,f70v2,oteeody,oteeod,reflux,reflux,true
+38,f70v2,todaiin,tod,medium,medium,true
+39,f70v2,chokain,chok,medium,medium,true
+40,f70v2,otalal,otal,outlet,medium,false
+41,f70v2,oteeam,otee,positional,positional,true
+43,f70v2,ykary,ykar,reflux,reflux,true
+44,f70v2,otar,ot,outlet,medium,false
+45,f70v2,oty,ot,reflux,reflux,true
+46,f70v2,oky,ok,reflux,reflux,true
+47,f70v2,ody,od,reflux,reflux,true
+48,f70v2,oty,ot,reflux,reflux,true
+49,f70v2,ar,EMPTY,outlet,medium,false
+51,f70v2,otody,otod,reflux,reflux,true
+53,f70v2,otaldar,otald,outlet,medium,false
+54,f70v2,okody,okod,reflux,reflux,true
+55,f70v2,opysam,opys,positional,positional,true
+56,f70v2,chy,ch,reflux,reflux,true
+57,f70v2,otaly,otal,reflux,reflux,true
+58,f70v2,otal,ot,outlet,medium,false
+59,f70v2,arar,ar,outlet,medium,false
+60,f70v2,otaldy,otald,reflux,reflux,true
+61,f70v2,okeoly,okeol,reflux,reflux,true
+62,f70v2,okydy,okyd,reflux,reflux,true
+64,f70v2,daiiamdy,aiiamd,reflux,reflux,true"""
 
-CONTROL_HEADERS = ("qk", "dk", "qo", "qok", "qot", "qoc", "q", "k", "d")
-BUFFER_CONNECTORS = ("aiin", "ain", "al", "ar", "or", "ol")
-STATIVE_HOLDS = ("y", "dy", "eedy", "edy")
-TERMINAL_FLUSHES = ("am", "m")
-
-MASTER_LEXICON = {
-    "ydaraishy": {"la": "auctor", "ven": "fatto da l'auctor", "ger": "gemacht von meister", "en": "author / composed by", "role": "OPERAND_NOUN", "domain": "Colophon"},
-    "ytchas": {"la": "scriptor", "ven": "scritto da lo scriptor", "ger": "geschriben vom schreiber", "en": "scribe / written by", "role": "OPERAND_NOUN", "domain": "Colophon"},
-    "oror": {"la": "finis", "ven": "fin / saldo", "ger": "ende / bschluss", "en": "terminal sign-off marker", "role": "TERMINAL_FLUSH", "domain": "Seal"},
-    "daiin": {"la": "aqua / decoctio", "ven": "agva", "ger": "wazzer", "en": "water / liquid vehicle", "role": "OPERAND_NOUN", "domain": "Solvent"},
-    "shedy": {"la": "radix", "ven": "radise", "ger": "wurtz", "en": "rootstock / apparatus base", "role": "OPERAND_NOUN", "domain": "Botanical"},
-    "chedy": {"la": "herba / planta", "ven": "erba", "ger": "krut", "en": "herb / botanical matter", "role": "OPERAND_NOUN", "domain": "Botanical"},
-    "qokedy": {"la": "coque", "ven": "coci", "ger": "sied", "en": "boil / apply heat", "role": "OPERATOR_VERB", "domain": "Compounding"},
-    "qokeey": {"la": "misce", "ven": "mescola", "ger": "mische", "en": "mix / blend thoroughly", "role": "OPERATOR_VERB", "domain": "Compounding"},
-    "qokal": {"la": "distilla", "ven": "destilla", "ger": "brenne", "en": "distill / drip extract", "role": "OPERATOR_VERB", "domain": "Compounding"},
-    "otcheod": {"la": "stella / signum", "ven": "stella", "ger": "sternort", "en": "celestial star sector", "role": "OPERAND_NOUN", "domain": "Astronomical"},
-    "otcheodaiin": {"la": "stella [rel.]", "ven": "licore de stella", "ger": "sternauszug", "en": "star sector [buffer hold]", "role": "OPERAND_NOUN", "domain": "Astronomical"},
-    "otcheody": {"la": "vas [stat.]", "ven": "vaso", "ger": "kolben", "en": "star sector [receiver vessel]", "role": "OPERAND_NOUN", "domain": "Astronomical"},
-    "opairam": {"la": "solve [term.]", "ven": "spandi / cola", "ger": "lass auslauffen", "en": "extract / dissolve [flush]", "role": "TERMINAL_FLUSH", "domain": "Compounding"},
-    "qopairam": {"la": "solve [proc.]", "ven": "spandi / cola [proc.]", "ger": "lass auslauffen [proc.]", "en": "extract / dissolve [active]", "role": "TERMINAL_FLUSH", "domain": "Compounding"},
-    "chol": {"la": "calidus", "ven": "caldo", "ger": "heiss", "en": "warm / hot property", "role": "MODIFIER_ADJ", "domain": "Humoral"},
-    "chor": {"la": "siccus", "ven": "asciutto", "ger": "gedoert", "en": "dry / desiccated property", "role": "MODIFIER_ADJ", "domain": "Humoral"},
-    "oteod": {"la": "gradus", "ven": "grado", "ger": "gradzaichen", "en": "degree / sector coordinate", "role": "OPERAND_NOUN", "domain": "Astronomical"},
-    "chdam": {"la": "finis", "ven": "saldo / serra", "ger": "beschliess", "en": "complete / terminal marker", "role": "TERMINAL_FLUSH", "domain": "Compounding"},
+# -------------------------------------------------------------------------
+# FROZEN MORPHOTACTIC & SEMANTIC RULES
+# -------------------------------------------------------------------------
+PREFIX_RULES = {
+    'qo': 'C', 'qok': 'C', 'ok': 'C', 'ot': 'C',
+    'ch': 'P', 'sh': 'P', 'da': 'P',
+    's': 'L', 't': 'L',
+    'd': 'R', 'y': 'R'
 }
 
-# -----------------------------------------------------------------------------
-# MORPHOTACTIC FACTORIZATION & TOKEN CLEANER
-# -----------------------------------------------------------------------------
-def clean_raw_token(t: str) -> str:
-    t = re.sub(r"\[([^:]+):[^\]]+\]", r"\1", str(t))
-    t = re.sub(r"[{}\[\]<!>]", "", t)
-    t = re.sub(r"[@\d;%+=*?$,.]", "", t)
-    return t.strip().lower()
+SUFFIX_RULES = {
+    'am': 'R', 'm': 'R',
+    'aiin': 'L', 'ain': 'L', 'iin': 'L', 'in': 'L',
+    'al': 'P', 'ol': 'P', 'ar': 'P', 'or': 'P',
+    'edy': 'C', 'dy': 'C', 'y': 'C'
+}
 
-def factorize(token: str) -> dict:
-    if not token:
-        return {"valid": False, "state": "?"}
-    remainder = token
-    ctrl = "NONE"
-    for cp in CONTROL_HEADERS:
-        if remainder.startswith(cp):
-            ctrl = cp
-            remainder = remainder[len(cp):]
-            break
+ORIGINAL_SEMANTIC_MAP = {
+    'C': 'reflux',
+    'L': 'medium',
+    'P': 'process',
+    'R': 'outlet'
+}
 
-    exit_port = "BARE"
-    for rp in ("aiin", "ain", "am", "m", "ar", "al", "y"):
-        if remainder.endswith(rp):
-            exit_port = rp
-            remainder = remainder[:-len(rp)]
-            break
+VALID_TRANSITIONS = {
+    ('reflux', 'medium'),
+    ('medium', 'process'),
+    ('process', 'outlet'),
+    ('outlet', 'reflux')
+}
 
-    e_count = max([len(m) for m in re.findall(r"e+", remainder)], default=0)
-    has_o = "o" in remainder
-    carrier = remainder if remainder else "EMPTY"
 
-    if token.endswith(TERMINAL_FLUSHES):
-        state = "R"
-    elif any(token.endswith(s) for s in ("ey", "eey", "edy", "eedy")):
-        state = "C"
-    elif any(token.endswith(b) for b in BUFFER_CONNECTORS):
-        state = "L"
-    elif token.endswith(STATIVE_HOLDS) or token in ("ol", "al", "y"):
-        state = "P"
-    else:
-        state = "?"
+def classify_token(token: str) -> str:
+    """Classifies a Voynich token into structural roles C, L, P, R."""
+    t = str(token).strip().lower()
+    if not t or t == 'empty':
+        return 'UNKNOWN'
 
-    return {
-        "valid": True,
-        "token": token,
-        "control": ctrl,
-        "carrier": carrier,
-        "e_grade": e_count,
-        "internal_o": has_o,
-        "exit_port": exit_port,
-        "state": state,
-        "is_flush": token.endswith(TERMINAL_FLUSHES),
-    }
+    for sfx, role in sorted(SUFFIX_RULES.items(), key=lambda x: len(x[0]), reverse=True):
+        if t.endswith(sfx):
+            return role
 
-def predict_apparatus_role(token: str, stem: str, exit_port: str, control: str) -> str:
-    if control in ("qo", "qok", "qot"):
-        return "heat"
-    if exit_port in ("am", "m"):
-        return "positional"
-    if exit_port in ("aiin", "ain"):
-        return "medium"
-    if exit_port in ("al", "ar") or stem.endswith("eos"):
-        return "outlet"
-    if exit_port in ("y", "dy") or token.endswith(("ey", "eey", "edy", "eedy", "y", "dy")):
-        return "reflux"
-    return "other"
+    for pfx, role in sorted(PREFIX_RULES.items(), key=lambda x: len(x[0]), reverse=True):
+        if t.startswith(pfx):
+            return role
 
-# -----------------------------------------------------------------------------
-# CACHED CORPUS LOADER (Direct Regex Extraction)
-# -----------------------------------------------------------------------------
-@st.cache_data(show_spinner=False)
-def load_corpus():
-    lines = []
-    source = "LOCAL"
-    raw_text = ""
-    candidates = [DATA_PATH, "ZL3b-n.txt", "data/ZL3b-n 2.txt", "ZL3b-n 2.txt"]
-    for path in candidates:
-        if os.path.exists(path) and os.path.getsize(path) > 1000:
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                raw_text = f.read()
-            source = f"LOCAL ({path})"
-            break
+    return 'UNKNOWN'
 
-    if not raw_text:
-        try:
-            req = urllib.request.Request(FALLBACK_URL, headers={"User-Agent": "Mozilla/5.0"})
-            with urllib.request.urlopen(req, timeout=12) as response:
-                raw_text = response.read().decode("utf-8")
-            source = "VOYNICH.NU MIRROR"
-        except Exception:
-            return [], "OFFLINE_FALLBACK"
 
-    for line in raw_text.splitlines():
-        line = line.strip()
-        if not line or line.startswith("#"):
-            continue
-
-        match = re.match(r"<([^>]+)>\s*(.*)", line)
-        if not match:
-            continue
-
-        header, text_content = match.groups()
-        folio = header.split(".")[0].lower().replace("f0", "f")
-
-        clean_text = re.sub(r"<![^>]*>|\{[^}]*\}|<[%+=*][^>]*>", "", text_content)
-        raw_tokens = [clean_raw_token(t) for t in re.split(r"[.,\s]+", clean_text) if t]
-        words = [t for t in raw_tokens if t and not t.startswith("<")]
-
-        if words:
-            lines.append({
-                "folio": folio,
-                "header": header,
-                "tokens": words,
-                "is_holdout": any(folio == hf or folio == hf.replace("f0", "f") for hf in HOLDOUT_FOLIOS),
-            })
-    return lines, source
-
-# -----------------------------------------------------------------------------
-# APPLICATION HEADER
-# -----------------------------------------------------------------------------
-lines_corpus, corpus_source = load_corpus()
-total_tokens_count = sum(len(l["tokens"]) for l in lines_corpus)
-
-st.title("Voynich Manuscript Decipherment Engine & Dual-Dialect Workbench")
-st.caption(f"Venetian Romance Phonetics + Early High German Syntax | Corpus: {total_tokens_count:,} Tokens | Source: {corpus_source}")
-
-m1, m2, m3, m4 = st.columns(4)
-m1.metric("Holdout Validation", "Run in Tab 2", "5 Quarantined Folios")
-m2.metric("Corpus Size", f"{total_tokens_count:,}", "Tokens Processed")
-m3.metric("Physical Line Flushes", "69.4%", "OR > 20x at Boundary")
-m4.metric("Directional Routing", "Δ = -1.018", "log-odds shift")
-
-st.markdown("---")
-
-tab_paper, tab_holdout, tab_dialect, tab_tests, tab_omega, tab_reader, tab_lexicon, tab_colophons, tab_export = st.tabs([
-    "📄 Academic Paper",
-    "🎯 Holdout Permutation Audit",
-    "🏛️ Dual-Dialect Bridge",
-    "🧪 Corpus Tests",
-    "⚡ Slot Ω Miner",
-    "📖 Folio Reader",
-    "📚 Lexicon",
-    "🖋️ Colophons",
-    "💾 Export CSV"
-])
-
-# =============================================================================
-# TAB 1: ACADEMIC PAPER & EVIDENCE COMPENDIUM
-# =============================================================================
-with tab_paper:
-    st.header("Dual-Dialect Compounding Architecture (Audited Framework)")
-    scorecard_data = {
-        "Verification Gate": [
-            "Holdout Stem Categorization",
-            "Physical Terminal Markers (-m / -am)",
-            "Successor Directional Routing",
-            "Diagram Prefix Suppression (qo-)",
-            "Vocalic Ratio (Romance Alignment)"
-        ],
-        "Observed Metric": [
-            "Audited in Tab 2",
-            "69.4% Line-Terminal (OR > 20x)",
-            "Δ = -1.018 log-odds shift",
-            "0.0% qo- in radial diagrams",
-            "33.3% Vocalic Ratio (6/14)"
-        ],
-        "Scientific Verdict": [
-            "Live Empirical Test",
-            "VERIFIED (Boundary effect)",
-            "DIRECTIONAL BIAS OBSERVED",
-            "VERIFIED (Layout-gated syntax)",
-            "ROMANCE CONFORMANT"
-        ]
-    }
-    st.dataframe(pd.DataFrame(scorecard_data), use_container_width=True)
-
-# =============================================================================
-# TAB 2: LIVE HOLDOUT PERMUTATION TEST
-# =============================================================================
-with tab_holdout:
-    st.header("🎯 Held-Out Folio Permutation Audit")
-    st.markdown(f"**Quarantined Test Folios:** `{', '.join(HOLDOUT_FOLIOS)}`")
-    st.caption("Runs live on the actual text to calculate exact empirical accuracy, shuffle baseline, and p-value.")
-
-    if st.button("🚀 Run Live Permutation Test (Holdout Folios)", type="primary"):
-        with st.spinner("Extracting holdout tokens and running Monte Carlo permutations..."):
-            holdout_tokens = []
-            for l in lines_corpus:
-                if l["is_holdout"]:
-                    for t in l["tokens"]:
-                        f = factorize(t)
-                        pred = predict_apparatus_role(t, f["carrier"], f["exit_port"], f["control"])
-                        holdout_tokens.append({
-                            "folio": l["folio"],
-                            "token": t,
-                            "carrier": f["carrier"],
-                            "exit_port": f["exit_port"],
-                            "control": f["control"],
-                            "state": f["state"],
-                            "predicted": pred,
-                        })
-
-            if not holdout_tokens:
-                st.error("No holdout tokens detected in corpus. Please check that data/ZL3b-n.txt is present.")
-            else:
-                df_holdout = pd.DataFrame(holdout_tokens)
-                
-                state_target_map = {
-                    "C": "reflux",
-                    "P": "reflux",
-                    "L": "medium",
-                    "R": "positional",
-                }
-                
-                scored = df_holdout[df_holdout["predicted"] != "other"].copy()
-
-                if scored.empty:
-                    st.warning("Holdout tokens were found, but none matched the target apparatus roles.")
-                else:
-                    scored["expected"] = scored["state"].map(state_target_map)
-                    scored["match"] = scored["predicted"] == scored["expected"]
-
-                    n_scored = len(scored)
-                    observed_hits = int(scored["match"].sum())
-                    observed_acc = observed_hits / n_scored
-
-                    # Monte Carlo Permutations: decouple expected labels from predictions
-                    rng = np.random.default_rng(42)
-                    perm_accs = np.empty(1000)
-                    pred_array = scored["predicted"].values
-                    expected_array = scored["expected"].values
-
-                    for i in range(1000):
-                        shuffled_expected = rng.permutation(expected_array)
-                        perm_accs[i] = np.mean(pred_array == shuffled_expected)
-
-                    chance_mean = float(np.mean(perm_accs))
-                    chance_std = float(np.std(perm_accs))
-                    p_val = float(np.sum(perm_accs >= observed_acc) / 1000)
-                    z_score = (observed_acc - chance_mean) / (chance_std + 1e-12)
-
-                    st.success("✅ Audit Completed!")
-
-                    c1, c2, c3, c4 = st.columns(4)
-                    c1.metric("Scored Tokens", f"{n_scored} Loci", "f70v2, f71r, f72r1, f72v1, f72v2")
-                    c2.metric("Observed Accuracy", f"{observed_acc * 100:.1f}%", f"{observed_hits} / {n_scored} Hits")
-                    c3.metric("Shuffled Baseline", f"{chance_mean * 100:.1f}%", f"± {chance_std * 100:.1f}%")
-                    c4.metric("Empirical p-value", f"{p_val:.4f}", f"Z = {z_score:.2f}σ")
-
-                    st.subheader("Holdout Token Verification Ledger")
-                    st.dataframe(scored[["folio", "token", "carrier", "predicted", "expected", "match"]].head(50), use_container_width=True)
-
-# =============================================================================
-# TAB 3: DUAL-DIALECT BRIDGE
-# =============================================================================
-with tab_dialect:
-    st.header("🏛 Dual-Dialect Linguistic Bridge Test")
-    test_metrics = [
-        {"Statistical Dimension": "1. Character Entropy (H1)", "Whole Voynich": "3.84 bits", "Venetian (1420)": "4.09 bits", "Early German": "4.06 bits", "Verdict": "Distinct from standard narrative prose"},
-        {"Statistical Dimension": "2. Immediate Word Doubling", "Whole Voynich": "2.40%", "Venetian (1420)": "0.00%", "Early German": "0.00%", "Verdict": "Conserved iterative repetition present"},
-        {"Statistical Dimension": "3. Line-Terminal Marker (-m)", "Whole Voynich": "69.4% (OR > 20x)", "Venetian (1420)": "8.2%", "Early German": "7.4%", "Verdict": "Correlates with physical line boundary"},
+def score_semantic_transitions(tokens: list, role_to_meaning: dict) -> float:
+    """Computes transition consistency under a specified role-meaning dictionary."""
+    assigned = [
+        role_to_meaning[classify_token(t)]
+        for t in tokens
+        if classify_token(t) in role_to_meaning
     ]
-    st.dataframe(pd.DataFrame(test_metrics), use_container_width=True)
+    if len(assigned) < 2:
+        return 0.0
 
-# =============================================================================
-# TAB 4: CORPUS TESTS
-# =============================================================================
-with tab_tests:
-    st.header("Corpus-Wide Empirical Verification Suite")
-    if st.button("🚀 Run Corpus Line-Terminal Test"):
-        total_m = 0
-        term_m = 0
-        for l in lines_corpus:
-            toks = l["tokens"]
-            for i, tok in enumerate(toks):
-                if tok.endswith(TERMINAL_FLUSHES):
-                    total_m += 1
-                    if i == len(toks) - 1:
-                        term_m += 1
-        rate = (term_m / total_m * 100) if total_m > 0 else 71.4
-        st.metric("Line-Terminal Marker Rate (-m / -am)", f"{rate:.1f}%", f"{term_m}/{total_m} tokens")
+    transitions = list(zip(assigned[:-1], assigned[1:]))
+    matches = sum(1 for pair in transitions if pair in VALID_TRANSITIONS)
+    return matches / len(transitions)
 
-# =============================================================================
-# TAB 5: SLOT OMEGA MINER
-# =============================================================================
-with tab_omega:
-    st.header("⚡ Canonical Slot Ω Execution Frame Mining")
-    st.caption("Q-ACTIVE -> [X-aiin] -> Q-ACTIVE")
-    omega_frames = []
-    for l in lines_corpus:
-        toks = l["tokens"]
-        for i in range(len(toks) - 2):
-            w1, w2, w3 = toks[i], toks[i+1], toks[i+2]
-            f1, f3 = factorize(w1), factorize(w3)
-            if f1["control"].startswith("q") and f3["control"].startswith("q"):
-                if w2.endswith(("aiin", "ain")):
-                    omega_frames.append({"Folio": l["folio"], "Operator 1": w1, "Buffer [X-aiin]": w2, "Operator 2": w3})
+
+# -------------------------------------------------------------------------
+# STREAMLIT UI
+# -------------------------------------------------------------------------
+st.title("Voynich Decipherment Workbench")
+
+tab_workbench, tab_validator = st.tabs(["Corpus Data", "Semantic Permutation Tournament"])
+
+with tab_workbench:
+    st.subheader("Corpus Dataset")
+    uploaded_file = st.file_uploader("Upload corpus CSV (optional, defaults to f70v2)", type=["csv"])
     
-    st.metric("Detected Frames", len(omega_frames))
-    
-    df_omega = pd.DataFrame(omega_frames)
-    st.dataframe(df_omega, use_container_width=True)
-    
-    if not df_omega.empty:
-        st.download_button(
-            "📥 Download All Slot Ω Frames (CSV)",
-            df_omega.to_csv(index=False).encode("utf-8"),
-            "all_slot_omega_frames.csv",
-            "text/csv"
-        )
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+        st.success("Uploaded custom corpus successfully.")
+    else:
+        df = pd.read_csv(io.StringIO(DEFAULT_CSV.strip()))
+        st.info("Loaded default folio f70v2 dataset.")
 
-# =============================================================================
-# TAB 6: FOLIO READER
-# =============================================================================
-with tab_reader:
-    st.header("📖 Parallel Interlinear Manuscript Reader")
-    folios = sorted(list(set(l["folio"] for l in lines_corpus))) if lines_corpus else ["f1r"]
-    selected = st.selectbox("Select Folio", folios)
-    for l in [line for line in lines_corpus if line["folio"] == selected]:
-        st.markdown(f"**{l['header']}:** " + " · ".join(f"{t} [{factorize(t)['state']}]" for t in l["tokens"]))
+    st.dataframe(df, use_container_width=True)
 
-# =============================================================================
-# TAB 7: GROUNDED MASTER LEXICON
-# =============================================================================
-with tab_lexicon:
-    st.header("📚 Grounded Master Lexicon")
-    rows = [{"Token": k, "Latin": v["la"], "English": v["en"], "Role": v["role"]} for k, v in MASTER_LEXICON.items()]
-    st.dataframe(pd.DataFrame(rows), use_container_width=True)
+with tab_validator:
+    st.subheader("Permutation Tournament: Morphological Semantic Significance")
+    st.markdown("""
+    Tests whether the assigned operational meanings (**reflux, medium, process, outlet**) 
+    produce directed cyclical transitions that significantly outperform chance when labels 
+    are randomly shuffled across the underlying affix classes.
+    """)
 
-# =============================================================================
-# TAB 8: COLOPHONS
-# =============================================================================
-with tab_colophons:
-    st.header("🖋️ Author & Colophon Audit")
-    st.markdown("- **ydaraishy** (*f1r.6*): Incipit authorial marker.\n- **ytchas** (*f9r.10*): Gathering colophon marker.\n- **oror.sheey** (*f116v.1*): Codex-terminal seal.")
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        num_perms = st.slider("Permutations", min_value=500, max_value=20000, value=5000, step=500)
+        random_seed = st.number_input("Random Seed", value=42, step=1)
+        run_button = st.button("Run Tournament", type="primary")
 
-# =============================================================================
-# TAB 9: EXPORT
-# =============================================================================
-with tab_export:
-    st.header("💾 Export Data")
-    if lines_corpus:
-        flat = [{"folio": l["folio"], "token": t} for l in lines_corpus for t in l["tokens"]]
-        st.download_button("Download Processed Tokens CSV", pd.DataFrame(flat).to_csv(index=False).encode("utf-8"), "voynich_tokens.csv", "text/csv")
+    if run_button:
+        tokens = df['token'].dropna().tolist()
+        roles = list(ORIGINAL_SEMANTIC_MAP.keys())
+        labels = list(ORIGINAL_SEMANTIC_MAP.values())
+
+        # Baseline score
+        actual_score = score_semantic_transitions(tokens, ORIGINAL_SEMANTIC_MAP)
+
+        # Null permutation loop
+        np.random.seed(int(random_seed))
+        null_scores = np.empty(num_perms)
+        for i in range(num_perms):
+            shuffled = np.random.permutation(labels)
+            perm_map = dict(zip(roles, shuffled))
+            null_scores[i] = score_semantic_transitions(tokens, perm_map)
+
+        mean_null = float(np.mean(null_scores))
+        std_null = float(np.std(null_scores))
+        p_val = float(np.mean(null_scores >= actual_score))
+        z_score = float((actual_score - mean_null) / std_null) if std_null > 0 else 0.0
+
+        st.divider()
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Hypothesis Score", f"{actual_score:.4f}")
+        m2.metric("Null Mean (Chance)", f"{mean_null:.4f}")
+        m3.metric("Z-Score", f"{z_score:+.2f}")
+        m4.metric("Empirical p-value", f"{p_val:.5f}")
+
+        if p_val < 0.05:
+            st.success(f"**Statistically Significant (p = {p_val:.5f})**: The hypothesized semantic sequence significantly outperforms random role permutations.")
+        else:
+            st.warning(f"**Not Statistically Significant (p = {p_val:.5f})**: The sequence does not beat random chance on this token sequence.")
+
+        # Distribution Plot
+        fig, ax = plt.subplots(figsize=(8, 3.5))
+        ax.hist(null_scores, bins=30, color='#888888', alpha=0.7, edgecolor='black', label="Null Distribution (Shuffled)")
+        ax.axvline(actual_score, color='red', linestyle='--', linewidth=2, label=f"Hypothesis ({actual_score:.4f})")
+        ax.set_xlabel("Transition Consistency Score")
+        ax.set_ylabel("Frequency")
+        ax.legend()
+        st.pyplot(fig)
