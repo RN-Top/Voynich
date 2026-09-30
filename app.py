@@ -186,7 +186,7 @@ def compute_bigram_mutual_information(tokens):
     return float(score / n_bigrams)
 
 # -----------------------------------------------------------------------------
-# CACHED CORPUS LOADER (ABSOLUTE PATH RESOLVER + GITHUB RAW FETCH)
+# CACHED CORPUS LOADER (ROBUST SEARCH PATH & FALLBACKS)
 # -----------------------------------------------------------------------------
 @st.cache_data(show_spinner=False)
 def load_corpus(uploaded_file=None):
@@ -734,7 +734,7 @@ with tab_dialect:
     st.dataframe(pd.DataFrame(test_metrics), use_container_width=True)
 
 # =============================================================================
-# TAB 8: CORPUS VERIFICATION BATTERY
+# TAB 8: CORPUS VERIFICATION BATTERY (KEYERROR DEFENSIVE FIX)
 # =============================================================================
 with tab_tests:
     st.header("🧪 Corpus Verification Battery")
@@ -767,8 +767,16 @@ with tab_tests:
             b2.metric("Directional Delta", dir_delta_str)
 
             st.subheader("Sequential Macrostate Transition Counts")
-            t_list = [{"Transition": k, "Occurrences": int(v)} for k, v in transitions.items()]
-            st.dataframe(pd.DataFrame(t_list).sort_values(by="Occurrences", ascending=False), use_container_width=True)
+            if transitions:
+                t_list = [{"Transition": k, "Occurrences": int(v)} for k, v in transitions.items()]
+                df_transitions = pd.DataFrame(t_list)
+            else:
+                df_transitions = pd.DataFrame(columns=["Transition", "Occurrences"])
+                
+            if not df_transitions.empty and "Occurrences" in df_transitions.columns:
+                st.dataframe(df_transitions.sort_values(by="Occurrences", ascending=False), use_container_width=True)
+            else:
+                st.dataframe(df_transitions, use_container_width=True)
 
 # =============================================================================
 # TAB 9: INVARIANT SLOT OMEGA MINER
