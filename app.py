@@ -2,19 +2,18 @@
 Voynich Manuscript Decipherment Engine & Structural Workbench
 Author: Voynich Decipherment Working Group (RN-Top/Voynich)
 Corpus Standard: IVTFF EVA 2.0 / ZL3b-n Standard
-Dependencies: streamlit, pandas, numpy, matplotlib
+Dependencies: streamlit, pandas, numpy, matplotlib, requests
 """
 
 import json
 import os
 import random
 import re
-import urllib.request
-import ssl
 from collections import Counter, defaultdict
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import requests
 import streamlit as st
 
 st.set_page_config(
@@ -186,14 +185,85 @@ def compute_bigram_mutual_information(tokens):
     return float(score / n_bigrams)
 
 # -----------------------------------------------------------------------------
-# DEFENSIVE CORPUS LOADER (ABSOLUTE RESOLUTION + CLEAN HTTP)
+# HIGH-PRIORITY CORPUS LOADER
 # -----------------------------------------------------------------------------
-def load_corpus(uploaded_file=None):
+def parse_ivtff_text(raw_text):
     lines = []
-    source = "UNKNOWN"
-    raw_text = ""
+    current_folio = "f1r"
+    current_currier = "A"
+    current_section = "Herbal"
 
-    # Check local filesystem
+    for line in raw_text.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+
+        if line.startswith("<f") and ">" in line:
+            tag = line[1:line.index(">")]
+            parts = tag.split()
+            current_folio = parts[0]
+            if "$L=B" in line:
+                current_currier = "B"
+            elif "$L=A" in line:
+                current_currier = "A"
+            if "$I=H" in line:
+                current_section = "Herbal"
+            elif any(k in line for k in ("$I=A", "$I=Z", "$I=C")):
+                current_section = "Astronomical"
+            elif "$I=B" in line:
+                current_section = "Biological"
+            elif "$I=P" in line:
+                current_section = "Pharmaceutical"
+            elif "$I=S" in line:
+                current_section = "Stars/Recipes"
+            continue
+
+        parts = line.split(None, 1)
+        if len(parts) < 2:
+            continue
+        header = parts[0]
+        words = [clean_raw_token(t) for t in re.split(r"[,\s.]+", parts[1]) if clean_raw_token(t)]
+        if words:
+            lines.append({
+                "folio": current_folio,
+                "header": header,
+                "currier": current_currier,
+                "section": current_section,
+                "tokens": words,
+            })
+    return lines
+
+def load_corpus(uploaded_file=None):
+    # Priority 1: User uploaded file
+    if uploaded_file is not None:
+        try:
+            uploaded_file.seek(0)
+            raw_bytes = uploaded_file.read()
+            if not raw_bytes.startswith(b"bplist"):
+                text = raw_bytes.decode("utf-8", errors="ignore")
+                lines = parse_ivtff_text(text)
+                if lines:
+                    return lines, f"UPLOADED ({uploaded_file.name})"
+        except Exception as e:
+            st.sidebar.error(f"Upload read error: {e}")
+
+    # Priority 2: Direct HTTP Fetch using requests
+    urls = [
+        "https://raw.githubusercontent.com/RN-Top/Voynich/main/data/ZL3b-n.txt",
+        "https://raw.githubusercontent.com/RN-Top/Voynich/main/ZL3b-n.txt",
+        "https://www.voynich.nu/data/ZL3b-n.txt",
+    ]
+    for url in urls:
+        try:
+            r = requests.get(url, timeout=12, headers={"User-Agent": "Mozilla/5.0"})
+            if r.status_code == 200 and len(r.text) > 10000 and not r.text.startswith("bplist"):
+                lines = parse_ivtff_text(r.text)
+                if lines:
+                    return lines, f"LIVE_HTTP ({url.split('/')[-1]})"
+        except Exception:
+            continue
+
+    # Priority 3: Local Filesystem Check
     base_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else "."
     candidates = [
         os.path.join(base_dir, "data", "ZL3b-n.txt"),
@@ -201,125 +271,54 @@ def load_corpus(uploaded_file=None):
         "data/ZL3b-n.txt",
         "ZL3b-n.txt",
     ]
-    for path in candidates:
-        if os.path.exists(path) and os.path.getsize(path) > 10000:
+    for p in candidates:
+        if os.path.exists(p) and os.path.getsize(p) > 10000:
             try:
-                with open(path, "r", encoding="utf-8", errors="ignore") as f:
+                with open(p, "r", encoding="utf-8", errors="ignore") as f:
                     content = f.read()
                 if not content.startswith("bplist") and len(content) > 10000:
-                    raw_text = content
-                    source = f"LOCAL ({os.path.basename(path)})"
-                    break
+                    lines = parse_ivtff_text(content)
+                    if lines:
+                        return lines, f"LOCAL ({os.path.basename(p)})"
             except Exception:
                 continue
 
-    # Direct Web Raw Fetch using standard library urllib with SSL context
-    if not raw_text:
-        urls = [
-            "https://raw.githubusercontent.com/RN-Top/Voynich/main/data/ZL3b-n.txt",
-            "https://raw.githubusercontent.com/RN-Top/Voynich/main/ZL3b-n.txt",
-            "https://www.voynich.nu/data/ZL3b-n.txt",
-        ]
-        ctx = ssl.create_default_context()
-        ctx.check_hostname = False
-        ctx.verify_mode = ssl.CERT_NONE
-        for url in urls:
-            try:
-                req = urllib.request.Request(
-                    url,
-                    headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-                )
-                with urllib.request.urlopen(req, context=ctx, timeout=12) as response:
-                    content = response.read().decode("utf-8", errors="ignore")
-                if len(content) > 10000 and not content.startswith("bplist"):
-                    raw_text = content
-                    source = f"REMOTE_RAW ({url.split('/')[-1]})"
-                    break
-            except Exception:
-                continue
-
-    # Parse IVTFF
-    if raw_text:
-        current_folio = "f1r"
-        current_currier = "A"
-        current_section = "Herbal"
-
-        for line in raw_text.splitlines():
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-
-            if line.startswith("<f") and ">" in line:
-                tag = line[1:line.index(">")]
-                parts = tag.split()
-                current_folio = parts[0]
-                if "$L=B" in line:
-                    current_currier = "B"
-                elif "$L=A" in line:
-                    current_currier = "A"
-                if "$I=H" in line:
-                    current_section = "Herbal"
-                elif any(k in line for k in ("$I=A", "$I=Z", "$I=C")):
-                    current_section = "Astronomical"
-                elif "$I=B" in line:
-                    current_section = "Biological"
-                elif "$I=P" in line:
-                    current_section = "Pharmaceutical"
-                elif "$I=S" in line:
-                    current_section = "Stars/Recipes"
-                continue
-
-            parts = line.split(None, 1)
-            if len(parts) < 2:
-                continue
-            header = parts[0]
-            words = [clean_raw_token(t) for t in re.split(r"[,\s.]+", parts[1]) if clean_raw_token(t)]
-            if words:
-                lines.append({
-                    "folio": current_folio,
-                    "header": header,
-                    "currier": current_currier,
-                    "section": current_section,
-                    "tokens": words,
-                })
-
-    # Embedded emergency fallback
-    if not lines:
-        source = "INTERNAL_BACKUP_TOKENS"
-        sample_corpus = [
-            ("f70v2", "+P0.1", "A", "Astronomical", "otey ykeey tchy yteos alain olar oteeam otaly otal arar otaldy okeoly okydy daiiamdy"),
-            ("f70v2", "+P0.2", "A", "Astronomical", "dair cheeo chy chdaiin qokedy otcheodaiin qokchdy otedal daiin aral"),
-            ("f71r", "+P0.1", "A", "Astronomical", "okeodar aiin qokar otam am ypaim daiin chedy shedy chdam"),
-            ("f71r", "+P0.2", "A", "Astronomical", "qokedy otcheodaiin qokchdy otcheed okar chey qopairam dal"),
-            ("f72r1", "+P0.1", "B", "Astronomical", "qokar otam daiin chedy qokedy otcheodaiin qokchdy oteod chdam"),
-            ("f72r1", "+P0.2", "B", "Astronomical", "olaiin cheo otcheody lkchedy okol okaiin otaiin otal qotar"),
-            ("f72v1", "+P0.1", "B", "Astronomical", "ypaim chedy qokedy daiin opairam chol chor chdam"),
-            ("f72v1", "+P0.2", "B", "Astronomical", "otey ykeey tchy yteos alain olar oteeam otam"),
-            ("f72v2", "+P0.1", "B", "Astronomical", "am oror sheey qokedy otcheod chedaiin qokeedy daiin"),
-            ("f72v2", "+P0.2", "B", "Astronomical", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam"),
-            ("f114v", "+P0.4", "B", "Compounding", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam"),
-            ("f114v", "+P0.21", "B", "Compounding", "dair cheeo chy chdaiin qokedy otcheodaiin qokchdy otedal daiin aral"),
-            ("f114v", "+P0.29", "B", "Compounding", "otcheed okar chey qopairam dal chedy daiin"),
-            ("f114v", "+P0.31", "B", "Compounding", "olaiin cheo otcheody lkchedy okol okaiin otaiin otal qotar"),
-            ("f1r", "=Pt", "A", "Herbal", "fachys ykal ar ataiin shol shory cthesos okchoy otchol chocthy ydaraishy chdam"),
-            ("f9r", "+Pc", "A", "Herbal", "shedy qokain or cheor chedy dar shey daiin ctheor dal ytchas chdam"),
-            ("f116v", "@Lx", "B", "Seal", "oror sheey"),
-        ]
-        for fol, hdr, curr, sec, words_str in sample_corpus:
-            lines.append({
-                "folio": fol,
-                "header": hdr,
-                "currier": curr,
-                "section": sec,
-                "tokens": [clean_raw_token(t) for t in words_str.split() if clean_raw_token(t)],
-            })
-
-    return lines, source
+    # Priority 4: Internal fallback sample
+    sample_corpus = [
+        ("f70v2", "+P0.1", "A", "Astronomical", "otey ykeey tchy yteos alain olar oteeam otaly otal arar otaldy okeoly okydy daiiamdy"),
+        ("f70v2", "+P0.2", "A", "Astronomical", "dair cheeo chy chdaiin qokedy otcheodaiin qokchdy otedal daiin aral"),
+        ("f71r", "+P0.1", "A", "Astronomical", "okeodar aiin qokar otam am ypaim daiin chedy shedy chdam"),
+        ("f71r", "+P0.2", "A", "Astronomical", "qokedy otcheodaiin qokchdy otcheed okar chey qopairam dal"),
+        ("f72r1", "+P0.1", "B", "Astronomical", "qokar otam daiin chedy qokedy otcheodaiin qokchdy oteod chdam"),
+        ("f72r1", "+P0.2", "B", "Astronomical", "olaiin cheo otcheody lkchedy okol okaiin otaiin otal qotar"),
+        ("f72v1", "+P0.1", "B", "Astronomical", "ypaim chedy qokedy daiin opairam chol chor chdam"),
+        ("f72v1", "+P0.2", "B", "Astronomical", "otey ykeey tchy yteos alain olar oteeam otam"),
+        ("f72v2", "+P0.1", "B", "Astronomical", "am oror sheey qokedy otcheod chedaiin qokeedy daiin"),
+        ("f72v2", "+P0.2", "B", "Astronomical", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam"),
+        ("f114v", "+P0.4", "B", "Compounding", "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam"),
+        ("f114v", "+P0.21", "B", "Compounding", "dair cheeo chy chdaiin qokedy otcheodaiin qokchdy otedal daiin aral"),
+        ("f114v", "+P0.29", "B", "Compounding", "otcheed okar chey qopairam dal chedy daiin"),
+        ("f114v", "+P0.31", "B", "Compounding", "olaiin cheo otcheody lkchedy okol okaiin otaiin otal qotar"),
+        ("f1r", "=Pt", "A", "Herbal", "fachys ykal ar ataiin shol shory cthesos okchoy otchol chocthy ydaraishy chdam"),
+        ("f9r", "+Pc", "A", "Herbal", "shedy qokain or cheor chedy dar shey daiin ctheor dal ytchas chdam"),
+        ("f116v", "@Lx", "B", "Seal", "oror sheey"),
+    ]
+    lines = []
+    for fol, hdr, curr, sec, words_str in sample_corpus:
+        lines.append({
+            "folio": fol,
+            "header": hdr,
+            "currier": curr,
+            "section": sec,
+            "tokens": [clean_raw_token(t) for t in words_str.split() if clean_raw_token(t)],
+        })
+    return lines, "INTERNAL_BACKUP_TOKENS"
 
 # -----------------------------------------------------------------------------
 # APPLICATION HEADER & DATA INGESTION
 # -----------------------------------------------------------------------------
-lines_corpus, corpus_source = load_corpus()
+uploaded_file = st.sidebar.file_uploader("Upload ZL3b Transcription (.txt)", type=["txt", "csv"])
+lines_corpus, corpus_source = load_corpus(uploaded_file)
 total_tokens_count = sum(len(l["tokens"]) for l in lines_corpus)
 
 total_m_count = 0
