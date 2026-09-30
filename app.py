@@ -7,9 +7,46 @@ import streamlit as st
 
 st.set_page_config(page_title="Voynich Decipherment Workbench", layout="wide")
 
-# -------------------------------------------------------------------------
-# DEFAULT EVALUATION DATASET (f70v2)
-# -------------------------------------------------------------------------
+# =========================================================================
+# 1. FROZEN APPARATUS CONTRACT & MORPHOTACTIC RULES
+# =========================================================================
+# Role Map:
+# C (heat/start): qo-, qok-, ok-
+# L (medium): daiin, -aiin, -ain, -iin, -in
+# P (retain/process): shed-, ch-, sh-, da-, -al, -ol, -ar, -or
+# R (outlet/drain/close): -m, -am, -dy, -edy, -y
+PREFIX_RULES = {
+    'qo': 'C', 'qok': 'C', 'ok': 'C', 'ot': 'C',
+    'shed': 'P', 'ch': 'P', 'sh': 'P', 'da': 'P',
+    's': 'L', 't': 'L',
+    'd': 'R', 'y': 'R'
+}
+
+SUFFIX_RULES = {
+    'shedam': 'R', 'chdam': 'R', 'am': 'R', 'm': 'R',
+    'daiin': 'L', 'aiin': 'L', 'ain': 'L', 'iin': 'L', 'in': 'L',
+    'al': 'P', 'ol': 'P', 'ar': 'P', 'or': 'P',
+    'edy': 'C', 'dy': 'C', 'y': 'C'
+}
+
+ORIGINAL_SEMANTIC_MAP = {
+    'C': 'heat',
+    'L': 'medium',
+    'P': 'retain',
+    'R': 'outlet'
+}
+
+# The canonical directed cyclic apparatus sequence: C -> L -> route -> P -> R
+VALID_TRANSITIONS = {
+    ('heat', 'medium'),
+    ('medium', 'retain'),
+    ('retain', 'outlet'),
+    ('outlet', 'heat')
+}
+
+# =========================================================================
+# 2. DEFAULT EVALUATION DATASET (Folio f70v2)
+# =========================================================================
 DEFAULT_CSV = """,folio,token,carrier,predicted,expected,match
 1,f70v2,dar,EMPTY,outlet,medium,false
 2,f70v2,otey,ote,reflux,reflux,true
@@ -62,43 +99,14 @@ DEFAULT_CSV = """,folio,token,carrier,predicted,expected,match
 62,f70v2,okydy,okyd,reflux,reflux,true
 64,f70v2,daiiamdy,aiiamd,reflux,reflux,true"""
 
-# -------------------------------------------------------------------------
-# FROZEN MORPHOTACTIC & SEMANTIC RULES
-# -------------------------------------------------------------------------
-PREFIX_RULES = {
-    'qo': 'C', 'qok': 'C', 'ok': 'C', 'ot': 'C',
-    'ch': 'P', 'sh': 'P', 'da': 'P',
-    's': 'L', 't': 'L',
-    'd': 'R', 'y': 'R'
-}
-
-SUFFIX_RULES = {
-    'am': 'R', 'm': 'R',
-    'aiin': 'L', 'ain': 'L', 'iin': 'L', 'in': 'L',
-    'al': 'P', 'ol': 'P', 'ar': 'P', 'or': 'P',
-    'edy': 'C', 'dy': 'C', 'y': 'C'
-}
-
-ORIGINAL_SEMANTIC_MAP = {
-    'C': 'reflux',
-    'L': 'medium',
-    'P': 'process',
-    'R': 'outlet'
-}
-
-VALID_TRANSITIONS = {
-    ('reflux', 'medium'),
-    ('medium', 'process'),
-    ('process', 'outlet'),
-    ('outlet', 'reflux')
-}
-
-
+# =========================================================================
+# 3. HELPER FUNCTIONS
+# =========================================================================
 def classify_token(token: str) -> str:
     """Classifies a Voynich token into structural roles C, L, P, R."""
     t = str(token).strip().lower()
-    if not t or t == 'empty':
-        return 'UNKNOWN'
+    if not t or t == "empty":
+        return "UNKNOWN"
 
     for sfx, role in sorted(SUFFIX_RULES.items(), key=lambda x: len(x[0]), reverse=True):
         if t.endswith(sfx):
@@ -108,7 +116,7 @@ def classify_token(token: str) -> str:
         if t.startswith(pfx):
             return role
 
-    return 'UNKNOWN'
+    return "UNKNOWN"
 
 
 def score_semantic_transitions(tokens: list, role_to_meaning: dict) -> float:
@@ -126,14 +134,21 @@ def score_semantic_transitions(tokens: list, role_to_meaning: dict) -> float:
     return matches / len(transitions)
 
 
-# -------------------------------------------------------------------------
-# STREAMLIT UI
-# -------------------------------------------------------------------------
+# =========================================================================
+# 4. STREAMLIT APPLICATION TABS
+# =========================================================================
 st.title("Voynich Decipherment Workbench")
 
-tab_workbench, tab_validator = st.tabs(["Corpus Data", "Semantic Permutation Tournament"])
+tab_corpus, tab_morphology, tab_tournament = st.tabs([
+    "Corpus Data", 
+    "Morphological Classifier", 
+    "Semantic Permutation Tournament"
+])
 
-with tab_workbench:
+# -------------------------------------------------------------------------
+# TAB 1: Corpus Data Viewer
+# -------------------------------------------------------------------------
+with tab_corpus:
     st.subheader("Corpus Dataset")
     uploaded_file = st.file_uploader("Upload corpus CSV (optional, defaults to f70v2)", type=["csv"])
     
@@ -146,12 +161,41 @@ with tab_workbench:
 
     st.dataframe(df, use_container_width=True)
 
-with tab_validator:
+# -------------------------------------------------------------------------
+# TAB 2: Morphological Classifier & Stats
+# -------------------------------------------------------------------------
+with tab_morphology:
+    st.subheader("Token Role Classification")
+    tokens = df["token"].dropna().tolist() if "token" in df.columns else []
+
+    if tokens:
+        roles = [classify_token(t) for t in tokens]
+        role_counts = Counter(roles)
+
+        col_a, col_b = st.columns(2)
+        with col_a:
+            st.write("**Role Distribution Across Current Corpus:**")
+            stats_df = pd.DataFrame(role_counts.items(), columns=["Role", "Count"]).sort_values("Count", ascending=False)
+            st.dataframe(stats_df, use_container_width=True)
+
+        with col_b:
+            fig_bar, ax_bar = plt.subplots(figsize=(6, 4))
+            ax_bar.bar(role_counts.keys(), role_counts.values(), color="#4C72B0")
+            ax_bar.set_ylabel("Count")
+            ax_bar.set_title("Structural Class Occurrences")
+            st.pyplot(fig_bar)
+    else:
+        st.warning("No 'token' column found in the loaded dataset.")
+
+# -------------------------------------------------------------------------
+# TAB 3: Semantic Permutation Tournament
+# -------------------------------------------------------------------------
+with tab_tournament:
     st.subheader("Permutation Tournament: Morphological Semantic Significance")
     st.markdown("""
-    Tests whether the assigned operational meanings (**reflux, medium, process, outlet**) 
-    produce directed cyclical transitions that significantly outperform chance when labels 
-    are randomly shuffled across the underlying affix classes.
+    This test verifies whether the hypothesis sequence:
+    $$\\text{heat } (C) \\longrightarrow \\text{medium } (L) \\longrightarrow \\text{retain } (P) \\longrightarrow \\text{outlet } (R)$$
+    produces cycle transition consistency that significantly outperforms random role permutations across the tokens.
     """)
 
     col1, col2 = st.columns([1, 2])
@@ -161,43 +205,47 @@ with tab_validator:
         run_button = st.button("Run Tournament", type="primary")
 
     if run_button:
-        tokens = df['token'].dropna().tolist()
-        roles = list(ORIGINAL_SEMANTIC_MAP.keys())
-        labels = list(ORIGINAL_SEMANTIC_MAP.values())
+        token_list = df["token"].dropna().tolist() if "token" in df.columns else []
 
-        # Baseline score
-        actual_score = score_semantic_transitions(tokens, ORIGINAL_SEMANTIC_MAP)
-
-        # Null permutation loop
-        np.random.seed(int(random_seed))
-        null_scores = np.empty(num_perms)
-        for i in range(num_perms):
-            shuffled = np.random.permutation(labels)
-            perm_map = dict(zip(roles, shuffled))
-            null_scores[i] = score_semantic_transitions(tokens, perm_map)
-
-        mean_null = float(np.mean(null_scores))
-        std_null = float(np.std(null_scores))
-        p_val = float(np.mean(null_scores >= actual_score))
-        z_score = float((actual_score - mean_null) / std_null) if std_null > 0 else 0.0
-
-        st.divider()
-        m1, m2, m3, m4 = st.columns(4)
-        m1.metric("Hypothesis Score", f"{actual_score:.4f}")
-        m2.metric("Null Mean (Chance)", f"{mean_null:.4f}")
-        m3.metric("Z-Score", f"{z_score:+.2f}")
-        m4.metric("Empirical p-value", f"{p_val:.5f}")
-
-        if p_val < 0.05:
-            st.success(f"**Statistically Significant (p = {p_val:.5f})**: The hypothesized semantic sequence significantly outperforms random role permutations.")
+        if len(token_list) < 2:
+            st.error("Insufficient tokens in the dataset to perform the tournament.")
         else:
-            st.warning(f"**Not Statistically Significant (p = {p_val:.5f})**: The sequence does not beat random chance on this token sequence.")
+            roles = list(ORIGINAL_SEMANTIC_MAP.keys())
+            labels = list(ORIGINAL_SEMANTIC_MAP.values())
 
-        # Distribution Plot
-        fig, ax = plt.subplots(figsize=(8, 3.5))
-        ax.hist(null_scores, bins=30, color='#888888', alpha=0.7, edgecolor='black', label="Null Distribution (Shuffled)")
-        ax.axvline(actual_score, color='red', linestyle='--', linewidth=2, label=f"Hypothesis ({actual_score:.4f})")
-        ax.set_xlabel("Transition Consistency Score")
-        ax.set_ylabel("Frequency")
-        ax.legend()
-        st.pyplot(fig)
+            # Baseline score for hypothesis
+            actual_score = score_semantic_transitions(token_list, ORIGINAL_SEMANTIC_MAP)
+
+            # Null permutation loop
+            np.random.seed(int(random_seed))
+            null_scores = np.empty(num_perms)
+            for i in range(num_perms):
+                shuffled = np.random.permutation(labels)
+                perm_map = dict(zip(roles, shuffled))
+                null_scores[i] = score_semantic_transitions(token_list, perm_map)
+
+            mean_null = float(np.mean(null_scores))
+            std_null = float(np.std(null_scores))
+            p_val = float(np.mean(null_scores >= actual_score))
+            z_score = float((actual_score - mean_null) / std_null) if std_null > 0 else 0.0
+
+            st.divider()
+            m1, m2, m3, m4 = st.columns(4)
+            m1.metric("Hypothesis Score", f"{actual_score:.4f}")
+            m2.metric("Null Mean (Chance)", f"{mean_null:.4f}")
+            m3.metric("Z-Score", f"{z_score:+.2f}")
+            m4.metric("Empirical p-value", f"{p_val:.5f}")
+
+            if p_val < 0.05:
+                st.success(f"**Statistically Significant (p = {p_val:.5f})**: The sequence outperforms chance.")
+            else:
+                st.warning(f"**Not Statistically Significant (p = {p_val:.5f})**: The sequence does not beat chance on this token set.")
+
+            # Distribution Plot
+            fig, ax = plt.subplots(figsize=(8, 3.5))
+            ax.hist(null_scores, bins=30, color="#888888", alpha=0.7, edgecolor="black", label="Null Distribution")
+            ax.axvline(actual_score, color="red", linestyle="--", linewidth=2, label=f"Hypothesis ({actual_score:.4f})")
+            ax.set_xlabel("Transition Consistency Score")
+            ax.set_ylabel("Frequency")
+            ax.legend()
+            st.pyplot(fig)
