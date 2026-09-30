@@ -1,0 +1,620 @@
+{
+  "meta": {
+    "generated_at": "2026-09-30T20:54:21+00:00",
+    "seed": 20260930,
+    "perms": 20000,
+    "twins": 1000,
+    "locus_types": "P",
+    "corpus": "data/ZL3b-n.txt",
+    "corpus_sha256": "3e617b2dd4c17736f45bcec9bbf6fb09f825fa2ee6e28dad115273e2326ef4ac",
+    "tokens": 35038,
+    "lines": 4130,
+    "folios": 207
+  },
+  "test1_line_end": {
+    "m_family": {
+      "tokens": 861,
+      "at_line_end": 605,
+      "line_end_incidence": 0.14741715399610136,
+      "mid_line_incidence": 0.008282645269833053,
+      "odds_ratio": 20.70285706630466,
+      "p_greater": 0.0,
+      "p_two_sided": 0.0,
+      "within_line_shuffle": {
+        "observed": 605,
+        "null_mean": 102.07135,
+        "null_sd": 9.246343016430874,
+        "p": 4.999750012499375e-05,
+        "perms": 20000
+      }
+    },
+    "by_ending": [
+      {
+        "ending": "am",
+        "state": "R",
+        "n": 684,
+        "line_end": 499,
+        "line_end_rate": 0.12158869395711501,
+        "mid_line_rate": 0.0059855053707777925,
+        "share_at_line_end": 0.72953216374269,
+        "odds_ratio": 22.9872579375492,
+        "p_greater": 2.111364208e-314,
+        "p_two_sided": 2.111364208e-314
+      },
+      {
+        "ending": "m",
+        "state": "R",
+        "n": 177,
+        "line_end": 106,
+        "line_end_rate": 0.025828460038986353,
+        "mid_line_rate": 0.002297139899055261,
+        "share_at_line_end": 0.5988700564971752,
+        "odds_ratio": 11.51534217813132,
+        "p_greater": 4.242704339001306e-53,
+        "p_two_sided": 4.242704339001306e-53
+      },
+      {
+        "ending": "y",
+        "state": "P",
+        "n": 4236,
+        "line_end": 776,
+        "line_end_rate": 0.18908382066276802,
+        "mid_line_rate": 0.11194512747508735,
+        "share_at_line_end": 0.18319169027384324,
+        "odds_ratio": 1.8497498888394843,
+        "p_greater": 2.345241285280898e-41,
+        "p_two_sided": 3.2428383889081584e-41
+      },
+      {
+        "ending": "dy",
+        "state": "C",
+        "n": 2275,
+        "line_end": 422,
+        "line_end_rate": 0.10282651072124756,
+        "mid_line_rate": 0.05995211595703378,
+        "share_at_line_end": 0.1854945054945055,
+        "odds_ratio": 1.7971077920825427,
+        "p_greater": 6.29084280034046e-23,
+        "p_two_sided": 1.0029890024947372e-22
+      },
+      {
+        "ending": "aiiin",
+        "state": "L",
+        "n": 113,
+        "line_end": 19,
+        "line_end_rate": 0.004629629629629629,
+        "mid_line_rate": 0.003041283810016824,
+        "share_at_line_end": 0.168141592920354,
+        "odds_ratio": 1.5246907471548738,
+        "p_greater": 0.06703029329669545,
+        "p_two_sided": 0.10518658487464225
+      },
+      {
+        "ending": "al",
+        "state": "P",
+        "n": 1814,
+        "line_end": 236,
+        "line_end_rate": 0.057504873294346975,
+        "mid_line_rate": 0.051054743108580304,
+        "share_at_line_end": 0.13009922822491732,
+        "odds_ratio": 1.13404581873564,
+        "p_greater": 0.04471056205634188,
+        "p_two_sided": 0.08458420188712804
+      },
+      {
+        "ending": "?",
+        "state": "?",
+        "n": 4988,
+        "line_end": 606,
+        "line_end_rate": 0.1476608187134503,
+        "mid_line_rate": 0.14177559207972046,
+        "share_at_line_end": 0.1214915797914996,
+        "odds_ratio": 1.0487022772874843,
+        "p_greater": 0.1611298392124974,
+        "p_two_sided": 0.30691111572487667
+      },
+      {
+        "ending": "aiin",
+        "state": "L",
+        "n": 3646,
+        "line_end": 388,
+        "line_end_rate": 0.09454191033138401,
+        "mid_line_rate": 0.10540960269185971,
+        "share_at_line_end": 0.10641799232035107,
+        "odds_ratio": 0.8861353786093155,
+        "p_greater": 0.9857453089192723,
+        "p_two_sided": 0.031677332309645444
+      },
+      {
+        "ending": "ain",
+        "state": "L",
+        "n": 1626,
+        "line_end": 161,
+        "line_end_rate": 0.039230019493177386,
+        "mid_line_rate": 0.047398731719943056,
+        "share_at_line_end": 0.0990159901599016,
+        "odds_ratio": 0.8206227132543177,
+        "p_greater": 0.9922815747600191,
+        "p_two_sided": 0.019774105615155493
+      },
+      {
+        "ending": "ar",
+        "state": "L",
+        "n": 2405,
+        "line_end": 189,
+        "line_end_rate": 0.046052631578947366,
+        "mid_line_rate": 0.07169664811699236,
+        "share_at_line_end": 0.07858627858627859,
+        "odds_ratio": 0.6250591310842774,
+        "p_greater": 0.9999999999830658,
+        "p_two_sided": 1.6775199301978647e-10
+      },
+      {
+        "ending": "edy",
+        "state": "C",
+        "n": 2837,
+        "line_end": 178,
+        "line_end_rate": 0.04337231968810916,
+        "mid_line_rate": 0.08602950692377379,
+        "share_at_line_end": 0.06274233345082834,
+        "odds_ratio": 0.4816753796303445,
+        "p_greater": 1.0,
+        "p_two_sided": 5.0749875615964875e-24
+      },
+      {
+        "ending": "or",
+        "state": "L",
+        "n": 2047,
+        "line_end": 119,
+        "line_end_rate": 0.028996101364522416,
+        "mid_line_rate": 0.06237867218843018,
+        "share_at_line_end": 0.05813385442110405,
+        "odds_ratio": 0.448859051317961,
+        "p_greater": 1.0,
+        "p_two_sided": 1.806570638996075e-20
+      },
+      {
+        "ending": "ol",
+        "state": "P",
+        "n": 3282,
+        "line_end": 186,
+        "line_end_rate": 0.04532163742690058,
+        "mid_line_rate": 0.10016824123204349,
+        "share_at_line_end": 0.056672760511883,
+        "odds_ratio": 0.4264614520143563,
+        "p_greater": 0.9999999999923501,
+        "p_two_sided": 9.380652231199216e-35
+      },
+      {
+        "ending": "ey",
+        "state": "C",
+        "n": 1957,
+        "line_end": 108,
+        "line_end_rate": 0.02631578947368421,
+        "mid_line_rate": 0.05982269962469264,
+        "share_at_line_end": 0.05518650996423097,
+        "odds_ratio": 0.42475845234092935,
+        "p_greater": 1.0,
+        "p_two_sided": 9.262529688394207e-22
+      },
+      {
+        "ending": "eedy",
+        "state": "C",
+        "n": 1184,
+        "line_end": 55,
+        "line_end_rate": 0.013401559454191032,
+        "mid_line_rate": 0.03652775980328717,
+        "share_at_line_end": 0.0464527027027027,
+        "odds_ratio": 0.35828702469154977,
+        "p_greater": 1.0,
+        "p_two_sided": 1.2686417190613833e-17
+      },
+      {
+        "ending": "eey",
+        "state": "C",
+        "n": 1741,
+        "line_end": 56,
+        "line_end_rate": 0.01364522417153996,
+        "mid_line_rate": 0.05451662999870584,
+        "share_at_line_end": 0.032165422171166,
+        "odds_ratio": 0.23992329435498058,
+        "p_greater": 1.0,
+        "p_two_sided": 8.61837410097353e-39
+      }
+    ]
+  },
+  "test2_cycle": {
+    "observed": {
+      "pair_score": 0.2216430448455607,
+      "cycle4_rate": 0.0012302825255942704
+    },
+    "within_line_shuffle": {
+      "n": 5000,
+      "pair_null_mean": 0.214567185741752,
+      "pair_p": 0.001999600079984003,
+      "cycle4_null_mean": 0.0015696998989410784,
+      "cycle4_p": 0.8854229154169166
+    },
+    "markov1_twins": {
+      "n": 1000,
+      "pair_null_mean": 0.218771809121704,
+      "pair_p": 0.1258741258741259,
+      "cycle4_null_mean": 0.001507711235115778,
+      "cycle4_p": 0.8531468531468531
+    },
+    "markov2_twins": {
+      "n": 1000,
+      "pair_null_mean": 0.2208556516894477,
+      "pair_p": 0.39760239760239763,
+      "cycle4_null_mean": 0.001449097060503537,
+      "cycle4_p": 0.7872127872127872
+    }
+  },
+  "test3_order_tournament": {
+    "full_corpus": {
+      "tokens": 35038,
+      "linear_rank_of_CLPR": 1,
+      "linear_of": 24,
+      "cyclic_rank_of_CLPR": 1,
+      "cyclic_of": 6,
+      "linear_top3": [
+        [
+          "CLPR",
+          5101
+        ],
+        [
+          "LPCR",
+          5046
+        ],
+        [
+          "RCLP",
+          4931
+        ]
+      ],
+      "cyclic_top3": [
+        [
+          "CLPR",
+          5145
+        ],
+        [
+          "CRLP",
+          5104
+        ],
+        [
+          "CLRP",
+          4846
+        ]
+      ]
+    },
+    "folio_half_A": {
+      "tokens": 16819,
+      "linear_rank_of_CLPR": 1,
+      "linear_of": 24,
+      "cyclic_rank_of_CLPR": 1,
+      "cyclic_of": 6,
+      "linear_top3": [
+        [
+          "CLPR",
+          2429
+        ],
+        [
+          "LPCR",
+          2382
+        ],
+        [
+          "RCLP",
+          2352
+        ]
+      ],
+      "cyclic_top3": [
+        [
+          "CLPR",
+          2448
+        ],
+        [
+          "CRLP",
+          2412
+        ],
+        [
+          "CLRP",
+          2365
+        ]
+      ]
+    },
+    "folio_half_B": {
+      "tokens": 18219,
+      "linear_rank_of_CLPR": 1,
+      "linear_of": 24,
+      "cyclic_rank_of_CLPR": 1,
+      "cyclic_of": 6,
+      "linear_top3": [
+        [
+          "CLPR",
+          2672
+        ],
+        [
+          "LPCR",
+          2664
+        ],
+        [
+          "RLPC",
+          2603
+        ]
+      ],
+      "cyclic_top3": [
+        [
+          "CLPR",
+          2697
+        ],
+        [
+          "CRLP",
+          2692
+        ],
+        [
+          "CPLR",
+          2511
+        ]
+      ]
+    },
+    "currier_A": {
+      "tokens": 11362,
+      "linear_rank_of_CLPR": 5,
+      "linear_of": 24,
+      "cyclic_rank_of_CLPR": 3,
+      "cyclic_of": 6,
+      "linear_top3": [
+        [
+          "CPLR",
+          1556
+        ],
+        [
+          "RLPC",
+          1543
+        ],
+        [
+          "LPCR",
+          1542
+        ]
+      ],
+      "cyclic_top3": [
+        [
+          "CRLP",
+          1578
+        ],
+        [
+          "CPLR",
+          1572
+        ],
+        [
+          "CLPR",
+          1436
+        ]
+      ]
+    },
+    "currier_B": {
+      "tokens": 23676,
+      "linear_rank_of_CLPR": 2,
+      "linear_of": 24,
+      "cyclic_rank_of_CLPR": 2,
+      "cyclic_of": 6,
+      "linear_top3": [
+        [
+          "PCLR",
+          3840
+        ],
+        [
+          "CLPR",
+          3681
+        ],
+        [
+          "RPCL",
+          3652
+        ]
+      ],
+      "cyclic_top3": [
+        [
+          "CLRP",
+          3858
+        ],
+        [
+          "CLPR",
+          3709
+        ],
+        [
+          "CPRL",
+          3648
+        ]
+      ]
+    },
+    "untouched_folios": {
+      "tokens": 33272,
+      "linear_rank_of_CLPR": 1,
+      "linear_of": 24,
+      "cyclic_rank_of_CLPR": 1,
+      "cyclic_of": 6,
+      "linear_top3": [
+        [
+          "CLPR",
+          4845
+        ],
+        [
+          "LPCR",
+          4805
+        ],
+        [
+          "RCLP",
+          4681
+        ]
+      ],
+      "cyclic_top3": [
+        [
+          "CLPR",
+          4888
+        ],
+        [
+          "CRLP",
+          4863
+        ],
+        [
+          "CLRP",
+          4571
+        ]
+      ]
+    }
+  },
+  "test4_predictive_state": {
+    "train_pairs": 14916,
+    "test_pairs": 15992,
+    "majority_baseline_accuracy": 0.28326663331665836,
+    "state_conditioned_accuracy": 0.31684592296148073,
+    "unigram_bits": 2.075636666120268,
+    "bigram_bits": 2.058378866569175,
+    "information_gain_bits": 0.01725779955109319,
+    "note": "Information gain measures how much the current state tells you about the next one. It is a property of the state labels, not of the C->L->P->R order."
+  },
+  "test5_affix_role": {
+    "parser_consistency_mismatches": 0,
+    "observed_best_cycle_score": 0.2216430448455607,
+    "observed_best_cycle": "CLPR",
+    "null_mean": 0.239352931546978,
+    "null_sd": 0.006893370717612787,
+    "p": 0.9873006349682516,
+    "perms": 20000,
+    "note": "Endings stay fixed; which ending belongs to which state is shuffled (group sizes preserved), and each shuffle gets its best of the 6 cycles."
+  },
+  "test6_semantic_permutation": {
+    "glossed_tokens_tested": 14,
+    "occurrences": 3113,
+    "observed_section_hit_rate": 0.281079344683585,
+    "null_mean": 0.26764779955027307,
+    "null_sd": 0.06950547873835557,
+    "p": 0.41107944602769864,
+    "perms": 20000,
+    "domain_expected_sections": {
+      "Botanical": [
+        "Herbal"
+      ],
+      "Humoral": [
+        "Herbal"
+      ],
+      "Astronomical": [
+        "Astronomical/Zodiac",
+        "Cosmological"
+      ],
+      "Solvent": [
+        "Biological"
+      ],
+      "Compounding": [
+        "Pharmaceutical",
+        "Stars/Recipes"
+      ]
+    },
+    "per_token": [
+      {
+        "token": "daiin",
+        "domain": "Solvent",
+        "n": 816,
+        "hit_rate_for_own_domain": 0.10049019607843138
+      },
+      {
+        "token": "shedy",
+        "domain": "Botanical",
+        "n": 425,
+        "hit_rate_for_own_domain": 0.0988235294117647
+      },
+      {
+        "token": "chedy",
+        "domain": "Botanical",
+        "n": 495,
+        "hit_rate_for_own_domain": 0.12727272727272726
+      },
+      {
+        "token": "qokedy",
+        "domain": "Compounding",
+        "n": 277,
+        "hit_rate_for_own_domain": 0.22743682310469315
+      },
+      {
+        "token": "qokeey",
+        "domain": "Compounding",
+        "n": 303,
+        "hit_rate_for_own_domain": 0.6105610561056105
+      },
+      {
+        "token": "qokal",
+        "domain": "Compounding",
+        "n": 191,
+        "hit_rate_for_own_domain": 0.2513089005235602
+      },
+      {
+        "token": "otcheodaiin",
+        "domain": "Astronomical",
+        "n": 1,
+        "hit_rate_for_own_domain": 0.0
+      },
+      {
+        "token": "otcheody",
+        "domain": "Astronomical",
+        "n": 1,
+        "hit_rate_for_own_domain": 0.0
+      },
+      {
+        "token": "opairam",
+        "domain": "Compounding",
+        "n": 1,
+        "hit_rate_for_own_domain": 1.0
+      },
+      {
+        "token": "qopairam",
+        "domain": "Compounding",
+        "n": 1,
+        "hit_rate_for_own_domain": 1.0
+      },
+      {
+        "token": "chol",
+        "domain": "Humoral",
+        "n": 381,
+        "hit_rate_for_own_domain": 0.6062992125984252
+      },
+      {
+        "token": "chor",
+        "domain": "Humoral",
+        "n": 209,
+        "hit_rate_for_own_domain": 0.7416267942583732
+      },
+      {
+        "token": "oteod",
+        "domain": "Astronomical",
+        "n": 2,
+        "hit_rate_for_own_domain": 0.0
+      },
+      {
+        "token": "chdam",
+        "domain": "Compounding",
+        "n": 10,
+        "hit_rate_for_own_domain": 0.4
+      }
+    ],
+    "note": "Glosses are shuffled among the glossed tokens. Only section preference is tested; operational glosses (heat, drain, ...) have no independent target in the manuscript yet and cannot be scored."
+  },
+  "test7_holdout_hygiene": {
+    "declared_holdout": [
+      "f70v2",
+      "f71r",
+      "f72r1",
+      "f72v1",
+      "f72v2"
+    ],
+    "holdout_also_in_seen_folios": [
+      "f70v2",
+      "f71r",
+      "f72r1",
+      "f72v1",
+      "f72v2"
+    ],
+    "holdout_is_clean": false,
+    "untouched_tokens": 33272,
+    "untouched_tokens_in_dictionary": 2924,
+    "dictionary_coverage_untouched": 0.08788170233229142
+  }
+}
