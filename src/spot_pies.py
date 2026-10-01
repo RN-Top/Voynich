@@ -2,10 +2,8 @@
 MODULE: spot_pies
 Frozen role-tagger and physical locus distribution comparison across:
 1. FRONT LOCK (f1r, f1v, f2r)
-2. FOLD CENTER (f86r3 or crease center panel)
-3. FOLD LEFT (f85v1, f85v2)
-4. FOLD RIGHT (f86r4, f86r5, f86r6)
-5. BACK LOCK (f116r, f116v)
+2. Each rosettes foldout panel (f85r1, f85r2, f86v3-f86v6, ZL3b names)
+3. BACK LOCK (f116r, f116v)
 """
 
 import os
@@ -29,12 +27,17 @@ ROLE_COLORS = {
 
 GRAY_COLOR = "#808080"
 
+# Folio names as they appear in the ZL3b transcription. The rosettes foldout is
+# f85r1, f85r2 and f86v3-f86v6 there; each panel is its own spot.
 SPOTS = {
     "FRONT LOCK": ["f1r", "f1v", "f2r"],
-    "FOLD CENTER": ["f86r3", "f85v2.c", "rosettes_center", "f86r.c"],
-    "FOLD LEFT": ["f85v1", "f85v2"],
-    "FOLD RIGHT": ["f86r4", "f86r5", "f86r6", "f86r"],
-    "BACK LOCK": ["f116r", "f116v"]
+    "ROSETTE f85r1": ["f85r1"],
+    "ROSETTE f85r2": ["f85r2"],
+    "ROSETTE f86v3": ["f86v3"],
+    "ROSETTE f86v4": ["f86v4"],
+    "ROSETTE f86v5": ["f86v5"],
+    "ROSETTE f86v6": ["f86v6"],
+    "BACK LOCK": ["f116r", "f116v"],
 }
 
 def tag_token(token: str) -> str:
@@ -116,7 +119,7 @@ def get_comparison_table(results_dict):
     """Formats comparison matrix across all 5 spots."""
     roles = ["heat", "medium", "outlet", "reflux", "retain", "drain", "unmapped"]
     data = {"Role": roles}
-    for name in ["FRONT LOCK", "FOLD CENTER", "FOLD LEFT", "FOLD RIGHT", "BACK LOCK"]:
+    for name in SPOTS:
         res = results_dict.get(name, {})
         if res.get("missing"):
             data[name] = ["MISSING"] * len(roles)

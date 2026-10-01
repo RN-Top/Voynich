@@ -1,165 +1,218 @@
 """
 STREAMLIT PAGE: SPOT PIES
-Renders 5 physical locus pies, comparison matrix, top 10 tokens, and downloads.
-Append-only. Preserves all frozen pipeline mappings and skeleton definitions.
+Do particular physical places in the manuscript (front pages, each rosette
+panel, back pages) use a different mix of word endings from the rest of the
+book? Every number is computed from the canonical corpus; nothing is typed in.
 """
 
-import os
+import importlib
 import math
+import sys
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import streamlit as st
 
-# Import from spot_pies module
-try:
-    from src.spot_pies import (
-        ROLE_COLORS, GRAY_COLOR, SPOTS, tag_token,
-        load_spot_data, analyze_spot, get_comparison_table
-    )
-except ImportError:
-    st.error("MISSING: src/spot_pies.py could not be imported.")
-    st.stop()
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+import parser as canonical  # noqa: E402
+import structural_validation as sv  # noqa: E402
+from src import spot_pies  # noqa: E402
+
+for _module in (canonical, sv, spot_pies):
+    importlib.reload(_module)
 
 st.set_page_config(page_title="Spot Pies - Physical Loci", page_icon="🥧", layout="wide")
 
-# Section A: Title
-st.title("🥧 Spot Pies: Physical Locus Architecture")
-st.caption("Testing Front, Fold-Center, Fold-Left, Fold-Right, and Back loci under the frozen role map.")
+MIN_TOKENS = 100
+N_DRAWS = 2000
+ALPHA = 0.01
+ENDING_LABELS = list(sv.ENDINGS) + ["?"]
 
-# Load data and run analysis across the 5 spots
-df_corpus = load_spot_data()
 
-# Fallback pre-indexed records if file not read
-if df_corpus is None or df_corpus.empty:
-    sample_records = [
-        {"folio": "f1r", "token": "fachys"}, {"folio": "f1r", "token": "ykal"}, {"folio": "f1r", "token": "ar"},
-        {"folio": "f1r", "token": "ataiin"}, {"folio": "f1r", "token": "shol"}, {"folio": "f1r", "token": "shory"},
-        {"folio": "f1r", "token": "okchoy"}, {"folio": "f1r", "token": "otchol"}, {"folio": "f1r", "token": "chocthy"},
-        {"folio": "f1r", "token": "ydaraishy"}, {"folio": "f1r", "token": "chdam"},
-        {"folio": "f86r3", "token": "otol"}, {"folio": "f86r3", "token": "oteor"}, {"folio": "f86r3", "token": "al"},
-        {"folio": "f85v1", "token": "shedy"}, {"folio": "f85v1", "token": "qool"}, {"folio": "f85v2", "token": "shedaiin"},
-        {"folio": "f85v2", "token": "chdam"}, {"folio": "f86r4", "token": "qokedy"}, {"folio": "f86r4", "token": "daiin"},
-        {"folio": "f116r", "token": "oror"}, {"folio": "f116v", "token": "sheey"}
-    ]
-    df_corpus = pd.DataFrame(sample_records)
+@st.cache_data(show_spinner=False)
+def load_corpus() -> pd.DataFrame:
+    df = canonical.parse_zl3b(canonical.ensure_full_corpus(canonical.CORPUS_PATH))
+    df["ending"] = df["clean"].map(sv.ending_of)
+    df["role"] = df["clean"].map(spot_pies.tag_token)
+    df["line_key"] = df["folio"] + "|" + df["header"]
+    return df
 
-results = {}
-for spot_name, folios in SPOTS.items():
-    results[spot_name] = analyze_spot(df_corpus, folios)
 
-def render_svg_pie(counts_dict, small_n=False, size=140):
-    tot = sum(counts_dict.values())
+def distribution(series: pd.Series, labels) -> np.ndarray:
+    counts = series.value_counts().reindex(labels, fill_value=0).to_numpy(float)
+    return counts / counts.sum() if counts.sum() else counts
+
+
+@st.cache_data(show_spinner=False)
+def test_spot(df: pd.DataFrame, folios: tuple, seed: int = 20261001) -> dict:
+    """Is the spot more unusual than ordinary pages?
+
+    Statistic: total-variation distance between the spot's ending mix and the rest of the book.
+    Null: random sets of whole folios from the rest of the book with about the same word count,
+    scored the same way. Pages vary a lot by section and scribe, so the fair comparison is
+    other pages, not random lines.
+    """
+    spot = df[df["folio"].isin(folios)]
+    n = len(spot)
+    if n == 0:
+        return {"n": 0, "status": "missing"}
+    if n < MIN_TOKENS:
+        return {"n": n, "status": "too few words"}
+    rest = df[~df["folio"].isin(folios)]
+    rest_counts = pd.crosstab(rest["folio"], rest["ending"]).reindex(columns=ENDING_LABELS, fill_value=0)
+    total_counts = rest_counts.sum(axis=0).to_numpy(float)
+
+    def distance(counts: np.ndarray) -> float:
+        others = total_counts - counts
+        return 0.5 * np.abs(counts / counts.sum() - others / others.sum()).sum()
+
+    spot_counts = spot["ending"].value_counts().reindex(ENDING_LABELS, fill_value=0).to_numpy(float)
+    rest_dist = total_counts / total_counts.sum()
+    obs = float(0.5 * np.abs(spot_counts / n - rest_dist).sum())
+
+    rng = np.random.default_rng(seed)
+    mat = rest_counts.to_numpy(float)
+    sizes = mat.sum(axis=1)
+    null = np.empty(N_DRAWS)
+    for i in range(N_DRAWS):
+        counts, total = np.zeros(mat.shape[1]), 0.0
+        for k in rng.permutation(len(mat)):
+            counts += mat[k]
+            total += sizes[k]
+            if total >= n:
+                break
+        null[i] = distance(counts)
+    p = float((np.sum(null >= obs) + 1) / (N_DRAWS + 1))
+    return {"n": n, "status": "tested", "distance": obs, "null_mean": float(null.mean()), "p": p}
+
+
+def render_svg_pie(counts: dict, colors: dict, size=140) -> str:
+    tot = sum(counts.values())
+    cx = cy = size / 2
+    r = size / 2 - 8
     if tot == 0:
-        return f"<svg width='{size}' height='{size}'><circle cx='{size/2}' cy='{size/2}' r='{(size/2)-8}' fill='#333'/></svg>"
-    cx, cy, r = size / 2, size / 2, (size / 2) - 8
-    svg = [f"<svg width='{size}' height='{size}' viewBox='0 0 {size} {size}'>"]
-    curr = 0.0
-    for role, count in counts_dict.items():
+        return f"<svg width='{size}' height='{size}'><circle cx='{cx}' cy='{cy}' r='{r}' fill='#333'/></svg>"
+    svg, curr = [f"<svg width='{size}' height='{size}' viewBox='0 0 {size} {size}'>"], 0.0
+    for key, count in counts.items():
         if count == 0:
             continue
         frac = count / tot
         ang = frac * 2 * math.pi
-        x1 = cx + r * math.cos(curr)
-        y1 = cy + r * math.sin(curr)
-        x2 = cx + r * math.cos(curr + ang)
-        y2 = cy + r * math.sin(curr + ang)
-        large = 1 if ang > math.pi else 0
-        col = GRAY_COLOR if small_n else ROLE_COLORS.get(role, "#808080")
+        x1, y1 = cx + r * math.cos(curr), cy + r * math.sin(curr)
+        x2, y2 = cx + r * math.cos(curr + ang), cy + r * math.sin(curr + ang)
         if frac >= 0.999:
-            d = f"M {cx} {cy-r} A {r} {r} 0 1 1 {cx-0.001} {cy-r} Z"
+            d = f"M {cx} {cy - r} A {r} {r} 0 1 1 {cx - 0.001} {cy - r} Z"
         else:
-            d = f"M {cx} {cy} L {x1} {y1} A {r} {r} 0 {large} 1 {x2} {y2} Z"
-        svg.append(f"<path d='{d}' fill='{col}' stroke='#111' stroke-width='1'/>")
+            d = f"M {cx} {cy} L {x1} {y1} A {r} {r} 0 {1 if ang > math.pi else 0} 1 {x2} {y2} Z"
+        svg.append(f"<path d='{d}' fill='{colors.get(key, '#808080')}' stroke='#111' stroke-width='1'/>")
         curr += ang
-    svg.append("</svg>")
-    return "".join(svg)
+    return "".join(svg) + "</svg>"
 
-# Section B: Five pies side by side
-st.markdown("### B. Five Loci Pies Side by Side")
-cols = st.columns(5)
-spot_order = ["FRONT LOCK", "FOLD CENTER", "FOLD LEFT", "FOLD RIGHT", "BACK LOCK"]
 
-for idx, name in enumerate(spot_order):
-    res = results[name]
-    with cols[idx]:
-        st.markdown(f"**{name}**")
-        if res.get("missing"):
-            st.warning("MISSING")
-        else:
-            st.markdown(f"**N = {res['N']}**")
-            if res.get("small_n"):
-                st.caption("⚠️ **SMALL-N** (Grayed)")
-                st.markdown(render_svg_pie(res["counts"], small_n=True), unsafe_allow_html=True)
+# -----------------------------------------------------------------------------
+st.title("🥧 Spot Pies: Physical Locus Comparison")
+st.caption(
+    "Do particular places in the book (front pages, each rosette panel, back pages) use a different mix "
+    "of word endings from the rest of the manuscript? Counts come from the canonical parser; nothing is typed in."
+)
+
+try:
+    df = load_corpus()
+except Exception as exc:
+    st.error(f"Corpus could not be loaded: {exc}")
+    st.stop()
+
+view = st.radio(
+    "Pie categories",
+    ["Word endings (tested structure)", "Hypothesised roles (heat, drain, ... — not validated)"],
+    horizontal=True,
+)
+use_roles = view.startswith("Hypothesised")
+if use_roles:
+    st.warning("Role labels are hypotheses that have not survived validation (see VALIDATION.md). "
+               "The statistical test below always uses endings.")
+
+ending_colors = {e: c for e, c in zip(ENDING_LABELS, [
+    "#000000", "#444444", "#d62728", "#e377c2", "#ff7f0e", "#bcbd22", "#8c564b",
+    "#1f77b4", "#17becf", "#aec7e8", "#9467bd", "#c5b0d5", "#2ca02c", "#98df8a", "#ffbb78", "#808080"])}
+
+results = {name: test_spot(df, tuple(folios)) for name, folios in spot_pies.SPOTS.items()}
+n_tested = sum(r["status"] == "tested" for r in results.values())
+alpha_each = ALPHA / max(n_tested, 1)
+
+# Pies
+st.markdown("### Pies")
+names = list(spot_pies.SPOTS)
+for row_start in range(0, len(names), 4):
+    cols = st.columns(4)
+    for col, name in zip(cols, names[row_start:row_start + 4]):
+        folios = spot_pies.SPOTS[name]
+        sub = df[df["folio"].isin(folios)]
+        with col:
+            st.markdown(f"**{name}**")
+            st.caption(", ".join(folios))
+            st.markdown(f"N = **{len(sub):,}** words")
+            if sub.empty:
+                st.warning("No words found for these folios.")
+                continue
+            if use_roles:
+                counts = sub["role"].value_counts().to_dict()
+                colors = spot_pies.ROLE_COLORS
             else:
-                st.markdown(render_svg_pie(res["counts"], small_n=False), unsafe_allow_html=True)
-            
-            with st.expander("Top 10 Tokens"):
-                for t, c, r in res["top10"]:
-                    st.text(f"{t} ({c}) - {r}")
+                counts = sub["ending"].value_counts().reindex(ENDING_LABELS, fill_value=0).to_dict()
+                colors = ending_colors
+            st.markdown(render_svg_pie(counts, colors), unsafe_allow_html=True)
+            with st.expander("Top 10 words"):
+                for tok, c in sub["clean"].value_counts().head(10).items():
+                    st.text(f"{tok} ({c})")
 
-st.markdown("""
-<div style='display:flex; gap:12px; font-size:12px; margin-top:8px; margin-bottom:12px;'>
-    <span><b style='color:#FF0000;'>■</b> heat</span>
-    <span><b style='color:#00FFFF;'>■</b> medium</span>
-    <span><b style='color:#FFA500;'>■</b> outlet</span>
-    <span><b style='color:#800080;'>■</b> reflux</span>
-    <span><b style='color:#008000;'>■</b> retain</span>
-    <span><b style='color:#000000; background:#eee;'>■</b> drain</span>
-    <span><b style='color:#808080;'>■</b> unmapped</span>
-</div>
-""", unsafe_allow_html=True)
-
-# Section C: Comparison Table
+# Comparison table
 st.markdown("---")
-st.markdown("### C. Comparison Table: Spot Role Percentages")
-comp_df = get_comparison_table(results)
-st.dataframe(comp_df, use_container_width=True)
+st.markdown("### Share of each category, by spot")
+col = "role" if use_roles else "ending"
+labels = list(spot_pies.ROLE_COLORS) if use_roles else ENDING_LABELS
+table = pd.DataFrame({"Category": [f"-{x}" if not use_roles and x != "?" else x for x in labels]})
+for name, folios in spot_pies.SPOTS.items():
+    sub = df[df["folio"].isin(folios)]
+    table[name] = [f"{v:.1%}" for v in distribution(sub[col], labels)] if len(sub) else ["—"] * len(labels)
+table["Whole book"] = [f"{v:.1%}" for v in distribution(df[col], labels)]
+st.dataframe(table, use_container_width=True)
 
-# Section D: Auto-written verdict
+# Test and verdict
 st.markdown("---")
-st.markdown("### D. Auto-Written Verdict")
+st.markdown("### Test: is each spot more unusual than ordinary pages?")
+st.caption(
+    f"Statistic: how far the spot's ending mix is from the rest of the book (total-variation distance). "
+    f"Null: {N_DRAWS:,} random sets of whole pages from the rest of the book with about the same number of words, "
+    f"so a spot only counts as different if it is more unusual than ordinary pages are. "
+    f"Spots under {MIN_TOKENS} words are not tested. Threshold {ALPHA} split across the {n_tested} tested "
+    f"spots (Bonferroni): p < {alpha_each:.4f}."
+)
+rows = []
+for name, r in results.items():
+    if r["status"] == "tested":
+        verdict = "MORE UNUSUAL than ordinary pages" if r["p"] < alpha_each else "no detectable difference"
+        rows.append({"Spot": name, "Words": r["n"], "Distance": round(r["distance"], 3),
+                     "Typical for random pages": round(r["null_mean"], 3), "p": round(r["p"], 4), "Verdict": verdict})
+    else:
+        rows.append({"Spot": name, "Words": r["n"], "Distance": None, "Typical for random pages": None,
+                     "p": None, "Verdict": r["status"]})
+verdicts = pd.DataFrame(rows)
+st.dataframe(verdicts, use_container_width=True)
+st.info(
+    "A difference means the spot's word endings are unusual for the book. It does not say why: the rosette "
+    "panels are mostly circular and label text, which behaves differently from paragraph text everywhere in "
+    "the manuscript (see the blind holdout, target B)."
+)
 
-# Evaluate divergence predictions without refitting
-front_pcts = results["FRONT LOCK"].get("pcts", {})
-center_pcts = results["FOLD CENTER"].get("pcts", {})
-left_pcts = results["FOLD LEFT"].get("pcts", {})
-right_pcts = results["FOLD RIGHT"].get("pcts", {})
-back_pcts = results["BACK LOCK"].get("pcts", {})
-
-pred1_distinct = (front_pcts != center_pcts) and (center_pcts != back_pcts) and (front_pcts != back_pcts)
-pred2_wings_distinct = (left_pcts != right_pcts)
-pred3_center_odd = center_pcts.get("outlet", 0.0) != front_pcts.get("outlet", 0.0)
-
-if pred1_distinct and pred2_wings_distinct and pred3_center_odd:
-    verdict = "supported"
-    st.success(f"**Verdict:** `{verdict}` — FRONT ≠ FOLD-CENTER ≠ BACK, FOLD-LEFT ≠ FOLD-RIGHT, and FOLD-CENTER separates as distinct conduit locus.")
-elif pred1_distinct or pred2_wings_distinct:
-    verdict = "mixed"
-    st.info(f"**Verdict:** `{verdict}` — Loci show partial operational differentiation; wing panels or center fold exhibit partial overlap.")
-else:
-    verdict = "collapsed"
-    st.error(f"**Verdict:** `{verdict}` — Spots collapse into the uniform whole-book role distribution.")
-
-# Section E: Downloads
+# Downloads
 st.markdown("---")
-st.markdown("### E. Downloads")
-c_d1, c_d2 = st.columns(2)
-with c_d1:
-    csv_bytes = comp_df.to_csv(index=False).encode("utf-8")
-    st.download_button("Download spot_pies.csv", data=csv_bytes, file_name="spot_pies.csv", mime="text/csv")
-with c_d2:
-    st.caption("spot_pies.png: Generated via export panel.")
-
-# Print at bottom (as required)
-st.markdown("---")
-missing_spots = [k for k, v in results.items() if v.get("missing")]
-missing_str = ", ".join(missing_spots) if missing_spots else "NONE"
-
-st.code(f"""
-SPOT PIES ADDED
-Pi unchanged: YES
-Skeleton unchanged: YES
-Files added: [src/spot_pies.py, pages/10_Spot_Pies.py]
-Missing folios: {missing_str}
-Verdict: {verdict}
-""", language="text")
+c1, c2 = st.columns(2)
+c1.download_button("Download spot_pies.csv", data=table.to_csv(index=False).encode("utf-8"),
+                   file_name="spot_pies.csv", mime="text/csv")
+c2.download_button("Download spot_tests.csv", data=verdicts.to_csv(index=False).encode("utf-8"),
+                   file_name="spot_tests.csv", mime="text/csv")
