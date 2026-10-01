@@ -370,6 +370,7 @@ def parse_zl3b(
                         "line_len": total,
                         "is_line_start": index == 0,
                         "is_line_end": index == total - 1,
+                        "is_para_end": "<$>" in raw_text,
                         "is_holdout": folio.lower() in HOLDOUT_FOLIOS,
                         "is_astro": section == "Astronomical/Zodiac",
                         "zodiac_sign": None,
