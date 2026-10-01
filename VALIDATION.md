@@ -31,6 +31,33 @@ The run is seeded, and every figure is computed from `data/ZL3b-n.txt`. Nothing 
 | Δ = −1.018 directional routing shift | **Withdrawn / under review** | See below. |
 | Venetian / German procedural semantics | Not established | No test in this repository constrains the glosses independently of the morphology they were derived from. |
 
+## Clean blind holdout (added 1 October 2026)
+
+A replacement for the withdrawn 90.2% test. Run it with `python blind_holdout.py`; results are in
+[`output/blind_holdout_report.md`](output/blind_holdout_report.md). It is also on the Holdout tab of the app.
+
+- **Holdout:** 43 folios, drawn at random (seed 20261001) from the 216 folios never used for cribs, the
+  dossier or the old holdout. The list is in `data/blind_holdout_v1.json`. It was committed on its own,
+  before any scoring code existed, and must not be edited.
+- **Model:** trained only on the other 184 folios. Its single input is each token's ending under the
+  frozen parser rules.
+- **Targets:** none of them can be read off the token's own spelling.
+
+| Target | Result | Verdict |
+|---|---|---|
+| A. Which token ends the line (15 endings) | AUC 0.671 vs 0.501 chance, p ≈ 0.0005 | **PASS** |
+| A. Same, using only the 4 states C/L/P/R | AUC 0.581 vs 0.501, p ≈ 0.0005 | **PASS** (weaker) |
+| B. Label / diagram text vs paragraph text | AUC 0.635 vs 0.500, p ≈ 0.0005 | **PASS** |
+| C. Which section each folio belongs to | 65.1% correct; always guessing "Herbal" also scores 65.1% | **FAIL** |
+
+The endings carry real, transferable information about line position and page layout on pages the
+model never saw. Grouping the endings into the four C/L/P/R states loses about 30% of that
+information (0.048 → 0.034 bits per token). This is consistent with the affix-role tournament:
+position is carried by individual endings more than by the four-state grouping.
+
+The rule that section prediction must also beat the majority guess was added after the first run.
+It is stricter only, and no score changed.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
@@ -91,8 +118,8 @@ reading of it.
 1. Keep the structural layer frozen and meaning-free. Add targets for it to predict:
    section, diagram vs prose, Currier hand, and a second transcription (for example
    Takahashi or the v101 transliteration) for external transfer.
-2. Pre-register a new holdout (for example, a random 20% of folios never used for
-   cribs), commit it, and don't change rules after looking at it.
+2. ~~Pre-register a new holdout~~ Done: `data/blind_holdout_v1.json` (see above). For the next rule
+   version, draw a fresh holdout (v2) rather than reusing v1.
 3. Rebuild the semantic layer only on top of targets the glosses make *different*
    predictions for. Then re-run the semantic permutation tournament. If the published
    glosses win decisively there, that result would matter.

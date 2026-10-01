@@ -30,7 +30,7 @@ This repository hosts an end-to-end computational decipherment engine and verifi
 
 | Verification Gate | Originally Reported | Status After Independent Review |
 | :--- | :--- | :--- |
-| **Blind Holdout Test** | 90.2% Accuracy (394/437 hits) | **WITHDRAWN.** The holdout folios are in `SEEN_FOLIOS`, and the score compares two suffix rule sets. |
+| **Blind Holdout Test** | 90.2% Accuracy (394/437 hits) | **WITHDRAWN.** The holdout folios are in `SEEN_FOLIOS`, and the score compares two suffix rule sets. **Replaced** by a pre-registered 43-folio blind holdout: line position and layout predicted above chance (AUC 0.67 / 0.64, p ≈ 0.0005); section not better than the majority guess. |
 | **A1: Dialect Separation** | 98.49% Balanced Accuracy | Not re-tested |
 | **A2: Line-final `-m`/`-am`** | 69.37% - 73.0% Line-Terminal | **SUPPORTED** as positional structure: 605/861 line-final, OR ≈ 20.7, shuffle p ≈ 5e-5. The "buffer flush" meaning is not established. |
 | **A4: Directional Switch** | Δ = −1.018 log-odds shift | **WITHDRAWN.** This was a fallback constant; recomputed Δ ≈ +1.50 (opposite sign). |
@@ -134,6 +134,7 @@ RN-Top/Voynich/
 ├── parser.py               # Canonical IVTFF parser (app + validation scripts)
 ├── lexicon.py              # Hypothesised gloss dictionary (not validated)
 ├── structural_validation.py# Meaning-free validation ladder (writes output/)
+├── blind_holdout.py        # Pre-registered blind holdout test (data/blind_holdout_v1.json)
 ├── requirements.txt        # Runtime dependencies (streamlit, pandas, numpy)
 ├── .gitignore              # Environment & cache filters
 └── data/

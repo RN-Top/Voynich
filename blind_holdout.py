@@ -108,7 +108,7 @@ def section_target(train, test, n_perms, rng):
     """Nearest-centroid section prediction from each folio's ending profile."""
     def profiles(df):
         counts = pd.crosstab(df["folio"], df["ending"]).reindex(columns=LABELS, fill_value=0)
-        return counts.div(counts.sum(1), axis=0)
+        return counts.div(counts.sum(axis=1), axis=0)
 
     tr_prof, te_prof = profiles(train), profiles(test)
     tr_sec = train.groupby("folio")["section"].first().reindex(tr_prof.index)
@@ -155,8 +155,12 @@ def run(df: pd.DataFrame, holdout: dict, n_perms: int = 2000, seed: int = 202610
     }
 
 
-def verdict(p: float) -> str:
-    return "PASS" if p < 0.01 else "FAIL"
+def verdict(p: float, score: float | None = None, baseline: float | None = None) -> str:
+    if p >= 0.01:
+        return "FAIL"
+    if score is not None and baseline is not None and score <= baseline:
+        return "FAIL (ties or trails the majority baseline)"
+    return "PASS"
 
 
 def render(r: dict) -> str:
@@ -182,10 +186,13 @@ def render(r: dict) -> str:
         f"{b['null_auc_mean']:.3f} | {b['p']:.2g} | **{verdict(b['p'])}** |",
         f"| C. Section of each folio | {c['test_folios']} folios | {c['accuracy']:.1%} correct | "
         f"{c['majority_baseline']:.1%} (always '{c['majority_section']}'); shuffled {c['null_mean']:.1%} | "
-        f"{c['p']:.2g} | **{verdict(c['p'])}** |",
+        f"{c['p']:.2g} | **{verdict(c['p'], c['accuracy'], c['majority_baseline'])}** |",
         "",
         f"Information gain for line-final prediction: {a['bits_gain_per_token']:.4f} bits/token with 15 endings, "
         f"{a4['bits_gain_per_token']:.4f} with the 4-state grouping.",
+        "",
+        "Rule note (added after the first run, and stricter only): section prediction must also beat "
+        "the always-guess-the-majority-section baseline to pass. No scores changed.",
         "",
         "AUC is the chance that a randomly chosen positive (e.g. a line-final token) gets a higher score "
         "than a randomly chosen negative. 0.5 is chance.",
