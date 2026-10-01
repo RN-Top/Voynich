@@ -153,6 +153,25 @@ gathering, leaf k and leaf lo+hi−k are halves of one folded sheet.
   before binding. That is useful for reconstructing the original page order. It does **not** show a
   positional key.
 
+### Fold overlay (exploratory)
+
+The idea: fold the front and back pages in toward the center; the words that land on each other form
+a key. `pages/12_Fold_Overlay.py` (built on `analyses/fold_overlay.py`) folds any page onto any other,
+mirroring it left-to-right. Positions are approximated from line number and place in the line. It
+then folds every other page onto the same target, for a fair comparison.
+
+| Folded page → target | Same word | Same ending | Other pages scoring at least as high |
+|---|---:|---:|---|
+| f1r → f116r | 0.5% | 8.4% (typical 6.8%) | 30% / 23% |
+| f1r → f58r | 0.5% | 13.1% (typical 8.0%) | 10% / 9% |
+| f1r → f58v | 0.0% | 12.6% (typical 9.1%) | 100% / 20% |
+| f116r → f58r | 0.2% | 6.9% (typical 8.0%) | 18% / 66% |
+| f116r → f58v | 0.0% | 7.7% (typical 9.3%) | 100% / 71% |
+
+None of these stand out from ordinary pages. f58r/f58v were used as the center, as the middle of
+gathering H (whose central leaves f59–64 are missing). Exact page coordinates from the Beinecke images
+would make the overlay more precise than this line-and-word approximation.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
