@@ -1,0 +1,43 @@
+{
+  "P1": {
+    "lines": 3375,
+    "m_final_lines": 543,
+    "mean_glyph_excess_m_final": 0.0,
+    "mean_glyph_excess_other": -0.125,
+    "statistic": 0.125,
+    "null_mean": 0.03944906475325405,
+    "p_one_sided_greater": 0.38036196380361964,
+    "predicted_by_H_space": "> 0"
+  },
+  "P2": {
+    "paragraph_final_lines": 729,
+    "other_lines": 3375,
+    "m_rate_paragraph_final": 0.0850480109739369,
+    "m_rate_other": 0.1608888888888889,
+    "statistic": -0.07584087791495199,
+    "null_mean": 0.015931092455418384,
+    "p_two_sided": 9.999000099990002e-05,
+    "direction": "lower at paragraph ends",
+    "predicted_by_H_space": "lower",
+    "predicted_by_H_term": "higher"
+  },
+  "P3": {
+    "tokens": 3458,
+    "m_tokens": 543,
+    "mean_len_diff_m": -0.3631783089830571,
+    "mean_len_diff_other": -0.08154660035683499,
+    "statistic": -0.2816317086262221,
+    "null_mean": 0.00014308150222433954,
+    "p_one_sided_less": 9.999000099990002e-05,
+    "predicted_by_H_space": "< 0 (m-forms shorter than their stem's mid-line forms, relative to other endings)"
+  },
+  "P4": {
+    "line_final_tokens": 4104,
+    "m_tokens": 605,
+    "share_stem_seen_mid_m": 0.8975206611570248,
+    "share_stem_seen_mid_other": 0.8330951700485854,
+    "statistic": 0.06442549110843943,
+    "p_two_sided": 0.00019998000199980003
+  },
+  "decision": "H_space supported"
+}

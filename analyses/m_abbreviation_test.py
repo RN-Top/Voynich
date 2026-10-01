@@ -159,6 +159,18 @@ Pre-registration: `analyses/m_abbreviation_prereg.md` (committed before this cod
 Counts: P1 {p1['lines']:,} non-final lines ({p1['m_final_lines']} m-final); P2 {p2['paragraph_final_lines']} paragraph-final
 lines vs {p2['other_lines']:,} others; P3 {p3['tokens']:,} line-final tokens with a stem seen mid-line ({p3['m_tokens']} -m/-am);
 P4 {p4['line_final_tokens']:,} line-final tokens ({p4['m_tokens']} -m/-am).
+
+## Reading the result (added after the first run; no numbers changed)
+
+- **P2 carries most of the weight.** -m/-am is markedly rarer at the end of paragraphs, where the scribe
+  was not short of space. A unit-terminator reading ("seal", "finis", "flush") predicts the opposite.
+- **P3 is partly built in.** The length difference mostly reflects ending length: -am/-m are short endings.
+  It cannot separate "abbreviated form" from "a short ending that prefers line ends".
+- **P1 failed.** Lines ending in -m/-am are not measurably fuller, so this is not simply "ran out of room".
+- **P4:** -m/-am words reuse ordinary stems. They are normal words in a variant form, not a special vocabulary.
+
+Best current reading: -m/-am is a line-end variant form, used where a line breaks inside running text
+and avoided where a paragraph ends. That fits a scribal line-end convention better than an end-of-unit marker.
 """
 
 
