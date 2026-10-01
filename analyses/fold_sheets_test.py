@@ -63,7 +63,9 @@ def lineup(sides_a: list[dict], sides_b: list[dict]) -> float:
 
 
 def build(df):
-    df = df.copy()
+    # Folios without a leaf number (ZL3b's "fRos", the rosettes foldout) cannot be placed
+    # in the sheet structure and are skipped (amendment 2026-10-01 in the pre-registration).
+    df = df[df["folio"].str.match(r"f\d+")].copy()
     df["leaf"] = df["folio"].map(leaf_of)
     df["line_no"] = df["header"].str.extract(r"\.(\d+)")[0].astype(float)
     words = {leaf: Counter(g["clean"]) for leaf, g in df.groupby("leaf")}

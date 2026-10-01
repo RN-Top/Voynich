@@ -44,3 +44,7 @@ Report two versions:
 
 ---
 Amendments (dated, below this line only):
+
+- 2026-10-01: the first run crashed before producing any result, because ZL3b stores the rosettes foldout
+  as `fRos` (539 words), with no leaf number. Following the definition above ("a leaf is a folio
+  number"), folios without a leaf number are skipped. No other change.
