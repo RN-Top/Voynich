@@ -18,6 +18,7 @@ import streamlit as st
 
 import parser as canonical
 import structural_validation as sv
+import blind_holdout as bh
 from lexicon import MASTER_LEXICON
 
 st.set_page_config(
@@ -340,10 +341,10 @@ with tab_paper:
             NOT_COMPUTED,
         ],
         "Status After Independent Review": [
-            "WITHDRAWN as blind test: holdout folios are in SEEN_FOLIOS; score compares two suffix rule sets",
+            "WITHDRAWN as blind test (holdout folios were already seen). Replaced by the pre-registered blind holdout in the Holdout tab",
             "Not re-tested",
             "SUPPORTED as positional structure; functional meaning ('flush') not established",
-            "Not re-tested",
+            "WITHDRAWN: -1.018 was a fallback constant; recomputed Δ ≈ +1.50 (opposite sign)",
             "Not re-tested",
             "Not re-tested",
             "Not re-tested",
@@ -366,70 +367,116 @@ with tab_paper:
 # TAB 2: HOLDOUT PERMUTATION AUDIT
 # =============================================================================
 with tab_holdout:
-    st.header("🎯 Holdout Permutation Audit")
+    st.header("🎯 Blind Holdout Test")
+    try:
+        blind_spec = bh.load_holdout()
+    except FileNotFoundError:
+        blind_spec = None
 
-    seen_overlap = sorted(set(QUARANTINED_FOLIOS) & sv.SEEN_FOLIOS)
-    if seen_overlap:
-        st.error(
-            "**Not a clean blind test.** These holdout folios are also listed in the project's "
-            f"SEEN_FOLIOS (used for dossier recipes / cribs): {', '.join(seen_overlap)}. "
-            "In addition, `predict_apparatus_role` and `get_expected_role` are both suffix rules "
-            "applied to the same token string, so their agreement measures rule overlap, not "
-            "prediction of independent ground truth."
-        )
-
-    holdout_tokens = []
-    for l in lines_corpus:
-        if l["folio"] in QUARANTINED_FOLIOS:
-            for tok in l["tokens"]:
-                parsed = VoynichParser.parse(tok)
-                pred = predict_apparatus_role(tok)
-                exp = get_expected_role(l["folio"], tok)
-                holdout_tokens.append({
-                    "folio": l["folio"],
-                    "token": tok,
-                    "carrier": parsed["carrier_core"],
-                    "predicted": pred,
-                    "expected": exp,
-                    "match": pred == exp,
-                })
-
-    if not holdout_tokens:
-        st.info(f"Holdout folios not present in the loaded corpus: {NOT_COMPUTED}.")
+    if blind_spec is None:
+        st.info(f"Blind holdout: {NOT_COMPUTED} (data/blind_holdout_v1.json is missing).")
     else:
-        total_loci = len(holdout_tokens)
-        hits = sum(1 for x in holdout_tokens if x["match"])
-        obs_acc = hits / total_loci * 100
+        st.markdown(f"""
+        **{len(blind_spec['holdout_folios'])} folios** were drawn at random (seed {blind_spec['seed']}) from pages
+        never used for cribs, the dossier or the old holdout, and committed on
+        {blind_spec['created_at'][:10]} **before** the scoring code existed. The model trains on every other
+        folio. Its only input is each token's ending from the frozen parser rules, and every target is
+        something that spelling does not decide: where the token sits in the line, whether it is in a
+        label or diagram, and which section the page belongs to.
+        """)
+        with st.expander("Frozen holdout folios"):
+            st.write(", ".join(blind_spec["holdout_folios"]))
 
-        # Chance agreement: shuffle predicted labels against expected labels.
-        rng = np.random.default_rng(42)
-        pred_arr = np.array([x["predicted"] for x in holdout_tokens])
-        exp_arr = np.array([x["expected"] for x in holdout_tokens])
-        null = np.array([np.mean(rng.permutation(pred_arr) == exp_arr) * 100 for _ in range(5000)])
-        null_mean, null_sd = float(null.mean()), float(null.std())
-        p_val = float((np.sum(null >= obs_acc) + 1) / (len(null) + 1))
-        z_val = (obs_acc - null_mean) / null_sd if null_sd > 0 else None
+        bh_perms = st.number_input("Permutations", min_value=200, max_value=10000, value=2000, step=200, key="bh_perms")
+        if st.button("Run Blind Holdout Test", type="primary"):
+            with st.spinner("Scoring the frozen holdout..."):
+                bres = bh.run(corpus_df, blind_spec, int(bh_perms))
+            rows = []
+            for key, label in (
+                ("A_line_end_by_ending", "A. Line-final token (15 endings)"),
+                ("A_line_end_by_state", "A. Line-final token (4 states C/L/P/R)"),
+                ("B_layout_by_ending", "B. Label / diagram vs paragraph"),
+            ):
+                r = bres[key]
+                rows.append({"Target": label, "Holdout size": f"{r['test_tokens']:,} tokens",
+                             "Score": f"AUC {r['auc']:.3f}", "Chance": f"{r['null_auc_mean']:.3f}",
+                             "p": f"{r['p']:.2g}", "Verdict": bh.verdict(r["p"])})
+            c = bres["C_section"]
+            rows.append({"Target": "C. Section of each folio", "Holdout size": f"{c['test_folios']} folios",
+                         "Score": f"{c['accuracy']:.1%} correct",
+                         "Chance": f"{c['majority_baseline']:.1%} always '{c['majority_section']}'",
+                         "p": f"{c['p']:.2g}",
+                         "Verdict": bh.verdict(c["p"], c["accuracy"], c["majority_baseline"])})
+            st.dataframe(pd.DataFrame(rows), use_container_width=True)
+            st.caption("AUC 0.5 = chance, 1.0 = perfect. PASS means p < 0.01; section prediction must also "
+                       "beat always guessing the most common section.")
+            with st.expander("Section prediction per holdout folio"):
+                st.dataframe(pd.DataFrame(c["per_folio"]), use_container_width=True)
 
-        h_col1, h_col2, h_col3, h_col4 = st.columns(4)
-        with h_col1:
-            st.markdown("### Scored Tokens")
-            st.markdown(f"## {total_loci} Loci")
-            st.caption("↑ " + ", ".join(QUARANTINED_FOLIOS))
-        with h_col2:
-            st.markdown("### Rule Agreement")
-            st.markdown(f"## {obs_acc:.1f}%")
-            st.caption(f"↑ {hits} / {total_loci} matches")
-        with h_col3:
-            st.markdown("### Shuffled Baseline")
-            st.markdown(f"## {null_mean:.1f}%")
-            st.caption(f"↑ ± {null_sd:.1f}% (5,000 label shuffles)")
-        with h_col4:
-            st.markdown("### Empirical p-value")
-            st.markdown(f"## {p_val:.4f}")
-            st.caption(f"↑ Z = {fmt(z_val, '.2f')}σ")
+    with st.expander("Legacy audit: old five-folio 'holdout' (not a blind test)"):
 
-        st.subheader("Holdout Token Verification Ledger")
-        st.dataframe(pd.DataFrame(holdout_tokens), use_container_width=True)
+        seen_overlap = sorted(set(QUARANTINED_FOLIOS) & sv.SEEN_FOLIOS)
+        if seen_overlap:
+            st.error(
+                "**Not a clean blind test.** These holdout folios are also listed in the project's "
+                f"SEEN_FOLIOS (used for dossier recipes / cribs): {', '.join(seen_overlap)}. "
+                "In addition, `predict_apparatus_role` and `get_expected_role` are both suffix rules "
+                "applied to the same token string, so their agreement measures rule overlap, not "
+                "prediction of independent ground truth."
+            )
+
+        holdout_tokens = []
+        for l in lines_corpus:
+            if l["folio"] in QUARANTINED_FOLIOS:
+                for tok in l["tokens"]:
+                    parsed = VoynichParser.parse(tok)
+                    pred = predict_apparatus_role(tok)
+                    exp = get_expected_role(l["folio"], tok)
+                    holdout_tokens.append({
+                        "folio": l["folio"],
+                        "token": tok,
+                        "carrier": parsed["carrier_core"],
+                        "predicted": pred,
+                        "expected": exp,
+                        "match": pred == exp,
+                    })
+
+        if not holdout_tokens:
+            st.info(f"Holdout folios not present in the loaded corpus: {NOT_COMPUTED}.")
+        else:
+            total_loci = len(holdout_tokens)
+            hits = sum(1 for x in holdout_tokens if x["match"])
+            obs_acc = hits / total_loci * 100
+
+            # Chance agreement: shuffle predicted labels against expected labels.
+            rng = np.random.default_rng(42)
+            pred_arr = np.array([x["predicted"] for x in holdout_tokens])
+            exp_arr = np.array([x["expected"] for x in holdout_tokens])
+            null = np.array([np.mean(rng.permutation(pred_arr) == exp_arr) * 100 for _ in range(5000)])
+            null_mean, null_sd = float(null.mean()), float(null.std())
+            p_val = float((np.sum(null >= obs_acc) + 1) / (len(null) + 1))
+            z_val = (obs_acc - null_mean) / null_sd if null_sd > 0 else None
+
+            h_col1, h_col2, h_col3, h_col4 = st.columns(4)
+            with h_col1:
+                st.markdown("### Scored Tokens")
+                st.markdown(f"## {total_loci} Loci")
+                st.caption("↑ " + ", ".join(QUARANTINED_FOLIOS))
+            with h_col2:
+                st.markdown("### Rule Agreement")
+                st.markdown(f"## {obs_acc:.1f}%")
+                st.caption(f"↑ {hits} / {total_loci} matches")
+            with h_col3:
+                st.markdown("### Shuffled Baseline")
+                st.markdown(f"## {null_mean:.1f}%")
+                st.caption(f"↑ ± {null_sd:.1f}% (5,000 label shuffles)")
+            with h_col4:
+                st.markdown("### Empirical p-value")
+                st.markdown(f"## {p_val:.4f}")
+                st.caption(f"↑ Z = {fmt(z_val, '.2f')}σ")
+
+            st.subheader("Holdout Token Verification Ledger")
+            st.dataframe(pd.DataFrame(holdout_tokens), use_container_width=True)
 
 # =============================================================================
 # TAB 3: CANONICAL TOKEN BREAKDOWN (VOYNICHPARSER INSPECTOR)

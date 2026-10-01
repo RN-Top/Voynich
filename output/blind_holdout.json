@@ -1,0 +1,262 @@
+{
+  "holdout": {
+    "name": "blind_holdout_v1",
+    "created_at": "2026-10-01T04:14:24+00:00",
+    "seed": 20261001,
+    "corpus_sha256": "3e617b2dd4c17736f45bcec9bbf6fb09f825fa2ee6e28dad115273e2326ef4ac"
+  },
+  "train_folios": 184,
+  "test_folios": 43,
+  "A_line_end_by_ending": {
+    "test_tokens": 5508,
+    "positives": 653,
+    "auc": 0.6713083715656015,
+    "null_auc_mean": 0.5005920485030667,
+    "null_auc_sd": 0.011671276530792248,
+    "p": 0.0004997501249375312,
+    "bits_gain_per_token": 0.0479332290586319
+  },
+  "A_line_end_by_state": {
+    "test_tokens": 5508,
+    "positives": 653,
+    "auc": 0.580588048821647,
+    "null_auc_mean": 0.5014635800385766,
+    "null_auc_sd": 0.011203560062404362,
+    "p": 0.0004997501249375312,
+    "bits_gain_per_token": 0.033674153471249135
+  },
+  "B_layout_by_ending": {
+    "test_tokens": 6059,
+    "positives": 545,
+    "auc": 0.6352322528476305,
+    "null_auc_mean": 0.5000734268403392,
+    "null_auc_sd": 0.012013434059033365,
+    "p": 0.0004997501249375312,
+    "bits_gain_per_token": 0.012226040149852568
+  },
+  "C_section": {
+    "test_folios": 43,
+    "accuracy": 0.6511627906976745,
+    "majority_baseline": 0.6511627906976745,
+    "majority_section": "Herbal",
+    "null_mean": 0.2929186046511628,
+    "p": 0.0004997501249375312,
+    "per_folio": [
+      {
+        "folio": "f102v1",
+        "section": "Pharmaceutical",
+        "predicted": "Pharmaceutical"
+      },
+      {
+        "folio": "f104r",
+        "section": "Stars/Recipes",
+        "predicted": "Cosmological"
+      },
+      {
+        "folio": "f106v",
+        "section": "Stars/Recipes",
+        "predicted": "Cosmological"
+      },
+      {
+        "folio": "f10r",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f11r",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f13v",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f15v",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f1v",
+        "section": "Herbal",
+        "predicted": "Pharmaceutical"
+      },
+      {
+        "folio": "f20r",
+        "section": "Herbal",
+        "predicted": "Pharmaceutical"
+      },
+      {
+        "folio": "f20v",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f22r",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f23r",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f25v",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f26r",
+        "section": "Herbal",
+        "predicted": "Biological"
+      },
+      {
+        "folio": "f27v",
+        "section": "Herbal",
+        "predicted": "Astronomical/Zodiac"
+      },
+      {
+        "folio": "f28v",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f29v",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f2r",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f35r",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f36r",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f38v",
+        "section": "Herbal",
+        "predicted": "Pharmaceutical"
+      },
+      {
+        "folio": "f40r",
+        "section": "Herbal",
+        "predicted": "Cosmological"
+      },
+      {
+        "folio": "f42v",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f43v",
+        "section": "Herbal",
+        "predicted": "Cosmological"
+      },
+      {
+        "folio": "f44r",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f50v",
+        "section": "Herbal",
+        "predicted": "Cosmological"
+      },
+      {
+        "folio": "f52r",
+        "section": "Herbal",
+        "predicted": "Astronomical/Zodiac"
+      },
+      {
+        "folio": "f54r",
+        "section": "Herbal",
+        "predicted": "Pharmaceutical"
+      },
+      {
+        "folio": "f57r",
+        "section": "Herbal",
+        "predicted": "Astronomical/Zodiac"
+      },
+      {
+        "folio": "f65v",
+        "section": "Herbal",
+        "predicted": "Astronomical/Zodiac"
+      },
+      {
+        "folio": "f67v1",
+        "section": "Astronomical/Zodiac",
+        "predicted": "Astronomical/Zodiac"
+      },
+      {
+        "folio": "f68r3",
+        "section": "Astronomical/Zodiac",
+        "predicted": "Astronomical/Zodiac"
+      },
+      {
+        "folio": "f69r",
+        "section": "Astronomical/Zodiac",
+        "predicted": "Astronomical/Zodiac"
+      },
+      {
+        "folio": "f70r2",
+        "section": "Astronomical/Zodiac",
+        "predicted": "Astronomical/Zodiac"
+      },
+      {
+        "folio": "f75r",
+        "section": "Biological",
+        "predicted": "Biological"
+      },
+      {
+        "folio": "f80v",
+        "section": "Biological",
+        "predicted": "Biological"
+      },
+      {
+        "folio": "f85r2",
+        "section": "Cosmological",
+        "predicted": "Cosmological"
+      },
+      {
+        "folio": "f86v6",
+        "section": "Cosmological",
+        "predicted": "Cosmological"
+      },
+      {
+        "folio": "f89v1",
+        "section": "Pharmaceutical",
+        "predicted": "Pharmaceutical"
+      },
+      {
+        "folio": "f8r",
+        "section": "Herbal",
+        "predicted": "Herbal"
+      },
+      {
+        "folio": "f93v",
+        "section": "Pharmaceutical",
+        "predicted": "Pharmaceutical"
+      },
+      {
+        "folio": "f95v1",
+        "section": "Pharmaceutical",
+        "predicted": "Cosmological"
+      },
+      {
+        "folio": "f99v",
+        "section": "Pharmaceutical",
+        "predicted": "Pharmaceutical"
+      }
+    ]
+  }
+}
