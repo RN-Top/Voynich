@@ -264,7 +264,17 @@ def _read_source(source):
 def parse_zl3b(
     source=CORPUS_PATH,
     selected_folios: Optional[List[str]] = None,
+    reading: str = "first",
+    uncertain_spaces_split: bool = True,
 ) -> pd.DataFrame:
+    """Parse an IVTFF file into one row per token.
+
+    reading: "first" or "last" alternative in [a:b] readings.
+    uncertain_spaces_split: treat "," (uncertain space) as a word break.
+    The defaults are the canonical representation used everywhere else.
+    """
+    if reading not in ("first", "last"):
+        raise ValueError("reading must be 'first' or 'last'")
 
     if isinstance(source, (str, os.PathLike)):
         source_path = str(source)
@@ -317,6 +327,10 @@ def parse_zl3b(
                 continue
 
             clean_text = re.sub(r"<![^>]*>", "", raw_text)
+            if reading == "last":
+                clean_text = re.sub(r"\[[^\]]*:([^\]:]*)\]", r"\1", clean_text)
+            if not uncertain_spaces_split:
+                clean_text = clean_text.replace(",", "")
             clean_text = re.sub(r"\{[^}]*\}", "", clean_text)
             # <-> marks a drawing interruption inside a line: it separates words.
             clean_text = clean_text.replace("<->", ".")
