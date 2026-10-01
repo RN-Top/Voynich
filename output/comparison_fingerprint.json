@@ -1,0 +1,79 @@
+{
+  "voynich_native": {
+    "tokens": 35000,
+    "mean_word_length": 4.962971428571429,
+    "type_token_ratio_30k": 0.20693333333333333,
+    "char_entropy_h1": 3.8722968420900292,
+    "conditional_char_entropy_h2": 2.106058550773395,
+    "adjacent_repeat_rate": 0.008428812251778623,
+    "stem_predicts_ending_bits": 1.3544675897119223,
+    "max_line_end_odds_ratio": 22.945459934862917,
+    "most_line_final_ending": "am"
+  },
+  "voynich_reflowed": {
+    "tokens": 35000,
+    "mean_word_length": 4.962971428571429,
+    "type_token_ratio_30k": 0.20693333333333333,
+    "char_entropy_h1": 3.8722968420900292,
+    "conditional_char_entropy_h2": 2.106058550773395,
+    "adjacent_repeat_rate": 0.008428812251778623,
+    "stem_predicts_ending_bits": 1.3544675897119223,
+    "max_line_end_odds_ratio": 1.8405629889274586,
+    "most_line_final_ending": "ld"
+  },
+  "voynich_shuffled": {
+    "tokens": 35000,
+    "mean_word_length": 4.961885714285715,
+    "type_token_ratio_30k": 0.20973333333333333,
+    "char_entropy_h1": 3.8721966928212836,
+    "conditional_char_entropy_h2": 2.106226142273637,
+    "adjacent_repeat_rate": 0.0037143918397668503,
+    "stem_predicts_ending_bits": 1.3262379744132815,
+    "max_line_end_odds_ratio": 2.1955106351069076,
+    "most_line_final_ending": "d"
+  },
+  "latin_apicius_recipes": {
+    "tokens": 7733,
+    "mean_word_length": 5.683175998965472,
+    "type_token_ratio_30k": 0.24272597956808484,
+    "char_entropy_h1": 3.963874983589572,
+    "conditional_char_entropy_h2": 3.199573958221098,
+    "adjacent_repeat_rate": 0.0020693222969477496,
+    "stem_predicts_ending_bits": 3.516451890092989,
+    "max_line_end_odds_ratio": 2.7852037461264385,
+    "most_line_final_ending": "re"
+  },
+  "latin_albertanus_13c": {
+    "tokens": 35000,
+    "mean_word_length": 5.734114285714286,
+    "type_token_ratio_30k": 0.26853333333333335,
+    "char_entropy_h1": 3.9515023764050192,
+    "conditional_char_entropy_h2": 3.3122747470568474,
+    "adjacent_repeat_rate": 0.0007143061230320866,
+    "stem_predicts_ending_bits": 3.7023269786820925,
+    "max_line_end_odds_ratio": 2.147899171695911,
+    "most_line_final_ending": "ie"
+  },
+  "latin_bede_8c": {
+    "tokens": 35000,
+    "mean_word_length": 6.082514285714286,
+    "type_token_ratio_30k": 0.323,
+    "char_entropy_h1": 3.976086533871879,
+    "conditional_char_entropy_h2": 3.357753508050781,
+    "adjacent_repeat_rate": 8.57167347638504e-05,
+    "stem_predicts_ending_bits": 3.6175549855820925,
+    "max_line_end_odds_ratio": 1.7437725787871174,
+    "most_line_final_ending": "ca"
+  },
+  "cipher_apicius_recipes": {
+    "tokens": 7733,
+    "mean_word_length": 11.83344109659899,
+    "type_token_ratio_30k": 0.24272597956808484,
+    "char_entropy_h1": 3.9059851261593446,
+    "conditional_char_entropy_h2": 2.392161028126239,
+    "adjacent_repeat_rate": 0.0020693222969477496,
+    "stem_predicts_ending_bits": 3.348463967300986,
+    "max_line_end_odds_ratio": 1.687062483795696,
+    "most_line_final_ending": "qq"
+  }
+}

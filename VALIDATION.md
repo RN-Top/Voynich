@@ -85,6 +85,55 @@ Following the advice to strip the model back to what works, the app now starts i
 lexicon, colophon readings, gloss columns in the export, gloss labels in the reader). The meanings
 can be shown again from the sidebar.
 
+## What kind of system? (October 2026)
+
+### Is line-final -m/-am a space-saving device? (pre-registered)
+
+Pre-registration: `analyses/m_abbreviation_prereg.md`, committed before the code
+(`analyses/m_abbreviation_test.py`). Report: [`output/m_abbreviation_report.md`](output/m_abbreviation_report.md).
+
+- **Decision under the pre-registered rule: H_space supported.**
+- The key result: -m/-am is about **half as common at the end of paragraphs** (8.5% vs 16.1% of
+  line-final tokens, p ≈ 1e-4), where the scribe was not short of room. An end-of-unit marker
+  ("seal", "finis", "flush") predicts the opposite, so the terminator reading is disfavoured.
+- Line-final -m/-am forms are shorter than the same stem's mid-line forms (p ≈ 1e-4). This is
+  partly built in, because -am is a short ending.
+- Lines ending in -m/-am are **not** measurably fuller (P1 fails), so it is not simply "ran out of room".
+- -m/-am words reuse ordinary stems: they are normal words in a line-end form, not a special vocabulary.
+
+Best current reading: **-m/-am is a scribal line-end variant**, used when a line breaks inside running
+text and avoided at paragraph ends.
+
+### Comparison with real Latin and a simple cipher (exploratory)
+
+`analyses/comparison_fingerprint.py` applies one generic pipeline (ending = last 2 letters) to Voynich
+paragraph text, Latin recipe prose (Apicius), medieval Latin prose (Albertanus, 13th c.; Bede, 8th c.),
+and Apicius under a fixed verbose letter cipher. Report:
+[`output/comparison_fingerprint_report.md`](output/comparison_fingerprint_report.md).
+
+| | Voynich | Latin texts | Latin, verbose cipher |
+|---|---:|---:|---:|
+| Strongest line-final ending, odds ratio | **22.9** (-am); **1.8** once the same words are re-lined | 1.7–2.8 | 1.7 |
+| Conditional character entropy h2 (bits) | 2.11 | 3.20–3.36 | 2.39 |
+| Mean word length | 4.96 | 5.7–6.1 | 11.8 |
+| Stem → ending information (bits/word) | 1.35 | 3.5–3.7 | 3.35 |
+| Same word twice in a row | 0.84% (0.37% if shuffled) | 0.01–0.21% | 0.21% |
+
+What this suggests:
+- The line-end effect **disappears when the Voynich's own words are re-lined**, so it belongs to
+  the physical lines of the manuscript. This fits the scribal-convention reading above.
+- Voynich characters are far more predictable than Latin letters (low h2). A letter-by-letter cipher
+  of Latin moves h2 toward Voynich but makes words more than twice too long, so a simple letter
+  cipher of Latin does not fit.
+- Voynich endings are much less tied to their stems than Latin inflections are, under this generic
+  definition.
+
+Limits: Latin only (Italian or German texts can be dropped into `data/comparison/`); the re-lined
+texts have no real manuscript lines; h2 depends on the transcription alphabet. A faithful
+implementation of the published Timm & Schinner self-citation algorithm is still needed for a fair
+"hoax" comparison. A first, simplified version produced unrealistic text and was removed rather
+than tuned.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
