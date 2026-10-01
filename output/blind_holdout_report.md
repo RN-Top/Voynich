@@ -10,8 +10,11 @@ Only input: each token's ending class from the frozen parser rules. Every target
 | A. Line-final token (4 states C/L/P/R) | 5,508 tokens | AUC 0.581 | 0.501 | 0.0005 | **PASS** |
 | B. Label / diagram vs paragraph | 6,059 tokens | AUC 0.635 | 0.500 | 0.0005 | **PASS** |
 | C. Section of each folio | 43 folios | 65.1% correct | 65.1% (always 'Herbal'); shuffled 29.3% | 0.0005 | **FAIL (ties or trails the majority baseline)** |
+| D. Stem predicts its ending | 5,593 tokens | 0.775 bits/token | 0 bits (stem ignored); shuffled stems -1.293 | 0.001 | **PASS** |
 
 Information gain for line-final prediction: 0.0479 bits/token with 15 endings, 0.0337 with the 4-state grouping.
+
+Target D was added on 2026-10-01 and committed before its first run on this holdout. Part of its signal is orthographic (letters next to the ending), so it shows consistent word-building, not meaning.
 
 Rule note (added after the first run, and stricter only): section prediction must also beat the always-guess-the-majority-section baseline to pass. No scores changed.
 

@@ -135,6 +135,8 @@ RN-Top/Voynich/
 ├── lexicon.py              # Hypothesised gloss dictionary (not validated)
 ├── structural_validation.py# Meaning-free validation ladder (writes output/)
 ├── blind_holdout.py        # Pre-registered blind holdout test (data/blind_holdout_v1.json)
+├── transfer_test.py        # Same frozen tests on another representation / transcription
+├── REPLICATION.md          # Step-by-step guide for independent replication
 ├── requirements.txt        # Runtime dependencies (streamlit, pandas, numpy)
 ├── .gitignore              # Environment & cache filters
 └── data/

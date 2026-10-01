@@ -239,9 +239,16 @@ def render(r: dict) -> str:
         f"| C. Section of each folio | {c['test_folios']} folios | {c['accuracy']:.1%} correct | "
         f"{c['majority_baseline']:.1%} (always '{c['majority_section']}'); shuffled {c['null_mean']:.1%} | "
         f"{c['p']:.2g} | **{verdict(c['p'], c['accuracy'], c['majority_baseline'])}** |",
+        f"| D. Stem predicts its ending | {r['D_carrier_stems']['tokens_with_seen_stem']:,} tokens | "
+        f"{r['D_carrier_stems']['bits_gain_per_token']:.3f} bits/token | 0 bits (stem ignored); shuffled stems "
+        f"{r['D_carrier_stems']['null_mean']:.3f} | {r['D_carrier_stems']['p']:.2g} | "
+        f"**{verdict(r['D_carrier_stems']['p'], r['D_carrier_stems']['bits_gain_per_token'], 0.0)}** |",
         "",
         f"Information gain for line-final prediction: {a['bits_gain_per_token']:.4f} bits/token with 15 endings, "
         f"{a4['bits_gain_per_token']:.4f} with the 4-state grouping.",
+        "",
+        "Target D was added on 2026-10-01 and committed before its first run on this holdout. Part of its "
+        "signal is orthographic (letters next to the ending), so it shows consistent word-building, not meaning.",
         "",
         "Rule note (added after the first run, and stricter only): section prediction must also beat "
         "the always-guess-the-majority-section baseline to pass. No scores changed.",

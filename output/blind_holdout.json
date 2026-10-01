@@ -258,5 +258,14 @@
         "predicted": "Pharmaceutical"
       }
     ]
+  },
+  "D_carrier_stems": {
+    "test_tokens": 6059,
+    "tokens_with_seen_stem": 5593,
+    "distinct_train_stems": 3731,
+    "bits_gain_per_token": 0.775342336987189,
+    "null_mean": -1.293371815370458,
+    "null_sd": 0.02834894510056184,
+    "p": 0.000999000999000999
   }
 }

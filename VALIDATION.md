@@ -1,5 +1,7 @@
 # Validation status
 
+See also [REPLICATION.md](REPLICATION.md) for how an independent group can reproduce every number.
+
 This file records what currently survives independent testing and what does not.
 It follows the independent nine-step review by Juan Gabriel Molina (September 2026)
 and a re-run of the key tests on the full corpus with `structural_validation.py`.
@@ -49,6 +51,11 @@ A replacement for the withdrawn 90.2% test. Run it with `python blind_holdout.py
 | A. Same, using only the 4 states C/L/P/R | AUC 0.581 vs 0.501, p ≈ 0.0005 | **PASS** (weaker) |
 | B. Label / diagram text vs paragraph text | AUC 0.635 vs 0.500, p ≈ 0.0005 | **PASS** |
 | C. Which section each folio belongs to | 65.1% correct; always guessing "Herbal" also scores 65.1% | **FAIL** |
+| D. A token's stem (prefix and ending removed) predicts its ending | 0.775 bits/token better than ignoring the stem, p ≈ 0.001 | **PASS** |
+
+Target D was added later, as Juan's "recurring carrier stems" check. It was committed before its first
+run on this holdout. Part of its signal is orthographic (letters next to the ending), so it shows
+consistent word-building across pages, not meaning.
 
 The endings carry real, transferable information about line position and page layout on pages the
 model never saw. Grouping the endings into the four C/L/P/R states loses about 30% of that
@@ -57,6 +64,26 @@ position is carried by individual endings more than by the four-state grouping.
 
 The rule that section prediction must also beat the majority guess was added after the first run.
 It is stricter only, and no score changed.
+
+## Transfer to a second representation
+
+`python transfer_test.py` reruns the frozen tests on a second representation of the text: ZL's last
+alternative readings, with uncertain spaces not treated as word breaks (36,218 tokens instead of
+38,958). Every verdict is unchanged. -m/-am line-end OR is 20.7 vs 20.3; blind A AUC 0.671 vs 0.675;
+blind B AUC 0.635 vs 0.644; blind D 0.775 vs 0.744 bits; C→L→P→R still fails the Markov twins.
+Details are in [`output/transfer_report.md`](output/transfer_report.md).
+
+This shows the results don't hinge on ZL's editorial choices. It is **not** an independent
+transcription. Takahashi's `IT2a-n.txt` (voynich.nu) could not be downloaded from the environment
+these tests ran in. Run `python transfer_test.py --corpus IT2a-n.txt`, or upload the file in the
+app's sidebar, to complete the external-transfer step.
+
+## Structure-only mode
+
+Following the advice to strip the model back to what works, the app now starts in
+**Structure-only mode**. It hides the Venetian / German / apparatus glosses (dialect bridge,
+lexicon, colophon readings, gloss columns in the export, gloss labels in the reader). The meanings
+can be shown again from the sidebar.
 
 ## Implementation problems found and fixed
 
@@ -115,9 +142,9 @@ reading of it.
 
 ## Suggested next steps
 
-1. Keep the structural layer frozen and meaning-free. Add targets for it to predict:
-   section, diagram vs prose, Currier hand, and a second transcription (for example
-   Takahashi or the v101 transliteration) for external transfer.
+1. Keep the structural layer frozen and meaning-free. Diagram vs prose, line position and carrier
+   stems now pass on blind folios; section does not. **Still open:** an independent transcription
+   (Takahashi `IT2a-n.txt`; see REPLICATION.md) and Currier hand as a target.
 2. ~~Pre-register a new holdout~~ Done: `data/blind_holdout_v1.json` (see above). For the next rule
    version, draw a fresh holdout (v2) rather than reusing v1.
 3. Rebuild the semantic layer only on top of targets the glosses make *different*

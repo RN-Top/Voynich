@@ -19,6 +19,7 @@ import streamlit as st
 import parser as canonical
 import structural_validation as sv
 import blind_holdout as bh
+import transfer_test as tt
 from lexicon import MASTER_LEXICON
 
 st.set_page_config(
@@ -178,6 +179,12 @@ if corpus_error:
     st.error(f"Corpus could not be loaded ({corpus_source}): {corpus_error}")
     st.stop()
 st.sidebar.caption(f"Corpus source: {corpus_source}")
+structure_only = st.sidebar.toggle(
+    "Structure-only mode",
+    value=True,
+    help="Hide the hypothesised Venetian / German / apparatus meanings and show only the tested "
+         "morphology and position. The meanings have not been validated (see VALIDATION.md).",
+)
 total_tokens_count = len(corpus_df)
 
 
@@ -407,6 +414,10 @@ with tab_holdout:
                          "Chance": f"{c['majority_baseline']:.1%} always '{c['majority_section']}'",
                          "p": f"{c['p']:.2g}",
                          "Verdict": bh.verdict(c["p"], c["accuracy"], c["majority_baseline"])})
+            d = bres["D_carrier_stems"]
+            rows.append({"Target": "D. Stem predicts its ending", "Holdout size": f"{d['tokens_with_seen_stem']:,} tokens",
+                         "Score": f"{d['bits_gain_per_token']:.3f} bits/token", "Chance": "0 bits (stem ignored)",
+                         "p": f"{d['p']:.2g}", "Verdict": bh.verdict(d["p"], d["bits_gain_per_token"], 0.0)})
             st.dataframe(pd.DataFrame(rows), use_container_width=True)
             st.caption("AUC 0.5 = chance, 1.0 = perfect. PASS means p < 0.01; section prediction must also "
                        "beat always guessing the most common section.")
@@ -623,65 +634,70 @@ with tab_affix_tourney:
 # =============================================================================
 with tab_dialect:
     st.header("🏛 Dual-Dialect Linguistic Bridge Test")
-    st.markdown("""
-    Evaluating the linguistic divergence of Beinecke MS 408 across two historical technical traditions:
-    **Northern Italian / Venetian Trade Apothecary** vs. **Early New High German Distillation Compendia**.
-    """)
+    if structure_only:
+        st.info("Hidden in structure-only mode: this tab presents hypothesised meanings that have not "
+                "been validated. Switch off **Structure-only mode** in the sidebar to view it.")
+    else:
+        st.markdown("""
+        Evaluating the linguistic divergence of Beinecke MS 408 across two historical technical traditions:
+        **Northern Italian / Venetian Trade Apothecary** vs. **Early New High German Distillation Compendia**.
+        """)
 
-    all_chars = Counter("".join(corpus_df["clean"]))
-    n_chars = sum(all_chars.values())
-    h1 = -sum(c / n_chars * np.log2(c / n_chars) for c in all_chars.values()) if n_chars else None
-    pairs = [(a, b) for l in lines_corpus for a, b in zip(l["tokens"][:-1], l["tokens"][1:])]
-    doubling = sum(a == b for a, b in pairs) / len(pairs) * 100 if pairs else None
+        all_chars = Counter("".join(corpus_df["clean"]))
+        n_chars = sum(all_chars.values())
+        h1 = -sum(c / n_chars * np.log2(c / n_chars) for c in all_chars.values()) if n_chars else None
+        pairs = [(a, b) for l in lines_corpus for a, b in zip(l["tokens"][:-1], l["tokens"][1:])]
+        doubling = sum(a == b for a, b in pairs) / len(pairs) * 100 if pairs else None
 
-    st.caption(
-        "The Venetian and German columns are reference values supplied by the author; the comparison "
-        "texts are not in this repository, so those figures cannot be recomputed here. The Voynich "
-        "column is computed live where possible."
-    )
-    test_metrics = [
-        {"Statistical Dimension": "1. Character Entropy (H1)", "Whole Voynich": f"{fmt(h1, '.2f')} bits", "Venetian (1420)": "4.09 bits", "Early German": "4.06 bits"},
-        {"Statistical Dimension": "2. Immediate Word Doubling", "Whole Voynich": f"{fmt(doubling, '.2f')}%", "Venetian (1420)": "0.00%", "Early German": "0.00%"},
-        {"Statistical Dimension": "3. Line-Terminal -m / -am", "Whole Voynich": f"{fmt(flush['pct'], '.1f')}%", "Venetian (1420)": "8.2%", "Early German": "7.4%"},
-        {"Statistical Dimension": "4. Compounding Transition Order", "Whole Voynich": "C -> L -> P -> R (not beyond Markov controls)", "Venetian (1420)": "Verb -> Direct Object", "Early German": "Substrate -> Verb-Final"},
-        {"Statistical Dimension": "5. Phonetic Consonant-Vowel Partition", "Whole Voynich": NOT_COMPUTED, "Venetian (1420)": "34.1% Vowels", "Early German": "29.8% Vowels"},
-    ]
-    st.dataframe(pd.DataFrame(test_metrics), use_container_width=True)
+        st.caption(
+            "The Venetian and German columns are reference values supplied by the author; the comparison "
+            "texts are not in this repository, so those figures cannot be recomputed here. The Voynich "
+            "column is computed live where possible."
+        )
+        test_metrics = [
+            {"Statistical Dimension": "1. Character Entropy (H1)", "Whole Voynich": f"{fmt(h1, '.2f')} bits", "Venetian (1420)": "4.09 bits", "Early German": "4.06 bits"},
+            {"Statistical Dimension": "2. Immediate Word Doubling", "Whole Voynich": f"{fmt(doubling, '.2f')}%", "Venetian (1420)": "0.00%", "Early German": "0.00%"},
+            {"Statistical Dimension": "3. Line-Terminal -m / -am", "Whole Voynich": f"{fmt(flush['pct'], '.1f')}%", "Venetian (1420)": "8.2%", "Early German": "7.4%"},
+            {"Statistical Dimension": "4. Compounding Transition Order", "Whole Voynich": "C -> L -> P -> R (not beyond Markov controls)", "Venetian (1420)": "Verb -> Direct Object", "Early German": "Substrate -> Verb-Final"},
+            {"Statistical Dimension": "5. Phonetic Consonant-Vowel Partition", "Whole Voynich": NOT_COMPUTED, "Venetian (1420)": "34.1% Vowels", "Early German": "29.8% Vowels"},
+        ]
+        st.dataframe(pd.DataFrame(test_metrics), use_container_width=True)
 
-    st.subheader("Dual-Dialect Translation Alignment")
-    sample_dialect_lines = [
-        {
-            "Locus": "f114v.4",
-            "Voynich Original": "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam",
-            "Venetian Trade Apothecary": "coci fraturo de erba scalda fiori d'erba incorpora agva decocto d'erba saldo",
-            "Early New High German": "sied kruttheil waerme bluemen menge wazzer krutwazzer beschliess",
-            "Operational English Reading": "Boil the plant fraction, warm the blossoms, compound with water menstruum and herb decoction, and seal the vessel."
-        },
-        {
-            "Locus": "f114v.21",
-            "Voynich Original": "qokedy otcheodaiin qokchdy",
-            "Venetian Trade Apothecary": "coci licore de stella coci_qokchdy",
-            "Early New High German": "sied sternauszug sied_qokchdy",
-            "Operational English Reading": "Heat the astronomical sector component and proceed immediately into active secondary boiling."
-        },
-        {
-            "Locus": "f1r.6",
-            "Voynich Original": "okchoy otchol chocthy ydaraishy chdam",
-            "Venetian Trade Apothecary": "coci_okchoy colato_otchol materia_chocthy fatto da l'auctor saldo",
-            "Early New High German": "sied_okchoy auszug_otchol stoff_chocthy gemacht von meister beschliess",
-            "Operational English Reading": "Tempered under warmth to produce herbal compound; composed by the author; vessel sealed."
-        },
-        {
-            "Locus": "f116v.1",
-            "Voynich Original": "oror sheey",
-            "Venetian Trade Apothecary": "fin / saldo stasi",
-            "Early New High German": "ende / bschluss ruhe",
-            "Operational English Reading": "Terminal execution closure achieved. System at rest. Finis."
-        }
-    ]
-    st.dataframe(pd.DataFrame(sample_dialect_lines), use_container_width=True)
-    st.caption("Illustrative readings generated from the hypothesised gloss dictionary. "
-               "The glosses have not been independently validated (see Semantic Tournament tab).")
+        st.subheader("Dual-Dialect Translation Alignment")
+        sample_dialect_lines = [
+            {
+                "Locus": "f114v.4",
+                "Voynich Original": "qokedy cheocthedy qoted chedar okeedy daiin chedaiin oky chdam",
+                "Venetian Trade Apothecary": "coci fraturo de erba scalda fiori d'erba incorpora agva decocto d'erba saldo",
+                "Early New High German": "sied kruttheil waerme bluemen menge wazzer krutwazzer beschliess",
+                "Operational English Reading": "Boil the plant fraction, warm the blossoms, compound with water menstruum and herb decoction, and seal the vessel."
+            },
+            {
+                "Locus": "f114v.21",
+                "Voynich Original": "qokedy otcheodaiin qokchdy",
+                "Venetian Trade Apothecary": "coci licore de stella coci_qokchdy",
+                "Early New High German": "sied sternauszug sied_qokchdy",
+                "Operational English Reading": "Heat the astronomical sector component and proceed immediately into active secondary boiling."
+            },
+            {
+                "Locus": "f1r.6",
+                "Voynich Original": "okchoy otchol chocthy ydaraishy chdam",
+                "Venetian Trade Apothecary": "coci_okchoy colato_otchol materia_chocthy fatto da l'auctor saldo",
+                "Early New High German": "sied_okchoy auszug_otchol stoff_chocthy gemacht von meister beschliess",
+                "Operational English Reading": "Tempered under warmth to produce herbal compound; composed by the author; vessel sealed."
+            },
+            {
+                "Locus": "f116v.1",
+                "Voynich Original": "oror sheey",
+                "Venetian Trade Apothecary": "fin / saldo stasi",
+                "Early New High German": "ende / bschluss ruhe",
+                "Operational English Reading": "Terminal execution closure achieved. System at rest. Finis."
+            }
+        ]
+        st.dataframe(pd.DataFrame(sample_dialect_lines), use_container_width=True)
+        st.caption("Illustrative readings generated from the hypothesised gloss dictionary. "
+                   "The glosses have not been independently validated (see Semantic Tournament tab).")
+
 
 # =============================================================================
 # TAB 8: AUTOMATED VERIFICATION SUITE
@@ -726,6 +742,32 @@ with tab_tests:
                 st.dataframe(t_df, use_container_width=True)
             else:
                 st.info(f"Transitions: {NOT_COMPUTED} (no adjacent classified tokens).")
+
+    st.markdown("---")
+    st.subheader("Representation / transcription transfer")
+    st.markdown("""
+    Re-runs the key frozen tests on a second representation of the text: ZL's **last** alternative
+    readings, with uncertain spaces (`,`) **not** treated as word breaks. To test a fully independent
+    transcription (for example Takahashi's `IT2a-n.txt` from voynich.nu), upload it in the sidebar:
+    every tab then runs on it. From the command line, use `python transfer_test.py --corpus <file>`.
+    """)
+    if st.button("Run transfer comparison"):
+        with st.spinner("Parsing both representations and running the frozen tests..."):
+            spec = bh.load_holdout()
+            reps = {
+                "Loaded corpus": corpus_df,
+                "ZL alternate readings": canonical.parse_zl3b(
+                    canonical.CORPUS_PATH, reading="last", uncertain_spaces_split=False),
+            }
+            res = {name: tt.core_results(df, spec, 1000, 20261001) for name, df in reps.items()}
+        table = []
+        for label, key, f in tt.ROWS:
+            row = {"Result": label}
+            for name in res:
+                v = res[name].get(key)
+                row[name] = NOT_COMPUTED if v is None else f.format(v)
+            table.append(row)
+        st.dataframe(pd.DataFrame(table), use_container_width=True)
 
 # =============================================================================
 # TAB 9: INVARIANT SLOT OMEGA MINER
@@ -790,7 +832,7 @@ with tab_reader:
             gloss_parts = []
             for t in toks:
                 f = factorize(t)
-                if t in MASTER_LEXICON:
+                if not structure_only and t in MASTER_LEXICON:
                     entry = MASTER_LEXICON[t]
                     gloss_parts.append(f"**{t}** [{entry['en']}, {entry['role']}]")
                 else:
@@ -804,61 +846,71 @@ with tab_reader:
 # =============================================================================
 with tab_lexicon:
     st.header("📚 Grounded Master Lexicon & Syntactic Map")
-    st.warning("These glosses are hypotheses. They have not been validated against the manuscript or against a historical corpus: the earlier Macer Floridus alignment used random target vectors and has been withdrawn, and the semantic permutation tournament does not currently favour these assignments over shuffled ones.")
+    if structure_only:
+        st.info("Hidden in structure-only mode: this tab presents hypothesised meanings that have not "
+                "been validated. Switch off **Structure-only mode** in the sidebar to view it.")
+    else:
+        st.warning("These glosses are hypotheses. They have not been validated against the manuscript or against a historical corpus: the earlier Macer Floridus alignment used random target vectors and has been withdrawn, and the semantic permutation tournament does not currently favour these assignments over shuffled ones.")
 
-    lex_rows = []
-    for tok, info in MASTER_LEXICON.items():
-        f = factorize(tok)
-        lex_rows.append({
-            "Voynich Token": tok,
-            "Carrier Root (Λ)": f["carrier"],
-            "15th-C. Latin Lemma": info["la"],
-            "Venetian Apothecary": info["ven"],
-            "Early High German": info["ger"],
-            "English Gloss": info["en"],
-            "Syntactic Role Class": info["role"],
-            "Semantic Domain": info["domain"],
-            "Realization Port (ρ)": f["exit_port"],
-        })
-    st.dataframe(pd.DataFrame(lex_rows), use_container_width=True)
+        lex_rows = []
+        for tok, info in MASTER_LEXICON.items():
+            f = factorize(tok)
+            lex_rows.append({
+                "Voynich Token": tok,
+                "Carrier Root (Λ)": f["carrier"],
+                "15th-C. Latin Lemma": info["la"],
+                "Venetian Apothecary": info["ven"],
+                "Early High German": info["ger"],
+                "English Gloss": info["en"],
+                "Syntactic Role Class": info["role"],
+                "Semantic Domain": info["domain"],
+                "Realization Port (ρ)": f["exit_port"],
+            })
+        st.dataframe(pd.DataFrame(lex_rows), use_container_width=True)
+
 
 # =============================================================================
 # TAB 12: AUTHOR & COLOPHON AUDIT
 # =============================================================================
 with tab_colophons:
     st.header("🖋️ Codicological Colophons & Attribution Audit")
-    st.markdown("""
-    The Voynich Manuscript contains isolated structural loci functioning as scribal colophons, incipits, and signatures 
-    that systematically diverge from continuous compounding prose.
-    """)
+    if structure_only:
+        st.info("Hidden in structure-only mode: this tab presents hypothesised meanings that have not "
+                "been validated. Switch off **Structure-only mode** in the sidebar to view it.")
+    else:
+        st.markdown("""
+        The Voynich Manuscript contains isolated structural loci functioning as scribal colophons, incipits, and signatures 
+        that systematically diverge from continuous compounding prose.
+        """)
 
-    targets = ["ydaraishy", "ytchas", "oror"]
-    audit_matches = []
-    for l in lines_corpus:
-        for t in l["tokens"]:
-            for target in targets:
-                if target in t:
-                    audit_matches.append({
-                        "Target Lemma": target,
-                        "Folio": l["folio"],
-                        "Line Locus": l["header"],
-                        "Matched Token": t,
-                        "Currier Dialect": l["currier"],
-                        "Functional Assignment": MASTER_LEXICON.get(target, {}).get("en", "Colophon Marker")
-                    })
+        targets = ["ydaraishy", "ytchas", "oror"]
+        audit_matches = []
+        for l in lines_corpus:
+            for t in l["tokens"]:
+                for target in targets:
+                    if target in t:
+                        audit_matches.append({
+                            "Target Lemma": target,
+                            "Folio": l["folio"],
+                            "Line Locus": l["header"],
+                            "Matched Token": t,
+                            "Currier Dialect": l["currier"],
+                            "Functional Assignment": MASTER_LEXICON.get(target, {}).get("en", "Colophon Marker")
+                        })
     
-    if not audit_matches:
-        st.info("None of the target tokens occur in the loaded corpus.")
+        if not audit_matches:
+            st.info("None of the target tokens occur in the loaded corpus.")
 
-    st.subheader("Audited Authorial & Scribal Signatures")
-    st.dataframe(pd.DataFrame(audit_matches), use_container_width=True)
+        st.subheader("Audited Authorial & Scribal Signatures")
+        st.dataframe(pd.DataFrame(audit_matches), use_container_width=True)
 
-    st.markdown("""
-    ### Structural Significance
-    1. **`ydaraishy` ($f1r.6$, locus `=Pt`):** Positioned at the conclusion of the manuscript's opening incipit paragraph. Demonstrates exact syntactic isolation, serving as an authorial signature anchored to Latin *auctor*.
-    2. **`ytchas` ($f9r.10$, locus `+Pc`):** Indented paragraph-tail colophon closing the first gathering, matching scribal colophon formulas (anchored to Latin *scriptor*).
-    3. **`oror.sheey` ($f116v.1$, locus `@Lx`):** Hard terminal seal marking the complete cessation of the compilation (anchored to Latin *finis*).
-    """)
+        st.markdown("""
+        ### Structural Significance
+        1. **`ydaraishy` ($f1r.6$, locus `=Pt`):** Positioned at the conclusion of the manuscript's opening incipit paragraph. Demonstrates exact syntactic isolation, serving as an authorial signature anchored to Latin *auctor*.
+        2. **`ytchas` ($f9r.10$, locus `+Pc`):** Indented paragraph-tail colophon closing the first gathering, matching scribal colophon formulas (anchored to Latin *scriptor*).
+        3. **`oror.sheey` ($f116v.1$, locus `@Lx`):** Hard terminal seal marking the complete cessation of the compilation (anchored to Latin *finis*).
+        """)
+
 
 # =============================================================================
 # TAB 13: EXPORT MASTER CSV LEDGERS
@@ -871,7 +923,7 @@ with tab_export:
     for l in lines_corpus:
         for t in l["tokens"]:
             f = factorize(t)
-            lex = MASTER_LEXICON.get(t, {})
+            lex = {} if structure_only else MASTER_LEXICON.get(t, {})
             corpus_flat.append({
                 "folio": l["folio"],
                 "line": l["header"],
