@@ -16,11 +16,20 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
+import importlib
+
 import parser as canonical
+import lexicon
 import structural_validation as sv
 import blind_holdout as bh
 import transfer_test as tt
-from lexicon import MASTER_LEXICON
+
+# Streamlit Cloud reruns app.py after a git update but can keep older copies of
+# these helper modules in memory, leaving the app half old and half new.
+# Reload them in dependency order on every run so they always match app.py.
+for _module in (canonical, lexicon, sv, bh, tt):
+    importlib.reload(_module)
+MASTER_LEXICON = lexicon.MASTER_LEXICON
 
 st.set_page_config(
     page_title="Voynich Decipherment Workbench",
