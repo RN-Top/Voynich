@@ -168,6 +168,21 @@ within each gathering, seed {SEED}.
 |---|---:|---|---:|---|---:|
 {chr(10).join(rows)}
 {fb_line}
+## Reading the result (added after the first run; no numbers above changed)
+
+A follow-up check (exploratory, not pre-registered) compared each sheet only with other leaf pairs by
+the **same scribe ($H) in the same Currier language ($L)** in the same gathering. Sheet halves were still
+more similar in 21 of 27 sheets (mean +0.079 cosine, sign-flip p ≈ 0.0002), so "same scribe" does not
+explain it.
+
+What this supports: **each folded sheet behaves like a unit of writing**. Its two halves were most
+likely written together, in one sitting or on one topic. This fits the view that the text was written on
+loose sheets before binding.
+
+What it does not show: a positional key. The prediction a key would make most directly, that the same
+word sits at the same spot when the sheet is folded, is weak and not significant once neighbouring leaves
+are excluded (S2, version b).
+
 Sheet pairs tested (b): {', '.join(r['b_non_adjacent_sheet_pairs']['pairs']) if r.get('b_non_adjacent_sheet_pairs') else '—'}
 """
 

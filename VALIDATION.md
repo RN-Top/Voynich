@@ -134,6 +134,25 @@ implementation of the published Timm & Schinner self-citation algorithm is still
 "hoax" comparison. A first, simplified version produced unrealistic text and was removed rather
 than tuned.
 
+### Do the two halves of a folded sheet belong together? (pre-registered)
+
+Pre-registration: `analyses/fold_sheets_prereg.md`. Code: `analyses/fold_sheets_test.py`. Report:
+[`output/fold_sheets_report.md`](output/fold_sheets_report.md).
+
+The idea, from the project author: folding brings the front, back and center fold together. In a
+gathering, leaf k and leaf lo+hi−k are halves of one folded sheet.
+
+- **Pre-registered decision: Supported.** Sheet halves share more vocabulary than random leaf pairs in the
+  same gathering: cosine 0.573 vs 0.472, p ≈ 1e-4. This holds even after excluding center-fold
+  (adjacent) pairs: 36 sheets.
+- **Same scribe and language don't explain it** (exploratory follow-up): 21 of 27 same-scribe,
+  same-language sheets, p ≈ 2e-4.
+- **No positional line-up.** The same word at the same spot when folded is not significant without
+  adjacent pairs (p ≈ 0.015).
+- **Reading:** sheets look like units of writing, consistent with the text being written on loose sheets
+  before binding. That is useful for reconstructing the original page order. It does **not** show a
+  positional key.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
