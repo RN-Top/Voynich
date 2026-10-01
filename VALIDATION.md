@@ -172,6 +172,29 @@ None of these stand out from ordinary pages. f58r/f58v were used as the center, 
 gathering H (whose central leaves f59–64 are missing). Exact page coordinates from the Beinecke images
 would make the overlay more precise than this line-and-word approximation.
 
+### Looking for a key inside the manuscript (October 2026)
+
+**Zodiac labels as day names (pre-registered).** Each sign has 29–30 labelled figures, about one per day.
+If the labels name days, the same position on different months should carry the same name.
+Pre-registration: `analyses/zodiac_days_prereg.md`. Code: `analyses/zodiac_days_test.py`. Report:
+[`output/zodiac_days_report.md`](output/zodiac_days_report.md).
+**Decision: Not supported.** Best-rotation positional similarity is 0.123, against 0.125 for shuffled
+labels (p = 0.76). Almost all labels start with `o` (`ot-`, `ok-`, `ol-`, `op-`), unlike running text.
+
+**Anomaly scan (exploratory).** `analyses/anomaly_scan.py`, also the app page *Anomaly Scan*. Each page
+is compared with pages of the same section and Currier language. Report:
+[`output/anomaly_scan_report.md`](output/anomaly_scan_report.md).
+- It finds the transcription's key-like pages on its own: **f57v #1** (score 21) and **f49v #9**.
+- f1r ranks near the bottom, because its Roman-alphabet "key" is in the margin and is not part of the
+  transcribed Voynich text. That needs the page images.
+- New candidates: f86v3 and fRos (rosettes), f67r1 (12-sector diagram), f67v2, f17r, f3r, f105v, f116r.
+
+**Key-like sequences.** The f57v ring repeats a 17-symbol cycle four times. The f49v margin column repeats
+"p o ● y e ●" twice. Neither contains the most common letters of the running text (e, h, a, c, i), so
+neither looks like a complete alphabet for the main script. They read more like lists of special
+symbols. f57v and f58r (the transcription suspects a key there too) sit at the center of the book,
+beside the missing leaves f59–64.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

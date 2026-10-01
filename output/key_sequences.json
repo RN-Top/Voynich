@@ -1,0 +1,83 @@
+{
+  "f57v_ring_cycle": {
+    "sequence": "o l d r v x k m f @169 v t r @170 @171 y I @172",
+    "plain_glyphs": [
+      "I",
+      "d",
+      "f",
+      "k",
+      "l",
+      "m",
+      "o",
+      "r",
+      "t",
+      "v",
+      "x",
+      "y"
+    ],
+    "glyph_share_of_running_text": {
+      "I": 0.0,
+      "d": 0.0685,
+      "f": 0.0023,
+      "k": 0.0574,
+      "l": 0.0547,
+      "m": 0.0054,
+      "o": 0.129,
+      "r": 0.0378,
+      "t": 0.0343,
+      "v": 0.0,
+      "x": 0.0001,
+      "y": 0.0928
+    },
+    "running_text_top10_missing_from_sequence": [
+      "e",
+      "h",
+      "a",
+      "c",
+      "i"
+    ],
+    "rare_symbols_in_sequence": [
+      "@169",
+      "@170",
+      "@171",
+      "@172"
+    ]
+  },
+  "f49v_margin_column": {
+    "sequence": "f o r y e @140 k s p o @192 y e @140 @164 p o @192 y e @140 d y e k y",
+    "plain_glyphs": [
+      "d",
+      "e",
+      "f",
+      "k",
+      "o",
+      "p",
+      "r",
+      "s",
+      "y"
+    ],
+    "glyph_share_of_running_text": {
+      "d": 0.0685,
+      "e": 0.1045,
+      "f": 0.0023,
+      "k": 0.0574,
+      "o": 0.129,
+      "p": 0.0085,
+      "r": 0.0378,
+      "s": 0.0376,
+      "y": 0.0928
+    },
+    "running_text_top10_missing_from_sequence": [
+      "h",
+      "a",
+      "c",
+      "i",
+      "l"
+    ],
+    "rare_symbols_in_sequence": [
+      "@140",
+      "@164",
+      "@192"
+    ]
+  }
+}
