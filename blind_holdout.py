@@ -16,6 +16,9 @@ something the token's own spelling does not determine:
   A. Line position   - which token ends its physical line
   B. Layout          - paragraph text vs label / ring / radius text
   C. Section         - which manuscript section a holdout folio belongs to
+  D. Carrier stems   - does a token's stem (prefix and ending removed) predict
+                       which ending it takes, on unseen folios? (added
+                       2026-10-01, committed before its first run on v1)
 
 Each score is compared with a baseline and with a permutation null that
 keeps the structure of the holdout data (lines, layout blocks, folios).
@@ -134,12 +137,60 @@ def section_target(train, test, n_perms, rng):
     }
 
 
+def stem_of(token: str, control: str) -> str:
+    """Token minus its control prefix (parser rules) and its ending class."""
+    s = token[len(control):] if control and control != "NONE" and token.startswith(control) else token
+    end = sv.ending_of(token)
+    if end != "?" and s.endswith(end):
+        s = s[: -len(end)]
+    return s or "EMPTY"
+
+
+def stem_target(train, test, n_perms, rng):
+    """Bits/token by which P(ending | stem), learned on train, beats P(ending) on test."""
+    labels = {e: i for i, e in enumerate(LABELS)}
+    k = len(labels)
+    tr_end = train["ending"].map(labels).to_numpy()
+    te_end = test["ending"].map(labels).to_numpy()
+    uni = np.bincount(tr_end, minlength=k) + 1.0
+    uni /= uni.sum()
+
+    stems = pd.Series(train["stem"].to_numpy())
+    table = pd.crosstab(stems, tr_end).reindex(columns=range(k), fill_value=0)
+    # Dirichlet smoothing toward the unigram, so rare stems back off gracefully.
+    alpha = 2.0
+    cond = (table.to_numpy() + alpha * uni) / (table.sum(axis=1).to_numpy()[:, None] + alpha)
+    row = {s: i for i, s in enumerate(table.index)}
+
+    te_stem = test["stem"].to_numpy()
+    known = np.array([s in row for s in te_stem])
+
+    def gain(stem_arr):
+        idx = np.array([row[s] for s in stem_arr[known]])
+        y = te_end[known]
+        return float(np.mean(np.log2(cond[idx, y])) - np.mean(np.log2(uni[y])))
+
+    obs = gain(te_stem)
+    null = np.empty(n_perms)
+    for i in range(n_perms):
+        perm = te_stem.copy()
+        perm[known] = rng.permutation(te_stem[known])
+        null[i] = gain(perm)
+    return {
+        "test_tokens": int(len(test)), "tokens_with_seen_stem": int(known.sum()),
+        "distinct_train_stems": int(len(row)),
+        "bits_gain_per_token": obs, "null_mean": float(null.mean()), "null_sd": float(null.std()),
+        "p": sv.empirical_p(null, obs),
+    }
+
+
 def run(df: pd.DataFrame, holdout: dict, n_perms: int = 2000, seed: int = 20261001) -> dict:
     rng = np.random.default_rng(seed)
     df = df.copy()
     df["ending"] = df["clean"].map(sv.ending_of)
     df["state4"] = df["ending"].map(GROUPING)
     df["not_paragraph"] = df["locus_type"] != "P"
+    df["stem"] = [stem_of(t, c) for t, c in zip(df["clean"], df["control"])]
     is_test = df["folio"].isin(holdout["holdout_folios"])
     train, test = df[~is_test], df[is_test]
 
@@ -152,6 +203,7 @@ def run(df: pd.DataFrame, holdout: dict, n_perms: int = 2000, seed: int = 202610
         "A_line_end_by_state": binary_target(multi_tr, multi_te, "is_line_end", "state4", "within_line", n_perms, rng),
         "B_layout_by_ending": binary_target(train, test, "not_paragraph", "ending", "lines", n_perms, rng),
         "C_section": section_target(train, test, n_perms, rng),
+        "D_carrier_stems": stem_target(train, test, min(n_perms, 1000), rng),
     }
 
 
@@ -187,9 +239,16 @@ def render(r: dict) -> str:
         f"| C. Section of each folio | {c['test_folios']} folios | {c['accuracy']:.1%} correct | "
         f"{c['majority_baseline']:.1%} (always '{c['majority_section']}'); shuffled {c['null_mean']:.1%} | "
         f"{c['p']:.2g} | **{verdict(c['p'], c['accuracy'], c['majority_baseline'])}** |",
+        f"| D. Stem predicts its ending | {r['D_carrier_stems']['tokens_with_seen_stem']:,} tokens | "
+        f"{r['D_carrier_stems']['bits_gain_per_token']:.3f} bits/token | 0 bits (stem ignored); shuffled stems "
+        f"{r['D_carrier_stems']['null_mean']:.3f} | {r['D_carrier_stems']['p']:.2g} | "
+        f"**{verdict(r['D_carrier_stems']['p'], r['D_carrier_stems']['bits_gain_per_token'], 0.0)}** |",
         "",
         f"Information gain for line-final prediction: {a['bits_gain_per_token']:.4f} bits/token with 15 endings, "
         f"{a4['bits_gain_per_token']:.4f} with the 4-state grouping.",
+        "",
+        "Target D was added on 2026-10-01 and committed before its first run on this holdout. Part of its "
+        "signal is orthographic (letters next to the ending), so it shows consistent word-building, not meaning.",
         "",
         "Rule note (added after the first run, and stricter only): section prediction must also beat "
         "the always-guess-the-majority-section baseline to pass. No scores changed.",
