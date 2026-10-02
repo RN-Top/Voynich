@@ -40,3 +40,6 @@ Pass: p < 0.01 for each.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** G1 FAIL (24 vs 23.2, p = 0.45). G2 FAIL (60 vs 58.2, p = 0.38). **Not supported.**
+Write-up: `output/ground_report.md`.
