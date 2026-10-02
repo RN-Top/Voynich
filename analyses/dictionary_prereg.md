@@ -48,3 +48,7 @@ Amendments (dated, below this line only):
 
 **2026-10-02.** The first run crashed inside the mutual-information helper (a read-only array) before any result
 was produced. The helper was rewritten to count with `np.bincount`. The statistic is unchanged.
+
+**2026-10-02, results.** D1 FAIL (p = 0.080), D2 FAIL (p = 0.34). **Not supported.** The comparison test on
+endings, which does not count toward the verdict, showed jar vs plant-part labels differing (p = 0.002).
+Write-up: `output/dictionary_report.md`.

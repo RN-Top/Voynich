@@ -226,6 +226,13 @@ text, labels and radial text: **word order carries information** beyond line-sta
 and ring text (p = 0.001; not caused by repeated words). **Word beginnings track the page's topic more than
 endings do** (with the A/B difference removed). **Supported.** Details: `output/writing_types_report.md`.
 
+## Label beginnings vs picture kind (October 2026)
+
+Do labels on different kinds of picture (jars vs plant parts; bathing figures vs pools) start differently, on
+the same pages? Pre-registered in `analyses/dictionary_prereg.md`. Neither passed (p = 0.080, 0.34): **not
+supported**. Not part of the verdict: jar-label *endings* differ from plant-part-label endings (p = 0.002), a
+lead for a follow-up test. Details: `output/dictionary_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
