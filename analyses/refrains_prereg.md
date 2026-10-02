@@ -37,3 +37,7 @@ instructions, so it cannot by itself prove a spiritual purpose.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** L1 PASS in B (12 vs 0.6, p = 0.001), FAIL in A (0). L2 FAIL in both (B: 1 vs 0.2,
+p = 0.16). **Partly supported**: short 3-word formulas, concentrated on the Biological pages, and no long
+refrains. Write-up: `output/refrains_report.md`.
