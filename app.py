@@ -331,11 +331,11 @@ with tab_holdout:
             rows.append({"Target": "D. Stem predicts its ending", "Holdout size": f"{d['tokens_with_seen_stem']:,} tokens",
                          "Score": f"{d['bits_gain_per_token']:.3f} bits/token", "Chance": "0 bits (stem ignored)",
                          "p": f"{d['p']:.2g}", "Verdict": bh.verdict(d["p"], d["bits_gain_per_token"], 0.0)})
-            st.dataframe(pd.DataFrame(rows), use_container_width=True)
+            st.dataframe(pd.DataFrame(rows), width="stretch")
             st.caption("AUC 0.5 = chance, 1.0 = perfect. PASS means p < 0.01; section prediction must also "
                        "beat always guessing the most common section.")
             with st.expander("Section prediction per holdout folio"):
-                st.dataframe(pd.DataFrame(c["per_folio"]), use_container_width=True)
+                st.dataframe(pd.DataFrame(c["per_folio"]), width="stretch")
 
 
 # =============================================================================
@@ -424,7 +424,7 @@ with tab_tests:
                 v = res[name].get(key)
                 row[name] = NOT_COMPUTED if v is None else f.format(v)
             table.append(row)
-        st.dataframe(pd.DataFrame(table), use_container_width=True)
+        st.dataframe(pd.DataFrame(table), width="stretch")
 
 # =============================================================================
 # TAB 9: INVARIANT SLOT OMEGA MINER
@@ -461,10 +461,10 @@ with tab_omega:
     st.subheader("Top Conserved Carrier Roots in Slot Ω Nucleus")
     stem_counts = Counter(f["Extracted Stem (X)"] for f in omega_frames)
     stem_df = pd.DataFrame(stem_counts.most_common(12), columns=["Carrier Stem (X)", "Frame Occurrences"])
-    st.dataframe(stem_df, use_container_width=True)
+    st.dataframe(stem_df, width="stretch")
 
     with st.expander("🔍 View All Mined Slot Ω Frames Across the Codex"):
-        st.dataframe(pd.DataFrame(omega_frames), use_container_width=True)
+        st.dataframe(pd.DataFrame(omega_frames), width="stretch")
 
 # =============================================================================
 # TAB 10: PARALLEL FOLIO READER
