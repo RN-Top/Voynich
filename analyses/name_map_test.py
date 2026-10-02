@@ -21,7 +21,7 @@ from parser import CORPUS_PATH, parse_zl3b  # noqa: E402
 from plant_star_test import RARE_TYPES, chunks, words_of  # noqa: E402
 
 SEED = 20261002
-N_DRAWS = 2000
+N_DRAWS = 20_000
 GROUPS = {"Ls": "stars", "Lz": "zodiac figures", "Ln": "bathing figures", "Lt": "pools/tubes",
           "Lc": "jars", "Lf": "plant parts", "L0": "other", "La": "other", "Lp": "other", "Lx": "other"}
 

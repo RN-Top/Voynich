@@ -30,3 +30,8 @@ one link** if at least one other cell passes.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, calibration fix (after seeing the first run).** With 2,000 draws the smallest possible p is 0.0005,
+which is above the Bonferroni threshold (0.00024), so no cell could pass. The first run is kept as
+`output/name_map_report_2000draws.md` (0 cells passing; the smallest p values were Herbal × stars and Biological ×
+plant parts, both 0.0005). The test is rerun once with 20,000 draws. Nothing else changes.
