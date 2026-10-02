@@ -40,3 +40,8 @@ These are candidates for formulas, not readings.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** R1 PASS in A (16 vs 4.8) and B (100 vs 28.7), p = 0.001. R2: all four links are real
+in B. In A, links 1–3 are real (link 4 p = 0.022). The strongest link is ending → next beginning, in both A
+and B. An extra check (labelled) with uncertain spaces unsplit gives the same conclusions. Write-up:
+`output/phrases_report.md`.
