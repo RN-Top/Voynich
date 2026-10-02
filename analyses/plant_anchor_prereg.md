@@ -37,3 +37,7 @@ pre-registered test confirms it.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** A1 FAIL (0.302 vs 0.286, p = 0.11). A2: the candidates are almost all words seen once in
+herbal text, which have concentration 1.0 automatically, so the side-by-side drawing comparison was skipped as
+uninformative. An extra check (labelled) of f58r/f58v found no excess. Write-up: `output/plant_anchor_report.md`.

@@ -248,6 +248,13 @@ found the cause: all four half-pages are equally similar whatever their sign, be
 `ot-`. The effect is page format, not sign. **Not counted as evidence.** The pre-registered control was too
 weak, and that is recorded rather than hidden. Details: `output/zodiac_halves_report.md`.
 
+## Plant-name anchors (October 2026)
+
+Are the pharmacy plant-part labels plant names that reappear on their herbal page? Pre-registered in
+`analyses/plant_anchor_prereg.md`. Label words are no more page-concentrated in herbal text than ordinary words
+(p = 0.11), and 115 of 182 never appear there. **Not supported.** An extra check after the run found that f58r/f58v
+show no excess. Details: `output/plant_anchor_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
