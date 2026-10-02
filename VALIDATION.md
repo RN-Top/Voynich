@@ -276,6 +276,15 @@ Do rare symbols (ZL3b `@nnn`) land in the first line of pages and paragraphs mor
 lines: 36 vs 9.6 (both p = 0.0001). **Supported.** The commonest rare symbols sit in line-first words, which fits
 decorated initial forms. Details, and a map of where every rare symbol lands: `output/rare_symbols_report.md`.
 
+## Plant openings and star names (October 2026)
+
+Do the opening words of herbal pages share unusual spellings with star labels more than with other labels?
+Pre-registered in `analyses/plant_star_prereg.md`. 13 of 116 opening words share a rare 3-letter chunk with star
+labels, against 4.4 expected (p = 0.0002). This holds when the comparison labels are matched on starting with
+"o" + gallows (p = 0.0003; labelled extra check). The typical form is star label = "o" + plant opening stem
+(koaiin ~ okoaly, pocheody ~ opocphor). **Supported**, as a lead that plant and star names share stems.
+Details: `output/plant_star_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

@@ -38,3 +38,7 @@ draws, seed 20261002), and count S for each draw. Pass: p < 0.01.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** S = 13 vs 4.4 expected, p = 0.0002. **Supported.** An extra check (labelled) with
+comparison labels matched on the "o + gallows" start gives 13 vs 4.5, p = 0.0003. Write-up:
+`output/plant_star_report.md`.
