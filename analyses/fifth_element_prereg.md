@@ -42,3 +42,7 @@ states, and which endings make up the `?` group.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, result.** Run once with `analyses/fifth_element_test.py`, with the code committed before the run.
+**Not supported.** The best placement (CL?PR) produced fewer full five-step runs than every control
+(p = 0.97 vs Markov-1, 0.99 vs Markov-2). Full write-up: `output/fifth_element_report.md`.
