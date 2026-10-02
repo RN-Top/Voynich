@@ -35,3 +35,8 @@ large effect can be detected.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** By the rule: Z1 PASS (p = 0.0025), Z2 PASS, so formally **Supported**. An extra check,
+added after the run and labelled as such, shows that half-pages of *different* signs are just as similar
+(0.895–0.913) as the Taurus halves (0.900). The effect is the half-page format (`ot-` labels), not the sign. It is
+**not counted** as evidence for sign-related labels. Write-up: `output/zodiac_halves_report.md`.
