@@ -1,0 +1,48 @@
+# Notes from the Beinecke page images
+
+Observations made by comparing photos of the manuscript with the ZL3b transcription
+(`data/ZL3b-n.txt`). The photos are screenshots from Yale's digital collection, MS 408
+(https://collections.library.yale.edu/catalog/2002046); the viewer labels each image with its folio.
+
+These are **observations, not tests**. Anything marked *follow-up* needs a closer image or a proper
+test before it means anything.
+
+## Matches what the transcription records
+
+| Page | What the photo shows |
+|---|---|
+| f1r | Reddish non-Voynich mark like an underlined "29" at the end of line 1. A faint column of small marks down the right edge, where the notes place a Roman alphabet (a–r). |
+| f49v | Arabic numerals **1 2 3 4 5** in fainter ink down the left margin, beside lines 2–6. Next to them, the column of single Voynich characters that begins each line. |
+| f57v | Four rings of text. Inner rings include separated single characters, as transcribed (the repeating 17-symbol cycle). Small mark bottom right, noted as a Saturn symbol. |
+| f58r | Three stars, one beside each paragraph. Folio number "58" top right. |
+| f70v (Aries) | The word **"abril"** under the ram in the center. |
+| f70v (Pisces) | Two fish in the center, a small word between them, and a Voynich word near the star above. |
+| f71v / f72r | Both Taurus diagrams. f72r has a hole through the page near the bull. |
+| f72v | The Gemini and Cancer diagrams, with figures in tubs around the rings. |
+| f67r1 | Sun face with red and blue rays. Labels in the outer sectors. |
+| f116v | Non-Voynich writing at the top, with fragments such as "…oladabas + multos + te + … portad…" (the known "michiton oladabas" note). |
+
+## Not recorded in the transcription
+
+1. **f67r2 (red 12-sector diagram): stroke marks in the outer ring.** Between the 12 red words runs a
+   band of hand-drawn marks: groups of short vertical strokes, some crossed with a bar (`+|+`),
+   some with tiny circles or dots. Group sizes vary from about 2–3 strokes to 10 or more. ZL3b
+   describes "12 pieces of scattered writing in red ink" and transcribes only the words.
+   *Follow-up:* count the strokes per group from close-up images. If the counts form a pattern (for
+   example about 30 per sector, or 365 in total), that would be a real clue to the diagram's
+   purpose. They may also simply be decoration.
+2. **f58r: sideways writing at the far-left strip.** Small characters written sideways on the narrow
+   strip at the binding edge, roughly level with the second star. A dark line separates the strip
+   from the page, so it is probably the edge of a neighbouring leaf, not f58r itself.
+   *Follow-up:* a close-up to identify which leaf it belongs to.
+
+## Close-ups still wanted
+
+- f67r2: the red outer ring, in 3–4 pieces around the circle.
+- f70v (Pisces): the word between the two fish.
+- f1r: the right edge, from the red "29" mark downwards (the letter column).
+
+## Finding pages in the Yale viewer
+
+The viewer labels each image with its folio ("57v", "58r"). Pages run in book order, one side per
+image (f58r was image 116 of 214). Fold-outs can span several images labelled "(part)".
