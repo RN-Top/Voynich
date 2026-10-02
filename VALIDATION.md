@@ -212,6 +212,13 @@ Does the C → L → P → R cycle work if the roleless words (`?`, 14% of parag
 runs occur **less** often than in shuffled or Markov text (p = 0.97 and 0.99 against Markov-1 and Markov-2).
 **Not supported.** Details: `output/fifth_element_report.md`.
 
+## Alchemy (October 2026)
+
+Do the drawings show the usual marks of an alchemical book? Pre-registered in `analyses/alchemy_prereg.md`;
+every page of the Yale images viewed. No fire, stills or alembics (the pool-and-pipe pages f78r, f81r and f83v
+are borderline and excluded by the rule). No metal or planet signs. **Not supported.** The pictures fit
+herbal, pharmacy, healing-bath and astrology books better. Details: `output/alchemy_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

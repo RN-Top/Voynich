@@ -96,3 +96,10 @@ image (f58r was image 116 of 214). Fold-outs can span several images labelled "(
 - Pointer lines: only f67r2's dotted line from one star point. f67v's four cross arms are symmetric, not pointers.
 - No hole or pivot mark at the exact centre of any circle. The holes on f72r and f72v are off-centre.
 - f67r2 is too small in the PDF (about 500 px) to count the rim strokes; needs the full-resolution image.
+
+## Alchemy check, whole book (2026-10-02)
+
+- Pharmaceutical jars (f88r, f89v, f99r–f102v): tall lidded apothecary jars, no pipes or receivers.
+- Pool-and-pipe pages: f78r (funnel → jointed pipe → pool → pool), f81r (two pools joined by a tube),
+  f83v (two round green bodies joined in the middle).
+- No fire, stills, alembics or metal/planet signs seen anywhere.
