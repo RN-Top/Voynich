@@ -68,6 +68,17 @@ Stroke counts were **not** taken: the dense hatched blocks blur at screenshot re
 *Follow-up:* count group by group from the full-resolution image file (Yale viewer image
 "122 of 214"), not from screenshots.
 
+## f67r2 whole page: the 12 faces
+
+- 12 small faces around the middle ring, one per sector, matching ZL3b's "12 moon or planet faces".
+  Each is drawn as a moon with a crescent: **6 with a red crescent, 6 pale/tan**.
+- Clockwise from the top the colours run roughly **R P R P P R R P R P R P**: nearly alternating, with
+  two breaks. Red crescents in the top half sit on the left of the face, in the bottom half on the
+  right. That may only reflect the faces being drawn rotated around the circle.
+- Centre: an eight-pointed star with a dotted line running out from one point, as ZL3b describes.
+- A month or moon-phase reading is a natural hypothesis, but 12 items is too few to test
+  statistically, and colours may have faded unevenly. Recorded as an observation only.
+
 ## Close-ups still wanted
 
 - f67r2: the **full-resolution image file** (download from the Yale viewer, image 122 of 214), so the
