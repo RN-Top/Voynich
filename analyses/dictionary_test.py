@@ -43,8 +43,9 @@ def labels() -> pd.DataFrame:
 
 
 def mi(a: np.ndarray, b: np.ndarray) -> float:
-    t = pd.crosstab(a, b).to_numpy(float)
-    t /= t.sum()
+    ai, bi = pd.factorize(a)[0], pd.factorize(b)[0]
+    t = np.bincount(ai * (bi.max() + 1) + bi, minlength=(ai.max() + 1) * (bi.max() + 1)).astype(float)
+    t = t.reshape(ai.max() + 1, bi.max() + 1) / len(ai)
     px, py = t.sum(1, keepdims=True), t.sum(0, keepdims=True)
     m = t > 0
     return float(np.sum(t[m] * np.log2(t[m] / (px @ py)[m])))

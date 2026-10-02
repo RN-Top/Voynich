@@ -45,3 +45,6 @@ language. These are leads to check, not readings.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02.** The first run crashed inside the mutual-information helper (a read-only array) before any result
+was produced. The helper was rewritten to count with `np.bincount`. The statistic is unchanged.
