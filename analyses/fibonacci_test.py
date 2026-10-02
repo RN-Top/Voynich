@@ -6,7 +6,6 @@
 
 from __future__ import annotations
 
-import math
 import re
 import sys
 from collections import Counter
@@ -23,7 +22,8 @@ DOUBLED = [10, 16, 26, 42]
 
 
 def binom_sf(k: int, n: int, p: float) -> float:
-    return sum(math.comb(n, i) * p ** i * (1 - p) ** (n - i) for i in range(k, n + 1))
+    from scipy.stats import binom
+    return float(binom.sf(k - 1, n, p))
 
 
 def counts():

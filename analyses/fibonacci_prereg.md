@@ -34,3 +34,6 @@ numbers. A fail would mean they land on them about as often as on their neighbou
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02.** The first run crashed in the hand-written binomial function (number overflow) before printing any
+result. It was replaced by `scipy.stats.binom.sf`, the same one-sided binomial test.
