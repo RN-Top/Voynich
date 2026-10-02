@@ -37,3 +37,8 @@ Amendments (dated, below this line only):
 
 **2026-10-02.** The first run crashed in the hand-written binomial function (number overflow) before printing any
 result. It was replaced by `scipy.stats.binom.sf`, the same one-sided binomial test.
+
+**2026-10-02, results.** F formally PASS (36.5%, p = 1e-31), D FAIL (32.6%, p = 0.78). An extra check (labelled)
+shows the F pass comes entirely from the word-length peak at 5 letters, which breaks the test's smoothness
+assumption. Without it the result is 33.2% (p = 0.59). **Conclusion: not supported.** The design flaw is recorded in
+`output/fibonacci_report.md`.
