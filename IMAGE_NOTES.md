@@ -49,9 +49,29 @@ test before it means anything.
   a `Y`, a `K`-like letter, a `λ`-like one). *Follow-up:* compare it symbol by symbol with the
   transcribed cycle `o l d r v x k m f … y I …`, using close-ups of all four quarters of the ring.
 
+## f67r2 red outer ring (third batch, full circuit)
+
+The stroke band runs all the way round, on a light tan painted strip, just outside the 12 red words.
+It is built from a few repeated motifs:
+
+1. Dense blocks of thin slanted strokes, like hatching, often about 8–15 fine lines.
+2. Short groups of 2–4 upright strokes crossed by a bar (`+||+`, `-|||-`), repeated many times in
+   nearly identical form.
+3. Tiny circles and dots between groups. In places there are marks like `;` and `,`, as in the
+   sequence `-|||- ; -|||- , -|||-` on the lower right.
+
+The repeated, near-identical groups look more like a graduated scale or ornamental border than like
+tallies whose counts vary by sector. A degree or day scale on the rim would suit an astronomical
+diagram, but that is a hypothesis.
+
+Stroke counts were **not** taken: the dense hatched blocks blur at screenshot resolution.
+*Follow-up:* count group by group from the full-resolution image file (Yale viewer image
+"122 of 214"), not from screenshots.
+
 ## Close-ups still wanted
 
-- f67r2 (red 12-sector diagram with moon faces): the red outer ring with the stroke marks, in 3–4 pieces.
+- f67r2: the **full-resolution image file** (download from the Yale viewer, image 122 of 214), so the
+  ring's stroke groups can be counted.
 - f70v (Pisces): the word between the two fish.
 - f1r: the right edge further down, past "d", if the zoom allows (the rest of the letter column).
 
