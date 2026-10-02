@@ -48,3 +48,7 @@ rule out that the text is about alchemy, because the text cannot be read.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** A1 FAIL: no fire, alembic or still. The pool pages f78r, f81r and f83v are borderline
+and excluded by the rule. A2 FAIL: no metal or planet signs seen. **Not supported.** Write-up:
+`output/alchemy_report.md`.
