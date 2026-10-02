@@ -25,6 +25,8 @@ explanations. The strongest were tested on 43 pages chosen at random and committ
 | **A word's ending predicts how the next word starts.** | The strongest link between neighbouring words, in both A and B (pre-registered). |
 | **Word beginnings follow the topic.** | Beginnings track a page's section more than endings do (pre-registered, A/B difference removed). |
 
+**Summary for reviewers:** [FINDINGS.md](FINDINGS.md), covering the pre-registered results that held up, with numbers and how to reproduce them.
+
 ## Tested and not supported
 
 These ideas were tested and did not hold up. Their code is kept in [`archive/`](archive/), and the full results
