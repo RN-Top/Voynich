@@ -197,6 +197,14 @@ neither looks like a complete alphabet for the main script. They read more like 
 symbols. f57v and f58r (the transcription suspects a key there too) sit at the center of the book,
 beside the missing leaves f59–64.
 
+## Instrument hypothesis (October 2026)
+
+Do the circular diagrams show a measuring instrument (astrolabe/volvelle)? Pre-registered in
+`analyses/instrument_prereg.md`, checked against the Yale images. Pointer lines: 1 (needed 3). Centre
+pivots: none (needed 2). Labels repeating at the same angular position on non-zodiac circles: p = 0.0195
+(needed < 0.01). Rim strokes could not be counted at PDF resolution. **Not supported** under the
+pre-registered rule, whatever the rim count. Details: `output/instrument_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

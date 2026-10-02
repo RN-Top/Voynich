@@ -59,3 +59,8 @@ pages. P4 and P5 can be run from the transcription.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** Checked against the Yale PDF the project author uploaded. P1 could not be counted at
+PDF resolution. P2 FAIL (one pointer, f67r2). P3 FAIL (no centre pivots; f72r/f72v holes off-centre). P4 run
+with `analyses/instrument_p4_test.py`, code committed before its first run: FAIL, p = 0.0195. Under the decision
+rule the result is **Not supported** regardless of P1. Full write-up: `output/instrument_report.md`.

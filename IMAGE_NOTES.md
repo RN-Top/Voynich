@@ -90,3 +90,9 @@ Stroke counts were **not** taken: the dense hatched blocks blur at screenshot re
 
 The viewer labels each image with its folio ("57v", "58r"). Pages run in book order, one side per
 image (f58r was image 116 of 214). Fold-outs can span several images labelled "(part)".
+
+## Instrument check from the Yale PDF (2026-10-02)
+
+- Pointer lines: only f67r2's dotted line from one star point. f67v's four cross arms are symmetric, not pointers.
+- No hole or pivot mark at the exact centre of any circle. The holes on f72r and f72v are off-centre.
+- f67r2 is too small in the PDF (about 500 px) to count the rim strokes; needs the full-resolution image.
