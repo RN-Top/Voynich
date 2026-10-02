@@ -219,6 +219,13 @@ every page of the Yale images viewed. No fire, stills or alembics (the pool-and-
 are borderline and excluded by the rule). No metal or planet signs. **Not supported.** The pictures fit
 herbal, pharmacy, healing-bath and astrology books better. Details: `output/alchemy_report.md`.
 
+## Writing types, word order, topic location (October 2026)
+
+Pre-registered in `analyses/writing_types_prereg.md`. Splitting the text into paragraph A, paragraph B, ring
+text, labels and radial text: **word order carries information** beyond line-start/line-end habits in A, B
+and ring text (p = 0.001; not caused by repeated words). **Word beginnings track the page's topic more than
+endings do** (with the A/B difference removed). **Supported.** Details: `output/writing_types_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
