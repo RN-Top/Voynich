@@ -233,6 +233,13 @@ the same pages? Pre-registered in `analyses/dictionary_prereg.md`. Neither passe
 supported**. Not part of the verdict: jar-label *endings* differ from plant-part-label endings (p = 0.002), a
 lead for a follow-up test. Details: `output/dictionary_report.md`.
 
+## Set phrases and grammar links (October 2026)
+
+Pre-registered in `analyses/phrases_prereg.md`. Paragraph text has about 3 times as many strongly bound word
+pairs (set phrases) as shuffled text, in both Currier A and B. The strongest link between neighbouring words runs
+from a word's **ending** to the next word's **beginning** (e.g. -dy → qok-). This holds whether or not
+uncertain spaces are split. **Supported.** Details: `output/phrases_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
