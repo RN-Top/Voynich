@@ -240,6 +240,14 @@ pairs (set phrases) as shuffled text, in both Currier A and B. The strongest lin
 from a word's **ending** to the next word's **beginning** (e.g. -dy → qok-). This holds whether or not
 uncertain spaces are split. **Supported.** Details: `output/phrases_report.md`.
 
+## Zodiac halves (October 2026)
+
+Do the light and dark halves of Aries and Taurus share label beginnings? Pre-registered in
+`analyses/zodiac_halves_prereg.md`. It passed by its own rule (p = 0.0025), but an extra check after the run
+found the cause: all four half-pages are equally similar whatever their sign, because their labels are mostly
+`ot-`. The effect is page format, not sign. **Not counted as evidence.** The pre-registered control was too
+weak, and that is recorded rather than hidden. Details: `output/zodiac_halves_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
