@@ -30,3 +30,6 @@ For each rare symbol: count, pages, sections, writing type (paragraph, label, ri
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** S1 PASS (32 vs 8.3, p = 0.0001). S2 PASS (36 vs 9.6, p = 0.0001). **Supported**: rare
+symbols concentrate in page-first and paragraph-first lines. Write-up: `output/rare_symbols_report.md`.

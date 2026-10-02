@@ -269,6 +269,13 @@ Pre-registered in `analyses/ground_prereg.md`. Bath pages: 24 vs 23.2 expected (
 (p = 0.38). **Not supported**: no link between the text and its page's labelled pictures was found.
 Details: `output/ground_report.md`.
 
+## Rare symbols in first lines (October 2026)
+
+Do rare symbols (ZL3b `@nnn`) land in the first line of pages and paragraphs more than chance? Pre-registered in
+`analyses/rare_symbols_prereg.md`, with shuffles within each page. Page-first lines: 32 vs 8.3; paragraph-first
+lines: 36 vs 9.6 (both p = 0.0001). **Supported.** The commonest rare symbols sit in line-first words, which fits
+decorated initial forms. Details, and a map of where every rare symbol lands: `output/rare_symbols_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
