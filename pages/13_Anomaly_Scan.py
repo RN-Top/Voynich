@@ -42,7 +42,7 @@ def run():
 
 res, keys = run()
 top_n = st.slider("Pages to show", 10, len(res), 25)
-st.dataframe(res.head(top_n), use_container_width=True)
+st.dataframe(res.head(top_n), width="stretch")
 st.caption("Main reason = the feature on which the page is most unusual. Score = robust z-score (how many "
            "typical spreads away from its peers). f57v is filed under Herbal by page number, though it is a "
            "circular diagram, which inflates its score; its one-letter-word rate is extreme either way.")

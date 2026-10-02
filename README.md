@@ -20,6 +20,10 @@ explanations. The strongest were tested on 43 pages chosen at random and committ
 | **Each folded sheet was written as a unit.** | Sheet halves share more vocabulary than other page pairs, also within the same scribe and dialect (pre-registered, p ≈ 1e-4). |
 | **The results don't depend on transcription choices.** | All verdicts unchanged on a second representation of the text. |
 | **Not plain Latin, nor a simple letter cipher of Latin.** | Character predictability and word length differ (exploratory comparison). |
+| **Word order carries information.** | Neighbouring words depend on each other beyond line-layout habits, in Currier A, B and ring text (pre-registered, p = 0.001). |
+| **The text has set phrases.** | About 3× more strongly bound word pairs than shuffled text (pre-registered, p = 0.001). |
+| **A word's ending predicts how the next word starts.** | The strongest link between neighbouring words, in both A and B (pre-registered). |
+| **Word beginnings follow the topic.** | Beginnings track a page's section more than endings do (pre-registered, A/B difference removed). |
 
 ## Tested and not supported
 
@@ -30,6 +34,10 @@ are in [VALIDATION.md](VALIDATION.md).
 - The C → L → P → R four-state cycle (no better than simpler Markov patterns)
 - The front/back/center fold as a key (fold overlays match no better than ordinary pages)
 - Zodiac figure labels as day names (p ≈ 0.76)
+- The circular diagrams as a measuring instrument (no pointers or centre pivots)
+- Alchemy (no apparatus or metal signs in any drawing)
+- A fifth "grounding" step in the cycle
+- Label beginnings matching the kind of picture; zodiac labels following their sign
 - The earlier 90.2% "blind" score, the 99.79% Macer Floridus match, and Δ = −1.018 (withdrawn; see VALIDATION.md)
 
 ## Open leads
@@ -45,7 +53,7 @@ are in [VALIDATION.md](VALIDATION.md).
 ```text
 app.py                      Streamlit workbench: Findings, Blind Holdout, Token Breakdown,
                             Verification Suite, Slot Ω Miner, Folio Reader, Export
-pages/                      Spot Pies, Anomaly Scan
+pages/                      Spot Pies, Anomaly Scan, Language Structure
 parser.py                   Canonical IVTFF parser used everywhere
 structural_validation.py    Meaning-free validation ladder
 blind_holdout.py            Pre-registered blind holdout (data/blind_holdout_v1.json)

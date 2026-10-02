@@ -165,7 +165,7 @@ for name, folios in spot_pies.SPOTS.items():
     sub = df[df["folio"].isin(folios)]
     table[name] = [f"{v:.1%}" for v in distribution(sub[col], labels)] if len(sub) else ["—"] * len(labels)
 table["Whole book"] = [f"{v:.1%}" for v in distribution(df[col], labels)]
-st.dataframe(table, use_container_width=True)
+st.dataframe(table, width="stretch")
 
 # Test and verdict
 st.markdown("---")
@@ -187,7 +187,7 @@ for name, r in results.items():
         rows.append({"Spot": name, "Words": r["n"], "Distance": None, "Typical for random pages": None,
                      "p": None, "Verdict": r["status"]})
 verdicts = pd.DataFrame(rows)
-st.dataframe(verdicts, use_container_width=True)
+st.dataframe(verdicts, width="stretch")
 st.info(
     "A difference means the spot's word endings are unusual for the book. It does not say why: the rosette "
     "panels are mostly circular and label text, which behaves differently from paragraph text everywhere in "
