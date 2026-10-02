@@ -738,13 +738,20 @@ with tab_tests:
             st.success("✅ Verification suite executed on the loaded corpus.")
 
             c1, c2, c3 = st.columns(3)
-            c1.metric("A2: Line-Terminal -m / -am Rate", f"{fmt(flush['pct'], '.1f')}%",
-                      f"{flush['m_end']}/{flush['total_m']} tokens · OR {fmt(flush['odds_ratio'], '.1f')}")
-            c2.metric("Diagram qo- Rate (labels, rings, radii)", f"{fmt(diag_rate, '.2f')}%",
-                      f"{diagram_qo}/{len(diagram_toks)} (vs {fmt(prose_rate, '.1f')}% paragraph text)")
+            c1.metric("A2: Line-Terminal -m / -am Rate", f"{fmt(flush['pct'], '.1f')}%")
+            c1.caption(f"{flush['m_end']} of {flush['total_m']} words ending in -m/-am are the last word on their line; "
+                       f"such words are about {fmt(flush['odds_ratio'], '.0f')}× more likely to be line-final than "
+                       f"other words. Supported by every test, including the blind holdout.")
+            c2.metric("Diagram qo- Rate (labels, rings, radii)", f"{fmt(diag_rate, '.2f')}%")
+            c2.caption(f"{diagram_qo} of {len(diagram_toks)} label/diagram words start with qo-, versus "
+                       f"{fmt(prose_rate, '.1f')}% in paragraph text. Descriptive; not significance-tested here.")
             c3.metric("A4: Directional Routing Shift", f"{fmt(log_odds_delta, '.3f')} log-odds")
+            c3.caption("Withdrawn claim: the published value (−1.018) was a placeholder. The real value is shown "
+                       "here and has the opposite sign.")
 
             st.subheader("4-Macrostate Sequential Transitions")
+            st.caption("Raw counts of which state follows which. Descriptive only: the C→L→P→R cycle does not "
+                       "beat Markov controls (see the Macrostate Transition tab and VALIDATION.md).")
             if transitions:
                 t_list = [{"Transition Cycle": k, "Occurrences": int(v)} for k, v in transitions.items()]
                 t_df = pd.DataFrame(t_list).sort_values(by="Occurrences", ascending=False)
