@@ -262,6 +262,13 @@ Dialect B repeats 3-word formulas well beyond chance (12 vs 0.6), mostly on the 
 (4-word) refrains, and dialect A has no repeats at all. **Partly supported.** This fits short formulas
 (instructions, recipes or brief charms), not long prayers. Details: `output/refrains_report.md`.
 
+## Ground test: labels in their own page's text (October 2026)
+
+Does a page's paragraph text repeat that page's label words more than other pages of the same section do?
+Pre-registered in `analyses/ground_prereg.md`. Bath pages: 24 vs 23.2 expected (p = 0.45). All sections: 60 vs 58.2
+(p = 0.38). **Not supported**: no link between the text and its page's labelled pictures was found.
+Details: `output/ground_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
