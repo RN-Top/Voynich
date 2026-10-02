@@ -49,3 +49,8 @@ grammar. It tells us where to look when building a dictionary.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** Run once. W1: word order carries information in Currier A, Currier B and ring text
+(all p = 0.001, the floor for 1,000 shuffles). Labels and radial text are too small. W2: beginnings carry more
+topic than endings (excess 0.095 vs 0.060 bits, both p = 0.0005). An extra check was added after the run and
+is labelled as such: removing repeated neighbours leaves W1 unchanged. Write-up: `output/writing_types_report.md`.
