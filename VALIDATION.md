@@ -310,6 +310,14 @@ Pre-registered in `analyses/o_prefix_prereg.md`, length-matched. Labels 41% vs p
 **Not supported.** "o" is a general prefix everywhere. This corrects the reading of the plant–star and
 name-map links: they show shared roots, not a special name-forming "o". Details: `output/o_prefix_report.md`.
 
+## Root dictionary (October 2026)
+
+Word roots (prefix q/o/y and ending stripped by a fixed rule) follow the page's section: 0.214 vs 0.103 bits,
+p = 0.0005 (shuffles within Currier language). Pre-registered in `analyses/root_dictionary_prereg.md`. 23 roots are
+section-specific at FDR 5%, all in Currier-B sections. Recipe pages favour *cheed, lkee, rar, pair, alk, tched*.
+Bath pages favour *rsh, sheckh, lsh, lch*. No Herbal or Pharmacy roots pass. **Supported.**
+Details: `output/root_dictionary_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
