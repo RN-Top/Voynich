@@ -205,6 +205,13 @@ pivots: none (needed 2). Labels repeating at the same angular position on non-zo
 (needed < 0.01). Rim strokes could not be counted at PDF resolution. **Not supported** under the
 pre-registered rule, whatever the rim count. Details: `output/instrument_report.md`.
 
+## Fifth-element cycle (October 2026)
+
+Does the C → L → P → R cycle work if the roleless words (`?`, 14% of paragraph text) are added as a fifth,
+"grounding" step? Pre-registered in `analyses/fifth_element_prereg.md`. In every placement, full five-step
+runs occur **less** often than in shuffled or Markov text (p = 0.97 and 0.99 against Markov-1 and Markov-2).
+**Not supported.** Details: `output/fifth_element_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
