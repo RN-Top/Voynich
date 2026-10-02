@@ -294,6 +294,15 @@ Voynich word length, which breaks the test's smoothness assumption. Without it: 
 The doubled sequence: no preference (p = 0.78). **Not supported**, and the design flaw is recorded.
 Details: `output/fibonacci_report.md`.
 
+## Name-link map (October 2026)
+
+Every pairing of paragraph-opening words (by section) with label types (42 cells, Bonferroni-corrected).
+Pre-registered in `analyses/name_map_prereg.md`. The first run used too few draws to ever pass; this is recorded and
+the test was rerun with 20,000. Two links pass: Herbal × star labels (the earlier finding) and Biological × pharmacy
+plant-part labels (3 vs 0.6, p = 0.00005; small counts). Both follow the same form, label = "o" + opening word (e.g.
+*tokol → otokol*), and several near misses do too. **Supported, tentatively**: "o" may mark a name or label form
+of a word. Details: `output/name_map_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

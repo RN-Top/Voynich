@@ -35,3 +35,6 @@ Amendments (dated, below this line only):
 which is above the Bonferroni threshold (0.00024), so no cell could pass. The first run is kept as
 `output/name_map_report_2000draws.md` (0 cells passing; the smallest p values were Herbal × stars and Biological ×
 plant parts, both 0.0005). The test is rerun once with 20,000 draws. Nothing else changes.
+
+**2026-10-02, results (20,000-draw rerun).** Two cells pass: Herbal × stars (repeat) and Biological × plant parts
+(3 vs 0.6, p = 0.00005). **Map wider than one link: yes**, on small counts. Write-up: `output/name_map_report.md`.
