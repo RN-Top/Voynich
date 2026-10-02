@@ -36,3 +36,7 @@ Roots that occur both in herbal-page opening words and in star labels.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** T1 PASS (0.214 vs 0.103 bits, p = 0.0005). T2: 23 of 256 roots pass FDR 5%, all in
+Stars/Recipes or Biological. The report's baseline column is over the whole book; the correct within-Currier-B
+shares (46%, 29%) are added in the reading. Write-up: `output/root_dictionary_report.md`.
