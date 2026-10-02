@@ -461,7 +461,7 @@ def test_affix_role(corpus: Corpus, n_perms: int, rng) -> dict:
 # Test 6: semantic permutation tournament
 # -----------------------------------------------------------------------------
 def test_semantic_permutation(corpus: Corpus, n_perms: int, rng) -> dict:
-    from lexicon import MASTER_LEXICON
+    from archive.lexicon import MASTER_LEXICON
 
     entries = [(tok, info["domain"]) for tok, info in MASTER_LEXICON.items()
                if info["domain"] in DOMAIN_EXPECTED_SECTIONS]
@@ -504,7 +504,7 @@ def test_semantic_permutation(corpus: Corpus, n_perms: int, rng) -> dict:
 # Test 7: holdout hygiene and dictionary coverage
 # -----------------------------------------------------------------------------
 def test_holdout_hygiene(corpus: Corpus) -> dict:
-    from lexicon import MASTER_LEXICON
+    from archive.lexicon import MASTER_LEXICON
 
     overlap = sorted(set(HOLDOUT_FOLIOS) & SEEN_FOLIOS)
     untouched = corpus.df[~corpus.df["folio"].isin(SEEN_FOLIOS | set(HOLDOUT_FOLIOS))]

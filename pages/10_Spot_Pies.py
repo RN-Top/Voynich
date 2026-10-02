@@ -37,7 +37,6 @@ ENDING_LABELS = list(sv.ENDINGS) + ["?"]
 def load_corpus() -> pd.DataFrame:
     df = canonical.parse_zl3b(canonical.ensure_full_corpus(canonical.CORPUS_PATH))
     df["ending"] = df["clean"].map(sv.ending_of)
-    df["role"] = df["clean"].map(spot_pies.tag_token)
     df["line_key"] = df["folio"] + "|" + df["header"]
     return df
 
@@ -126,16 +125,6 @@ except Exception as exc:
     st.error(f"Corpus could not be loaded: {exc}")
     st.stop()
 
-view = st.radio(
-    "Pie categories",
-    ["Word endings (tested structure)", "Hypothesised roles (heat, drain, ... — not validated)"],
-    horizontal=True,
-)
-use_roles = view.startswith("Hypothesised")
-if use_roles:
-    st.warning("Role labels are hypotheses that have not survived validation (see VALIDATION.md). "
-               "The statistical test below always uses endings.")
-
 ending_colors = {e: c for e, c in zip(ENDING_LABELS, [
     "#000000", "#444444", "#d62728", "#e377c2", "#ff7f0e", "#bcbd22", "#8c564b",
     "#1f77b4", "#17becf", "#aec7e8", "#9467bd", "#c5b0d5", "#2ca02c", "#98df8a", "#ffbb78", "#808080"])}
@@ -159,12 +148,8 @@ for row_start in range(0, len(names), 4):
             if sub.empty:
                 st.warning("No words found for these folios.")
                 continue
-            if use_roles:
-                counts = sub["role"].value_counts().to_dict()
-                colors = spot_pies.ROLE_COLORS
-            else:
-                counts = sub["ending"].value_counts().reindex(ENDING_LABELS, fill_value=0).to_dict()
-                colors = ending_colors
+            counts = sub["ending"].value_counts().reindex(ENDING_LABELS, fill_value=0).to_dict()
+            colors = ending_colors
             st.markdown(render_svg_pie(counts, colors), unsafe_allow_html=True)
             with st.expander("Top 10 words"):
                 for tok, c in sub["clean"].value_counts().head(10).items():
@@ -172,10 +157,10 @@ for row_start in range(0, len(names), 4):
 
 # Comparison table
 st.markdown("---")
-st.markdown("### Share of each category, by spot")
-col = "role" if use_roles else "ending"
-labels = list(spot_pies.ROLE_COLORS) if use_roles else ENDING_LABELS
-table = pd.DataFrame({"Category": [f"-{x}" if not use_roles and x != "?" else x for x in labels]})
+st.markdown("### Share of each ending, by spot")
+col = "ending"
+labels = ENDING_LABELS
+table = pd.DataFrame({"Category": [f"-{x}" if x != "?" else x for x in labels]})
 for name, folios in spot_pies.SPOTS.items():
     sub = df[df["folio"].isin(folios)]
     table[name] = [f"{v:.1%}" for v in distribution(sub[col], labels)] if len(sub) else ["—"] * len(labels)

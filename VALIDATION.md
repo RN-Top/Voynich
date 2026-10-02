@@ -2,6 +2,10 @@
 
 See also [REPLICATION.md](REPLICATION.md) for how an independent group can reproduce every number.
 
+**Update:** code for the hypotheses that were not supported has been moved to [`archive/`](archive/README.md),
+and the app now presents only the supported structural results. The tests and their outcomes remain
+recorded here.
+
 This file records what currently survives independent testing and what does not.
 It follows the independent nine-step review by Juan Gabriel Molina (September 2026)
 and a re-run of the key tests on the full corpus with `structural_validation.py`.
@@ -78,12 +82,10 @@ transcription. Takahashi's `IT2a-n.txt` (voynich.nu) could not be downloaded fro
 these tests ran in. Run `python transfer_test.py --corpus IT2a-n.txt`, or upload the file in the
 app's sidebar, to complete the external-transfer step.
 
-## Structure-only mode
+## Structure-only presentation
 
-Following the advice to strip the model back to what works, the app now starts in
-**Structure-only mode**. It hides the Venetian / German / apparatus glosses (dialect bridge,
-lexicon, colophon readings, gloss columns in the export, gloss labels in the reader). The meanings
-can be shown again from the sidebar.
+Following the advice to strip the model back to what works, the app now shows only the structural results.
+The glosses and the four-state presentation have been removed from it; their code is in `archive/`.
 
 ## What kind of system? (October 2026)
 
@@ -156,7 +158,7 @@ gathering, leaf k and leaf lo+hi−k are halves of one folded sheet.
 ### Fold overlay (exploratory)
 
 The idea: fold the front and back pages in toward the center; the words that land on each other form
-a key. `pages/12_Fold_Overlay.py` (built on `analyses/fold_overlay.py`) folds any page onto any other,
+a key. `archive/pages/12_Fold_Overlay.py` (built on `archive/analyses/fold_overlay.py`, now archived) folds any page onto any other,
 mirroring it left-to-right. Positions are approximated from line number and place in the line. It
 then folds every other page onto the same target, for a fair comparison.
 
@@ -214,7 +216,7 @@ beside the missing leaves f59–64.
    together on 627 lines. Line-end flags were also computed before empty tokens were
    dropped. Both are fixed. The parser now records `locus_type` (P / L / C / R), so
    paragraph text can be separated from labels, rings and radii.
-5. **Macer Floridus alignment.** `engine_manifold_align.py` built the "historical" target
+5. **Macer Floridus alignment.** `engine_manifold_align.py` (now in `archive/`) built the "historical" target
    vectors with `np.random.randn()`. It also aligned 10 anchors in 16 dimensions, where an
    orthogonal map fits almost any configuration. The resulting 99.79% says nothing about
    Macer Floridus. The module now refuses to run without a real, tokenised target corpus.
