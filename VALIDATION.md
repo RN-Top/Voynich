@@ -318,6 +318,13 @@ section-specific at FDR 5%, all in Currier-B sections. Recipe pages favour *chee
 Bath pages favour *rsh, sheckh, lsh, lch*. No Herbal or Pharmacy roots pass. **Supported.**
 Details: `output/root_dictionary_report.md`.
 
+## Bath roots in bath-picture labels (October 2026)
+
+Do the bath-page roots (rsh, sheckh, lsh, lch) appear in labels on the bath pictures? Pre-registered in
+`analyses/bath_roots_prereg.md`. There are only 4 hits among 1,186 label words, so the result is **too few to test**.
+Descriptive only: 3 of the 4 are on bath pages, all labelling women, none labelling pools. Details:
+`output/bath_roots_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

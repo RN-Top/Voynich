@@ -22,3 +22,6 @@ Every word of every label locus (ZL3b, codes L…), canonical clean. Roots are t
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** 4 hits in total (3 on bath pages, 1 elsewhere): **too few to test** under the rule. All 3
+bath-page hits are on figure labels. Write-up: `output/bath_roots_report.md`.
