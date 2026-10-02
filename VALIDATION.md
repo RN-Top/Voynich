@@ -285,6 +285,15 @@ labels, against 4.4 expected (p = 0.0002). This holds when the comparison labels
 (koaiin ~ okoaly, pocheody ~ opocphor). **Supported**, as a lead that plant and star names share stems.
 Details: `output/plant_star_report.md`.
 
+## Fibonacci numbers (October 2026)
+
+Do counts (words per line, letters per word, lines per paragraph and page, words and labels per page) land on
+Fibonacci numbers, or on the doubled sequence 10/16/26/42, more than on their neighbours? Pre-registered in
+`analyses/fibonacci_prereg.md`. The Fibonacci test formally passed, but only because 5 letters is the peak
+Voynich word length, which breaks the test's smoothness assumption. Without it: 33.2% vs 33.3% expected (p = 0.59).
+The doubled sequence: no preference (p = 0.78). **Not supported**, and the design flaw is recorded.
+Details: `output/fibonacci_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
