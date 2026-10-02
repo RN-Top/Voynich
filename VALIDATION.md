@@ -255,6 +255,13 @@ Are the pharmacy plant-part labels plant names that reappear on their herbal pag
 (p = 0.11), and 115 of 182 never appear there. **Not supported.** An extra check after the run found that f58r/f58v
 show no excess. Details: `output/plant_anchor_report.md`.
 
+## Refrains (October 2026)
+
+Does the text repeat longer phrases, as prayers or charms do? Pre-registered in `analyses/refrains_prereg.md`.
+Dialect B repeats 3-word formulas well beyond chance (12 vs 0.6), mostly on the bath pages. There are no long
+(4-word) refrains, and dialect A has no repeats at all. **Partly supported.** This fits short formulas
+(instructions, recipes or brief charms), not long prayers. Details: `output/refrains_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
