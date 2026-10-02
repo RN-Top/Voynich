@@ -10,7 +10,7 @@ Yale Beinecke MS 408 digital facsimile.
 
 ## Main findings
 
-### 1. Plant-page openings share word roots with star names; "o" may mark a name form
+### 1. Plant-page openings share word roots with star names
 
 - **Test:** do the first words of the herbal pages share unusual 3-letter chunks with the star labels (f67r2,
   f68r1–3) more than with the same number of other labels?
@@ -30,8 +30,10 @@ Yale Beinecke MS 408 digital facsimile.
   | o+@167+chal (f56r) | o+@167+olch… (star, f68r2) |
   | tokol (f82v, bath page) | otokol (plant-part label, f88v) |
 
-- **Reading:** plant and star names (and labels elsewhere) appear to be built from shared roots, with a
-  prefix "o" forming the label or name.
+- **Reading:** plant-page openings and star names (and bath openings and plant-part labels) appear to share roots.
+  A follow-up test showed that "o" + existing word is **equally common** in ordinary paragraph words (39%) and labels
+  (41%; p = 0.84). So "o" is a general prefix in Voynich word-building, **not** a name-forming marker
+  (`output/o_prefix_report.md`).
 - **Caveats:** small counts (13 and 3 words); each link is a shared 3-letter chunk. The first run of the map test
   used too few permutations to reach its threshold, and was rerun with 20,000 (recorded).
 - **Files:** `analyses/plant_star_*`, `analyses/name_map_*`, and `output/plant_star_report.md`,
@@ -80,7 +82,7 @@ Each script writes its report to `output/`. The pre-registration for each test i
 
 ## Open questions for reviewers
 
-1. Has the "o + opening word" relation between labels and paragraph openings been reported before?
+1. Has the shared-root link between herbal-page openings and star labels been reported before?
 2. Is a shared rare 3-letter chunk a fair similarity measure, or is there a better standard?
 3. A full-resolution mapping of the f68r star labels to individual drawn stars would allow testing whether the
    matching stars are special. Does such a mapping exist?

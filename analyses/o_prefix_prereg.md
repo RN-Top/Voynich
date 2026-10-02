@@ -32,3 +32,7 @@ length stays fixed. Pass: p < 0.01.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-02, results.** 175 of 430 label o-words (41%) are o + word, against 182.6 expected from length-matched
+paragraph o-words (39%). p = 0.84. **Not supported**: "o" is a general prefix, not a label-forming one. Write-up:
+`output/o_prefix_report.md`.

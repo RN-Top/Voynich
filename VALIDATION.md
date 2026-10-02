@@ -303,6 +303,13 @@ plant-part labels (3 vs 0.6, p = 0.00005; small counts). Both follow the same fo
 *tokol → otokol*), and several near misses do too. **Supported, tentatively**: "o" may mark a name or label form
 of a word. Details: `output/name_map_report.md`.
 
+## "o" as a name-forming prefix (October 2026)
+
+Are labels starting with "o" more often "o + an existing word" than ordinary paragraph words starting with "o"?
+Pre-registered in `analyses/o_prefix_prereg.md`, length-matched. Labels 41% vs paragraph words 39% (p = 0.84).
+**Not supported.** "o" is a general prefix everywhere. This corrects the reading of the plant–star and
+name-map links: they show shared roots, not a special name-forming "o". Details: `output/o_prefix_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
