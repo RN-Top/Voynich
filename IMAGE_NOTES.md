@@ -36,11 +36,24 @@ test before it means anything.
    from the page, so it is probably the edge of a neighbouring leaf, not f58r itself.
    *Follow-up:* a close-up to identify which leaf it belongs to.
 
+## From close-ups (second batch)
+
+- **f1r right margin:** below the red "29"-like mark is a faint column of small letters, one per line
+  end. The first few look like **a, b, c, d**, consistent with the noted Roman alphabet. Lower down
+  they are too faint to read.
+- **f58r binding strip:** the sideways writing is **Voynich-script characters** (shapes like `8`, `2`, `9`
+  and gallows letters), not stains. It lies beyond the dark gutter line, so it is most likely the edge of
+  a neighbouring leaf. Not in ZL3b.
+- **f57v bottom right:** a hooked symbol with a bar above it, consistent with the note "Saturn symbol".
+- **f57v rings:** the single-character ring is clearly separate symbols, including rare shapes (an `X`,
+  a `Y`, a `K`-like letter, a `λ`-like one). *Follow-up:* compare it symbol by symbol with the
+  transcribed cycle `o l d r v x k m f … y I …`, using close-ups of all four quarters of the ring.
+
 ## Close-ups still wanted
 
-- f67r2: the red outer ring, in 3–4 pieces around the circle.
+- f67r2 (red 12-sector diagram with moon faces): the red outer ring with the stroke marks, in 3–4 pieces.
 - f70v (Pisces): the word between the two fish.
-- f1r: the right edge, from the red "29" mark downwards (the letter column).
+- f1r: the right edge further down, past "d", if the zoom allows (the rest of the letter column).
 
 ## Finding pages in the Yale viewer
 
