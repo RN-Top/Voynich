@@ -20,3 +20,19 @@ not a test.
   f116v. Each occurs once, so neither can be tested statistically.
 - **What would help:** a reading of the four outside words on f66r from a high-resolution image, and comparison texts in
   medieval German and Latin to see whether f116v's language matches the grammar patterns found in the main text.
+
+## Closer look from the Yale PDF (2026-10-02)
+
+The PDF's images are only about 750 × 1000 pixels, so fine strokes are uncertain.
+
+- **f66r, bottom left:** above the lying figure is one line of four Voynich words. To the left, in a different
+  hand, are short words that look like **"den mus / del"** stacked over a few lines, next to two circles and a
+  small cylinder. This fits the reading **"der Mussteil"** proposed by other researchers: a Middle High German
+  legal term for the share of household goods left to a widow. That would suit a lying (dead?) figure. These
+  outside words are fewer than the four Voynich words and are not written word-for-word beside them, so they do not
+  work as a translation pair. They look like a note about the picture.
+- **f116v, top:** the image matches the ZL3b reading (a line in mixed Voynich and Latin-letter script, "+ …
+  oladabas + multos + … + portas +", then "… so nim gaf mich o"). At this resolution nothing more can be read.
+
+Neither gives a reliable Voynich word = known word pair. A full-resolution image of f66r (Yale viewer) might settle
+how many outside words there are and whether they line up with the Voynich words.
