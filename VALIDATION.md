@@ -433,6 +433,13 @@ Pre-registered in `analyses/counting_prereg.md`, with the same best-start search
 best correlation 0.480 against 0.421 shuffled (p = 0.025): **not supported** at p < 0.01, though suggestive. The best
 starts and directions vary between wheels. Details: `output/counting_report.md`.
 
+## Sun–Moon phase pages (October 2026)
+
+Image check, pre-registered in `analyses/sun_moon_prereg.md`. Where Sun and Moon are drawn together (f68r1, f68r2),
+the Moon is a crescent even when opposite the Sun: **not a phase table**. Observation made after looking (a lead,
+not evidence): f67r2's 12 moons nearly alternate red crescent / gold disc (6 + 6), consistent with alternating 30-
+and 29-day lunar months (a 354-day lunar year). Details: `output/sun_moon_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
