@@ -28,3 +28,6 @@ If the control fails, N1 and N2 are reported as uninformative.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** Control PASS (p = 0.0017). N1 FAIL (p = 0.41). N2 FAIL (p = 0.39). Part 1: one count of
+19 (f102v2, Lf labels) among 203. **No 19 structure found.** Write-up: `output/nineteen_report.md`.
