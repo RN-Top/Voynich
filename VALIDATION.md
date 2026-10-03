@@ -363,6 +363,13 @@ errors in the first run were found and corrected (recorded). Voynich 0.065–0.0
 The Voynich is the lowest, but its interval overlaps Bede's, so the result is **MIXED** under the rule. Word parts
 combine more freely than in Latin, but the separation is not decisive. Details: `output/slots_report.md`.
 
+## 19 / Metonic cycle (October 2026)
+
+Do diagram counts equal 19, 235 or 6,940, or do ring texts repeat every 19 steps? Pre-registered in
+`analyses/nineteen_prereg.md`. The method detects the known 17-glyph cycle on f57v (control, p = 0.002). No
+period-19 repetition (word level p = 0.41, glyph level p = 0.39). One count of 19 among 203 (pharmacy labels,
+f102v2). **Not supported.** Details: `output/nineteen_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
