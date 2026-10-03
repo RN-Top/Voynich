@@ -46,6 +46,7 @@ REPORTS = {
         ("Glue words vs content words", "glue_words_report.md"),
         ("Slot freedom vs Latin (mixed)", "slots_report.md"),
         ("19 / Metonic moon cycle", "nineteen_report.md"),
+        ("Frequent words shorter? (Zipf, mixed)", "brevity_report.md"),
     ],
 }
 
