@@ -33,3 +33,6 @@ scribe side by side, plus split-half correlations within each scribe (odd and ev
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** All three scribe pairs PASS (r = 0.712, 0.665, 0.879 against shuffled 0.22, 0.17, 0.36;
+p = 0.001). **Shared grammar: yes.** Write-up: `output/grammar_table_report.md`.
