@@ -36,3 +36,6 @@ Caveat: transcription order may not be the scribe's writing order.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** r_angle|seq = +0.046, p = 0.0014; r_seq|angle = +0.026, p = 0.20. **MEASUREMENT
+(position).** Writing orientation is a remaining alternative. Write-up: `output/coord_vs_drift_report.md`.
