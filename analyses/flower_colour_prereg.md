@@ -29,3 +29,7 @@ Number of pages per colour. The opening words of the pages in each colour group.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03.** Step 1 done: all 118 Herbal pages classified by eye from contact sheets (about 380 px per page)
+and saved in `analyses/flower_colours.csv` before any text comparison. Small or faint flowers make some calls
+uncertain (notably white vs yellow, and red vs mixed).
