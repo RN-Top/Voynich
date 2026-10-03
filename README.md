@@ -55,7 +55,8 @@ are in [VALIDATION.md](VALIDATION.md).
 ```text
 app.py                      Streamlit workbench: Findings, Blind Holdout, Token Breakdown,
                             Verification Suite, Slot Ω Miner, Folio Reader, Export
-pages/                      Spot Pies, Anomaly Scan, Language Structure
+pages/                      Spot Pies, Anomaly Scan, Language Structure, Test Reports
+uploads/                    Files uploaded by the author (Yale facsimile PDF, IVTFF guide)
 parser.py                   Canonical IVTFF parser used everywhere
 structural_validation.py    Meaning-free validation ladder
 blind_holdout.py            Pre-registered blind holdout (data/blind_holdout_v1.json)

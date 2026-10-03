@@ -1,7 +1,7 @@
 # Are the circular diagrams drawings of a measuring instrument? Results
 
 Pre-registration: `analyses/instrument_prereg.md` (committed before any check). Images: the Yale export
-uploaded to the repo (`2002046 (2).pdf`, 214 pages).
+uploaded to the repo (`uploads/yale_ms408_facsimile.pdf`, 214 pages).
 
 | Prediction | Result | Notes |
 |---|---|---|
