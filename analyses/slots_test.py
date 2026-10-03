@@ -21,7 +21,7 @@ from comparison_fingerprint import LATIN_SOURCES, latin_words, verbose_cipher  #
 from parser import CORPUS_PATH, parse_zl3b  # noqa: E402
 
 SEED = 20261003
-N_SHUF, N_BOOT = 200, 200
+N_SHUF, N_BOOT = 50, 200
 LATIN_DIR = ROOT.parent / "cltk" / "lat_text_latin_library"
 
 
@@ -65,7 +65,8 @@ def main():
     for name, ws in texts.items():
         sample = list(rng.choice(ws, N, replace=False))
         d = dependence(sample, rng)
-        boots = [dependence(list(rng.choice(sample, N, replace=True)), rng) for _ in range(N_BOOT // 10)]
+        # Half-samples without replacement (duplicates from resampling with replacement inflate MI).
+        boots = [dependence(list(rng.choice(sample, N // 2, replace=False)), rng) for _ in range(N_BOOT)]
         lo, hi = np.percentile(boots, [2.5, 97.5])
         res[name] = (d, lo, hi, len(ws))
     lat = [k for k in res if k.startswith("latin")]

@@ -32,3 +32,12 @@ sample of N tokens, where N is the smallest eligible count among the texts (seed
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, corrections after the first run.** Two implementation errors were found. (1) The code used 20
+resamples instead of the registered 200. (2) Resampling **with** replacement inflates MI through duplicate tokens,
+so every interval lay above its own point estimate. The first run is kept as `output/slots_report_first_run.md`.
+Its point estimates were Voynich A 0.073 and B 0.061, against Latin 0.107–0.284. The rerun uses 200 half-samples
+**without** replacement (N/2 tokens each) for the intervals. To keep the run time manageable, the shuffle baseline
+inside each resample uses 50 shuffles instead of 200 (the point estimates keep the same procedure). The point
+estimates, statistic and decision rule are unchanged. Half-sample intervals are wider than full-sample ones, which
+makes the "code-like" verdict harder to reach, not easier.
