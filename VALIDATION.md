@@ -384,6 +384,12 @@ pairs (formally "consistent"), but its best keys give only 10–16% real Latin w
 for reversed Latin. The pre-registered criterion was too weak (recorded). **Conclusion: not simple-substitution
 Latin.** Details: `output/freqmatch_report.md`.
 
+## Rhythm: beats in lines, waves down pages (October 2026)
+
+Does any word ending recur at a regular spacing within lines, or does the share of qo- words rise and fall in
+waves from line to line? Pre-registered in `analyses/rhythm_prereg.md`. Nothing passes the corrected thresholds.
+There are near misses at 6 lines (A) and 7 lines (B). **Not supported.** Details: `output/rhythm_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

@@ -48,6 +48,7 @@ REPORTS = {
         ("19 / Metonic moon cycle", "nineteen_report.md"),
         ("Frequent words shorter? (Zipf, mixed)", "brevity_report.md"),
         ("Frequency match: letter-for-letter Latin?", "freqmatch_report.md"),
+        ("Rhythm: beats and waves", "rhythm_report.md"),
     ],
 }
 

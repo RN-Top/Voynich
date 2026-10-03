@@ -31,3 +31,6 @@ A beat or wave is reported for any lag that passes. Otherwise **no rhythm found*
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** R1: no lag passes (all p ≥ 0.24). R2: no lag passes. Near misses: A k = 6 (p = 0.0055),
+B k = 7 (p = 0.007). **No rhythm found.** Write-up: `output/rhythm_report.md`.
