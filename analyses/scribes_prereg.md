@@ -36,3 +36,6 @@ words.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** S1 PASS (p = 0.0005). S2: scribes 1 and 2 PASS, scribe 3 FAIL (p = 0.014); topic effect
+confirmed. S3: rules universal across scribes 1–3 (4 and 5 have too little text). Write-up: `output/scribes_report.md`.

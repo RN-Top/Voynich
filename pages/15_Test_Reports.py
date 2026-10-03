@@ -28,6 +28,7 @@ REPORTS = {
         ("Writing types, word order, topic", "writing_types_report.md"),
         ("Set phrases and grammar links", "phrases_report.md"),
         ("Refrains (3- and 4-word repeats)", "refrains_report.md"),
+        ("Scribe vs topic; rules hold for every scribe", "scribes_report.md"),
     ],
     "Did not hold up": [
         ('"o" as a name-forming prefix', "o_prefix_report.md"),
