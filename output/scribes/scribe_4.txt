@@ -1,0 +1,950 @@
+# Scribe 4: 27 pages, in book order
+# Source: ZL3b transliteration (data/ZL3b-n.txt); scribe tags $H after L. Fagin Davis (2020).
+# Columns: locus id, locus type (P paragraph, L label, C ring, R radial), words.
+## f67r1  (Astronomical/Zodiac, Currier ?)
+f67r1.1      P0  teeodaiin shey epairody osaiin yteeoey shey epaiin o aiin
+f67r1.2      P0  daiir okeody qoekeey sar oeteody oteey keey keo keeodal
+f67r1.3      P0  ycheo s o iim cheos aiin okesoe ar am shees dalaiin dam
+f67r1.4      P0  cheodaiin chekeey s ar air s o ar cheey dair cthey
+f67r1.5      Cc  soairol shdy chokeody ykeedal ol oteodaiin choikhedy ot chteokaiin choteedy otor epchy chpar ar sheees deedy soeteed octheey s o eokeot y choteoky chockhy okees sor aiin daram schdes chdar dar dchschdy dar dar ar otardar ykaros
+f67r1.6      Cc  dair al cheol dal oekaiin sol daiin eetees saiin ykeos l chy otodaiin chetejy otar dair ar chedar okeedy oteodaiin ychsy chekeey ot dol al cheor okeo r oiin cheeky ary okeo keds oshey shchey chol dair dain cho dar aldy
+f67r1.7      Cc  archeo r qoikeey oteeos cheockhey oteochedy okechdar dararal okeorar sotey dair yteey oteo s oteees oteo oteesy sheokeey oteodal chokeed sar ain y oto keedais deeety okeey teodain chekchy dair chparam
+f67r1.8      Ri  otaldy
+f67r1.9      Ri  otoky
+f67r1.10     Ri  seeaiir
+f67r1.11     Ri  ykees ary
+f67r1.12     Ri  sosaiir
+f67r1.13     Ri  oteey dar
+f67r1.14     Ri  yto daiir
+f67r1.15     Ri  sheosam
+f67r1.16     Ri  ykeeody
+f67r1.17     Ri  okeol sal
+f67r1.18     Ri  okeey sar
+f67r1.19     Ri  dalary
+
+## f67r2  (Astronomical/Zodiac, Currier ?)
+f67r2.1      L0  ykshy s aram
+f67r2.2      L0  ykecho ols eesydy
+f67r2.3      L0  c'ey shs okar
+f67r2.4      L0  shekchy sykos
+f67r2.5      L0  ykeody okchy
+f67r2.6      L0  dchetay
+f67r2.7      L0  ykchy kchey ykchys
+f67r2.8      L0  chkchdar
+f67r2.9      L0  ykar ykaly
+f67r2.10     L0  lkshy kchy okar
+f67r2.11     L0  chky chykchs chy
+f67r2.12     L0  ykees ykchos
+f67r2.13     Pb  opodchol s ain aldy
+f67r2.14     Pb  soeey doiin oldy
+f67r2.15     L0  dolchsody
+f67r2.16     Pb  odaeiin okoes oekain y
+f67r2.17     Pb  otchey soraiir dy
+f67r2.18     Pb  qopchy daiin dal
+f67r2.19     Pb  ydchos ain ar amy
+f67r2.20     Pb  chocfhy saral
+f67r2.21     Pb  sain am ar
+f67r2.22     L0  okal
+f67r2.23     Pb  oparchy salsain
+f67r2.24     Pb  sodar ofar ar
+f67r2.25     Pb  ydam
+f67r2.26     Pb  yteoor yto ykor
+f67r2.27     Pb  okeo r aiin am
+f67r2.28     L0  okain am
+f67r2.29     Pb  ytody saiin
+f67r2.30     Pb  ochol olol
+f67r2.31     L0  opcholdy
+f67r2.32     Pb  dosar odas air alaiin
+f67r2.33     Pb  dokan oear odal
+f67r2.34     L0  ofar oeoldan
+f67r2.35     Pb  chol giin okol
+f67r2.36     Pb  ytor daiin or
+f67r2.37     L0  ytoaiin
+f67r2.38     Pb  otoldos octhole
+f67r2.39     Pb  sor chedaiin dy
+f67r2.40     Pb  yteos oiin og
+f67r2.41     Pb  ytoeopchey chekody
+f67r2.42     Pb  sosho chos ockhy
+f67r2.43     Pb  daiin aiin os qsg
+f67r2.44     Pb  ofydy sheody aiin
+f67r2.45     Pb  ycheody es odaiiin
+f67r2.46     Pb  yekees oraly
+f67r2.47     L0  yfain
+f67r2.48     Pb  todaiin dain dy
+f67r2.49     Pb  os choer aiin
+f67r2.50     Pb  choeea sal
+f67r2.51     Pb  dadaiin
+f67r2.52     Ls  qotoear
+f67r2.53     Ls  dchdar
+f67r2.54     Ls  y saldal
+f67r2.55     Ls  ytodal
+f67r2.56     Ls  tol daiin
+f67r2.57     Ls  otar dy
+f67r2.58     Ls  cho dal g
+f67r2.59     Ls  ytchodly
+f67r2.60     Ls  octhys
+f67r2.61     Ls  ytokar
+f67r2.62     Ls  otolor
+f67r2.63     Ls  okodar
+f67r2.64     L0  s air
+f67r2.65     L0  soear
+f67r2.66     L0  cpheey
+f67r2.67     L0  okodar
+f67r2.68     L0  oepchod
+f67r2.69     L0  s acthhy
+f67r2.70     L0  osar
+f67r2.71     L0  oran
+f67r2.72     P0  dar aldaiin ydaiin qkoy ydaiin qofair ypair ykoaiin ydoly ytalchos oly okey
+f67r2.73     P0  sshey sy shees qeykeey ykchey ykchey qokeochy oaiin okol ar olar
+f67r2.74     P0  yshey qokeeody cheos oeeos qockhy chos aiin okeeody qokoaiin odain ar air ay
+
+## f67v2  (Astronomical/Zodiac, Currier ?)
+f67v2.1      La  otchdy
+f67v2.2      La  otararain
+f67v2.3      Pb  tol or ain am otoly sair g
+f67v2.4      Pb  daiin taedaiin ar okor
+f67v2.5      Pb  okeey keoy salal
+f67v2.6      Pb  ykaralam olalade odam
+f67v2.7      Pb  taol daig sakar dam
+f67v2.8      Pb  solair cphey solal daly
+f67v2.9      Pb  okeal ool ar okaldam
+f67v2.10     Pb  koain opal ol ofolain oar
+f67v2.11     Ro  dcheeor ochepalain
+f67v2.12     Ri  oeolales aisar
+f67v2.13     Ro  okydseog oeepoaly
+f67v2.14     Ri  or ykaly char
+f67v2.15     Ro  o chekais okolaim
+f67v2.16     Ri  okar alet olkao
+f67v2.17     Ro  qokoaiin ocfhhy
+f67v2.18     Ri  okeeey oekchdy
+f67v2.19     La  soaiin dalam
+f67v2.20     La  sary okoral
+f67v2.21     La  oko
+f67v2.22     La  okchos am
+
+## f67v1  (Astronomical/Zodiac, Currier ?)
+f67v1.1      L0  damamm
+f67v1.2      L0  dairkal
+f67v1.3      L0  okal ary
+f67v1.4      L0  dar echkalal
+f67v1.5      L0  okol aldy
+f67v1.6      L0  dchesykchy
+f67v1.7      L0  ykeodar
+f67v1.8      L0  deeeoskol
+f67v1.9      L0  ockhosam
+f67v1.10     L0  kochardy
+f67v1.11     L0  ochodare
+f67v1.12     L0  ols aiiny
+f67v1.13     Ro  otorkeol orsheey dary
+f67v1.14     Ro  okechey cheody cheky
+f67v1.15     Ro  otechodor odcheey
+f67v1.16     Ro  chockhey chockhy
+f67v1.17     Ro  yteeey keeochy dair ockey
+f67v1.18     Ro  keechey chy koldy
+f67v1.19     Ro  pchodaiin otch oekeey dy
+f67v1.20     Ro  dcheeos qokeeeody eeis olcheeg
+f67v1.21     Ro  ykeeo cheo daiin ypcheg oty
+f67v1.22     Ro  opcheey chso cheey chedaly
+f67v1.23     Ro  ykeeey qokeey olokeey s
+f67v1.24     Ro  osheey keeody cheedals
+f67v1.25     Ro  okar shey qokcheor daiiin
+f67v1.26     Ro  oeees otechy o keey
+f67v1.27     Ro  okeeodaiin saii dairal
+f67v1.28     Ro  oksheeody or aral
+f67v1.29     Ro  olar aroky
+
+## f68r1  (Astronomical/Zodiac, Currier ?)
+f68r1.1      P0  shokchy chteey choteey cphol cheor opcheeol otor choctheeey okchoal
+f68r1.2      P0  tochso otchl qokeeedy cheey cheeteey yteody chpor cheokorchey chod
+f68r1.3      P0  ykor shey qocheey chokal okeey ror eckhear daram
+f68r1.4      P0  dchor okaiiin
+f68r1.5      Pb  yky
+f68r1.6      Pb  dary
+f68r1.7      Pb  chkchykoly
+f68r1.8      Ls  okodaly
+f68r1.9      Ls  odchecthy
+f68r1.10     Ls  otcheody
+f68r1.11     Ls  okoaly
+f68r1.12     Ls  chocfhy
+f68r1.13     Ls  octhey
+f68r1.14     Ls  otshey
+f68r1.15     Ls  otydy
+f68r1.16     Ls  okear
+f68r1.17     Ls  cphocthy
+f68r1.18     Ls  ytchody
+f68r1.19     Ls  otys
+f68r1.20     Ls  olor
+f68r1.21     Ls  ockhy
+f68r1.22     Ls  ofcheor
+f68r1.23     Ls  otchdy
+f68r1.24     Ls  otykchs
+f68r1.25     Ls  otol
+f68r1.26     Ls  otor
+f68r1.27     Ls  oiinar
+f68r1.28     Ls  okoldy
+f68r1.29     Ls  ykchdy
+f68r1.30     Ls  oeeodchy
+f68r1.31     Ls  ocphy
+f68r1.32     Ls  okeeodal
+f68r1.33     Ls  okshor
+f68r1.34     Ls  osdaiin
+f68r1.35     Ls  otochedy
+f68r1.36     Ls  dolchedy
+f68r1.37     Cc  oky okchdy okardy qear oygy
+
+## f68r2  (Astronomical/Zodiac, Currier ?)
+f68r2.1      P0  tsheeor chor sheal dar opchey oeecthy sheol dokechy otcheoly
+f68r2.2      P0  dchy ykeechy dchyky okeeody rcheodal chokeey cheor oram
+f68r2.3      P0  tcheos otchoky okchol okol sheeor chodchy qokchdar
+f68r2.4      P0  chor chesy oreed qoeeckhy qockheol qokeol cheoal dcholal
+f68r2.5      P0  kcheoey cheody sain ykeody chykchy
+f68r2.6      Cc  okeo okar oky okozy okaesy qokool chio qoiol
+f68r2.7      Ls  oolchchy
+f68r2.8      Ls  cheorol
+f68r2.9      Ls  odaiin
+f68r2.10     Ls  ochory
+f68r2.11     Ls  shdar
+f68r2.12     Ls  dchol
+f68r2.13     Ls  todaraiily
+f68r2.14     Ls  olcheesey
+f68r2.15     Ls  okchor
+f68r2.16     Ls  oteool
+f68r2.17     Ls  oydchy
+f68r2.18     Ls  okeeeody
+f68r2.19     Ls  cholar
+f68r2.20     Ls  dcheoldy
+f68r2.21     Ls  oteeear
+f68r2.22     Ls  otoeeo
+f68r2.23     Ls  ofcheody
+f68r2.24     Ls  otcheodar
+f68r2.25     Ls  odair chol
+f68r2.26     Ls  opocphor
+f68r2.27     Ls  otoshol
+f68r2.28     Ls  chodar
+f68r2.29     Ls  sheey
+f68r2.30     Ls  okeeeeor
+f68r2.31     Cc  okey okoaiin okol o ky oeeeo r okey okeeol cheo o
+
+## f68r3  (Astronomical/Zodiac, Currier ?)
+f68r3.1      Cc  odeed oteedy cheoteey oshchey chokol cheody chedy oteodaiin otchodal sol cheor oteo choteey oeteody opcheody dchedy daiin oteeody dascheedy oteeody qoeeectcg dcheeo okeodly do ls oschaiin cheockhedchy chodal cheoda chol al oteodched okedy qokeey shoky dol daleeed okeoeiiir
+f68r3.2      Ri  toees ykeo she qokolchey qokchdy
+f68r3.3      Ri  tochedy chocphy qokchdy dyl okald
+f68r3.4      Ri  dchy kchy daiir chok ockhydar
+f68r3.5      Ri  qokol chdchol qoteey che kechy okchdy
+f68r3.6      Ri  dchokchy c'hhy okey oteos okolshy
+f68r3.7      Ri  pchody qokchy dshol dc'y o tgolg
+f68r3.8      Ri  keeoty oteey daiin dcheeody oteey
+f68r3.9      Ri  dchey qokeey dcheey daiir otchal
+f68r3.10     Ls  dchol day
+f68r3.11     Ls  doaro
+f68r3.12     La  oalcheol
+f68r3.13     Ls  okos
+f68r3.14     Ls  otary
+f68r3.15     Ls  chky oky
+f68r3.16     Ls  e cphy
+f68r3.17     Ls  okolchy
+f68r3.18     Ls  o cthyd
+f68r3.19     Ls  otydg
+f68r3.20     Ls  darall
+f68r3.21     Ls  okchody
+f68r3.22     Cc  otcheody chokchy okol cheol dar cho keol dolaiin okeol oly
+
+## f68v3  (Astronomical/Zodiac, Currier ?)
+f68v3.1      P0  tchedy chepchy daiidy shol kcheoly choteol shol s chey shodaiin chetshedy otsho qooto seeey
+f68v3.2      P0  sshey kcheol sheey qety sheey otchol chal sheey daiin sheody qokol aiir chor cheoty oty
+f68v3.3      P0  sho chokar sor chor cheky daiin dar aiiin ytey tol cheeetchol sam
+f68v3.4      P0  dcheey qockhhy chydy
+f68v3.5      Cc  oky otol ees choty chedas otchdy s ar oekaiin oteol dar cheo dais qoeeo kaiin okchey dal cheky ykos yakeg s ol ay ykoees yty dy dy chody otol ol ees oty dar qotay otoy chey kodar dar sheody shees daiin oteeoaly oteeosol ol okol olsey tol cheol okeey choekcheey okchy qokchshy dchol chshek
+f68v3.6      Ri  ocheal qoeey keody cheoky okeey chody dy otem
+f68v3.7      Ri  r al chdail schekol okeody
+f68v3.8      Ri  okeol cheody qoekeey ocheky eeody okchdy oko okos
+f68v3.9      Ri  shoekechy sheky okolchey okolmom
+f68v3.10     Ri  qokeody okeey chekchy chckhy okal ody chedy
+f68v3.11     Ri  ycheeo key qokal okeeg
+f68v3.12     Ri  ochey chekchy dkeeeg cheekey teokechey saiir
+f68v3.13     Ri  ydaiil ol chek okchyd
+f68v3.14     Cc  okosy okchy okol choekey okeoeeey ol ykon otairos orol orkeeey olkeeoly ykeeol
+f68v3.15     L0  otodol
+f68v3.16     L0  opcholdg
+f68v3.17     Pb  roar ykeol darol daly
+f68v3.18     Pb  solaiin ckhhy olekeey dy
+f68v3.19     Pb  ykeol ctheepoey dar
+
+## f68v2  (Astronomical/Zodiac, Currier ?)
+f68v2.1      P0  teeody shcthey psheody shocthy ykeody shdy shot ytchy
+f68v2.2      P0  dchaiin shey dcheedy qokeey shckeey dal dy sheetey daldy
+f68v2.3      P0  qoeeey shekeey shkeey s alchey cthy shteody qoteeody dam
+f68v2.4      P0  okeey sheoy keol ycheety okeody shey qokey chol chekody
+f68v2.5      P0  scheos seekey okey chody okeos cheo sal ar oallchdm
+f68v2.6      Cc  okeadaiin ykeeody shsdy shyokeey dalches okos cheky otees oteydy okechoy yteody chetedy chedady eectheey otychdy oteey cpheeo dy otey chkey daiin chey daiir oteeys sar ockheey dor chy okchy qokeechy dal chy chokeeey sary
+f68v2.7      Ro  otey dalar
+f68v2.8      Ro  otosey sary
+f68v2.9      Ro  yshesas ar shy
+f68v2.10     Ro  socths chety
+f68v2.11     Ro  oteoys orasaly
+f68v2.12     Ro  yteody chetey
+f68v2.13     Ro  oteeos alamchy
+f68v2.14     Ro  otchdy chetal
+f68v2.15     Ro  adairchdy aiin
+f68v2.16     Ro  dchedal daiin
+f68v2.17     Ro  ykeeepol ypchy
+f68v2.18     Ro  choteey dary
+
+## f68v1  (Astronomical/Zodiac, Currier ?)
+f68v1.1      Cc  shes ol keey shes chteey sheely shes yeeg shokeolls ees aiir ol cho aiin ykeeykeey ches chotey y keey shes aiin okeyteey cthody chesokcho teody chockhy otol okeody cheos chkorchy dy dy shety oteey dair chotedy chey dal daiin dokeey
+f68v1.2      Cc  chear s oteey dain dycheckhy oteeos oteol okeor okeeody sho ykeod oteeol okeeos or chos or ocko aiin chol ykeey sheo s cheoekeey cheodaiir cheekchey chkeody okchy teeos sh cheo eky okey dleed s aly oteotey otechs opain
+f68v1.3      Ro  dair apeeety dy
+f68v1.4      Ro  sair aroyser
+f68v1.5      Ro  oteeor arany
+f68v1.6      Ro  okechdaral
+f68v1.7      Ro  otol ches otaly
+f68v1.8      Ro  okeey chek chekeys
+f68v1.9      Ro  dar shes shokey
+f68v1.10     Ro  oteodain sam
+
+## f69r  (Astronomical/Zodiac, Currier ?)
+f69r.1       P0  tcheeos shey opaiin chey shey qokeeyshdy ol ot otal sar
+f69r.2       P0  daiin shey okaiin shkechy sheey tey chy cthy otol cham
+f69r.3       P0  sheos aiin car choetey okal chy ykar ytchey cheotam
+f69r.4       P0  ycheoraiin ychey otaiin okchor yty chkal shol
+f69r.5       L0  oteos chop otaike
+f69r.6       L0  ar odair chtaly
+f69r.7       L0  oto dar archol
+f69r.8       L0  okeey chey dy
+f69r.9       L0  dcho char ar
+f69r.10      L0  ytal air al
+f69r.11      L0  shy chtairy
+f69r.12      L0  yt oetear
+f69r.13      L0  ytey cholam
+f69r.14      L0  dair ar yteey chdy
+f69r.15      L0  okair os air
+f69r.16      L0  chytos oly
+f69r.17      L0  chetar araly
+f69r.18      L0  dair alody
+f69r.19      L0  dal daiin otalam
+f69r.20      L0  ytcheodytor
+f69r.21      Ro  chodchy chotal
+f69r.22      Ro  okeo sho qotam
+f69r.23      Ro  okeodar oteody
+f69r.24      Ro  ykeeos al dair dar
+f69r.25      Ro  ykeey dal oky
+f69r.26      Ro  doly dal dar chyky
+f69r.27      Ro  okchol qokol daly
+f69r.28      Ro  ykechody otar
+f69r.29      Ro  dary dar aloly
+f69r.30      Ro  okeeocthy okar ar
+f69r.31      Ro  chey ar cthorary
+f69r.32      Ro  sair chekey sairam
+f69r.33      Ro  okeeo dal okar ar
+f69r.34      Ro  sol aiir okeytam
+f69r.35      Ro  okeos ar ald
+f69r.36      Ro  docheeo kody sar
+f69r.37      Ro  dchokey shkchodyal
+f69r.38      Ro  chor al alchy ral
+f69r.39      Ro  sair al okody otedy
+f69r.40      Ro  okody cheody sar
+f69r.41      Ro  chokeod okeey
+f69r.42      Ro  dkochy cthody dy
+f69r.43      Cc  okoeese daiikey oees chear yteey oteeodar chy okeeos alaiin
+f69r.44      L0  y
+f69r.45      L0  d
+f69r.46      L0  o
+f69r.47      L0  l
+f69r.48      L0  s
+f69r.49      L0  ed
+
+## f69v  (Astronomical/Zodiac, Currier ?)
+f69v.1       Cc  dair cheyky otaza sar ar chykar okoirsh ar chetody okeeos o tey otokeeey okeeody okeey doiir cteeo y chey ot y okedy chsdy okeod y dy choaiin okar okar chol chees yto odair oty oteeo dar o eykeody dchor char
+f69v.2       Cc  ykac chol ykar dal ykady iokeeor cheey choly ykeeal cheo oaram ockhy sheey aiin y daiial cheody cheal yetey chear y dy ykey ch y dy chol ykar ol y ykeeody chey dal ody airchy choky ychey chey
+f69v.3       Cc  doair otaldal dair chdy otoar ar chy qoteor cho qotair chda oteeal cheor ar air oteody ytyd a dchy otoly okeodal oteoarar cheteeser dair chey okody dal oteey oteey
+f69v.4       Ri  okeey sar
+f69v.5       Ri  okeo dy
+f69v.6       Ri  ochoyk
+f69v.7       Ri  ykeey
+f69v.8       Ri  ytory
+f69v.9       Ri  oeesy
+f69v.10      Ri  ytody
+f69v.11      Ri  okody
+f69v.12      Ri  otody
+f69v.13      Ri  okeal
+f69v.14      Ri  okeod
+f69v.15      Ri  oteeys
+f69v.16      Ri  oteol
+f69v.17      Ri  ykeydy
+f69v.18      Ri  okeod
+f69v.19      Ri  saral
+f69v.20      Ri  saiir
+f69v.21      Ri  okolar
+f69v.22      Ri  ykeody
+f69v.23      Ri  sarydy
+f69v.24      Ri  otchy
+f69v.25      Ri  okeey dy
+f69v.26      Ri  okey d
+f69v.27      Ri  okeod
+f69v.28      Ri  okodchy
+f69v.29      Ri  okeody
+f69v.30      Ri  okcheys
+f69v.31      Ri  oar alys
+
+## f70r1  (Astronomical/Zodiac, Currier ?)
+f70r1.1      Cc  ooooooooolar sasa
+f70r1.2      Cc  oteody choekeeos alair dy okol okeey dasy otarsheod okchody oteos okes okeys ey okchol sairody o chopcheopchy chol air shekchy choteody oteeshs opcheody otol choky chody chotey sheal ar ykeody oteey chedaiin chotar soly
+f70r1.3      Cc  okeodar chy oteody tochady okchody ytar ytory okeol choly yk y okchedy chkal ofchon qokal opolaiin okeos oty dal cheokeey dal cheo al oteeoky chety chodalar okal chear aly oteos ar os al okolair dy
+f70r1.4      Ri  yfcheodly
+f70r1.5      Ri  ytcheos aly
+f70r1.6      Ri  otchy dar yky
+f70r1.7      Ri  opar ykchy
+f70r1.8      Ri  y saikchy dam
+f70r1.9      Ri  otair oroldy
+f70r1.10     Ri  dchal daim
+f70r1.11     Ri  yteody sam
+f70r1.12     Ri  okchy daldy
+f70r1.13     Cc  tshey ol oteey ched ar oteos cheor alal otar ar y oteodchey keody oteos al oteeed
+f70r1.14     Ri  ykeal
+f70r1.15     Ri  okeody
+f70r1.16     Ri  otody
+f70r1.17     Ri  ypolol
+f70r1.18     Ri  chodal
+f70r1.19     Ri  okasd
+
+## f70r2  (Astronomical/Zodiac, Currier ?)
+f70r2.1      P1  otchey sheol chkey shep al r ar chly sheteal aram
+f70r2.2      P1  dair cheey s cheotey dshy dam chchet al ykec'y
+f70r2.3      P1  ykeeo y s ald shey cthy shekey qokal aiir oteog
+f70r2.4      P1  daiin okeey shoaiin ckhhey otal shshy tal dam
+f70r2.5      P1  tal cheeog dal chcthy qotal ddlar chal dal
+f70r2.6      P1  ytar ar al yol al aloees ytaiir otaldal
+f70r2.7      P1  daiin daiin she tal qokal cholckhhy dy
+f70r2.8      P1  ytals alal dalam dal cthol oparam
+f70r2.9      P1  dolshol shol shol shocthhy dalal y
+f70r2.10     P1  shokal chol kshody tol cheey okal
+f70r2.11     P1  daiin chotal qokal chol chotals
+f70r2.12     P1  qokal shkal dal shy qokal chdy
+f70r2.13     P1  qotal che y key okechy chdy cham
+f70r2.14     P1  okaiin chcthhy s or ary
+f70r2.15     Cc  sal air am shedy chokal choikhy shokeey choky chol dy okeeal o teedy dgr dair aiin okees okeear ar alekeey ar kam oteoodalry chekeoar chokey dar dcheoky otai doithy dair otchetchar okear okeeo lal kchg okar ar dar
+f70r2.16     Cc  otar ar chedal oaral aldaiin ykeeedaiis sheo l dar chol ykees aiir dl cheey skeeod oteeodar aiin aral daiir sheedal sheodaiin choar chol choteoly cho oteey chotey choeky chedy choteosam oteodar ockhh
+f70r2.17     Cc  oches air chese ctheey sheeody shopcho yteody ykaldy oteeos aiin shey shee farar aim cheoteeodal sho choetchaldy dal aiir ches otesar dalol chtam opaiir chokeo oteedy oteeo okol chotal otol al dl
+f70r2.18     Cc  otoy ar arodchedy cheocphey oteeos ees cheal sheeey okeedaly cheeoekey ykeedcr oteey s al s air oteody oteody dar aiir ody cheeos chey daiin otoeeseor air chedy okodar al sho chotol dal dy
+f70r2.19     Cc  oteesy ol chy oteo sal ol keey oteol choky otchosha
+
+## f70v2  (Astronomical/Zodiac, Currier ?)
+f70v2.1      Cc  okcheo dar otey ykeey tchy otsheo oteotey shey shecth opcheoldair dateey sal ody choteey choeteedy oteoteotsho yteos alain sheodaly cho aiin cholkal chokear oteody cholaiin oteeoal al sheeos okey chol dy otees cho s olar otoaiin oteeody sos todaiin chokain otalal oteeam
+f70v2.2      Lz  otalalg
+f70v2.3      Lz  ykary
+f70v2.4      Lz  otar
+f70v2.5      Lz  oty
+f70v2.6      Lz  oky ody
+f70v2.7      Lz  oty ar
+f70v2.8      Lz  okala
+f70v2.9      Lz  otody
+f70v2.10     Lz  otald
+f70v2.11     Lz  otaldar
+f70v2.12     Lz  okody
+f70v2.13     Lz  opysam
+f70v2.14     Lz  chckhhy
+f70v2.15     Lz  otaly
+f70v2.16     Lz  otal arar
+f70v2.17     Lz  otaldy
+f70v2.18     Lz  okeoly
+f70v2.19     Lz  okydy
+f70v2.20     Lz  okees
+f70v2.21     Cc  daiiamdy otar am aral otair chedaiin oteey dair shchey daiin chalaly oteody chotol chedy oteotey oteeeor ar alody daiir oteedar oteey teey dalal cheoltey oteedy sheeteey okeeol ykeeos shey ykair arar alos
+f70v2.22     Lz  otar am
+f70v2.23     Lz  otar al
+f70v2.24     Lz  otalar
+f70v2.25     Lz  otalam
+f70v2.26     Lz  dolaram
+f70v2.27     Lz  okaram
+f70v2.28     Lz  oteosal
+f70v2.29     Lz  salols
+f70v2.30     Lz  okaldal
+f70v2.31     Lz  ykolaiin
+f70v2.32     Cc  otal daly oteoal dal aildy otaiin ar oteey shal o qoteeal ar al otaiin al teodaiin oteeo cthey oteeos oteos aiin daim
+f70v2.33     Lz  otolal
+
+## f70v1  (Astronomical/Zodiac, Currier ?)
+f70v1.1      Cc  dalalody oteoshey okoksheo shokey raiin otor ochy s air cheody cheey oteo chy daiir chcthy dlal oteodaiin ykeody oteody sheo daiin oteedy chetalchs zar shoteeody okeeo dal cheody okchoteees oteeody cheokeo otaiin shes to ar oly daly sheal
+f70v1.2      Lz  otalchy tar am dy
+f70v1.3      Lz  opchey sal
+f70v1.4      Lz  otakaizan
+f70v1.5      Lz  okalal
+f70v1.6      Lz  otaly
+f70v1.7      Lz  oalcheg
+f70v1.8      Lz  otchodals
+f70v1.9      Lz  okolshy
+f70v1.10     Lz  otshshdy
+f70v1.11     Lz  otal ypsharal
+f70v1.12     Cc  daiin okey otodal cheokeeo okeodal shol olaiin saiin sheo qokeeol otchykey chekeal oteosaiin chekey okeolol chees oeey opotey dal al s otecheo dal
+f70v1.13     Lz  okoly
+f70v1.14     Lz  otalaiin
+f70v1.15     Lz  oteo alals araly
+f70v1.16     Lz  oteoeey otal okealar
+f70v1.17     Lz  otear araydy
+
+## f71r  (Astronomical/Zodiac, Currier ?)
+f71r.1       Cc  olkeeody okody okeeedy oky chy okeodar okeoky oteody oto otol oteeyar yko oar aiin oekeeey okeo keo keody okeodar chy s aiin otokeoar or ar al otol al shckhy oteeeodar oteody otol aiin shoekey solalald cheeokeeo choeky choly
+f71r.2       Lz  oteos arar
+f71r.3       Lz  okldam
+f71r.4       Lz  oteoaldy
+f71r.5       Lz  oteolar
+f71r.6       Lz  okeoaly
+f71r.7       Lz  otaleky
+f71r.8       Lz  otalsar
+f71r.9       Lz  cheary
+f71r.10      Lz  oteotey rary
+f71r.11      Lz  otalaly
+f71r.12      Cc  oteody oteos ockhhy oteeschey lsheotey okalody shs shey oteey otechar chekal okody eeedy oteodal eeokol lkchol daiin okeeees ykees al okeey otey oteo shaly o
+f71r.13      Lz  otolchdy
+f71r.14      Lz  otoloaram
+f71r.15      Lz  oteeol
+f71r.16      Lz  otolchd
+f71r.17      Lz  otaldar
+f71r.18      Cc  oteeol otal chs char cheky chotshy okeeody oteey chekea' okeol
+
+## f71v  (Astronomical/Zodiac, Currier ?)
+f71v.1       Cc  osheo parar oteeodaiin she ateey daiin oteokeey dal al oteey teey dy otchy keey sheeo ochey chey otcheodal sheealody cheol otar okam oteodar chpchy cpar al aiin oteoshar okeodaly oteey teeey oteey keor or arol cheols okaikaly
+f71v.2       Lz  char arom
+f71v.3       Lz  chfaly
+f71v.4       Lz  okolar
+f71v.5       Lz  otchody
+f71v.6       Lz  alcphy
+f71v.7       Lz  otaiin
+f71v.8       Lz  okaraiin
+f71v.9       Lz  otar ar aly
+f71v.10      Lz  opalar am dan
+f71v.11      Lz  opalor ar
+f71v.12      Cc  chal oteeos al sheky okalar ar okeo dar oty oto kaiin chey tal otchr chtos cheor shepchol otor sheo shopcho ar aly okeo cheey otal al shldy otaly okol sheeor
+f71v.13      Lz  ofaifom
+f71v.14      Lz  otalody
+f71v.15      Lz  otalaiin
+f71v.16      Lz  otar shar
+f71v.17      Lz  sholshdy
+f71v.18      Cc  okeey okeosar otaiin chkeeal okal cheekaiin okaiin okchor dar oteey kal
+
+## f72r1  (Astronomical/Zodiac, Currier ?)
+f72r1.1      Cc  oteeo cthey chlol cheol olcheor al oteey chedal oteedy okeodaly chol chokeol cheoky okaiir okeedy sheoltey cheor aiin ydal okochey sho okalshey shol chalaiin chekeol kol otos ar aiin otam otam chotam sal okeo dar ar adal dar okeeas aiin oteey okaiin
+f72r1.2      Lz  oshodady
+f72r1.3      Lz  chdaiirdainy
+f72r1.4      Lz  oaiin ar ary
+f72r1.5      Lz  okalam
+f72r1.6      Lz  ytalshdy
+f72r1.7      Lz  char alif
+f72r1.8      Lz  otaraldy
+f72r1.9      Lz  otaiin otain
+f72r1.10     Lz  otalef ys ainam
+f72r1.11     Lz  ochol sharam
+f72r1.12     Cc  oteodar ytey otey shetey chokshor okalal otaiin sheolaiin otaiin chetey cheolor oteo teeody otar chokaiin okaiin al alo cheedy otear ar cheky chokal otar al o qokar
+f72r1.13     Lz  ofaralar
+f72r1.14     Lz  otchoshy
+f72r1.15     Lz  otchdal
+f72r1.16     Lz  okeey ary
+f72r1.17     Lz  otainy
+f72r1.18     Cc  okeeols aroly okees alaiin okeor chol o oteos aiin chal otaiin atchor chckhy
+
+## f72r2  (Astronomical/Zodiac, Currier ?)
+f72r2.1      Lz  ofchdamy
+f72r2.2      Lz  oklairdy
+f72r2.3      Lz  okaram
+f72r2.4      Lz  okairy
+f72r2.5      Lz  okealar
+f72r2.6      Cc  oteos aiin okeo daiin okeey cheo keodal chol okeol olckhhy oteeykeey tey okalaiin okalchal chey al o keey daiin otar al chotaiin otchey qoeeeo s ckhal chekaiin otaiin chy d r aiin al y chho chekaiin okedal qokeodal saiin otois otees
+f72r2.7      Lz  otaraldy
+f72r2.8      Lz  okalar
+f72r2.9      Lz  okal
+f72r2.10     Lz  okaly
+f72r2.11     Lz  okal
+f72r2.12     Lz  okeey ary
+f72r2.13     Lz  oteeary
+f72r2.14     Lz  otair dy
+f72r2.15     Lz  okaircham
+f72r2.16     Lz  okeal
+f72r2.17     Lz  otarcr
+f72r2.18     Lz  okaly
+f72r2.19     Lz  orary
+f72r2.20     Lz  okyd
+f72r2.21     Lz  otolam
+f72r2.22     Cc  oteey tey teodal chokaly ol cheol ol aiin oteo daiin shokal otey otaiin otaly dal okaly dalchdy ch'eteeey okal shey qoteeody sheycthy chotal chas otoees aiin
+f72r2.23     Lz  otal
+f72r2.24     Lz  ralal
+f72r2.25     Lz  okam
+f72r2.26     Lz  otalshy
+f72r2.27     Lz  okaldy
+f72r2.28     Lz  chosar
+f72r2.29     Lz  otam
+f72r2.30     Lz  ainaly
+f72r2.31     Lz  okarcham
+f72r2.32     Cc  otoar air aloy okaiin otees chs chchs ar aly taly dar otchey okaiin olaiin y
+
+## f72r3  (Astronomical/Zodiac, Currier ?)
+f72r3.1      Cc  okeey chekoy oteo ykeey chedaiin okeeol cheeor chocthar ar oteody oteedy okeolaiin oteey okarar teo sheol al alaiiin okeos alaiin okor o keodar okee s ar aiin chekackhy chokees oteedy chekar okar choly ches os oiin okeeey cheey ches okeody chealdy shocthy choteey sheoly oheol sheey chorain
+f72r3.2      Lz  olkalaiin
+f72r3.3      Lz  olalsy
+f72r3.4      Lz  oraiinam
+f72r3.5      Lz  osarsheeeo
+f72r3.6      Lz  otoaiin
+f72r3.7      Lz  opoiiinoin al ches
+f72r3.8      Lz  ypaiin alaly
+f72r3.9      Lz  oteey daiin
+f72r3.10     Lz  oeeodaiin
+f72r3.11     Lz  ofsholdy
+f72r3.12     Lz  opoeey okaiin
+f72r3.13     Lz  ykolairol
+f72r3.14     Cc  otochedy otey o koey sheedy oteodar ykeolol y air oteos cheo l aiin ykeeoly otaiin shear oiiin oral o tealy cheokeor oteody ockes otees chteos doteey sosor oteol shol cheeg okeody ch'eol shey sheysy shoteey cheor yoeteey okeeol chy okeeo ykoly
+f72r3.15     Lz  oralkam
+f72r3.16     Lz  ytairal
+f72r3.17     Lz  oeeesaiin
+f72r3.18     Lz  ory
+f72r3.19     Lz  ochey fydy
+f72r3.20     Lz  of o eeesaly
+f72r3.21     Lz  ykaraiin airal
+f72r3.22     Lz  okalar
+f72r3.23     Lz  orara
+f72r3.24     Lz  olaiin olaikhy
+f72r3.25     Lz  olfsheoral
+f72r3.26     Cc  oteey arary eeer cheshees opcholalaiin oteeor am sheal okaipchy oteees ar am olaiin otedar olol choty oteol sheshdy chedy chedy dy shes eedy sheol shy ckhol
+f72r3.27     Lz  opalal
+f72r3.28     Lz  yfary
+f72r3.29     Lz  oraiiral
+f72r3.30     Lz  ytoar shar
+f72r3.31     Lz  octho
+f72r3.32     Lz  aral
+f72r3.33     Lz  oletal
+f72r3.34     Cc  okeos aiin olaiin oraiin octheolarl okeeody oteos aiin koly
+
+## f72v3  (Astronomical/Zodiac, Currier ?)
+f72v3.1      Cc  soees otchs otedar oteody oteodal oteos oteokchd oteody sheokeey sheody shedykeal ckhodys okoleeolar okeey shedy otey sho shol teody okolshey ykeedy y okechdy olaiin shokeedy chol choepchey teey teody ches okechedy otechol cheor cheey daiin oyteeedar shecthy otycheedy oteeoly chokary
+f72v3.2      Lz  ocham
+f72v3.3      Lz  orchey
+f72v3.4      Lz  okam
+f72v3.5      Lz  okey
+f72v3.6      Lz  otcheody
+f72v3.7      Lz  okyeeshy
+f72v3.8      Lz  c'yofaiin
+f72v3.9      Lz  okaly
+f72v3.10     Lz  otoly
+f72v3.11     Lz  ofalals
+f72v3.12     Lz  sheeos ocfhhy
+f72v3.13     Lz  daiin chepy
+f72v3.14     Lz  oteey deeal
+f72v3.15     Lz  chealpy
+f72v3.16     Lz  okeeol
+f72v3.17     Lz  okaly
+f72v3.18     Lz  okaldy
+f72v3.19     Lz  okeolyd
+f72v3.20     Cc  ototeey r chlyiintee or oteey oteeody cheokey okeoekol oteor aiin yoleeedy okeos alyshy okeey okeeey okeedaly cholainy okedy chees y okeeol chey otey oldy chdy del okeeoloky oty aiin chas oteey okea
+f72v3.21     Lz  choleey
+f72v3.22     Lz  oky
+f72v3.23     Lz  chcthhy
+f72v3.24     Lz  laly
+f72v3.25     Lz  oeedy
+f72v3.26     Lz  odairan
+f72v3.27     Lz  okary
+f72v3.28     Lz  oeesaiin
+f72v3.29     Lz  oteesed
+f72v3.30     Lz  opal
+f72v3.31     Lz  otaly
+f72v3.32     Lz  otaly yty
+f72v3.33     Cc  okesees ar chkeeol okeolaiin chalal ykeeodarar oleeody shedy solar aldy oteor cheor
+
+## f72v2  (Astronomical/Zodiac, Currier ?)
+f72v2.1      Cc  otos chs oty oteos oty chotey dchy chopchy otychal ctheo l shey tchol s choraiin chekaiphy oteeos aly okeedy cheockhy arkaly che okedl okedy sheos okeeor cheey okeey teey cheeey okeolol sheeoeky oekeeo r aiin olalkain okolsaiin
+f72v2.2      Lz  oeedey
+f72v2.3      Lz  oeeodaiin
+f72v2.4      Lz  okeoram
+f72v2.5      Lz  air aim
+f72v2.6      Lz  oshesy
+f72v2.7      Lz  okeary
+f72v2.8      Lz  cheoetey
+f72v2.9      Lz  cheoldy
+f72v2.10     Lz  sheoeky
+f72v2.11     Lz  oteodar
+f72v2.12     Lz  ofchdysd
+f72v2.13     Lz  oteoyd
+f72v2.14     Lz  yteody
+f72v2.15     Lz  okeody
+f72v2.16     Lz  okeoldy
+f72v2.17     Lz  ykeeor
+f72v2.18     Lz  opaiinam
+f72v2.19     Lz  cheoldy
+f72v2.20     Cc  oteesody otey oteeos sheoty yteeg dchsaiin shol okeees air am shey qokeodal oteotey oteoldy oteal chedy chotalal okal cheol sar aiin cheokealy sardy otol chekar alteol oltar ar
+f72v2.21     Lz  okaiin
+f72v2.22     Lz  ockhol
+f72v2.23     Lz  oeedy
+f72v2.24     Lz  opalg
+f72v2.25     Lz  okeeom
+f72v2.26     Lz  olkar
+f72v2.27     Lz  oeedaly
+f72v2.28     Lz  cheosy
+f72v2.29     Lz  ofcheay
+f72v2.30     Lz  yteedy
+f72v2.31     Lz  onaiin
+f72v2.32     Lz  okeorar
+f72v2.33     Cc  otaiin otshedy chokeedy otes al al ar chetolain sheodaly sheokey okealy rary
+
+## f72v1  (Astronomical/Zodiac, Currier ?)
+f72v1.1      Cc  oteos alar otar air chpaly oteody okchesal otear alshey oleealy shtey oteos alal dals alchol ytolaiin ydaiin chotar y tal oto shoty otey okchedaly chdar y s ar otedy otorar shedy opsheytey opairaly choshydy otar cheedy otaraiin cheeky okolar ychey otechety
+f72v1.2      Lz  oeeoty
+f72v1.3      Lz  octhy
+f72v1.4      Lz  oteoly
+f72v1.5      Lz  okeoly
+f72v1.6      Lz  oeees
+f72v1.7      Lz  ocfh'hy
+f72v1.8      Lz  oees
+f72v1.9      Lz  okeeoly
+f72v1.10     Lz  odal
+f72v1.11     Lz  aiinod
+f72v1.12     Lz  oddy
+f72v1.13     Lz  oteod
+f72v1.14     Lz  yteod
+f72v1.15     Lz  okody
+f72v1.16     Lz  okal
+f72v1.17     Lz  ytaly
+f72v1.18     Lz  oeeeos
+f72v1.19     Lz  oteofy
+f72v1.20     Lz  cheoepy
+f72v1.21     Lz  ykeedy
+f72v1.22     Cc  otar ar otol topar oteolaiin ofaral otshedy ofalar alshdy chpar aiin okaly oka yaly opcheolfy opar cheockey otolopaiin shaldy chepchy otey tean
+f72v1.23     Lz  oeeoly
+f72v1.24     Lz  okydy
+f72v1.25     Lz  okeey
+f72v1.26     Lz  oiiny
+f72v1.27     Lz  oeey
+f72v1.28     Lz  okedy
+f72v1.29     Lz  ypaim
+f72v1.30     Lz  okalair
+f72v1.31     Lz  oeeody
+f72v1.32     Lz  okeol
+f72v1.33     Cc  otalal dalal ykeols oteo r aiin yotoam oteey saiin oteeos am
+
+## f73r  (Astronomical/Zodiac, Currier ?)
+f73r.1       Lz  otaly
+f73r.2       Lz  chockhy
+f73r.3       Lz  otedy
+f73r.4       Lz  yteeody
+f73r.5       Cc  ypolcheey salchedal chepchey daraly oteos air ar oteosdal chotoey soteees alshey ohes al chees cheoly jeiii choteey cheteey cheteeeos aiin chetchody chedar ar cheteey otecos ar airalor shetee yteey cheody ykeydam oteos alar alcheky
+f73r.6       Lz  otaly
+f73r.7       Lz  okeody
+f73r.8       Lz  oteedyl
+f73r.9       Lz  ykeedy
+f73r.10      Lz  okeey
+f73r.11      Lz  okeedy
+f73r.12      Lz  ykeeory
+f73r.13      Lz  oteeosy
+f73r.14      Lz  shekal
+f73r.15      Lz  oteedyy
+f73r.16      Lz  okedal
+f73r.17      Lz  chdy
+f73r.18      Lz  dalshey
+f73r.19      Lz  opaiin
+f73r.20      Lz  okeos
+f73r.21      Lz  otey
+f73r.22      Cc  oteey dar al opaiin olalaiin s air am chopchedy chdar oram otareees olteey okees otar chey oteas ochor oparchey daiin qocheey s cheey dal cheesy
+f73r.23      Lz  okary
+f73r.24      Lz  okeeody
+f73r.25      Lz  oyteedy
+f73r.26      Lz  oky
+f73r.27      Lz  chefy
+f73r.28      Lz  otal
+f73r.29      Lz  chek
+f73r.30      Lz  ar
+f73r.31      Lz  kar
+f73r.32      Lz  okeeos
+f73r.33      Cc  osaiin chedain oteey chedaly okechs chepcheesaly oteodal
+
+## f73v  (Astronomical/Zodiac, Currier ?)
+f73v.1       Lz  okol
+f73v.2       Lz  oteody
+f73v.3       Lz  oteedy
+f73v.4       Lz  eeeody
+f73v.5       Cc  otoar ykeody okodeey qopchey opaiin qoteedy dpy otedy shedy qokeody cheor al okegal oteody shedy otesalod air chy ykeesaly y keoly dys opchey dy toly chfaikchy ytedar eeey qokeey oty yteedy choldy qokalaiin ykaipy orary
+f73v.6       Lz  okeody
+f73v.7       Lz  sheol
+f73v.8       Lz  odees
+f73v.9       Lz  eery
+f73v.10      Lz  okeor
+f73v.11      Lz  ofals
+f73v.12      Lz  ykeody
+f73v.13      Lz  oteody
+f73v.14      Lz  ypaiin
+f73v.15      Lz  yfaiin y
+f73v.16      Lz  ofcheesy
+f73v.17      Lz  oraiiny
+f73v.18      Lz  ykeeody
+f73v.19      Lz  okeos
+f73v.20      Lz  ykeear
+f73v.21      Lz  qokeoly
+f73v.22      Cc  oteotos alshy oteolain chokeedam otody qoty shedy chdy tchol oteody cheytey choty okey dy okecholy otey chodaiin chey okeedy saly ar daly
+f73v.23      Lz  otedy
+f73v.24      Lz  eeed
+f73v.25      Lz  oky
+f73v.26      Lz  oia
+f73v.27      Lz  okal
+f73v.28      Lz  ykey
+f73v.29      Lz  ykeee
+f73v.30      Lz  okeod
+f73v.31      Lz  ykey
+f73v.32      Lz  ypal
+f73v.33      Cc  otedchor alar olkcho otolam o kees char y ytaly alaly otaram
+
+## fRos  (Cosmological, Currier B)
+fRos.1       L0  saeeasa
+fRos.2       Cc  oto tosaes adar otar otes okaiin dal al chdar otdar chefchs okor ol om olkeeodaiin shol okal orshees qoeey okalol otodr ochs ar ol oqokam oteed oteedy okedy lraiin or aiin okor okeedy
+fRos.3       L0  ofain ain
+fRos.4       L0  ych ais
+fRos.5       L0  ydekam
+fRos.6       L0  darchedy
+fRos.7       L0  otochedy sy
+fRos.8       L0  soeedoy olal
+fRos.9       L0  dchor orary
+fRos.10      L0  sairojam
+fRos.11      L0  okchdarar
+fRos.12      L0  soiindy
+fRos.13      L0  ytedar
+fRos.14      L0  ddsschx
+fRos.15      L0  daldar
+fRos.16      L0  ofardy
+fRos.17      L0  orarol
+fRos.18      L0  daldal
+fRos.19      L0  daraldy
+fRos.20      Cc  sais od r ar or okal okal or alal ykal ol ar ol al ol al lor okan okod oked okeo ldy opashs otedy chedchs sheekedy odal shd olkeedy yky kaiir okchdy otol ar y aiin aiir oeal okchdy oly okain olkaiin ody
+fRos.21      L0  oko
+fRos.22      L0  daiiny
+fRos.23      L0  docfhhy
+fRos.24      L0  okedy
+fRos.25      L0  okary
+fRos.26      L0  opain
+fRos.27      L0  opar
+fRos.28      L0  adairy
+fRos.29      L0  dxar
+fRos.30      L0  okory
+fRos.31      L0  opokchosody
+fRos.32      L0  adashgasain
+fRos.33      L0  cfair oolchy
+fRos.34      L0  okody
+fRos.35      Cc  okos cpor air u oteoteedy otos otedar ches okodainol ykedy eedor tchdaiin sy sarald todar chkar odair or oal okchdy seedy oteedy ykchda cheky o aiin okees olar or ykeedy okeo lodaiin or olaiiin olar
+fRos.36      Cc  oochs octhey osar aram arkeeody ochdor ol oekairy ytodaro opalshy or arodar ykodar ykodar ykary opalxy
+fRos.37      L0  opoor daly
+fRos.38      L0  okas oedady
+fRos.39      Pb  kechy qolchedar ar
+fRos.40      Pb  otedy chdaiin oty
+fRos.41      L0  osal
+fRos.42      L0  cpeey
+fRos.43      L0  okor
+fRos.44      L0  sarchcphdy
+fRos.45      L0  otchdy otoldy
+fRos.46      L0  ofchedaiin
+fRos.47      Cc  osar otar otodeedy oty daiin sheor oar otedy qotedy oteey otoraiin chekadr ol aiin okedal olor opoiiral eeealky ytar qokeo l tched oiin oteedaiin odal cheky otchdor or olkoaiin okal o laiin
+fRos.48      L0  otedal
+fRos.49      L0  opaiin o
+fRos.50      L0  otchdy
+fRos.51      L0  okchy
+fRos.52      L0  chkeedy
+fRos.53      L0  opairar
+fRos.54      L0  odeey
+fRos.55      L0  okody
+fRos.56      L0  depcheky
+fRos.57      L0  otch
+fRos.58      L0  osy
+fRos.59      L0  odl
+fRos.60      L0  d dy
+fRos.61      L0  oteey
+fRos.62      Cc  otor os om araiin okeody okar odsheedy odaiin okchdy okar shor okaiin daiin ofair oly olkair odal olkalor olor s y o d esha x k r olar oteedaiin otes ar yqos aiiin ol qotody ol oir or oroa oteeedy okal okodar otshe okody otedy chdar o'
+fRos.63      L0  oteedy
+fRos.64      L0  opy
+fRos.65      L0  odal
+fRos.66      L0  shdy
+fRos.67      L0  opchees
+fRos.68      L0  opar
+fRos.69      L0  daral
+fRos.70      L0  otdodar oedy
+fRos.71      L0  soshxor arar
+fRos.72      L0  otedain otedy
+fRos.73      L0  ytedar ary
+fRos.74      L0  opchedaiin
+fRos.75      L0  ols
+fRos.76      L0  ypal
+fRos.77      L0  opydsh
+fRos.78      L0  rshy
+fRos.79      L0  olz
+fRos.80      L0  dtedg
+fRos.81      L0  opy
+fRos.82      L0  ofdaj
+fRos.83      L0  ddary
+fRos.84      L0  otody
+fRos.85      L0  dairdy
+fRos.86      L0  rody
+fRos.87      Cc  yke okees olchedy okal y dol otodar shekal olkar cheykar shal qokal okchr otar otody otody otody otas chfol okshy okem okar ar okedy okedy okchedy eeekchedy ofchdor qotchdy kar chdar chekolkoiph
+fRos.88      L0  ofary
+fRos.89      L0  okady
+fRos.90      L0  okchdy kary
+fRos.91      L0  oraiin eey
+fRos.92      L0  opodchdal
+fRos.93      L0  darchdy
+fRos.94      Cc  otchdaiin otodar otedar otar odaiin olkaiin otl xasashe ol ar aikhe chedaiin ockhedy sheda otody okedal d or aiin otody toor chepar ol chckhy opchdar o r a r al xar opor olchedy okalm or afalairidy
+fRos.95      L0  okaramal
+fRos.96      L0  opchdy
+fRos.97      L0  ofdoram
+fRos.98      L0  oda
+fRos.99      L0  ofchdar
+fRos.100     L0  otedam
+fRos.101     L0  lokedshs
+fRos.102     L0  otodar
+fRos.103     L0  otedaiin
+fRos.104     L0  okedy
+fRos.105     L0  xoltedy
+fRos.106     L0  opchdam
+fRos.107     L0  otedy oporam
+fRos.108     L0  otchdy
+fRos.109     L0  otody
+fRos.110     L0  chdain
+fRos.111     L0  otedy
+fRos.112     L0  opai'hefchdy
+fRos.113     Cc  sar odaiin or
+fRos.114     Ca  o dar aiird
+fRos.115     L0  oteoly
+fRos.116     L0  ofodady
+fRos.117     L0  opdady
+fRos.118     L0  otodey
+fRos.119     L0  otodedy
+fRos.120     L0  opchdain
+fRos.121     L0  otdar shed
+fRos.122     Cc  okedar okody okair chedy opar ol keeedy s ar olkchedy otedaiin olky or aiin ody osain xdar odaiin okedal ol ar oekaiin al o saldan oteedy otchdaiin otedy otar aiin yky odaiin okal okalar
+fRos.123     L0  ofaraiin
+fRos.124     L0  okolar
+fRos.125     L0  okchdy
+fRos.126     L0  ykedy
+fRos.127     L0  oteedy
+fRos.128     L0  otosaiin
+fRos.129     L0  otchdam
+fRos.130     L0  otedy
+fRos.131     L0  okar
+fRos.132     L0  lashalg
+fRos.133     Cc  ok ar ar okary otodeed odar chekaiin oees oiin okees oiir odaiin okalol aiiin okal ol otar chchdam chetey otodches oteesey chckhy otody otal chedal opal olkar okedaiin oror
+fRos.134     L0  oalda
+fRos.135     L0  osaram
+fRos.136     L0  oparodam
+fRos.137     Pb  otam opchody oteey
+fRos.138     Pb  opar chepchey oteedy olaiin osshy
+fRos.139     Pb  tol ofar chefaiin ol
+fRos.140     Pb  okchy qokedy qokedy
+fRos.141     Pb  tol teoor o l chekor
+fRos.142     Pb  okar olchety daiin
+fRos.143     Pb  okdy qokcho chfady oro
+fRos.144     Pb  okeechy okol sheeo tolfchd
+fRos.145     Pb  saiir shodaiin
+fRos.146     L0  dor
+fRos.147     L0  oky
+fRos.148     L0  roo
+fRos.149     L0  otol
+fRos.150     L0  ardas
+fRos.151     L0  l chdy
+fRos.152     L0  oparod
+fRos.153     L0  shckhdy
+fRos.154     L0  tshda
+fRos.155     L0  opchd
+fRos.156     L0  opchdy
+fRos.157     L0  qokal
+fRos.158     L0  shet
+fRos.159     L0  opchsy
+fRos.160     L0  cheky

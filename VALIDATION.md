@@ -331,6 +331,15 @@ The 285 surviving star-marked paragraphs (about 335–365 with the missing folio
 similarity at week (7), month (27–31) and any spacing from 2 to 40. Pre-registered in `analyses/cycles_prereg.md`.
 Week p = 0.09, month p = 0.45, no other spacing passes. **Not supported.** Details: `output/cycles_report.md`.
 
+## Scribe vs topic (October 2026)
+
+Scribe and section overlap almost completely, so the two were separated (pre-registered in
+`analyses/scribes_prereg.md`). Herbal pages by different scribes use different roots (p = 0.0005; scribe and
+dialect cannot be separated). Within scribes 1 and 2, roots still change with section (p = 0.0005). Word order and
+the ending → next-beginning link hold for **every** scribe with enough text (1, 2, 3). **Supported**: writer and
+topic both matter, and the grammar belongs to the shared system. Each scribe's text, in book order:
+`output/scribes/`. Details: `output/scribes_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

@@ -1,0 +1,158 @@
+# Scribe 5: 7 pages, in book order
+# Source: ZL3b transliteration (data/ZL3b-n.txt); scribe tags $H after L. Fagin Davis (2020).
+# Columns: locus id, locus type (P paragraph, L label, C ring, R radial), words.
+## f41r  (Herbal, Currier B)
+f41r.1       P0  pshey kedaleey oked seekeeey opshes opchd qotchedy shkakeedy
+f41r.2       P0  ykeeo alshey ykedy kesh dy dy dor ycheoky qokeed chpy qokedy dy
+f41r.3       P0  qok say qokedy ychdykchdy qokedy qokedy shekchy cheky daly
+f41r.4       P0  chdchy ytcheeky ypchedy schdy ytedy cthhy chees oteey otal dam
+f41r.5       P0  qotchy sal yteedy kchdy dchedy keedy dchedy dalain
+f41r.6       P0  shedey polchedy qokeey chekedy ytey chkeeod ypchedpy shepy shedy
+f41r.7       P0  parchdy kchey yteedy qokeodo okedy chkedy qokedy chedy qokedy
+f41r.8       P0  dair chedy chckhy qokey lchdy qokedy qokal chekedy qodar ag
+f41r.9       P0  qokeedy okedy chekedy chedy chckheody chekol daiin cheo al otedy
+f41r.10      P0  sshok shedy qekchdy dchdaldy ykedy qokeedy qokedy qokeg
+f41r.11      P0  ykeod ykeedy chekeedy cheked
+
+## f41v  (Herbal, Currier B)
+f41v.1       Lp  keeredal
+f41v.2       P0  pcheody qofcheepy ofchdy cfhekchdy ypchedy chepchefy shdchdy qotal dar
+f41v.3       P0  dshedy tchey s aiin shekey okedy okaly daiin okedy ykeeody choy keoy dam
+f41v.4       P0  qokeody okey qokeody oleeol lkedy lkeeody qokeedy okeey qokol sheols
+f41v.5       P0  ycheos olchey daiin or cholalaiin oteedy qoteol oteodar orain
+f41v.6       P0  tadaiin ol cheos yteedy okal old oteol qokal or oteody
+f41v.7       P0  ykeey okey ykeeol ckhdy chdal ykeo aiin okeody oly
+f41v.8       P0  daiin olkeeo lkol chedy okeey
+
+## f48r  (Herbal, Currier B)
+f48r.1       P0  pshdaiin ypchdy opchey chy dal sheodaiin sheokeol ykeeody olaiin opaldy
+f48r.2       P0  daiin yteeol cheody kechodshey qotedy chtaiin otchdy tedain okain ckhy
+f48r.3       P0  sheody she teoteey oteodaiin ody qoteo l kedy dol odal qotar opchety ldy
+f48r.4       P0  tolkeol dain otaiin ykeedy chet ytedy tedy qokdy tshdy chetedy ctheety r
+f48r.5       P0  yteey teol okeody cheockhy olsheey qoekaiin octhey cholkar aiin cthar od
+f48r.6       P0  alshey lkeedy ytchedy qokedy lotal qotol otal ched o key ykeey daldy
+f48r.7       P0  tocthy qokeol yteedy lolkeol otolches al ar ykeeodam okedy okam
+f48r.8       Pr  otchdain shol oteol oteoly ykeey dam dr
+f48r.9       Pc  yteched ar olkey okeoam
+
+## f48v  (Herbal, Currier B)
+f48v.1       P0  pcheodchy dshedy fchedy los aiin ykeeedy shey ypchedy teedy chdy ypair y chedyty
+f48v.2       P0  chey tedy otchody ykeedy otar yotedy cthdy okain chety choolkeey
+f48v.3       P0  alchey kor y keody olkeeey chody chedy daly okeeor aiin otar air am
+f48v.4       P0  dchedy tchddy otsh okeey ty otar alchdy yteedy oteed y kedy m
+f48v.5       P0  lkeey qocthedy taiin shed qokar otedy dy dain tolkain otam
+f48v.6       P0  shdy qokain okar otar or otees ol or ain otal ok y tar chedy am
+f48v.7       P0  pchedar chey ypchedy otedy shef eeedy al shedy otedy fcheodal cpheeg
+f48v.8       P0  oteody chkey okedy chckhedy ykedy oldy otoly chey kaly tokar otam
+f48v.9       P0  tor shody okal otchedy cheky oly loldy lol otchdy otoldy ytam otedy
+f48v.10      P0  tol chedy ytedy ykeol chdy chdor chtol chdy ytchedal cthey okar ar ary
+f48v.11      P0  ykeedal chckhy ykal y tam or cheedls sary
+
+## f57r  (Herbal, Currier B)
+f57r.1       P0  poeeockhey odain cheop sheody shocfhey dy sheep sheody eodam
+f57r.2       P0  daiir air chety cheo ckhy chockhy cheotey sh kchey s odaiin shey
+f57r.3       P0  qokeeody cheooky qokeody sheey okeody cheody cheeody cheekeody
+f57r.4       P0  dchos cheocthy cheody qoteeody octhody okeeody chteody cheody s
+f57r.5       P0  qokcho daiin cheeodam
+f57r.6       P0  tcheodal okam chckhey okchdy doctho opchey dy kedaiin oforam
+f57r.7       P0  daiis sheedy qokeedy chetey oteeod shekey tedy okaldg
+f57r.8       P0  tair sheedy ochedy ckhhhdy okchy chedy dal qokedam
+f57r.9       P0  adair sheeo ckhy sar al daiidy dcheckhey daiin chedy cthedy
+f57r.10      P0  qoetchey kedy shedaiin s cheos ykeos qcthhy tcfhy
+f57r.11      P0  dshedy ctechy cphedam
+
+## f66r  (Herbal, Currier B)
+f66r.1       L0  rary
+f66r.2       L0  rals
+f66r.3       L0  qor
+f66r.4       L0  dary
+f66r.5       L0  ykeol
+f66r.6       L0  saly
+f66r.7       L0  salf
+f66r.8       L0  fary
+f66r.9       L0  qotesy
+f66r.10      L0  ykaly
+f66r.11      L0  doly
+f66r.12      L0  saiin
+f66r.13      L0  qokal
+f66r.14      L0  qolsa
+f66r.15      L0  raral
+f66r.16      L0  y
+f66r.17      L0  o
+f66r.18      L0  s
+f66r.19      L0  sh
+f66r.20      L0  y
+f66r.21      L0  d
+f66r.22      L0  o
+f66r.23      L0  f
+f66r.25      L0  x
+f66r.26      L0  air
+f66r.27      L0  d
+f66r.28      L0  sh
+f66r.29      L0  y
+f66r.30      L0  f
+f66r.31      L0  f
+f66r.32      L0  y
+f66r.33      L0  o
+f66r.34      L0  d
+f66r.35      L0  s
+f66r.36      L0  f
+f66r.37      L0  c
+f66r.39      L0  x
+f66r.40      L0  t
+f66r.41      L0  o
+f66r.43      L0  l
+f66r.44      L0  r
+f66r.45      L0  t
+f66r.46      L0  o
+f66r.47      L0  x
+f66r.48      L0  p
+f66r.49      L0  d
+f66r.50      P0  pdaiin oteedy opchedy chap chefchy shddy ypches cholpchd okedals
+f66r.51      P0  sair shekey qokeedar okal okedy qokeedy qokal okedy qokshd
+f66r.52      P0  ykshedy chady cthdy qokees cheeo okcho dy chekeey chedy chckhy
+f66r.53      P0  shdy qotedy chdy chedy qotedal chcpheor ykady dar qotey kol ar
+f66r.54      P0  qokeeody qokeody qokeody qokar sheky qokeeody okedy kodary
+f66r.55      P0  ykeeody choekeey okeody chekeody qokeey dyky chctho rotaiin
+f66r.56      P0  dsheol okaiin sheodaiin
+f66r.57      P0  tocpheey dol kchody qokeody qokshy qopaiin dairykodas okyd
+f66r.58      P0  dsholdaiir dalky shky qoky shekair choty dar okeey shdy ykol
+f66r.59      P0  qo cheky shcthy dalalshedy cheta r sheod shokaiir chckhhy dard
+f66r.60      P0  shor sheodal sholdy qokchedy qopchy qoty chedaiir chees kardy
+f66r.61      P0  qokchey qokaiir cheky daly daiin dal shedy chedy lkar ol okedy
+f66r.62      P0  ol cheeky daiir chky axor akar i'h y daiin
+f66r.63      P0  pchof sholfordaiin qotar otalor fchedyr chedy dar odair ofaram
+f66r.64      P0  dalcheeeky sheol dairody chekchy shed ykesho l lor sheor cheal
+f66r.65      P0  dor shedy okar shedy kcheody chxar daly fchdar cheor aly ry
+f66r.66      P0  shor shckheody dal shedy qokor al shes
+f66r.67      P0  psheody cfhol shofol okeody qokaldy ytarody shedy shedy dair
+f66r.68      P0  sair ol daiin daiin dal dol cheody dair aly dairal dolarshy dor
+f66r.69      P0  tosheo qokaldy oky ol kcheeky qoky dary okees oly
+f66r.70      P0  todeeey keody chdy keody shedy shekeefy chdy sheol shol kedy daly
+f66r.71      P0  saiir cheol kal sheody chcthedy dal shol qokeody chody kechody
+f66r.72      P0  sshedy oteedy ykeeody sheocthy ol ld lshedy chokeey chekey chey
+f66r.73      P0  ysheeod qoteeod qotol qoky chckhedy shey dcheol cheky cheo dor
+f66r.74      P0  ydaiin shedy otchedy oteochey tolchedy lsheody qoky daiin otam
+f66r.75      P0  tcheo sheor oteody lpchees ol ar alkey otey ltsholy shecthy r ol
+f66r.76      P0  daiin sheol qocthedy qokedy lchey qokaly shcthy qotal otchdy
+f66r.77      P0  qokey ar olkeol qokal cheoky ykchdy chody sheody qoky ldy
+f66r.78      P0  dor aiin sheeol lshedy lchedy cheedy shekol dalol lodaiin
+f66r.79      P0  sheol oteey ldaiin okalchedy pchedy kody qotchedy cphedy
+f66r.80      P0  daiin shey qoteoly raiin sheedy shcthy lkeol qokol dkar
+f66r.81      P0  lchey lkeedy chety shekaly shckhar
+f66r.82      Lx  otcheo daiin chty ykees cheg
+
+## f66v  (Herbal, Currier B)
+f66v.1       P0  okeodof sheod ychoopy opch dal dor sheefy ytody daldeam
+f66v.2       P0  teodal tchedy dshey okshedy okeedy dcheeky daldy qotal sy
+f66v.3       P0  ytos s or sheeky okechdy okeedal dar otal chody cheky
+f66v.4       P0  shokeshy daiin cheos chety dol chckhy dal ko dal chekal dal
+f66v.5       P0  shdy shedefam qokedy chokal dal
+f66v.6       P0  tchod sheody shckhed chos chor sheo keody chepar sheopam
+f66v.7       P0  qokeos sheody chekeos chody kotody qotchdy chckhd ytchdy
+f66v.8       P0  dchekeedy cheody qokchdy qokol keedy cheky chety kody
+f66v.9       P0  pody sheody chpadar sheey fchdly cheoseesey kchy qofchal
+f66v.10      P0  dshal keedy qok or okaiin dol kaldaiin otal dokal okag
+f66v.11      P0  yteeod aiin shekeod saiin ykofar otaiin otar chedy karc'
+f66v.12      P0  qekar okedy cheky dal chekal chckhy kal kal dar chkchody
+f66v.13      P0  ydees shey daiin dalkal ykedaiin shedar okchdy oty

@@ -1,0 +1,49 @@
+# Scribe unknown: 1 pages, in book order
+# Source: ZL3b transliteration (data/ZL3b-n.txt); scribe tags $H after L. Fagin Davis (2020).
+# Columns: locus id, locus type (P paragraph, L label, C ring, R radial), words.
+## f115r  (Stars/Recipes, Currier B)
+f115r.1      P0  fc'hhdar qopchol qochedain otedy cheop ol teeedy oroiir oechedy oteedy qotchedy
+f115r.2      P0  dcheeos shedy qokeeo qoky qokeeor cheody qokeeo qokeo rorol kcheody qokchy
+f115r.3      P0  qol cheol chor od qol chedy qockheos cholor daar oraro
+f115r.4      P0  dchedain qokeedy olkeechdy chor chey kchor orchedar otar sheod qoteedy dardyr
+f115r.5      P0  ycheedy chedar olkees sheed qodain qoteedy qokedy qokeed lchedar qotchedy ro
+f115r.6      P0  cheo ckhdy qotchdy qokedy qokar okeeeosaiin chl chedar chody qotar chedam chd
+f115r.7      P0  dar chedy qotchy chedy chedar shey otain chorar
+f115r.8      P0  kcheor cheol orair ot chedar lor aiin qokain qoteeol dar ar al opchedy darom
+f115r.9      P0  dchedaiin qoteeedy qokeedy qoteo lor cheo r ar cheor cheody
+f115r.10     P0  tchedy kechedy qokchey keedy qokor chedaiin dair qotchedy qotcheedy qekor
+f115r.11     P0  daiin chedy chol chedy qokoiin qokcheedy qototeeey rain cheo chkain cho lory
+f115r.12     P0  dsheo qokeedaiin qokechdy qodaiin or chol o ro chey
+f115r.13     P0  tchedy qoolkeedy qokchedy qotchd lpchedy qotcho lar airorlchy cpholrory
+f115r.14     P0  ycheeo rcheeo qo lkain cheey saiin cheedy tcheo lodar chtar as kaiin dam
+f115r.15     P0  y cheo lkeodain chcthed qokar chedy qotain chody qotain cheol lkar air om
+f115r.16     P0  dshedy qotshedy dar oltedy qotar chodar cheocthy chdy qotor otchdy qotolchd
+f115r.17     P0  qol cheey qotchy daiin daiin cheocthy dolkeedy qotaiin chol oteeedchey okeedain
+f115r.18     P0  cheol lcheey okcho keedor ykechey chchdy
+f115r.19     P0  pcheodain qokchey qotchedy darailchedy polchedy chol pchody qotchedy qofchedy ram
+f115r.20     P0  lcheod lkchedy chockhy chedy qokchedy qoky chor al alor cheey qol keo r shey
+f115r.21     P0  yches oaiin or al chy cheody rodaiin cheockhy oeeody
+f115r.22     P0  psheody chsho tchdy dar chedy okchdar chdor cheedy yhy cheedy qepchey lkam
+f115r.23     P0  dchey keey qokeod chody qokcho s checthy qokeeey keeey lol chedy qokchedy ldy
+f115r.24     P0  dcheol qokeol or ar aiin cheey okeeeo or chl lor ol otlaiin cheeor ary
+f115r.25     P0  y cheodain cheey qotchedy qokeeody choar cheey
+f115r.26     P0  ksheoary otchey qoteeo s ar aiiin chotchdy qodair sheol pchedy dal dalom
+f115r.27     P0  ysheeo los ar chey qoky chol kchedshedy qokaiin shey qoetar chol qokaram
+f115r.28     P0  cheo chos al saiin cheody llsan arorochees
+f115r.29     P0  fshedy shdalky cheedar qopchedy qopchedyd lksho ror pchodar ol chedyo
+f115r.30     P0  dsheodar sheo qokecheos cheos r char qokchar qolcheey lkedy qotal
+f115r.31     P0  shod ykaiin chdy qotchedy dchol daiin qopol qokairor lchea raiin dlchd
+f115r.32     P0  sor chey okaiin qokeey qokeedy qoaiin chedy qotaiin chety laiin chedy
+f115r.33     P0  y cheey qotaiin chokeeey chckhey qoky aiin cheey lkeedy okohy chokchaiin
+f115r.34     P0  cheeo l keeey okeey raiin cheky
+f115r.35     P0  posheos aral chaiin shkchedy otais chsi chpchar ar al odaiin chcphy dy
+f115r.36     P0  daiin cheey qoek chody qodain sheey dar oranol
+f115r.37     P0  sorols cheos lkshey qokcho raiin chkshy qos aiin okchey pchar
+f115r.38     P0  dor cheol chot qotchy qokchy sol raiin shey kchedy daiin shedy qoty
+f115r.39     P0  y chey keey qodain cheody qokor
+f115r.40     P0  paiinody lkcheo lchy qokchedy qokl sheedy qokar aiir ar opchdain
+f115r.41     P0  dar olchy olchey qolcheor okchor
+f115r.42     P0  tcheodl raiin chkar qokol lchdy qorshy qokain qokain chep chotchdy
+f115r.43     P0  dcheo dain sheol qotchedy qokchedy qokchedy chotar orar oiin olchdy
+f115r.44     P0  dcheos shedar qoor cheor shody qokain otar ar otar ytar ar aloky
+f115r.45     P0  y dchedy kody qokeedy chols
