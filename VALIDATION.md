@@ -413,6 +413,13 @@ distance and label dissimilarity +0.050, against +0.001 shuffled (p = 0.0009). *
 drifting while labelling in order around the wheel would produce the same pattern. Details:
 `output/coordinates_report.md`.
 
+## Label gradient: position or writing order? (October 2026)
+
+Pre-registered in `analyses/coord_vs_drift_prereg.md`. Zodiac label similarity follows angle when writing order is
+controlled (partial ρ = +0.046, p = 0.0014). Writing order adds nothing when angle is controlled (p = 0.20).
+**Verdict: position (measurement-like)**, not scribal drift. Writing orientation around the wheel remains a possible
+cause. Details: `output/coord_vs_drift_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
