@@ -38,3 +38,6 @@ Null: paragraph order shuffled within each run, 10,000 times (seed 20261003).
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** C1 FAIL (p = 0.092), C2 FAIL (p = 0.45), C3 none. **No cycles found.** Write-up:
+`output/cycles_report.md`.
