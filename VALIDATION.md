@@ -405,6 +405,14 @@ consonant/vowel shapes of 32 medieval astrolabe star names more than other label
 Compared with Latin and 26 modern languages by word sound shape, no language is closer to the Voynich than the
 Voynich is to a letter-shuffled copy of itself: **no close language**. Details: `output/sound_shapes_report.md`.
 
+## Diagram labels as measurements (October 2026)
+
+Are labels farther apart around a wheel less alike, as coordinates would be? Pre-registered in
+`analyses/coordinates_prereg.md`, on the 12 zodiac wheels (298 positioned labels). Correlation between angular
+distance and label dissimilarity +0.050, against +0.001 shuffled (p = 0.0009). **Supported, weakly.** A scribe
+drifting while labelling in order around the wheel would produce the same pattern. Details:
+`output/coordinates_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
