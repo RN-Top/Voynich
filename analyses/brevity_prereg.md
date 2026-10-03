@@ -29,3 +29,6 @@ estimates.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** Voynich A 0.220 [0.198–0.339], B 0.109 [0.062–0.198]; Latin 0.179–0.409; cipher 0.173.
+**MIXED.** Write-up: `output/brevity_report.md`.

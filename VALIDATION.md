@@ -370,6 +370,12 @@ Do diagram counts equal 19, 235 or 6,940, or do ring texts repeat every 19 steps
 period-19 repetition (word level p = 0.41, glyph level p = 0.39). One count of 19 among 203 (pharmacy labels,
 f102v2). **Not supported.** Details: `output/nineteen_report.md`.
 
+## Zipf's law of abbreviation (October 2026)
+
+Are frequent words shorter, as in all human languages? Pre-registered in `analyses/brevity_prereg.md`. Voynich B
+0.11 (the weakest of six texts), Voynich A 0.22, Latin 0.18–0.41, cipher 0.17. **MIXED.** The Latin recipe text is
+also weak, so genre may explain Voynich B's low value. Details: `output/brevity_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
