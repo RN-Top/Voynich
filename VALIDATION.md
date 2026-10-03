@@ -390,6 +390,14 @@ Does any word ending recur at a regular spacing within lines, or does the share 
 waves from line to line? Pre-registered in `analyses/rhythm_prereg.md`. Nothing passes the corrected thresholds.
 There are near misses at 6 lines (A) and 7 lines (B). **Not supported.** Details: `output/rhythm_report.md`.
 
+## Vowels and consonants (Sukhotin) (October 2026)
+
+Do Voynich symbols alternate like vowels and consonants? Pre-registered in `analyses/vowels_prereg.md`. The method
+recovers a e i o u in Latin. Voynich alternation above its own shuffled baseline is 56–82% of Latin's in all four
+cases (dialect × symbol scheme). **Supported: alphabet-like.** The vowel-like symbols are mainly o, a, e, y. The
+result is strongest with ch/sh treated as single letters. Caveat: strict slot patterns also produce alternation.
+Details: `output/vowels_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
