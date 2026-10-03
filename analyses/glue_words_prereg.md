@@ -31,3 +31,6 @@ counts, lengths and main section.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** ρ = −0.016 against shuffled +0.045, p = 0.77. **Not supported.** Write-up:
+`output/glue_words_report.md`.
