@@ -340,6 +340,14 @@ the ending → next-beginning link hold for **every** scribe with enough text (1
 topic both matter, and the grammar belongs to the shared system. Each scribe's text, in book order:
 `output/scribes/`. Details: `output/scribes_report.md`.
 
+## Shared grammar table across scribes (October 2026)
+
+Is the ending → next-beginning pattern the same for scribes 1, 2 and 3? Pre-registered in
+`analyses/grammar_table_prereg.md`. Log-lift tables correlate 0.67–0.88 between scribes, against 0.17–0.36 for
+shuffled text (p = 0.001 for every pair). Scribes 2 and 3 agree almost as well as each scribe agrees with itself.
+**Supported: one grammar shared by different writers.** Recurring rules include -ar/-or → ai/al/ar,
+-ol → k-words, -dy → qo-. Details: `output/grammar_table_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
