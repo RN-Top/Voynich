@@ -440,6 +440,13 @@ the Moon is a crescent even when opposite the Sun: **not a phase table**. Observ
 not evidence): f67r2's 12 moons nearly alternate red crescent / gold disc (6 + 6), consistent with alternating 30-
 and 29-day lunar months (a 354-day lunar year). Details: `output/sun_moon_report.md`.
 
+## Flower colours as keys (October 2026)
+
+All 118 herbal pages were classified by flower colour from the images **before** comparing text
+(`analyses/flower_colours.csv`). Pre-registered in `analyses/flower_colour_prereg.md`. Pages with the same flower
+colour do not share more vocabulary than other pages (p = 0.74, shuffled within Currier language). **Not
+supported.** Details: `output/flower_colour_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
