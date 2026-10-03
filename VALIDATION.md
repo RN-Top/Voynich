@@ -427,6 +427,12 @@ not more alike (ρ = +0.003, p = 0.25), so page orientation does not explain the
 measurement-like reading stands:** labels vary gradually with position within their own wheel. Details:
 `output/orientation_report.md`.
 
+## Counting: do zodiac labels lengthen steadily around each wheel? (October 2026)
+
+Pre-registered in `analyses/counting_prereg.md`, with the same best-start search for real and shuffled labels. Mean
+best correlation 0.480 against 0.421 shuffled (p = 0.025): **not supported** at p < 0.01, though suggestive. The best
+starts and directions vary between wheels. Details: `output/counting_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

@@ -46,6 +46,7 @@ REPORTS = {
         ("Alchemy", "alchemy_report.md"),
         ("Measuring instrument", "instrument_report.md"),
         ("Fifth element in the cycle", "fifth_element_report.md"),
+        ("Counting: labels lengthen around wheels?", "counting_report.md"),
         ("Calendar cycles in the star paragraphs", "cycles_report.md"),
         ("Glue words vs content words", "glue_words_report.md"),
         ("Slot freedom vs Latin (mixed)", "slots_report.md"),
