@@ -38,3 +38,8 @@ For illustration only, the opening line of f1r is shown under the best key.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** Control recovered 100% of letters. Voynich positions 0.87–0.94 → formally "CONSISTENT
+WITH SUBSTITUTION". Extra checks (labelled) show that the decoded Voynich yields only 10–16% real Latin words (real
+Latin 86%; reversed Latin 12%). The letter-pair score was an inadequate criterion. **Conclusion: not simple-
+substitution Latin.** Write-up: `output/freqmatch_report.md`.

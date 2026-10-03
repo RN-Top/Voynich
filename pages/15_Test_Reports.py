@@ -47,6 +47,7 @@ REPORTS = {
         ("Slot freedom vs Latin (mixed)", "slots_report.md"),
         ("19 / Metonic moon cycle", "nineteen_report.md"),
         ("Frequent words shorter? (Zipf, mixed)", "brevity_report.md"),
+        ("Frequency match: letter-for-letter Latin?", "freqmatch_report.md"),
     ],
 }
 
