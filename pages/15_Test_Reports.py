@@ -31,6 +31,7 @@ REPORTS = {
         ("Scribe vs topic; rules hold for every scribe", "scribes_report.md"),
         ("Shared grammar table across scribes", "grammar_table_report.md"),
         ("Vowels and consonants (Sukhotin)", "vowels_report.md"),
+        ("Diagram labels as measurements (weak)", "coordinates_report.md"),
     ],
     "Did not hold up": [
         ('"o" as a name-forming prefix', "o_prefix_report.md"),

@@ -35,3 +35,7 @@ the decision rests on the correlation.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** Correlation +0.050 (shuffled +0.001), p = 0.0009: **SUPPORTED** (weak). The neighbour
+comparison p = 0.25. Scribal drift around the wheel is an alternative explanation. Write-up:
+`output/coordinates_report.md`.
