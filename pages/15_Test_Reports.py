@@ -50,6 +50,7 @@ REPORTS = {
         ("Frequent words shorter? (Zipf, mixed)", "brevity_report.md"),
         ("Frequency match: letter-for-letter Latin?", "freqmatch_report.md"),
         ("Rhythm: beats and waves", "rhythm_report.md"),
+        ("Star-name crib and sound shapes vs languages", "sound_shapes_report.md"),
     ],
 }
 

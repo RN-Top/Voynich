@@ -398,6 +398,13 @@ cases (dialect × symbol scheme). **Supported: alphabet-like.** The vowel-like s
 result is strongest with ch/sh treated as single letters. Caveat: strict slot patterns also produce alternation.
 Details: `output/vowels_report.md`.
 
+## Star-name crib and sound shapes vs languages (October 2026)
+
+Pre-registered in `analyses/sound_shapes_prereg.md`. With vowels a, e, o, y, star labels do not match the
+consonant/vowel shapes of 32 medieval astrolabe star names more than other labels do (p = 0.45): **not supported**.
+Compared with Latin and 26 modern languages by word sound shape, no language is closer to the Voynich than the
+Voynich is to a letter-shuffled copy of itself: **no close language**. Details: `output/sound_shapes_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
