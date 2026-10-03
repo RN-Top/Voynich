@@ -355,6 +355,14 @@ related to topic-boundness? Pre-registered in `analyses/glue_words_prereg.md`. �
 supported**. Several short words are strongly topic-bound (*qol, sol, dy, am*). This is another difference from an
 ordinary language. Details: `output/glue_words_report.md`.
 
+## Slot freedom compared with Latin (October 2026)
+
+How much does a word's start (first 2 letters) limit its end (last 2 letters)? Measured the same way in Voynich A
+and B, three Latin texts, and an enciphered Latin text. Pre-registered in `analyses/slots_prereg.md`. Two resampling
+errors in the first run were found and corrected (recorded). Voynich 0.065–0.073; Latin 0.101–0.284; cipher 0.218.
+The Voynich is the lowest, but its interval overlaps Bede's, so the result is **MIXED** under the rule. Word parts
+combine more freely than in Latin, but the separation is not decisive. Details: `output/slots_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

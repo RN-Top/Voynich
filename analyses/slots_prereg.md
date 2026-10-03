@@ -41,3 +41,6 @@ Its point estimates were Voynich A 0.073 and B 0.061, against Latin 0.107–0.28
 inside each resample uses 50 shuffles instead of 200 (the point estimates keep the same procedure). The point
 estimates, statistic and decision rule are unchanged. Half-sample intervals are wider than full-sample ones, which
 makes the "code-like" verdict harder to reach, not easier.
+
+**2026-10-03, results (corrected run).** Voynich A 0.073 [0.063–0.079], B 0.065 [0.056–0.071]; Latin 0.101–0.284;
+cipher 0.218. **MIXED** under the rule (A overlaps Bede). Write-up: `output/slots_report.md`.
