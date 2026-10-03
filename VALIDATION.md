@@ -376,6 +376,20 @@ Are frequent words shorter, as in all human languages? Pre-registered in `analys
 0.11 (the weakest of six texts), Voynich A 0.22, Latin 0.18–0.41, cipher 0.17. **MIXED.** The Latin recipe text is
 also weak, so genre may explain Voynich B's low value. Details: `output/brevity_report.md`.
 
+## Frequency match: Voynich as letter-for-letter Latin (October 2026)
+
+Pre-registered in `analyses/freqmatch_prereg.md`: a rank-frequency key improved by hill climbing to maximise
+Latin letter-pair likelihood. The control (enciphered Latin) was cracked 100%. The Voynich scored high on letter
+pairs (formally "consistent"), but its best keys give only 10–16% real Latin words, against 86% for Latin and 12%
+for reversed Latin. The pre-registered criterion was too weak (recorded). **Conclusion: not simple-substitution
+Latin.** Details: `output/freqmatch_report.md`.
+
+## Rhythm: beats in lines, waves down pages (October 2026)
+
+Does any word ending recur at a regular spacing within lines, or does the share of qo- words rise and fall in
+waves from line to line? Pre-registered in `analyses/rhythm_prereg.md`. Nothing passes the corrected thresholds.
+There are near misses at 6 lines (A) and 7 lines (B). **Not supported.** Details: `output/rhythm_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
