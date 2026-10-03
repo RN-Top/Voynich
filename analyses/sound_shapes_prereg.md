@@ -37,3 +37,7 @@ spelling conventions, and Arabic and Hebrew excluded because their scripts omit 
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** Part A: 10 vs 9.3, p = 0.45, **not supported**. Part B (descriptive): nearest languages
+are French/English/Catalan/Turkish (A) and English/Latvian/Turkish (B). All are at or beyond the Voynich's distance
+to its own shuffled copy, so **no close language**. Write-up: `output/sound_shapes_report.md`.
