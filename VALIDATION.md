@@ -325,6 +325,12 @@ Do the bath-page roots (rsh, sheckh, lsh, lch) appear in labels on the bath pict
 Descriptive only: 3 of the 4 are on bath pages, all labelling women, none labelling pools. Details:
 `output/bath_roots_report.md`.
 
+## Calendar cycles in the star-marked paragraphs (October 2026)
+
+The 285 surviving star-marked paragraphs (about 335–365 with the missing folios 109–110) were tested for recurring
+similarity at week (7), month (27–31) and any spacing from 2 to 40. Pre-registered in `analyses/cycles_prereg.md`.
+Week p = 0.09, month p = 0.45, no other spacing passes. **Not supported.** Details: `output/cycles_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

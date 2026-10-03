@@ -40,6 +40,7 @@ REPORTS = {
         ("Alchemy", "alchemy_report.md"),
         ("Measuring instrument", "instrument_report.md"),
         ("Fifth element in the cycle", "fifth_element_report.md"),
+        ("Calendar cycles in the star paragraphs", "cycles_report.md"),
     ],
 }
 
