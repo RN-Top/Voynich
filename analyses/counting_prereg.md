@@ -30,3 +30,6 @@ For each wheel: the best starting figure (clock position), the direction, the co
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** Letters: 0.480 vs 0.421, p = 0.025. S2: 0.476 vs 0.420, p = 0.028. **Not supported**
+(suggestive). Write-up: `output/counting_report.md`.
