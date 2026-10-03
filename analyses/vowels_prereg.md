@@ -33,3 +33,6 @@ The vowel sets found are reported.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** Control: Latin vowels a e i o u (plus w y). Voynich ratios 0.56, 0.73 (A), 0.64, 0.82 (B):
+**ALPHABET-LIKE.** Main vowel-like symbols o, a, e, y. Write-up: `output/vowels_report.md`.
