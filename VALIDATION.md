@@ -420,6 +420,13 @@ controlled (partial ρ = +0.046, p = 0.0014). Writing order adds nothing when an
 **Verdict: position (measurement-like)**, not scribal drift. Writing orientation around the wheel remains a possible
 cause. Details: `output/coord_vs_drift_report.md`.
 
+## Writing orientation as the cause of the label gradient (October 2026)
+
+Pre-registered in `analyses/orientation_prereg.md`. Labels at the same absolute angle on different zodiac wheels are
+not more alike (ρ = +0.003, p = 0.25), so page orientation does not explain the within-wheel gradient. **The
+measurement-like reading stands:** labels vary gradually with position within their own wheel. Details:
+`output/orientation_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

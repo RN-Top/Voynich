@@ -28,3 +28,6 @@ shuffled among positions within each wheel (10,000 shuffles, seed 20261003).
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** O1 = +0.003, p = 0.25. **Orientation not supported**; the measurement reading stands.
+Write-up: `output/orientation_report.md`.
