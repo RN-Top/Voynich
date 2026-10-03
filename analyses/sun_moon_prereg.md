@@ -25,3 +25,7 @@ f57v and f67–f73, f85–f86) is examined.
 
 ---
 Amendments (dated, below this line only):
+
+**2026-10-03, results.** Not a phase table: on f68r1/f68r2 the Moon is a crescent opposite the Sun. An observation
+made after looking (labelled): the 12 moons of f67r2 nearly alternate red crescent / gold disc (6 + 6), which is
+consistent with alternating full/hollow lunar months (354 days). Write-up: `output/sun_moon_report.md`.
