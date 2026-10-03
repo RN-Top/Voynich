@@ -348,6 +348,13 @@ shuffled text (p = 0.001 for every pair). Scribes 2 and 3 agree almost as well a
 **Supported: one grammar shared by different writers.** Recurring rules include -ar/-or → ai/al/ar,
 -ol → k-words, -dy → qo-. Details: `output/grammar_table_report.md`.
 
+## Glue words vs content words (October 2026)
+
+In known languages, short frequent words are topic-neutral. Among Currier-B words of similar frequency, is length
+related to topic-boundness? Pre-registered in `analyses/glue_words_prereg.md`. ρ = −0.02, p = 0.77: **not
+supported**. Several short words are strongly topic-bound (*qol, sol, dy, am*). This is another difference from an
+ordinary language. Details: `output/glue_words_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
