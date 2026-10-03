@@ -1,7 +1,7 @@
 # Is the manuscript an alchemical book? Results
 
 Pre-registration: `analyses/alchemy_prereg.md` (committed before looking). Every page of the Yale export
-(`2002046 (2).pdf`) was viewed. Sections f75–f116 were viewed at about 100 dpi and the rest as thumbnails.
+(`uploads/yale_ms408_facsimile.pdf`) was viewed. Sections f75–f116 were viewed at about 100 dpi and the rest as thumbnails.
 
 ## A1. Apparatus (needs 2 pages): **FAIL**
 
