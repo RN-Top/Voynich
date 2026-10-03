@@ -33,6 +33,7 @@ REPORTS = {
         ("Vowels and consonants (Sukhotin)", "vowels_report.md"),
         ("Diagram labels as measurements (weak)", "coordinates_report.md"),
         ("Measurement or writing drift? (position)", "coord_vs_drift_report.md"),
+        ("Writing orientation ruled out", "orientation_report.md"),
     ],
     "Did not hold up": [
         ('"o" as a name-forming prefix', "o_prefix_report.md"),
