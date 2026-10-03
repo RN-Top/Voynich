@@ -48,6 +48,7 @@ REPORTS = {
         ("Fifth element in the cycle", "fifth_element_report.md"),
         ("Counting: labels lengthen around wheels?", "counting_report.md"),
         ("Sun–Moon phase pages", "sun_moon_report.md"),
+        ("Flower colours as keys", "flower_colour_report.md"),
         ("Calendar cycles in the star paragraphs", "cycles_report.md"),
         ("Glue words vs content words", "glue_words_report.md"),
         ("Slot freedom vs Latin (mixed)", "slots_report.md"),
