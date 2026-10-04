@@ -596,6 +596,10 @@ Counting by eye on all 12 zodiac wheels: 66 of 89 figures (74%) on the March–M
 
 Do spring zodiac labels (the tub pages) share roots with the bath-section text more than other zodiac labels? Barely: 59% vs 56%, p = 0.41 over all 120 sign splits. **Not supported.** The spring tubs are a picture pattern that the text does not echo. Pre-registration: `analyses/bath_spring_prereg.md`. Details: `output/bath_spring_report.md`.
 
+## Recipe closing vocabulary (October 2026)
+
+Do recipe-section paragraphs end with a set of formulaic words, like medieval recipes? Yes: **44 words** appear at paragraph ends far more often than the 14% baseline, with p < 0.05. Top examples: qodaiin 55.6% (p=0.0001), olcheey 71.4%, ychedy 71.4%, okeody 80%. This suggests the Voynich recipes use a closing vocabulary like *probatum est* in Latin formulas. The word "oror" (60% para-final, p=0.023) is one of them, and appears on f116v next to a German recipe instruction "so nim…" in the same position it closes recipes in the main text. **Supported.** Pre-registration: `analyses/recipe_closing_words_prereg.md`. Details: `output/recipe_closing_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
