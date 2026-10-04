@@ -62,6 +62,7 @@ REPORTS = {
         ("Recipe format in the starred paragraphs", "recipe_format_report.md"),
         ("Recipe roots as process words", "process_words_report.md"),
         ("Measured paint colours on the plant pages", "paint_report.md"),
+        ("Plant-name crib test", "plant_crib_report.md"),
         ("Calendar cycles in the star paragraphs", "cycles_report.md"),
         ("Glue words vs content words", "glue_words_report.md"),
         ("Slot freedom vs Latin (mixed)", "slots_report.md"),

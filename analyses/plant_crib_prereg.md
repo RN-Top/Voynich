@@ -78,3 +78,7 @@ Only 4 plants were agreed between Erin and Claude, so published identifications 
 **Result.** p = (shuffles scoring at least the real score + 1) / 201. Threshold p < 0.01.
 
 **Secondary (descriptive).** The same test on the 4 three-way-agreed plants only.
+
+## Run note (2026-10-04)
+
+Before the full run, one timing check fitted the true pairing once (score 0.518) to measure speed. The full run used its own seeds and nothing was changed afterwards. Result: 8 plants p = 0.94; 4 plants p = 0.72. Not supported.

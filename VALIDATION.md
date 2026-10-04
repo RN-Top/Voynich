@@ -580,6 +580,10 @@ Exploratory: green is 70% of all paint. A red-heavy group (15 pages) and an ochr
 scribe 1 and Currier A. f56r is the only blue-dominated page. Pre-registration: `analyses/paint_prereg.md`. Details:
 `output/paint_report.md`. Per-page profiles: `analyses/paint_profiles.csv`.
 
+## Plant-name crib test (October 2026)
+
+Do the opening words of identified plant pages match the plants' medieval names (Latin, Italian, German, Catalan/Occitan, French) under one shared letter mapping, better than when the names are shuffled among pages? Eight plants were agreed by two of three sources (Erin, Claude, published identifications), four of them by all three. The true pairing fits **worse** than the shuffled ones: 0.488 vs 0.516 mean, p = 0.94 (4-plant subset p = 0.72). **Not supported.** The opening words are not those plant names in a simple letter substitution. Pre-registration: `analyses/plant_crib_prereg.md`. Details: `output/plant_crib_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
