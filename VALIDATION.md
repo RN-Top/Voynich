@@ -456,6 +456,18 @@ f68r2 + f68r3 found 0 of 4 on marked stars, against 0.8 expected (p = 1.0). **No
 `analyses/star_centres_prereg.md`. Details: `output/star_centres_report.md`. The label-to-star placements
 (`analyses/star_centres_*.csv`) are a reusable by-product.
 
+## The metal key: planetary scale and sevens (October 2026)
+
+Flower colours were mapped to metals with a period key fixed in advance (heraldic planetary tinctures: white = Moon
+and silver, green = Venus and copper, yellow = Sun and gold, red = Mars and iron, blue = Jupiter and tin).
+
+- **Test 1:** pages whose metals sit closer on the medieval planetary scale ("music of the spheres") do not have more
+  similar text (ρ = −0.08, p = 0.21).
+- **Test 2:** herbal pages 7 apart in book order are not more alike than pages 6 or 8 apart (p = 0.42), and no other
+  lag from 3 to 12 stands out.
+
+**Not supported.** Pre-registration: `analyses/metal_key_prereg.md`. Details: `output/metal_key_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
