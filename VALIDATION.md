@@ -592,6 +592,10 @@ Do the 8 identified plants appear in alphabetical order of their Latin names, as
 
 Counting by eye on all 12 zodiac wheels: 66 of 89 figures (74%) on the March–May pages (Pisces, Aries, Taurus) stand in tubs or barrels, against 2 of 210 (1%) on the June–December pages. Tubs stop after early June. This fits the medieval *Regimen sanitatis* advice to bathe and cleanse in spring. **Caveats:** the pattern was seen before the full count, so this describes the pages rather than independently confirming anything; the spring pages are also a distinct coloured group, so the cause may be drawing style rather than meaning. Pre-registration: `analyses/tub_season_prereg.md`. Details: `output/tub_season_report.md`.
 
+## Bath text vs spring zodiac labels (October 2026)
+
+Do spring zodiac labels (the tub pages) share roots with the bath-section text more than other zodiac labels? Barely: 59% vs 56%, p = 0.41 over all 120 sign splits. **Not supported.** The spring tubs are a picture pattern that the text does not echo. Pre-registration: `analyses/bath_spring_prereg.md`. Details: `output/bath_spring_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
