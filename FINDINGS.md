@@ -63,7 +63,9 @@ Files: `analyses/rare_symbols_*`, `output/rare_symbols_report.md`.
 Translations (Venetian/German glosses); the C→L→P→R cycle (also with a fifth step); a fold-over key; zodiac labels
 as day names; the circles as a measuring instrument; alchemy (no apparatus or metal signs); pharmacy labels as plant
 names; labels repeated in their own page's text; label beginnings by picture type; Fibonacci counts (the formal pass
-was a word-length artifact); zodiac halves sharing labels (explained by page format). Full list with numbers:
+was a word-length artifact); zodiac halves sharing labels (explained by page format); plant-matching star labels sitting on stars with marked
+centres (f68r, 0 of 4 in the confirmation panels); colour-to-metal key on the planetary scale; a 7-page cycle;
+herb → star → body chains; f67r2's red and gold moons as full and hollow months (10 of 12 alternate, p = 0.07); two-colour leaves. Full list with numbers:
 [VALIDATION.md](VALIDATION.md).
 
 ## How to reproduce
@@ -84,5 +86,5 @@ Each script writes its report to `output/`. The pre-registration for each test i
 
 1. Has the shared-root link between herbal-page openings and star labels been reported before?
 2. Is a shared rare 3-letter chunk a fair similarity measure, or is there a better standard?
-3. A full-resolution mapping of the f68r star labels to individual drawn stars would allow testing whether the
-   matching stars are special. Does such a mapping exist?
+3. We placed the f68r1/f68r2 star labels on individual drawn stars by hand (`analyses/star_centres_*.csv`). Does
+   an independent mapping exist to check ours against?

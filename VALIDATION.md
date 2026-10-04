@@ -447,6 +447,59 @@ All 118 herbal pages were classified by flower colour from the images **before**
 colour do not share more vocabulary than other pages (p = 0.74, shuffled within Currier language). **Not
 supported.** Details: `output/flower_colour_report.md`.
 
+## Plant-matching star labels on marked stars, f68r (October 2026)
+
+From Erin's photo of the f68r fold-out, the star labels on f68r1 and f68r2 were placed on their individual stars, and
+each star's centre was classified as hollow ring, dark dot or plain. On f68r1 (the discovery panel), 3 of the 5
+plant-matching labels sat on ringed stars (p = 0.21, noticed after looking). The pre-registered confirmation on
+f68r2 + f68r3 found 0 of 4 on marked stars, against 0.8 expected (p = 1.0). **Not supported.** Pre-registration:
+`analyses/star_centres_prereg.md`. Details: `output/star_centres_report.md`. The label-to-star placements
+(`analyses/star_centres_*.csv`) are a reusable by-product.
+
+## The metal key: planetary scale and sevens (October 2026)
+
+Flower colours were mapped to metals with a period key fixed in advance (heraldic planetary tinctures: white = Moon
+and silver, green = Venus and copper, yellow = Sun and gold, red = Mars and iron, blue = Jupiter and tin).
+
+- **Test 1:** pages whose metals sit closer on the medieval planetary scale ("music of the spheres") do not have more
+  similar text (ρ = −0.08, p = 0.21).
+- **Test 2:** herbal pages 7 apart in book order are not more alike than pages 6 or 8 apart (p = 0.42), and no other
+  lag from 3 to 12 stands out.
+
+**Not supported.** Pre-registration: `analyses/metal_key_prereg.md`. Details: `output/metal_key_report.md`.
+
+## Correspondence chains: herb → star → body (October 2026)
+
+Do the rare word chunks shared by herbal openings and star labels continue into the bathing, pool and zodiac-figure
+labels (a herb → star → body chain)? **No.** 1 chain was found against 4.8 expected (p = 1.0): the body labels
+*avoid* the herb–star roots. Secondary result: herb → star → **remedy** (pharmacy jar and plant-part labels) gave 3
+chains against 1.2 expected (p = 0.08, not significant). Examples: tydlo (f9r) → otydy/otydg (stars) → otyda/otydary
+(f88r/v), and tdokchcfhy → chocfhy → ykocfhy/sochorcfhy. Pre-registration: `analyses/chains_prereg.md`. Details:
+`output/chains_report.md`.
+
+## f67r2: the 12 moons as full and hollow months (October 2026)
+
+From Erin's photo, each of f67r2's 12 moons was classified as red crescent (6) or gold (6), and each moon label was
+placed on its moon. The labels run clockwise around the ring in the same order as the transcription.
+
+- **Alternation:** colours alternate at 10 of 12 steps (chance 6.6), with two breaks (gold–gold at 86°/115° and
+  red–red at 152°/177°). p = 0.067, **not significant** at the registered 0.025.
+- **Labels:** red-moon and gold-moon labels are no more alike within colour than across (p = 0.50).
+
+**Not supported.** Pre-registration: `analyses/moon_months_prereg.md`. Details: `output/moon_months_report.md`.
+
+## Two-colour leaves (October 2026)
+
+All 118 herbal pages were classified for leaves painted in two colours, as on f1v (21 yes) **before** any text
+comparison. Two-colour pages are not textually closer to each other than to other pages (p = 0.49), and they are
+not over-represented among the star-matching openings (1 of 21; p = 0.94). **Not supported.** Pre-registration:
+`analyses/leaf_colour_prereg.md`. Details: `output/leaf_colour_report.md`.
+
+## f57v ring (descriptive, October 2026)
+
+Ring 3 is exactly 17 symbols × 4 repeats (68 symbols; 3 variants). Its rare symbols @169 and @172 recur only in the
+single-letter margin column of f66r. Not a test. Notes: `analyses/f57v_ring_notes.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
