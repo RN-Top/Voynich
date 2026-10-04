@@ -45,3 +45,23 @@ f93v, f94r, f95v, f96r and f96v. The images come from `images/yale/`, scaled to 
    in the book.
 3. Colour by quire: average profile per quire, to see whether painting changes through the book (different paint
    batches or painters).
+
+## Amendment (2026-10-04, after the first run)
+
+**The first run's measurement failed.** It assigned 90% of the paint to "ochre" and only 2% to green, on pages whose
+plants are mostly green. A saturation threshold over the yellow vellum picked up stained vellum and brown ink rather
+than paint, so all first-run results are **void** (they were ρ = −0.03, p = 0.79).
+
+**The fix.** Paint is now detected in Lab colour space as a chroma difference from the page's own vellum
+(ΔE_ab > 15, with 25 < L < 90 and a 5% border excluded). Families are set by the hue angle of that difference:
+
+| Family | Hue angle |
+|---|---|
+| red | 315–45° |
+| ochre/tan | 45–120° |
+| green | 120–215° |
+| blue | 215–300° |
+
+The angles were calibrated by eye on five pages (f1v, f2v, f9v, f16v and f42r) so that their known green leaves,
+blue flowers and red flowers land in the right family. This was done before the rerun. The test itself is
+unchanged, and it is rerun once.

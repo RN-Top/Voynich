@@ -27,27 +27,38 @@ SEED = 20261013
 N = 10_000
 EXTRA = {"f87r": "87r", "f87v": "87v", "f90r1": "90r", "f90v1": "90v (part)", "f93r": "93r", "f93v": "93v",
          "f94r": "94r", "f95v1": "95v (part)", "f96r": "96r", "f96v": "96v"}
-FAM = ["red", "ochre", "yellow", "green", "blue", "other"]
+FAM = ["red", "ochre", "yellow", "green", "blue", "other"]  # "yellow" unused after the fix (merged into ochre)
+
+
+def to_lab(rgb):
+    c = rgb / 255.0
+    c = np.where(c > 0.04045, ((c + 0.055) / 1.055) ** 2.4, c / 12.92)
+    M = np.array([[0.4124, 0.3576, 0.1805], [0.2126, 0.7152, 0.0722], [0.0193, 0.1192, 0.9505]])
+    xyz = c @ M.T / np.array([0.95047, 1, 1.08883])
+    f = np.where(xyz > 0.008856, np.cbrt(xyz), 7.787 * xyz + 16 / 116)
+    return 116 * f[..., 1] - 16, 500 * (f[..., 0] - f[..., 1]), 200 * (f[..., 1] - f[..., 2])
 
 
 def profile(path):
+    """Paint = pixels whose Lab colour differs from the page's vellum by > 15 (chroma), not ink-dark or blank.
+    Family = hue angle of the difference from vellum (calibrated on f1v, f2v, f9v, f16v, f42r)."""
     im = Image.open(path).convert("RGB")
     im = im.resize((800, int(800 * im.height / im.width)))
-    hsv = np.asarray(im.convert("HSV")).astype(float) / 255.0
-    h, s, v = hsv[..., 0] * 360, hsv[..., 1], hsv[..., 2]
-    H, W = s.shape
-    b = max(1, int(0.05 * min(H, W)))
-    border = np.concatenate([s[:b].ravel(), s[-b:].ravel(), s[:, :b].ravel(), s[:, -b:].ravel()])
-    paint = (s > np.median(border) + 0.12) & (v > 0.25)
-    hh = h[paint]
-    fam = np.full(hh.shape, 5)
-    fam[(hh >= 345) | (hh < 15)] = 0
-    fam[(hh >= 15) & (hh < 45)] = 1
-    fam[(hh >= 45) & (hh < 70)] = 2
-    fam[(hh >= 70) & (hh < 170)] = 3
-    fam[(hh >= 170) & (hh < 260)] = 4
-    c = np.bincount(fam, minlength=6).astype(float)
-    return c / max(c.sum(), 1), int(paint.sum())
+    L, A, B = to_lab(np.asarray(im).astype(float))
+    H, W = L.shape
+    c = (slice(int(H * .1), int(H * .9)), slice(int(W * .1), int(W * .9)))
+    a0, b0 = np.median(A[c]), np.median(B[c])
+    m = (np.hypot(A - a0, B - b0) > 15) & (L > 25) & (L < 90)
+    m[:int(H * .05)] = m[-int(H * .05):] = False
+    m[:, :int(W * .05)] = m[:, -int(W * .05):] = False
+    ang = np.degrees(np.arctan2(B[m] - b0, A[m] - a0)) % 360
+    fam = np.full(ang.shape, 5)
+    fam[(ang >= 315) | (ang < 45)] = 0      # red
+    fam[(ang >= 45) & (ang < 120)] = 1      # ochre / tan / yellow-brown
+    fam[(ang >= 120) & (ang < 215)] = 3     # green
+    fam[(ang >= 215) & (ang < 300)] = 4     # blue
+    cnt = np.bincount(fam, minlength=6).astype(float)
+    return cnt / max(cnt.sum(), 1), int(m.sum())
 
 
 def main():
