@@ -1,0 +1,30 @@
+star,x,y,centre,label_reading,zl_label,plant_match
+1,230,260,plain,okodaly,f68r1.8 okodaly,
+2,157,337,plain,otcheody,f68r1.10 otcheody,
+3,297,367,plain,okoaly,f68r1.11 okoaly,yes
+4,113,437,plain,otshey?,f68r1.14 otshey,
+5,250,453,ring,otydy,f68r1.15 otydy,yes
+6,333,463,plain,okear?,f68r1.16 okear,
+7,507,250,plain,odchecthy,f68r1.9 odchecthy,
+8,517,330,plain,octhey,f68r1.13 octhey,
+9,647,363,ring,ytchody,f68r1.18 ytchody,
+10,393,387,plain,chocthy,f68r1.12 chocfhy,yes
+11,503,428,ring,cphocthy,f68r1.17 cphocthy,
+12,650,440,ring,otykchs?,uncertain,
+13,133,540,plain,?,uncertain,
+14,193,552,dot,?,uncertain,
+15,260,557,plain,?,uncertain,
+16,120,607,plain,?,uncertain,
+17,183,670,plain,?,uncertain,
+18,313,663,plain,?,uncertain,
+19,120,713,dot,?,uncertain,
+20,307,753,ring,?,uncertain,
+21,230,767,plain,?,uncertain,
+22,400,557,plain,olor?,uncertain,
+23,550,507,plain,otchdo?,uncertain,
+24,470,623,plain,?,uncertain,
+25,600,613,ring,long gallows + oeeodchy,f68r1.30 @167oeeodchy,yes
+26,460,723,plain,osdaiin,f68r1.34 osdaiin,
+27,590,720,ring,otochedy,f68r1.35 otochedy,yes
+28,523,807,plain,dolchedy,f68r1.36 dolchedy,
+29,703,507,ring,otys?,uncertain,
