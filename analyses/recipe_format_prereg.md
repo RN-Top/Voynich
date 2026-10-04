@@ -44,3 +44,14 @@ more than other text in the same language.
 - Paragraph-first words in Voynich text are unusual everywhere (gallows letters). Comparing with control paragraphs
   of the same language removes that common effect.
 - Line-end forms (-m) affect last words in all sections, and the same comparison removes that too.
+
+## Amendment (2026-10-04, after the first run)
+
+**Bug.** The first run split paragraphs at `@P` headers. In ZL3b, `@P` marks only the first line of a page's text
+block. Paragraphs are delimited by the `<%>` and `<$>` markers inside the text. So the first run found only 23
+"recipe paragraphs" (one per page) instead of about 300.
+
+First-run results, now void: T1 p = 0.061, T2 p = 0.13, T3 p = 0.99.
+
+**Rerun.** The test was rerun once with paragraphs taken from `<%>`…`<$>`. Nothing else changed: same groups,
+statistics, seed and thresholds.

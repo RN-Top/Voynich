@@ -20,18 +20,39 @@ ALPHA = 0.05 / 3
 
 
 def paragraphs():
+    """Paragraphs delimited by the ZL3b markers <%> (start) and <$> (end) in P loci."""
+    import re
     df = parse_zl3b(CORPUS_PATH)
-    df = df[(df.locus_type == "P") & (df.clean.str.len() > 0) & (df.currier == "B")]
-    paras, cur, key = [], [], None
-    for r in df.itertuples():
-        if ",@P" in r.header and r.token_idx == 0 and cur:
-            paras.append((key, cur)); cur = []
-        if not cur:
-            key = r.section
-        cur.append(r.clean)
-    if cur:
-        paras.append((key, cur))
-    return [(s, w) for s, w in paras if len(w) >= 5]
+    meta = df.groupby("folio")[["currier", "section"]].first().to_dict("index")
+    paras, cur, folio = [], [], None
+    for line in open(CORPUS_PATH, encoding="utf-8", errors="ignore"):
+        m = re.match(r"<(f[^.]+)\.\d+,.P\w*>\s+(.*)", line)
+        if not m:
+            continue
+        folio, text = m.group(1), m.group(2)
+        for piece in re.split(r"(<%>|<\$>)", text):
+            if piece == "<%>":
+                cur = []
+            elif piece == "<$>":
+                if cur:
+                    paras.append((folio, cur))
+                cur = []
+            else:
+                cur += [w for w in df_words(piece)]
+    out = []
+    for f, w in paras:
+        info = meta.get(f)
+        if info and info["currier"] == "B" and len(w) >= 5:
+            out.append((info["section"], w))
+    return out
+
+
+def df_words(text):
+    import re
+    from parser import VoynichParser
+    text = re.sub(r"<[^>]*>", "", text)
+    text = re.sub(r"\[([^:\]]*):[^\]]*\]", r"\1", text)
+    return [c for c in (VoynichParser.clean_token(w) for w in re.split(r"[.,\s]+", text)) if c]
 
 
 def simpson(items):
