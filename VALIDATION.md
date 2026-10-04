@@ -507,6 +507,16 @@ herbal pages. In all three checkable pairs (otyda and otydary vs f9r tydlo; ydcp
 drawings show **different plants**. Shared roots are not one-to-one plant names. Exploratory, one reader. Notes:
 `analyses/pharmacy_match_notes.md`.
 
+## f66r margin column vs f57v ring; golden numbers (October 2026)
+
+- **Ring order:** the single-symbol margin column of f66r does not follow the f57v ring's order (2 adjacent pairs
+  in ring order vs 0.9 by chance, p = 0.24). Both pairs are the rare symbols preceded by their ring neighbour
+  (f→@169, c→@172), which is suggestive but too few to count.
+- **Golden numbers:** the column is not a medieval golden-number (19-year lunar cycle) column. It has 16 distinct
+  symbols, and 18 entries repeat a symbol within 19 places, where a golden-number column allows none.
+
+**Not supported.** Pre-registration: `analyses/ring_margin_prereg.md`. Details: `output/ring_margin_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
