@@ -531,6 +531,13 @@ no waxing/waning alternation or runs, so the moons do not depict phases. **Not s
 "tally-mark" count was withdrawn before running: the strokes are ordinary letters (`aiin`). Pre-registrations:
 `analyses/crescent_phase_prereg.md`, `analyses/tally_ring_prereg.md`. Details: `output/crescent_phase_report.md`.
 
+## Sun wheel and Moon wheel read together (October 2026)
+
+Pairing f67r1's 12 sector labels with f67r2's 12 moon labels at every rotation: the best rotation (shift 5,
+similarity 0.115) is below what shuffled orders reach (0.137), p = 0.97. One striking pair (otaldy / otardy) is
+not enough. **Not supported.** Pre-registration: `analyses/sun_moon_align_prereg.md`. Details:
+`output/sun_moon_align_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
