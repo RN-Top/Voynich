@@ -56,6 +56,7 @@ REPORTS = {
         ("Two-colour leaves", "leaf_colour_report.md"),
         ("f66r margin vs f57v ring; golden numbers", "ring_margin_report.md"),
         ("Jar-label endings (split replication)", "jar_endings_report.md"),
+        ("f67r2 crescents as moon phases", "crescent_phase_report.md"),
         ("Calendar cycles in the star paragraphs", "cycles_report.md"),
         ("Glue words vs content words", "glue_words_report.md"),
         ("Slot freedom vs Latin (mixed)", "slots_report.md"),

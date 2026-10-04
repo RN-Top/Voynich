@@ -524,6 +524,13 @@ pharmacy block (f88–f89: -al, -dy, -hy, -in, -ry, -yd) do not mark jars in the
 p = 0.49. The earlier pooled ending difference does not replicate. **Not supported.** Pre-registration:
 `analyses/jar_endings_prereg.md`. Details: `output/jar_endings_report.md`.
 
+## f67r2 crescents as moon phases (October 2026)
+
+When each moon is rotated to face the ring centre, all 12 crescents sit on the same (anticlockwise) side. There is
+no waxing/waning alternation or runs, so the moons do not depict phases. **Not supported.** The related
+"tally-mark" count was withdrawn before running: the strokes are ordinary letters (`aiin`). Pre-registrations:
+`analyses/crescent_phase_prereg.md`, `analyses/tally_ring_prereg.md`. Details: `output/crescent_phase_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
