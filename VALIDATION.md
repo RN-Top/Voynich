@@ -588,6 +588,10 @@ Do the opening words of identified plant pages match the plants' medieval names 
 
 Do the 8 identified plants appear in alphabetical order of their Latin names, as in herbals like the *Circa instans*? No: Kendall τ = −0.50, p = 0.97. The first four (f2r–f9v) do run in alphabetical order, and the last four (f15v–f42r) run in reverse, which is consistent with the known rebinding but too small to count. **Not supported.** Pre-registration: `analyses/herbal_order_prereg.md`. Details: `output/herbal_order_report.md`.
 
+## Women in tubs by season (October 2026)
+
+Counting by eye on all 12 zodiac wheels: 66 of 89 figures (74%) on the March–May pages (Pisces, Aries, Taurus) stand in tubs or barrels, against 2 of 210 (1%) on the June–December pages. Tubs stop after early June. This fits the medieval *Regimen sanitatis* advice to bathe and cleanse in spring. **Caveats:** the pattern was seen before the full count, so this describes the pages rather than independently confirming anything; the spring pages are also a distinct coloured group, so the cause may be drawing style rather than meaning. Pre-registration: `analyses/tub_season_prereg.md`. Details: `output/tub_season_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

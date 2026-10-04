@@ -64,6 +64,7 @@ REPORTS = {
         ("Measured paint colours on the plant pages", "paint_report.md"),
         ("Plant-name crib test", "plant_crib_report.md"),
         ("Plant order vs alphabetical herbal", "herbal_order_report.md"),
+        ("Women in tubs by season", "tub_season_report.md"),
         ("Calendar cycles in the star paragraphs", "cycles_report.md"),
         ("Glue words vs content words", "glue_words_report.md"),
         ("Slot freedom vs Latin (mixed)", "slots_report.md"),
