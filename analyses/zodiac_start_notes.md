@@ -12,3 +12,14 @@ Erin's Yale screenshots of Pisces (f70v2, "mars") and Aries (f70v1, "abril"): `u
 left-side start, which matches the drawn mark. The photos **confirm** that assumption, so rerunning those tests
 would not change them. The open uncertainty is a different one: whether the left-side start is degree 0 of the
 sign, or whether the wheel runs clockwise.
+
+## More wheels (Aries light, Taurus dark/light, Gemini/Virgo)
+
+More screenshots: `uploads/yale_hires/f71*`, `f72*`.
+
+- **Gemini:** a radial divider crosses the middle ring on the left side, the same as Aries.
+- **Taurus dark (f71v):** the vellum has an original hole, and the scribe wrote and drew around it.
+- **Rings and dress:** across these wheels, the women in the inner rings stand in tubs or barrels, while the outer
+  rings are mostly bare figures, or clothed figures on the Aries-light and Taurus-light pages.
+
+**Conclusion unchanged:** each ring starts on the left, which is where the transcription starts it.
