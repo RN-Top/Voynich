@@ -468,6 +468,15 @@ and silver, green = Venus and copper, yellow = Sun and gold, red = Mars and iron
 
 **Not supported.** Pre-registration: `analyses/metal_key_prereg.md`. Details: `output/metal_key_report.md`.
 
+## Correspondence chains: herb → star → body (October 2026)
+
+Do the rare word chunks shared by herbal openings and star labels continue into the bathing, pool and zodiac-figure
+labels (a herb → star → body chain)? **No.** 1 chain was found against 4.8 expected (p = 1.0): the body labels
+*avoid* the herb–star roots. Secondary result: herb → star → **remedy** (pharmacy jar and plant-part labels) gave 3
+chains against 1.2 expected (p = 0.08, not significant). Examples: tydlo (f9r) → otydy/otydg (stars) → otyda/otydary
+(f88r/v), and tdokchcfhy → chocfhy → ykocfhy/sochorcfhy. Pre-registration: `analyses/chains_prereg.md`. Details:
+`output/chains_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

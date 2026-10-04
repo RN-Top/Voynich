@@ -46,3 +46,8 @@ Same machinery as `plant_star_test.py` and `name_map_test.py`:
 - **Small numbers.** The labels are few, so C may be small.
 - **What a chunk link means.** A shared rare chunk is a weak similarity measure. A chain is suggestive, not proof of
   meaning.
+
+## Implementation note (2026-10-04, recorded after the run)
+
+For the four-way secondary test there were fewer "other" labels (392) than B and R together (721), so the null drew
+them with replacement. The test is secondary and was not significant either way.

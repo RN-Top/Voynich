@@ -51,6 +51,7 @@ REPORTS = {
         ("Flower colours as keys", "flower_colour_report.md"),
         ("Plant-matching labels on marked stars (f68r)", "star_centres_report.md"),
         ("Metal key: planetary scale and sevens", "metal_key_report.md"),
+        ("Correspondence chains: herb, star, body", "chains_report.md"),
         ("Calendar cycles in the star paragraphs", "cycles_report.md"),
         ("Glue words vs content words", "glue_words_report.md"),
         ("Slot freedom vs Latin (mixed)", "slots_report.md"),
