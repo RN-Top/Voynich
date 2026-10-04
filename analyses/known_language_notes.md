@@ -38,3 +38,7 @@ a formula word that closes an entry; one tentative guess is something like "and 
 - Test whether other paragraph-final words in the recipe section also end lines unusually often. That would mark a
   "closing" vocabulary, a recognised feature of medieval recipe texts.
 - Compare "michiton oladabas…" with known Latin charms and prescriptions.
+
+## Addition (2026-10-04): Irish medical herbal reference
+
+MS 23 O 6 (Royal Irish Academy, c. 1400) is a medical treatise that credits **Uilliam Ó hÍceadha** (O'Hickey family) with translating herbal material. It describes conditions and their cures in the same format as medieval herbals: symptom → cause → cure. This provides a direct reference for understanding how the O'Hickeys structured medical knowledge, and how the Voynich's herbal and recipe sections may follow the same organizational logic.
