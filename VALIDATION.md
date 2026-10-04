@@ -488,6 +488,18 @@ placed on its moon. The labels run clockwise around the ring in the same order a
 
 **Not supported.** Pre-registration: `analyses/moon_months_prereg.md`. Details: `output/moon_months_report.md`.
 
+## Two-colour leaves (October 2026)
+
+All 118 herbal pages were classified for leaves painted in two colours, as on f1v (21 yes) **before** any text
+comparison. Two-colour pages are not textually closer to each other than to other pages (p = 0.49), and they are
+not over-represented among the star-matching openings (1 of 21; p = 0.94). **Not supported.** Pre-registration:
+`analyses/leaf_colour_prereg.md`. Details: `output/leaf_colour_report.md`.
+
+## f57v ring (descriptive, October 2026)
+
+Ring 3 is exactly 17 symbols × 4 repeats (68 symbols; 3 variants). Its rare symbols @169 and @172 recur only in the
+single-letter margin column of f66r. Not a test. Notes: `analyses/f57v_ring_notes.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
