@@ -1,13 +1,13 @@
-moon,x,y,colour,label_reading,zl_label
-M1,1858,497,red,ysaldal,"f67r2.54 y,saldal"
-M2,1995,510,gold,ytodal,f67r2.55 ytodal
-M3,1729,560,gold,dchdar,f67r2.53 dchdar
-M4,2118,605,red,tol daiin,f67r2.56 tol.daiin
-M5,1640,693,red,qotoear,f67r2.52 qotoear
-M6,2168,727,gold,otar dy,"f67r2.57 otar,dy"
-M7,1628,805,gold,okodar,f67r2.63 okodar
-M8,2158,862,gold,cho dal?,"f67r2.58 cho.dal,g"
-M9,1672,925,red,otolor,f67r2.62 otolor
-M10,2040,1001,red,ytchodly,f67r2.59 ytchodly
-M11,1790,1025,gold,ytokar,f67r2.61 ytokar
-M12,1918,1040,red,octhys,f67r2.60 octhys
+moon,x,y,colour,label_reading,zl_label,crescent
+M1,1858,497,red,ysaldal,"f67r2.54 y,saldal",ACW
+M2,1995,510,gold,ytodal,f67r2.55 ytodal,ACW
+M3,1729,560,gold,dchdar,f67r2.53 dchdar,ACW
+M4,2118,605,red,tol daiin,f67r2.56 tol.daiin,ACW
+M5,1640,693,red,qotoear,f67r2.52 qotoear,ACW
+M6,2168,727,gold,otar dy,"f67r2.57 otar,dy",ACW
+M7,1628,805,gold,okodar,f67r2.63 okodar,ACW
+M8,2158,862,gold,cho dal?,"f67r2.58 cho.dal,g",ACW
+M9,1672,925,red,otolor,f67r2.62 otolor,ACW
+M10,2040,1001,red,ytchodly,f67r2.59 ytchodly,ACW
+M11,1790,1025,gold,ytokar,f67r2.61 ytokar,ACW
+M12,1918,1040,red,octhys,f67r2.60 octhys,ACW

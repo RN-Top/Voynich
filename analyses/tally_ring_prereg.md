@@ -26,3 +26,8 @@ count will be made from close-up Yale screenshots.
 
 A prediction counts as **met** if the exact count is within ±2 strokes (for S) or exactly equal (for G). There are
 many possible targets, so a single hit would be suggestive, not proof.
+
+## Withdrawn (2026-10-04)
+
+Close-up screenshots show that the "tally marks" are ordinary Voynich letters (runs of minim strokes, as in `aiin`
+or `aiiin`), not counting marks. There is nothing to count, so this test is withdrawn without being run.
