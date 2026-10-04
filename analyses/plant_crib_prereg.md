@@ -38,3 +38,9 @@ pairing much better than shuffled pairings, that is evidence.
 - With a free mapping, short words can match almost anything. The shuffle null controls for that only if the
   search effort is the same for real and shuffled pairings, so the same number of hill-climbing restarts is used
   for each.
+
+## Amendment (2026-10-04): the second opinion
+
+Only 4 plants were agreed between Erin and Claude, so published identifications collected from voynich.nu (Th. Petersen, O'Neill, Holm and ELV) and Wikibooks were added as the second opinion (`analyses/plant_ids_published.csv`). A plant counts as agreed when two of the three sources (Erin, Claude, published) name the same plant. That gives 8 plants (`analyses/plant_ids_agreed.csv`).
+
+**Weakness.** Claude's identifications may not be independent of the published ones, because Claude may have seen them in training. The 4 plants where Erin also agrees are the strongest.

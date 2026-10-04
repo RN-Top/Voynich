@@ -1,5 +1,9 @@
-folio,plant,latin,erin,claude
-f9v,wild pansy / heartsease,Viola tricolor,wild pansy (confirmed),pansy (high)
-f16r,hemp,Cannabis sativa,Cannabis sativa (confirmed),hemp (medium)
-f2v,water lily,Nymphaea alba / Nuphar lutea,iris or water lily (confirmed),water lily (medium)
-f6v,castor-oil plant,Ricinus communis,castor bean (by screenshot),castor-oil plant (medium)
+folio,plant,latin,erin,claude,published,agreement
+f9v,wild pansy,Viola tricolor,wild pansy,pansy (high),Viola tricolor (O'Neill; Petersen; ELV),all three
+f16r,hemp,Cannabis sativa,Cannabis sativa,hemp (medium),hemp (Petersen),all three
+f6v,castor-oil plant,Ricinus communis,castor bean,castor (medium),Ricinus (Petersen; ELV),all three
+f2v,water lily,Nymphaea,water lily,water lily (medium),Egyptian lotus (Petersen); Nymphaea alba (Wikibooks),all three (loose)
+f2r,knapweed / cornflower,Centaurea / Cyanus,,knapweed (medium),Cyanus / Centaurea (O'Neill; Holm; ELV),Claude + published
+f15v,herb Paris,Paris quadrifolia,plantain,herb Paris (low),Herba Paris (Petersen),Claude + published
+f42r,arum,Arum,dock,arum (low),Arum sagittarium (Petersen),Claude + published
+f32v,bellflower,Campanula,morning glory,bellflower (low),Campanula / Convolvulus (Petersen),Claude + published; Erin's Convolvulus also listed
