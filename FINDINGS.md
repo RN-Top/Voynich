@@ -65,7 +65,7 @@ as day names; the circles as a measuring instrument; alchemy (no apparatus or me
 names; labels repeated in their own page's text; label beginnings by picture type; Fibonacci counts (the formal pass
 was a word-length artifact); zodiac halves sharing labels (explained by page format); plant-matching star labels sitting on stars with marked
 centres (f68r, 0 of 4 in the confirmation panels); colour-to-metal key on the planetary scale; a 7-page cycle;
-herb → star → body chains. Full list with numbers:
+herb → star → body chains; f67r2's red and gold moons as full and hollow months (10 of 12 alternate, p = 0.07). Full list with numbers:
 [VALIDATION.md](VALIDATION.md).
 
 ## How to reproduce

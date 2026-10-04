@@ -477,6 +477,17 @@ chains against 1.2 expected (p = 0.08, not significant). Examples: tydlo (f9r) �
 (f88r/v), and tdokchcfhy → chocfhy → ykocfhy/sochorcfhy. Pre-registration: `analyses/chains_prereg.md`. Details:
 `output/chains_report.md`.
 
+## f67r2: the 12 moons as full and hollow months (October 2026)
+
+From Erin's photo, each of f67r2's 12 moons was classified as red crescent (6) or gold (6), and each moon label was
+placed on its moon. The labels run clockwise around the ring in the same order as the transcription.
+
+- **Alternation:** colours alternate at 10 of 12 steps (chance 6.6), with two breaks (gold–gold at 86°/115° and
+  red–red at 152°/177°). p = 0.067, **not significant** at the registered 0.025.
+- **Labels:** red-moon and gold-moon labels are no more alike within colour than across (p = 0.50).
+
+**Not supported.** Pre-registration: `analyses/moon_months_prereg.md`. Details: `output/moon_months_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
