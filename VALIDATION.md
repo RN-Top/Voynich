@@ -568,6 +568,18 @@ as process words like "take, distil, water" would be? They are slightly *more cl
 (dispersion 0.92 vs 0.95, p = 0.94). Only `lk` comes close to an everywhere word (in 50% of paragraphs). **Not
 supported.** Pre-registration: `analyses/process_words_prereg.md`. Details: `output/process_words_report.md`.
 
+## Measured paint colours on the plant pages (October 2026)
+
+Paint colours were measured by computer from the full-resolution Yale images for 128 plant pages: the share of red,
+ochre/tan, green and blue paint on each page. Pages with similar colour profiles do not have more similar text
+(ρ = +0.002, p = 0.41). **Not supported.**
+
+The first run's paint detector failed (it counted the yellow vellum as ochre). That run is void and recorded in the
+pre-registration. The detector was rebuilt in Lab colour space, calibrated on 5 pages, and the test rerun once.
+Exploratory: green is 70% of all paint. A red-heavy group (15 pages) and an ochre/brown-leaf group are almost all
+scribe 1 and Currier A. f56r is the only blue-dominated page. Pre-registration: `analyses/paint_prereg.md`. Details:
+`output/paint_report.md`. Per-page profiles: `analyses/paint_profiles.csv`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
