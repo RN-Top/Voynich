@@ -517,6 +517,13 @@ drawings show **different plants**. Shared roots are not one-to-one plant names.
 
 **Not supported.** Pre-registration: `analyses/ring_margin_prereg.md`. Details: `output/ring_margin_report.md`.
 
+## Jar-label endings, split replication (October 2026)
+
+Jar labels (prepared remedies) vs plant-part labels (raw ingredients): the endings typical of jars in the first
+pharmacy block (f88–f89: -al, -dy, -hy, -in, -ry, -yd) do not mark jars in the second block (f99–f102): 33% vs 30%,
+p = 0.49. The earlier pooled ending difference does not replicate. **Not supported.** Pre-registration:
+`analyses/jar_endings_prereg.md`. Details: `output/jar_endings_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
