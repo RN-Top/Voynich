@@ -538,6 +538,13 @@ similarity 0.115) is below what shuffled orders reach (0.137), p = 0.97. One str
 not enough. **Not supported.** Pre-registration: `analyses/sun_moon_align_prereg.md`. Details:
 `output/sun_moon_align_report.md`.
 
+## Zodiac labels and the 28 lunar mansions (October 2026)
+
+If the zodiac figure labels are degree entries carrying lunar-mansion information, labels in the same mansion should
+be more alike than neighbours across a mansion boundary. They are not: −0.011 vs +0.003 with randomly shifted
+boundaries, p = 0.88. Weak evidence only, because the true starting figure of each wheel is unknown. **Not
+supported.** Pre-registration: `analyses/mansions_prereg.md`. Details: `output/mansions_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
