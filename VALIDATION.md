@@ -561,6 +561,13 @@ words somewhat more often (tchedy, pol, polaiin, pchedal, pcheor). A bug in para
 first run (23 paragraphs instead of ~285) and fixed. The test was rerun once, and the void first results are
 recorded in the pre-registration. Details: `output/recipe_format_report.md`.
 
+## Recipe-section roots as process words (October 2026)
+
+Are the 19 roots specific to the recipe section (from the root dictionary) spread evenly across recipe paragraphs,
+as process words like "take, distil, water" would be? They are slightly *more clumped* than frequency-matched roots
+(dispersion 0.92 vs 0.95, p = 0.94). Only `lk` comes close to an everywhere word (in 50% of paragraphs). **Not
+supported.** Pre-registration: `analyses/process_words_prereg.md`. Details: `output/process_words_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
