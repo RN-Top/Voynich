@@ -545,6 +545,22 @@ be more alike than neighbours across a mansion boundary. They are not: −0.011 
 boundaries, p = 0.88. Weak evidence only, because the true starting figure of each wheel is unknown. **Not
 supported.** Pre-registration: `analyses/mansions_prereg.md`. Details: `output/mansions_report.md`.
 
+## Recipe format in the starred paragraphs (October 2026)
+
+Are the ~285 starred paragraphs (f103–f116) written in the fixed format of medieval pharmacy and alchemical-medicine
+recipes, compared with other Currier B paragraphs?
+
+| Test | p | Threshold |
+|---|---:|---:|
+| Opening formula | 0.022 | 0.0167 |
+| Closing formula | 0.14 | 0.0167 |
+| Regularly spaced quantity words | 0.51 | 0.0167 |
+
+**Not supported** at the registered threshold. The opening formula is close: recipe paragraphs repeat their first
+words somewhat more often (tchedy, pol, polaiin, pchedal, pcheor). A bug in paragraph splitting was found after the
+first run (23 paragraphs instead of ~285) and fixed. The test was rerun once, and the void first results are
+recorded in the pre-registration. Details: `output/recipe_format_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with

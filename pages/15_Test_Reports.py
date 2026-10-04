@@ -59,6 +59,7 @@ REPORTS = {
         ("f67r2 crescents as moon phases", "crescent_phase_report.md"),
         ("Sun wheel and Moon wheel read together", "sun_moon_align_report.md"),
         ("Zodiac labels and the 28 lunar mansions", "mansions_report.md"),
+        ("Recipe format in the starred paragraphs", "recipe_format_report.md"),
         ("Calendar cycles in the star paragraphs", "cycles_report.md"),
         ("Glue words vs content words", "glue_words_report.md"),
         ("Slot freedom vs Latin (mixed)", "slots_report.md"),
