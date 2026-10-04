@@ -23,3 +23,13 @@ More screenshots: `uploads/yale_hires/f71*`, `f72*`.
   rings are mostly bare figures, or clothed figures on the Aries-light and Taurus-light pages.
 
 **Conclusion unchanged:** each ring starts on the left, which is where the transcription starts it.
+
+## Scorpio (f73r) and Sagittarius (f73v)
+
+Screenshots: `uploads/yale_hires/f73r_scorpio.png`, `f73v_sagittarius.png`.
+
+- **Figures:** all the women are bare and standing. None are in tubs or clothed, so the tub figures are confined to
+  the earlier signs (Pisces–Taurus).
+- **Scorpio's centre:** a lizard-like creature, not a scorpion.
+- **Sagittarius's centre:** a crossbowman, not a centaur.
+- **Rings:** neither wheel has a drawn divider, and the text appears to start on the left as on the other wheels.
