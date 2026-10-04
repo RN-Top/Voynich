@@ -500,6 +500,13 @@ not over-represented among the star-matching openings (1 of 21; p = 0.94). **Not
 Ring 3 is exactly 17 symbols × 4 repeats (68 symbols; 3 variants). Its rare symbols @169 and @172 recur only in the
 single-letter margin column of f66r. Not a test. Notes: `analyses/f57v_ring_notes.md`.
 
+## Pharmacy part vs plant page, picture check (October 2026)
+
+Using Erin's Yale screenshots, the pharmacy parts carrying the herb–star roots were compared by eye with their
+herbal pages. In all three checkable pairs (otyda and otydary vs f9r tydlo; ydcpody vs f23r pydchdom), the
+drawings show **different plants**. Shared roots are not one-to-one plant names. Exploratory, one reader. Notes:
+`analyses/pharmacy_match_notes.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
