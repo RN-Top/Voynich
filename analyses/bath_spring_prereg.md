@@ -31,3 +31,9 @@ with the spring zodiac labels than with the other zodiac labels.
 
 Spring pages may differ from the others in writing style (as they do in drawing style). With only 462 splits the
 smallest possible p is about 0.002.
+
+## Amendment (before any comparison)
+
+`zodiac_labels()` joins each half-sign onto one page: Aries becomes f70v1 plus f71r, and Taurus becomes f71v plus
+f72r1. That gives 10 sign units, not 11. The spring group is therefore Pisces, Aries and Taurus (3 of 10), and the
+null runs over all C(10,3) = 120 splits. The smallest possible p is 1/120 ≈ 0.008.
