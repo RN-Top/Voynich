@@ -43,3 +43,17 @@ On f68r1 I placed the 29 star labels (`f68r1.8`–`.36`) on their stars and clas
 - One reader (me), not blind: label text is partly visible at the edge of the centre crops.
 - There are at most 4 matching labels, so the test has very little power. A null result does not rule the idea out.
 - f68r3's stars sit inside a large wheel, and many of its labels may not belong to a single star.
+
+## Amendments and deviations (2026-10-04, recorded after the run)
+
+1. **Ochre-filled centres.** Many f68r2 stars have a solid ochre core. I counted these as `plain`, because the
+   f68r1 stars are ochre-washed too and the categories were defined by ink (ring or dot). This was decided while
+   classifying, before the result was computed.
+2. **Classification was not fully blind.** I had to look at gridded tiles of f68r2 to find the stars, so I saw
+   centres and some labels together before making the contact sheet.
+3. **f68r2:** 23 of 24 labels were placed. otoshol (`.27`) could not be located confidently and is excluded; it is
+   not a matching label. The readings of oteool (`.16`) and otoeeo (`.22`) may be swapped. Neither is a matching
+   label.
+4. **f68r3:** most labels belong to wheel sectors or star groups rather than single stars. Only otydg (`.19`) was
+   placed on a single star, so the f68r3 table has one row. Because nothing on f68r3 was marked, the observed count
+   is 0 either way and the p-value cannot change.

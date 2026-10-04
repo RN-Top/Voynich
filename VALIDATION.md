@@ -447,6 +447,15 @@ All 118 herbal pages were classified by flower colour from the images **before**
 colour do not share more vocabulary than other pages (p = 0.74, shuffled within Currier language). **Not
 supported.** Details: `output/flower_colour_report.md`.
 
+## Plant-matching star labels on marked stars, f68r (October 2026)
+
+From Erin's photo of the f68r fold-out, the star labels on f68r1 and f68r2 were placed on their individual stars, and
+each star's centre was classified as hollow ring, dark dot or plain. On f68r1 (the discovery panel), 3 of the 5
+plant-matching labels sat on ringed stars (p = 0.21, noticed after looking). The pre-registered confirmation on
+f68r2 + f68r3 found 0 of 4 on marked stars, against 0.8 expected (p = 1.0). **Not supported.** Pre-registration:
+`analyses/star_centres_prereg.md`. Details: `output/star_centres_report.md`. The label-to-star placements
+(`analyses/star_centres_*.csv`) are a reusable by-product.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
