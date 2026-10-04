@@ -584,6 +584,10 @@ scribe 1 and Currier A. f56r is the only blue-dominated page. Pre-registration: 
 
 Do the opening words of identified plant pages match the plants' medieval names (Latin, Italian, German, Catalan/Occitan, French) under one shared letter mapping, better than when the names are shuffled among pages? Eight plants were agreed by two of three sources (Erin, Claude, published identifications), four of them by all three. The true pairing fits **worse** than the shuffled ones: 0.488 vs 0.516 mean, p = 0.94 (4-plant subset p = 0.72). **Not supported.** The opening words are not those plant names in a simple letter substitution. Pre-registration: `analyses/plant_crib_prereg.md`. Details: `output/plant_crib_report.md`.
 
+## Plant order vs an alphabetical Latin herbal (October 2026)
+
+Do the 8 identified plants appear in alphabetical order of their Latin names, as in herbals like the *Circa instans*? No: Kendall τ = −0.50, p = 0.97. The first four (f2r–f9v) do run in alphabetical order, and the last four (f15v–f42r) run in reverse, which is consistent with the known rebinding but too small to count. **Not supported.** Pre-registration: `analyses/herbal_order_prereg.md`. Details: `output/herbal_order_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
