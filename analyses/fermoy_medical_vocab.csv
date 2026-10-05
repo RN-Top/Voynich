@@ -1,0 +1,43 @@
+term,category,latin_root,meaning,source
+hepate,anatomy,hepate,liver,MS_23_E_29_medical_fragment
+liver,anatomy,hepate,liver,MS_23_E_29_medical_fragment
+organs_of_generation,anatomy,generationis,reproductive organs,MS_23_E_29_medical_fragment
+membrorum_generacivorum,anatomy,membrororum generacivorum,organs of generation,MS_23_E_29_medical_fragment
+dropsy,condition,hydropsia,fluid retention disease,MS_23_O_6
+spleen,condition,splen,spleen ailment,MS_23_O_6
+colic,condition,colica,abdominal pain,MS_23_O_6
+urinary,condition,urinaria,urinary ailments,MS_23_O_6
+piles,condition,hemorrhoides,hemorrhoids,MS_23_O_6
+worms,condition,vermes,parasitic infection,MS_23_O_6
+menstrual_flux,condition,menstrualis,menstrual discharge,MS_23_O_6
+utereal_tumour,condition,uteralis,uterine growths,MS_23_O_6
+arthritica_passio,condition,arthriticus,joint disease,MS_23_O_6
+pox,condition,pox,infectious disease,MS_23_O_6
+leprosy,condition,lepra,leprosy,MS_23_O_6
+herbals,texts,herba,herbal remedies collection,O_Hickey_tradition
+herbs,materials,herba,plant materials,O_Hickey_tradition
+plant_identification,method,planta,identifying plants,O_Hickey_tradition
+properties,classification,proprietas,herb qualities,O_Hickey_tradition
+characteristics,classification,characteristica,distinguishing features,O_Hickey_tradition
+hot,quality,calidus,heat quality,medieval_medicine
+cold,quality,frigidus,cold quality,medieval_medicine
+qualities,classification,qualitas,humoral qualities,medieval_medicine
+symptoms,diagnosis,symptoma,disease signs,medical_method
+causes,diagnosis,causa,disease origins,medical_method
+cures,treatment,curatio,healing methods,medical_method
+remedies,treatment,remedium,therapeutic substances,medical_method
+regimen_sanitatis,texts,regimen,health regulation text,medieval_medicine
+bathing,treatment,balneatio,therapeutic bathing,medieval_medicine
+seasons,classification,tempus,seasonal cycles,medieval_medicine
+recipe,method,receptum,medicinal preparation,O_Hickey_tradition
+probatum_est,formula,probatum est,it is proven,Latin_closing_formula
+complexiones,classification,complexio,bodily conditions,medieval_medicine
+temperamentum,classification,temperamentum,humoral balance,medieval_medicine
+humores,classification,humor,four humors theory,medieval_medicine
+bloodletting,treatment,flebotomia,phlebotomy,medieval_medicine
+purgation,treatment,purgatio,evacuation therapy,medieval_medicine
+cleansing,treatment,mundatio,purification,medieval_medicine
+dietary_guidance,treatment,diaeta,nutritional advice,medieval_medicine
+lifestyle,treatment,regimen,way of life management,medieval_medicine
+therapeutic,classification,therapeuticus,healing-related,medical_method
+flebotomia,treatment,flebotomia,blood-letting procedure,medieval_medicine

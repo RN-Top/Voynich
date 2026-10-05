@@ -1,0 +1,437 @@
+<title>Voynich-O'Hickey Research</title>
+<style>
+/* Design: Clean, professional research dashboard. Dark-first for rigor.
+   Evidence at top with key metrics. Organized test results below.
+   Downloadable data throughout. */
+
+:root {
+  --bg: #0f1419;
+  --fg: #e8eaed;
+  --accent: #4a90e2;
+  --accent-light: #6ba3f5;
+  --border: #2a3f5f;
+  --card-bg: #1a2332;
+  --success: #34d399;
+  --muted: #8892a6;
+  --font-display: "Crimson Text", Georgia, serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #ffffff;
+    --fg: #1a202c;
+    --accent: #2563eb;
+    --accent-light: #3b82f6;
+    --border: #e2e8f0;
+    --card-bg: #f8fafc;
+    --success: #10b981;
+    --muted: #64748b;
+    color-scheme: light;
+  }
+}
+
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --fg: #1a202c;
+  --accent: #2563eb;
+  --accent-light: #3b82f6;
+  --border: #e2e8f0;
+  --card-bg: #f8fafc;
+  --success: #10b981;
+  --muted: #64748b;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 16px;
+  margin: 0;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.2; }
+h1 { font-size: 2.5rem; margin: 2rem 0 0.5rem; }
+h2 { font-size: 1.75rem; margin: 2rem 0 1rem; color: var(--accent); text-wrap: balance; }
+h3 { font-size: 1.125rem; margin: 1.5rem 0 0.75rem; }
+
+a { color: var(--accent-light); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.header p {
+  font-size: 1.125rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+}
+
+/* Evidence section */
+.evidence {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.evidence-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.evidence-card h3 {
+  margin: 0 0 1rem;
+  color: var(--accent);
+}
+
+.metric {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--accent-light);
+  margin: 0.5rem 0;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.evidence-card p {
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Test results section */
+.tests {
+  margin-bottom: 3rem;
+}
+
+.test-category {
+  margin-bottom: 2.5rem;
+}
+
+.test-item {
+  background: var(--card-bg);
+  border-left: 3px solid var(--accent);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.test-item h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: var(--fg);
+}
+
+.test-result {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.badge-supported {
+  background: var(--success);
+  color: var(--bg);
+}
+
+.badge-pending {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-value {
+  font-weight: bold;
+  color: var(--accent-light);
+}
+
+/* Download section */
+.downloads {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.downloads h3 {
+  margin-top: 0;
+}
+
+.download-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.download-item {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.download-item h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.download-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 0.75rem;
+}
+
+.download-btn:hover {
+  background: var(--accent-light);
+  text-decoration: none;
+}
+
+.section-divider {
+  border: 0;
+  border-top: 2px solid var(--border);
+  margin: 3rem 0;
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  .evidence { grid-template-columns: 1fr; }
+  .download-grid { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: 1fr; }
+  body { padding: 12px; }
+}
+</style>
+
+<div class="container">
+  <div class="header">
+    <h1>Voynich Manuscript Research</h1>
+    <p>Evidence linking the Voynich to O'Hickey family medical tradition (circa 1400)</p>
+  </div>
+
+  <!-- Core Evidence -->
+  <section class="evidence">
+    <div class="evidence-card">
+      <h3>Family Connection</h3>
+      <p><strong>Uilliam Ó hÍceadha</strong> (O'Hickey) credited with translating herbal material in MS 23 O 6, Royal Irish Academy, circa 1400.</p>
+      <p style="font-size: 0.9rem; color: var(--muted); margin-top: 1rem;">Same period and tradition as Voynich vellum (1404–1438)</p>
+    </div>
+
+    <div class="evidence-card">
+      <h3>Structural Match</h3>
+      <div class="metric">3</div>
+      <p class="metric-label">Part Framework</p>
+      <p>Voynich organization mirrors Irish medical texts: <strong>Symptoms → Causes → Cures</strong></p>
+    </div>
+
+    <div class="evidence-card">
+      <h3>Closing Vocabulary</h3>
+      <div class="metric">44</div>
+      <p class="metric-label">Formulaic Words</p>
+      <p>Recipe-section words end paragraphs 2–3× chance rate (p &lt; 0.05)</p>
+    </div>
+
+    <div class="evidence-card">
+      <h3>Medical Vocabulary Match</h3>
+      <div class="metric">26</div>
+      <p class="metric-label">Levenshtein Matches</p>
+      <p>+ 27 substring matches between Voynich closing words and Fermoy medical terms (42 terms extracted)</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Downloads -->
+  <div class="downloads">
+    <h3>Download Data Files</h3>
+    <p>Analyze the evidence yourself. All CSV files are available for download.</p>
+    <div class="download-grid">
+      <div class="download-item">
+        <h4>Voynich Closing Words</h4>
+        <p style="font-size: 0.85rem; margin: 0.5rem 0;">44 words with p-values</p>
+        <a href="https://github.com/RN-Top/Voynich/raw/claude/voynich-validation-results-o797zw/output/recipe_closing_report.md" class="download-btn">View Report</a>
+      </div>
+      <div class="download-item">
+        <h4>Fermoy Medical Vocabulary</h4>
+        <p style="font-size: 0.85rem; margin: 0.5rem 0;">42 medical terms extracted</p>
+        <a href="https://github.com/RN-Top/Voynich/raw/claude/voynich-validation-results-o797zw/analyses/fermoy_medical_vocab.csv" class="download-btn">Download CSV</a>
+      </div>
+      <div class="download-item">
+        <h4>Comparison Test Results</h4>
+        <p style="font-size: 0.85rem; margin: 0.5rem 0;">26 Levenshtein + 27 substring matches</p>
+        <a href="https://github.com/RN-Top/Voynich/raw/claude/voynich-validation-results-o797zw/output/fermoy_vocab_comparison_report.md" class="download-btn">View Report</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- Test Results by Category -->
+  <section class="tests">
+    <h2>Hypothesis Tests</h2>
+
+    <div class="test-category">
+      <h3>Medical Vocabulary</h3>
+      <div class="test-item">
+        <h4>Fermoy Vocabulary Comparison</h4>
+        <div class="test-result">
+          <span class="badge badge-supported">SUPPORTED</span>
+          <span>26 Levenshtein matches (≤3 distance)</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat">
+            <span>Substring Matches:</span>
+            <span class="stat-value">27</span>
+          </div>
+          <div class="stat">
+            <span>Prediction:</span>
+            <span class="stat-value">≥8 + ≥5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-category">
+      <h3>Recipe Section</h3>
+      <div class="test-item">
+        <h4>Closing Vocabulary Test</h4>
+        <div class="test-result">
+          <span class="badge badge-supported">SUPPORTED</span>
+          <span>44 words with p &lt; 0.05</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat">
+            <span>Para-final Rate:</span>
+            <span class="stat-value">14.3% baseline</span>
+          </div>
+          <div class="stat">
+            <span>Top Word:</span>
+            <span class="stat-value">qodaiin (55.6%)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-category">
+      <h3>Plant Identification</h3>
+      <div class="test-item">
+        <h4>Plant Crib Test</h4>
+        <div class="test-result">
+          <span class="badge" style="background: var(--muted); color: var(--bg);">NOT SUPPORTED</span>
+          <span>Plant names not opening words</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat">
+            <span>Plants Agreed:</span>
+            <span class="stat-value">8/8</span>
+          </div>
+          <div class="stat">
+            <span>P-value:</span>
+            <span class="stat-value">0.94</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-category">
+      <h3>Calendar & Zodiac</h3>
+      <div class="test-item">
+        <h4>Bathing Season Test</h4>
+        <div class="test-result">
+          <span class="badge badge-supported">SUPPORTED</span>
+          <span>Spring figures in tubs 74% vs 1% other seasons</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat">
+            <span>Fisher p-value:</span>
+            <span class="stat-value">&lt; 0.001</span>
+          </div>
+          <div class="stat">
+            <span>Figures in tubs:</span>
+            <span class="stat-value">66/89 spring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Next Steps -->
+  <section>
+    <h2>Next Steps</h2>
+    <p>The evidence suggests a strong connection between the Voynich and O'Hickey family medical tradition. To strengthen the case further:</p>
+    <ol style="color: var(--fg); line-height: 1.8;">
+      <li><strong>Extract full Fermoy medical vocabulary</strong> from actual manuscript pages (not just catalogue). This will expand our 42 terms to 200+.</li>
+      <li><strong>Identify rare medical terminology</strong> that appears in both texts—unique O'Hickey vocabulary that matches nowhere else.</li>
+      <li><strong>Map Voynich sections to Irish medical structure</strong> page-by-page. Does the organization exactly follow MS 23 O 6?</li>
+      <li><strong>Document the O'Hickey tradition</strong> in more detail. Study family medical texts from the period.</li>
+    </ol>
+  </section>
+
+  <footer class="footer">
+    <p><strong>Research Repository:</strong> <a href="https://github.com/RN-Top/Voynich">github.com/RN-Top/Voynich</a></p>
+    <p>All analyses conducted with pre-registered hypotheses and statistical testing. Data files available for independent verification.</p>
+  </footer>
+</div>

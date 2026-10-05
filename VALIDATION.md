@@ -568,6 +568,38 @@ as process words like "take, distil, water" would be? They are slightly *more cl
 (dispersion 0.92 vs 0.95, p = 0.94). Only `lk` comes close to an everywhere word (in 50% of paragraphs). **Not
 supported.** Pre-registration: `analyses/process_words_prereg.md`. Details: `output/process_words_report.md`.
 
+## Measured paint colours on the plant pages (October 2026)
+
+Paint colours were measured by computer from the full-resolution Yale images for 128 plant pages: the share of red,
+ochre/tan, green and blue paint on each page. Pages with similar colour profiles do not have more similar text
+(ρ = +0.002, p = 0.41). **Not supported.**
+
+The first run's paint detector failed (it counted the yellow vellum as ochre). That run is void and recorded in the
+pre-registration. The detector was rebuilt in Lab colour space, calibrated on 5 pages, and the test rerun once.
+Exploratory: green is 70% of all paint. A red-heavy group (15 pages) and an ochre/brown-leaf group are almost all
+scribe 1 and Currier A. f56r is the only blue-dominated page. Pre-registration: `analyses/paint_prereg.md`. Details:
+`output/paint_report.md`. Per-page profiles: `analyses/paint_profiles.csv`.
+
+## Plant-name crib test (October 2026)
+
+Do the opening words of identified plant pages match the plants' medieval names (Latin, Italian, German, Catalan/Occitan, French) under one shared letter mapping, better than when the names are shuffled among pages? Eight plants were agreed by two of three sources (Erin, Claude, published identifications), four of them by all three. The true pairing fits **worse** than the shuffled ones: 0.488 vs 0.516 mean, p = 0.94 (4-plant subset p = 0.72). **Not supported.** The opening words are not those plant names in a simple letter substitution. Pre-registration: `analyses/plant_crib_prereg.md`. Details: `output/plant_crib_report.md`.
+
+## Plant order vs an alphabetical Latin herbal (October 2026)
+
+Do the 8 identified plants appear in alphabetical order of their Latin names, as in herbals like the *Circa instans*? No: Kendall τ = −0.50, p = 0.97. The first four (f2r–f9v) do run in alphabetical order, and the last four (f15v–f42r) run in reverse, which is consistent with the known rebinding but too small to count. **Not supported.** Pre-registration: `analyses/herbal_order_prereg.md`. Details: `output/herbal_order_report.md`.
+
+## Women in tubs by season (October 2026)
+
+Counting by eye on all 12 zodiac wheels: 66 of 89 figures (74%) on the March–May pages (Pisces, Aries, Taurus) stand in tubs or barrels, against 2 of 210 (1%) on the June–December pages. Tubs stop after early June. This fits the medieval *Regimen sanitatis* advice to bathe and cleanse in spring. **Caveats:** the pattern was seen before the full count, so this describes the pages rather than independently confirming anything; the spring pages are also a distinct coloured group, so the cause may be drawing style rather than meaning. Pre-registration: `analyses/tub_season_prereg.md`. Details: `output/tub_season_report.md`.
+
+## Bath text vs spring zodiac labels (October 2026)
+
+Do spring zodiac labels (the tub pages) share roots with the bath-section text more than other zodiac labels? Barely: 59% vs 56%, p = 0.41 over all 120 sign splits. **Not supported.** The spring tubs are a picture pattern that the text does not echo. Pre-registration: `analyses/bath_spring_prereg.md`. Details: `output/bath_spring_report.md`.
+
+## Recipe closing vocabulary (October 2026)
+
+Do recipe-section paragraphs end with a set of formulaic words, like medieval recipes? Yes: **44 words** appear at paragraph ends far more often than the 14% baseline, with p < 0.05. Top examples: qodaiin 55.6% (p=0.0001), olcheey 71.4%, ychedy 71.4%, okeody 80%. This suggests the Voynich recipes use a closing vocabulary like *probatum est* in Latin formulas. The word "oror" (60% para-final, p=0.023) is one of them, and appears on f116v next to a German recipe instruction "so nim…" in the same position it closes recipes in the main text. **Supported.** Pre-registration: `analyses/recipe_closing_words_prereg.md`. Details: `output/recipe_closing_report.md`.
+
 ## Implementation problems found and fixed
 
 1. **The live app loaded zero tokens from the corpus.** Every IVTFF text line starts with
