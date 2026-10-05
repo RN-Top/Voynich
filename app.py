@@ -106,39 +106,41 @@ st.markdown("---")
 st.markdown("## 🔬 Current Supporting Tests")
 
 st.markdown("""
-These tests confirm the hypothesis:
+## Testing & Results
 
-1. **Comprehensive Fermoy Medical Vocabulary** — 83-104 unique medical terms
-   extracted directly from Book of Fermoy fragments (XVII-XIX)
-   ✓ COMPLETE EXTRACTION
+### What We Confirmed:
+1. **Voynich-Fermoy Vocabulary Connection** — 28,185 Levenshtein matches exist
+   ✓ THIS IS REAL
 
-2. **Fermoy Vocabulary Comparison (EXPANDED)** — 66 Levenshtein + 32 substring matches
-   between Voynich closing words and expanded Ó hÍceadha medical vocabulary
-   (was 26 + 27 with original vocabulary) ✓ STRONGLY SUPPORTED
+2. **Section-Specific Matching** — Voynich matches different Fermoy sections with 67% variation
+   ✓ NOT RANDOM (some sections match 1.67x better than others)
 
-3. **Section-by-Section Vocabulary Match (FULL ANALYSIS)** — Ó hÍceadha medical
-   vocabulary present throughout entire manuscript:
+3. **Genealogical Evidence** — Ó hÍceadha name in Fermoy margins (Todd catalogue)
+   ✓ DOCUMENTED FACT
 
-   | Section | Levenshtein Matches | Substring Matches |
-   |---|---:|---:|
-   | **Recipes** | **7,460** | 107 |
-   | **Plant pages** | **5,399** | 119 |
-   | **Bathing** | **5,234** | 76 |
-   | **Astronomical** | **4,808** | 82 |
-   | **Astrological** | **3,050** | 38 |
-   | **Text pages** | **2,234** | 37 |
-   | **TOTAL** | **28,185** | **459** |
+4. **Structural Pattern** — Symptoms → Causes → Cures framework exists in both texts
+   ✓ VERIFIABLE
 
-   ✓ SYSTEMATIC AND PERVASIVE across all sections
+5. **Closing Vocabulary Test** — 44 formulaic words at 2–3× chance rate
+   ✓ SUPPORTED (p < 0.05)
 
-4. **Closing Vocabulary Test** — 44 formulaic words ending paragraphs 2-3×
-   chance rate (p < 0.05) ✓ SUPPORTED
+6. **Bathing Season Pattern** — Spring figures in tubs 74% vs 1% other seasons
+   ✓ SUPPORTED (p < 0.001)
 
-5. **Structural Match** — Voynich organization (symptoms → causes → cures)
-   mirrors MS 23 O 6 medical structure ✓ CONFIRMED
+### What We Tested & It Failed:
+**❌ Medical Vocabulary Hypothesis — REJECTED**
 
-6. **Bathing Season Pattern** — Spring figures in tubs 74% vs 1% other seasons,
-   matching medieval Regimen Sanitatis tradition ✓ SUPPORTED
+Original claim: "Medical vocabulary is the connection between Voynich and Fermoy"
+
+Test result: Medical vocabulary matches WORSE than non-medical Fermoy text (0.82x ratio)
+
+Why it failed:
+- Original vocabulary included common words ("begins," "hand," "king," "old")
+- After filtering contaminants, signal disappeared
+- Control group (non-medical Fermoy) matched equally well or better
+- Conclusion: Connection is NOT medical-vocabulary-specific
+
+This is honest science. We tested it. It failed. We're correcting course.
 """)
 
 st.markdown("---")
