@@ -54,6 +54,7 @@ Every test below had its rules written down and committed **before** it was firs
 
 # Current supporting tests only
 CURRENT_TESTS = [
+    ("✓ NULL MODEL BASELINE (Statistical Validity Check)", "null_model_report.md"),
     ("🧬 Comprehensive Fermoy Medical Vocabulary (83-104 Terms)", "voynich_section_vocabulary_report.md"),
     ("📊 Section-by-Section Analysis (28,185 Total Matches)", "voynich_section_vocabulary_report.md"),
     ("🔗 Fermoy Vocabulary Comparison (66 Levenshtein + 32 substring)", "fermoy_vocab_comparison_report.md"),
