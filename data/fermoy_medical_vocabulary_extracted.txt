@@ -1,0 +1,118 @@
+# Comprehensive Medical Vocabulary Extracted from Book of Fermoy
+# Total terms: 115
+
+ache
+and
+as
+bandage
+belly
+bleed
+blood
+bone
+brain
+bruise
+capaill
+church
+corpore
+could cure
+cure
+decoction
+disease
+doctor
+dosage
+drink
+ear
+eye
+fever
+fiadh
+flesh
+foot
+for
+formula
+fragment
+fragments
+francis
+galair
+galar
+generacionibus
+hand
+head
+healer
+heart
+hepate
+herb
+hereditary
+hickey
+hickeys
+illness
+in
+inflammation
+infusion
+is
+it
+leaf
+leaves
+leigheas
+liver
+liver and
+lung
+lus
+medical
+medicin
+membrorurn
+ms
+mss
+name
+no
+nose
+obscure
+of
+of a
+of fermoy
+of god
+of medical
+of muiris
+of o
+of one
+of some
+of the
+of two
+ointment
+on
+or
+organ
+othar
+pain
+part
+physician
+physicians
+plant
+planta
+potion
+poultice
+prescription
+purge
+remedy
+root
+salve
+seed
+seneccha
+sentence
+sick
+some
+stomach
+surgical
+swelling
+that
+the
+this
+throat
+tincture
+tinn
+to
+treatise
+volume
+weakness
+were
+with
+wound
