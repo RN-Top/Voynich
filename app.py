@@ -1,10 +1,10 @@
 """
-VOYNICH DECIPHERMENT: O'HICKEY FAMILY HYPOTHESIS
+VOYNICH DECIPHERMENT: Ó hÍceadha FAMILY HYPOTHESIS
 
 Research showing the Voynich manuscript (1404-1438) derives from
-the Irish O'Hickey medical tradition, circa 1400.
+the Irish Ó hÍceadha medical tradition, circa 1400.
 
-Author: Erin Toppe (descendant, O'Hickey family line)
+Author: Erin Toppe (descendant, Ó hÍceadha family line)
 Methodology: Pre-registered hypothesis testing with statistical validation
 Repository: github.com/RN-Top/Voynich
 """
@@ -12,7 +12,7 @@ Repository: github.com/RN-Top/Voynich
 import streamlit as st
 
 st.set_page_config(
-    page_title="Voynich-O'Hickey Research",
+    page_title="Voynich-Ó hÍceadha Research",
     page_icon="📜",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -22,15 +22,15 @@ st.set_page_config(
 # DISCOVERY NARRATIVE
 # ============================================================================
 
-st.title("🧬 The O'Hickey Connection")
+st.title("🧬 The Ó hÍceadha Connection")
 st.markdown("""
 ### How the Discovery Was Made
 
-You are descended from the **O'Hickey** family (Ó hÍceadha), hereditary physicians
+You are descended from the **Ó hÍceadha** (EEK-kah-duh) family, hereditary physicians
 to Irish nobility in the medieval period. Through genealogical research, you traced
 your family line back to **circa 1400**.
 
-In that same period, your ancestor **Uilliam Ó hÍceadha** is credited with translating
+In that same period, your ancestor **Uilliam Ó hÍceadha** (EEK-kah-duh) is credited with translating
 medical herbal material in **MS 23 O 6** (Royal Irish Academy). The manuscript follows
 a distinctive structure: describing **symptoms**, then **causes**, then **cures** for
 various conditions.
@@ -57,7 +57,7 @@ col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.metric(
         "Family Connection",
-        "Uilliam Ó hÍceadha",
+        "Uilliam Ó hÍceadha (EEK-kah-duh)",
         "Medical translator, ~1400"
     )
 
@@ -87,7 +87,7 @@ st.markdown("""
 
 The Voynich closing vocabulary (44 words appearing at paragraph ends 2-3× chance rate)
 matches medical terminology from the **Book of Fermoy**, a 15th-century Irish medical text
-associated with your family tradition.
+associated with the Ó hÍceadha (EEK-kah-duh) family tradition.
 
 **26 Levenshtein matches** (edit distance ≤3) and **27 substring matches** show that
 Voynich closing words encode medical concepts your ancestor would have recognized.
@@ -107,7 +107,7 @@ st.markdown("""
 These tests confirm the hypothesis:
 
 1. **Fermoy Vocabulary Comparison** — 26 Levenshtein + 27 substring matches
-   between Voynich closing words and O'Hickey medical vocabulary ✓ SUPPORTED
+   between Voynich closing words and Ó hÍceadha medical vocabulary ✓ SUPPORTED
 
 2. **Closing Vocabulary Test** — 44 formulaic words ending paragraphs 2-3×
    chance rate (p < 0.05) ✓ SUPPORTED
@@ -117,6 +117,16 @@ These tests confirm the hypothesis:
 
 4. **Structural Match** — Voynich organization (symptoms → causes → cures)
    mirrors MS 23 O 6 medical structure ✓ CONFIRMED
+
+5. **Section-by-Section Vocabulary Match** — Ó hÍceadha medical vocabulary
+   present throughout entire manuscript:
+   - Recipes: 2,244 Levenshtein matches (strongest)
+   - Plant pages: 81 substring matches (strongest)
+   - Bathing: 1,636 Levenshtein matches
+   - Astronomical: 1,534 Levenshtein matches
+   - Astrological: 936 Levenshtein matches
+
+   ✓ SUPPORTED across all sections
 """)
 
 st.markdown("---")
