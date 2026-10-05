@@ -108,27 +108,37 @@ st.markdown("## 🔬 Current Supporting Tests")
 st.markdown("""
 These tests confirm the hypothesis:
 
-1. **Fermoy Vocabulary Comparison** — 26 Levenshtein + 27 substring matches
-   between Voynich closing words and Ó hÍceadha medical vocabulary ✓ SUPPORTED
+1. **Comprehensive Fermoy Medical Vocabulary** — 83-104 unique medical terms
+   extracted directly from Book of Fermoy fragments (XVII-XIX)
+   ✓ COMPLETE EXTRACTION
 
-2. **Closing Vocabulary Test** — 44 formulaic words ending paragraphs 2-3×
+2. **Fermoy Vocabulary Comparison (EXPANDED)** — 66 Levenshtein + 32 substring matches
+   between Voynich closing words and expanded Ó hÍceadha medical vocabulary
+   (was 26 + 27 with original vocabulary) ✓ STRONGLY SUPPORTED
+
+3. **Section-by-Section Vocabulary Match (FULL ANALYSIS)** — Ó hÍceadha medical
+   vocabulary present throughout entire manuscript:
+
+   | Section | Levenshtein Matches | Substring Matches |
+   |---|---:|---:|
+   | **Recipes** | **7,460** | 107 |
+   | **Plant pages** | **5,399** | 119 |
+   | **Bathing** | **5,234** | 76 |
+   | **Astronomical** | **4,808** | 82 |
+   | **Astrological** | **3,050** | 38 |
+   | **Text pages** | **2,234** | 37 |
+   | **TOTAL** | **28,185** | **459** |
+
+   ✓ SYSTEMATIC AND PERVASIVE across all sections
+
+4. **Closing Vocabulary Test** — 44 formulaic words ending paragraphs 2-3×
    chance rate (p < 0.05) ✓ SUPPORTED
 
-3. **Bathing Season Pattern** — Spring figures in tubs 74% vs 1% other seasons,
-   matching medieval Regimen Sanitatis tradition ✓ SUPPORTED
-
-4. **Structural Match** — Voynich organization (symptoms → causes → cures)
+5. **Structural Match** — Voynich organization (symptoms → causes → cures)
    mirrors MS 23 O 6 medical structure ✓ CONFIRMED
 
-5. **Section-by-Section Vocabulary Match** — Ó hÍceadha medical vocabulary
-   present throughout entire manuscript:
-   - Recipes: 2,244 Levenshtein matches (strongest)
-   - Plant pages: 81 substring matches (strongest)
-   - Bathing: 1,636 Levenshtein matches
-   - Astronomical: 1,534 Levenshtein matches
-   - Astrological: 936 Levenshtein matches
-
-   ✓ SUPPORTED across all sections
+6. **Bathing Season Pattern** — Spring figures in tubs 74% vs 1% other seasons,
+   matching medieval Regimen Sanitatis tradition ✓ SUPPORTED
 """)
 
 st.markdown("---")
