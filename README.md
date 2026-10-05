@@ -1,5 +1,5 @@
-# The Rhazes Origin Investigation
-## Tracing a 9th-Century Persian Physician's Framework Across Medieval Europe
+# The Origin Investigation
+## Tracing a Systematic Medical Framework: Its Sources, Its Systematizer, and Its Spread
 
 **Research:** Erin Toppe  
 **Repository:** github.com/RN-Top/Voynich  
@@ -7,23 +7,22 @@
 
 ---
 
-## The Question
+## The Central Question
 
-**Where did the systematic framework used in both Fermoy and Voynich manuscripts come from?**
+**Where did the systematic medical framework (Condition → Cause → Cure) come from?**
 
-**The Answer: RHAZES (Al-Razi, 865-925 CE)**
+**We know it appears in:**
+- ✓ Rhazes' texts (9th century, Baghdad)
+- ✓ Fermoy manuscript (~1400, Irish adaptation)
+- ✓ Voynich manuscript (~1404-1438, cipher adaptation)
 
-A Persian physician created a revolutionary medical framework: **Condition → Cause → Cure**
+**But we DON'T know:**
+- ✗ Did Rhazes ORIGINATE this framework? Or did he SYSTEMATIZE an older tradition?
+- ✗ What came BEFORE Rhazes? What were his sources?
+- ✗ Why did HIS systematization (not others') become the medieval standard?
+- ✗ How exactly did it spread from Baghdad to Ireland to cipher texts?
 
-This framework:
-- ✓ Was taught at Baghdad medical school
-- ✓ Translated to Latin (12th century)
-- ✓ Spread across European universities
-- ✓ Adapted to regional languages
-- ✓ Appears in Fermoy manuscript (Irish adaptation)
-- ✓ Appears in Voynich manuscript (cipher adaptation)
-
-**This is not genealogy. This is proving a medieval knowledge empire.**
+**This investigation traces BACKWARD and FORWARD to find the real origin.**
 
 ---
 
