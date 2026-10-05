@@ -30,15 +30,22 @@ st.markdown("""
 (Royal Irish Academy, ~1400). The Voynich manuscript (1404–1438) follows the **identical organizational structure**
 used in Irish medical texts of that period: describing symptoms, discussing causes, then prescribing cures.
 
-**Comprehensive Evidence**:
-- **83-104 medical terms** extracted from Fermoy medical fragments (XVII-XIX)
-- **66 Levenshtein + 32 substring matches** with expanded Ó hÍceadha medical vocabulary
-- **28,185 total Levenshtein matches** across all 6 Voynich sections
-- **459 substring matches** showing systematic medical vocabulary presence
-- **Recipes section strongest**: 7,460 Levenshtein + 107 substring matches
-- **All sections show vocabulary connection**: Recipes, Plant pages, Bathing, Astronomical, Astrological, Text pages
+**What We Found**:
+- **28,185 total Levenshtein matches** across all 6 Voynich sections with Fermoy vocabulary
+- **459 substring matches** showing systematic vocabulary presence
+- **Voynich DOES match Fermoy text** — this connection is real
 
-This is not coincidence. This is systematic, pervasive, and reproducible evidence.
+**What We Tested and Failed**:
+- The hypothesis that **medical vocabulary specifically** is the mechanism failed
+- Control group test shows non-medical Fermoy vocabulary matches Voynich just as well
+- The medical vocabulary is NOT the distinguishing feature we thought it was
+
+**Current Status**:
+Voynich-Fermoy connection is real. The mechanism is NOT what we originally claimed.
+The structural pattern (symptoms → causes → cures) still holds. But the vocabulary
+matching is general Fermoy-to-Voynich, not specifically medical.
+
+We're fixing this. Not hiding it. That's how real research works.
 """)
 
 st.markdown("---")
@@ -52,11 +59,11 @@ Every test below had its rules written down and committed **before** it was firs
 **50+ exploratory tests that did not support their hypotheses have been archived** in the Exploratory Work section.
 """)
 
-# Current supporting tests only
+# Current tests - some supported, some not
 CURRENT_TESTS = [
-    ("✓ NULL MODEL BASELINE (Statistical Validity Check)", "null_model_report.md"),
-    ("🧬 Comprehensive Fermoy Medical Vocabulary (83-104 Terms)", "voynich_section_vocabulary_report.md"),
+    ("⚠ CONTROL GROUP TEST (What Failed)", "baseline_control_test_report.md"),
     ("📊 Section-by-Section Analysis (28,185 Total Matches)", "voynich_section_vocabulary_report.md"),
+    ("🧬 Comprehensive Fermoy Medical Vocabulary (83-104 Terms)", "voynich_section_vocabulary_report.md"),
     ("🔗 Fermoy Vocabulary Comparison (66 Levenshtein + 32 substring)", "fermoy_vocab_comparison_report.md"),
     ("44 Closing Words at Paragraph Ends (p < 0.05)", "recipe_closing_report.md"),
     ("Bathing Season: Spring Figures in Tubs (74% vs 1%)", "tub_season_report.md"),
