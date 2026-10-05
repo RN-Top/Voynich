@@ -7,6 +7,8 @@ the Irish Ó hÍceadha medical tradition, circa 1400.
 Author: Erin Toppe (descendant, Ó hÍceadha family line)
 Methodology: Pre-registered hypothesis testing with statistical validation
 Repository: github.com/RN-Top/Voynich
+
+Live on Streamlit Cloud: https://voynich.streamlit.app
 """
 
 import streamlit as st
