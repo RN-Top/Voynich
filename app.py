@@ -140,15 +140,15 @@ st.markdown("## 📚 Full Research")
 col_reports, col_archive, col_technical = st.columns(3)
 
 with col_reports:
-    st.page_link("pages/15_Test_Reports.py", label="📋 Current Tests")
+    st.page_link("pages/15_Test_Reports.py", label="📋 Current Tests", icon="📋")
     st.caption("Supporting evidence and active research")
 
 with col_archive:
-    st.page_link("pages/0_Archive.py", label="🗂️ Exploratory Work")
+    st.page_link("pages/0_Archive.py", label="🗂️ Exploratory Work", icon="🗂️")
     st.caption("50+ tests from earlier investigation")
 
 with col_technical:
-    st.page_link("pages/99_Technical.py", label="⚙️ Technical Workbench")
+    st.page_link("pages/99_Technical.py", label="⚙️ Technical Workbench", icon="⚙️")
     st.caption("Raw corpus analysis and validation")
 
 st.markdown("---")
