@@ -24,30 +24,35 @@ st.set_page_config(
 # CENTRAL QUESTION
 # ============================================================================
 
-st.title("🔍 The Rhazes Origin Investigation")
+st.title("🔍 The Origin Investigation")
 st.markdown("""
 ### The Central Question
 
 **Where did the systematic framework in Fermoy and Voynich manuscripts come from?**
 
-### The Answer: RHAZES
+### What We Know
 
-**Al-Razi (865–925 CE)**, a Persian physician at Baghdad medical school, created a revolutionary medical framework:
+A framework appears in THREE places:
+- **Rhazes' texts** (9th century, Baghdad): Condition → Cause → Cure
+- **Fermoy manuscript** (~1400, Ireland): Identical framework (75% match)
+- **Voynich manuscript** (~1404-1438, unknown): Identical framework (100% structured)
 
-### Condition → Cause → Cure
+### What We DON'T Know
 
-This framework was:
-- ✓ Taught systematically at Baghdad
-- ✓ Translated to Latin (12th century)
-- ✓ Spread across European universities (Salerno, Montpellier, Prague, Kraków, Oxford)
-- ✓ Became the standard medieval medical curriculum
-- ✓ Adapted to regional languages (Irish, Spanish, German, Czech, cipher)
-- ✓ **Still visible in Fermoy manuscript** (Irish adaptation)
-- ✓ **Still visible in Voynich manuscript** (cipher adaptation)
+- ✗ Did Rhazes **originate** this framework?
+- ✗ Or did he **systematize** an older medical tradition?
+- ✗ What were his sources? Who trained him?
+- ✗ Why did HIS systematization become the medieval standard (not others')?
+- ✗ How exactly did it reach Ireland and Voynich?
 
-**This is not genealogy. This is proving a medieval knowledge empire.**
+### How We're Investigating
 
-How did we discover it? Through family history. But the real story? **It's about Rhazes spreading across medieval Europe.**
+**We're tracing BACKWARD and FORWARD:**
+1. **BACKWARD** - What came before Rhazes? Was he the originator or systematizer?
+2. **UNDERSTAND** - Why did his approach become standard? What made him different?
+3. **FORWARD** - How did his work spread? How did it reach Fermoy and Voynich?
+
+**This is honest investigation. No predetermined answer. Follow the evidence.**
 """)
 
 st.markdown("---")
@@ -56,51 +61,58 @@ st.markdown("---")
 # CORE EVIDENCE
 # ============================================================================
 
-st.markdown("## 📊 Proof Summary")
+st.markdown("## 📊 What We Have")
 
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     st.metric(
-        "Rhazes Originals",
-        "7 Manuscripts",
-        "Framework DETECTED"
+        "Rhazes Texts",
+        "7 Digitized",
+        "Framework: YES"
     )
 
 with col2:
     st.metric(
-        "Fermoy Match",
-        "75%",
+        "Fermoy",
+        "75% Match",
         "Condition→Cause→Cure"
     )
 
 with col3:
     st.metric(
-        "Voynich Match",
-        "100%",
-        "Identical structure"
+        "Voynich",
+        "100% Structured",
+        "Same framework"
     )
 
 with col4:
     st.metric(
-        "Medieval Universities",
-        "6 Documented",
-        "Prague, Kraków, Salerno..."
+        "The Question",
+        "UNKNOWN",
+        "Origin or systematizer?"
     )
 
 st.markdown("""
-### The Connection
+### The Framework Pattern
 
-**Rhazes' framework (Condition → Cause → Cure)** appears in:
-1. **Rhazes' original Latin texts** - Framework STRONG (detected in all 7 manuscripts)
+**Same organizational logic in all three:**
+1. **Rhazes' texts** - Condition → Cause → Cure framework present
 2. **Fermoy manuscript** - Irish adaptation, 75% framework match
-3. **Voynich manuscript** - Cipher adaptation, 100% structured format
+3. **Voynich manuscript** - Cipher adaptation, 100% structured
 
-**Same framework. Different languages. Different scripts.**
+**Identical framework. Different languages. Different scripts.**
 
-This proves all three come from the same source: **RHAZES' teaching system.**
+### The Investigation
 
-Not coincidence. **Proof of a documented medieval knowledge empire.**
+This pattern suggests they come from a common source. But **WHO is that source?**
+- Was it Rhazes (originator)?
+- Was it someone before Rhazes (who he systematized)?
+- Was it a gradual evolution Rhazes formalized?
+
+**We don't know yet. That's what we're investigating.**
+
+See: INVESTIGATION_STRUCTURE.md for the three investigation paths (Backward, Rhazes, Forward)
 """)
 
 st.markdown("---")
