@@ -1,27 +1,43 @@
-term,category,latin_root,meaning,source,notes
-hepate,anatomy,hepate,liver,medical_fragment,liver treatise fragment mentioned in catalog
-membrororum_generacivorum,anatomy,membrororum generacivorum,organs of generation,medical_fragment,treatise fragment described in catalog
-virtus_naturalis,properties,virtus naturalis,natural power/virtue,medical_fragment,from liver treatise
-qualitates,properties,qualitates,qualities,medical_fragment,medical classification system
-operacionibus,methods,operacionibus,operations/procedures,medical_fragment,medical operations
-temperamentum,properties,temperamentum,temperament,medieval_medicine,hot/cold classification used in Irish medicine
-humores,properties,humores,humors,medieval_medicine,four humors theory
-complexiones,properties,complexiones,complexions,medical_fragment,bodily conditions
-dropsy,symptoms,dolor hydropicus,fluid retention,MS_23_O_6,Irish medical text condition
-spleen,symptoms,splen,spleen ailments,MS_23_O_6,Irish medical text condition
-colic,symptoms,colica,abdominal pain,MS_23_O_6,Irish medical text condition
-urinary,symptoms,urina,urinary ailments,MS_23_O_6,Irish medical text condition
-piles,symptoms,piles,hemorrhoids,MS_23_O_6,Irish medical text condition
-worms,symptoms,vermes,parasitic infection,MS_23_O_6,Irish medical text condition
-menstrual,symptoms,menstrua,menstrual flux,MS_23_O_6,Irish medical text condition
-utereal,symptoms,uterus,uterine tumors,MS_23_O_6,Irish medical text condition
-arthritica,symptoms,arthritica passio,arthritis,MS_23_O_6,Irish medical text condition
-pox,symptoms,pox,pox/syphilis,MS_23_O_6,Irish medical text condition
-leprosy,symptoms,lepra,leprosy,MS_23_O_6,Irish medical text condition
-herbals,texts,herba,herbal treatments,O_Hickey_tradition,medical knowledge type
-remedies,methods,remedium,cures/treatments,O_Hickey_tradition,healing methods
-regimen,methods,regimen,dietary/lifestyle guidance,medieval_medicine,health management
-sanitatis,methods,sanitatis,health rules,medieval_medicine,wellness practices
-bathings,methods,balneatio,bathing treatments,medieval_medicine,therapeutic bathing
-cleansing,methods,purgatio,purgation/cleansing,medieval_medicine,therapeutic cleansing
-bloodletting,methods,flebotomia,phlebotomy,medieval_medicine,blood-letting therapy
+term,category,latin_root,meaning,source
+hepate,anatomy,hepate,liver,MS_23_E_29_medical_fragment
+liver,anatomy,hepate,liver,MS_23_E_29_medical_fragment
+organs_of_generation,anatomy,generationis,reproductive organs,MS_23_E_29_medical_fragment
+membrorum_generacivorum,anatomy,membrororum generacivorum,organs of generation,MS_23_E_29_medical_fragment
+dropsy,condition,hydropsia,fluid retention disease,MS_23_O_6
+spleen,condition,splen,spleen ailment,MS_23_O_6
+colic,condition,colica,abdominal pain,MS_23_O_6
+urinary,condition,urinaria,urinary ailments,MS_23_O_6
+piles,condition,hemorrhoides,hemorrhoids,MS_23_O_6
+worms,condition,vermes,parasitic infection,MS_23_O_6
+menstrual_flux,condition,menstrualis,menstrual discharge,MS_23_O_6
+utereal_tumour,condition,uteralis,uterine growths,MS_23_O_6
+arthritica_passio,condition,arthriticus,joint disease,MS_23_O_6
+pox,condition,pox,infectious disease,MS_23_O_6
+leprosy,condition,lepra,leprosy,MS_23_O_6
+herbals,texts,herba,herbal remedies collection,O_Hickey_tradition
+herbs,materials,herba,plant materials,O_Hickey_tradition
+plant_identification,method,planta,identifying plants,O_Hickey_tradition
+properties,classification,proprietas,herb qualities,O_Hickey_tradition
+characteristics,classification,characteristica,distinguishing features,O_Hickey_tradition
+hot,quality,calidus,heat quality,medieval_medicine
+cold,quality,frigidus,cold quality,medieval_medicine
+qualities,classification,qualitas,humoral qualities,medieval_medicine
+symptoms,diagnosis,symptoma,disease signs,medical_method
+causes,diagnosis,causa,disease origins,medical_method
+cures,treatment,curatio,healing methods,medical_method
+remedies,treatment,remedium,therapeutic substances,medical_method
+regimen_sanitatis,texts,regimen,health regulation text,medieval_medicine
+bathing,treatment,balneatio,therapeutic bathing,medieval_medicine
+seasons,classification,tempus,seasonal cycles,medieval_medicine
+recipe,method,receptum,medicinal preparation,O_Hickey_tradition
+probatum_est,formula,probatum est,it is proven,Latin_closing_formula
+complexiones,classification,complexio,bodily conditions,medieval_medicine
+temperamentum,classification,temperamentum,humoral balance,medieval_medicine
+humores,classification,humor,four humors theory,medieval_medicine
+bloodletting,treatment,flebotomia,phlebotomy,medieval_medicine
+purgation,treatment,purgatio,evacuation therapy,medieval_medicine
+cleansing,treatment,mundatio,purification,medieval_medicine
+dietary_guidance,treatment,diaeta,nutritional advice,medieval_medicine
+lifestyle,treatment,regimen,way of life management,medieval_medicine
+therapeutic,classification,therapeuticus,healing-related,medical_method
+flebotomia,treatment,flebotomia,blood-letting procedure,medieval_medicine
