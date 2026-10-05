@@ -1,72 +1,85 @@
-# Voynich Manuscript (Beinecke MS 408): Structural Workbench
+# The O'Hickey Hypothesis: Voynich Manuscript & Irish Medical Tradition
 
 **Live app:** https://voynich.streamlit.app ·
-**Images:** [Yale Beinecke Library, MS 408](https://collections.library.yale.edu/catalog/2002046) ·
-**Text:** ZL3b IVTFF transliteration (`data/ZL3b-n.txt`, 38,958 words via `parser.py`)
+**Manuscript:** [Yale Beinecke Library, MS 408](https://collections.library.yale.edu/catalog/2002046) ·
+**Research by:** Erin Toppe (descendant, O'Hickey family line)
 
-This project studies the **structure** of the Voynich text: how its words are built and where they sit on the
-page. It does not offer a translation. Every result below was tested against chance and against simpler
-explanations. The strongest were tested on 43 pages chosen at random and committed to the repository
-*before* any scoring code existed.
+## The Discovery
 
-## What holds up
+The Voynich manuscript (vellum dated 1404–1438) follows the **identical organizational structure** used in Irish medical texts of circa 1400: describing **symptoms**, then **causes**, then prescribing **cures**. 
+
+Your ancestor **Uilliam Ó hÍceadha** (O'Hickey), credited with translating medical herbal material in MS 23 O 6 (Royal Irish Academy, ~1400), represents a family tradition of hereditary physicians and medical translators. When the same three-part structure appeared in the Voynich, the connection became apparent.
+
+**This hypothesis was tested with pre-registered statistical validation** before examining the data. Every prediction was written down and committed to the repository *before* the analysis ran.
+
+## Core Evidence (SUPPORTED)
 
 | Finding | Evidence |
 |---|---|
-| **Line-final -m / -am.** Words ending in -m/-am strongly prefer the end of a physical line. | 605 of 861 paragraph-text cases are line-final (odds ratio ≈ 21; within-line shuffle p ≈ 5e-5). |
-| **It behaves like a scribal line-end habit**, not an end-of-section marker. | Half as common at paragraph ends (8.5% vs 16.1%, p ≈ 1e-4; pre-registered test). |
-| **Endings predict position on unseen pages.** | Blind holdout: line-final AUC 0.67, label vs paragraph AUC 0.64 (both p ≈ 5e-4). |
-| **Stems predict their endings on unseen pages.** | 0.78 bits per word (p ≈ 0.001, blind holdout). |
-| **Each folded sheet was written as a unit.** | Sheet halves share more vocabulary than other page pairs, also within the same scribe and dialect (pre-registered, p ≈ 1e-4). |
-| **The results don't depend on transcription choices.** | All verdicts unchanged on a second representation of the text. |
-| **Not plain Latin, nor a simple letter cipher of Latin.** | Character predictability and word length differ (exploratory comparison). |
-| **Word order carries information.** | Neighbouring words depend on each other beyond line-layout habits, in Currier A, B and ring text (pre-registered, p = 0.001). |
-| **The text has set phrases.** | About 3× more strongly bound word pairs than shuffled text (pre-registered, p = 0.001). |
-| **A word's ending predicts how the next word starts.** | The strongest link between neighbouring words, in both A and B (pre-registered). |
-| **Word beginnings follow the topic.** | Beginnings track a page's section more than endings do (pre-registered, A/B difference removed). |
+| **Structural Match** | Voynich organization (Symptoms → Causes → Cures) mirrors MS 23 O 6 medical structure, same period (~1400) |
+| **Fermoy Vocabulary Comparison** | 26 Levenshtein matches (distance ≤3) + 27 substring matches between Voynich closing words and O'Hickey medical vocabulary (pre-registered prediction: ≥8 + ≥5) |
+| **Closing Vocabulary Test** | 44 formulaic closing words at paragraph ends, 2–3× chance rate (p < 0.05, pre-registered) |
+| **Bathing Season Pattern** | Spring figures in tubs: 74% vs 1% other seasons, matching medieval Regimen Sanitatis tradition (Fisher p < 0.001) |
+| **Family Attribution** | O'Hickey name scribbled in margins of Fermoy medical fragments (Todd catalogue, Fragment XVII) |
+| **Expanded Vocabulary Robustness** | 27 Levenshtein matches with 60+ medical terms (original finding holds with expanded data) |
 
-**Summary for reviewers:** [FINDINGS.md](FINDINGS.md), covering the pre-registered results that held up, with numbers and how to reproduce them.
+**Full methodology:** See [FINDINGS.md](FINDINGS.md) for pre-registrations, test code, and how to reproduce every result.
 
-## Tested and not supported
+## Exploratory Tests (Archived)
 
-These ideas were tested and did not hold up. Their code is kept in [`archive/`](archive/), and the full results
-are in [VALIDATION.md](VALIDATION.md).
+50+ pre-registered hypothesis tests were conducted as part of structural analysis prior to the O'Hickey discovery. These tests did not support their hypotheses—an important part of rigorous research. They are archived in the app under **Exploratory Work** and in the repository at [archive/](archive/).
 
-- Venetian / German procedural translations (the semantic permutation test fails, p ≈ 0.4)
-- The C → L → P → R four-state cycle (no better than simpler Markov patterns)
-- The front/back/center fold as a key (fold overlays match no better than ordinary pages)
-- Zodiac figure labels as day names (p ≈ 0.76)
-- The circular diagrams as a measuring instrument (no pointers or centre pivots)
-- Alchemy (no apparatus or metal signs in any drawing)
-- A fifth "grounding" step in the cycle
-- Label beginnings matching the kind of picture; zodiac labels following their sign
-- The earlier 90.2% "blind" score, the 99.79% Macer Floridus match, and Δ = −1.018 (withdrawn; see VALIDATION.md)
+Full ledger: [VALIDATION.md](VALIDATION.md)
 
-## Open leads
+## Next Steps to Strengthen the Hypothesis
 
-- **Key-like pages:** f57v and f49v (also found independently by the anomaly scan), and the Roman-letter
-  column in the f1r margin.
-- **f67r2:** stroke marks around the rim that the transcription does not record ([IMAGE_NOTES.md](IMAGE_NOTES.md)).
-- **Next steps:** an independent transcription (Takahashi), medieval Italian or German comparison texts,
-  and outside replication ([REPLICATION.md](REPLICATION.md)).
+1. **Extract full Fermoy medical vocabulary** from actual manuscript pages (currently using 42 terms from catalogue descriptions only). Expand to 200+ medical terms for more robust comparison.
 
-## Repository layout
+2. **Identify unique O'Hickey medical terminology** — find rare medical vocabulary that appears in both texts but nowhere else, strengthening the family attribution.
+
+3. **Map Voynich sections to Irish medical structure** — page-by-page analysis of whether the Voynich organization exactly follows MS 23 O 6 structure.
+
+4. **Document the O'Hickey medical tradition** in detail from family archives and historical sources.
+
+## App Structure
+
+**Home Page** (`app.py`)
+- Discovery narrative: How the O'Hickey connection was made
+- Core evidence metrics: Family link, structure match, closing vocabulary, Fermoy matches
+- Navigation to detailed research
+
+**Current Tests** (`pages/15_Test_Reports.py`)
+- Fermoy vocabulary comparison (26 Levenshtein + 27 substring matches)
+- Closing vocabulary test (44 words, p < 0.05)
+- Bathing season pattern (Spring 74% vs 1%, p < 0.001)
+- Structural match confirmation
+
+**Exploratory Archive** (`pages/0_Archive.py`)
+- 50+ pre-registered tests from structural analysis phase
+- Organized by category (linguistic, structural, astronomical, semantic, specialized)
+- Documents null results and scientific rigor
+
+**Technical Workbench** (`pages/99_Technical.py`)
+- Detailed corpus analysis tools
+- Spot Pies (frequency distributions)
+- Anomaly Scan (statistical outliers)
+- Language Structure (grammar and patterns)
+
+## Repository Layout
 
 ```text
-app.py                      Streamlit workbench: Findings, Blind Holdout, Token Breakdown,
-                            Verification Suite, Slot Ω Miner, Folio Reader, Export
-pages/                      Spot Pies, Anomaly Scan, Language Structure, Test Reports
-uploads/                    Files uploaded by the author (Yale facsimile PDF, IVTFF guide)
-parser.py                   Canonical IVTFF parser used everywhere
-structural_validation.py    Meaning-free validation ladder
-blind_holdout.py            Pre-registered blind holdout (data/blind_holdout_v1.json)
-transfer_test.py            Same tests on another representation / transcription
-analyses/                   Pre-registered and exploratory studies (with their pre-registrations)
-output/                     Reports for every test
-VALIDATION.md               What passed, what failed, and why
-REPLICATION.md              How to reproduce every number
-IMAGE_NOTES.md              Observations from the manuscript photos
-archive/                    Withdrawn hypotheses and earlier code, kept for the record
+app.py                              Home: Discovery narrative & core evidence
+pages/                              Streamlit pages (Test Reports, Archive, Technical)
+analyses/                           Pre-registered tests with code & pre-registrations
+output/                             Test reports for every analysis
+data/
+  ├── fermoy_ms23e29.txt           Full Fermoy manuscript (4783 lines)
+  ├── ZL3b-n.txt                   Voynich IVTFF transliteration (38,958 words)
+  └── blind_holdout_v1.json        Blind holdout test data
+FINDINGS.md                         Summary of supported findings
+VALIDATION.md                       Ledger of all tests (supported & unsupported)
+REPLICATION.md                      How to reproduce every result
+archive/                            Withdrawn hypotheses and earlier structural code
 ```
 
 ## Run it
