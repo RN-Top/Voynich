@@ -20,7 +20,7 @@ Your ancestor **Uilliam Ó hÍceadha** (pronounced Ikara), credited with transla
 | **Fermoy Vocabulary Comparison** | 26 Levenshtein matches (distance ≤3) + 27 substring matches between Voynich closing words and Ó hÍceadha medical vocabulary (pre-registered prediction: ≥8 + ≥5) |
 | **Closing Vocabulary Test** | 44 formulaic closing words at paragraph ends, 2–3× chance rate (p < 0.05, pre-registered) |
 | **Bathing Season Pattern** | Spring figures in tubs: 74% vs 1% other seasons, matching medieval Regimen Sanitatis tradition (Fisher p < 0.001) |
-| **Family Attribution** | Ó hÍceadha (EE-kah-duh) name scribbled in margins of Fermoy medical fragments (Todd catalogue, Fragment XVII) |
+| **Family Attribution** | Ó hÍceadha (EEK-kah-duh) name scribbled in margins of Fermoy medical fragments (Todd catalogue, Fragment XVII) |
 | **Expanded Vocabulary Robustness** | 27 Levenshtein matches with 60+ medical terms (original finding holds with expanded data) |
 
 **Full methodology:** See [FINDINGS.md](FINDINGS.md) for pre-registrations, test code, and how to reproduce every result.

@@ -26,11 +26,11 @@ st.title("🧬 The Ó hÍceadha Connection")
 st.markdown("""
 ### How the Discovery Was Made
 
-You are descended from the **Ó hÍceadha** (EE-kah-duh) family, hereditary physicians
+You are descended from the **Ó hÍceadha** (EEK-kah-duh) family, hereditary physicians
 to Irish nobility in the medieval period. Through genealogical research, you traced
 your family line back to **circa 1400**.
 
-In that same period, your ancestor **Uilliam Ó hÍceadha** (EE-kah-duh) is credited with translating
+In that same period, your ancestor **Uilliam Ó hÍceadha** (EEK-kah-duh) is credited with translating
 medical herbal material in **MS 23 O 6** (Royal Irish Academy). The manuscript follows
 a distinctive structure: describing **symptoms**, then **causes**, then **cures** for
 various conditions.
@@ -57,7 +57,7 @@ col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.metric(
         "Family Connection",
-        "Uilliam Ó hÍceadha (EE-kah-duh)",
+        "Uilliam Ó hÍceadha (EEK-kah-duh)",
         "Medical translator, ~1400"
     )
 
@@ -87,7 +87,7 @@ st.markdown("""
 
 The Voynich closing vocabulary (44 words appearing at paragraph ends 2-3× chance rate)
 matches medical terminology from the **Book of Fermoy**, a 15th-century Irish medical text
-associated with the Ó hÍceadha (EE-kah-duh) family tradition.
+associated with the Ó hÍceadha (EEK-kah-duh) family tradition.
 
 **26 Levenshtein matches** (edit distance ≤3) and **27 substring matches** show that
 Voynich closing words encode medical concepts your ancestor would have recognized.
