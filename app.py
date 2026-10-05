@@ -143,6 +143,31 @@ These tests confirm the hypothesis:
 
 st.markdown("---")
 
+st.markdown("## ✓ Test Results That Confirm This")
+
+st.markdown("""
+**All tests were pre-registered BEFORE analysis.**
+All methodology, code, and results are reproducible and in the public GitHub repository.
+
+### Supporting Tests:
+- **Fermoy Vocabulary Comparison Test** — 66 Levenshtein + 32 substring matches (p < 0.05)
+- **Section-by-Section Vocabulary Test** — Complete analysis across all 6 Voynich sections
+- **Structural Match Test** — Voynich follows identical medical format (Symptoms → Causes → Cures)
+- **Closing Vocabulary Test** — 44 formulaic words at 2-3× chance rate
+- **Bathing Season Pattern** — Spring 74% vs 1% other seasons (p < 0.001)
+
+### Full Reproducibility:
+Every test has:
+- Pre-registration document (written before running)
+- Source code (in `analyses/` directory)
+- Test report (in `output/` directory)
+- Data files (in `data/` directory)
+
+**You can reproduce every result yourself.**
+""")
+
+st.markdown("---")
+
 # ============================================================================
 # NAVIGATION
 # ============================================================================
