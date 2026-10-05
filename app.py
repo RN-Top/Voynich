@@ -1,10 +1,10 @@
 """
-VOYNICH DECIPHERMENT: HIKITA FAMILY HYPOTHESIS
+VOYNICH DECIPHERMENT: Ó hÍceadha FAMILY HYPOTHESIS
 
 Research showing the Voynich manuscript (1404-1438) derives from
-the Irish Hikita medical tradition, circa 1400.
+the Irish Ó hÍceadha medical tradition, circa 1400.
 
-Author: Erin Toppe (descendant, Hikita family line)
+Author: Erin Toppe (descendant, Ó hÍceadha family line)
 Methodology: Pre-registered hypothesis testing with statistical validation
 Repository: github.com/RN-Top/Voynich
 """
@@ -12,7 +12,7 @@ Repository: github.com/RN-Top/Voynich
 import streamlit as st
 
 st.set_page_config(
-    page_title="Voynich-Hikita Research",
+    page_title="Voynich-Ó hÍceadha Research",
     page_icon="📜",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -22,15 +22,15 @@ st.set_page_config(
 # DISCOVERY NARRATIVE
 # ============================================================================
 
-st.title("🧬 The Hikita Connection")
+st.title("🧬 The Ó hÍceadha Connection")
 st.markdown("""
 ### How the Discovery Was Made
 
-You are descended from the **Hikita** (Ikara) family, hereditary physicians
+You are descended from the **Ó hÍceadha** (Ikara) family, hereditary physicians
 to Irish nobility in the medieval period. Through genealogical research, you traced
 your family line back to **circa 1400**.
 
-In that same period, your ancestor **Uilliam Hikita** (Ikara) is credited with translating
+In that same period, your ancestor **Uilliam Ó hÍceadha** (Ikara) is credited with translating
 medical herbal material in **MS 23 O 6** (Royal Irish Academy). The manuscript follows
 a distinctive structure: describing **symptoms**, then **causes**, then **cures** for
 various conditions.
@@ -57,7 +57,7 @@ col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.metric(
         "Family Connection",
-        "Uilliam Hikita (Ikara)",
+        "Uilliam Ó hÍceadha (Ikara)",
         "Medical translator, ~1400"
     )
 
@@ -87,7 +87,7 @@ st.markdown("""
 
 The Voynich closing vocabulary (44 words appearing at paragraph ends 2-3× chance rate)
 matches medical terminology from the **Book of Fermoy**, a 15th-century Irish medical text
-associated with the Hikita (Ikara) family tradition.
+associated with the Ó hÍceadha (Ikara) family tradition.
 
 **26 Levenshtein matches** (edit distance ≤3) and **27 substring matches** show that
 Voynich closing words encode medical concepts your ancestor would have recognized.
@@ -107,7 +107,7 @@ st.markdown("""
 These tests confirm the hypothesis:
 
 1. **Fermoy Vocabulary Comparison** — 26 Levenshtein + 27 substring matches
-   between Voynich closing words and Hikita medical vocabulary ✓ SUPPORTED
+   between Voynich closing words and Ó hÍceadha medical vocabulary ✓ SUPPORTED
 
 2. **Closing Vocabulary Test** — 44 formulaic words ending paragraphs 2-3×
    chance rate (p < 0.05) ✓ SUPPORTED

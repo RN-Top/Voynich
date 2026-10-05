@@ -1,14 +1,14 @@
-# The Hikita Hypothesis: Voynich Manuscript & Irish Medical Tradition
+# The Ó hÍceadha Hypothesis: Voynich Manuscript & Irish Medical Tradition
 
 **Live app:** https://voynich.streamlit.app ·
 **Manuscript:** [Yale Beinecke Library, MS 408](https://collections.library.yale.edu/catalog/2002046) ·
-**Research by:** Erin Toppe (descendant, Hikita family line)
+**Research by:** Erin Toppe (descendant, Ó hÍceadha family line)
 
 ## The Discovery
 
 The Voynich manuscript (vellum dated 1404–1438) follows the **identical organizational structure** used in Irish medical texts of circa 1400: describing **symptoms**, then **causes**, then prescribing **cures**. 
 
-Your ancestor **Uilliam Ó hÍceadha** (Hikita/Ikara), credited with translating medical herbal material in MS 23 O 6 (Royal Irish Academy, ~1400), represents a family tradition of hereditary physicians and medical translators. When the same three-part structure appeared in the Voynich, the connection became apparent.
+Your ancestor **Uilliam Ó hÍceadha** (pronounced Ikara), credited with translating medical herbal material in MS 23 O 6 (Royal Irish Academy, ~1400), represents a family tradition of hereditary physicians and medical translators. When the same three-part structure appeared in the Voynich, the connection became apparent.
 
 **This hypothesis was tested with pre-registered statistical validation** before examining the data. Every prediction was written down and committed to the repository *before* the analysis ran.
 
@@ -17,10 +17,10 @@ Your ancestor **Uilliam Ó hÍceadha** (Hikita/Ikara), credited with translating
 | Finding | Evidence |
 |---|---|
 | **Structural Match** | Voynich organization (Symptoms → Causes → Cures) mirrors MS 23 O 6 medical structure, same period (~1400) |
-| **Fermoy Vocabulary Comparison** | 26 Levenshtein matches (distance ≤3) + 27 substring matches between Voynich closing words and Hikita medical vocabulary (pre-registered prediction: ≥8 + ≥5) |
+| **Fermoy Vocabulary Comparison** | 26 Levenshtein matches (distance ≤3) + 27 substring matches between Voynich closing words and Ó hÍceadha medical vocabulary (pre-registered prediction: ≥8 + ≥5) |
 | **Closing Vocabulary Test** | 44 formulaic closing words at paragraph ends, 2–3× chance rate (p < 0.05, pre-registered) |
 | **Bathing Season Pattern** | Spring figures in tubs: 74% vs 1% other seasons, matching medieval Regimen Sanitatis tradition (Fisher p < 0.001) |
-| **Family Attribution** | Hikita (Ikara) name scribbled in margins of Fermoy medical fragments (Todd catalogue, Fragment XVII) |
+| **Family Attribution** | Ó hÍceadha (Ikara) name scribbled in margins of Fermoy medical fragments (Todd catalogue, Fragment XVII) |
 | **Expanded Vocabulary Robustness** | 27 Levenshtein matches with 60+ medical terms (original finding holds with expanded data) |
 
 **Full methodology:** See [FINDINGS.md](FINDINGS.md) for pre-registrations, test code, and how to reproduce every result.
