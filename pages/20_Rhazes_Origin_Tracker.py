@@ -17,6 +17,7 @@ import sys
 import subprocess
 import json
 from datetime import datetime
+import os
 
 st.set_page_config(
     page_title="Rhazes Origin Tracker",
@@ -175,21 +176,29 @@ This detects:
 
 st.subheader("How to Analyze Texts You Find:")
 
+st.markdown("### Automated Analysis (One Command):")
+
 analysis_code = """
-# Step 1: Download a Rhazes text from the archives
-# Step 2: Save it to: /home/user/Voynich/data/rhazes_[name].txt
+# Step 1: Download Rhazes texts from archives (see above)
+# Step 2: Save to: /home/user/Voynich/data/rhazes_*.txt
 
-# Step 3: Run the analyzer
-python3 analyses/source_text_analyzer.py data/rhazes_[name].txt
+# Step 3: RUN THE AUTOMATED ANALYZER
+python3 analyses/rhazes_manuscript_fetcher.py --analyze data/rhazes_[name].txt
 
-# The tool will output:
-# - Language detected (Latin? Irish? Other?)
-# - Framework strength (STRONG/MODERATE/WEAK)
-# - Teaching score (80% = teaching material)
-# - Likelihood of being original source
+# The tool automatically:
+# - Runs source_text_analyzer.py
+# - Extracts: Language, Framework strength, Teaching score
+# - Saves results to: analyses/rhazes_results.json
+# - Displays in Streamlit dashboard
 """
 
 st.code(analysis_code, language="bash")
+
+st.markdown("**OR check status anytime:**")
+status_code = """
+python3 analyses/rhazes_manuscript_fetcher.py --status
+"""
+st.code(status_code, language="bash")
 
 st.markdown("**Expected Results for Rhazes Original:**")
 st.info("""
@@ -238,6 +247,50 @@ RESULT: Same framework, different languages
 """
 
 st.code(comparison_chart, language="text")
+
+st.markdown("---")
+
+# ============================================================================
+# SECTION 3.5: LIVE RESULTS FROM ANALYSIS
+# ============================================================================
+
+st.header("📊 Live Analysis Results")
+st.markdown("""
+When you run the automated analyzer, results appear here automatically.
+
+**Results saved to:** `analyses/rhazes_results.json`
+""")
+
+# Try to load results
+results_file = Path("analyses/rhazes_results.json")
+if results_file.exists():
+    try:
+        with open(results_file) as f:
+            results = json.load(f)
+
+        if results.get("analyses"):
+            st.success(f"✅ {len(results['analyses'])} texts analyzed")
+
+            for analysis in results["analyses"]:
+                with st.expander(f"📄 {analysis['file']}", expanded=False):
+                    raw = analysis.get('raw_analysis', {})
+
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.metric("Language", raw.get('language', 'Unknown'))
+                    with col2:
+                        st.metric("Framework", raw.get('framework_strength', 'Unknown'))
+                    with col3:
+                        teaching = raw.get('teaching_score')
+                        st.metric("Teaching Score", f"{teaching}%" if teaching else "Unknown")
+
+                    st.caption(f"Analyzed: {analysis['timestamp']}")
+        else:
+            st.info("No analyses yet. Download Rhazes texts and run the analyzer above to populate results.")
+    except Exception as e:
+        st.error(f"Error loading results: {e}")
+else:
+    st.info("📁 Results file will appear here once you run the analyzer on your first Rhazes text.")
 
 st.markdown("---")
 
