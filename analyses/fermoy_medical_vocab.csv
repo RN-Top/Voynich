@@ -1,4 +1,27 @@
-term,category,latin_root,meaning
-galar,symptoms,dolor,pain
-gabhail,methods,capere,taking
-fual,symptoms,urina,urine
+term,category,latin_root,meaning,source,notes
+hepate,anatomy,hepate,liver,medical_fragment,liver treatise fragment mentioned in catalog
+membrororum_generacivorum,anatomy,membrororum generacivorum,organs of generation,medical_fragment,treatise fragment described in catalog
+virtus_naturalis,properties,virtus naturalis,natural power/virtue,medical_fragment,from liver treatise
+qualitates,properties,qualitates,qualities,medical_fragment,medical classification system
+operacionibus,methods,operacionibus,operations/procedures,medical_fragment,medical operations
+temperamentum,properties,temperamentum,temperament,medieval_medicine,hot/cold classification used in Irish medicine
+humores,properties,humores,humors,medieval_medicine,four humors theory
+complexiones,properties,complexiones,complexions,medical_fragment,bodily conditions
+dropsy,symptoms,dolor hydropicus,fluid retention,MS_23_O_6,Irish medical text condition
+spleen,symptoms,splen,spleen ailments,MS_23_O_6,Irish medical text condition
+colic,symptoms,colica,abdominal pain,MS_23_O_6,Irish medical text condition
+urinary,symptoms,urina,urinary ailments,MS_23_O_6,Irish medical text condition
+piles,symptoms,piles,hemorrhoids,MS_23_O_6,Irish medical text condition
+worms,symptoms,vermes,parasitic infection,MS_23_O_6,Irish medical text condition
+menstrual,symptoms,menstrua,menstrual flux,MS_23_O_6,Irish medical text condition
+utereal,symptoms,uterus,uterine tumors,MS_23_O_6,Irish medical text condition
+arthritica,symptoms,arthritica passio,arthritis,MS_23_O_6,Irish medical text condition
+pox,symptoms,pox,pox/syphilis,MS_23_O_6,Irish medical text condition
+leprosy,symptoms,lepra,leprosy,MS_23_O_6,Irish medical text condition
+herbals,texts,herba,herbal treatments,O_Hickey_tradition,medical knowledge type
+remedies,methods,remedium,cures/treatments,O_Hickey_tradition,healing methods
+regimen,methods,regimen,dietary/lifestyle guidance,medieval_medicine,health management
+sanitatis,methods,sanitatis,health rules,medieval_medicine,wellness practices
+bathings,methods,balneatio,bathing treatments,medieval_medicine,therapeutic bathing
+cleansing,methods,purgatio,purgation/cleansing,medieval_medicine,therapeutic cleansing
+bloodletting,methods,flebotomia,phlebotomy,medieval_medicine,blood-letting therapy

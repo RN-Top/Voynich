@@ -7,7 +7,7 @@ Pre-registration: analyses/fermoy_vocab_comparison_prereg.md
 
 import pandas as pd
 from collections import Counter
-from scipy.stats import binom_test
+from scipy.stats import binomtest
 import numpy as np
 
 def levenshtein(s1, s2):
@@ -112,7 +112,8 @@ def run_null_hypothesis_test(voynich_words, fermoy_vocab, num_matches_observed):
     n_comparisons = len(voynich_words) * len(fermoy_vocab)
     p_null = 0.05  # rough estimate
 
-    p_value = binom_test(num_matches_observed, n_comparisons, p_null, alternative='greater')
+    result = binomtest(num_matches_observed, n_comparisons, p_null, alternative='greater')
+    p_value = result.pvalue
     return p_value
 
 def main():
