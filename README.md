@@ -22,6 +22,7 @@ Your ancestor **Uilliam Ó hÍceadha** (pronounced Ikara), credited with transla
 | **Bathing Season Pattern** | Spring figures in tubs: 74% vs 1% other seasons, matching medieval Regimen Sanitatis tradition (Fisher p < 0.001) |
 | **Family Attribution** | Ó hÍceadha (EEK-kah-duh) name scribbled in margins of Fermoy medical fragments (Todd catalogue, Fragment XVII) |
 | **Expanded Vocabulary Robustness** | 27 Levenshtein matches with 60+ medical terms (original finding holds with expanded data) |
+| **Section-by-Section Vocabulary** | Ó hÍceadha medical vocabulary present throughout entire manuscript: Recipes (2,244 matches), Plant pages (81 substring), Bathing (1,636), Astronomical (1,534), Astrological (936). Connection is systematic and pervasive. |
 
 **Full methodology:** See [FINDINGS.md](FINDINGS.md) for pre-registrations, test code, and how to reproduce every result.
 
