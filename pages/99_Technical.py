@@ -22,18 +22,14 @@ st.markdown("---")
 
 st.markdown("## 📊 Analysis Tools")
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
-    st.page_link("pages/10_Spot_Pies.py", label="🎯 Spot Pies", icon="🎯")
-    st.caption("Detailed corpus visualization")
-
-with col2:
-    st.page_link("pages/13_Anomaly_Scan.py", label="🔍 Anomaly Scan", icon="🔍")
+    st.page_link("pages/13_Anomaly_Scan.py", label="🔍 Anomaly Scan")
     st.caption("Statistical anomaly detection")
 
-with col3:
-    st.page_link("pages/14_Language_Structure.py", label="📝 Language Structure", icon="📝")
+with col2:
+    st.page_link("pages/14_Language_Structure.py", label="📝 Language Structure")
     st.caption("Grammatical and linguistic analysis")
 
 st.markdown("---")
@@ -43,7 +39,6 @@ st.markdown("""
 
 These pages contain detailed technical analysis:
 
-- **Spot Pies**: Frequency distributions and visual corpus statistics
 - **Anomaly Scan**: Unusual patterns and statistical outliers
 - **Language Structure**: Grammar, word order, and linguistic patterns
 
