@@ -274,6 +274,7 @@ st.markdown("""
 **Investigation Complete**
 - Erin Toppe (Research Lead)
 - Juan Gabriel Molina (Verification)
+- Drew Pate (Critical Direction)
 - October 2026
 
 The mystery is solved. Giovanni Fontana wrote the Voynich manuscript.
