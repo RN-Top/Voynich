@@ -422,38 +422,81 @@ Measure the cipher architecture ratio yourself:
 If the ratios match, it's mathematical proof.
 """)
 
-st.markdown("### Fontana Manuscript Gallery (Sample Pages)")
+st.markdown("### Fontana Manuscript Gallery (All 261 Pages - Browse & Download)")
 
 import os
-import random
+import io
+from PIL import Image
 
 fontana_dir = "data/fontana/screenshots"
 if os.path.exists(fontana_dir):
     fontana_files = sorted([f for f in os.listdir(fontana_dir) if f.endswith('.png')])
 
     if fontana_files:
-        st.markdown(f"**Total pages available: {len(fontana_files)}**")
-        st.markdown("Showing random sample pages from the collection:")
+        st.markdown(f"**Browse all {len(fontana_files)} pages directly. No need to leave the app.**")
 
-        # Show 6 random pages
-        sample_files = random.sample(fontana_files, min(6, len(fontana_files)))
+        col1, col2 = st.columns([2, 1])
+        with col1:
+            page_num = st.slider("Select page to view", min_value=1, max_value=len(fontana_files), value=1)
 
-        cols = st.columns(3)
-        for idx, filename in enumerate(sample_files):
-            with cols[idx % 3]:
-                try:
-                    from PIL import Image
-                    img_path = os.path.join(fontana_dir, filename)
-                    img = Image.open(img_path)
-                    st.image(img, caption=filename, use_column_width=True)
-                except Exception as e:
-                    st.write(f"Error loading {filename}: {e}")
+        current_file = fontana_files[page_num - 1]
+        img_path = os.path.join(fontana_dir, current_file)
 
-        st.markdown(f"""
-        **All {len(fontana_files)} pages available in repository:**
-        github.com/RN-Top/Voynich/tree/main/data/fontana/screenshots
+        try:
+            img = Image.open(img_path)
+            st.image(img, caption=f"Page {page_num}/{len(fontana_files)}: {current_file}", use_column_width=True)
 
-        Download and analyze all of them yourself.
+            with col2:
+                with open(img_path, "rb") as f:
+                    st.download_button(
+                        label="Download\nThis Page",
+                        data=f.read(),
+                        file_name=current_file,
+                        mime="image/png",
+                    )
+        except Exception as e:
+            st.error(f"Error loading page: {e}")
+
+        st.markdown("---")
+        st.markdown("### Download All Evidence for Independent Testing")
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            st.markdown("**All 261 Fontana Pages (ZIP)**")
+            if st.button("Create ZIP Download"):
+                import zipfile
+                zip_buffer = io.BytesIO()
+                with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+                    for filename in fontana_files:
+                        file_path = os.path.join(fontana_dir, filename)
+                        zip_file.write(file_path, arcname=filename)
+                zip_buffer.seek(0)
+                st.download_button(
+                    label="Download ZIP (All 261)",
+                    data=zip_buffer.getvalue(),
+                    file_name="fontana_all_261_pages.zip",
+                    mime="application/zip",
+                )
+
+        with col2:
+            st.markdown("**Evidence CSV**")
+            st.write("See download button at top of page for all evidence data")
+
+        with col3:
+            st.markdown("**How to Verify**")
+            st.write("1. Download pages\n2. Count circles vs geometric shapes\n3. Calculate ratios\n4. Compare with Voynich f68v")
+
+        st.markdown("---")
+        st.markdown("""
+        **You now have everything in this app to independently test:**
+        - All 261 Fontana pages (browse above, download any page or all)
+        - Complete evidence data (CSV at top)
+        - Cipher specifications (in Evidence sections)
+        - Medical chain documentation (in Historical Chain section)
+        - Full investigation methodology (in Journey section)
+
+        **Test it yourself. Prove or disprove the finding.**
         """)
 else:
     st.warning("Fontana image directory not found")
