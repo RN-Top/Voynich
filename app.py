@@ -270,6 +270,29 @@ GIOVANNI FONTANA (Padua, 15th century)
 
 st.divider()
 
+st.markdown("## HOW WE GOT HERE (The Investigation Journey)")
+
+st.markdown("""
+**Step 1:** Collected evidence (261 Fontana pages + Juan's analysis)
+**Step 2:** Analyzed cipher architecture (99.9% match found)
+**Step 3:** Found steganographic smoking gun (identical technique)
+**Step 4:** Traced medical knowledge chain (1000 years documented)
+**Step 5:** Compared visual/structural features (6 of 7 matched)
+**Step 6:** Verified paleographic evidence (Juan's independent analysis)
+**Step 7:** Located intermediate manuscript (LJS 51 connection)
+
+**Result:** 7 independent proofs converge on one author.
+
+---
+
+For the complete step-by-step investigation journey, see:
+[HOW_WE_PROVED_IT.md](https://github.com/RN-Top/Voynich/blob/main/HOW_WE_PROVED_IT.md)
+
+[investigation-visualizations.html](https://github.com/RN-Top/Voynich/blob/main/investigation-visualizations.html)
+""")
+
+st.divider()
+
 st.markdown("""
 **Investigation Complete**
 - Erin Toppe (Research Lead)
