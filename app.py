@@ -167,7 +167,6 @@ st.markdown("### Evidence Summary")
 evidence_summary = [
     ["Cipher Architecture", "99.9%", "9:1+ ratio exact match - mathematical proof"],
     ["Steganographic Technique", "95%", "Text hidden under images - identical signature"],
-    ["Expert Paleographic", "95%", "Juan Molina independent handwriting match"],
     ["Visual/Structural Match", "98%", "6 of 7 major features align perfectly"],
     ["Medical Knowledge Chain", "90%", "Documented 1000-year Rhazes lineage"],
     ["Handwriting Analysis", "80%-95%", "Script characteristics match (preliminary)"],
@@ -189,7 +188,6 @@ st.markdown("### Confidence Levels")
 evidence_bars = [
     ("Cipher Architecture", 99.9),
     ("Visual/Structural Match", 98),
-    ("Expert Paleographic", 95),
     ("Steganographic Technique", 95),
     ("Medical Knowledge Chain", 90),
     ("Intermediate Manuscript", 85),
@@ -212,22 +210,8 @@ st.markdown("### Detailed Evidence Breakdown")
 
 col1, col2 = st.columns(2)
 
-with st.expander("1. Expert Paleographic Confirmation (95%)"):
-    st.markdown("""
-    **Source:** Juan Gabriel Molina (Independent Paleographer)
 
-    **Finding:** Fontana's handwriting = Voynich Scribe #2
-
-    **Evidence:**
-    - Analyzed Fontana manuscripts (Gallica pages 62-71)
-    - Analyzed Voynich primary scribe samples
-    - Concluded: Handwriting match before this investigation
-    - This was INDEPENDENT verification (no cipher analysis knowledge)
-
-    **Why this matters:** Expert handwriting analysis is gold standard for authorship
-    """)
-
-with st.expander("2. Cipher Architecture - MATHEMATICAL PROOF (99.9%)"):
+with st.expander("1. Cipher Architecture - MATHEMATICAL PROOF (99.9%)"):
     st.markdown("""
     **Fontana's Documented System:**
     - Vowels as circles (A/E/I/O/U with directional marks)
@@ -245,7 +229,7 @@ with st.expander("2. Cipher Architecture - MATHEMATICAL PROOF (99.9%)"):
     - This IS Fontana's documented system
     """)
 
-with st.expander("3. Steganographic Smoking Gun (95%)"):
+with st.expander("2. Steganographic Smoking Gun (95%)"):
     st.markdown("""
     **Fontana's Technique (Documented):**
     - Text deliberately arranged around vessel diagrams
@@ -262,7 +246,7 @@ with st.expander("3. Steganographic Smoking Gun (95%)"):
     **Connection:** IDENTICAL compositional signature
     """)
 
-with st.expander("4. Visual/Structural Matches (98%)"):
+with st.expander("3. Visual/Structural Matches (98%)"):
     st.markdown("""
     **6 of 7 Major Features Match Perfectly:**
 
@@ -296,7 +280,7 @@ with st.expander("4. Visual/Structural Matches (98%)"):
        - Match: STATISTICAL MATCH (99.9%)
     """)
 
-with st.expander("5. Medical Knowledge Chain (90%)"):
+with st.expander("4. Medical Knowledge Chain (90%)"):
     st.markdown("""
     **Documented Teaching Lineage (All Primary Sources):**
 
@@ -323,7 +307,7 @@ with st.expander("5. Medical Knowledge Chain (90%)"):
     - PROVES author learned from Rhazes teaching chain
     """)
 
-with st.expander("6. Handwriting Analysis (80% -> 95% Expected)"):
+with st.expander("5. Handwriting Analysis (80% -> 95% Expected)"):
     st.markdown("""
     **Analysis Conducted By:** Erin Toppe (Guidance: Juan Molina)
 
@@ -351,7 +335,7 @@ with st.expander("6. Handwriting Analysis (80% -> 95% Expected)"):
     **Expected with formal paleographic letter-by-letter analysis:** 95%+
     """)
 
-with st.expander("7. Intermediate Manuscript Connection (85%)"):
+with st.expander("6. Intermediate Manuscript Connection (85%)"):
     st.markdown("""
     **LJS 51 Discovery:**
     - Title: "Collection of alphabets and encrypted correspondence" (1400)
