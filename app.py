@@ -63,17 +63,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# INDEPENDENT VERIFICATION
-st.markdown("""
-<div style="border: 2px solid #d32f2f; padding: 1.5rem; border-radius: 8px; background-color: #ffebee; margin: 1rem 0;">
-<h3>INDEPENDENT VERIFICATION</h3>
-<p><strong>Juan Gabriel Molina</strong> (Paleographic Expert)</p>
-<p>Independently concluded: <strong>Fontana = Scribe #2</strong></p>
-<p>Before this investigation. Without seeing our cipher analysis.</p>
-<p style="font-size: 0.9rem; color: #666;">This is not a guess. This is expert handwriting analysis.</p>
-</div>
-""", unsafe_allow_html=True)
-
 # THE ORIGIN
 st.markdown("## THE ORIGIN: Fontana's Documented Cipher Knowledge")
 st.markdown("""
