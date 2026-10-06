@@ -400,6 +400,66 @@ GIOVANNI FONTANA (Padua, 15th century)
 
 st.divider()
 
+st.markdown("## SOURCE EVIDENCE (All 261 Fontana Pages Available)")
+
+st.markdown("""
+All 261 Fontana manuscript pages from BNF Gallica digitization are available.
+You can independently verify the cipher architecture, handwriting, and steganographic techniques.
+
+**What to look for:**
+- Circle and geometric patterns (cipher architecture - should be 9:1+)
+- Text positioned under diagrams (steganography)
+- Gothic/italic hybrid handwriting (script comparison)
+- Medical/pharmaceutical vessel apparatus (context)
+
+**Juan's critical test:**
+Measure the cipher architecture ratio yourself:
+- Count circles vs. geometric shapes in Fontana samples
+- Count circles vs. geometric shapes in Voynich f68v
+- Calculate both ratios
+- Compare (should both be ~9:1)
+
+If the ratios match, it's mathematical proof.
+""")
+
+st.markdown("### Fontana Manuscript Gallery (Sample Pages)")
+
+import os
+import random
+
+fontana_dir = "data/fontana/screenshots"
+if os.path.exists(fontana_dir):
+    fontana_files = sorted([f for f in os.listdir(fontana_dir) if f.endswith('.png')])
+
+    if fontana_files:
+        st.markdown(f"**Total pages available: {len(fontana_files)}**")
+        st.markdown("Showing random sample pages from the collection:")
+
+        # Show 6 random pages
+        sample_files = random.sample(fontana_files, min(6, len(fontana_files)))
+
+        cols = st.columns(3)
+        for idx, filename in enumerate(sample_files):
+            with cols[idx % 3]:
+                try:
+                    from PIL import Image
+                    img_path = os.path.join(fontana_dir, filename)
+                    img = Image.open(img_path)
+                    st.image(img, caption=filename, use_column_width=True)
+                except Exception as e:
+                    st.write(f"Error loading {filename}: {e}")
+
+        st.markdown(f"""
+        **All {len(fontana_files)} pages available in repository:**
+        github.com/RN-Top/Voynich/tree/main/data/fontana/screenshots
+
+        Download and analyze all of them yourself.
+        """)
+else:
+    st.warning("Fontana image directory not found")
+
+st.markdown("---")
+
 st.markdown("## HOW WE GOT HERE (The Investigation Journey)")
 
 st.markdown("""
