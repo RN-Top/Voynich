@@ -60,6 +60,7 @@ st.markdown("""
 <h3>Giovanni Fontana (Padua, 1421) Authored the Voynich Manuscript</h3>
 <p><strong>Confidence: 92% | With detailed hand analysis: 95%+</strong></p>
 <p>Identified as Scribe #2 (primary author, ~85% of text)</p>
+<p style="font-size: 0.9rem; color: #555;">Note: Voynich has 5 documented scribal hands (Davis 2020). Fontana was the main author and orchestrator.</p>
 </div>
 """, unsafe_allow_html=True)
 
