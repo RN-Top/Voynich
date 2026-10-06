@@ -325,24 +325,30 @@ with st.expander("5. Medical Knowledge Chain (90%)"):
 
 with st.expander("6. Handwriting Analysis (80% -> 95% Expected)"):
     st.markdown("""
-    **Preliminary Analysis:**
+    **Analysis Conducted By:** Erin Toppe (Guidance: Juan Molina)
 
-    Fontana's Script (Gallica 62-71):
+    **Process:**
+    - Erin gathered multiple Fontana handwriting samples (Gallica 62-71)
+    - Juan provided PDF example showing handwriting comparison method
+    - Erin compared Fontana samples directly with Voynich 68v (Scribe #2)
+    - Identified consistent characteristics across both manuscripts
+
+    **Fontana's Script (Gallica 62-71):**
     - Gothic/italic hybrid style
     - Tight, economical letter proportions
     - Consistent pen angle throughout
     - Medieval abbreviations present
     - High text density
 
-    Voynich 68v:
+    **Voynich 68v (Scribe #2):**
     - Similar Gothic/italic hybrid
     - Tight economical density (36.6% margin)
     - Consistent pen angle observed
     - Medieval abbreviations present
     - Same letter proportions
 
-    **Current Confidence:** 80% (preliminary)
-    **Expected with detailed letter-by-letter analysis:** 95%+
+    **Current Confidence:** 80% (detailed comparison complete)
+    **Expected with formal paleographic letter-by-letter analysis:** 95%+
     """)
 
 with st.expander("7. Intermediate Manuscript Connection (85%)"):
