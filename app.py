@@ -481,6 +481,49 @@ if os.path.exists(fontana_dir):
             st.error(f"Error loading page: {e}")
 
         st.markdown("---")
+
+        st.markdown("### Handwriting Comparison (Fontana vs Voynich)")
+
+        st.markdown("""
+        **What to look for:**
+        - Gothic/italic hybrid script style
+        - Tight, economical letter proportions
+        - Consistent pen angle throughout
+        - Medieval abbreviations
+        - Text density and spacing
+        """)
+
+        col_comp1, col_comp2 = st.columns(2)
+
+        with col_comp1:
+            st.markdown("**Fontana Handwriting**")
+            st.write("Pages 62-71 from gallery (clearest samples)")
+            st.write("")
+            st.write("Characteristics:")
+            st.write("✓ Gothic/italic hybrid")
+            st.write("✓ Tight economical spacing")
+            st.write("✓ Consistent pen angle")
+            st.write("✓ Medieval abbreviations")
+
+        with col_comp2:
+            st.markdown("**Voynich f68v (Scribe #2)**")
+            st.write("Primary author's handwriting sample")
+            st.write("")
+            st.write("Compare:")
+            st.write("✓ Letter forms & proportions")
+            st.write("✓ Text density (36.6% margin)")
+            st.write("✓ Writing style consistency")
+            st.write("✓ Medieval script characteristics")
+
+        st.markdown("""
+        **How to verify yourself:**
+        1. Download Fontana pages 62-71 (use gallery above or ZIP)
+        2. Get Voynich f68v (archive.org or reference from evidence)
+        3. Compare letterforms side-by-side
+        4. Assess handwriting match confidence independently
+        """)
+
+        st.markdown("---")
         st.markdown("### Download All Evidence for Independent Testing")
 
         col1, col2, col3 = st.columns(3)
