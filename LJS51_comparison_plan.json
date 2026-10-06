@@ -1,0 +1,15 @@
+{
+  "manuscript": "LJS 51",
+  "collection": "Lilly James Collection, Indiana University",
+  "archive_url": "https://archive.org/details/ljs51",
+  "significance": "Glyph forms match ~50% of Voynich manuscript (Molina 2024)",
+  "connection_to_fontana": "Script style associated with Giovanni Fontana",
+  "what_to_compare": [
+    "Letter forms (a, b, c, d, e patterns)",
+    "Consonant geometric characteristics",
+    "Vowel formations and abbreviations",
+    "Script style (gothic, italic, cursive elements)",
+    "Ligatures and special characters",
+    "Text density and layout"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "researcher": "Juan Gabriel Molina",
+  "independent_conclusion": "Giovanni Fontana is a STRONG CANDIDATE for Voynich Scribe #2",
+  "evidence": {
+    "paleographic_testing": "Extensive scribal analysis performed",
+    "scribe_identification": "Associated with Scribe #2 of Voynich manuscript",
+    "glyph_parallels": "~50% of Voynich glyph forms parallel LJS 51 manuscript",
+    "rejected_hypothesis": "Direct Arabic tradition connection (did not hold up)"
+  },
+  "relevant_manuscript": {
+    "identifier": "LJS 51 (Lilly James Collection 51)",
+    "location": "Indiana University",
+    "archive_org": "https://archive.org/details/ljs51",
+    "significance": "Contains glyph forms matching Voynich script"
+  },
+  "our_investigation_adds": [
+    "Steganographic layering technique match",
+    "Cipher circle system (documented A/E/I/O/U vowel encoding)",
+    "Medical framework connection (Rhazes \u2192 Gerard \u2192 Irish \u2192 Fontana)",
+    "Visual signature match (261 manuscript pages analyzed)",
+    "Handwriting/paleographic samples for comparison"
+  ]
+}

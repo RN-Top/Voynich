@@ -1,0 +1,1831 @@
+{
+  "images": [
+    {
+      "index": 18,
+      "filename": "0fd88d23-image.png",
+      "text_density": 0.986,
+      "contrast": 25.3,
+      "edge_density": 0.0673
+    },
+    {
+      "index": 29,
+      "filename": "1486a053-image.png",
+      "text_density": 0.779,
+      "contrast": 88.1,
+      "edge_density": 0.023
+    },
+    {
+      "index": 78,
+      "filename": "4ae5b4ed-image.png",
+      "text_density": 0.774,
+      "contrast": 90.3,
+      "edge_density": 0.0152
+    },
+    {
+      "index": 185,
+      "filename": "bdcf79bd-image.png",
+      "text_density": 0.774,
+      "contrast": 90.3,
+      "edge_density": 0.0152
+    },
+    {
+      "index": 206,
+      "filename": "d554887a-image.png",
+      "text_density": 0.774,
+      "contrast": 90.3,
+      "edge_density": 0.0147
+    },
+    {
+      "index": 144,
+      "filename": "88c2548a-image.png",
+      "text_density": 0.773,
+      "contrast": 90.3,
+      "edge_density": 0.0154
+    },
+    {
+      "index": 146,
+      "filename": "8d808321-image.png",
+      "text_density": 0.773,
+      "contrast": 90.3,
+      "edge_density": 0.0157
+    },
+    {
+      "index": 175,
+      "filename": "b1e9e0f9-image.png",
+      "text_density": 0.773,
+      "contrast": 90.3,
+      "edge_density": 0.0154
+    },
+    {
+      "index": 204,
+      "filename": "caac8902-image.png",
+      "text_density": 0.73,
+      "contrast": 96.1,
+      "edge_density": 0.035
+    },
+    {
+      "index": 156,
+      "filename": "9acb3958-image.png",
+      "text_density": 0.714,
+      "contrast": 103.0,
+      "edge_density": 0.014
+    },
+    {
+      "index": 6,
+      "filename": "0733e179-image.png",
+      "text_density": 0.682,
+      "contrast": 103.9,
+      "edge_density": 0.0121
+    },
+    {
+      "index": 259,
+      "filename": "fcd9ffb6-image.png",
+      "text_density": 0.43,
+      "contrast": 104.8,
+      "edge_density": 0.0721
+    },
+    {
+      "index": 245,
+      "filename": "f81bdcdf-image.png",
+      "text_density": 0.414,
+      "contrast": 45.6,
+      "edge_density": 0.3809
+    },
+    {
+      "index": 207,
+      "filename": "d6917c7a-image.png",
+      "text_density": 0.409,
+      "contrast": 41.0,
+      "edge_density": 0.3982
+    },
+    {
+      "index": 249,
+      "filename": "f97ba413-image.png",
+      "text_density": 0.409,
+      "contrast": 41.0,
+      "edge_density": 0.3982
+    },
+    {
+      "index": 255,
+      "filename": "fa99d411-image.png",
+      "text_density": 0.392,
+      "contrast": 31.3,
+      "edge_density": 0.3752
+    },
+    {
+      "index": 118,
+      "filename": "7645c735-image.png",
+      "text_density": 0.385,
+      "contrast": 32.6,
+      "edge_density": 0.3889
+    },
+    {
+      "index": 232,
+      "filename": "ef57a601-image.png",
+      "text_density": 0.321,
+      "contrast": 37.2,
+      "edge_density": 0.3908
+    },
+    {
+      "index": 104,
+      "filename": "68944b01-image.png",
+      "text_density": 0.311,
+      "contrast": 39.5,
+      "edge_density": 0.3954
+    },
+    {
+      "index": 209,
+      "filename": "da2556a7-image.png",
+      "text_density": 0.281,
+      "contrast": 54.8,
+      "edge_density": 0.2645
+    },
+    {
+      "index": 42,
+      "filename": "222d03ba-image.png",
+      "text_density": 0.279,
+      "contrast": 38.1,
+      "edge_density": 0.3828
+    },
+    {
+      "index": 198,
+      "filename": "c6db9066-image.png",
+      "text_density": 0.279,
+      "contrast": 38.1,
+      "edge_density": 0.3828
+    },
+    {
+      "index": 137,
+      "filename": "85313cf0-image.png",
+      "text_density": 0.264,
+      "contrast": 37.4,
+      "edge_density": 0.3749
+    },
+    {
+      "index": 163,
+      "filename": "a422358c-image.png",
+      "text_density": 0.262,
+      "contrast": 41.7,
+      "edge_density": 0.3971
+    },
+    {
+      "index": 105,
+      "filename": "69079810-image.png",
+      "text_density": 0.253,
+      "contrast": 39.3,
+      "edge_density": 0.394
+    },
+    {
+      "index": 10,
+      "filename": "0843c2a4-image.png",
+      "text_density": 0.244,
+      "contrast": 30.3,
+      "edge_density": 0.373
+    },
+    {
+      "index": 142,
+      "filename": "87a3a525-image.png",
+      "text_density": 0.228,
+      "contrast": 40.6,
+      "edge_density": 0.3986
+    },
+    {
+      "index": 88,
+      "filename": "564e5af4-image.png",
+      "text_density": 0.222,
+      "contrast": 30.6,
+      "edge_density": 0.3897
+    },
+    {
+      "index": 15,
+      "filename": "0d44d6d1-image.png",
+      "text_density": 0.2,
+      "contrast": 66.4,
+      "edge_density": 0.3202
+    },
+    {
+      "index": 241,
+      "filename": "f58372c6-image.png",
+      "text_density": 0.2,
+      "contrast": 66.4,
+      "edge_density": 0.3202
+    },
+    {
+      "index": 169,
+      "filename": "adb35885-image.png",
+      "text_density": 0.193,
+      "contrast": 41.0,
+      "edge_density": 0.4042
+    },
+    {
+      "index": 235,
+      "filename": "f13e5d43-image.png",
+      "text_density": 0.192,
+      "contrast": 41.7,
+      "edge_density": 0.3955
+    },
+    {
+      "index": 16,
+      "filename": "0d6225fc-image.png",
+      "text_density": 0.191,
+      "contrast": 28.7,
+      "edge_density": 0.4106
+    },
+    {
+      "index": 101,
+      "filename": "657245da-image.png",
+      "text_density": 0.19,
+      "contrast": 49.2,
+      "edge_density": 0.4022
+    },
+    {
+      "index": 114,
+      "filename": "70616f93-image.png",
+      "text_density": 0.186,
+      "contrast": 47.8,
+      "edge_density": 0.3979
+    },
+    {
+      "index": 51,
+      "filename": "2d4337bf-image.png",
+      "text_density": 0.184,
+      "contrast": 32.1,
+      "edge_density": 0.4154
+    },
+    {
+      "index": 57,
+      "filename": "325eb6c4-image.png",
+      "text_density": 0.18,
+      "contrast": 87.0,
+      "edge_density": 0.1672
+    },
+    {
+      "index": 195,
+      "filename": "c4b5adc4-image.png",
+      "text_density": 0.179,
+      "contrast": 45.4,
+      "edge_density": 0.3898
+    },
+    {
+      "index": 54,
+      "filename": "2fec3a6a-image.png",
+      "text_density": 0.178,
+      "contrast": 87.5,
+      "edge_density": 0.1198
+    },
+    {
+      "index": 256,
+      "filename": "fb099539-image.png",
+      "text_density": 0.177,
+      "contrast": 85.8,
+      "edge_density": 0.1691
+    },
+    {
+      "index": 71,
+      "filename": "41ccfa43-image.png",
+      "text_density": 0.176,
+      "contrast": 44.5,
+      "edge_density": 0.4046
+    },
+    {
+      "index": 7,
+      "filename": "07b67c67-image.png",
+      "text_density": 0.175,
+      "contrast": 63.3,
+      "edge_density": 0.3221
+    },
+    {
+      "index": 23,
+      "filename": "11f77913-image.png",
+      "text_density": 0.175,
+      "contrast": 86.1,
+      "edge_density": 0.1436
+    },
+    {
+      "index": 217,
+      "filename": "e1617df0-image.png",
+      "text_density": 0.175,
+      "contrast": 86.9,
+      "edge_density": 0.1283
+    },
+    {
+      "index": 87,
+      "filename": "52153f9b-image.png",
+      "text_density": 0.174,
+      "contrast": 83.7,
+      "edge_density": 0.1981
+    },
+    {
+      "index": 62,
+      "filename": "396dfd22-image.png",
+      "text_density": 0.172,
+      "contrast": 87.0,
+      "edge_density": 0.1256
+    },
+    {
+      "index": 242,
+      "filename": "f684e6fa-image.png",
+      "text_density": 0.172,
+      "contrast": 29.2,
+      "edge_density": 0.3713
+    },
+    {
+      "index": 35,
+      "filename": "1c04866a-image.png",
+      "text_density": 0.171,
+      "contrast": 36.8,
+      "edge_density": 0.3927
+    },
+    {
+      "index": 199,
+      "filename": "c71db36e-image.png",
+      "text_density": 0.171,
+      "contrast": 85.4,
+      "edge_density": 0.1492
+    },
+    {
+      "index": 246,
+      "filename": "f81d7d8f-image.png",
+      "text_density": 0.171,
+      "contrast": 85.6,
+      "edge_density": 0.1644
+    },
+    {
+      "index": 74,
+      "filename": "45665e82-image.png",
+      "text_density": 0.169,
+      "contrast": 70.6,
+      "edge_density": 0.2994
+    },
+    {
+      "index": 132,
+      "filename": "7eba4d03-image.png",
+      "text_density": 0.167,
+      "contrast": 30.7,
+      "edge_density": 0.3978
+    },
+    {
+      "index": 69,
+      "filename": "405c9f56-image.png",
+      "text_density": 0.165,
+      "contrast": 33.9,
+      "edge_density": 0.3908
+    },
+    {
+      "index": 180,
+      "filename": "b6c25f4b-image.png",
+      "text_density": 0.165,
+      "contrast": 33.9,
+      "edge_density": 0.3908
+    },
+    {
+      "index": 14,
+      "filename": "0d26012d-image.png",
+      "text_density": 0.156,
+      "contrast": 84.3,
+      "edge_density": 0.1583
+    },
+    {
+      "index": 130,
+      "filename": "7e2e9884-image.png",
+      "text_density": 0.156,
+      "contrast": 79.3,
+      "edge_density": 0.1097
+    },
+    {
+      "index": 177,
+      "filename": "b32c86bc-image.png",
+      "text_density": 0.156,
+      "contrast": 79.3,
+      "edge_density": 0.1097
+    },
+    {
+      "index": 76,
+      "filename": "488169ea-image.png",
+      "text_density": 0.155,
+      "contrast": 72.6,
+      "edge_density": 0.2843
+    },
+    {
+      "index": 140,
+      "filename": "86a19592-image.png",
+      "text_density": 0.155,
+      "contrast": 67.6,
+      "edge_density": 0.1209
+    },
+    {
+      "index": 226,
+      "filename": "ec07607f-image.png",
+      "text_density": 0.154,
+      "contrast": 39.3,
+      "edge_density": 0.4003
+    },
+    {
+      "index": 150,
+      "filename": "8f006dc2-image.png",
+      "text_density": 0.153,
+      "contrast": 40.9,
+      "edge_density": 0.3942
+    },
+    {
+      "index": 202,
+      "filename": "ca14e914-image.png",
+      "text_density": 0.151,
+      "contrast": 64.4,
+      "edge_density": 0.3144
+    },
+    {
+      "index": 229,
+      "filename": "ece38b9f-image.png",
+      "text_density": 0.151,
+      "contrast": 53.8,
+      "edge_density": 0.3984
+    },
+    {
+      "index": 9,
+      "filename": "0826f895-image.png",
+      "text_density": 0.149,
+      "contrast": 63.1,
+      "edge_density": 0.3503
+    },
+    {
+      "index": 257,
+      "filename": "fca4e5dc-image.png",
+      "text_density": 0.149,
+      "contrast": 36.9,
+      "edge_density": 0.2023
+    },
+    {
+      "index": 44,
+      "filename": "286f7dff-image.png",
+      "text_density": 0.148,
+      "contrast": 30.3,
+      "edge_density": 0.4029
+    },
+    {
+      "index": 143,
+      "filename": "886d5be2-image.png",
+      "text_density": 0.148,
+      "contrast": 37.2,
+      "edge_density": 0.3965
+    },
+    {
+      "index": 167,
+      "filename": "ad0cfc4d-image.png",
+      "text_density": 0.148,
+      "contrast": 39.1,
+      "edge_density": 0.3827
+    },
+    {
+      "index": 94,
+      "filename": "5e8758b9-image.png",
+      "text_density": 0.147,
+      "contrast": 42.8,
+      "edge_density": 0.4011
+    },
+    {
+      "index": 181,
+      "filename": "b72f0204-image.png",
+      "text_density": 0.147,
+      "contrast": 35.6,
+      "edge_density": 0.4134
+    },
+    {
+      "index": 228,
+      "filename": "ecd1265b-image.png",
+      "text_density": 0.147,
+      "contrast": 38.1,
+      "edge_density": 0.3883
+    },
+    {
+      "index": 12,
+      "filename": "088836d6-image.png",
+      "text_density": 0.145,
+      "contrast": 49.6,
+      "edge_density": 0.3822
+    },
+    {
+      "index": 96,
+      "filename": "624e788d-image.png",
+      "text_density": 0.143,
+      "contrast": 69.1,
+      "edge_density": 0.2761
+    },
+    {
+      "index": 240,
+      "filename": "f4e3cfa8-image.png",
+      "text_density": 0.14,
+      "contrast": 35.0,
+      "edge_density": 0.3912
+    },
+    {
+      "index": 221,
+      "filename": "e4c1f6fb-image.png",
+      "text_density": 0.137,
+      "contrast": 62.7,
+      "edge_density": 0.324
+    },
+    {
+      "index": 184,
+      "filename": "bcb3d9c3-image.png",
+      "text_density": 0.136,
+      "contrast": 42.7,
+      "edge_density": 0.3778
+    },
+    {
+      "index": 159,
+      "filename": "a032874f-image.png",
+      "text_density": 0.133,
+      "contrast": 35.3,
+      "edge_density": 0.1537
+    },
+    {
+      "index": 37,
+      "filename": "1ecc2f0e-image.png",
+      "text_density": 0.13,
+      "contrast": 61.5,
+      "edge_density": 0.2766
+    },
+    {
+      "index": 128,
+      "filename": "7cfb3bbf-image.png",
+      "text_density": 0.13,
+      "contrast": 71.9,
+      "edge_density": 0.0917
+    },
+    {
+      "index": 8,
+      "filename": "08172388-image.png",
+      "text_density": 0.127,
+      "contrast": 41.5,
+      "edge_density": 0.1638
+    },
+    {
+      "index": 58,
+      "filename": "32e54a6c-image.png",
+      "text_density": 0.126,
+      "contrast": 24.9,
+      "edge_density": 0.3704
+    },
+    {
+      "index": 196,
+      "filename": "c5a8e733-image.png",
+      "text_density": 0.125,
+      "contrast": 30.0,
+      "edge_density": 0.4163
+    },
+    {
+      "index": 39,
+      "filename": "20c48428-image.png",
+      "text_density": 0.124,
+      "contrast": 64.6,
+      "edge_density": 0.2182
+    },
+    {
+      "index": 100,
+      "filename": "639707a1-image.png",
+      "text_density": 0.124,
+      "contrast": 40.6,
+      "edge_density": 0.3976
+    },
+    {
+      "index": 197,
+      "filename": "c67ff8e8-image.png",
+      "text_density": 0.123,
+      "contrast": 39.9,
+      "edge_density": 0.3785
+    },
+    {
+      "index": 123,
+      "filename": "7a07bce2-image.png",
+      "text_density": 0.121,
+      "contrast": 35.9,
+      "edge_density": 0.4035
+    },
+    {
+      "index": 237,
+      "filename": "f1d3d9ed-image.png",
+      "text_density": 0.121,
+      "contrast": 40.5,
+      "edge_density": 0.4098
+    },
+    {
+      "index": 13,
+      "filename": "0d20a3f8-image.png",
+      "text_density": 0.12,
+      "contrast": 48.0,
+      "edge_density": 0.1558
+    },
+    {
+      "index": 108,
+      "filename": "6c13ea17-image.png",
+      "text_density": 0.12,
+      "contrast": 60.4,
+      "edge_density": 0.2952
+    },
+    {
+      "index": 238,
+      "filename": "f48c6b9a-image.png",
+      "text_density": 0.12,
+      "contrast": 60.4,
+      "edge_density": 0.2952
+    },
+    {
+      "index": 254,
+      "filename": "fa2325f7-image.png",
+      "text_density": 0.12,
+      "contrast": 55.7,
+      "edge_density": 0.1675
+    },
+    {
+      "index": 50,
+      "filename": "2c4de5f4-image.png",
+      "text_density": 0.119,
+      "contrast": 41.8,
+      "edge_density": 0.3716
+    },
+    {
+      "index": 258,
+      "filename": "fcc589c6-image.png",
+      "text_density": 0.119,
+      "contrast": 23.2,
+      "edge_density": 0.3007
+    },
+    {
+      "index": 36,
+      "filename": "1d8c1b57-image.png",
+      "text_density": 0.118,
+      "contrast": 42.7,
+      "edge_density": 0.3688
+    },
+    {
+      "index": 73,
+      "filename": "436a2d13-image.png",
+      "text_density": 0.118,
+      "contrast": 35.6,
+      "edge_density": 0.3776
+    },
+    {
+      "index": 17,
+      "filename": "0fc36b34-image.png",
+      "text_density": 0.114,
+      "contrast": 62.6,
+      "edge_density": 0.328
+    },
+    {
+      "index": 48,
+      "filename": "2b12745c-image.png",
+      "text_density": 0.112,
+      "contrast": 55.9,
+      "edge_density": 0.2855
+    },
+    {
+      "index": 212,
+      "filename": "dce6d6e6-image.png",
+      "text_density": 0.112,
+      "contrast": 64.6,
+      "edge_density": 0.3163
+    },
+    {
+      "index": 260,
+      "filename": "fecede83-image.png",
+      "text_density": 0.112,
+      "contrast": 70.6,
+      "edge_density": 0.1037
+    },
+    {
+      "index": 218,
+      "filename": "e39be373-image.png",
+      "text_density": 0.111,
+      "contrast": 48.8,
+      "edge_density": 0.371
+    },
+    {
+      "index": 27,
+      "filename": "13b4323c-image.png",
+      "text_density": 0.11,
+      "contrast": 28.8,
+      "edge_density": 0.3912
+    },
+    {
+      "index": 214,
+      "filename": "de46a07a-image.png",
+      "text_density": 0.11,
+      "contrast": 23.0,
+      "edge_density": 0.3688
+    },
+    {
+      "index": 210,
+      "filename": "dc40b9a3-image.png",
+      "text_density": 0.108,
+      "contrast": 42.3,
+      "edge_density": 0.3952
+    },
+    {
+      "index": 99,
+      "filename": "63623337-image.png",
+      "text_density": 0.107,
+      "contrast": 52.5,
+      "edge_density": 0.1552
+    },
+    {
+      "index": 141,
+      "filename": "86be12b1-image.png",
+      "text_density": 0.106,
+      "contrast": 46.0,
+      "edge_density": 0.3769
+    },
+    {
+      "index": 129,
+      "filename": "7d3d3e76-image.png",
+      "text_density": 0.105,
+      "contrast": 43.5,
+      "edge_density": 0.2919
+    },
+    {
+      "index": 55,
+      "filename": "3102219f-image.png",
+      "text_density": 0.104,
+      "contrast": 25.0,
+      "edge_density": 0.3102
+    },
+    {
+      "index": 98,
+      "filename": "62c0e6e4-image.png",
+      "text_density": 0.104,
+      "contrast": 34.6,
+      "edge_density": 0.3988
+    },
+    {
+      "index": 194,
+      "filename": "c49c847d-image.png",
+      "text_density": 0.102,
+      "contrast": 51.0,
+      "edge_density": 0.1493
+    },
+    {
+      "index": 64,
+      "filename": "3d299317-image.png",
+      "text_density": 0.101,
+      "contrast": 59.1,
+      "edge_density": 0.2867
+    },
+    {
+      "index": 80,
+      "filename": "4b5d6048-image.png",
+      "text_density": 0.1,
+      "contrast": 41.1,
+      "edge_density": 0.3691
+    },
+    {
+      "index": 84,
+      "filename": "4e978e5a-image.png",
+      "text_density": 0.1,
+      "contrast": 50.2,
+      "edge_density": 0.0474
+    },
+    {
+      "index": 72,
+      "filename": "41e4d6c4-image.png",
+      "text_density": 0.099,
+      "contrast": 27.6,
+      "edge_density": 0.2221
+    },
+    {
+      "index": 112,
+      "filename": "6de51364-image.png",
+      "text_density": 0.099,
+      "contrast": 36.1,
+      "edge_density": 0.4032
+    },
+    {
+      "index": 120,
+      "filename": "788b0083-image.png",
+      "text_density": 0.098,
+      "contrast": 49.3,
+      "edge_density": 0.1844
+    },
+    {
+      "index": 135,
+      "filename": "82bbd4c6-image.png",
+      "text_density": 0.098,
+      "contrast": 58.8,
+      "edge_density": 0.323
+    },
+    {
+      "index": 173,
+      "filename": "af1260ac-image.png",
+      "text_density": 0.098,
+      "contrast": 39.1,
+      "edge_density": 0.4041
+    },
+    {
+      "index": 32,
+      "filename": "18731b53-image.png",
+      "text_density": 0.097,
+      "contrast": 22.4,
+      "edge_density": 0.3133
+    },
+    {
+      "index": 176,
+      "filename": "b316b34c-image.png",
+      "text_density": 0.097,
+      "contrast": 41.2,
+      "edge_density": 0.3303
+    },
+    {
+      "index": 82,
+      "filename": "4d413692-image.png",
+      "text_density": 0.095,
+      "contrast": 29.7,
+      "edge_density": 0.4142
+    },
+    {
+      "index": 183,
+      "filename": "ba6de4fd-image.png",
+      "text_density": 0.095,
+      "contrast": 54.2,
+      "edge_density": 0.147
+    },
+    {
+      "index": 102,
+      "filename": "666b0068-image.png",
+      "text_density": 0.093,
+      "contrast": 59.0,
+      "edge_density": 0.1189
+    },
+    {
+      "index": 148,
+      "filename": "8e9fefce-image.png",
+      "text_density": 0.093,
+      "contrast": 63.4,
+      "edge_density": 0.26
+    },
+    {
+      "index": 155,
+      "filename": "96a24399-image.png",
+      "text_density": 0.093,
+      "contrast": 35.2,
+      "edge_density": 0.4014
+    },
+    {
+      "index": 20,
+      "filename": "115f8b07-image.png",
+      "text_density": 0.09,
+      "contrast": 28.7,
+      "edge_density": 0.4011
+    },
+    {
+      "index": 147,
+      "filename": "8e470c29-image.png",
+      "text_density": 0.09,
+      "contrast": 62.5,
+      "edge_density": 0.2563
+    },
+    {
+      "index": 191,
+      "filename": "c173a75a-image.png",
+      "text_density": 0.088,
+      "contrast": 38.1,
+      "edge_density": 0.4074
+    },
+    {
+      "index": 220,
+      "filename": "e49221a8-image.png",
+      "text_density": 0.087,
+      "contrast": 68.7,
+      "edge_density": 0.113
+    },
+    {
+      "index": 89,
+      "filename": "56c72940-image.png",
+      "text_density": 0.086,
+      "contrast": 61.8,
+      "edge_density": 0.319
+    },
+    {
+      "index": 61,
+      "filename": "389c5716-image.png",
+      "text_density": 0.085,
+      "contrast": 57.2,
+      "edge_density": 0.2581
+    },
+    {
+      "index": 90,
+      "filename": "57235238-image.png",
+      "text_density": 0.085,
+      "contrast": 57.5,
+      "edge_density": 0.333
+    },
+    {
+      "index": 131,
+      "filename": "7e31b222-image.png",
+      "text_density": 0.085,
+      "contrast": 42.4,
+      "edge_density": 0.4
+    },
+    {
+      "index": 231,
+      "filename": "ed522cc3-image.png",
+      "text_density": 0.085,
+      "contrast": 24.8,
+      "edge_density": 0.1709
+    },
+    {
+      "index": 253,
+      "filename": "f9f19adc-image.png",
+      "text_density": 0.085,
+      "contrast": 57.5,
+      "edge_density": 0.333
+    },
+    {
+      "index": 179,
+      "filename": "b52ad04e-image.png",
+      "text_density": 0.084,
+      "contrast": 61.1,
+      "edge_density": 0.1228
+    },
+    {
+      "index": 138,
+      "filename": "85fdb242-image.png",
+      "text_density": 0.083,
+      "contrast": 30.0,
+      "edge_density": 0.3986
+    },
+    {
+      "index": 222,
+      "filename": "e4ed839c-image.png",
+      "text_density": 0.083,
+      "contrast": 35.7,
+      "edge_density": 0.408
+    },
+    {
+      "index": 68,
+      "filename": "3fe1e30d-image.png",
+      "text_density": 0.082,
+      "contrast": 48.0,
+      "edge_density": 0.1543
+    },
+    {
+      "index": 160,
+      "filename": "a0847de5-image.png",
+      "text_density": 0.082,
+      "contrast": 42.2,
+      "edge_density": 0.3822
+    },
+    {
+      "index": 208,
+      "filename": "d976a9b0-image.png",
+      "text_density": 0.082,
+      "contrast": 32.5,
+      "edge_density": 0.3964
+    },
+    {
+      "index": 24,
+      "filename": "126afadf-image.png",
+      "text_density": 0.08,
+      "contrast": 58.6,
+      "edge_density": 0.2317
+    },
+    {
+      "index": 193,
+      "filename": "c3f735e7-image.png",
+      "text_density": 0.08,
+      "contrast": 36.3,
+      "edge_density": 0.4081
+    },
+    {
+      "index": 188,
+      "filename": "bfacf9bb-image.png",
+      "text_density": 0.079,
+      "contrast": 62.8,
+      "edge_density": 0.2802
+    },
+    {
+      "index": 43,
+      "filename": "2263a378-image.png",
+      "text_density": 0.078,
+      "contrast": 28.2,
+      "edge_density": 0.403
+    },
+    {
+      "index": 165,
+      "filename": "a69cf9f5-image.png",
+      "text_density": 0.078,
+      "contrast": 38.8,
+      "edge_density": 0.3985
+    },
+    {
+      "index": 45,
+      "filename": "28af5d1a-image.png",
+      "text_density": 0.077,
+      "contrast": 25.5,
+      "edge_density": 0.4099
+    },
+    {
+      "index": 33,
+      "filename": "1a2166eb-image.png",
+      "text_density": 0.075,
+      "contrast": 24.0,
+      "edge_density": 0.3476
+    },
+    {
+      "index": 182,
+      "filename": "b86302d8-image.png",
+      "text_density": 0.075,
+      "contrast": 60.1,
+      "edge_density": 0.0692
+    },
+    {
+      "index": 201,
+      "filename": "c8bb42f1-image.png",
+      "text_density": 0.075,
+      "contrast": 25.8,
+      "edge_density": 0.4046
+    },
+    {
+      "index": 28,
+      "filename": "144f49b1-image.png",
+      "text_density": 0.074,
+      "contrast": 38.1,
+      "edge_density": 0.3975
+    },
+    {
+      "index": 174,
+      "filename": "b04bc49b-image.png",
+      "text_density": 0.074,
+      "contrast": 24.0,
+      "edge_density": 0.3467
+    },
+    {
+      "index": 25,
+      "filename": "12e2188a-image.png",
+      "text_density": 0.073,
+      "contrast": 27.1,
+      "edge_density": 0.2329
+    },
+    {
+      "index": 215,
+      "filename": "dfba9174-image.png",
+      "text_density": 0.073,
+      "contrast": 39.6,
+      "edge_density": 0.3854
+    },
+    {
+      "index": 134,
+      "filename": "81e88a4b-image.png",
+      "text_density": 0.072,
+      "contrast": 59.6,
+      "edge_density": 0.2963
+    },
+    {
+      "index": 170,
+      "filename": "ae38eea6-image.png",
+      "text_density": 0.072,
+      "contrast": 61.6,
+      "edge_density": 0.1982
+    },
+    {
+      "index": 224,
+      "filename": "e8ffd0f3-image.png",
+      "text_density": 0.072,
+      "contrast": 24.0,
+      "edge_density": 0.3436
+    },
+    {
+      "index": 189,
+      "filename": "bfbef59c-image.png",
+      "text_density": 0.071,
+      "contrast": 26.5,
+      "edge_density": 0.4155
+    },
+    {
+      "index": 11,
+      "filename": "08475c35-image.png",
+      "text_density": 0.07,
+      "contrast": 43.8,
+      "edge_density": 0.126
+    },
+    {
+      "index": 230,
+      "filename": "ed4471ba-image.png",
+      "text_density": 0.069,
+      "contrast": 21.9,
+      "edge_density": 0.3117
+    },
+    {
+      "index": 59,
+      "filename": "33882523-image.png",
+      "text_density": 0.068,
+      "contrast": 57.6,
+      "edge_density": 0.0468
+    },
+    {
+      "index": 2,
+      "filename": "0334317b-image.png",
+      "text_density": 0.067,
+      "contrast": 25.4,
+      "edge_density": 0.4082
+    },
+    {
+      "index": 21,
+      "filename": "118a20c8-image.png",
+      "text_density": 0.066,
+      "contrast": 39.9,
+      "edge_density": 0.1639
+    },
+    {
+      "index": 47,
+      "filename": "2a589596-image.png",
+      "text_density": 0.066,
+      "contrast": 24.0,
+      "edge_density": 0.4058
+    },
+    {
+      "index": 223,
+      "filename": "e699b4d1-image.png",
+      "text_density": 0.066,
+      "contrast": 43.4,
+      "edge_density": 0.1784
+    },
+    {
+      "index": 115,
+      "filename": "71fcec4c-image.png",
+      "text_density": 0.064,
+      "contrast": 24.0,
+      "edge_density": 0.3582
+    },
+    {
+      "index": 81,
+      "filename": "4bfaf5cd-image.png",
+      "text_density": 0.063,
+      "contrast": 57.7,
+      "edge_density": 0.251
+    },
+    {
+      "index": 233,
+      "filename": "f00646c4-image.png",
+      "text_density": 0.063,
+      "contrast": 56.0,
+      "edge_density": 0.0441
+    },
+    {
+      "index": 1,
+      "filename": "001a5947-image.png",
+      "text_density": 0.062,
+      "contrast": 26.8,
+      "edge_density": 0.4027
+    },
+    {
+      "index": 63,
+      "filename": "3a502290-image.png",
+      "text_density": 0.062,
+      "contrast": 53.3,
+      "edge_density": 0.0357
+    },
+    {
+      "index": 162,
+      "filename": "a33a70ae-image.png",
+      "text_density": 0.062,
+      "contrast": 30.8,
+      "edge_density": 0.398
+    },
+    {
+      "index": 154,
+      "filename": "9599005c-image.png",
+      "text_density": 0.061,
+      "contrast": 63.1,
+      "edge_density": 0.0745
+    },
+    {
+      "index": 248,
+      "filename": "f917b0f0-image.png",
+      "text_density": 0.06,
+      "contrast": 43.7,
+      "edge_density": 0.0337
+    },
+    {
+      "index": 95,
+      "filename": "60d674d2-image.png",
+      "text_density": 0.059,
+      "contrast": 27.6,
+      "edge_density": 0.3898
+    },
+    {
+      "index": 113,
+      "filename": "6e386af3-image.png",
+      "text_density": 0.059,
+      "contrast": 52.8,
+      "edge_density": 0.0818
+    },
+    {
+      "index": 252,
+      "filename": "f9e3033c-image.png",
+      "text_density": 0.059,
+      "contrast": 23.6,
+      "edge_density": 0.3752
+    },
+    {
+      "index": 66,
+      "filename": "3dd7c536-image.png",
+      "text_density": 0.057,
+      "contrast": 23.8,
+      "edge_density": 0.4035
+    },
+    {
+      "index": 85,
+      "filename": "5171fc6c-image.png",
+      "text_density": 0.057,
+      "contrast": 24.2,
+      "edge_density": 0.3445
+    },
+    {
+      "index": 91,
+      "filename": "592f33f0-image.png",
+      "text_density": 0.057,
+      "contrast": 53.3,
+      "edge_density": 0.0794
+    },
+    {
+      "index": 4,
+      "filename": "06bef389-image.png",
+      "text_density": 0.056,
+      "contrast": 52.5,
+      "edge_density": 0.0897
+    },
+    {
+      "index": 219,
+      "filename": "e4416ec3-image.png",
+      "text_density": 0.056,
+      "contrast": 28.3,
+      "edge_density": 0.3187
+    },
+    {
+      "index": 60,
+      "filename": "33b737c6-image.png",
+      "text_density": 0.055,
+      "contrast": 22.3,
+      "edge_density": 0.1736
+    },
+    {
+      "index": 119,
+      "filename": "785e8343-image.png",
+      "text_density": 0.055,
+      "contrast": 52.2,
+      "edge_density": 0.0403
+    },
+    {
+      "index": 157,
+      "filename": "9aedf489-image.png",
+      "text_density": 0.054,
+      "contrast": 52.3,
+      "edge_density": 0.0379
+    },
+    {
+      "index": 178,
+      "filename": "b449c25a-image.png",
+      "text_density": 0.054,
+      "contrast": 24.0,
+      "edge_density": 0.3496
+    },
+    {
+      "index": 70,
+      "filename": "40cd67e2-image.png",
+      "text_density": 0.053,
+      "contrast": 50.3,
+      "edge_density": 0.0784
+    },
+    {
+      "index": 161,
+      "filename": "a0dfa628-image.png",
+      "text_density": 0.053,
+      "contrast": 51.5,
+      "edge_density": 0.0717
+    },
+    {
+      "index": 77,
+      "filename": "48d0bdc8-image.png",
+      "text_density": 0.052,
+      "contrast": 23.0,
+      "edge_density": 0.3843
+    },
+    {
+      "index": 121,
+      "filename": "78fbd0a9-image.png",
+      "text_density": 0.052,
+      "contrast": 50.2,
+      "edge_density": 0.0782
+    },
+    {
+      "index": 3,
+      "filename": "05c222d8-image.png",
+      "text_density": 0.051,
+      "contrast": 50.3,
+      "edge_density": 0.073
+    },
+    {
+      "index": 19,
+      "filename": "1093bf25-image.png",
+      "text_density": 0.05,
+      "contrast": 48.9,
+      "edge_density": 0.0726
+    },
+    {
+      "index": 93,
+      "filename": "5deab7ca-image.png",
+      "text_density": 0.05,
+      "contrast": 26.7,
+      "edge_density": 0.3985
+    },
+    {
+      "index": 116,
+      "filename": "73d80108-image.png",
+      "text_density": 0.05,
+      "contrast": 26.2,
+      "edge_density": 0.4055
+    },
+    {
+      "index": 152,
+      "filename": "924962f3-image.png",
+      "text_density": 0.05,
+      "contrast": 50.4,
+      "edge_density": 0.0372
+    },
+    {
+      "index": 153,
+      "filename": "956add84-image.png",
+      "text_density": 0.05,
+      "contrast": 50.4,
+      "edge_density": 0.0372
+    },
+    {
+      "index": 190,
+      "filename": "c01b31e5-image.png",
+      "text_density": 0.05,
+      "contrast": 47.6,
+      "edge_density": 0.0217
+    },
+    {
+      "index": 26,
+      "filename": "139dde42-image.png",
+      "text_density": 0.049,
+      "contrast": 48.8,
+      "edge_density": 0.0783
+    },
+    {
+      "index": 111,
+      "filename": "6de16dc2-image.png",
+      "text_density": 0.049,
+      "contrast": 50.3,
+      "edge_density": 0.0375
+    },
+    {
+      "index": 187,
+      "filename": "bec832c6-image.png",
+      "text_density": 0.049,
+      "contrast": 50.3,
+      "edge_density": 0.0375
+    },
+    {
+      "index": 56,
+      "filename": "32002da0-image.png",
+      "text_density": 0.047,
+      "contrast": 25.9,
+      "edge_density": 0.4037
+    },
+    {
+      "index": 126,
+      "filename": "7b970c4a-image.png",
+      "text_density": 0.047,
+      "contrast": 52.9,
+      "edge_density": 0.1522
+    },
+    {
+      "index": 5,
+      "filename": "06e0c9b3-image.png",
+      "text_density": 0.046,
+      "contrast": 22.5,
+      "edge_density": 0.3332
+    },
+    {
+      "index": 65,
+      "filename": "3d61cfce-image.png",
+      "text_density": 0.045,
+      "contrast": 23.5,
+      "edge_density": 0.3792
+    },
+    {
+      "index": 107,
+      "filename": "6a822b2e-image.png",
+      "text_density": 0.045,
+      "contrast": 22.3,
+      "edge_density": 0.3031
+    },
+    {
+      "index": 109,
+      "filename": "6c5479bf-image.png",
+      "text_density": 0.045,
+      "contrast": 52.8,
+      "edge_density": 0.1017
+    },
+    {
+      "index": 125,
+      "filename": "7b83c801-image.png",
+      "text_density": 0.044,
+      "contrast": 23.3,
+      "edge_density": 0.3655
+    },
+    {
+      "index": 225,
+      "filename": "e96381a9-image.png",
+      "text_density": 0.044,
+      "contrast": 27.5,
+      "edge_density": 0.3358
+    },
+    {
+      "index": 145,
+      "filename": "8c64b00d-image.png",
+      "text_density": 0.043,
+      "contrast": 23.9,
+      "edge_density": 0.3346
+    },
+    {
+      "index": 243,
+      "filename": "f68b0828-image.png",
+      "text_density": 0.043,
+      "contrast": 22.2,
+      "edge_density": 0.3449
+    },
+    {
+      "index": 83,
+      "filename": "4e4937d1-image.png",
+      "text_density": 0.042,
+      "contrast": 56.6,
+      "edge_density": 0.1086
+    },
+    {
+      "index": 172,
+      "filename": "af108a5c-image.png",
+      "text_density": 0.042,
+      "contrast": 41.3,
+      "edge_density": 0.016
+    },
+    {
+      "index": 236,
+      "filename": "f19b59eb-image.png",
+      "text_density": 0.042,
+      "contrast": 22.5,
+      "edge_density": 0.3503
+    },
+    {
+      "index": 149,
+      "filename": "8ede89f2-image.png",
+      "text_density": 0.041,
+      "contrast": 28.0,
+      "edge_density": 0.3224
+    },
+    {
+      "index": 30,
+      "filename": "16245fc4-image.png",
+      "text_density": 0.04,
+      "contrast": 47.6,
+      "edge_density": 0.0403
+    },
+    {
+      "index": 158,
+      "filename": "9c851172-image.png",
+      "text_density": 0.04,
+      "contrast": 27.8,
+      "edge_density": 0.3184
+    },
+    {
+      "index": 168,
+      "filename": "ad659d6f-image.png",
+      "text_density": 0.04,
+      "contrast": 38.2,
+      "edge_density": 0.2526
+    },
+    {
+      "index": 205,
+      "filename": "d04dcbcf-image.png",
+      "text_density": 0.04,
+      "contrast": 47.6,
+      "edge_density": 0.0403
+    },
+    {
+      "index": 244,
+      "filename": "f73b6b68-image.png",
+      "text_density": 0.04,
+      "contrast": 24.5,
+      "edge_density": 0.3347
+    },
+    {
+      "index": 46,
+      "filename": "28e5a652-image.png",
+      "text_density": 0.039,
+      "contrast": 40.6,
+      "edge_density": 0.3886
+    },
+    {
+      "index": 171,
+      "filename": "aec5953b-image.png",
+      "text_density": 0.039,
+      "contrast": 45.5,
+      "edge_density": 0.035
+    },
+    {
+      "index": 40,
+      "filename": "20fdc7f3-image.png",
+      "text_density": 0.038,
+      "contrast": 48.5,
+      "edge_density": 0.0379
+    },
+    {
+      "index": 97,
+      "filename": "62877afd-image.png",
+      "text_density": 0.038,
+      "contrast": 48.5,
+      "edge_density": 0.0379
+    },
+    {
+      "index": 164,
+      "filename": "a5f81556-image.png",
+      "text_density": 0.038,
+      "contrast": 53.0,
+      "edge_density": 0.1433
+    },
+    {
+      "index": 192,
+      "filename": "c32dd3b4-image.png",
+      "text_density": 0.038,
+      "contrast": 25.4,
+      "edge_density": 0.3991
+    },
+    {
+      "index": 239,
+      "filename": "f4ad6ffe-image.png",
+      "text_density": 0.036,
+      "contrast": 23.9,
+      "edge_density": 0.3314
+    },
+    {
+      "index": 52,
+      "filename": "2d8ffbc8-image.png",
+      "text_density": 0.034,
+      "contrast": 24.6,
+      "edge_density": 0.1828
+    },
+    {
+      "index": 79,
+      "filename": "4b4c683b-image.png",
+      "text_density": 0.033,
+      "contrast": 35.4,
+      "edge_density": 0.0254
+    },
+    {
+      "index": 117,
+      "filename": "75b2bdbc-image.png",
+      "text_density": 0.033,
+      "contrast": 22.5,
+      "edge_density": 0.3794
+    },
+    {
+      "index": 122,
+      "filename": "79c93f44-image.png",
+      "text_density": 0.033,
+      "contrast": 22.6,
+      "edge_density": 0.3383
+    },
+    {
+      "index": 34,
+      "filename": "1a58d8a0-image.png",
+      "text_density": 0.032,
+      "contrast": 38.3,
+      "edge_density": 0.3965
+    },
+    {
+      "index": 38,
+      "filename": "20a798f8-image.png",
+      "text_density": 0.032,
+      "contrast": 37.8,
+      "edge_density": 0.3797
+    },
+    {
+      "index": 67,
+      "filename": "3f5277c3-image.png",
+      "text_density": 0.032,
+      "contrast": 43.0,
+      "edge_density": 0.0351
+    },
+    {
+      "index": 200,
+      "filename": "c782577f-image.png",
+      "text_density": 0.032,
+      "contrast": 37.8,
+      "edge_density": 0.3797
+    },
+    {
+      "index": 216,
+      "filename": "dfea39ff-image.png",
+      "text_density": 0.032,
+      "contrast": 44.9,
+      "edge_density": 0.0413
+    },
+    {
+      "index": 247,
+      "filename": "f8c6ba86-image.png",
+      "text_density": 0.032,
+      "contrast": 44.9,
+      "edge_density": 0.0413
+    },
+    {
+      "index": 75,
+      "filename": "47226a4a-image.png",
+      "text_density": 0.031,
+      "contrast": 24.5,
+      "edge_density": 0.4073
+    },
+    {
+      "index": 86,
+      "filename": "51d4c89c-image.png",
+      "text_density": 0.031,
+      "contrast": 25.5,
+      "edge_density": 0.3147
+    },
+    {
+      "index": 211,
+      "filename": "dc48a881-image.png",
+      "text_density": 0.03,
+      "contrast": 46.5,
+      "edge_density": 0.0444
+    },
+    {
+      "index": 250,
+      "filename": "f9b80b21-image.png",
+      "text_density": 0.03,
+      "contrast": 46.5,
+      "edge_density": 0.0444
+    },
+    {
+      "index": 22,
+      "filename": "11b5568a-image.png",
+      "text_density": 0.028,
+      "contrast": 47.9,
+      "edge_density": 0.0502
+    },
+    {
+      "index": 203,
+      "filename": "caa8992d-image.png",
+      "text_density": 0.028,
+      "contrast": 24.2,
+      "edge_density": 0.407
+    },
+    {
+      "index": 227,
+      "filename": "ec73d628-image.png",
+      "text_density": 0.028,
+      "contrast": 39.2,
+      "edge_density": 0.0977
+    },
+    {
+      "index": 103,
+      "filename": "67e02bb3-image.png",
+      "text_density": 0.027,
+      "contrast": 27.0,
+      "edge_density": 0.313
+    },
+    {
+      "index": 139,
+      "filename": "86527714-image.png",
+      "text_density": 0.027,
+      "contrast": 30.6,
+      "edge_density": 0.3746
+    },
+    {
+      "index": 124,
+      "filename": "7b7999ed-image.png",
+      "text_density": 0.026,
+      "contrast": 46.7,
+      "edge_density": 0.0531
+    },
+    {
+      "index": 127,
+      "filename": "7baa9df0-image.png",
+      "text_density": 0.026,
+      "contrast": 46.7,
+      "edge_density": 0.0531
+    },
+    {
+      "index": 213,
+      "filename": "dddcb9cb-image.png",
+      "text_density": 0.026,
+      "contrast": 41.5,
+      "edge_density": 0.3124
+    },
+    {
+      "index": 92,
+      "filename": "5c44d0db-image.png",
+      "text_density": 0.024,
+      "contrast": 42.7,
+      "edge_density": 0.0391
+    },
+    {
+      "index": 186,
+      "filename": "be6f237c-image.png",
+      "text_density": 0.024,
+      "contrast": 42.7,
+      "edge_density": 0.0391
+    },
+    {
+      "index": 31,
+      "filename": "177a6c25-image.png",
+      "text_density": 0.023,
+      "contrast": 24.1,
+      "edge_density": 0.3797
+    },
+    {
+      "index": 136,
+      "filename": "8359c8b4-image.png",
+      "text_density": 0.023,
+      "contrast": 46.7,
+      "edge_density": 0.0667
+    },
+    {
+      "index": 261,
+      "filename": "ffd52df6-image.png",
+      "text_density": 0.023,
+      "contrast": 46.7,
+      "edge_density": 0.0667
+    },
+    {
+      "index": 133,
+      "filename": "8165015e-image.png",
+      "text_density": 0.022,
+      "contrast": 42.1,
+      "edge_density": 0.364
+    },
+    {
+      "index": 151,
+      "filename": "8f85ef72-image.png",
+      "text_density": 0.018,
+      "contrast": 31.8,
+      "edge_density": 0.0117
+    },
+    {
+      "index": 251,
+      "filename": "f9c4b3c1-image.png",
+      "text_density": 0.018,
+      "contrast": 38.5,
+      "edge_density": 0.3229
+    },
+    {
+      "index": 49,
+      "filename": "2b7261d7-image.png",
+      "text_density": 0.017,
+      "contrast": 34.7,
+      "edge_density": 0.009
+    },
+    {
+      "index": 110,
+      "filename": "6d9a99f0-image.png",
+      "text_density": 0.017,
+      "contrast": 38.9,
+      "edge_density": 0.0672
+    },
+    {
+      "index": 234,
+      "filename": "f03aa883-image.png",
+      "text_density": 0.017,
+      "contrast": 16.3,
+      "edge_density": 0.171
+    },
+    {
+      "index": 41,
+      "filename": "21361379-image.png",
+      "text_density": 0.014,
+      "contrast": 42.7,
+      "edge_density": 0.064
+    },
+    {
+      "index": 53,
+      "filename": "2ef0add5-image.png",
+      "text_density": 0.014,
+      "contrast": 42.7,
+      "edge_density": 0.064
+    },
+    {
+      "index": 106,
+      "filename": "6998e0d5-image.png",
+      "text_density": 0.01,
+      "contrast": 34.6,
+      "edge_density": 0.3525
+    },
+    {
+      "index": 166,
+      "filename": "acfac23b-image.png",
+      "text_density": 0.01,
+      "contrast": 32.9,
+      "edge_density": 0.3336
+    }
+  ]
+}
