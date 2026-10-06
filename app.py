@@ -400,10 +400,10 @@ GIOVANNI FONTANA (Padua, 15th century)
 
 st.divider()
 
-st.markdown("## SOURCE EVIDENCE (All 261 Fontana Pages Available)")
+st.markdown("## SOURCE EVIDENCE (All 186 Fontana Pages Available)")
 
 st.markdown("""
-All 261 Fontana manuscript pages from BNF Gallica digitization are available.
+All 186 Fontana manuscript pages from BNF Gallica digitization are available.
 You can independently verify the cipher architecture, handwriting, and steganographic techniques.
 
 **What to look for:**
@@ -422,7 +422,7 @@ Measure the cipher architecture ratio yourself:
 If the ratios match, it's mathematical proof.
 """)
 
-st.markdown("### Fontana Manuscript Gallery (All 261 Pages - Browse & Download)")
+st.markdown("### Fontana Manuscript Gallery (All 186 Pages - Browse & Download)")
 
 import os
 import io
@@ -486,7 +486,7 @@ if os.path.exists(fontana_dir):
         col1, col2, col3 = st.columns(3)
 
         with col1:
-            st.markdown("**All 261 Fontana Pages (ZIP)**")
+            st.markdown("**All 186 Fontana Pages (ZIP)**")
             if st.button("Create ZIP Download"):
                 import zipfile
                 zip_buffer = io.BytesIO()
@@ -496,9 +496,9 @@ if os.path.exists(fontana_dir):
                         zip_file.write(file_path, arcname=filename)
                 zip_buffer.seek(0)
                 st.download_button(
-                    label="Download ZIP (All 261)",
+                    label="Download ZIP (All 186)",
                     data=zip_buffer.getvalue(),
-                    file_name="fontana_all_261_pages.zip",
+                    file_name="fontana_all_186_pages.zip",
                     mime="application/zip",
                 )
 
@@ -513,7 +513,7 @@ if os.path.exists(fontana_dir):
         st.markdown("---")
         st.markdown("""
         **You now have everything in this app to independently test:**
-        - All 261 Fontana pages (browse above, download any page or all)
+        - All 186 Fontana pages (browse above, download any page or all)
         - Complete evidence data (CSV at top)
         - Cipher specifications (in Evidence sections)
         - Medical chain documentation (in Historical Chain section)
@@ -529,7 +529,7 @@ st.markdown("---")
 st.markdown("## HOW WE GOT HERE (The Investigation Journey)")
 
 st.markdown("""
-**Step 1:** Collected evidence (261 Fontana pages + Juan's analysis)
+**Step 1:** Collected evidence (186 Fontana pages + Juan's analysis)
 **Step 2:** Analyzed cipher architecture (99.9% match found)
 **Step 3:** Found steganographic smoking gun (identical technique)
 **Step 4:** Traced medical knowledge chain (1000 years documented)
