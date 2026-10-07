@@ -422,7 +422,7 @@ Measure the cipher architecture ratio yourself:
 If the ratios match, it's mathematical proof.
 """)
 
-st.markdown("### Fontana Manuscript Gallery (All 186 Pages - Browse & Download)")
+st.markdown("### Fontana Manuscript Evidence - Cipher Samples")
 
 import os
 import io
@@ -433,7 +433,7 @@ if os.path.exists(fontana_dir):
     fontana_files = sorted([f for f in os.listdir(fontana_dir) if f.endswith('.png')])
 
     if fontana_files:
-        st.markdown(f"**Browse all {len(fontana_files)} pages directly. No need to leave the app.**")
+        st.markdown(f"**Cipher Evidence: {len(fontana_files)} samples**")
 
         # Initialize session state for page tracking
         if "fontana_page" not in st.session_state:
