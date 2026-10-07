@@ -209,151 +209,194 @@ st.markdown("---")
 # DETAILED EVIDENCE CARDS (Evidence #5)
 st.markdown("### Detailed Evidence Breakdown")
 
+# Evidence navigation
+if "evidence_index" not in st.session_state:
+    st.session_state.evidence_index = 0
+
+evidence_titles = [
+    "1. Cipher Architecture - MATHEMATICAL PROOF (99.9%)",
+    "2. Steganographic Smoking Gun (95%)",
+    "3. Visual/Structural Matches (98%)",
+    "4. Medical Knowledge Chain (90%)",
+    "5. Handwriting Analysis (80% → 95% Expected)",
+    "6. Intermediate Manuscript Connection (85%)",
+]
+
+nav_col1, nav_col2, nav_col3, nav_col4, nav_col5 = st.columns([0.8, 0.8, 2, 0.8, 0.8])
+
+with nav_col1:
+    if st.button("🌜", use_container_width=True):
+        if st.session_state.evidence_index > 0:
+            st.session_state.evidence_index -= 1
+            st.rerun()
+
+with nav_col2:
+    if st.button("🌛", use_container_width=True):
+        if st.session_state.evidence_index < len(evidence_titles) - 1:
+            st.session_state.evidence_index += 1
+            st.rerun()
+
+with nav_col3:
+    slider_index = st.slider("Evidence", min_value=0, max_value=len(evidence_titles)-1, value=st.session_state.evidence_index, key="evidence_slider")
+    if slider_index != st.session_state.evidence_index:
+        st.session_state.evidence_index = slider_index
+
+with nav_col4:
+    st.write(f"{st.session_state.evidence_index + 1}/{len(evidence_titles)}")
+
+st.markdown("---")
+
 col1, col2 = st.columns(2)
 
 
-with st.expander("1. Cipher Architecture - MATHEMATICAL PROOF (99.9%)"):
-    st.markdown("""
-    **Fontana's Documented System:**
-    - Vowels as circles (A/E/I/O/U with directional marks)
-    - Consonants as geometric patterns
-    - Expected ratio: 9:1+ (circles to consonants)
+if st.session_state.evidence_index == 0:
+    with st.expander("1. Cipher Architecture - MATHEMATICAL PROOF (99.9%)", expanded=True):
+        st.markdown("""
+        **Fontana's Documented System:**
+        - Vowels as circles (A/E/I/O/U with directional marks)
+        - Consonants as geometric patterns
+        - Expected ratio: 9:1+ (circles to consonants)
 
-    **Voynich Measured:**
-    - 2081 circles detected (90.5% of all characters)
-    - 211 geometric shapes detected (9.2% of characters)
-    - Actual ratio: 9.8:1
+        **Voynich Measured:**
+        - 2081 circles detected (90.5% of all characters)
+        - 211 geometric shapes detected (9.2% of characters)
+        - Actual ratio: 9.8:1
 
-    **Statistical Analysis:**
-    - Probability of coincidence: < 0.1%
-    - This is NOT random chance
-    - This IS Fontana's documented system
-    """)
+        **Statistical Analysis:**
+        - Probability of coincidence: < 0.1%
+        - This is NOT random chance
+        - This IS Fontana's documented system
+        """)
 
-with st.expander("2. Steganographic Smoking Gun (95%)"):
-    st.markdown("""
-    **Fontana's Technique (Documented):**
-    - Text deliberately arranged around vessel diagrams
-    - Cipher characters positioned UNDER apparatus
-    - Image + text deliberately integrated
-    - This is intentional design
+elif st.session_state.evidence_index == 1:
+    with st.expander("2. Steganographic Smoking Gun (95%)", expanded=True):
+        st.markdown("""
+        **Fontana's Technique (Documented):**
+        - Text deliberately arranged around vessel diagrams
+        - Cipher characters positioned UNDER apparatus
+        - Image + text deliberately integrated
+        - This is intentional design
 
-    **Voynich's Technique (Observed):**
-    - Text in margins and under botanical illustration
-    - Plant is primary visual element
-    - Cipher text surrounds and integrates with plant
-    - Same deliberate layering
+        **Voynich's Technique (Observed):**
+        - Text in margins and under botanical illustration
+        - Plant is primary visual element
+        - Cipher text surrounds and integrates with plant
+        - Same deliberate layering
 
-    **Connection:** IDENTICAL compositional signature
-    """)
+        **Connection:** IDENTICAL compositional signature
+        """)
 
-with st.expander("3. Visual/Structural Matches (98%)"):
-    st.markdown("""
-    **6 of 7 Major Features Match Perfectly:**
+elif st.session_state.evidence_index == 2:
+    with st.expander("3. Visual/Structural Matches (98%)", expanded=True):
+        st.markdown("""
+        **6 of 7 Major Features Match Perfectly:**
 
-    1. Speculum Architecture
-       - Fontana: Concentric circles with radial letters
-       - Voynich: 90.5% circles with character marks
-       - Match: EXACT
+        1. Speculum Architecture
+           - Fontana: Concentric circles with radial letters
+           - Voynich: 90.5% circles with character marks
+           - Match: EXACT
 
-    2. Dense Handwritten Text
-       - Fontana: Gallica pages 62-71 tight economical script
-       - Voynich: Right margin 36.6% text density
-       - Match: EXACT
+        2. Dense Handwritten Text
+           - Fontana: Gallica pages 62-71 tight economical script
+           - Voynich: Right margin 36.6% text density
+           - Match: EXACT
 
-    3. Steganographic Integration
-       - Both: Text deliberately combined with images
-       - Match: EXACT
+        3. Steganographic Integration
+           - Both: Text deliberately combined with images
+           - Match: EXACT
 
-    4. Medical/Pharmaceutical Context
-       - Fontana: Vessel apparatus and medical focus
-       - Voynich: Botanical/medical plants illustrated
-       - Match: YES
+        4. Medical/Pharmaceutical Context
+           - Fontana: Vessel apparatus and medical focus
+           - Voynich: Botanical/medical plants illustrated
+           - Match: YES
 
-    5. Radiating Geometric Patterns
-       - Fontana: Mechanical apparatus with radiating elements
-       - Voynich: Plant structure with radiating roots
-       - Match: YES
+        5. Radiating Geometric Patterns
+           - Fontana: Mechanical apparatus with radiating elements
+           - Voynich: Plant structure with radiating roots
+           - Match: YES
 
-    6. Circle:Geometric Ratio
-       - Fontana: 9:1+ expected
-       - Voynich: 9.8:1 measured
-       - Match: STATISTICAL MATCH (99.9%)
-    """)
+        6. Circle:Geometric Ratio
+           - Fontana: 9:1+ expected
+           - Voynich: 9.8:1 measured
+           - Match: STATISTICAL MATCH (99.9%)
+        """)
 
-with st.expander("4. Medical Knowledge Chain (90%)"):
-    st.markdown("""
-    **Documented Teaching Lineage (All Primary Sources):**
+elif st.session_state.evidence_index == 3:
+    with st.expander("4. Medical Knowledge Chain (90%)", expanded=True):
+        st.markdown("""
+        **Documented Teaching Lineage (All Primary Sources):**
 
-    Rhazes (9th century, Baghdad)
-    - Created: Condition -> Cause -> Cure framework
+        Rhazes (9th century, Baghdad)
+        - Created: Condition -> Cause -> Cure framework
 
-    Gerard de Solo (14th century, Montpellier)
-    - Taught Rhazes system
-    - Edinburgh MS 177 (1391)
+        Gerard de Solo (14th century, Montpellier)
+        - Taught Rhazes system
+        - Edinburgh MS 177 (1391)
 
-    Irish Medical Manuscripts (15th century)
-    - Tadhg O Cuinn (1415, Montpellier-trained)
-    - Trinity College Dublin MS 1343
-    - Erin's ancestor Donnchadh og (1469)
-    - Royal Irish Academy MS 24 P 26
+        Irish Medical Manuscripts (15th century)
+        - Tadhg O Cuinn (1415, Montpellier-trained)
+        - Trinity College Dublin MS 1343
+        - Erin's ancestor Donnchadh og (1469)
+        - Royal Irish Academy MS 24 P 26
 
-    Giovanni Fontana (15th century, Padua)
-    - Padua University taught Rhazes curriculum
-    - His manuscripts show medical/pharmaceutical focus
+        Giovanni Fontana (15th century, Padua)
+        - Padua University taught Rhazes curriculum
+        - His manuscripts show medical/pharmaceutical focus
 
-    Voynich Manuscript
-    - 85% botanical/medical/pharmaceutical content
-    - Uses identical Condition->Cause->Cure structure
-    - PROVES author learned from Rhazes teaching chain
-    """)
+        Voynich Manuscript
+        - 85% botanical/medical/pharmaceutical content
+        - Uses identical Condition->Cause->Cure structure
+        - PROVES author learned from Rhazes teaching chain
+        """)
 
-with st.expander("5. Handwriting Analysis (80% -> 95% Expected)"):
-    st.markdown("""
-    **Analysis Conducted By:** Erin Toppe (Guidance: Juan Molina)
+elif st.session_state.evidence_index == 4:
+    with st.expander("5. Handwriting Analysis (80% -> 95% Expected)", expanded=True):
+        st.markdown("""
+        **Analysis Conducted By:** Erin Toppe (Guidance: Juan Molina)
 
-    **Process:**
-    - Erin gathered multiple Fontana handwriting samples (Gallica 62-71)
-    - Juan provided PDF example showing handwriting comparison method
-    - Erin compared Fontana samples directly with Voynich 68v (Scribe #2)
-    - Identified consistent characteristics across both manuscripts
+        **Process:**
+        - Erin gathered multiple Fontana handwriting samples (Gallica 62-71)
+        - Juan provided PDF example showing handwriting comparison method
+        - Erin compared Fontana samples directly with Voynich 68v (Scribe #2)
+        - Identified consistent characteristics across both manuscripts
 
-    **Fontana's Script (Gallica 62-71):**
-    - Gothic/italic hybrid style
-    - Tight, economical letter proportions
-    - Consistent pen angle throughout
-    - Medieval abbreviations present
-    - High text density
+        **Fontana's Script (Gallica 62-71):**
+        - Gothic/italic hybrid style
+        - Tight, economical letter proportions
+        - Consistent pen angle throughout
+        - Medieval abbreviations present
+        - High text density
 
-    **Voynich 68v (Scribe #2):**
-    - Similar Gothic/italic hybrid
-    - Tight economical density (36.6% margin)
-    - Consistent pen angle observed
-    - Medieval abbreviations present
-    - Same letter proportions
+        **Voynich 68v (Scribe #2):**
+        - Similar Gothic/italic hybrid
+        - Tight economical density (36.6% margin)
+        - Consistent pen angle observed
+        - Medieval abbreviations present
+        - Same letter proportions
 
-    **Current Confidence:** 80% (detailed comparison complete)
-    **Expected with formal paleographic letter-by-letter analysis:** 95%+
-    """)
+        **Current Confidence:** 80% (detailed comparison complete)
+        **Expected with formal paleographic letter-by-letter analysis:** 95%+
+        """)
 
-with st.expander("6. Intermediate Manuscript Connection (85%)"):
-    st.markdown("""
-    **LJS 51 Discovery:**
-    - Title: "Collection of alphabets and encrypted correspondence" (1400)
-    - Date: Right before Voynich creation
-    - Connection: Fontana's cipher tradition
+elif st.session_state.evidence_index == 5:
+    with st.expander("6. Intermediate Manuscript Connection (85%)", expanded=True):
+        st.markdown("""
+        **LJS 51 Discovery:**
+        - Title: "Collection of alphabets and encrypted correspondence" (1400)
+        - Date: Right before Voynich creation
+        - Connection: Fontana's cipher tradition
 
-    **Molina's Finding:**
-    - ~50% of LJS 51 glyphs parallel Voynich
-    - Shows cipher knowledge lineage
-    - LJS 51 is bridge between training and execution
+        **Molina's Finding:**
+        - ~50% of LJS 51 glyphs parallel Voynich
+        - Shows cipher knowledge lineage
+        - LJS 51 is bridge between training and execution
 
-    **What this proves:**
-    - Fontana didn't invent ciphers from scratch
-    - He inherited and refined documented systems
-    - Glyph forms trace documented tradition
-    - Confidence: 85%
-    """)
+        **What this proves:**
+        - Fontana didn't invent ciphers from scratch
+        - He inherited and refined documented systems
+        - Glyph forms trace documented tradition
+        - Confidence: 85%
+        """)
 
 st.markdown("---")
 
