@@ -482,28 +482,23 @@ if os.path.exists(fontana_dir):
         if "fontana_page" not in st.session_state:
             st.session_state.fontana_page = 1
 
-        # Navigation controls
-        col1, col2, col3, col4, col5 = st.columns([0.8, 0.8, 2, 0.8, 0.8])
+        # Navigation controls - Moon buttons only
+        col1, col2, col3 = st.columns([1, 2, 1])
 
         with col1:
-            if st.button("◄ Prev", use_container_width=True):
+            if st.button("🌜", use_container_width=True, key="fontana_prev"):
                 if st.session_state.fontana_page > 1:
                     st.session_state.fontana_page -= 1
                     st.rerun()
 
         with col2:
-            if st.button("Next ►", use_container_width=True):
+            st.write(f"Page {st.session_state.fontana_page} / {len(fontana_files)}")
+
+        with col3:
+            if st.button("🌛", use_container_width=True, key="fontana_next"):
                 if st.session_state.fontana_page < len(fontana_files):
                     st.session_state.fontana_page += 1
                     st.rerun()
-
-        with col3:
-            page_num = st.slider("Page", min_value=1, max_value=len(fontana_files), value=st.session_state.fontana_page, key="fontana_slider")
-            if page_num != st.session_state.fontana_page:
-                st.session_state.fontana_page = page_num
-
-        with col4:
-            st.write(f"Page {st.session_state.fontana_page}")
 
         current_file = fontana_files[st.session_state.fontana_page - 1]
         img_path = os.path.join(fontana_dir, current_file)
@@ -512,14 +507,14 @@ if os.path.exists(fontana_dir):
             img = Image.open(img_path)
             st.image(img, caption=f"Page {st.session_state.fontana_page}/{len(fontana_files)}: {current_file}", use_column_width=True)
 
-            with col2:
-                with open(img_path, "rb") as f:
-                    st.download_button(
-                        label="Download\nThis Page",
-                        data=f.read(),
-                        file_name=current_file,
-                        mime="image/png",
-                    )
+            # Download button below image
+            with open(img_path, "rb") as f:
+                st.download_button(
+                    label="⬇ Download This Page",
+                    data=f.read(),
+                    file_name=current_file,
+                    mime="image/png",
+                )
         except Exception as e:
             st.error(f"Error loading page: {e}")
 
