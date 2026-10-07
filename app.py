@@ -443,10 +443,10 @@ GIOVANNI FONTANA (Padua, 15th century)
 
 st.divider()
 
-st.markdown("## SOURCE EVIDENCE (All 186 Fontana Pages Available)")
+st.markdown("## SOURCE EVIDENCE (155 Fontana Manuscript Pages)")
 
 st.markdown("""
-All 186 Fontana manuscript pages from BNF Gallica digitization are available.
+All 155 Fontana manuscript evidence pages from BNF Gallica digitization (text messages removed).
 You can independently verify the cipher architecture, handwriting, and steganographic techniques.
 
 **What to look for:**
@@ -572,7 +572,7 @@ if os.path.exists(fontana_dir):
         col1, col2, col3 = st.columns(3)
 
         with col1:
-            st.markdown("**All 186 Fontana Pages (ZIP)**")
+            st.markdown("**All 155 Fontana Pages (ZIP)**")
             if st.button("Create ZIP Download"):
                 import zipfile
                 zip_buffer = io.BytesIO()
@@ -582,9 +582,9 @@ if os.path.exists(fontana_dir):
                         zip_file.write(file_path, arcname=filename)
                 zip_buffer.seek(0)
                 st.download_button(
-                    label="Download ZIP (All 186)",
+                    label="Download ZIP (155 Clean)",
                     data=zip_buffer.getvalue(),
-                    file_name="fontana_all_186_pages.zip",
+                    file_name="fontana_155_pages_clean.zip",
                     mime="application/zip",
                 )
 
