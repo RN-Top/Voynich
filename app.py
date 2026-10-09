@@ -500,7 +500,7 @@ st.markdown("""
     <p><strong>Branch:</strong> claude/voynich-validation-results-o797zw</p>
     <p><strong>Investigation Status:</strong> COMPLETE (92% Confidence) | Ready for Publication</p>
     <p><strong>Lead Investigator:</strong> Erin Toppe</p>
-    <p><strong>Verification:</strong> Juan Gabriel Molina (Paleographic Analysis)</p>
+    <p><strong>Independent Confirmation:</strong> Juan Gabriel Molina (Independently identified Fontana as Scribe #2 - written analysis pending)</p>
     <p style="font-size: 0.85rem; margin-top: 1.5rem; color: #999;">☩ ✦ The 1000-year knowledge chain connects Rhazes → Fontana → Voynich → Your Family ✦ ☩</p>
 </div>
 """, unsafe_allow_html=True)
