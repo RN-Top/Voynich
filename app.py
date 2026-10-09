@@ -98,8 +98,9 @@ Fontana's manuscripts (*Secretum de thesauro*, *Bellicorum instrumentorum*) docu
 
 The screenshots you took + Juan's materials = PROOF of his training.
 The Voynich's structure + cipher = PROOF he applied it.
+""", unsafe_allow_html=True)
 
----
+st.divider()
 
 # ============================================================================
 # DOWNLOAD EVIDENCE - PROMINENT
@@ -126,8 +127,8 @@ evidence_csv_data = [
     [],
     ["TIER 2: CIPHER ARCHITECTURE - STATISTICAL PROOF"],
     ["Metric", "Fontana System", "Voynich 68v Measured", "Match", "Confidence"],
-    ["Vowel Encoding", "9:1+ circle:consonant ratio", "9.8:1 ratio measured (2,081/211)", "EXACT", "99.9%"],
-    ["Circle Count", "A/E/I/O/U as circles", "2,081 circles detected", "EXACT", "99.9%"],
+    ["Vowel Encoding", "9:1+ circle:consonant ratio", "9.8:1 ratio measured (2081/211)", "EXACT", "99.9%"],
+    ["Circle Count", "A/E/I/O/U as circles", "2081 circles detected", "EXACT", "99.9%"],
     ["Geometric Consonants", "Documented geometric patterns", "211 geometric shapes detected", "MATCH", "99%"],
     [],
     ["TIER 3: STEGANOGRAPHIC TECHNIQUE"],
@@ -185,7 +186,7 @@ with col1:
 with col2:
     st.write("All 7 tiers of evidence")
 
----
+st.divider()
 
 # ============================================================================
 # THE PROOF - 7 CONCRETE PIECES
@@ -206,7 +207,7 @@ with col1:
     <div class="proof-box">
     <strong>2. Cipher Architecture (MATHEMATICAL PROOF)</strong><br/>
     Fontana: 9:1+ circle:consonant ratio<br/>
-    Voynich: 9.8:1 ratio measured (2,081 circles / 211 geometric shapes)<br/>
+    Voynich: 9.8:1 ratio measured (2081 circles / 211 geometric shapes)<br/>
     Probability of coincidence: <0.1%<br/>
     <span class="confidence-high">99.9% Confidence</span>
     </div>
@@ -378,8 +379,8 @@ evidence_csv_data = [
     [],
     ["TIER 2: CIPHER ARCHITECTURE - STATISTICAL PROOF"],
     ["Metric", "Fontana System", "Voynich 68v Measured", "Match", "Confidence"],
-    ["Vowel Encoding", "9:1+ circle:consonant ratio", "9.8:1 ratio measured (2,081/211)", "EXACT", "99.9%"],
-    ["Circle Count", "A/E/I/O/U as circles", "2,081 circles detected", "EXACT", "99.9%"],
+    ["Vowel Encoding", "9:1+ circle:consonant ratio", "9.8:1 ratio measured (2081/211)", "EXACT", "99.9%"],
+    ["Circle Count", "A/E/I/O/U as circles", "2081 circles detected", "EXACT", "99.9%"],
     ["Geometric Consonants", "Documented geometric patterns", "211 geometric shapes detected", "MATCH", "99%"],
     [],
     ["TIER 3: STEGANOGRAPHIC TECHNIQUE"],
