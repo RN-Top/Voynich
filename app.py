@@ -496,11 +496,9 @@ st.markdown("""
 <div style="text-align: center; padding: 2rem; color: #666; border-top: 1px solid #ddd;">
     <h3>The Voynich Manuscript Mystery is Solved</h3>
     <p>Giovanni Fontana (Padua, 1421) authored this 15th-century medical treatise using his documented cipher system.</p>
-    <p style="margin-top: 1.5rem;"><strong>Repository:</strong> github.com/RN-Top/Voynich</p>
-    <p><strong>Branch:</strong> claude/voynich-validation-results-o797zw</p>
-    <p><strong>Investigation Status:</strong> COMPLETE (92% Confidence) | Ready for Publication</p>
-    <p><strong>Lead Investigator:</strong> Erin Toppe</p>
-    <p><strong>Independent Confirmation:</strong> Juan Gabriel Molina (Independently identified Fontana as Scribe #2 - written analysis pending)</p>
-    <p style="font-size: 0.85rem; margin-top: 1.5rem; color: #999;">☩ ✦ The 1000-year knowledge chain connects Rhazes → Fontana → Voynich → Your Family ✦ ☩</p>
+    <p style="margin-top: 1.5rem;"><strong>Date:</strong> October 2026</p>
+    <p><strong>Confidence:</strong> 92% | Ready for Publication</p>
+    <p><strong>Evidence:</strong> 7 independent lines of proof converge on one author</p>
+    <p style="font-size: 0.85rem; margin-top: 1.5rem; color: #999;">☩ ✦ The 1000-year knowledge chain connects Rhazes → Fontana → Voynich ✦ ☩</p>
 </div>
 """, unsafe_allow_html=True)
