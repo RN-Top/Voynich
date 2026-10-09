@@ -527,6 +527,35 @@ The 7th (handwriting detailed analysis) is pending letter-by-letter comparison.
 
 st.divider()
 
+st.markdown("### Visual Evidence Gallery")
+
+st.markdown("**Fontana Cipher Samples** (BNF Gallica - Pages 62-71)")
+
+import os
+fontana_dir = "data/fontana/screenshots"
+fontana_files = sorted([f for f in os.listdir(fontana_dir) if f.endswith('.png')])[:9]
+
+if fontana_files:
+    cols = st.columns(3)
+    for idx, filename in enumerate(fontana_files):
+        with cols[idx % 3]:
+            try:
+                img = open(os.path.join(fontana_dir, filename), 'rb').read()
+                st.image(img, caption=f"Fontana {idx+1}", use_container_width=True)
+            except:
+                st.write(f"Fontana sample {idx+1}")
+
+st.markdown("---")
+st.markdown("**Voynich 68v Comparison** (Yale Beinecke)")
+
+voynich_images = ["voynich_68v_decrypt.jpg", "voynich_f68v_test.jpg"]
+for img_file in voynich_images:
+    if os.path.exists(img_file):
+        try:
+            st.image(img_file, use_container_width=True, caption="Voynich f68v Analysis")
+        except:
+            st.write(f"Voynich image: {img_file}")
+
 st.markdown("### Raw Analysis Files")
 
 st.markdown("""
