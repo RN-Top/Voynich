@@ -437,6 +437,25 @@ st.download_button(
 st.divider()
 
 # ============================================================================
+# RAW TEST RESULTS & ANALYSIS
+# ============================================================================
+
+st.markdown("## 🔬 Raw Test Results & Analysis Files")
+
+st.markdown("""
+**Independent verification data:**
+- [Image Analysis Results](https://github.com/RN-Top/Voynich/blob/claude/voynich-validation-results-o797zw/image_analysis_results.json) — Cipher character detection (2,081 circles / 211 geometric shapes)
+- [Comparison Fingerprint Analysis](https://github.com/RN-Top/Voynich/blob/claude/voynich-validation-results-o797zw/output/comparison_fingerprint.json) — Statistical signature comparison
+- [Vowels/Circle Test](https://github.com/RN-Top/Voynich/blob/claude/voynich-validation-results-o797zw/analyses/vowels_test.py) — Vowel encoding validation
+- [Cipher Analysis](https://github.com/RN-Top/Voynich/blob/claude/voynich-validation-results-o797zw/FONTANA_CIPHER_ANALYSIS.md) — Complete cipher system documentation
+- [Direct Match Analysis](https://github.com/RN-Top/Voynich/blob/claude/voynich-validation-results-o797zw/FONTANA_VOYNICH_DIRECT_MATCH.md) — 6 of 7 structural matches
+
+All raw data, test scripts, and analysis results are available in the GitHub repository for independent verification.
+""")
+
+st.divider()
+
+# ============================================================================
 # NEXT STEPS TO 95%+ CONFIDENCE
 # ============================================================================
 
