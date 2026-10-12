@@ -17,39 +17,81 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom CSS for better design
+# Custom CSS for medieval-futuristic hybrid aesthetic
 st.markdown("""
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital@0;1&display=swap');
+
+    body {
+        background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+        color: #e0e0e0;
+    }
+
     .main-header {
         text-align: center;
         padding: 2rem 0;
-        border-bottom: 3px solid #8B4513;
+        border-top: 3px solid #d4af37;
+        border-bottom: 3px solid #d4af37;
         margin-bottom: 2rem;
+        font-family: 'Cinzel', serif;
+        background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, rgba(212,175,55,0.05) 50%, rgba(212,175,55,0.1) 100%);
+        letter-spacing: 2px;
     }
+
     .finding-box {
         border: 2px solid #2e7d32;
+        border-left: 5px solid #00ff88;
         padding: 1.5rem;
-        border-radius: 8px;
-        background-color: #e8f5e9;
+        border-radius: 4px;
+        background: linear-gradient(90deg, rgba(46,125,50,0.15) 0%, rgba(46,125,50,0.05) 100%);
         margin: 1rem 0;
+        font-family: 'Crimson Text', serif;
+        box-shadow: 0 0 15px rgba(0,255,136,0.2);
     }
+
     .proof-box {
-        border-left: 4px solid #1976d2;
-        padding: 1rem;
-        margin: 0.5rem 0;
-        background-color: #e3f2fd;
-        border-radius: 4px;
+        border-left: 5px solid #00bfff;
+        border-top: 1px solid #8B4513;
+        border-bottom: 1px solid #8B4513;
+        padding: 1.2rem;
+        margin: 0.8rem 0;
+        background: linear-gradient(90deg, rgba(25,118,210,0.15) 0%, rgba(25,118,210,0.05) 100%);
+        border-radius: 2px;
+        font-family: 'Crimson Text', serif;
+        box-shadow: 0 0 10px rgba(0,191,255,0.15);
     }
+
     .symbol {
-        font-size: 2rem;
+        font-size: 2.5rem;
         text-align: center;
-        margin: 1rem 0;
+        margin: 1.5rem 0;
+        letter-spacing: 1rem;
+        color: #d4af37;
+        text-shadow: 0 0 20px rgba(212,175,55,0.4);
     }
+
     .confidence-high {
-        background-color: #d4edda;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
+        background: linear-gradient(90deg, #1b5e20 0%, #2e7d32 100%);
+        padding: 0.6rem 1.2rem;
+        border: 1px solid #4caf50;
+        border-radius: 2px;
         font-weight: bold;
+        color: #00ff88;
+        box-shadow: 0 0 8px rgba(0,255,136,0.3);
+        font-family: 'Cinzel', serif;
+    }
+
+    h1, h2, h3 {
+        font-family: 'Cinzel', serif;
+        letter-spacing: 1px;
+        color: #d4af37;
+    }
+
+    .stMetric {
+        background: linear-gradient(135deg, rgba(25,118,210,0.1) 0%, rgba(25,118,210,0.05) 100%);
+        border: 1px solid #1976d2;
+        border-radius: 2px;
+        box-shadow: 0 0 10px rgba(25,118,210,0.2);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -70,14 +112,19 @@ with col2:
 
 st.markdown("""
 <div class="finding-box">
-<h2>🎯 CONFIRMED FINDINGS</h2>
-<h3>Voynich Cipher Architecture Identified & Validated</h3>
-<p><strong>Structural Analysis Confidence: 99.9%</strong></p>
-<p>✓ Cipher system architecture: Circles as vowels, geometric shapes as consonants</p>
-<p>✓ 9.8:1 vowel-to-consonant ratio matches documented Renaissance cipher systems</p>
-<p>✓ Text behaves as language, not random noise or list</p>
-<p>✓ Steganographic integration of text + image confirmed</p>
-<p><strong>Verified by:</strong> Juan Gabriel Molina (Independent Paleographic Analysis)</p>
+<h2>🎯 CONFIRMED FINDINGS (Juan Gabriel Molina Validation - October 2026)</h2>
+<h3>Voynich Text Structure is Real & Reproducible</h3>
+<p><strong>Status: VALIDATED ✓</strong></p>
+<p>✓ Voynich text contains nontrivial line, word, and sequential structure</p>
+<p>✓ Text is organized like language (not random or lists)</p>
+<p>✓ Position-dependent glyph combinations (initial, medial, final positions)</p>
+<p>✓ Rare symbols concentrate in first lines of pages</p>
+<p>✓ Bifolio lexical affinity patterns (internal manuscript consistency)</p>
+<p>✓ Recurring phrases and sequences measurable</p>
+<p>✓ Word-order carries information</p>
+<p style="margin-top: 1rem; font-size: 0.9rem;"><strong>What this means:</strong> The structural patterns are reproducible and can be tested independently. Pre-registered statistical tests confirmed.</p>
+<p style="font-size: 0.9rem;"><strong>What this does NOT mean:</strong> We have not established what the symbols encode or what the text means.</p>
+<p><strong>Source:</strong> Juan Gabriel Molina's Consolidated Independent Validation Report (October 10, 2026)</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -85,25 +132,37 @@ st.markdown("""
 # THE ORIGIN: WHY FONTANA CREATED VOYNICH
 # ============================================================================
 
-st.markdown("## 🔍 INVESTIGATION IN PROGRESS: Potential Author - Giovanni Fontana")
+st.markdown("## 🔍 ACTIVE INVESTIGATION: Giovanni Fontana Connection")
 
 st.markdown("""
-**Current Evidence Under Analysis:**
+**Research Question:** Could Giovanni Fontana (Padua, 1421) have authored the Voynich manuscript?
 
-Fontana's documented manuscripts (*Secretum de thesauro*, *Bellicorum instrumentorum*) show:
+**Why Fontana is a Strong Candidate:**
 
-- **Circle-based cipher encoding** (matching Voynich architecture)
-- **Geometric patterns for letters** (matching Voynich consonants)
-- **Steganographic integration techniques** (text hidden under images)
-- **Mathematical cipher wheels** (Speculum rotating systems)
+Fontana's documented manuscripts show technical sophistication that matches Voynich in function and time period:
+- **Circle-based notation systems** (documented in his cipher work)
+- **Steganographic integration** (text + images deliberately layered)
+- **Medical/pharmaceutical focus** (matching Voynich botanical/medicinal content)
+- **Complex mathematical systems** (cipher wheels, notation schemes)
 
-**Additional Research Needed:**
-- Medical knowledge chain verification (Rhazes → Irish tradition → Renaissance)
-- Paleographic handwriting analysis (in progress with Juan Gabriel Molina)
-- Glyph transmission path documentation
-- Statistical probability analysis of authorship
+**Current Status: INVESTIGATION STAGE**
 
-**Status:** Authorship attribution is under investigation. Structural analysis is confirmed. Full proof requires completion of pending research items.
+✓ **What we have:**
+- Fontana's manuscripts digitized and analyzed (BNF Gallica, Bayerische Staatsbibliothek)
+- Visual/structural parallels documented
+- Chronological overlap (Fontana 1420-1430; Voynich radiocarbon 1404-1438)
+
+❌ **What we DON'T yet have:**
+- Glyph-by-glyph cipher matching (key comparison needed)
+- Handwriting authentication (Davis 2020 identified multiple Voynich hands; Fontana hand not yet tested)
+- Decryption proof (proposed cipher key applied to actual Voynich text should produce readable content)
+- Medical knowledge transmission path (documented but not Voynich-specific)
+
+**What Juan Gabriel Molina found:**
+- Structural parallels between Fontana and Voynich are real ✓
+- Fontana authorship NOT YET ESTABLISHED (requires prospective tests) ⏳
+- LJS 51 alphabet collection shows glyph similarities but NO transmission path proven
+- Handwriting identity inconsistent across Voynich sections
 """, unsafe_allow_html=True)
 
 st.divider()
@@ -112,68 +171,48 @@ st.divider()
 # DOWNLOAD EVIDENCE - PROMINENT
 # ============================================================================
 
-st.markdown("## 📥 Download All Evidence (CSV)")
+st.markdown("## 📥 Download Research Data (CSV)")
 
 import csv
 import io
 
 evidence_csv_data = [
-    ["VOYNICH AUTHORSHIP EVIDENCE - COMPLETE DATA"],
-    ["Investigation Lead: Erin Toppe | Collaboration: Juan Gabriel Molina | Date: October 2026"],
+    ["VOYNICH MANUSCRIPT INVESTIGATION - RESEARCH DATA"],
+    ["Investigation Lead: Erin Toppe | Validation: Juan Gabriel Molina | Date: October 2026"],
     [],
-    ["FINDING"],
-    ["Giovanni Fontana (Padua, 1421) authored the Voynich manuscript as Scribe #2"],
-    ["Overall Confidence", "92%"],
-    ["Expected Confidence (with detailed hand analysis)", "95%+"],
+    ["CONFIRMED FINDINGS"],
+    ["What Juan Gabriel Molina validated"],
+    ["✓ Voynich text has measurable structure (line, word, sequence)", "CONFIRMED"],
+    ["✓ Text behaves as language, not random or lists", "CONFIRMED"],
+    ["✓ Recurring patterns and phrase sequences", "CONFIRMED"],
+    ["✓ Position-dependent glyphs (initial/medial/final variation)", "CONFIRMED"],
     [],
-    ["TIER 1: EXPERT VERIFICATION"],
-    ["Evidence", "Source", "Finding", "Confidence"],
-    ["Paleographic Analysis", "Juan Gabriel Molina", "Fontana = Scribe #2 (independent analysis)", "95%"],
-    ["Scribal Hand Study", "Davis 2020 Voynich Research", "Scribe #2 identified as main author", "95%"],
+    ["WHAT'S BEING TESTED - FONTANA INVESTIGATION"],
+    ["Test", "Status", "Target Confidence", "Next Step"],
+    ["Glyph-by-glyph cipher comparison", "In progress", "95%+", "High-resolution scan analysis"],
+    ["Handwriting authentication", "Pending", "95%+", "Blind paleographic comparison"],
+    ["Cipher key reconstruction", "Not started", "90%+", "Apply proposed system to actual text"],
+    ["Medical knowledge chain", "Partial", "85%+", "Wait for Padua archives response"],
+    ["LJS 51 glyph transmission", "Preliminary", "75%+", "Systematic alphabet inventory"],
     [],
-    ["TIER 2: CIPHER ARCHITECTURE - STATISTICAL PROOF"],
-    ["Metric", "Fontana System", "Voynich 68v Measured", "Match", "Confidence"],
-    ["Vowel Encoding", "9:1+ circle:consonant ratio", "9.8:1 ratio measured (2081/211)", "EXACT", "99.9%"],
-    ["Circle Count", "A/E/I/O/U as circles", "2081 circles detected", "EXACT", "99.9%"],
-    ["Geometric Consonants", "Documented geometric patterns", "211 geometric shapes detected", "MATCH", "99%"],
+    ["WHAT'S NOT YET PROVEN (Per Juan's Analysis)"],
+    ["Claim", "Status"],
+    ["Fontana authored Voynich", "NOT ESTABLISHED"],
+    ["Circle = vowel symbols", "Symbol values NOT proven"],
+    ["Rhazes as Voynich origin", "NOT Voynich-specific"],
+    ["Irish vocabulary in text", "NOT SUPPORTED (15 tests failed)"],
     [],
-    ["TIER 3: STEGANOGRAPHIC TECHNIQUE"],
-    ["Characteristic", "Fontana Evidence", "Voynich Evidence", "Match", "Confidence"],
-    ["Text Hidden Under Images", "Documented (pharmaceutical apparatus + encrypted text)", "Observed (botanical illustration + cipher text)", "EXACT MATCH", "95%"],
-    ["Intentional Layering", "Yes - deliberate composition", "Yes - deliberate composition", "MATCH", "95%"],
-    ["Medical/Pharmaceutical Focus", "Vessel apparatus documented", "Plant/botanical illustrated", "MATCH", "90%"],
+    ["PARALLEL FEATURES OBSERVED"],
+    ["Feature", "Fontana", "Voynich", "Status"],
+    ["Circle-based notation", "Documented", "Observed (90.5%)", "Visual parallel"],
+    ["Steganographic layering", "Documented", "Observed", "Functional parallel"],
+    ["Medical/pharmaceutical focus", "Documented", "Observed", "Genre parallel"],
     [],
-    ["TIER 4: HANDWRITING ANALYSIS"],
-    ["Characteristic", "Fontana Sample", "Voynich Sample", "Match Status", "Confidence"],
-    ["Script Style", "Gothic/italic hybrid", "Similar style observed", "PRELIMINARY", "80%"],
-    ["Letter Proportions", "Tight economical script", "Tight economical density", "MATCH", "85%"],
-    ["Text Density", "High (dense lines)", "36.6% margin density", "MATCH", "85%"],
-    [],
-    ["TIER 5: MEDICAL FRAMEWORK CHAIN"],
-    ["Position in Chain", "Time Period", "Connection", "Status"],
-    ["Rhazes", "9th century", "Persian physician - medical encyclopedia", "Documented"],
-    ["Gerard de Solo", "14th century", "Taught at Montpellier", "Documented"],
-    ["Irish Medical Manuscripts", "15th century (Erin's ancestor 1469)", "Transmitted to Renaissance scholars", "Documented"],
-    ["Giovanni Fontana", "15th century", "Author of Voynich", "This investigation"],
-    ["Voynich Manuscript", "15th century", "Pharmaceutical/botanical/medical content", "Confirmed"],
-    [],
-    ["TIER 6: VISUAL/STRUCTURAL MATCHES"],
-    ["Match", "Fontana", "Voynich", "Type", "Confidence"],
-    ["Speculum Architecture", "Concentric circles with radial letters", "90.5% circles with marks", "EXACT", "98%"],
-    ["Dense Cipher Text", "Pages 62-71 tight script", "Right margin 36.6% density", "EXACT", "95%"],
-    ["Steganography", "Vessel apparatus + text", "Botanical + text", "EXACT", "95%"],
-    ["Medical Context", "Pharmaceutical apparatus", "Botanical/medical plants", "MATCH", "90%"],
-    ["Radiating Geometry", "Mechanical apparatus", "Plant structure", "MATCH", "92%"],
-    ["Circle:Geometric Ratio", "9:1+ expected", "9.8:1 measured", "STATISTICAL", "99.9%"],
-    [],
-    ["TIER 7: LJS 51 CONNECTION"],
-    ["Manuscript", "Date", "Connection", "Confidence"],
-    ["LJS 51 (Intermediate)", "1400", "~50% glyph parallels to Voynich (Molina)", "85%"],
-    [],
-    ["CONCLUSION"],
-    ["The Voynich manuscript was authored by Giovanni Fontana (Padua, 1421)."],
-    ["It is a 15th-century medical treatise using his documented Secretum de thesauro cipher system."],
-    ["The mystery is solved."],
+    ["KEY RESEARCH PRINCIPLE"],
+    ["This is ACTIVE INVESTIGATION, not solved case."],
+    ["Each completed test increases confidence and narrows possibilities."],
+    ["Fontana hypothesis is plausible and testable."],
+    ["Full proof requires completion of all validation tests."],
 ]
 
 output = io.StringIO()
@@ -181,140 +220,119 @@ writer = csv.writer(output)
 for row in evidence_csv_data:
     writer.writerow(row)
 
-col1, col2 = st.columns([2, 1])
-with col1:
-    st.download_button(
-        label="📥 Download Complete Evidence CSV",
-        data=output.getvalue(),
-        file_name=f"Voynich_Evidence_Complete_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
-        mime="text/csv"
-    )
-with col2:
-    st.write("All 7 tiers of evidence")
+st.download_button(
+    label="📥 Download Research Data (CSV)",
+    data=output.getvalue(),
+    file_name=f"Voynich_Investigation_Data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+    mime="text/csv"
+)
 
 st.divider()
 
 # ============================================================================
-# THE PROOF - 7 CONCRETE PIECES
+# ACTIVE RESEARCH: WHAT'S BEING TESTED
 # ============================================================================
 
-st.markdown("## 🔍 THE PROOF (7 Findings, Ranked by Strength)")
+st.markdown("## 🔬 Active Research: What I'm Testing Right Now")
+
+st.markdown("""
+This is a **working investigation**. Below is what's being pursued and what proof would look like.
+""")
 
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("""
     <div class="proof-box">
-    <strong>1. Expert Paleographic Confirmation</strong><br/>
-    Juan Gabriel Molina independently concluded Fontana = Scribe #2<br/>
-    <span class="confidence-high">95% Confidence</span>
+    <strong>🔍 Test 1: Glyph-by-Glyph Cipher Comparison</strong><br/>
+    <strong>Status:</strong> In progress<br/>
+    <strong>What we're doing:</strong> High-resolution scan comparison of Fontana cipher marks vs Voynich glyphs<br/>
+    <strong>What would prove it:</strong> Systematic stroke-by-stroke match across multiple character types<br/>
+    <strong>Juan's verdict:</strong> "Similarity does not establish shared writer; strokes must coincide systematically"
     </div>
 
     <div class="proof-box">
-    <strong>2. Cipher Architecture (MATHEMATICAL PROOF)</strong><br/>
-    Fontana: 9:1+ circle:consonant ratio<br/>
-    Voynich: 9.8:1 ratio measured (2081 circles / 211 geometric shapes)<br/>
-    Probability of coincidence: <0.1%<br/>
-    <span class="confidence-high">99.9% Confidence</span>
+    <strong>📊 Test 2: Handwriting Authentication</strong><br/>
+    <strong>Status:</strong> Pending (ready to test with paleographer)<br/>
+    <strong>What we're doing:</strong> Extract letterforms from Fontana pages 62-71; blind comparison with Voynich 68v<br/>
+    <strong>What would prove it:</strong> Reproducible hand attribution with proper controls<br/>
+    <strong>Juan's verdict:</strong> "Handwriting identity NOT established; inconsistent results across Voynich sections"
     </div>
 
     <div class="proof-box">
-    <strong>3. Steganographic Smoking Gun</strong><br/>
-    Fontana: Text hidden under vessel diagrams (documented)<br/>
-    Voynich: Text integrated with botanical illustrations (observed)<br/>
-    IDENTICAL compositional signature<br/>
-    <span class="confidence-high">95% Confidence</span>
-    </div>
-
-    <div class="proof-box">
-    <strong>4. Visual/Structural Matches (6 of 7)</strong><br/>
-    ✅ Speculum cipher wheel architecture<br/>
-    ✅ Dense handwritten text layout<br/>
-    ✅ Steganographic integration<br/>
-    ✅ Medical/pharmaceutical context<br/>
-    ✅ Radiating geometric patterns<br/>
-    ✅ Circle:geometric ratio match<br/>
-    <span class="confidence-high">98% Confidence</span>
+    <strong>🔑 Test 3: Cipher Key Reconstruction</strong><br/>
+    <strong>Status:</strong> Not started (awaiting Test 1 results)<br/>
+    <strong>What we're doing:</strong> Apply proposed Fontana cipher system to actual Voynich text<br/>
+    <strong>What would prove it:</strong> Decoded text is readable Renaissance Latin with coherent medical content<br/>
+    <strong>Juan's verdict:</strong> "Encoding mechanism [for Voynich] is OPEN; no accepted decoding exists"
     </div>
     </div>
-    """, unsafe_allow_html=True)
 
 with col2:
     st.markdown("""
     <div class="proof-box">
-    <strong>5. Medical Knowledge Chain</strong><br/>
-    Rhazes (9c) → Gerard de Solo (14c)<br/>
-    → Irish manuscripts (15c, Erin's ancestor Donnchadh óg 1469)<br/>
-    → Giovanni Fontana (15c)<br/>
-    → Voynich (medical/botanical focus)<br/>
-    Complete documented chain<br/>
-    <span class="confidence-high">90% Confidence</span>
+    <strong>🌿 Test 4: Medical Knowledge Chain</strong><br/>
+    <strong>Status:</strong> Partial (awaiting Padua archives response)<br/>
+    <strong>What we're doing:</strong> Trace Rhazes medical framework through Irish tradition to Renaissance<br/>
+    <strong>What would prove it:</strong> Hospital of San Francesco Grande records show Rhazes-based teaching in Padua<br/>
+    <strong>Juan's verdict:</strong> "Rhazes transmission documented; Voynich link NOT established as unique"
     </div>
 
     <div class="proof-box">
-    <strong>6. Handwriting Characteristics</strong><br/>
-    Fontana (Gallica pages 62-71): Gothic/italic hybrid, tight spacing<br/>
-    Voynich 68v: Matching characteristics (preliminary)<br/>
-    Detailed letter-by-letter analysis pending<br/>
-    <span class="confidence-high">80% → 95%+ Expected</span>
+    <strong>📜 Test 5: Glyph Transmission via LJS 51</strong><br/>
+    <strong>Status:</strong> Preliminary observations only<br/>
+    <strong>What we're doing:</strong> Map 150 LJS 51 alphabets against Voynich glyphs systematically<br/>
+    <strong>What would prove it:</strong> Specific glyph values predict Voynich structure on untouched folios<br/>
+    <strong>Juan's verdict:</strong> "Visual similarities observed; NO transmission path proven"
     </div>
 
     <div class="proof-box">
-    <strong>7. Intermediate Manuscript</strong><br/>
-    LJS 51 ("Collection of alphabets and encrypted correspondence," 1400)<br/>
-    ~50% glyph parallels to Voynich (Molina's finding)<br/>
-    Connected to Fontana cipher tradition<br/>
-    <span class="confidence-high">85% Confidence</span>
+    <strong>🎯 Test 6: Cross-Validation on New Folios</strong><br/>
+    <strong>Status:</strong> Waiting for Test 3 completion<br/>
+    <strong>What we're doing:</strong> Apply proposed solution to Voynich pages NOT used to develop hypothesis<br/>
+    <strong>What would prove it:</strong> Consistent, reproducible decoding across independent folio set<br/>
+    <strong>Juan's verdict:</strong> "Prospective structural replication on untouched folios [required]"
     </div>
-
-    <div class="proof-box">
-    <strong>📊 OVERALL CONFIDENCE</strong><br/>
-    <strong style="font-size: 1.3rem;">92% (Current)</strong><br/>
-    <strong style="font-size: 1.3rem;">95%+ (Expected with hand analysis)</strong>
-    </div>
-    </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
 st.divider()
 
 # ============================================================================
-# THE CONNECTION BACK TO RHAZES
+# RESEARCH NARRATIVE: THE FONTANA HYPOTHESIS
 # ============================================================================
 
-st.markdown("## 🔗 HOW IT ALL CONNECTS")
+st.markdown("## 📖 Why Fontana? The Research Hypothesis")
 
 st.markdown("""
-**The complete story:**
+**The Historical Context (Documented):**
 
-```
-RHAZES (9th century, Baghdad)
-  └─ Created: Condition → Cause → Cure medical framework
+1. **Rhazes medical framework** (9th century, Baghdad) → documented in European medical schools by 14th century
+2. **Irish medical tradition** (15th century) → Erin's ancestor Donnchadh óg (1469) translated Rhazes-based materials
+3. **Renaissance Padua** (15th century) → University of Padua was a major medical center; Fontana was there
+4. **Voynich content** (15th century, radiocarbon 1404-1438) → Botanical + medical + pharmaceutical imagery
 
-      │
-      ├─→ GERARD DE SOLO (14th century, Montpellier)
-      │    └─ Taught Rhazes' system
-      │
-      ├─→ IRISH MEDICAL MANUSCRIPTS (15th century)
-      │    ├─ Tadhg Ó Cuinn (1415, Montpellier-trained)
-      │    └─ Erin's ancestor: Donnchadh óg (1469, medical translations)
-      │
-      └─→ GIOVANNI FONTANA (Padua, 15th century)
-           ├─ Same Rhazes-based teaching
-           ├─ Cipher expertise (Secretum de thesauro)
-           └─→ VOYNICH MANUSCRIPT
-               └─ Medical/botanical/pharmaceutical treatise
-                  using Fontana's documented cipher system
-```
+**The Question We're Investigating:**
 
-**What this means:**
-- Fontana learned from the documented Rhazes teaching chain
-- He incorporated that medical framework into the Voynich
-- Erin's ancestor was part of the same knowledge tradition
-- The 1000-year knowledge chain is PROVEN
-- The Voynich authorship is SOLVED
+Could these knowledge streams have converged? Could Fontana, who lived where Rhazes-based medicine was taught, have created the Voynich as an encrypted medical treatise?
+
+**Why This Matters for You:**
+
+This shows:
+- **Rigorous research methodology** (follow evidence, test hypotheses)
+- **Independent thinking** (asking original questions)
+- **Systematic documentation** (Juan Gabriel Molina validating the work)
+- **Intellectual honesty** (marking what's proven vs pending)
+
+**Next Steps:**
+- [ ] Glyph-by-glyph cipher comparison (Test 1)
+- [ ] Paleographic handwriting analysis (Test 2)
+- [ ] Cipher key reconstruction and validation (Test 3)
+- [ ] Medical knowledge transmission proof (Test 4)
+- [ ] Cross-validation on independent folios (Test 6)
+
+**When each test completes, confidence increases. We're not guessing—we're building evidence step by step.**
 """)
-
-st.divider()
 
 st.divider()
 
@@ -360,85 +378,25 @@ with col3:
 st.divider()
 
 # ============================================================================
-# DOWNLOADABLE EVIDENCE
+# JUAN GABRIEL MOLINA VALIDATION REPORT
 # ============================================================================
 
-st.markdown("## 📥 Download Evidence")
+st.markdown("""
+## 📖 Reference: Juan Gabriel Molina's Consolidated Validation Report
+**October 10, 2026**
 
-import csv
-import io
+This investigation is guided by Juan Gabriel Molina's independent paleographic analysis. His comprehensive report:
 
-# Create comprehensive evidence CSV
-evidence_csv_data = [
-    ["VOYNICH AUTHORSHIP EVIDENCE - COMPLETE DATA"],
-    ["Investigation Lead: Erin Toppe | Collaboration: Juan Gabriel Molina | Date: October 2026"],
-    [],
-    ["FINDING"],
-    ["Giovanni Fontana (Padua, 1421) authored the Voynich manuscript as Scribe #2"],
-    ["Overall Confidence", "92%"],
-    ["Expected Confidence (with detailed hand analysis)", "95%+"],
-    [],
-    ["TIER 1: EXPERT VERIFICATION"],
-    ["Evidence", "Source", "Finding", "Confidence"],
-    ["Paleographic Analysis", "Juan Gabriel Molina", "Fontana = Scribe #2 (independent analysis)", "95%"],
-    ["Scribal Hand Study", "Davis 2020 Voynich Research", "Scribe #2 identified as main author", "95%"],
-    [],
-    ["TIER 2: CIPHER ARCHITECTURE - STATISTICAL PROOF"],
-    ["Metric", "Fontana System", "Voynich 68v Measured", "Match", "Confidence"],
-    ["Vowel Encoding", "9:1+ circle:consonant ratio", "9.8:1 ratio measured (2081/211)", "EXACT", "99.9%"],
-    ["Circle Count", "A/E/I/O/U as circles", "2081 circles detected", "EXACT", "99.9%"],
-    ["Geometric Consonants", "Documented geometric patterns", "211 geometric shapes detected", "MATCH", "99%"],
-    [],
-    ["TIER 3: STEGANOGRAPHIC TECHNIQUE"],
-    ["Characteristic", "Fontana Evidence", "Voynich Evidence", "Match", "Confidence"],
-    ["Text Hidden Under Images", "Documented (pharmaceutical apparatus + encrypted text)", "Observed (botanical illustration + cipher text)", "EXACT MATCH", "95%"],
-    ["Intentional Layering", "Yes - deliberate composition", "Yes - deliberate composition", "MATCH", "95%"],
-    ["Medical/Pharmaceutical Focus", "Vessel apparatus documented", "Plant/botanical illustrated", "MATCH", "90%"],
-    [],
-    ["TIER 4: HANDWRITING ANALYSIS"],
-    ["Characteristic", "Fontana Sample", "Voynich Sample", "Match Status", "Confidence"],
-    ["Script Style", "Gothic/italic hybrid", "Similar style observed", "PRELIMINARY", "80%"],
-    ["Letter Proportions", "Tight economical script", "Tight economical density", "MATCH", "85%"],
-    ["Text Density", "High (dense lines)", "36.6% margin density", "MATCH", "85%"],
-    [],
-    ["TIER 5: MEDICAL FRAMEWORK CHAIN"],
-    ["Position in Chain", "Time Period", "Connection", "Status"],
-    ["Rhazes", "9th century", "Persian physician - medical encyclopedia", "Documented"],
-    ["Gerard de Solo", "14th century", "Taught at Montpellier", "Documented"],
-    ["Irish Medical Manuscripts", "15th century (Erin's ancestor 1469)", "Transmitted to Renaissance scholars", "Documented"],
-    ["Giovanni Fontana", "15th century", "Author of Voynich", "This investigation"],
-    ["Voynich Manuscript", "15th century", "Pharmaceutical/botanical/medical content", "Confirmed"],
-    [],
-    ["TIER 6: VISUAL/STRUCTURAL MATCHES"],
-    ["Match", "Fontana", "Voynich", "Type", "Confidence"],
-    ["Speculum Architecture", "Concentric circles with radial letters", "90.5% circles with marks", "EXACT", "98%"],
-    ["Dense Cipher Text", "Pages 62-71 tight script", "Right margin 36.6% density", "EXACT", "95%"],
-    ["Steganography", "Vessel apparatus + text", "Botanical + text", "EXACT", "95%"],
-    ["Medical Context", "Pharmaceutical apparatus", "Botanical/medical plants", "MATCH", "90%"],
-    ["Radiating Geometry", "Mechanical apparatus", "Plant structure", "MATCH", "92%"],
-    ["Circle:Geometric Ratio", "9:1+ expected", "9.8:1 measured", "STATISTICAL", "99.9%"],
-    [],
-    ["TIER 7: LJS 51 CONNECTION"],
-    ["Manuscript", "Date", "Connection", "Confidence"],
-    ["LJS 51 (Intermediate)", "1400", "~50% glyph parallels to Voynich (Molina)", "85%"],
-    [],
-    ["CONCLUSION"],
-    ["The Voynich manuscript was authored by Giovanni Fontana (Padua, 1421)."],
-    ["It is a 15th-century medical treatise using his documented Secretum de thesauro cipher system."],
-    ["The mystery is solved."],
-]
+- **Confirms structural findings** (text organization, patterns, sequences)
+- **Identifies what is NOT YET PROVEN** (symbol meanings, Fontana authorship, Rhazes link, Irish vocabulary)
+- **Specifies what tests are needed** for each remaining claim
+- **Provides methodological framework** for prospective validation
 
-output = io.StringIO()
-writer = csv.writer(output)
-for row in evidence_csv_data:
-    writer.writerow(row)
+All current research follows his recommendations for rigorous, reproducible investigation.
 
-st.download_button(
-    label="📥 Download Complete Evidence (CSV)",
-    data=output.getvalue(),
-    file_name=f"Voynich_Evidence_Complete_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
-    mime="text/csv"
-)
+**Access the full report in the repository:**
+[Voynich_Historical_Evidence_Parallels_and_Open_Questions_Juan_Gabriel_Molina_2026.pdf](https://github.com/RN-Top/Voynich/blob/claude/voynich-validation-results-o797zw/Voynich_Historical_Evidence_Parallels_and_Open_Questions_Juan_Gabriel_Molina_2026.pdf)
+""")
 
 st.divider()
 
@@ -612,12 +570,14 @@ st.divider()
 # ============================================================================
 
 st.markdown("""
-<div style="text-align: center; padding: 2rem; color: #666; border-top: 1px solid #ddd;">
-    <h3>The Voynich Manuscript Mystery is Solved</h3>
-    <p>Giovanni Fontana (Padua, 1421) authored this 15th-century medical treatise using his documented cipher system.</p>
-    <p style="margin-top: 1.5rem;"><strong>Date:</strong> October 2026</p>
-    <p><strong>Confidence:</strong> 92% | Ready for Publication</p>
-    <p><strong>Evidence:</strong> 7 independent lines of proof converge on one author</p>
-    <p style="font-size: 0.85rem; margin-top: 1.5rem; color: #999;">☩ ✦ The 1000-year knowledge chain connects Rhazes → Fontana → Voynich ✦ ☩</p>
+<div style="text-align: center; padding: 2rem; color: #d4af37; border-top: 2px solid #d4af37; border-bottom: 2px solid #d4af37; background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, rgba(212,175,55,0.05) 100%);">
+    <h3>🔍 Active Investigation in Progress</h3>
+    <p><strong>Voynich Manuscript Authorship Research</strong></p>
+    <p style="font-size: 0.95rem; margin-top: 1rem;">Structural patterns CONFIRMED. Fontana hypothesis UNDER ACTIVE INVESTIGATION.</p>
+    <p style="margin-top: 1.5rem;"><strong>Lead Investigator:</strong> Erin Toppe</p>
+    <p><strong>Independent Validation:</strong> Juan Gabriel Molina (October 2026)</p>
+    <p><strong>Status:</strong> Multiple prospective tests in progress</p>
+    <p><strong>Next Milestone:</strong> Glyph-by-glyph cipher comparison (2-4 weeks)</p>
+    <p style="font-size: 0.85rem; margin-top: 1.5rem; color: #999;">☩ ✦ Following evidence where it leads. Science, not certainty. ✦ ☩</p>
 </div>
 """, unsafe_allow_html=True)
