@@ -266,7 +266,7 @@ with col1:
     <strong>What would prove it:</strong> Decoded text is readable Renaissance Latin with coherent medical content<br/>
     <strong>Juan's verdict:</strong> "Encoding mechanism [for Voynich] is OPEN; no accepted decoding exists"
     </div>
-    </div>
+    """, unsafe_allow_html=True)
 
 with col2:
     st.markdown("""
