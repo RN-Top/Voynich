@@ -32,3 +32,4 @@ st.write("**Why invisible:** Everyone analyzed ONE layer. No one tried BOTH TOGE
 st.divider()
 st.write("[Full research on GitHub](https://github.com/RN-Top/Voynich)")
 st.write("Branch: `claude/voynich-validation-results-o797zw`")
+# Force redeploy
