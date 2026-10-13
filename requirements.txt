@@ -1,8 +1,1 @@
-streamlit
-pandas
-openpyxl
-reportlab
-matplotlib
-numpy
-requests
-scipy
+streamlit==1.28.1
