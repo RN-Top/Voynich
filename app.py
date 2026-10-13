@@ -1,14 +1,11 @@
 import streamlit as st
-
 st.set_page_config(page_title="Voynich", layout="wide")
 st.title("Voynich Manuscript Investigation")
-
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Pages", "212")
 col2.metric("Symbols", "604,041")
 col3.metric("Integration", "99.1%")
 col4.metric("Confidence", "97-98%")
-
 st.write("---")
 st.write("## 🔑 THE BREAKTHROUGH")
 st.write("### Why 600 Years of Analysis Failed")
