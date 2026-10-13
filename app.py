@@ -14,7 +14,7 @@ st.divider()
 
 st.heading("🔑 THE BREAKTHROUGH")
 
-st.subheading("Why 600 Years of Analysis Failed")
+st.markdown("### Why 600 Years of Analysis Failed")
 
 st.write("Everyone analyzed it WRONG:")
 st.write("• ❌ Text only → UNSOLVED 600 years")
