@@ -12,7 +12,7 @@ col4.metric("Confidence", "97-98%")
 
 st.divider()
 
-st.heading("🔑 THE BREAKTHROUGH")
+st.markdown("## 🔑 THE BREAKTHROUGH")
 st.markdown("### Why 600 Years of Analysis Failed")
 
 st.write("Everyone analyzed it WRONG:")
