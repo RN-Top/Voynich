@@ -62,13 +62,14 @@ LJS 51 ("Collection of alphabets and encrypted correspondence," 1400) shows ~50%
 - Steganographic composition (regular Latin + cipher integrated) - exact Fontana methodology
 - Cipher system: circle vowels + geometric consonants = 9:1 ratio match
 
-**Gallica *Secretum de thesauro*** (261 pages):
-- Complete documented cipher system
+**Gallica *Secretum de thesauro*** (261 pages - NOW IN REPO):
+- ✅ Complete PDF uploaded: `Fontana .pdf` (23MB, full digitization)
 - Identical vowel encoding (A=circle+west, E=circle+north, I=plain circle, O=circle+south, U=circle+east)
 - Identical consonant patterns (geometric shapes, mirrored forms, counting system)
-- Cryptographic methodology matches Voynich 100%
+- Cryptographic methodology matches Voynich structure precisely
+- Ready for complete handwriting comparison and cipher extraction
 
-**Status**: Formal paleographic analysis complete. Awaiting University of Padua archives response for institutional confirmation.
+**Status**: All source materials now in repository. Ready for detailed analysis phase.
 
 ---
 
