@@ -1,0 +1,1515 @@
+{
+  "metadata": {
+    "created": "2026-10-13T02:32:19.670047",
+    "source": "Voynich Manuscript (Yale Beinecke MS 408)",
+    "total_pages": 214,
+    "status": "Pages scanned and ready for detailed analysis"
+  },
+  "pages": [
+    {
+      "page_number": 1,
+      "filename": "voynich_page_001.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_001.png",
+      "file_size_mb": 0.0627145767211914,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 2,
+      "filename": "voynich_page_002.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_002.png",
+      "file_size_mb": 0.6744050979614258,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 3,
+      "filename": "voynich_page_003.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_003.png",
+      "file_size_mb": 0.5811777114868164,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 4,
+      "filename": "voynich_page_004.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_004.png",
+      "file_size_mb": 0.7554130554199219,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 5,
+      "filename": "voynich_page_005.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_005.png",
+      "file_size_mb": 0.7432279586791992,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 6,
+      "filename": "voynich_page_006.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_006.png",
+      "file_size_mb": 0.7156906127929688,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 7,
+      "filename": "voynich_page_007.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_007.png",
+      "file_size_mb": 0.7313575744628906,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 8,
+      "filename": "voynich_page_008.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_008.png",
+      "file_size_mb": 0.72613525390625,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 9,
+      "filename": "voynich_page_009.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_009.png",
+      "file_size_mb": 0.7193365097045898,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 10,
+      "filename": "voynich_page_010.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_010.png",
+      "file_size_mb": 0.6887416839599609,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 11,
+      "filename": "voynich_page_011.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_011.png",
+      "file_size_mb": 0.7287101745605469,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 12,
+      "filename": "voynich_page_012.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_012.png",
+      "file_size_mb": 0.7112855911254883,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 13,
+      "filename": "voynich_page_013.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_013.png",
+      "file_size_mb": 0.7637529373168945,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 14,
+      "filename": "voynich_page_014.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_014.png",
+      "file_size_mb": 0.733403205871582,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 15,
+      "filename": "voynich_page_015.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_015.png",
+      "file_size_mb": 0.7521076202392578,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 16,
+      "filename": "voynich_page_016.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_016.png",
+      "file_size_mb": 0.6858415603637695,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 17,
+      "filename": "voynich_page_017.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_017.png",
+      "file_size_mb": 0.6612138748168945,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 18,
+      "filename": "voynich_page_018.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_018.png",
+      "file_size_mb": 0.686579704284668,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 19,
+      "filename": "voynich_page_019.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_019.png",
+      "file_size_mb": 0.7135829925537109,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 20,
+      "filename": "voynich_page_020.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_020.png",
+      "file_size_mb": 0.802210807800293,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 21,
+      "filename": "voynich_page_021.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_021.png",
+      "file_size_mb": 0.7906894683837891,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 22,
+      "filename": "voynich_page_022.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_022.png",
+      "file_size_mb": 0.7471723556518555,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 23,
+      "filename": "voynich_page_023.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_023.png",
+      "file_size_mb": 0.720097541809082,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 24,
+      "filename": "voynich_page_024.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_024.png",
+      "file_size_mb": 0.7547016143798828,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 25,
+      "filename": "voynich_page_025.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_025.png",
+      "file_size_mb": 0.7986907958984375,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 26,
+      "filename": "voynich_page_026.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_026.png",
+      "file_size_mb": 0.7671489715576172,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 27,
+      "filename": "voynich_page_027.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_027.png",
+      "file_size_mb": 0.8396730422973633,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 28,
+      "filename": "voynich_page_028.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_028.png",
+      "file_size_mb": 0.8241367340087891,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 29,
+      "filename": "voynich_page_029.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_029.png",
+      "file_size_mb": 0.8007259368896484,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 30,
+      "filename": "voynich_page_030.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_030.png",
+      "file_size_mb": 0.7355661392211914,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 31,
+      "filename": "voynich_page_031.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_031.png",
+      "file_size_mb": 0.767822265625,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 32,
+      "filename": "voynich_page_032.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_032.png",
+      "file_size_mb": 0.7290430068969727,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 33,
+      "filename": "voynich_page_033.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_033.png",
+      "file_size_mb": 0.8269939422607422,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 34,
+      "filename": "voynich_page_034.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_034.png",
+      "file_size_mb": 0.693354606628418,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 35,
+      "filename": "voynich_page_035.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_035.png",
+      "file_size_mb": 0.7815532684326172,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 36,
+      "filename": "voynich_page_036.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_036.png",
+      "file_size_mb": 0.6663064956665039,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 37,
+      "filename": "voynich_page_037.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_037.png",
+      "file_size_mb": 0.7620038986206055,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 38,
+      "filename": "voynich_page_038.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_038.png",
+      "file_size_mb": 0.6746158599853516,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 39,
+      "filename": "voynich_page_039.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_039.png",
+      "file_size_mb": 0.7314224243164062,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 40,
+      "filename": "voynich_page_040.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_040.png",
+      "file_size_mb": 0.7136688232421875,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 41,
+      "filename": "voynich_page_041.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_041.png",
+      "file_size_mb": 0.7433185577392578,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 42,
+      "filename": "voynich_page_042.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_042.png",
+      "file_size_mb": 0.717921257019043,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 43,
+      "filename": "voynich_page_043.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_043.png",
+      "file_size_mb": 0.7928276062011719,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 44,
+      "filename": "voynich_page_044.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_044.png",
+      "file_size_mb": 0.7403240203857422,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 45,
+      "filename": "voynich_page_045.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_045.png",
+      "file_size_mb": 0.7818880081176758,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 46,
+      "filename": "voynich_page_046.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_046.png",
+      "file_size_mb": 0.8186273574829102,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 47,
+      "filename": "voynich_page_047.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_047.png",
+      "file_size_mb": 0.8212556838989258,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 48,
+      "filename": "voynich_page_048.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_048.png",
+      "file_size_mb": 0.7064599990844727,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 49,
+      "filename": "voynich_page_049.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_049.png",
+      "file_size_mb": 0.7718505859375,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 50,
+      "filename": "voynich_page_050.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_050.png",
+      "file_size_mb": 0.6138105392456055,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 51,
+      "filename": "voynich_page_051.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_051.png",
+      "file_size_mb": 0.7815074920654297,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 52,
+      "filename": "voynich_page_052.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_052.png",
+      "file_size_mb": 0.7715587615966797,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 53,
+      "filename": "voynich_page_053.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_053.png",
+      "file_size_mb": 0.87457275390625,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 54,
+      "filename": "voynich_page_054.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_054.png",
+      "file_size_mb": 0.7504806518554688,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 55,
+      "filename": "voynich_page_055.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_055.png",
+      "file_size_mb": 0.8339433670043945,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 56,
+      "filename": "voynich_page_056.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_056.png",
+      "file_size_mb": 0.7293500900268555,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 57,
+      "filename": "voynich_page_057.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_057.png",
+      "file_size_mb": 0.717982292175293,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 58,
+      "filename": "voynich_page_058.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_058.png",
+      "file_size_mb": 0.7298622131347656,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 59,
+      "filename": "voynich_page_059.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_059.png",
+      "file_size_mb": 0.8159332275390625,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 60,
+      "filename": "voynich_page_060.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_060.png",
+      "file_size_mb": 0.8089427947998047,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 61,
+      "filename": "voynich_page_061.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_061.png",
+      "file_size_mb": 0.8329248428344727,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 62,
+      "filename": "voynich_page_062.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_062.png",
+      "file_size_mb": 0.8188018798828125,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 63,
+      "filename": "voynich_page_063.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_063.png",
+      "file_size_mb": 0.8504781723022461,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 64,
+      "filename": "voynich_page_064.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_064.png",
+      "file_size_mb": 0.8003730773925781,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 65,
+      "filename": "voynich_page_065.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_065.png",
+      "file_size_mb": 0.7975778579711914,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 66,
+      "filename": "voynich_page_066.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_066.png",
+      "file_size_mb": 0.812891960144043,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 67,
+      "filename": "voynich_page_067.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_067.png",
+      "file_size_mb": 0.9442052841186523,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 68,
+      "filename": "voynich_page_068.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_068.png",
+      "file_size_mb": 0.9234819412231445,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 69,
+      "filename": "voynich_page_069.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_069.png",
+      "file_size_mb": 0.8799543380737305,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 70,
+      "filename": "voynich_page_070.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_070.png",
+      "file_size_mb": 0.7845754623413086,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 71,
+      "filename": "voynich_page_071.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_071.png",
+      "file_size_mb": 0.8277959823608398,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 72,
+      "filename": "voynich_page_072.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_072.png",
+      "file_size_mb": 0.7976608276367188,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 73,
+      "filename": "voynich_page_073.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_073.png",
+      "file_size_mb": 0.8262529373168945,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 74,
+      "filename": "voynich_page_074.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_074.png",
+      "file_size_mb": 0.7742223739624023,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 75,
+      "filename": "voynich_page_075.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_075.png",
+      "file_size_mb": 0.790379524230957,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 76,
+      "filename": "voynich_page_076.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_076.png",
+      "file_size_mb": 0.7603778839111328,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 77,
+      "filename": "voynich_page_077.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_077.png",
+      "file_size_mb": 0.7707633972167969,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 78,
+      "filename": "voynich_page_078.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_078.png",
+      "file_size_mb": 0.8269834518432617,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 79,
+      "filename": "voynich_page_079.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_079.png",
+      "file_size_mb": 0.9132099151611328,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 80,
+      "filename": "voynich_page_080.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_080.png",
+      "file_size_mb": 0.8543558120727539,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 81,
+      "filename": "voynich_page_081.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_081.png",
+      "file_size_mb": 0.9009609222412109,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 82,
+      "filename": "voynich_page_082.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_082.png",
+      "file_size_mb": 0.7970170974731445,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 83,
+      "filename": "voynich_page_083.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_083.png",
+      "file_size_mb": 0.8356418609619141,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 84,
+      "filename": "voynich_page_084.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_084.png",
+      "file_size_mb": 0.7790889739990234,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 85,
+      "filename": "voynich_page_085.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_085.png",
+      "file_size_mb": 0.7583904266357422,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 86,
+      "filename": "voynich_page_086.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_086.png",
+      "file_size_mb": 0.9229116439819336,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 87,
+      "filename": "voynich_page_087.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_087.png",
+      "file_size_mb": 0.8411273956298828,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 88,
+      "filename": "voynich_page_088.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_088.png",
+      "file_size_mb": 0.7547330856323242,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 89,
+      "filename": "voynich_page_089.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_089.png",
+      "file_size_mb": 0.7521076202392578,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 90,
+      "filename": "voynich_page_090.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_090.png",
+      "file_size_mb": 0.8007602691650391,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 91,
+      "filename": "voynich_page_091.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_091.png",
+      "file_size_mb": 0.8580303192138672,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 92,
+      "filename": "voynich_page_092.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_092.png",
+      "file_size_mb": 0.8857755661010742,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 93,
+      "filename": "voynich_page_093.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_093.png",
+      "file_size_mb": 0.8911514282226562,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 94,
+      "filename": "voynich_page_094.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_094.png",
+      "file_size_mb": 0.7583827972412109,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 95,
+      "filename": "voynich_page_095.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_095.png",
+      "file_size_mb": 0.7817182540893555,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 96,
+      "filename": "voynich_page_096.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_096.png",
+      "file_size_mb": 0.8054914474487305,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 97,
+      "filename": "voynich_page_097.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_097.png",
+      "file_size_mb": 0.8278894424438477,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 98,
+      "filename": "voynich_page_098.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_098.png",
+      "file_size_mb": 0.8079862594604492,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 99,
+      "filename": "voynich_page_099.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_099.png",
+      "file_size_mb": 0.8777971267700195,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 100,
+      "filename": "voynich_page_100.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_100.png",
+      "file_size_mb": 0.8709621429443359,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 101,
+      "filename": "voynich_page_101.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_101.png",
+      "file_size_mb": 0.8252353668212891,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 102,
+      "filename": "voynich_page_102.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_102.png",
+      "file_size_mb": 0.7859678268432617,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 103,
+      "filename": "voynich_page_103.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_103.png",
+      "file_size_mb": 0.814030647277832,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 104,
+      "filename": "voynich_page_104.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_104.png",
+      "file_size_mb": 0.7869186401367188,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 105,
+      "filename": "voynich_page_105.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_105.png",
+      "file_size_mb": 0.8470897674560547,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 106,
+      "filename": "voynich_page_106.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_106.png",
+      "file_size_mb": 0.8714170455932617,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 107,
+      "filename": "voynich_page_107.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_107.png",
+      "file_size_mb": 0.7969036102294922,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 108,
+      "filename": "voynich_page_108.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_108.png",
+      "file_size_mb": 0.744349479675293,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 109,
+      "filename": "voynich_page_109.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_109.png",
+      "file_size_mb": 0.8611364364624023,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 110,
+      "filename": "voynich_page_110.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_110.png",
+      "file_size_mb": 0.8472566604614258,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 111,
+      "filename": "voynich_page_111.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_111.png",
+      "file_size_mb": 0.8428983688354492,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 112,
+      "filename": "voynich_page_112.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_112.png",
+      "file_size_mb": 0.7808303833007812,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 113,
+      "filename": "voynich_page_113.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_113.png",
+      "file_size_mb": 0.7918243408203125,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 114,
+      "filename": "voynich_page_114.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_114.png",
+      "file_size_mb": 0.8768501281738281,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 115,
+      "filename": "voynich_page_115.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_115.png",
+      "file_size_mb": 0.7889900207519531,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 116,
+      "filename": "voynich_page_116.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_116.png",
+      "file_size_mb": 0.8406257629394531,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 117,
+      "filename": "voynich_page_117.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_117.png",
+      "file_size_mb": 0.8311347961425781,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 118,
+      "filename": "voynich_page_118.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_118.png",
+      "file_size_mb": 0.8648900985717773,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 119,
+      "filename": "voynich_page_119.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_119.png",
+      "file_size_mb": 0.8872528076171875,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 120,
+      "filename": "voynich_page_120.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_120.png",
+      "file_size_mb": 0.8777122497558594,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 121,
+      "filename": "voynich_page_121.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_121.png",
+      "file_size_mb": 0.9155426025390625,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 122,
+      "filename": "voynich_page_122.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_122.png",
+      "file_size_mb": 0.522252082824707,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 123,
+      "filename": "voynich_page_123.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_123.png",
+      "file_size_mb": 0.43759727478027344,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 124,
+      "filename": "voynich_page_124.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_124.png",
+      "file_size_mb": 0.27898597717285156,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 125,
+      "filename": "voynich_page_125.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_125.png",
+      "file_size_mb": 0.2972679138183594,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 126,
+      "filename": "voynich_page_126.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_126.png",
+      "file_size_mb": 0.7410984039306641,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 127,
+      "filename": "voynich_page_127.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_127.png",
+      "file_size_mb": 0.26304149627685547,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 128,
+      "filename": "voynich_page_128.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_128.png",
+      "file_size_mb": 0.6684246063232422,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 129,
+      "filename": "voynich_page_129.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_129.png",
+      "file_size_mb": 0.7969808578491211,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 130,
+      "filename": "voynich_page_130.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_130.png",
+      "file_size_mb": 0.7770366668701172,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 131,
+      "filename": "voynich_page_131.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_131.png",
+      "file_size_mb": 0.19649696350097656,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 132,
+      "filename": "voynich_page_132.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_132.png",
+      "file_size_mb": 0.39728546142578125,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 133,
+      "filename": "voynich_page_133.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_133.png",
+      "file_size_mb": 0.8946332931518555,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 134,
+      "filename": "voynich_page_134.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_134.png",
+      "file_size_mb": 0.7536087036132812,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 135,
+      "filename": "voynich_page_135.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_135.png",
+      "file_size_mb": 0.782771110534668,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 136,
+      "filename": "voynich_page_136.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_136.png",
+      "file_size_mb": 0.999201774597168,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 137,
+      "filename": "voynich_page_137.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_137.png",
+      "file_size_mb": 0.9913206100463867,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 138,
+      "filename": "voynich_page_138.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_138.png",
+      "file_size_mb": 0.9324769973754883,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 139,
+      "filename": "voynich_page_139.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_139.png",
+      "file_size_mb": 0.9350948333740234,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 140,
+      "filename": "voynich_page_140.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_140.png",
+      "file_size_mb": 0.9414091110229492,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 141,
+      "filename": "voynich_page_141.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_141.png",
+      "file_size_mb": 0.9215545654296875,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 142,
+      "filename": "voynich_page_142.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_142.png",
+      "file_size_mb": 0.9730424880981445,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 143,
+      "filename": "voynich_page_143.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_143.png",
+      "file_size_mb": 0.8930644989013672,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 144,
+      "filename": "voynich_page_144.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_144.png",
+      "file_size_mb": 0.9671220779418945,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 145,
+      "filename": "voynich_page_145.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_145.png",
+      "file_size_mb": 0.9563302993774414,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 146,
+      "filename": "voynich_page_146.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_146.png",
+      "file_size_mb": 0.9869356155395508,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 147,
+      "filename": "voynich_page_147.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_147.png",
+      "file_size_mb": 0.9718246459960938,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 148,
+      "filename": "voynich_page_148.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_148.png",
+      "file_size_mb": 0.8975734710693359,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 149,
+      "filename": "voynich_page_149.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_149.png",
+      "file_size_mb": 0.9086189270019531,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 150,
+      "filename": "voynich_page_150.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_150.png",
+      "file_size_mb": 0.9482088088989258,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 151,
+      "filename": "voynich_page_151.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_151.png",
+      "file_size_mb": 0.9777917861938477,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 152,
+      "filename": "voynich_page_152.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_152.png",
+      "file_size_mb": 0.9699430465698242,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 153,
+      "filename": "voynich_page_153.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_153.png",
+      "file_size_mb": 0.9390716552734375,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 154,
+      "filename": "voynich_page_154.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_154.png",
+      "file_size_mb": 1.002115249633789,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 155,
+      "filename": "voynich_page_155.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_155.png",
+      "file_size_mb": 0.9877901077270508,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 156,
+      "filename": "voynich_page_156.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_156.png",
+      "file_size_mb": 0.8394565582275391,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 157,
+      "filename": "voynich_page_157.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_157.png",
+      "file_size_mb": 0.35588932037353516,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 158,
+      "filename": "voynich_page_158.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_158.png",
+      "file_size_mb": 0.5919046401977539,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 159,
+      "filename": "voynich_page_159.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_159.png",
+      "file_size_mb": 0.6885051727294922,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 160,
+      "filename": "voynich_page_160.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_160.png",
+      "file_size_mb": 0.7898292541503906,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 161,
+      "filename": "voynich_page_161.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_161.png",
+      "file_size_mb": 0.9203367233276367,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 162,
+      "filename": "voynich_page_162.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_162.png",
+      "file_size_mb": 0.852076530456543,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 163,
+      "filename": "voynich_page_163.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_163.png",
+      "file_size_mb": 0.32684898376464844,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 164,
+      "filename": "voynich_page_164.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_164.png",
+      "file_size_mb": 0.6603984832763672,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 165,
+      "filename": "voynich_page_165.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_165.png",
+      "file_size_mb": 0.3434934616088867,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 166,
+      "filename": "voynich_page_166.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_166.png",
+      "file_size_mb": 0.7923927307128906,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 167,
+      "filename": "voynich_page_167.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_167.png",
+      "file_size_mb": 0.8087396621704102,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 168,
+      "filename": "voynich_page_168.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_168.png",
+      "file_size_mb": 0.8422861099243164,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 169,
+      "filename": "voynich_page_169.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_169.png",
+      "file_size_mb": 0.8678340911865234,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 170,
+      "filename": "voynich_page_170.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_170.png",
+      "file_size_mb": 0.8206768035888672,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 171,
+      "filename": "voynich_page_171.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_171.png",
+      "file_size_mb": 0.35300445556640625,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 172,
+      "filename": "voynich_page_172.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_172.png",
+      "file_size_mb": 0.819157600402832,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 173,
+      "filename": "voynich_page_173.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_173.png",
+      "file_size_mb": 0.9468221664428711,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 174,
+      "filename": "voynich_page_174.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_174.png",
+      "file_size_mb": 0.8723268508911133,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 175,
+      "filename": "voynich_page_175.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_175.png",
+      "file_size_mb": 0.861602783203125,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 176,
+      "filename": "voynich_page_176.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_176.png",
+      "file_size_mb": 0.9119081497192383,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 177,
+      "filename": "voynich_page_177.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_177.png",
+      "file_size_mb": 1.0039234161376953,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 178,
+      "filename": "voynich_page_178.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_178.png",
+      "file_size_mb": 0.8229951858520508,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 179,
+      "filename": "voynich_page_179.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_179.png",
+      "file_size_mb": 0.3906536102294922,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 180,
+      "filename": "voynich_page_180.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_180.png",
+      "file_size_mb": 0.8840703964233398,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 181,
+      "filename": "voynich_page_181.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_181.png",
+      "file_size_mb": 0.3647594451904297,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 182,
+      "filename": "voynich_page_182.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_182.png",
+      "file_size_mb": 0.9455699920654297,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 183,
+      "filename": "voynich_page_183.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_183.png",
+      "file_size_mb": 0.8928022384643555,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 184,
+      "filename": "voynich_page_184.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_184.png",
+      "file_size_mb": 0.9224214553833008,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 185,
+      "filename": "voynich_page_185.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_185.png",
+      "file_size_mb": 0.9681501388549805,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 186,
+      "filename": "voynich_page_186.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_186.png",
+      "file_size_mb": 0.9358692169189453,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 187,
+      "filename": "voynich_page_187.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_187.png",
+      "file_size_mb": 0.9422063827514648,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 188,
+      "filename": "voynich_page_188.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_188.png",
+      "file_size_mb": 0.8862209320068359,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 189,
+      "filename": "voynich_page_189.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_189.png",
+      "file_size_mb": 0.8717231750488281,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 190,
+      "filename": "voynich_page_190.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_190.png",
+      "file_size_mb": 0.9115638732910156,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 191,
+      "filename": "voynich_page_191.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_191.png",
+      "file_size_mb": 0.9216279983520508,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 192,
+      "filename": "voynich_page_192.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_192.png",
+      "file_size_mb": 0.9243555068969727,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 193,
+      "filename": "voynich_page_193.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_193.png",
+      "file_size_mb": 0.9787740707397461,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 194,
+      "filename": "voynich_page_194.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_194.png",
+      "file_size_mb": 0.933283805847168,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 195,
+      "filename": "voynich_page_195.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_195.png",
+      "file_size_mb": 1.003800392150879,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 196,
+      "filename": "voynich_page_196.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_196.png",
+      "file_size_mb": 0.9716320037841797,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 197,
+      "filename": "voynich_page_197.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_197.png",
+      "file_size_mb": 0.9908847808837891,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 198,
+      "filename": "voynich_page_198.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_198.png",
+      "file_size_mb": 0.8692188262939453,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 199,
+      "filename": "voynich_page_199.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_199.png",
+      "file_size_mb": 0.8759584426879883,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 200,
+      "filename": "voynich_page_200.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_200.png",
+      "file_size_mb": 0.9050559997558594,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 201,
+      "filename": "voynich_page_201.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_201.png",
+      "file_size_mb": 0.970067024230957,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 202,
+      "filename": "voynich_page_202.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_202.png",
+      "file_size_mb": 0.8910503387451172,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 203,
+      "filename": "voynich_page_203.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_203.png",
+      "file_size_mb": 0.9294147491455078,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 204,
+      "filename": "voynich_page_204.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_204.png",
+      "file_size_mb": 0.86639404296875,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 205,
+      "filename": "voynich_page_205.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_205.png",
+      "file_size_mb": 0.8803215026855469,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 206,
+      "filename": "voynich_page_206.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_206.png",
+      "file_size_mb": 0.8600931167602539,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 207,
+      "filename": "voynich_page_207.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_207.png",
+      "file_size_mb": 0.6470241546630859,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 208,
+      "filename": "voynich_page_208.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_208.png",
+      "file_size_mb": 0.5336713790893555,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 209,
+      "filename": "voynich_page_209.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_209.png",
+      "file_size_mb": 0.39108943939208984,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 210,
+      "filename": "voynich_page_210.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_210.png",
+      "file_size_mb": 0.33804893493652344,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 211,
+      "filename": "voynich_page_211.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_211.png",
+      "file_size_mb": 0.33002376556396484,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 212,
+      "filename": "voynich_page_212.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_212.png",
+      "file_size_mb": 0.37116432189941406,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 213,
+      "filename": "voynich_page_213.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_213.png",
+      "file_size_mb": 0.2841520309448242,
+      "status": "ready_for_detailed_analysis"
+    },
+    {
+      "page_number": 214,
+      "filename": "voynich_page_214.png",
+      "file_path": "voynich_manuscript/pages/voynich_page_214.png",
+      "file_size_mb": 0.7117671966552734,
+      "status": "ready_for_detailed_analysis"
+    }
+  ],
+  "next_steps": [
+    "1. Manual review: Identify plants on each page",
+    "2. Manual review: Identify cipher text regions",
+    "3. Document plant-cipher relationships",
+    "4. Create integration mapping",
+    "5. Test hypothesis: Are plants part of cipher?"
+  ]
+}

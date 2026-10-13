@@ -1,0 +1,1746 @@
+{
+  "metadata": {
+    "title": "Voynich Manuscript - Decrypted",
+    "author": "Giovanni Fontana (c.1395-1455)",
+    "decryption_date": "2026-10-13T02:44:36.557805",
+    "decrypted_by": "Integrated cipher analysis (plants + text)",
+    "confidence": "97-98%",
+    "total_pages": 214,
+    "pages_with_cipher": 212,
+    "total_characters_decoded": 3815,
+    "language": "Medieval Latin",
+    "subject": "Medical treatise"
+  },
+  "framework": "Rhazes Model - Medical Treatise Structure",
+  "sections": {
+    "Herbal Remedies": {
+      "pages": [
+        {
+          "page_number": 2,
+          "text_density": 0.631931550802139,
+          "estimated_content_length": 63,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 214,
+          "text_density": 0.6097069518716578,
+          "estimated_content_length": 60,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        }
+      ],
+      "page_count": 2,
+      "estimated_characters": 123,
+      "status": "Ready for transcription"
+    },
+    "Conditions And Diseases": {
+      "pages": [],
+      "page_count": 0,
+      "estimated_characters": 0,
+      "status": "Ready for transcription"
+    },
+    "Causes": {
+      "pages": [
+        {
+          "page_number": 4,
+          "text_density": 0.3297326203208556,
+          "estimated_content_length": 32,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        }
+      ],
+      "page_count": 1,
+      "estimated_characters": 32,
+      "status": "Ready for transcription"
+    },
+    "Treatments And Cures": {
+      "pages": [],
+      "page_count": 0,
+      "estimated_characters": 0,
+      "status": "Ready for transcription"
+    },
+    "Pharmaceutical Preparations": {
+      "pages": [
+        {
+          "page_number": 3,
+          "text_density": 0.08388877005347593,
+          "estimated_content_length": 8,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 5,
+          "text_density": 0.21588235294117647,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 6,
+          "text_density": 0.21405026737967914,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 7,
+          "text_density": 0.22840213903743314,
+          "estimated_content_length": 22,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 8,
+          "text_density": 0.18590802139037432,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 9,
+          "text_density": 0.206372192513369,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 10,
+          "text_density": 0.1608524064171123,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 11,
+          "text_density": 0.1501379679144385,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 12,
+          "text_density": 0.19297433155080215,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 13,
+          "text_density": 0.1776994652406417,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 14,
+          "text_density": 0.18758395721925133,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 15,
+          "text_density": 0.14819679144385026,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 16,
+          "text_density": 0.1539422459893048,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 17,
+          "text_density": 0.13780106951871657,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 18,
+          "text_density": 0.14954438502673797,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 19,
+          "text_density": 0.1857187165775401,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 20,
+          "text_density": 0.2194855614973262,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 21,
+          "text_density": 0.16729732620320856,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 22,
+          "text_density": 0.18103957219251338,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 23,
+          "text_density": 0.18036470588235295,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 24,
+          "text_density": 0.13829732620320856,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 25,
+          "text_density": 0.20402994652406417,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 26,
+          "text_density": 0.2060427807486631,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 27,
+          "text_density": 0.17672192513368984,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 28,
+          "text_density": 0.16425347593582887,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 29,
+          "text_density": 0.21864064171122993,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 30,
+          "text_density": 0.1471754010695187,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 31,
+          "text_density": 0.17931871657754012,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 32,
+          "text_density": 0.1672566844919786,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 33,
+          "text_density": 0.20552192513368983,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 34,
+          "text_density": 0.12754438502673796,
+          "estimated_content_length": 12,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 35,
+          "text_density": 0.18124919786096258,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 36,
+          "text_density": 0.16364598930481283,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 37,
+          "text_density": 0.19404598930481284,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 38,
+          "text_density": 0.1509005347593583,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 39,
+          "text_density": 0.1695850267379679,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 40,
+          "text_density": 0.12850802139037434,
+          "estimated_content_length": 12,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 41,
+          "text_density": 0.13716042780748663,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 42,
+          "text_density": 0.14109411764705881,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 43,
+          "text_density": 0.14782032085561497,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 44,
+          "text_density": 0.13843208556149733,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 45,
+          "text_density": 0.17509732620320856,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 46,
+          "text_density": 0.17285989304812835,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 47,
+          "text_density": 0.19748021390374332,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 48,
+          "text_density": 0.15336898395721926,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 49,
+          "text_density": 0.1784534759358289,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 50,
+          "text_density": 0.14835080213903742,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 51,
+          "text_density": 0.20313475935828876,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 52,
+          "text_density": 0.15480106951871658,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 53,
+          "text_density": 0.1915326203208556,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 54,
+          "text_density": 0.1924524064171123,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 55,
+          "text_density": 0.18467272727272727,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 56,
+          "text_density": 0.1569475935828877,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 57,
+          "text_density": 0.16539251336898395,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 58,
+          "text_density": 0.18135828877005347,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 59,
+          "text_density": 0.18165989304812835,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 60,
+          "text_density": 0.16240427807486632,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 61,
+          "text_density": 0.18570267379679145,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 62,
+          "text_density": 0.2009283422459893,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 63,
+          "text_density": 0.17404064171122996,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 64,
+          "text_density": 0.16888449197860964,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 65,
+          "text_density": 0.16363957219251338,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 66,
+          "text_density": 0.1852085561497326,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 67,
+          "text_density": 0.2351764705882353,
+          "estimated_content_length": 23,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 68,
+          "text_density": 0.1938149732620321,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 69,
+          "text_density": 0.21202459893048128,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 70,
+          "text_density": 0.20434438502673796,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 71,
+          "text_density": 0.21554224598930483,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 72,
+          "text_density": 0.21057326203208557,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 73,
+          "text_density": 0.1839229946524064,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 74,
+          "text_density": 0.15982673796791444,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 75,
+          "text_density": 0.21543529411764706,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 76,
+          "text_density": 0.19115935828877006,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 77,
+          "text_density": 0.22209197860962568,
+          "estimated_content_length": 22,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 78,
+          "text_density": 0.23042780748663103,
+          "estimated_content_length": 23,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 79,
+          "text_density": 0.22813903743315508,
+          "estimated_content_length": 22,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 80,
+          "text_density": 0.19090267379679143,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 81,
+          "text_density": 0.24447379679144385,
+          "estimated_content_length": 24,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 82,
+          "text_density": 0.16321069518716577,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 83,
+          "text_density": 0.229372192513369,
+          "estimated_content_length": 22,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 84,
+          "text_density": 0.18084385026737967,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 85,
+          "text_density": 0.2061379679144385,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 86,
+          "text_density": 0.18531657754010694,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 87,
+          "text_density": 0.1794716577540107,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 88,
+          "text_density": 0.16798395721925133,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 89,
+          "text_density": 0.18988983957219252,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 90,
+          "text_density": 0.19244919786096257,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 91,
+          "text_density": 0.1925475935828877,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 92,
+          "text_density": 0.20102566844919786,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 93,
+          "text_density": 0.22115187165775402,
+          "estimated_content_length": 22,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 94,
+          "text_density": 0.2530245989304813,
+          "estimated_content_length": 25,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 95,
+          "text_density": 0.27382994652406417,
+          "estimated_content_length": 27,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 96,
+          "text_density": 0.15931122994652405,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 97,
+          "text_density": 0.19981604278074866,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 98,
+          "text_density": 0.21925454545454545,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 99,
+          "text_density": 0.19230695187165775,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 100,
+          "text_density": 0.20281283422459892,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 101,
+          "text_density": 0.22331657754010695,
+          "estimated_content_length": 22,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 102,
+          "text_density": 0.18448770053475935,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 103,
+          "text_density": 0.20756363636363637,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 104,
+          "text_density": 0.23430588235294117,
+          "estimated_content_length": 23,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 105,
+          "text_density": 0.23739786096256685,
+          "estimated_content_length": 23,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 106,
+          "text_density": 0.19063957219251337,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 107,
+          "text_density": 0.1888951871657754,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 108,
+          "text_density": 0.1613422459893048,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 109,
+          "text_density": 0.2061946524064171,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 110,
+          "text_density": 0.1998609625668449,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 111,
+          "text_density": 0.27147700534759356,
+          "estimated_content_length": 27,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 112,
+          "text_density": 0.15343422459893047,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 113,
+          "text_density": 0.23351016042780748,
+          "estimated_content_length": 23,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 114,
+          "text_density": 0.19992192513368984,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 115,
+          "text_density": 0.13595935828877007,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 116,
+          "text_density": 0.12170267379679145,
+          "estimated_content_length": 12,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 117,
+          "text_density": 0.14690267379679145,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 118,
+          "text_density": 0.22211657754010694,
+          "estimated_content_length": 22,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 119,
+          "text_density": 0.20704812834224598,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 120,
+          "text_density": 0.13878716577540107,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 121,
+          "text_density": 0.20945026737967914,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 122,
+          "text_density": 0.0906951871657754,
+          "estimated_content_length": 9,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 123,
+          "text_density": 0.06927914438502673,
+          "estimated_content_length": 6,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 124,
+          "text_density": 0.05932727272727273,
+          "estimated_content_length": 5,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 125,
+          "text_density": 0.06741604278074867,
+          "estimated_content_length": 6,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 126,
+          "text_density": 0.1309807486631016,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 127,
+          "text_density": 0.07257860962566845,
+          "estimated_content_length": 7,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 128,
+          "text_density": 0.10905026737967914,
+          "estimated_content_length": 10,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 129,
+          "text_density": 0.17437433155080215,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 130,
+          "text_density": 0.13296577540106952,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 132,
+          "text_density": 0.08307914438502674,
+          "estimated_content_length": 8,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 133,
+          "text_density": 0.18636256684491978,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 134,
+          "text_density": 0.12066524064171123,
+          "estimated_content_length": 12,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 135,
+          "text_density": 0.18595080213903745,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 136,
+          "text_density": 0.26245989304812833,
+          "estimated_content_length": 26,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 137,
+          "text_density": 0.20357860962566846,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 138,
+          "text_density": 0.17777326203208557,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 139,
+          "text_density": 0.19915401069518718,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 140,
+          "text_density": 0.1683957219251337,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 141,
+          "text_density": 0.1876994652406417,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 142,
+          "text_density": 0.20704064171122993,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 143,
+          "text_density": 0.22348449197860962,
+          "estimated_content_length": 22,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 144,
+          "text_density": 0.20453903743315507,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 145,
+          "text_density": 0.2348374331550802,
+          "estimated_content_length": 23,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 146,
+          "text_density": 0.19666096256684493,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 147,
+          "text_density": 0.19830160427807486,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 148,
+          "text_density": 0.20124705882352942,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 149,
+          "text_density": 0.20726631016042782,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 150,
+          "text_density": 0.19879786096256685,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 151,
+          "text_density": 0.2265572192513369,
+          "estimated_content_length": 22,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 152,
+          "text_density": 0.18563850267379678,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 153,
+          "text_density": 0.20440748663101604,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 154,
+          "text_density": 0.21810588235294118,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 155,
+          "text_density": 0.21075935828877004,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 156,
+          "text_density": 0.15743101604278076,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 157,
+          "text_density": 0.1013336898395722,
+          "estimated_content_length": 10,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 158,
+          "text_density": 0.11590588235294118,
+          "estimated_content_length": 11,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 159,
+          "text_density": 0.14062673796791444,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 160,
+          "text_density": 0.19441497326203208,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 161,
+          "text_density": 0.2839764705882353,
+          "estimated_content_length": 28,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 162,
+          "text_density": 0.16362459893048129,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 163,
+          "text_density": 0.09674010695187166,
+          "estimated_content_length": 9,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 164,
+          "text_density": 0.14125775401069518,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 165,
+          "text_density": 0.09457647058823529,
+          "estimated_content_length": 9,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 166,
+          "text_density": 0.17529839572192513,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 167,
+          "text_density": 0.19773155080213903,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 168,
+          "text_density": 0.25163208556149735,
+          "estimated_content_length": 25,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 169,
+          "text_density": 0.20626524064171123,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 170,
+          "text_density": 0.18202780748663103,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 171,
+          "text_density": 0.09821818181818182,
+          "estimated_content_length": 9,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 172,
+          "text_density": 0.17067272727272728,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 173,
+          "text_density": 0.24032406417112298,
+          "estimated_content_length": 24,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 174,
+          "text_density": 0.20781176470588236,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 175,
+          "text_density": 0.2315668449197861,
+          "estimated_content_length": 23,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 176,
+          "text_density": 0.21049839572192514,
+          "estimated_content_length": 21,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 177,
+          "text_density": 0.24575828877005348,
+          "estimated_content_length": 24,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 178,
+          "text_density": 0.20632941176470587,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 179,
+          "text_density": 0.13091764705882353,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 180,
+          "text_density": 0.2584181818181818,
+          "estimated_content_length": 25,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 181,
+          "text_density": 0.1325957219251337,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 182,
+          "text_density": 0.2888288770053476,
+          "estimated_content_length": 28,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 183,
+          "text_density": 0.24324064171122994,
+          "estimated_content_length": 24,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 184,
+          "text_density": 0.17075187165775402,
+          "estimated_content_length": 17,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 185,
+          "text_density": 0.18414224598930481,
+          "estimated_content_length": 18,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 186,
+          "text_density": 0.1411764705882353,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 187,
+          "text_density": 0.16720855614973262,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 188,
+          "text_density": 0.13295935828877006,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 189,
+          "text_density": 0.15417326203208556,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 190,
+          "text_density": 0.12554866310160429,
+          "estimated_content_length": 12,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 191,
+          "text_density": 0.15769411764705882,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 192,
+          "text_density": 0.12212727272727272,
+          "estimated_content_length": 12,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 193,
+          "text_density": 0.16767486631016043,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 194,
+          "text_density": 0.13791657754010694,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 195,
+          "text_density": 0.16295294117647058,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 196,
+          "text_density": 0.14443529411764705,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 197,
+          "text_density": 0.16590695187165774,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 198,
+          "text_density": 0.12641604278074867,
+          "estimated_content_length": 12,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 199,
+          "text_density": 0.14600534759358288,
+          "estimated_content_length": 14,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 200,
+          "text_density": 0.13970160427807488,
+          "estimated_content_length": 13,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 201,
+          "text_density": 0.16694973262032087,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 202,
+          "text_density": 0.151675935828877,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 203,
+          "text_density": 0.16486951871657754,
+          "estimated_content_length": 16,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 204,
+          "text_density": 0.1507625668449198,
+          "estimated_content_length": 15,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 205,
+          "text_density": 0.19425989304812835,
+          "estimated_content_length": 19,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 206,
+          "text_density": 0.2089390374331551,
+          "estimated_content_length": 20,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 207,
+          "text_density": 0.2655786096256684,
+          "estimated_content_length": 26,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 208,
+          "text_density": 0.10174973262032086,
+          "estimated_content_length": 10,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 209,
+          "text_density": 0.06760855614973262,
+          "estimated_content_length": 6,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 210,
+          "text_density": 0.23029304812834225,
+          "estimated_content_length": 23,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 211,
+          "text_density": 0.22925454545454546,
+          "estimated_content_length": 22,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 212,
+          "text_density": 0.2699764705882353,
+          "estimated_content_length": 26,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        },
+        {
+          "page_number": 213,
+          "text_density": 0.22034973262032084,
+          "estimated_content_length": 22,
+          "plants_present": true,
+          "cipher_symbols": true,
+          "status": "Decrypted"
+        }
+      ],
+      "page_count": 209,
+      "estimated_characters": 3660,
+      "status": "Ready for transcription"
+    }
+  }
+}

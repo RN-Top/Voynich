@@ -1,0 +1,1725 @@
+{
+  "metadata": {
+    "created": "2026-10-13T02:36:38.732525",
+    "analysis_method": "Automated image analysis",
+    "source": "Voynich Manuscript (Yale Beinecke MS 408)",
+    "total_pages_analyzed": 214,
+    "pages_with_both_elements": 212,
+    "integration_percentage": 99.06542056074767,
+    "hypothesis": "Plants and cipher text are integrated into ONE complete cipher system"
+  },
+  "pages": [
+    {
+      "page_number": 1,
+      "has_illustrations": true,
+      "has_cipher_text": false,
+      "text_density": 0.014767914438502673,
+      "is_integrated": false,
+      "integration_confidence": 0.0
+    },
+    {
+      "page_number": 2,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.631931550802139,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 3,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.08388877005347593,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 4,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.3297326203208556,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 5,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.21588235294117647,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 6,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.21405026737967914,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 7,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.22840213903743314,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 8,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18590802139037432,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 9,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.206372192513369,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 10,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1608524064171123,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 11,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1501379679144385,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 12,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19297433155080215,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 13,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1776994652406417,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 14,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18758395721925133,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 15,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.14819679144385026,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 16,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1539422459893048,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 17,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.13780106951871657,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 18,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.14954438502673797,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 19,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1857187165775401,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 20,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2194855614973262,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 21,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16729732620320856,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 22,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18103957219251338,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 23,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18036470588235295,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 24,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.13829732620320856,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 25,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20402994652406417,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 26,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2060427807486631,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 27,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.17672192513368984,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 28,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16425347593582887,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 29,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.21864064171122993,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 30,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1471754010695187,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 31,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.17931871657754012,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 32,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1672566844919786,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 33,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20552192513368983,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 34,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.12754438502673796,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 35,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18124919786096258,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 36,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16364598930481283,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 37,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19404598930481284,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 38,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1509005347593583,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 39,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1695850267379679,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 40,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.12850802139037434,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 41,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.13716042780748663,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 42,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.14109411764705881,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 43,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.14782032085561497,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 44,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.13843208556149733,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 45,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.17509732620320856,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 46,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.17285989304812835,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 47,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19748021390374332,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 48,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.15336898395721926,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 49,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1784534759358289,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 50,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.14835080213903742,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 51,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20313475935828876,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 52,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.15480106951871658,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 53,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1915326203208556,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 54,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1924524064171123,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 55,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18467272727272727,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 56,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1569475935828877,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 57,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16539251336898395,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 58,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18135828877005347,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 59,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18165989304812835,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 60,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16240427807486632,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 61,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18570267379679145,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 62,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2009283422459893,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 63,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.17404064171122996,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 64,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16888449197860964,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 65,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16363957219251338,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 66,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1852085561497326,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 67,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2351764705882353,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 68,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1938149732620321,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 69,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.21202459893048128,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 70,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20434438502673796,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 71,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.21554224598930483,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 72,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.21057326203208557,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 73,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1839229946524064,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 74,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.15982673796791444,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 75,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.21543529411764706,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 76,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19115935828877006,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 77,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.22209197860962568,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 78,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.23042780748663103,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 79,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.22813903743315508,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 80,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19090267379679143,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 81,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.24447379679144385,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 82,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16321069518716577,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 83,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.229372192513369,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 84,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18084385026737967,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 85,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2061379679144385,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 86,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18531657754010694,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 87,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1794716577540107,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 88,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16798395721925133,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 89,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18988983957219252,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 90,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19244919786096257,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 91,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1925475935828877,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 92,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20102566844919786,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 93,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.22115187165775402,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 94,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2530245989304813,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 95,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.27382994652406417,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 96,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.15931122994652405,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 97,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19981604278074866,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 98,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.21925454545454545,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 99,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19230695187165775,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 100,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20281283422459892,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 101,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.22331657754010695,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 102,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18448770053475935,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 103,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20756363636363637,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 104,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.23430588235294117,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 105,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.23739786096256685,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 106,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19063957219251337,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 107,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1888951871657754,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 108,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1613422459893048,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 109,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2061946524064171,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 110,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1998609625668449,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 111,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.27147700534759356,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 112,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.15343422459893047,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 113,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.23351016042780748,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 114,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19992192513368984,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 115,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.13595935828877007,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 116,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.12170267379679145,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 117,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.14690267379679145,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 118,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.22211657754010694,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 119,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20704812834224598,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 120,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.13878716577540107,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 121,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20945026737967914,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 122,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.0906951871657754,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 123,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.06927914438502673,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 124,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.05932727272727273,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 125,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.06741604278074867,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 126,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1309807486631016,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 127,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.07257860962566845,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 128,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.10905026737967914,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 129,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.17437433155080215,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 130,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.13296577540106952,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 131,
+      "has_illustrations": true,
+      "has_cipher_text": false,
+      "text_density": 0.04806417112299465,
+      "is_integrated": false,
+      "integration_confidence": 0.0
+    },
+    {
+      "page_number": 132,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.08307914438502674,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 133,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18636256684491978,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 134,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.12066524064171123,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 135,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18595080213903745,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 136,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.26245989304812833,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 137,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20357860962566846,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 138,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.17777326203208557,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 139,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19915401069518718,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 140,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1683957219251337,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 141,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1876994652406417,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 142,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20704064171122993,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 143,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.22348449197860962,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 144,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20453903743315507,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 145,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2348374331550802,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 146,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19666096256684493,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 147,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19830160427807486,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 148,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20124705882352942,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 149,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20726631016042782,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 150,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19879786096256685,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 151,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2265572192513369,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 152,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18563850267379678,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 153,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20440748663101604,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 154,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.21810588235294118,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 155,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.21075935828877004,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 156,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.15743101604278076,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 157,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1013336898395722,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 158,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.11590588235294118,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 159,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.14062673796791444,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 160,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19441497326203208,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 161,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2839764705882353,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 162,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16362459893048129,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 163,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.09674010695187166,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 164,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.14125775401069518,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 165,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.09457647058823529,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 166,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.17529839572192513,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 167,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19773155080213903,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 168,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.25163208556149735,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 169,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20626524064171123,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 170,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18202780748663103,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 171,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.09821818181818182,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 172,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.17067272727272728,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 173,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.24032406417112298,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 174,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20781176470588236,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 175,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2315668449197861,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 176,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.21049839572192514,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 177,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.24575828877005348,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 178,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.20632941176470587,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 179,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.13091764705882353,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 180,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2584181818181818,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 181,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1325957219251337,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 182,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2888288770053476,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 183,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.24324064171122994,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 184,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.17075187165775402,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 185,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.18414224598930481,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 186,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1411764705882353,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 187,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16720855614973262,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 188,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.13295935828877006,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 189,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.15417326203208556,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 190,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.12554866310160429,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 191,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.15769411764705882,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 192,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.12212727272727272,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 193,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16767486631016043,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 194,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.13791657754010694,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 195,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16295294117647058,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 196,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.14443529411764705,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 197,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16590695187165774,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 198,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.12641604278074867,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 199,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.14600534759358288,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 200,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.13970160427807488,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 201,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16694973262032087,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 202,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.151675935828877,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 203,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.16486951871657754,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 204,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.1507625668449198,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 205,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.19425989304812835,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 206,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2089390374331551,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 207,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2655786096256684,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 208,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.10174973262032086,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 209,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.06760855614973262,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 210,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.23029304812834225,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 211,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.22925454545454546,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 212,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.2699764705882353,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 213,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.22034973262032084,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    },
+    {
+      "page_number": 214,
+      "has_illustrations": true,
+      "has_cipher_text": true,
+      "text_density": 0.6097069518716578,
+      "is_integrated": true,
+      "integration_confidence": 0.7
+    }
+  ]
+}
