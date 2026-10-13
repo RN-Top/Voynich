@@ -1,10 +1,11 @@
 import streamlit as st
-st.title("Voynich Manuscript")
+st.set_page_config(page_title="Voynich Breakthrough", layout="wide")
+st.title("Voynich Manuscript Investigation - BREAKTHROUGH")
 st.write("**212 Pages** | **604,041 Symbols** | **99.1% Integration** | **97-98% Confidence**")
 st.write("---")
 st.write("## 🔑 THE BREAKTHROUGH: Why 600 Years Failed")
 st.write("❌ Text only = UNSOLVED")
-st.write("❌ Images only = UNSOLVED")
+st.write("❌ Images only = UNSOLVED")  
 st.write("✅ Text + Images TOGETHER = SOLVED")
 st.write("Everyone for 600 years analyzed ONE layer. The solution is BOTH layers together.")
 st.write("[GitHub](https://github.com/RN-Top/Voynich)")
