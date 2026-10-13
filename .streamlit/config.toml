@@ -1,0 +1,9 @@
+[client]
+showErrorDetails = false
+
+[logger]
+level = "error"
+
+[server]
+headless = true
+port = 8501
