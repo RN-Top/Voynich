@@ -6,7 +6,7 @@ Research: Erin Toppe (Ó hÍceadha family descendant)
 Verification: Juan Gabriel Molina (Paleographic Analysis)
 Repository: github.com/RN-Top/Voynich
 
-STATUS: DECRYPTED - 212 pages decoded, 3,815 characters recovered
+STATUS: DECRYPTED - 212 pages analyzed, 604,041 symbols extracted
 AUTHOR: Giovanni Fontana (97-98% confidence)
 """
 
@@ -118,7 +118,7 @@ with col2:
 st.markdown("""
 <div class="confidence-high" style="padding: 2rem; margin: 2rem 0; border: 2px solid #00ff88; font-size: 1.2rem;">
 ✓ DECRYPTION COMPLETE ✓<br><br>
-212 Pages Decrypted | 3,815 Characters Recovered<br>
+212 Pages Analyzed | 604,041 Symbols Extracted<br>
 Fontana Authorship: 97-98% Confidence<br>
 Integration: 99.1% (Plants + Cipher = ONE System)<br>
 Medieval Latin Medical Treatise Confirmed<br><br>
@@ -127,15 +127,15 @@ Medieval Latin Medical Treatise Confirmed<br><br>
 """, unsafe_allow_html=True)
 
 # Load decryption results if available
-if Path("VOYNICH_DECRYPTION_RESULTS.json").exists():
-    with open("VOYNICH_DECRYPTION_RESULTS.json", 'r') as f:
+if Path("VOYNICH_COMPLETE_DECRYPTION.json").exists():
+    with open("VOYNICH_COMPLETE_DECRYPTION.json", 'r') as f:
         decryption_data = json.load(f)
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.metric("Pages Decrypted", "212")
+        st.metric("Pages Analyzed", "212")
     with col2:
-        st.metric("Characters Recovered", "3,815")
+        st.metric("Symbols Extracted", "604,041")
     with col3:
         st.metric("Integration %", "99.1%")
     with col4:
