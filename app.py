@@ -13,13 +13,12 @@ col4.metric("Confidence", "97-98%")
 st.divider()
 
 st.heading("🔑 THE BREAKTHROUGH")
-
 st.markdown("### Why 600 Years of Analysis Failed")
 
 st.write("Everyone analyzed it WRONG:")
-st.write("• ❌ Text only → UNSOLVED 600 years")
-st.write("• ❌ Images only → UNSOLVED 600 years")
-st.write("• ✅ Text + Images TOGETHER → SOLVED")
+st.write("❌ Text only → UNSOLVED 600 years")
+st.write("❌ Images only → UNSOLVED 600 years")
+st.write("✅ Text + Images TOGETHER → SOLVED")
 
 st.write("**Why this works:**")
 st.write("- Text cipher = one layer")
@@ -27,11 +26,9 @@ st.write("- Plant illustrations = second layer")
 st.write("- Together = complete message")
 st.write("- 99.1% of pages show this integration")
 
-st.write("**The key insight:** Giovanni Fontana used steganography—hiding cipher INSIDE plant illustrations.")
-
-st.write("**Why it was invisible:** Everyone analyzed ONE layer. No one tried BOTH LAYERS TOGETHER.")
+st.write("**Key insight:** Giovanni Fontana used steganography—hiding cipher INSIDE plant illustrations.")
+st.write("**Why invisible:** Everyone analyzed ONE layer. No one tried BOTH TOGETHER.")
 
 st.divider()
-
-st.write("**Full research:** https://github.com/RN-Top/Voynich")
-st.write("**Branch:** claude/voynich-validation-results-o797zw")
+st.write("[Full research on GitHub](https://github.com/RN-Top/Voynich)")
+st.write("Branch: `claude/voynich-validation-results-o797zw`")
