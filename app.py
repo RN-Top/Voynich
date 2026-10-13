@@ -220,58 +220,111 @@ with tab3:
     st.markdown("## 📥 Download Complete Manuscript")
     st.markdown("### Available in multiple formats (Latin & English)")
 
+    # MEDIEVAL LATIN BOOKS
+    st.markdown("### 🏛️ Medieval Latin (Original Decryption)")
     col1, col2, col3 = st.columns(3)
 
-    # HTML Book
     with col1:
-        st.markdown("### 📖 HTML Book")
-        st.write("Interactive book readable in any browser.")
+        st.markdown("#### 📖 HTML Book")
+        st.write("Interactive browser-readable")
         try:
             with open("voynich_manuscript_book.html", "rb") as f:
                 html_data = f.read()
             st.download_button(
-                label="📥 Download HTML (Medieval Latin)",
+                label="📥 Download HTML (Latin)",
                 data=html_data,
                 file_name="voynich_manuscript_book.html",
                 mime="text/html",
-                key="html_book"
+                key="html_book_latin"
             )
         except:
             st.error("HTML book not available")
 
-    # PDF Book
     with col2:
-        st.markdown("### 📕 PDF Book")
-        st.write("Professional PDF format, print-ready.")
+        st.markdown("#### 📕 PDF Book")
+        st.write("Professional print-ready")
         try:
             with open("voynich_manuscript_book.pdf", "rb") as f:
                 pdf_data = f.read()
             st.download_button(
-                label="📥 Download PDF (Medieval Latin)",
+                label="📥 Download PDF (Latin)",
                 data=pdf_data,
                 file_name="voynich_manuscript_book.pdf",
                 mime="application/pdf",
-                key="pdf_book"
+                key="pdf_book_latin"
             )
         except:
             st.error("PDF book not available")
 
-    # EPUB Book
     with col3:
-        st.markdown("### 📱 EPUB E-Book")
-        st.write("E-book for Kindle, Apple Books, etc.")
+        st.markdown("#### 📱 EPUB E-Book")
+        st.write("For e-readers (Kindle, Apple Books)")
         try:
             with open("voynich_manuscript_book.epub", "rb") as f:
                 epub_data = f.read()
             st.download_button(
-                label="📥 Download EPUB (Medieval Latin)",
+                label="📥 Download EPUB (Latin)",
                 data=epub_data,
                 file_name="voynich_manuscript_book.epub",
                 mime="application/epub+zip",
-                key="epub_book"
+                key="epub_book_latin"
             )
         except:
             st.error("EPUB book not available")
+
+    st.markdown("---")
+
+    # ENGLISH BOOKS
+    st.markdown("### 🇬🇧 English (Modern Translation)")
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.markdown("#### 📖 HTML Book")
+        st.write("Interactive browser-readable")
+        try:
+            with open("voynich_manuscript_book_english.html", "rb") as f:
+                html_data = f.read()
+            st.download_button(
+                label="📥 Download HTML (English)",
+                data=html_data,
+                file_name="voynich_manuscript_book_english.html",
+                mime="text/html",
+                key="html_book_english"
+            )
+        except:
+            st.warning("English HTML book not available")
+
+    with col2:
+        st.markdown("#### 📕 PDF Book")
+        st.write("Professional print-ready")
+        try:
+            with open("voynich_manuscript_book_english.pdf", "rb") as f:
+                pdf_data = f.read()
+            st.download_button(
+                label="📥 Download PDF (English)",
+                data=pdf_data,
+                file_name="voynich_manuscript_book_english.pdf",
+                mime="application/pdf",
+                key="pdf_book_english"
+            )
+        except:
+            st.warning("English PDF book not available")
+
+    with col3:
+        st.markdown("#### 📱 EPUB E-Book")
+        st.write("For e-readers (Kindle, Apple Books)")
+        try:
+            with open("voynich_manuscript_book_english.epub", "rb") as f:
+                epub_data = f.read()
+            st.download_button(
+                label="📥 Download EPUB (English)",
+                data=epub_data,
+                file_name="voynich_manuscript_book_english.epub",
+                mime="application/epub+zip",
+                key="epub_book_english"
+            )
+        except:
+            st.warning("English EPUB book not available")
 
     st.markdown("---")
 
