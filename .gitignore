@@ -21,3 +21,4 @@ data/spot_pies/
 
 # Full-resolution Yale page images (re-download with fetch_yale_images.py)
 images/
+voynich_manuscript/
