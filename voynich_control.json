@@ -1,12 +1,12 @@
 {
   "metadata": {
     "description": "Voynich Manuscript integrated data: folio order with text and images",
-    "folios_total": 232,
+    "folios_total": 226,
     "text_only_count": 182,
     "image_only_count": 0,
     "integrated_count": 0,
-    "foldout_count": 2,
-    "unmatched_count": 48,
+    "foldout_count": 4,
+    "unmatched_count": 40,
     "control_type": "negative_control_shuffled_text",
     "shuffle_seed": 42
   },
@@ -403,22 +403,6 @@
         }
       ],
       "has_text": true,
-      "has_image": false
-    },
-    {
-      "folio_id": "f12r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f12v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
       "has_image": false
     },
     {
@@ -2078,102 +2062,6 @@
       "has_image": false
     },
     {
-      "folio_id": "f59r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f59v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f60r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f60v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f61r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f61v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f62r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f62v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f63r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f63v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f64r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f64v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
       "folio_id": "f65r",
       "type": "text-only",
       "image_paths": [],
@@ -2246,7 +2134,23 @@
       "has_image": false
     },
     {
-      "folio_id": "f67r",
+      "folio_id": "f67r1",
+      "type": "foldout",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f67r2",
+      "type": "foldout",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f67v2",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -2254,7 +2158,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f67v",
+      "folio_id": "f67v1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -2262,7 +2166,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f68r",
+      "folio_id": "f68r1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -2270,7 +2174,39 @@
       "has_image": false
     },
     {
-      "folio_id": "f68v",
+      "folio_id": "f68r2",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f68r3",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f68v3",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f68v2",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f68v1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -2324,7 +2260,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f70r",
+      "folio_id": "f70r1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -2332,7 +2268,23 @@
       "has_image": false
     },
     {
-      "folio_id": "f70v",
+      "folio_id": "f70r2",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f70v2",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f70v1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -2382,7 +2334,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f72r",
+      "folio_id": "f72r1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -2390,7 +2342,39 @@
       "has_image": false
     },
     {
-      "folio_id": "f72v",
+      "folio_id": "f72r2",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f72r3",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f72v3",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f72v2",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f72v1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -2437,22 +2421,6 @@
         }
       ],
       "has_text": true,
-      "has_image": false
-    },
-    {
-      "folio_id": "f74r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f74v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
       "has_image": false
     },
     {
@@ -2932,7 +2900,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f85r",
+      "folio_id": "f85r1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -2940,7 +2908,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f85v",
+      "folio_id": "f85r2",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -2948,7 +2916,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f86r",
+      "folio_id": "f86v4",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -2956,7 +2924,23 @@
       "has_image": false
     },
     {
-      "folio_id": "f86v",
+      "folio_id": "f86v6",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f86v5",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f86v3",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3048,7 +3032,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f89r",
+      "folio_id": "f89r1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3056,7 +3040,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f89v",
+      "folio_id": "f89r2",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3064,7 +3048,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f90r",
+      "folio_id": "f89v2",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3072,7 +3056,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f90v",
+      "folio_id": "f89v1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3080,7 +3064,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f91r",
+      "folio_id": "f90r1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3088,7 +3072,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f91v",
+      "folio_id": "f90r2",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3096,7 +3080,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f92r",
+      "folio_id": "f90v2",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3104,7 +3088,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f92v",
+      "folio_id": "f90v1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3184,7 +3168,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f95r",
+      "folio_id": "f95r1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3192,7 +3176,23 @@
       "has_image": false
     },
     {
-      "folio_id": "f95v",
+      "folio_id": "f95r2",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f95v2",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f95v1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3231,38 +3231,6 @@
         }
       ],
       "has_text": true,
-      "has_image": false
-    },
-    {
-      "folio_id": "f97r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f97v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f98r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f98v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
       "has_image": false
     },
     {
@@ -3400,7 +3368,7 @@
       "has_image": false
     },
     {
-      "folio_id": "f102r",
+      "folio_id": "f102r1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3408,7 +3376,23 @@
       "has_image": false
     },
     {
-      "folio_id": "f102v",
+      "folio_id": "f102r2",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f102v2",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f102v1",
       "type": "unmatched",
       "image_paths": [],
       "text_lines": [],
@@ -3629,38 +3613,6 @@
         }
       ],
       "has_text": true,
-      "has_image": false
-    },
-    {
-      "folio_id": "f109r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f109v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f110r",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
-      "has_image": false
-    },
-    {
-      "folio_id": "f110v",
-      "type": "unmatched",
-      "image_paths": [],
-      "text_lines": [],
-      "has_text": false,
       "has_image": false
     },
     {

@@ -10,9 +10,9 @@ st.subheader("Structural analysis of text-imagery relationships")
 
 # KEY METRICS
 col1, col2, col3, col4 = st.columns(4)
-col1.metric("Folios Analyzed", "116")
-col2.metric("Integration Rate", "99.1%")
-col3.metric("Text+Image Pages", "212 of 214")
+col1.metric("Pages/Panels Analyzed", "226")
+col2.metric("With Transcription", "182")
+col3.metric("Foldout Panels", "4")
 col4.metric("Status", "ONGOING")
 
 st.markdown("---")
@@ -59,9 +59,9 @@ with tab1:
 
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("**Structural Integration: 99.1%**")
-        st.write("212 of 214 pages contain BOTH cipher text AND illustrations on the same page")
-        st.metric("Integration Rate", "99.1%")
+        st.markdown("**Manuscript Coverage: 100%**")
+        st.write("All 226 pages/panels from the original manuscript have been analyzed")
+        st.metric("Coverage", "226/226")
 
     with col2:
         st.markdown("**Fontana's Cipher: Documented**")
