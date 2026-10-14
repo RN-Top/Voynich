@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Build voynich_control.json: negative control for integration analysis.
-Takes voynich_integrated.json and shuffles text ACROSS folios while
-preserving word frequencies and overall text statistics.
+Takes voynich_integrated.json and shuffles INDIVIDUAL WORDS across folios
+while preserving each folio's word count and overall word frequencies.
 This breaks any real folio-to-folio relationships while keeping the
 manuscript "text realistic" for comparison.
 """
@@ -30,41 +30,47 @@ with open(INPUT_FILE, 'r', encoding='utf-8') as f:
 
 print(f"✓ Loaded {len(integrated_data['folios'])} folios")
 
-# Extract all text lines
-all_text_lines = []
-folio_structure = []
+# Extract all words and remember each folio's word count
+all_words = []
+folio_word_counts = []  # Track how many words each folio should have
 
 for folio in integrated_data['folios']:
-    text_lines = folio['text_lines']
-    all_text_lines.extend(text_lines)
-    folio_structure.append(len(text_lines))  # Remember how many lines each folio had
+    folio_word_count = 0
+    for line in folio['text_lines']:
+        if 'words' in line:
+            words = line['words']
+        else:
+            # Fallback: if words not in text_lines, extract from text
+            import re
+            text = line['text']
+            text = re.sub(r'\{[^}]*\}', '', text)
+            text = re.sub(r'<![^>]*>', '', text)
+            text = re.sub(r'@[A-Za-z0-9;]+', '', text)
+            text = re.sub(r'<%[^>]*>', '', text)
+            text = re.sub(r'<\$>', '', text)
+            words = [w.strip() for w in re.split(r'[.,]', text) if w.strip()]
 
-print(f"✓ Extracted {len(all_text_lines)} text lines total")
+        all_words.extend(words)
+        folio_word_count += len(words)
+
+    folio_word_counts.append(folio_word_count)
+
+print(f"✓ Extracted {len(all_words)} total words")
 
 # Count word frequencies (for validation)
-all_words = []
-for line_entry in all_text_lines:
-    words = line_entry['text'].split()
-    all_words.extend(words)
-
 word_freq_original = Counter(all_words)
 print(f"✓ Original vocabulary: {len(word_freq_original)} unique forms")
 print(f"  Sample frequency distribution:")
 for word, count in list(word_freq_original.most_common(5)):
     print(f"    {word}: {count} occurrences")
 
-# Shuffle text lines ACROSS folios
-print("\nShuffling text across folios...")
+# Shuffle individual words across folios
+print("\nShuffling words across folios (preserving each folio's word count)...")
 random.seed(42)  # Fixed seed for reproducibility
-shuffled_text_lines = all_text_lines.copy()
-random.shuffle(shuffled_text_lines)
+shuffled_words = all_words.copy()
+random.shuffle(shuffled_words)
 
 # Verify word frequencies are preserved
-shuffled_words = []
-for line_entry in shuffled_text_lines:
-    words = line_entry['text'].split()
-    shuffled_words.extend(words)
-
 word_freq_shuffled = Counter(shuffled_words)
 print(f"✓ Shuffled vocabulary: {len(word_freq_shuffled)} unique forms")
 print(f"  Sample frequency distribution:")
@@ -75,39 +81,65 @@ for word, count in list(word_freq_shuffled.most_common(5)):
 if word_freq_original == word_freq_shuffled:
     print("✓ Word frequencies preserved (exact match)")
 else:
-    print("⚠ Word frequencies differ (minor differences OK)")
+    print("⚠ Word frequencies differ (ERROR!)")
+    exit(1)
 
-# Rebuild folios with shuffled text
+# Rebuild folios with shuffled words
 control_data = {
     "metadata": integrated_data['metadata'].copy(),
     "folios": []
 }
 
-control_data['metadata']['control_type'] = "negative_control_shuffled_text"
+control_data['metadata']['control_type'] = "negative_control_shuffled_words"
 control_data['metadata']['shuffle_seed'] = 42
 
-line_index = 0
+word_index = 0
 for i, folio in enumerate(integrated_data['folios']):
-    num_lines = folio_structure[i]
+    num_words = folio_word_counts[i]
 
-    # Get shuffled lines for this folio
-    shuffled_folio_lines = shuffled_text_lines[line_index:line_index + num_lines]
-    line_index += num_lines
+    # Get shuffled words for this folio
+    shuffled_folio_words = shuffled_words[word_index:word_index + num_words]
+    word_index += num_words
 
-    # Build folio entry with shuffled text
+    # Rebuild text_lines with shuffled words
+    # We need to distribute shuffled words back into the line structure
+    new_text_lines = []
+    words_used = 0
+
+    for line_entry in folio['text_lines']:
+        line_word_count = line_entry['word_count']
+
+        # Get words for this line
+        line_words = shuffled_folio_words[words_used:words_used + line_word_count]
+        words_used += line_word_count
+
+        # Reconstruct text from words (rejoin with dots as separators)
+        new_text = '.'.join(line_words)
+
+        # Build new line entry with shuffled text
+        new_line = {
+            "locus": line_entry['locus'],
+            "text": new_text,
+            "words": line_words,
+            "word_count": len(line_words)
+        }
+        new_text_lines.append(new_line)
+
+    # Build folio entry with shuffled words
     folio_entry = {
         "folio_id": folio['folio_id'],
         "type": folio['type'],
-        "image_paths": folio['image_paths'],  # Keep same images
-        "text_lines": shuffled_folio_lines,   # Shuffled text
+        "image_paths": folio['image_paths'],
+        "text_lines": new_text_lines,
         "has_text": folio['has_text'],
-        "has_image": folio['has_image']
+        "has_image": folio['has_image'],
+        "word_count": num_words
     }
 
     control_data['folios'].append(folio_entry)
 
-print(f"\n✓ Redistributed {len(shuffled_text_lines)} lines across {len(control_data['folios'])} folios")
-print(f"  Line distribution matches original")
+print(f"\n✓ Redistributed {len(shuffled_words)} words across {len(control_data['folios'])} folios")
+print(f"  Word distribution matches original (each folio's word count preserved)")
 
 # Save control file
 output_file = 'voynich_control.json'
@@ -119,10 +151,10 @@ print(f"✓ Saved: {output_file}")
 print("\n" + "=" * 80)
 print("CONTROL FILE PROPERTIES")
 print("=" * 80)
-print(f"Same folio structure:  ✓ Yes (line distribution preserved)")
-print(f"Same word frequencies: ✓ Yes (vocabulary preserved)")
+print(f"Same folio structure:  ✓ Yes (word count per folio preserved)")
+print(f"Same word frequencies: ✓ Yes (vocabulary preserved exactly)")
 print(f"Same images:           ✓ Yes (image paths unchanged)")
-print(f"Different text layout: ✓ Yes (text shuffled across folios)")
+print(f"Different text layout: ✓ Yes (words shuffled across folios)")
 print("\nThis file can be used to test whether analysis results are specific")
 print("to the REAL text-image relationships or just artifact of statistics.")
 print("=" * 80)

@@ -2,8 +2,7 @@
 """
 Build voynich_integrated.json: unified file with folios in order.
 Reads directly from EVA transcription file (Data/Zl3b-n.txt).
-Combines folio ID, image paths, transcribed text (with locus labels),
-and classification flags (text-only, image-only, foldout).
+Parses EVA format correctly: splits on . and ,, strips markup.
 """
 
 import json
@@ -22,10 +21,35 @@ if not Path(EVA_FILE).exists():
     print(f"ERROR: {EVA_FILE} not found")
     exit(1)
 
+def parse_eva_words(eva_text):
+    """
+    Parse EVA text into individual words.
+    In EVA format:
+    - Words are separated by . (dots) and , (commas)
+    - Markup like {...}, <!...>, @codes should be stripped
+    - Returns list of individual words (cleaned)
+    """
+    # Strip inline markup: {...}, <!...>, @codes, <%...>
+    text = eva_text
+    text = re.sub(r'\{[^}]*\}', '', text)      # Remove {...}
+    text = re.sub(r'<![^>]*>', '', text)       # Remove <!...>
+    text = re.sub(r'@[A-Za-z0-9;]+', '', text) # Remove @codes
+    text = re.sub(r'<%[^>]*>', '', text)       # Remove <%...>
+    text = re.sub(r'<\$>', '', text)           # Remove <$>
+
+    # Split on . and , (word separators in EVA)
+    words = re.split(r'[.,]', text)
+
+    # Filter out empty strings and clean up
+    words = [w.strip() for w in words if w.strip()]
+
+    return words
+
 # Parse EVA format directly from source file
 print(f"\nReading {EVA_FILE}...")
 folio_data = OrderedDict()  # Preserve insertion order
 folio_order = []
+total_words = 0
 
 with open(EVA_FILE, 'r', encoding='utf-8') as f:
     for line_num, line in enumerate(f, 1):
@@ -45,21 +69,35 @@ with open(EVA_FILE, 'r', encoding='utf-8') as f:
         if line_match:
             folio_id = line_match.group(1)
             locus = line_match.group(2)
-            text = line_match.group(3)
+            eva_text = line_match.group(3)
 
             if folio_id not in folio_data:
                 folio_order.append(folio_id)
                 folio_data[folio_id] = {"lines": []}
 
+            # Parse EVA text into individual words
+            words = parse_eva_words(eva_text)
+            word_count = len(words)
+            total_words += word_count
+
             folio_data[folio_id]["lines"].append({
                 "locus": locus,
-                "text": text
+                "text": eva_text,
+                "words": words,
+                "word_count": word_count
             })
 
 print(f"✓ Parsed {len(folio_order)} folios from EVA file")
+print(f"✓ Total words extracted: {total_words}")
 
-total_lines = sum(len(f['lines']) for f in folio_data.values())
-print(f"✓ Total text lines: {total_lines}")
+# Count unique words across all folios
+all_words = []
+for folio_id in folio_order:
+    for line in folio_data[folio_id]["lines"]:
+        all_words.extend(line["words"])
+
+unique_words = set(all_words)
+print(f"✓ Unique words: {len(unique_words)}")
 
 # Build integrated data structure
 integrated_data = {
@@ -70,7 +108,9 @@ integrated_data = {
         "image_only_count": 0,
         "integrated_count": 0,
         "foldout_count": 0,
-        "unmatched_count": 0
+        "unmatched_count": 0,
+        "total_words": total_words,
+        "unique_words": len(unique_words)
     },
     "folios": []
 }
@@ -125,8 +165,10 @@ for folio_id in folio_order:
 
     # Get text lines for this folio
     text_lines = []
+    folio_word_count = 0
     if has_text:
         text_lines = folio_data[folio_id]['lines']
+        folio_word_count = sum(line['word_count'] for line in text_lines)
 
     # Build folio entry
     folio_entry = {
@@ -135,7 +177,8 @@ for folio_id in folio_order:
         "image_paths": image_paths,
         "text_lines": text_lines,
         "has_text": has_text,
-        "has_image": has_image
+        "has_image": has_image,
+        "word_count": folio_word_count
     }
 
     integrated_data['folios'].append(folio_entry)
@@ -165,7 +208,8 @@ print("\n" + "=" * 80)
 print("OUTPUT SUMMARY")
 print("=" * 80)
 print(f"Folios processed:        {integrated_data['metadata']['folios_total']}")
-print(f"Total text lines:        {total_lines}")
+print(f"Total words:             {integrated_data['metadata']['total_words']}")
+print(f"Unique words:            {integrated_data['metadata']['unique_words']}")
 print(f"Integrated (text+image): {integrated_data['metadata']['integrated_count']}")
 print(f"Text-only:               {integrated_data['metadata']['text_only_count']}")
 print(f"Image-only:              {integrated_data['metadata']['image_only_count']}")
