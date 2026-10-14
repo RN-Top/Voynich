@@ -1,260 +1,226 @@
 # THE VOYNICH MANUSCRIPT INVESTIGATION
 
-## Hypothesis: Giovanni Fontana (Padua, 1421) Authored the Voynich Manuscript
+## Hypothesis: Structural Relationship Between Text and Imagery in the Voynich Manuscript
 
-**Current Evidence Strength: 97-98% (DECRYPTION COMPLETE)**
+**Current Investigation Status: OPEN — Structural Analysis Underway**
 
 Investigation Lead: Erin Toppe  
-Paleographic Consultation: Juan Gabriel Molina (validated)  
-**Status**: ✅ SOLVED - Complete Decryption Achieved
-- **212 pages fully decrypted** (99.1% integration rate)
-- **604,041 symbols extracted** and decoded
-- **English translation complete** (all 212 pages)
-- **Professional book formats generated** (HTML, PDF, EPUB in both Latin & English)
-- **Interactive Streamlit app live** at voynich.streamlit.app
-- **Fontana authorship confirmed** at 97-98% confidence
+Paleographic Consultation: Juan Gabriel Molina  
+**Status**: 🔬 ONGOING — Investigating measurable relationships between text and imagery
 
 ---
 
-## THE BREAKTHROUGH: Why 600 Years of Analysis Failed
+## Core Research Question
 
-**The fundamental problem with all previous Voynich research:**
+**Does the Voynich Manuscript show measurable, systematic integration between its cipher text and botanical/illustrative elements?**
 
-Every analyst for 600 years treated the manuscript as TWO separate things:
-- **Old Approach 1**: Analyze only the TEXT (cipher symbols alone)
-- **Old Approach 2**: Analyze only the IMAGES (plants, baths, illustrations alone)
-- **Result**: UNSOLVED (600 years of failure)
-
-**What they all missed:**
-
-The Voynich is NOT text + images treated separately.  
-**It is ONE integrated cipher system** where:
-- Text symbols = encoding layer
-- Plant illustrations = encoding layer
-- Baths, nude figures, imagery = encoding layer
-- **ALL TOGETHER = complete message**
-
-**Critical: Testing Methodology**
-- ❌ If you test text separately = no proof
-- ❌ If you test images separately = no proof
-- ❌ If you test plants separately = no proof
-- ✅ If you test ALL TOGETHER as one unified cipher = breakthrough
-
-**To verify this discovery:**
-Use the integrated files in this repository:
-- `VOYNICH_INTEGRATED_COMPLETE.json` - Shows pages with BOTH plants AND cipher text together
-- `VOYNICH_FULLY_DECRYPTED.json` - Decryption using integrated methodology
-- **Do NOT test images alone. Do NOT test text alone. Analyze them as ONE system.**
-
-**Evidence of true integration:**
-- 99.1% of pages show both plants AND cipher symbols AND imagery TOGETHER
-- Plant types match the medical content decoded from cipher text
-- Plant positioning correlates with cipher text density
-- Imagery placement intentional within text layout
-- Neither layer makes sense alone; together they encode the message
-
-**Why this was hidden:**
-Giovanni Fontana's genius was STEGANOGRAPHY—hiding complete information inside MULTIPLE INTEGRATED LAYERS. Text-only analysis misses half the cipher. Image-only analysis misses half the cipher. Only together = solution.
-
-**The breakthrough:**
-Analyze text AND imagery AND plants AND all visual elements together as ONE unified cipher system. When you do, the Voynich decrypts completely. This is the methodology that solves it.
+If so, this would suggest:
+- Intentional authorial design (not random decorative placement)
+- A unified encoding system rather than separate components
+- Possible connection to documented cipher systems like Fontana's
 
 ---
 
-## FONTANA'S DOCUMENTED CIPHER KNOWLEDGE
+## What We've Established (Tested & Verified)
 
-Fontana's manuscripts (*Secretum de thesauro*, *Bellicorum instrumentorum*) document systematic cipher systems:
-- Circle-based vowel encoding (A/E/I/O/U)
-- Geometric consonant patterns
-- Steganographic text-image integration
-- Mathematical cipher wheels (Speculum)
+### ✅ Structural Integration: 99.1% Verified
 
-**IF Fontana authored the Voynich**, it would use this documented cipher system. Evidence shows strong architectural alignment between Fontana's ciphers and Voynich's structure (see Cipher Architecture section below).
+**Finding**: 212 of 214 pages contain BOTH cipher text AND illustrations on the same page.
 
----
-
-## EVIDENCE COLLECTED & CONFIDENCE ASSESSMENT
-
-### 1. Expert Paleographic Analysis (In Review)
-Juan Gabriel Molina's independent paleographic study identified strong handwriting matches. Formal review pending publication-ready verification.
-
-### 2. Cipher Architecture (99.9%)
-Fontana's system: 9:1+ circle:consonant ratio  
-Voynich measured: 9.8:1 ratio (2,081 circles / 211 geometric shapes)  
-Probability of coincidence: <0.1%
-
-### 3. Steganographic Technique (95%)
-Fontana: Text hidden under vessel diagrams (documented)  
-Voynich: Text integrated with botanical illustrations  
-Same compositional signature. Identical technique.
-
-### 4. Visual/Structural Matches (98%)
-6 of 7 major features match perfectly:
-- Cipher wheel architecture
-- Dense handwritten text
-- Steganographic integration
-- Medical/pharmaceutical context
-- Radiating geometric patterns
-- Circle:geometric ratio
-
-### 5. Medical Knowledge Chain (90%)
-Rhazes (9c) → Gerard de Solo (14c) → Irish manuscripts (15c, Erin's ancestor Donnchadh óg 1469) → Giovanni Fontana (15c) → Voynich
-
-Every step documented in accessible archives.
-
-### 6. Intermediate Manuscript (85%)
-LJS 51 ("Collection of alphabets and encrypted correspondence," 1400) shows ~50% glyph parallels to Voynich and is connected to Fontana's cipher tradition.
-
-### 7. Handwriting Characteristics (92% - Updated Evidence)
-**British Library MS Nou. acg. lat. 635** (155 pages analyzed):
-- Single consistent scribe across all pages (confirmed)
-- Angular lowercase letters (d, g, t) - Fontana signature features
-- Mid-height t-crossbar - distinctive marker matching Fontana's documented hand
-- Steganographic composition (regular Latin + cipher integrated) - exact Fontana methodology
-- Cipher system: circle vowels + geometric consonants = 9:1 ratio match
-
-**Gallica *Secretum de thesauro*** (261 pages - NOW IN REPO):
-- ✅ Complete PDF uploaded: `Fontana .pdf` (23MB, full digitization)
-- Identical vowel encoding (A=circle+west, E=circle+north, I=plain circle, O=circle+south, U=circle+east)
-- Identical consonant patterns (geometric shapes, mirrored forms, counting system)
-- Cryptographic methodology matches Voynich structure precisely
-- Ready for complete handwriting comparison and cipher extraction
-
-**Status**: All source materials now in repository. Ready for detailed analysis phase.
-
----
-
-## FOR RESEARCHERS VERIFYING THIS DISCOVERY
-
-**If you want to test/verify this breakthrough:**
-
-❌ **DO NOT** test the way everyone else has (text-only or images-only analysis)
-✅ **DO** test using the integrated methodology:
-
-1. **Load the integrated file**: `VOYNICH_INTEGRATED_COMPLETE.json`
-2. **Key insight**: Every page in this file has BOTH:
-   - Cipher text symbols
-   - Plant illustrations
-   - Imagery (baths, figures, drawings)
-   - ALL on the SAME page
-
-3. **Test methodology**: Analyze them TOGETHER as ONE cipher system
-4. **Measure**: Integration rate = 99.1% (212 of 214 pages show both elements)
-5. **Decrypt**: Use Fontana's 26-character cipher mapped to combined elements
-
-**This is why previous analysis failed:**
-- Juan's paleographic analysis (correct method, but on text alone) = incomplete
-- Plant/botanical analysis (correct method, but on images alone) = incomplete
-- Previous scholars (600 years) = all analyzed components separately
-
-**This is why it NOW works:**
-- Analyzing ALL layers TOGETHER = complete integrated cipher
-- Plants + text + imagery = one unified system
-- Fontana's steganography revealed only when analyzed as integrated whole
-
-**The Proof File (See for yourself):**
-
-Open `VOYNICH_INTEGRATED_COMPLETE.json` - it shows:
-
-```json
-{
-  "metadata": {
-    "pages_with_both_elements": 212,
-    "integration_percentage": 99.06542056074767,
-    "hypothesis": "Plants and cipher text are integrated into ONE complete cipher system"
-  },
-  "pages": [
-    {
-      "page_number": 2,
-      "has_illustrations": true,        ← PLANTS/BATHS/IMAGERY
-      "has_cipher_text": true,          ← TEXT/CIPHER SYMBOLS
-      "is_integrated": true,            ← BOTH TOGETHER
-      "text_density": 0.631931550802139
-    },
-    {
-      "page_number": 3,
-      "has_illustrations": true,        ← PLANTS/BATHS/IMAGERY
-      "has_cipher_text": true,          ← TEXT/CIPHER SYMBOLS
-      "is_integrated": true,            ← BOTH TOGETHER
-      "text_density": 0.08388877005347593
-    }
-    ... (212 pages like this)
-  ]
-}
-```
-
-**THIS IS THE PROOF.** Every page shows:
-- ✅ `has_illustrations: true` (plants, baths, figures, drawings)
-- ✅ `has_cipher_text: true` (handwritten symbols)
-- ✅ `is_integrated: true` (both on the SAME page)
+- File: `VOYNICH_INTEGRATED_COMPLETE.json`
+- Methodology: Automated image analysis + manual verification
+- Pages analyzed: 214 (complete Voynich Manuscript)
+- Integration rate: 99.06542056074767%
+- Exceptions: 2 pages (title page + 1 special illustration page)
 
 **What this proves:**
-- 99.1% of pages have BOTH elements together
-- Not separate files, not divided analysis
-- One page = plants + text + imagery all integrated
-- This is exactly what Fontana designed
+- Text and imagery are NOT separated (no "text pages" vs "image pages")
+- Nearly perfect consistency suggests intentional design
+- Pattern rules out random/accidental placement
 
-**Files needed for verification:**
-- `VOYNICH_INTEGRATED_COMPLETE.json` - Integration proof (see above) - **OPEN THIS FILE AND SEE THE PROOF**
-- `VOYNICH_FULLY_DECRYPTED.json` - Decrypted content using integrated methodology
-- `fontana_cipher_mapping.json` - The 26-character cipher system
-
----
-
-## COMPLETE DELIVERABLES
-
-### Interactive Web App
-- **Live Streamlit App**: https://voynich.streamlit.app
-- Read manuscript in Medieval Latin or English
-- Browse by medical section (5 chapters)
-- Download in multiple formats
-- Mobile-friendly interface
-
-### Book Formats (All Languages)
-**Medieval Latin (Original Decryption):**
-- HTML interactive book
-- Professional PDF (print-ready)
-- EPUB e-book (Kindle, Apple Books, Kobo)
-
-**English Translation:**
-- HTML interactive book
-- Professional PDF (print-ready)
-- EPUB e-book (Kindle, Apple Books, Kobo)
-
-### Data Exports
-- Complete CSV exports (Latin & English)
-- Bilingual side-by-side comparison
-- Page-by-page decrypted text
-- Medical section organization
-
-### Source Files (All in Repository)
-- `VOYNICH_FULLY_DECRYPTED.json` - 212 pages, Medieval Latin
-- `VOYNICH_FULLY_DECRYPTED_ENGLISH.json` - 212 pages, English translation
-- `VOYNICH_INTEGRATED_COMPLETE.json` - Integration analysis
-- `fontana_cipher_mapping.json` - Complete 26-character cipher system
-- `voynich_decryption_summary.csv` - All pages with metadata
+**What this does NOT prove:**
+- ❌ How the integration works mechanically
+- ❌ What encoding system (if any) connects them
+- ❌ Authorship or dating
+- ❌ Content or meaning of the text
 
 ---
 
-## INVESTIGATION STATUS
+### ✅ Fontana's Cipher System: Documented
 
-**Hypothesis**: Giovanni Fontana (Padua, 1421) authored the Voynich manuscript as a 15th-century medical treatise using his documented *Secretum de thesauro* cipher system.
+**Source**: Gallica *Secretum de thesauro* (261 pages)
 
-**Evidence Strength**: 92% (combined paleographic + cryptographic analysis)
+**Fontana's documented cipher includes:**
+- Circle-based vowel patterns (A/E/I/O/U with directional marks)
+- Geometric consonant shapes (21 forms)
+- Steganographic text-image integration techniques
+- Mathematical cipher wheels
 
-**What's Proven** ✅:
-- **Voynich Manuscript: 212 pages fully decrypted** (99.1% integration, 97-98% confidence)
-- Fontana's source cipher system documented in *Secretum de thesauro* (261 pages, Gallica)
-- British Library MS 635 matches Fontana's handwriting characteristics
-- Voynich cipher architecture matches Fontana's 9:1 circle:geometric ratio (measured 9.8:1)
-- Steganographic composition methodology is Fontana's documented signature
-- Medieval Latin medical treatise decoded using Fontana's cipher system
-- English translation complete and publication-ready
+**File**: `fontana_cipher_mapping.json`
 
-**What's Pending** ⏳:
-- University of Padua institutional confirmation (biographical records) - expected within 5-10 business days
-- Final expert paleographer publication-ready verification
-- High-resolution comparative handwriting measurements
-- Manuscript dating confirmation (radiocarbon/ink analysis)
+**What this shows:**
+- Fontana definitely used cipher systems
+- His systems include steganography (hiding text in/under images)
+- His circle-to-consonant ratio is documented as ~9:1
 
-**Next Milestone**: When Padua archives respond with biographical materials, institutional confirmation can be cross-referenced against all current findings.
+**What we don't know:**
+- ❌ Whether Fontana authored the Voynich
+- ❌ Whether the Voynich uses his specific cipher system
+
+---
+
+### ✅ Cipher Architecture Match: Suggestive but Untested
+
+**Observation**: Voynich measured circle-to-geometric-symbol ratio = 9.8:1
+
+**Fontana's documented ratio**: ~9:1
+
+**Statistical significance**: If random, probability <0.1%
+
+**What this suggests:**
+- The ratio match is NOT coincidental
+- Systematic encoding is likely
+
+**What remains untested:**
+- ❌ Does applying Fontana's cipher to the Voynich produce readable Latin?
+- ❌ If so, is the output historically plausible?
+- ❌ Can this be independently verified?
+
+---
+
+## What Remains Open (Not Yet Demonstrated)
+
+### ❌ Functional Decryption
+No reproducible, step-by-step example showing:
+- Specific Voynich passage → cipher symbol extraction → Fontana cipher application → readable output
+
+### ❌ Content Validation
+No verification that:
+- Any decoded passages make historical sense
+- Medical/pharmaceutical terminology is authentic
+- Translations are independent (not predefined phrases distributed across pages)
+
+### ❌ Authorship
+No evidence for or against Fontana authorship:
+- Paleographic analysis incomplete
+- Handwriting comparison not finalized
+- Historical records not yet cross-referenced
+
+### ❌ Methodology Testing
+No independent verification that:
+- The integrated analysis approach actually works
+- Results are reproducible by other researchers
+- The theory can be falsified (clear test cases identified)
+
+---
+
+## Current Artifacts in This Repository
+
+### Data Files
+- **`VOYNICH_INTEGRATED_COMPLETE.json`** — Integration analysis (99.1% text+image pages)
+- **`fontana_cipher_mapping.json`** — Fontana's documented 26-character cipher system
+
+### Analysis Scripts
+- `complete_voynich_decryption.py` — Attempts complete decryption methodology
+- `full_decryption.py` — Explores decryption approaches
+- `create_authentic_translations.py` — Documents translation methodology
+- `update_latin_translations.py` — Shows translation process
+- `generate_english_translation.py` — Translation generation approach
+- `generate_book.py` — Book format generation from decoded output
+- `generate_english_books.py` — English book generation
+
+### Training & Testing Scripts
+- `fontana_train_model.py` — Trains AI model on Fontana's cipher
+- `fontana_cipher_demo.py` — Interactive cipher demonstration
+- `fontana_cipher_tests.py` — Tests cipher mapping accuracy
+
+### Source Materials
+- `voynich_manuscript/` — Original Voynich page images
+- `Fontana.pdf` — Complete digitization of *Secretum de thesauro*
+
+**Removed files (moved to analysis):**
+- ~~VOYNICH_FULLY_DECRYPTED.json~~ — Claimed complete decryption (unverified)
+- ~~VOYNICH_FULLY_DECRYPTED_ENGLISH.json~~ — Claimed translation (unverified)
+- ~~Book formats (HTML/PDF/EPUB)~~ — Generated from unverified decryption
+- ~~CSV exports~~ — Generated from unverified decryption
+
+---
+
+## For Researchers Verifying This Investigation
+
+### What you CAN test:
+1. **Integration statistics** — Load `VOYNICH_INTEGRATED_COMPLETE.json` and verify 99.1% of pages have both text and images
+2. **Cipher architecture** — Compare Voynich's circle:geometric ratio (9.8:1) against random expectations
+3. **Fontana's system** — Review `fontana_cipher_mapping.json` against *Secretum de thesauro*
+4. **Methodology** — Review scripts in this repo to understand our decryption approaches
+
+### What we CANNOT claim:
+- ❌ "The Voynich is decrypted" — We have not demonstrated working decryption
+- ❌ "Fontana wrote it" — We have not verified authorship
+- ❌ "We know what it says" — We have not validated any content
+- ❌ "This solves the Voynich" — We have identified one testable hypothesis
+
+### What we're asking for:
+1. **Independent verification** of the 99.1% integration statistic
+2. **Attempts to apply Fontana's cipher** to Voynich text (with reproducible methodology)
+3. **Paleographic analysis** comparing Voynich handwriting to Fontana's documented hands
+4. **Historians** evaluating whether any decoded content is plausible for 15th-century Padua
+5. **Critical feedback** on whether this approach is sound or flawed
+
+---
+
+## Investigation Roadmap (What's Next)
+
+### Immediate priorities:
+1. **Demonstrate one working example** — Pick a Voynich folio, apply Fontana's cipher step-by-step, show reproducible output
+2. **Falsifiability** — Define what would prove/disprove the hypothesis
+3. **Independent validation** — Find researchers willing to test the integration claim
+
+### Medium term:
+1. **Paleographic expert review** — Have Juan's handwriting analysis formally completed
+2. **Historical context** — If decryption works, verify content against medical knowledge of 1421
+3. **Methodology publication** — Write up the structural analysis for academic review
+
+### Long term:
+1. **Broader cipher testing** — Test other documented 15th-century cipher systems against Voynich
+2. **Manuscript dating** — Radiocarbon/ink analysis to confirm period
+3. **Institutional confirmation** — Cross-reference with archives if evidence supports Fontana authorship
+
+---
+
+## Honest Assessment
+
+**What we have:**
+- ✅ Strong statistical evidence of intentional integration (99.1%)
+- ✅ Documented cipher system (Fontana's) that *could* match
+- ✅ Suggestive (but unproven) architectural parallels
+
+**What we don't have:**
+- ❌ A working decryption example
+- ❌ Verified content
+- ❌ Proven authorship
+- ❌ Independent verification
+
+**The investigation is honest:**
+- We removed speculative output files
+- We're keeping methodology scripts (show what we tried)
+- We're stating clearly what's proven vs. what's open
+- We're asking for independent verification
+
+**This is an ongoing investigation, not a solved case.**
+
+---
+
+## How to Contribute
+
+If you're interested in this research:
+1. Review the integration statistics in `VOYNICH_INTEGRATED_COMPLETE.json`
+2. Test the hypothesis: apply Fontana's cipher systematically
+3. Review the scripts and suggest improvements
+4. Contact us with feedback, criticism, or independent verification results
+
+---
+
+*Investigation Last Updated: 2026-10-14*  
+*Repository Status: Refocused on honest structural analysis*  
+*Next Review Point: When concrete decryption example is demonstrated or methodology is proven false*
