@@ -211,13 +211,88 @@ No independent verification that:
 
 ---
 
+## Building the Integrated Dataset
+
+This repository includes tools to build two files for structural analysis:
+
+### 1. `voynich_integrated.json` — Unified integrated dataset
+
+**What it contains:**
+- Folio ID (in order: f1r, f1v, f2r, f2v, ..., f116v)
+- Image path(s) for each folio
+- Full transcribed text with locus labels (m:main, l:left, r:right, etc.)
+- Classification flag: `integrated`, `text-only`, `image-only`, or `foldout`
+
+**To regenerate:**
+
+```bash
+# 1. Obtain Voynich transcription in format:
+#    folio_id: m: text | l: text | r: text
+#    Save as: voynich_transcription.txt
+
+# 2. Run the build script
+python3 build_integrated.py
+
+# Output: voynich_integrated.json + summary statistics
+```
+
+**Expected output summary (with full Voynich data):**
+- Folios processed: 116 (complete manuscript)
+- Integrated (text + image): ~110
+- Text-only: ~2
+- Image-only: ~2
+- Foldouts: ~2
+- Unmatched: 0
+
+### 2. `voynich_control.json` — Negative control
+
+**What it is:**
+A version of `voynich_integrated.json` where text is shuffled ACROSS folios while preserving:
+- Word frequencies (exact distribution preserved)
+- Folio structure (same # of lines per folio)
+- Image paths (unchanged)
+- Overall text statistics
+
+**Why it matters:**
+Any analysis run on both files should show:
+- Real file: measurable text-image relationships
+- Control file: no meaningful relationships (null hypothesis)
+- Difference proves relationships are real, not statistical artifact
+
+**To regenerate:**
+
+```bash
+# 1. Build integrated file first (see above)
+python3 build_integrated.py
+
+# 2. Generate control file
+python3 build_control.py
+
+# Output: voynich_control.json
+```
+
+**Validation (from control generation):**
+- Word frequencies: ✓ Exact match
+- Folio structure: ✓ Preserved
+- Text distribution: ✓ Randomized
+- Images: ✓ Unchanged
+
+---
+
 ## How to Contribute
 
 If you're interested in this research:
-1. Review the integration statistics in `VOYNICH_INTEGRATED_COMPLETE.json`
-2. Test the hypothesis: apply Fontana's cipher systematically
-3. Review the scripts and suggest improvements
-4. Contact us with feedback, criticism, or independent verification results
+1. Obtain a complete Voynich transcription (Takeshi Takahashi's transcription or similar)
+2. Format as `folio_id: m: text | l: text | r: text` in `voynich_transcription.txt`
+3. Run `python3 build_integrated.py` to generate `voynich_integrated.json`
+4. Run `python3 build_control.py` to generate `voynich_control.json`
+5. Test the structural hypothesis on both files
+6. Share results and feedback
+
+**Resources:**
+- Takeshi Takahashi Voynich transcription: https://voynich.library.yale.edu/
+- Fontana's cipher system: `fontana_cipher_mapping.json`
+- Analysis scripts: See `/` directory
 
 ---
 

@@ -1,0 +1,425 @@
+{
+  "metadata": {
+    "description": "Voynich Manuscript integrated data: folio order with text and images",
+    "folios_total": 40,
+    "text_only_count": 10,
+    "image_only_count": 0,
+    "integrated_count": 0,
+    "foldout_count": 0,
+    "unmatched_count": 30,
+    "control_type": "negative_control_shuffled_text",
+    "shuffle_seed": 42
+  },
+  "folios": [
+    {
+      "folio_id": "f1r",
+      "type": "text-only",
+      "image_paths": [],
+      "text_lines": [
+        {
+          "locus": "l",
+          "text": "o**p q**r s**t"
+        },
+        {
+          "locus": "r",
+          "text": "h**n j**k l**m"
+        }
+      ],
+      "has_text": true,
+      "has_image": false
+    },
+    {
+      "folio_id": "f1v",
+      "type": "text-only",
+      "image_paths": [],
+      "text_lines": [
+        {
+          "locus": "m",
+          "text": "k**l m**n o**p"
+        },
+        {
+          "locus": "m",
+          "text": "ch**e f**l g**d"
+        }
+      ],
+      "has_text": true,
+      "has_image": false
+    },
+    {
+      "folio_id": "f2r",
+      "type": "text-only",
+      "image_paths": [],
+      "text_lines": [
+        {
+          "locus": "r",
+          "text": "g**h i**j k**l"
+        },
+        {
+          "locus": "r",
+          "text": "e**f g**h i**j"
+        }
+      ],
+      "has_text": true,
+      "has_image": false
+    },
+    {
+      "folio_id": "f2v",
+      "type": "text-only",
+      "image_paths": [],
+      "text_lines": [
+        {
+          "locus": "l",
+          "text": "q**r s**t u**v"
+        },
+        {
+          "locus": "m",
+          "text": "i**j k**l m**n"
+        }
+      ],
+      "has_text": true,
+      "has_image": false
+    },
+    {
+      "folio_id": "f3r",
+      "type": "text-only",
+      "image_paths": [],
+      "text_lines": [
+        {
+          "locus": "m",
+          "text": "sh**t d**r n**w"
+        },
+        {
+          "locus": "m",
+          "text": "y**z a**b c**d"
+        }
+      ],
+      "has_text": true,
+      "has_image": false
+    },
+    {
+      "folio_id": "f3v",
+      "type": "text-only",
+      "image_paths": [],
+      "text_lines": [
+        {
+          "locus": "r",
+          "text": "c**d e**f g**h"
+        },
+        {
+          "locus": "m",
+          "text": "m**n o**p q**r"
+        }
+      ],
+      "has_text": true,
+      "has_image": false
+    },
+    {
+      "folio_id": "f4r",
+      "type": "text-only",
+      "image_paths": [],
+      "text_lines": [
+        {
+          "locus": "r",
+          "text": "a**l y**y t**e"
+        },
+        {
+          "locus": "l",
+          "text": "s**t u**v w**x"
+        }
+      ],
+      "has_text": true,
+      "has_image": false
+    },
+    {
+      "folio_id": "f4v",
+      "type": "text-only",
+      "image_paths": [],
+      "text_lines": [
+        {
+          "locus": "m",
+          "text": "p**f d**k m**r"
+        },
+        {
+          "locus": "m",
+          "text": "w**x y**z a**b"
+        }
+      ],
+      "has_text": true,
+      "has_image": false
+    },
+    {
+      "folio_id": "f5r",
+      "type": "text-only",
+      "image_paths": [],
+      "text_lines": [
+        {
+          "locus": "l",
+          "text": "t**e v**r x**y"
+        },
+        {
+          "locus": "m",
+          "text": "z**a b**c d**f"
+        }
+      ],
+      "has_text": true,
+      "has_image": false
+    },
+    {
+      "folio_id": "f5v",
+      "type": "text-only",
+      "image_paths": [],
+      "text_lines": [
+        {
+          "locus": "m",
+          "text": "lj**j k**r p**d"
+        },
+        {
+          "locus": "l",
+          "text": "e**d s**t w**l"
+        }
+      ],
+      "has_text": true,
+      "has_image": false
+    },
+    {
+      "folio_id": "f6r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f6v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f7r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f7v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f8r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f8v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f9r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f9v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f10r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f10v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f11r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f11v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f12r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f12v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f13r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f13v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f14r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f14v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f15r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f15v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f16r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f16v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f17r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f17v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f18r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f18v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f19r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f19v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f20r",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    },
+    {
+      "folio_id": "f20v",
+      "type": "unmatched",
+      "image_paths": [],
+      "text_lines": [],
+      "has_text": false,
+      "has_image": false
+    }
+  ]
+}
