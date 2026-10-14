@@ -59,9 +59,8 @@ with tab1:
 
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("**Manuscript Coverage: 100%**")
-        st.write("All 226 pages/panels from the original manuscript have been analyzed")
-        st.metric("Coverage", "226/226")
+        st.markdown("**Manuscript Analysis**")
+        st.write("All 226 pages/panels from the original manuscript have been processed for structural analysis")
 
     with col2:
         st.markdown("**Fontana's Cipher: Documented**")
