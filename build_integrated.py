@@ -34,14 +34,11 @@ integrated_data = {
     "folios": []
 }
 
-# Folio order (recto/verso pairs)
-FOLIO_ORDER = [
-    'f1r', 'f1v', 'f2r', 'f2v', 'f3r', 'f3v', 'f4r', 'f4v', 'f5r', 'f5v',
-    'f6r', 'f6v', 'f7r', 'f7v', 'f8r', 'f8v', 'f9r', 'f9v', 'f10r', 'f10v',
-    'f11r', 'f11v', 'f12r', 'f12v', 'f13r', 'f13v', 'f14r', 'f14v', 'f15r', 'f15v',
-    'f16r', 'f16v', 'f17r', 'f17v', 'f18r', 'f18v', 'f19r', 'f19v', 'f20r', 'f20v',
-    # ... continues to f116v (Beinecke MS 408 has 116 folios)
-]
+# Generate folio order dynamically (f1r to f116v)
+FOLIO_ORDER = []
+for i in range(1, 117):
+    FOLIO_ORDER.append(f'f{i}r')
+    FOLIO_ORDER.append(f'f{i}v')
 
 # Foldout pages (known multi-page spreads)
 FOLDOUTS = {
