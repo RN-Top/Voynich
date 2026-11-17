@@ -109,9 +109,25 @@ The detailed pre-registrations, test code and reports (`analyses/`, `output/`, `
 ## Data
 
 - `Data/Zl3b-n.txt`: the ZL3b transliteration (IVTFF).
-- `voynich_integrated.json`: every folio in book order with its text, built by `build_integrated.py`. Its image
-  slots are still empty. `voynich_control.json` is the shuffled control built by `build_control.py`.
-- Page images: Yale Beinecke MS 408, https://collections.library.yale.edu/catalog/2002046
+- `voynich_integrated.json`: **the whole manuscript as one file.** One entry per page (227, including fold-out
+  panels and the Rosettes page), in book order. Each entry ties together the page's place in the book (quire,
+  Currier language and hand), the drawing (illustration type and the transcriber's notes), the Yale photo(s) as
+  full-resolution IIIF links, and the writing as it sits on the page: paragraphs, labels beside drawings, text in
+  circles and along radii, and every place a drawing cuts a line.
+- `voynich_control.json`: the same file with text shuffled across pages, as a negative control.
+- Page images: Yale Beinecke MS 408, https://collections.library.yale.edu/catalog/2002046 (list in
+  `Data/yale_ms408_images.csv`).
+
+To rebuild both files:
+
+```bash
+python3 build_integrated.py                   # uses Data/Zl3b-n.txt + Data/yale_ms408_images.csv
+python3 build_integrated.py --refresh-images  # re-downloads Yale's image list first
+python3 build_control.py
+```
+
+`build_integrated.py` stops with an error if any page is missing its text or its photo, or if any transcription
+line is left out.
 
 ## Help wanted
 

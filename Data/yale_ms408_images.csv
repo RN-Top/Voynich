@@ -1,0 +1,214 @@
+image_number,label,iiif_id,width,height
+1,[Front cover],https://collections.library.yale.edu/iiif/2/1006074,2931,3865
+2,[Inside front cover],https://collections.library.yale.edu/iiif/2/1006075,2812,3797
+3,1r,https://collections.library.yale.edu/iiif/2/1006076,2972,3766
+4,1v,https://collections.library.yale.edu/iiif/2/1006077,2804,3797
+5,2r,https://collections.library.yale.edu/iiif/2/1006078,2691,3770
+6,2v,https://collections.library.yale.edu/iiif/2/1006079,2771,3797
+7,3r,https://collections.library.yale.edu/iiif/2/1006080,2691,3770
+8,3v,https://collections.library.yale.edu/iiif/2/1006081,2762,3797
+9,4r,https://collections.library.yale.edu/iiif/2/1006082,2682,3740
+10,4v,https://collections.library.yale.edu/iiif/2/1006083,2768,3797
+11,5r,https://collections.library.yale.edu/iiif/2/1006084,2636,3723
+12,5v,https://collections.library.yale.edu/iiif/2/1006085,2759,3797
+13,6r,https://collections.library.yale.edu/iiif/2/1006086,2662,3727
+14,6v,https://collections.library.yale.edu/iiif/2/1006087,2753,3797
+15,7r,https://collections.library.yale.edu/iiif/2/1006088,2656,3721
+16,7v,https://collections.library.yale.edu/iiif/2/1006089,2806,3797
+17,8r,https://collections.library.yale.edu/iiif/2/1006090,2660,3719
+18,8v,https://collections.library.yale.edu/iiif/2/1006091,2791,3797
+19,9r,https://collections.library.yale.edu/iiif/2/1006092,2691,3737
+20,9v,https://collections.library.yale.edu/iiif/2/1006093,2812,3797
+21,10r,https://collections.library.yale.edu/iiif/2/1006094,2691,3739
+22,10v,https://collections.library.yale.edu/iiif/2/1006095,2839,3797
+23,11r,https://collections.library.yale.edu/iiif/2/1006096,2672,3744
+24,11v,https://collections.library.yale.edu/iiif/2/1006097,2825,3775
+25,13r,https://collections.library.yale.edu/iiif/2/1006098,2601,3723
+26,13v,https://collections.library.yale.edu/iiif/2/1006099,2812,3770
+27,14r,https://collections.library.yale.edu/iiif/2/1006100,2662,3739
+28,14v,https://collections.library.yale.edu/iiif/2/1006101,2812,3772
+29,15r,https://collections.library.yale.edu/iiif/2/1006102,2648,3729
+30,15v,https://collections.library.yale.edu/iiif/2/1006103,2835,3776
+31,16r,https://collections.library.yale.edu/iiif/2/1006104,2658,3758
+32,16v,https://collections.library.yale.edu/iiif/2/1006105,2840,3793
+33,17r,https://collections.library.yale.edu/iiif/2/1006106,2649,3743
+34,17v,https://collections.library.yale.edu/iiif/2/1006107,2843,3775
+35,18r,https://collections.library.yale.edu/iiif/2/1006108,2649,3743
+36,18v,https://collections.library.yale.edu/iiif/2/1006109,2846,3781
+37,19r,https://collections.library.yale.edu/iiif/2/1006110,2649,3743
+38,19v,https://collections.library.yale.edu/iiif/2/1006111,2849,3769
+39,20r,https://collections.library.yale.edu/iiif/2/1006112,2649,3743
+40,20v,https://collections.library.yale.edu/iiif/2/1006113,2849,3769
+41,21r,https://collections.library.yale.edu/iiif/2/1006114,2649,3743
+42,21v,https://collections.library.yale.edu/iiif/2/1006115,2849,3769
+43,22r,https://collections.library.yale.edu/iiif/2/1006116,2649,3743
+44,22v,https://collections.library.yale.edu/iiif/2/1006117,2849,3795
+45,23r,https://collections.library.yale.edu/iiif/2/1006118,2650,3705
+46,23v,https://collections.library.yale.edu/iiif/2/1006119,2849,3780
+47,24r,https://collections.library.yale.edu/iiif/2/1006120,2688,3719
+48,24v,https://collections.library.yale.edu/iiif/2/1006121,2864,3771
+49,25r,https://collections.library.yale.edu/iiif/2/1006122,2709,3743
+50,25v,https://collections.library.yale.edu/iiif/2/1006123,2863,3769
+51,26r,https://collections.library.yale.edu/iiif/2/1006124,2727,3743
+52,26v,https://collections.library.yale.edu/iiif/2/1006125,2849,3769
+53,27r,https://collections.library.yale.edu/iiif/2/1006126,2708,3743
+54,27v,https://collections.library.yale.edu/iiif/2/1006127,2849,3769
+55,28r,https://collections.library.yale.edu/iiif/2/1006128,2727,3743
+56,28v,https://collections.library.yale.edu/iiif/2/1006129,2885,3780
+57,29r,https://collections.library.yale.edu/iiif/2/1006130,2718,3743
+58,29v,https://collections.library.yale.edu/iiif/2/1006131,2876,3777
+59,30r,https://collections.library.yale.edu/iiif/2/1006132,2742,3743
+60,30v,https://collections.library.yale.edu/iiif/2/1006133,2849,3769
+61,31r,https://collections.library.yale.edu/iiif/2/1006134,2717,3743
+62,31v,https://collections.library.yale.edu/iiif/2/1006135,2849,3769
+63,32r,https://collections.library.yale.edu/iiif/2/1006136,2734,3731
+64,32v,https://collections.library.yale.edu/iiif/2/1006137,2849,3769
+65,33r,https://collections.library.yale.edu/iiif/2/1006138,2766,3743
+66,33v,https://collections.library.yale.edu/iiif/2/1006139,2871,3769
+67,34r,https://collections.library.yale.edu/iiif/2/1006140,2777,3743
+68,34v,https://collections.library.yale.edu/iiif/2/1006141,2881,3787
+69,35r,https://collections.library.yale.edu/iiif/2/1006142,2793,3743
+70,35v,https://collections.library.yale.edu/iiif/2/1006143,2853,3769
+71,36r,https://collections.library.yale.edu/iiif/2/1006144,2793,3743
+72,36v,https://collections.library.yale.edu/iiif/2/1006145,2849,3769
+73,37r,https://collections.library.yale.edu/iiif/2/1006146,2793,3743
+74,37v,https://collections.library.yale.edu/iiif/2/1006147,2882,3769
+75,38r,https://collections.library.yale.edu/iiif/2/1006148,2793,3743
+76,38v,https://collections.library.yale.edu/iiif/2/1006149,2882,3769
+77,39r,https://collections.library.yale.edu/iiif/2/1006150,2793,3743
+78,39v,https://collections.library.yale.edu/iiif/2/1006151,2882,3769
+79,40r,https://collections.library.yale.edu/iiif/2/1006152,2793,3734
+80,40v,https://collections.library.yale.edu/iiif/2/1006153,2882,3769
+81,41r,https://collections.library.yale.edu/iiif/2/1006154,2840,3743
+82,41v,https://collections.library.yale.edu/iiif/2/1006155,2882,3769
+83,42r,https://collections.library.yale.edu/iiif/2/1006156,2843,3743
+84,42v,https://collections.library.yale.edu/iiif/2/1006157,2882,3769
+85,43r,https://collections.library.yale.edu/iiif/2/1006158,2837,3751
+86,43v,https://collections.library.yale.edu/iiif/2/1006159,2882,3769
+87,44r,https://collections.library.yale.edu/iiif/2/1006160,2799,3728
+88,44v,https://collections.library.yale.edu/iiif/2/1006161,2882,3769
+89,45r,https://collections.library.yale.edu/iiif/2/1006162,2823,3706
+90,45v,https://collections.library.yale.edu/iiif/2/1006163,2900,3769
+91,46r,https://collections.library.yale.edu/iiif/2/1006164,2865,3719
+92,46v,https://collections.library.yale.edu/iiif/2/1006165,2938,3769
+93,47r,https://collections.library.yale.edu/iiif/2/1006166,2826,3716
+94,47v,https://collections.library.yale.edu/iiif/2/1006167,2932,3769
+95,48r,https://collections.library.yale.edu/iiif/2/1006168,2859,3719
+96,48v,https://collections.library.yale.edu/iiif/2/1006169,2950,3769
+97,49r,https://collections.library.yale.edu/iiif/2/1006170,2837,3762
+98,49v,https://collections.library.yale.edu/iiif/2/1006171,2935,3769
+99,50r,https://collections.library.yale.edu/iiif/2/1006172,2840,3751
+100,50v,https://collections.library.yale.edu/iiif/2/1006173,2942,3769
+101,51r,https://collections.library.yale.edu/iiif/2/1006174,2835,3764
+102,51v,https://collections.library.yale.edu/iiif/2/1006175,2927,3769
+103,52r,https://collections.library.yale.edu/iiif/2/1006176,2826,3757
+104,52v,https://collections.library.yale.edu/iiif/2/1006177,2935,3769
+105,53r,https://collections.library.yale.edu/iiif/2/1006178,2793,3707
+106,53v,https://collections.library.yale.edu/iiif/2/1006179,2940,3769
+107,54r,https://collections.library.yale.edu/iiif/2/1006180,2793,3718
+108,54v,https://collections.library.yale.edu/iiif/2/1006181,2999,3769
+109,55r,https://collections.library.yale.edu/iiif/2/1006182,2793,3738
+110,55v,https://collections.library.yale.edu/iiif/2/1006183,2979,3769
+111,56r,https://collections.library.yale.edu/iiif/2/1006184,2793,3707
+112,56v,https://collections.library.yale.edu/iiif/2/1006185,2979,3769
+113,57r,https://collections.library.yale.edu/iiif/2/1006186,2823,3733
+114,57v,https://collections.library.yale.edu/iiif/2/1006187,3028,3769
+115,58r,https://collections.library.yale.edu/iiif/2/1006188,2793,3749
+116,58v,https://collections.library.yale.edu/iiif/2/1006189,2986,3769
+117,65r,https://collections.library.yale.edu/iiif/2/1006190,2793,3707
+118,65v,https://collections.library.yale.edu/iiif/2/1006191,3010,3769
+119,66r,https://collections.library.yale.edu/iiif/2/1006192,2793,3707
+120,66v,https://collections.library.yale.edu/iiif/2/1006193,2997,3769
+121,67r,https://collections.library.yale.edu/iiif/2/1006194,4972,3738
+122,67v,https://collections.library.yale.edu/iiif/2/1006195,5059,3753
+123,68r,https://collections.library.yale.edu/iiif/2/1006196,7993,3828
+124,68v,https://collections.library.yale.edu/iiif/2/1006197,8135,3843
+125,69r,https://collections.library.yale.edu/iiif/2/1006198,2793,3763
+126,69v and 70r,https://collections.library.yale.edu/iiif/2/1006199,8886,3876
+127,70v (part),https://collections.library.yale.edu/iiif/2/1006200,3945,3772
+128,70v (part),https://collections.library.yale.edu/iiif/2/1006201,2979,3700
+129,71r,https://collections.library.yale.edu/iiif/2/1006202,2793,3762
+130,71v and 72r,https://collections.library.yale.edu/iiif/2/1006203,8865,3018
+131,72v (part),https://collections.library.yale.edu/iiif/2/1006204,5976,3794
+132,72v (part),https://collections.library.yale.edu/iiif/2/1006205,2979,3712
+133,73r,https://collections.library.yale.edu/iiif/2/1006206,2834,3761
+134,73v,https://collections.library.yale.edu/iiif/2/1006207,2979,3724
+135,75r,https://collections.library.yale.edu/iiif/2/1006208,2852,3759
+136,75v,https://collections.library.yale.edu/iiif/2/1006209,2868,3735
+137,76r,https://collections.library.yale.edu/iiif/2/1006210,2793,3769
+138,76v,https://collections.library.yale.edu/iiif/2/1006211,2823,3712
+139,77r,https://collections.library.yale.edu/iiif/2/1006212,2793,3752
+140,77v,https://collections.library.yale.edu/iiif/2/1006213,2861,3697
+141,78r,https://collections.library.yale.edu/iiif/2/1006214,2793,3761
+142,78v,https://collections.library.yale.edu/iiif/2/1006215,2841,3706
+143,79r,https://collections.library.yale.edu/iiif/2/1006216,2784,3755
+144,79v,https://collections.library.yale.edu/iiif/2/1006217,2811,3714
+145,80r,https://collections.library.yale.edu/iiif/2/1006218,2793,3733
+146,80v,https://collections.library.yale.edu/iiif/2/1006219,2837,3712
+147,81r,https://collections.library.yale.edu/iiif/2/1006220,2776,3737
+148,81v,https://collections.library.yale.edu/iiif/2/1006221,2835,3705
+149,82r,https://collections.library.yale.edu/iiif/2/1006222,2753,3745
+150,82v,https://collections.library.yale.edu/iiif/2/1006223,2821,3709
+151,83r,https://collections.library.yale.edu/iiif/2/1006224,2753,3745
+152,83v,https://collections.library.yale.edu/iiif/2/1006225,2858,3693
+153,84r,https://collections.library.yale.edu/iiif/2/1006226,2753,3745
+154,84v,https://collections.library.yale.edu/iiif/2/1006227,2838,3697
+155,85r (part) (part of 85-86 foldout),https://collections.library.yale.edu/iiif/2/1006228,2775,3745
+156,85r (part) 86v (part) (part of 85-86 foldout),https://collections.library.yale.edu/iiif/2/1006229,7754,3890
+157,86v (part) (part of 85-86 foldout),https://collections.library.yale.edu/iiif/2/1006230,4897,3788
+158,85v and 86r (foldout),https://collections.library.yale.edu/iiif/2/1006231,7925,7268
+159,87r,https://collections.library.yale.edu/iiif/2/1006232,2753,3745
+160,87v,https://collections.library.yale.edu/iiif/2/1043429,2893,3697
+161,88r,https://collections.library.yale.edu/iiif/2/1037112,2714,3735
+162,88v and 89r,https://collections.library.yale.edu/iiif/2/1006233,9078,3777
+163,89v (part),https://collections.library.yale.edu/iiif/2/1006234,4204,3809
+164,89v (part) and 90r,https://collections.library.yale.edu/iiif/2/1006235,7796,3761
+165,90r,https://collections.library.yale.edu/iiif/2/1006236,2737,3752
+166,90v (part),https://collections.library.yale.edu/iiif/2/1006237,2838,3697
+167,93r,https://collections.library.yale.edu/iiif/2/1006238,2718,3758
+168,93v,https://collections.library.yale.edu/iiif/2/1006239,2838,3697
+169,94r,https://collections.library.yale.edu/iiif/2/1006240,2728,3754
+170,94v and 95r,https://collections.library.yale.edu/iiif/2/1006241,7642,3801
+171,95v (part),https://collections.library.yale.edu/iiif/2/1006242,2731,3750
+172,95v,https://collections.library.yale.edu/iiif/2/1006243,2838,3697
+173,96r,https://collections.library.yale.edu/iiif/2/1006244,2699,3745
+174,96v,https://collections.library.yale.edu/iiif/2/1006245,2858,3697
+175,99r,https://collections.library.yale.edu/iiif/2/1006246,2702,3765
+176,99v,https://collections.library.yale.edu/iiif/2/1006247,2802,3697
+177,100r,https://collections.library.yale.edu/iiif/2/1006248,2676,3756
+178,100v and 101r,https://collections.library.yale.edu/iiif/2/1006249,7486,3715
+179,101v (part),https://collections.library.yale.edu/iiif/2/1006250,2698,3779
+180,101v (part) and 102r,https://collections.library.yale.edu/iiif/2/1006251,8176,3864
+181,102v (part),https://collections.library.yale.edu/iiif/2/1006252,2981,3795
+182,102v (part),https://collections.library.yale.edu/iiif/2/1006253,2838,3697
+183,103r,https://collections.library.yale.edu/iiif/2/1006254,2688,3805
+184,103v,https://collections.library.yale.edu/iiif/2/1006255,2762,3697
+185,104r,https://collections.library.yale.edu/iiif/2/1006256,2677,3811
+186,104v,https://collections.library.yale.edu/iiif/2/1006257,2744,3704
+187,105r,https://collections.library.yale.edu/iiif/2/1006258,2662,3771
+188,105v,https://collections.library.yale.edu/iiif/2/1006259,2663,3701
+189,106r,https://collections.library.yale.edu/iiif/2/1006260,2635,3787
+190,106v,https://collections.library.yale.edu/iiif/2/1006261,2670,3697
+191,107r,https://collections.library.yale.edu/iiif/2/1006262,2641,3787
+192,107v,https://collections.library.yale.edu/iiif/2/1006263,2689,3697
+193,108r,https://collections.library.yale.edu/iiif/2/1006264,2641,3787
+194,108v,https://collections.library.yale.edu/iiif/2/1006265,2649,3706
+195,111r,https://collections.library.yale.edu/iiif/2/1006266,2622,3783
+196,111v,https://collections.library.yale.edu/iiif/2/1006267,2666,3697
+197,112r,https://collections.library.yale.edu/iiif/2/1006268,2602,3787
+198,112v,https://collections.library.yale.edu/iiif/2/1006269,2664,3697
+199,113r,https://collections.library.yale.edu/iiif/2/1006270,2582,3787
+200,113v,https://collections.library.yale.edu/iiif/2/1006271,2666,3697
+201,114r,https://collections.library.yale.edu/iiif/2/1006272,2599,3787
+202,114v,https://collections.library.yale.edu/iiif/2/1006273,2671,3697
+203,115r,https://collections.library.yale.edu/iiif/2/1006274,2584,3786
+204,115v,https://collections.library.yale.edu/iiif/2/1006275,2676,3697
+205,116r,https://collections.library.yale.edu/iiif/2/1006276,2559,3787
+206,116v,https://collections.library.yale.edu/iiif/2/1006277,2686,3697
+207,[Back flyleaf recto],https://collections.library.yale.edu/iiif/2/1037113,2570,3787
+208,[Back flyleaf verso-inside back cover],https://collections.library.yale.edu/iiif/2/1006278,5342,3822
+209,[Head],https://collections.library.yale.edu/iiif/2/11868207,2829,1221
+210,[Tail],https://collections.library.yale.edu/iiif/2/11868208,2875,1237
+211,[Fore-edge],https://collections.library.yale.edu/iiif/2/11868209,1255,3838
+212,[Spine],https://collections.library.yale.edu/iiif/2/11868210,1030,3833
+213,[Back cover],https://collections.library.yale.edu/iiif/2/1006279,2889,3861
