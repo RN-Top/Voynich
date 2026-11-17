@@ -1,226 +1,174 @@
-import streamlit as st
 import json
-import pandas as pd
+
+import streamlit as st
 
 st.set_page_config(page_title="Voynich Investigation", layout="wide")
 
+
+@st.cache_data
+def load(path):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
+integrated = load("voynich_integrated.json")
+control = load("voynich_control.json")
+meta = (integrated or {}).get("metadata", {})
+
 # HEADER
-st.title("🔬 Voynich Manuscript - BREAKTHROUGH IDENTIFIED")
-st.subheader("Medieval Alchemical Pharmaceutical Recipe Collection")
+st.title("Voynich Manuscript Investigation")
+st.subheader("An open, testable dataset of the Voynich text and pictures, and the tests run on it")
+st.caption("Erin Rae Toppe · independent review: Juan Gabriel Molina · no decipherment is claimed")
 
-# KEY METRICS
-col1, col2, col3, col4 = st.columns(4)
-col1.metric("Folios Analyzed", "227")
-col2.metric("Total Words", "37,642")
-col3.metric("Measurement Codes", "43")
-col4.metric("Status", "IDENTIFIED")
-
-st.markdown("---")
-
-# Load integration data
-try:
-    with open("voynich_integrated.json", "r") as f:
-        integrated_data = json.load(f)
-    has_integrated = True
-except:
-    has_integrated = False
-    integrated_data = {"metadata": {}, "folios": []}
-
-try:
-    with open("voynich_control.json", "r") as f:
-        control_data = json.load(f)
-    has_control = True
-except:
-    has_control = False
-    control_data = {"metadata": {}, "folios": []}
+c1, c2, c3, c4 = st.columns(4)
+c1.metric("Pages and panels", meta.get("folios_total", "—"))
+c2.metric("Words", f"{meta.get('total_words', 0):,}" if meta else "—")
+c3.metric("Pages linked to Yale photos", meta.get("yale_image_coverage", "—"))
+c4.metric("Status", "Ongoing")
 
 st.markdown("---")
 
-# TABS
-tab1, tab2, tab3 = st.tabs(["🔬 Investigation Status", "📊 Integration Data", "📋 Methodology"])
+tab1, tab2, tab3, tab4 = st.tabs(
+    ["What has held up", "Hypotheses being tested", "Data", "How we work"]
+)
 
-# ============================================================================
-# TAB 1: INVESTIGATION STATUS
-# ============================================================================
+# ---------------------------------------------------------------------------
 with tab1:
-    st.markdown("## 🔬 Current Investigation Status")
+    st.markdown("## Results that have passed testing")
+    st.write(
+        "Each of these was pre-registered: the prediction and the pass rule were written down "
+        "before the test was run. Details and rerun commands are in FOR_REVIEWERS.md."
+    )
 
-    st.success("""
-    **BREAKTHROUGH IDENTIFIED**
+    st.markdown("### Plant pages and star labels share rare spellings")
+    st.write(
+        "14 of 128 opening words on the herbal pages share an unusual letter chunk with the star "
+        "labels on f67r2 and f68r1–3, against 4.5 expected by chance (p = 0.0001). Examples: "
+        "*koaiin* ~ *okoaly*, *pocheody* ~ *opocphor*, *tydlo* ~ *otydy*. This fits the medieval "
+        "idea that each herb belongs to a star. It is the strongest link so far between the text "
+        "and something we can name."
+    )
 
-    The Voynich Manuscript is a medieval alchemical pharmaceutical recipe collection
-    written in abbreviated Latin with monoalphabetic substitution encryption.
+    st.markdown("### The text has real structure")
+    st.write(
+        "- Word order carries information; shuffling it weakens the patterns.\n"
+        "- A word's ending predicts how the next word begins.\n"
+        "- Word beginnings track the section of the book; endings behave like grammar.\n"
+        "- Words ending in -m / -am sit at the end of lines far more than chance.\n"
+        "- Pages on the same sheet of parchment share more vocabulary than other pages."
+    )
 
-    Not an unsolvable mystery - a solvable alchemical recipe decryption problem.
-    """)
+    st.markdown("## Tested and ruled out")
+    st.markdown("### Simple substitution ciphers, including Fontana's methods")
+    st.write(
+        "36 letter-swap ciphers (one or several signs per letter; forwards, reversed or mirrored; "
+        "into Latin, Italian or Venetian) were tried. The same program cracks real Latin and Italian "
+        "enciphered this way at 94–100%, but none decodes the Voynich. The Voynich is more predictable "
+        "letter to letter than Latin or Italian, and a letter swap cannot cause that."
+    )
+    st.write(
+        "Also ruled out: the published Venetian and German glosses, zodiac labels as day names, "
+        "the 28 lunar mansions, the Metonic cycle, and a reading as alchemical recipes. "
+        "Full list with numbers in VALIDATION.md."
+    )
 
-    st.markdown("### ✅ What We've Proven (Verified)")
-
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("**NOT Fontana Cipher**")
-        st.write("Direct character mapping: 0% success. Definitively ruled out.")
-        st.metric("Match Rate", "0%")
-
-    with col2:
-        st.markdown("**IS Monoalphabetic Substitution**")
-        st.write("Index of Coincidence = 0.0813 (falls exactly in monoalphabetic range)")
-        st.metric("IC Value", "0.0813")
-
-    st.markdown("### 📋 Key Discoveries")
-
-    with st.expander("📖 Format: Abbreviated Recipe Notation", expanded=True):
-        st.write("""
-        - Standardized 5-10 word lines with repeating patterns
-        - Medieval alchemical shorthand: dar=take, ol=oil, aqua=water
-        - 95% abbreviated text, not full words
-        """)
-
-    with st.expander("📏 Measurement Codes: @[130-246]", expanded=True):
-        st.write("""
-        - 43 unique @-numbered codes (batch/recipe identifiers)
-        - Range: @130 to @246 (batch identification system)
-        - Structural markers at beginning/end of words
-        """)
-
-    with st.expander("🏷️ Ingredient & State Markers", expanded=True):
-        st.write("""
-        - Ingredient categories: words ending in -iin, -ain (405+ instances)
-        - State indicators: words ending in -y, -ry, -ky (frequent)
-        - Medieval abbreviation patterns confirmed
-        """)
-
-    with st.expander("🏛️ Historical Match: Alchemical Texts Tradition", expanded=True):
-        st.write("""
-        - Perfectly matches ALCHEMICAL TEXTS tradition (100 pts)
-        - Also matches Paracelsian Medicine (100 pts)
-        - 15th-16th century pharmaceutical notation style
-        """)
-
-    st.markdown("### 📈 Integration Metrics")
-    if has_integrated:
-        metadata = integrated_data.get('metadata', {})
-        col1, col2, col3, col4 = st.columns(4)
-        col1.metric("Total Folios", metadata.get('folios_total', 'N/A'))
-        col2.metric("Integrated", metadata.get('integrated_count', 'N/A'))
-        col3.metric("Text-Only", metadata.get('text_only_count', 'N/A'))
-        col4.metric("Unmatched", metadata.get('unmatched_count', 'N/A'))
-
-
-# ============================================================================
-# TAB 2: INTEGRATION DATA
-# ============================================================================
+# ---------------------------------------------------------------------------
 with tab2:
-    st.markdown("## 📊 Integration Data")
+    st.markdown("## Open hypotheses")
+    st.write("These are lines of inquiry, not findings. Each says what would support or rule it out.")
 
-    col1, col2 = st.columns(2)
+    with st.expander("Giovanni Fontana as author", expanded=True):
+        st.write(
+            "**Status: open.** Fontana (Padua physician and cipher writer, degrees 1418 and 1421) fits "
+            "the parchment's radiocarbon date (1404–1438), and an independent researcher reached him "
+            "separately. Simple versions of his cipher methods do not decode the text, but that does not "
+            "rule him out as author.\n\n"
+            "**Would support it:** a handwriting match against his autograph manuscripts; a symbol-by-symbol "
+            "match between his cipher wheel and the ring of symbols on f57v; records from Padua.\n\n"
+            "**Would weaken it:** a handwriting comparison that fails; Padua records placing him elsewhere."
+        )
 
-    with col1:
-        st.markdown("### Real Data")
-        st.write("**voynich_integrated.json** - Actual text+image relationships")
-        if has_integrated:
-            st.json({"metadata": integrated_data.get('metadata'), "sample_folios": integrated_data.get('folios', [])[:3]})
+    with st.expander("Plant pages linked to star pages"):
+        st.write(
+            "**Status: supported once, being extended.** Next step: identify the drawn plants, look up "
+            "which star medieval herbals assign each one, and test whether the shared spellings follow "
+            "those pairings."
+        )
 
-    with col2:
-        st.markdown("### Negative Control")
-        st.write("**voynich_control.json** - Text shuffled, word frequencies preserved")
-        if has_control:
-            st.json({"metadata": control_data.get('metadata'), "sample_folios": control_data.get('folios', [])[:3]})
+    with st.expander("Zodiac pages: solar or lunar counting"):
+        st.write(
+            "**Status: not yet tested.** Count the figures and stars on each zodiac page, write down "
+            "before counting what the sun (about 30 per sign) and the moon (28 or 29.5) would predict, "
+            "then compare."
+        )
 
-    st.markdown("---")
-    st.markdown("### Why Both Files Matter")
-    st.write("""
-    Any analysis should be run on BOTH files:
-    - **Real file**: Shows if there are measurable text-image relationships
-    - **Control file**: Shows what you'd expect from random chance
-    - **Difference**: Proves relationships are real, not statistical artifact
-    """)
+    with st.expander("Irish medical tradition (Ó hÍceadha) and Rhazes"):
+        st.write(
+            "**Status: not supported so far.** An independent 15-test battery found no Irish lexical signal, "
+            "and the Rhazes condition–cause–cure pattern was not distinctive. Kept open pending new sources."
+        )
 
-    # Download options
-    st.markdown("### Download Data Files")
-    col1, col2 = st.columns(2)
-
-    with col1:
-        if has_integrated:
-            json_str = json.dumps(integrated_data, indent=2)
-            st.download_button(
-                label="📥 Download voynich_integrated.json",
-                data=json_str,
-                file_name="voynich_integrated.json",
-                mime="application/json"
-            )
-
-    with col2:
-        if has_control:
-            json_str = json.dumps(control_data, indent=2)
-            st.download_button(
-                label="📥 Download voynich_control.json",
-                data=json_str,
-                file_name="voynich_control.json",
-                mime="application/json"
-            )
-
-
-# ============================================================================
-# TAB 3: METHODOLOGY
-# ============================================================================
+# ---------------------------------------------------------------------------
 with tab3:
-    st.markdown("## 📋 Methodology")
+    st.markdown("## The integrated file")
+    st.write(
+        "**voynich_integrated.json** holds the whole manuscript in book order: each page's ZL3b text, "
+        "labels, drawing type, and its Yale photo link(s)."
+    )
+    st.write(
+        "**voynich_control.json** is the same file with words shuffled across pages. Any pattern found "
+        "in the real file should be checked in the control; if it shows up there too, it is not real."
+    )
+    if meta:
+        st.json(
+            {
+                k: meta.get(k)
+                for k in [
+                    "text_source",
+                    "image_source",
+                    "folios_total",
+                    "total_words",
+                    "unique_words",
+                    "total_lines",
+                    "pages_by_illustration",
+                    "yale_image_coverage",
+                ]
+            }
+        )
+    col1, col2 = st.columns(2)
+    if integrated:
+        col1.download_button(
+            "Download voynich_integrated.json",
+            json.dumps(integrated),
+            "voynich_integrated.json",
+            "application/json",
+        )
+    if control:
+        col2.download_button(
+            "Download voynich_control.json",
+            json.dumps(control),
+            "voynich_control.json",
+            "application/json",
+        )
 
-    st.markdown("""
-    ### Why This Investigation Matters
-
-    **600 years of failed analysis treated the Voynich as two separate things:**
-    - Analyze only TEXT (cipher symbols alone) → Unsolved
-    - Analyze only IMAGES (plants, baths alone) → Unsolved
-    - Result: Complete failure
-
-    **Our hypothesis: Integration is key**
-
-    What if the manuscript IS ONE unified cipher where:
-    - Text symbols = encoding layer
-    - Plant illustrations = encoding layer
-    - Imagery = encoding layer
-    - **ALL TOGETHER = complete message**
-
-    ### Our Approach
-
-    1. **Extract structural data** from manuscript pages
-    2. **Build integrated dataset** with folios in order, text + images together
-    3. **Create negative control** with shuffled text to test for real relationships
-    4. **Analyze both** to see if relationships are measurable and meaningful
-    5. **Share openly** for independent verification
-
-    ### What We're Asking For
-
-    If you have expertise in:
-    - **Cryptanalysis** — Test Fontana's cipher on integrated data
-    - **Paleography** — Verify handwriting characteristics
-    - **Medieval Latin** — Validate any decoded content
-    - **History** — Check if content is historically plausible
-    - **Statistics** — Verify our integration analysis
-
-    Please review our work and provide feedback.
-
-    ### Source Materials
-
-    - `fontana_cipher_mapping.json` — Fontana's documented cipher system
-    - `build_integrated.py` — Script to build integrated dataset
-    - `build_control.py` — Script to build negative control
-    - `voynich_integrated.json` — Real data
-    - `voynich_control.json` — Control data
-    - `README.md` — Complete methodology explanation
-    """)
-
-    st.markdown("---")
-    st.markdown("### Repository")
-    st.write("Full source code and documentation: https://github.com/RN-Top/Voynich")
-
-    st.markdown("### Contact")
-    st.write("Investigation led by: Erin Toppe")
-    st.write("Paleographic consultation: Juan Gabriel Molina")
-
+# ---------------------------------------------------------------------------
+with tab4:
+    st.markdown("## How we work")
+    st.write(
+        "- **Fix the test before running it.** The prediction, comparison and pass rule are committed first.\n"
+        "- **Keep every result.** Failed tests stay on record next to the ones that passed.\n"
+        "- **Check against a control.** Every pattern is compared with shuffled text.\n"
+        "- **A reading must predict.** A proposed meaning counts only if it works on pages it wasn't built from."
+    )
+    st.markdown("### Sources")
+    st.write(
+        "- Transliteration: ZL3b by René Zandbergen and Gabriel Landini (voynich.nu)\n"
+        "- Images: Yale Beinecke Library, MS 408\n"
+        "- Code, tests and results: https://github.com/RN-Top/Voynich"
+    )
 
 st.markdown("---")
-st.markdown("*Investigation Last Updated: 2026-11-17*")
-st.markdown("*Status: Alchemical recipe collection identified - decryption framework ready*")
+st.caption("Last updated 17 November 2026 · open investigation, not a claimed solution")

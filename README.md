@@ -11,7 +11,11 @@ every idea on the table. Each step is tested hard, so when the reading comes, it
 Investigation lead: Erin Toppe
 Paleographic consultation and independent review: Juan Gabriel Molina
 
-**Status:** MAJOR BREAKTHROUGH - The Voynich is identified as a medieval alchemical pharmaceutical recipe collection. See [BREAKTHROUGH_SUMMARY.md](BREAKTHROUGH_SUMMARY.md) for complete analysis.
+**Status:** the structure is largely mapped, and the first bridges from text to meaning are found. Next: turn those
+bridges into readable words. No reading has been verified yet.
+
+**Reviewing this work?** Start at [FOR_REVIEWERS.md](FOR_REVIEWERS.md): the main results, with the file and the one
+command that reruns each.
 
 ---
 
@@ -25,28 +29,6 @@ Paleographic consultation and independent review: Juan Gabriel Molina
 
 Each stage feeds the next one. Structure tells us what a "word" is and which parts of it carry content. Anchors tie
 words to things we can see on the page. A reading only counts once it predicts text it hasn't already seen.
-
----
-
-## BREAKTHROUGH: Alchemical Recipe Format Identified
-
-**What we discovered**: The Voynich is NOT full Latin prose - it's abbreviated pharmaceutical recipe notation.
-
-### Key Evidence
-- **Format**: Standardized recipe instructions (5-10 words per line, repeating patterns)
-- **Abbreviations**: Medieval alchemical shorthand (dar=take, ol=oil, aqua=water, chol=chemical action)
-- **Measurement codes**: 43 unique @-numbered batch identifiers (@130-@246)
-- **State indicators**: Words ending in -y, -ry, -ky (quality/state markers)
-- **Ingredient categories**: Words ending in -iin, -ain (ingredient classification)
-- **Historical match**: Perfectly matches ALCHEMICAL TEXTS tradition (100 pts)
-
-### Testing & Validation Tools (NEW)
-1. **step1_abbreviation_decoder.py** - Medieval abbreviation pattern matching
-2. **step2_measurement_codes.py** - @ code analysis and pharmaceutical systems
-3. **step3_instruction_flow.py** - Recipe structure parsing
-4. **step4_historical_comparison.py** - Cross-reference with historical manuscripts
-
-**→ See [BREAKTHROUGH_SUMMARY.md](BREAKTHROUGH_SUMMARY.md) for complete details**
 
 ---
 
@@ -69,7 +51,8 @@ Details: [FINDINGS.md](FINDINGS.md), [VALIDATION.md](VALIDATION.md), [REPLICATIO
 ## Stage 2: Anchors, leads toward meaning (most promising first)
 
 1. **Plant names ↔ star names.** The opening words of the herbal pages share rare word roots with the star labels on
-   f67r2 and f68r1–3: 13 of 116, against 4.4 expected (p = 0.0002). It holds with a matched control. Examples:
+   f67r2 and f68r1–3: 14 of 128, against 4.5 expected (p = 0.0001, pre-registered, re-run on the integrated file and
+   survives Holm correction). Examples:
    koaiin ~ okoaly, pocheody ~ opocphor, tydlo ~ otydy. This fits the medieval idea that each herb belongs to a star,
    and it is the strongest bridge so far from the text to something we can name.
 2. **Bath openings ↔ pharmacy labels.** Bath-page paragraph openings share roots with the plant-part labels in the
@@ -83,7 +66,10 @@ Details: [FINDINGS.md](FINDINGS.md), [VALIDATION.md](VALIDATION.md), [REPLICATIO
 
 **Tried and ruled out**, so nobody has to redo them: the published Venetian and German glosses, zodiac labels as day
 names, an astrolabe or volvelle, a star-name crib against 32 astrolabe stars, moon phases, the 28 lunar mansions, the
-Metonic cycle, a planetary metal key, a hidden alphabet key, alchemy. Full list with numbers:
+Metonic cycle, a planetary metal key, a hidden alphabet key, alchemy, and **simple substitution**: 36 Fontana-style
+letter-swap ciphers (one or several signs per letter, forwards or reversed, into Latin, Italian or Venetian) do not
+decode the text, though the same solver cracks real Latin and Italian enciphered the same way
+([report](output/fontana_cipher_report.md)). Full list with numbers:
 [VALIDATION.md](VALIDATION.md).
 
 ## Stage 3: Meaning, what's next
@@ -97,6 +83,8 @@ Metonic cycle, a planetary metal key, a hidden alphabet key, alchemy. Full list 
 
 Decryption scripts tried so far (`decipher_voynich.py`, `full_decryption.py`, `complete_voynich_decryption.py`)
 are kept as a record. None has produced a verified reading, and earlier "fully decrypted" outputs were withdrawn.
+An "alchemical recipe" reading added on 17 November 2026 was also withdrawn: its "@-number measurement codes" are the
+transliteration's markup for rare glyphs, not manuscript content. See [retracted/README.md](retracted/README.md).
 
 ---
 
@@ -105,8 +93,10 @@ are kept as a record. None has produced a verified reading, and earlier "fully d
 Knowing the author's world (language, training, books) narrows what the text can mean.
 
 - **Giovanni Fontana** (Padua physician and cipher writer, degrees 1418 and 1421). His dates fit the parchment's
-  radiocarbon range (1404–1438), and his cipher in *Secretum de thesauro* is mapped in `fontana_cipher_mapping.json`.
-  Applying it has not produced readable text yet, and the handwriting comparison isn't finished. Files: `FONTANA_*`,
+  radiocarbon range (1404–1438). A pre-registered test of his cipher *methods* (invented-alphabet substitution)
+  found that they do not decode the text ([report](output/fontana_cipher_report.md)); this does not rule him out as
+  author. The older key in `fontana_cipher_mapping.json` has no documented source and is not used. The handwriting
+  comparison isn't finished. Files: `FONTANA_*`,
   `fontana_*.py`, `LETTER_ANALYSIS_BL_vs_FONTANA.md`, `BRITISH_LIBRARY_*`, `LJS51_*`.
 - **Medical students around 1410–1430**, at Padua and elsewhere: `CANDIDATE_MEDICAL_STUDENT_GROUPS.md`,
   `MEDICAL_STUDENT_COHORTS_RESEARCH.md`, `documented_students_1410_1430.md`.
@@ -124,8 +114,8 @@ What counts as verified so far: `VERIFIED_VS_UNVERIFIED_FINDINGS.md`.
 - **Keep every result.** Failed tests stay in [VALIDATION.md](VALIDATION.md) next to the ones that passed.
 - **Meaning has to predict.** A proposed reading counts only if it works on pages it wasn't built from.
 
-The detailed pre-registrations, test code and reports (`analyses/`, `output/`, `archive/`) were removed in the
-13 October 2026 cleanup (commit `3522d65`). They are still in the git history before that commit.
+Pre-registrations and test code are in `analyses/`, results in `output/`. Older October material removed in the
+13 October 2026 cleanup (commit `3522d65`) is still in the git history before that commit.
 
 ## Data
 
