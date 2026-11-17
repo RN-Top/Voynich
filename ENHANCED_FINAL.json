@@ -1,0 +1,13 @@
+{
+  "score": 267354,
+  "words": [
+    "aqua",
+    "dare",
+    "flos",
+    "gold",
+    "sal",
+    "vin"
+  ],
+  "methodology": "Enhanced: frequency init + smart hill climb",
+  "convergence": "Yes - locked by iteration 2000"
+}
