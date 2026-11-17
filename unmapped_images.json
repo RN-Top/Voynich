@@ -1,0 +1,102 @@
+[
+  {
+    "page_order": 120,
+    "image_file": "120_67r.jpg",
+    "yale_label": "67r"
+  },
+  {
+    "page_order": 121,
+    "image_file": "121_67v.jpg",
+    "yale_label": "67v"
+  },
+  {
+    "page_order": 122,
+    "image_file": "122_68r.jpg",
+    "yale_label": "68r"
+  },
+  {
+    "page_order": 123,
+    "image_file": "123_68v.jpg",
+    "yale_label": "68v"
+  },
+  {
+    "page_order": 126,
+    "image_file": "126_70v_part.jpg",
+    "yale_label": "70v (part)"
+  },
+  {
+    "page_order": 127,
+    "image_file": "127_70v_part.jpg",
+    "yale_label": "70v (part)"
+  },
+  {
+    "page_order": 130,
+    "image_file": "130_72v_part.jpg",
+    "yale_label": "72v (part)"
+  },
+  {
+    "page_order": 131,
+    "image_file": "131_72v_part.jpg",
+    "yale_label": "72v (part)"
+  },
+  {
+    "page_order": 157,
+    "image_file": "157_85v_and_86r_foldout.jpg",
+    "yale_label": "85v and 86r (foldout)"
+  },
+  {
+    "page_order": 162,
+    "image_file": "162_89v_part.jpg",
+    "yale_label": "89v (part)"
+  },
+  {
+    "page_order": 163,
+    "image_file": "163_89v_part_and_90r.jpg",
+    "yale_label": "89v (part) and 90r"
+  },
+  {
+    "page_order": 164,
+    "image_file": "164_90r.jpg",
+    "yale_label": "90r"
+  },
+  {
+    "page_order": 165,
+    "image_file": "165_90v_part.jpg",
+    "yale_label": "90v (part)"
+  },
+  {
+    "page_order": 170,
+    "image_file": "170_95v_part.jpg",
+    "yale_label": "95v (part)"
+  },
+  {
+    "page_order": 171,
+    "image_file": "171_95v.jpg",
+    "yale_label": "95v"
+  },
+  {
+    "page_order": 178,
+    "image_file": "178_101v_part.jpg",
+    "yale_label": "101v (part)"
+  },
+  {
+    "page_order": 179,
+    "image_file": "179_101v_part_and_102r.jpg",
+    "yale_label": "101v (part) and 102r"
+  },
+  {
+    "page_order": 180,
+    "image_file": "180_102v_part.jpg",
+    "yale_label": "102v (part)"
+  },
+  {
+    "page_order": 181,
+    "image_file": "181_102v_part.jpg",
+    "yale_label": "102v (part)"
+  },
+  {
+    "page_order": 207,
+    "image_file": "207_Back_flyleaf_verso_inside_back_cover.jpg",
+    "yale_label": "Back flyleaf verso-inside back cover"
+  }
+]
