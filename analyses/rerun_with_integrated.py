@@ -67,6 +67,7 @@ def main():
             shutil.move(ROOT / "output" / f"{name}_report.md", ROOT / "output" / f"{name}_report_{mode}.md")
             print("done", test, mode)
     moved = {}
+    sys.path.insert(0, str(ROOT))
     import parser as P
     for f in sections:
         old = P.infer_section(f)

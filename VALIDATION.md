@@ -686,3 +686,16 @@ statistics give the same answer forwards and backwards.
 - **Pages in the book: cannot be tested from the text.** Only 2 of 207 pages (f68r1, f84v) end mid-paragraph,
   so the writing never runs from one page onto the next.
 - **Verdict:** nothing in the text reads better backwards. Book order is the one direction the text can't settle.
+
+## Whole integrated file, forwards vs backwards (November 2026)
+
+Pre-registered in `analyses/whole_file_direction_prereg.md`. The full file (pages, lines, words and letters all reversed,
+with labels and drawings kept on their page) was scored against the forward file, using where each page's label words
+and topic words fall in its text. **No preference** in either direction. Label words sit mid-text both ways
+(0.485 vs 0.515, shuffled 0.500). Details: `output/whole_file_direction_report.md`.
+
+## Earlier leads re-run on the integrated file (November 2026)
+
+Pre-registered in `analyses/rerun_integrated_prereg.md`. The new file decides plant pages by what is drawn, not by folio range.
+**Plant openings vs star names still holds** (14 vs 4.5, p = 0.0001, survives Holm). The herb → star → remedy hint fades
+(p = 0.075 → 0.21). The ground test is still not supported. Details: `output/rerun_integrated_report.md`.
