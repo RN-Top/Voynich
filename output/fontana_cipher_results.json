@@ -1,0 +1,5710 @@
+{
+ "runs": [
+  {
+   "inventory": "letters",
+   "direction": "forwards",
+   "keytype": "mono",
+   "language": "latin",
+   "test_bits": 3.4754482947336562,
+   "word_rate": 0.07513632179024149,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.004,
+   "key": {
+    "a": "e",
+    "c": "q",
+    "d": "n",
+    "e": "i",
+    "f": "p",
+    "g": "h",
+    "h": "u",
+    "i": "r",
+    "k": "c",
+    "l": "s",
+    "m": "x",
+    "n": "o",
+    "o": "a",
+    "p": "b",
+    "q": "f",
+    "r": "m",
+    "s": "d",
+    "t": "l",
+    "x": "z",
+    "y": "t"
+   },
+   "sample": [
+    "ctnerot tbquas nerro alques tbquerro qcuasdt",
+    "namquamt qucem d duam qlut qla",
+    "falerro qluit t quam qut tnt querro"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "caerro",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "caemt",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "ltnsa",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "caerm",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "baquiant",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "baquerro",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "btnqunax",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "baquap",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "laqbuas",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "lnacquqput",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "laiesqud",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "acaest",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "altnt",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "altnh",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "abaqbuam",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "atnqut",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "alaquint",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "quaqput",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "falaiem",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "alaiia",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "forwards",
+   "keytype": "mono",
+   "language": "italian",
+   "test_bits": 3.679322167579514,
+   "word_rate": 0.06493874371503434,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.004,
+   "key": {
+    "a": "e",
+    "c": "q",
+    "d": "r",
+    "e": "t",
+    "f": "b",
+    "g": "p",
+    "h": "u",
+    "i": "s",
+    "k": "n",
+    "l": "l",
+    "m": "h",
+    "n": "i",
+    "o": "a",
+    "p": "g",
+    "q": "f",
+    "r": "d",
+    "s": "m",
+    "t": "c",
+    "x": "x",
+    "y": "o"
+   },
+   "sample": [
+    "noresio ogqual ressi acquel ogquessi qnualmo",
+    "radquado quned m muad qcuo qca",
+    "facessi qcuto o quad quo oro quessi"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "naessi",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "naedo",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "corla",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "naesd",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "gaqutaro",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "gaquessi",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "gorqurah",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "gaquab",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "caqgual",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "cranquqbuo",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "catelqum",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "anaelo",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "acoro",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "acorp",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "agaqguad",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "aorquo",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "acaqutro",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "quaqbuo",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "facated",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "acatta",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "forwards",
+   "keytype": "mono",
+   "language": "venetian",
+   "test_bits": 3.6622254758084525,
+   "word_rate": 0.0633807803979888,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.004,
+   "key": {
+    "a": "e",
+    "c": "u",
+    "d": "t",
+    "e": "s",
+    "f": "f",
+    "g": "z",
+    "h": "i",
+    "i": "g",
+    "k": "r",
+    "l": "l",
+    "m": "c",
+    "n": "h",
+    "o": "a",
+    "p": "b",
+    "q": "p",
+    "r": "n",
+    "s": "d",
+    "t": "m",
+    "x": "y",
+    "y": "o"
+   },
+   "sample": [
+    "rotegho obuial teggh amuiel obuieggh urialdo",
+    "tanuiano uiren d dian umio uma",
+    "pameggh umiso o uian uio oto uieggh"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "raeggh",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "raeno",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "motla",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "raegn",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "bauisato",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "bauieggh",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "botuitac",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "bauiaf",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "maubial",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "mtaruiufio",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "maseluid",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "araelo",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "amoto",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "amotz",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "abaubian",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "aotuio",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "amauisto",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "uiaufio",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "pamasen",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "amassa",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "forwards",
+   "keytype": "homophonic",
+   "language": "latin",
+   "test_bits": 3.0348077553847106,
+   "word_rate": 0.15083917569577227,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.003,
+   "key": {
+    "a": "i",
+    "c": "a",
+    "d": "u",
+    "e": "i",
+    "f": "t",
+    "g": "b",
+    "h": "l",
+    "i": "u",
+    "k": "u",
+    "l": "t",
+    "m": "s",
+    "n": "m",
+    "o": "i",
+    "p": "u",
+    "q": "d",
+    "r": "s",
+    "s": "a",
+    "t": "u",
+    "x": "c",
+    "y": "s"
+   },
+   "sample": [
+    "usuiums sualit uiuum iualit sualiuum aulitas",
+    "uisaliss aluis a alis auls aui",
+    "diuiuum aulis s alis als sus aliuum"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "uiiuum",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "uiiss",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "usuti",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "uiius",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "uialiius",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "uialiuum",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "usualuis",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "uialit",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "uiaulit",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "uuiualatls",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "uiiitala",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "iuiits",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "iusus",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "iusub",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "iuiaulis",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "isuals",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "iuialius",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "aliatls",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "diuiiis",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "iuiiii",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "forwards",
+   "keytype": "homophonic",
+   "language": "italian",
+   "test_bits": 3.0940976898046624,
+   "word_rate": 0.07711918419375398,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.003,
+   "key": {
+    "a": "e",
+    "c": "i",
+    "d": "t",
+    "e": "t",
+    "f": "e",
+    "g": "f",
+    "h": "n",
+    "i": "l",
+    "k": "u",
+    "l": "l",
+    "m": "l",
+    "n": "a",
+    "o": "a",
+    "p": "r",
+    "q": "c",
+    "r": "l",
+    "s": "i",
+    "t": "u",
+    "x": "q",
+    "y": "o"
+   },
+   "sample": [
+    "uotelao orinal tella auinel orinella iunalio",
+    "talinalo inuel i inal iuno iua",
+    "cauella iunto o inal ino oto inella"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "uaella",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "uaelo",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "uotla",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "uaell",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "raintato",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "rainella",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "rotintal",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "rainae",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "uairnal",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "utauinieno",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "uatelini",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "auaelo",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "auoto",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "auotf",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "arairnal",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "aotino",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "auaintto",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "inaieno",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "cauatel",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "auatta",
+     "name": null
+    }
+   ],
+   "R1": false,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "forwards",
+   "keytype": "homophonic",
+   "language": "venetian",
+   "test_bits": 3.075844831485775,
+   "word_rate": 0.04086112881523971,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.003,
+   "key": {
+    "a": "e",
+    "c": "i",
+    "d": "r",
+    "e": "t",
+    "f": "n",
+    "g": "a",
+    "h": "n",
+    "i": "l",
+    "k": "n",
+    "l": "l",
+    "m": "l",
+    "n": "a",
+    "o": "e",
+    "p": "n",
+    "q": "u",
+    "r": "l",
+    "s": "i",
+    "t": "n",
+    "x": "g",
+    "y": "a"
+   },
+   "sample": [
+    "narelaa aninel rella eninel aninella innelia",
+    "relinela innel i inel inna ine",
+    "uenella innta a inel ina ara inella"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "neella",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "neela",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "narle",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "neell",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "neintera",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "neinella",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "narinrel",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "neinen",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "neinnel",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "nrenininna",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "netelini",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "eneela",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "enara",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "enara",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "eneinnel",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "earina",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "eneintra",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "ineinna",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "uenetel",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "enette",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "word-reversed",
+   "keytype": "mono",
+   "language": "latin",
+   "test_bits": 3.5809737674155167,
+   "word_rate": 0.0520501380922031,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.002,
+   "key": {
+    "a": "o",
+    "c": "m",
+    "d": "n",
+    "e": "t",
+    "f": "b",
+    "g": "q",
+    "h": "u",
+    "i": "l",
+    "k": "r",
+    "l": "d",
+    "m": "f",
+    "n": "g",
+    "o": "e",
+    "p": "p",
+    "q": "x",
+    "r": "c",
+    "s": "s",
+    "t": "a",
+    "x": "k",
+    "y": "i"
+   },
+   "sample": [
+    "iglonir deumpi gllon doumae glloumpi isdeurm",
+    "iceumcen corum s ceus iuam eam",
+    "glloaex ituam i ceum ium ini glloum"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "glloer",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "icoer",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "ednia",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "cloer",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "inetumep",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "glloumep",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "fenumnip",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "beumep",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "deupmea",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "iubmumrena",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "sumdotea",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "idoere",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "iniae",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "qniae",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "ceupmepe",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "iumnie",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "intumeae",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "iubmeum",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "coteaex",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "etteae",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "word-reversed",
+   "keytype": "mono",
+   "language": "italian",
+   "test_bits": 3.7640616812165755,
+   "word_rate": 0.04787196374194462,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.002,
+   "key": {
+    "a": "e",
+    "c": "n",
+    "d": "l",
+    "e": "t",
+    "f": "q",
+    "g": "z",
+    "h": "o",
+    "i": "h",
+    "k": "r",
+    "l": "d",
+    "m": "f",
+    "n": "c",
+    "o": "i",
+    "p": "g",
+    "q": "u",
+    "r": "p",
+    "s": "m",
+    "t": "s",
+    "x": "b",
+    "y": "a"
+   },
+   "sample": [
+    "achelar dionga chhel deonsi chheonga amdiorn",
+    "apionpil peron m piom aosn isn",
+    "chhesiu atosn a pion aon ala chheon"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "chheir",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "apeir",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "idlas",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "pheir",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "alitonig",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "chheonig",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "filonlag",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "qionig",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "diognis",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "aoqnonrils",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "mondetis",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "adeiri",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "alasi",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "zlasi",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "piognigi",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "aonlai",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "altonisi",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "aoqnion",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "petisiu",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "ittisi",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "word-reversed",
+   "keytype": "mono",
+   "language": "venetian",
+   "test_bits": 3.812491052340143,
+   "word_rate": 0.036966220522625874,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.002,
+   "key": {
+    "a": "i",
+    "c": "a",
+    "d": "u",
+    "e": "o",
+    "f": "f",
+    "g": "b",
+    "h": "r",
+    "i": "t",
+    "k": "n",
+    "l": "d",
+    "m": "g",
+    "n": "h",
+    "o": "e",
+    "p": "z",
+    "q": "l",
+    "r": "p",
+    "s": "s",
+    "t": "m",
+    "x": "x",
+    "y": "c"
+   },
+   "sample": [
+    "chtiucn derazc httiu dirame httirazc csderna",
+    "cperapeu pinra s pers crma ema",
+    "httimel corma c pera cra cuc httira"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "httien",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "cpien",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "educm",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "ptien",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "cueoraez",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "httiraez",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "geuraucz",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "feraez",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "derzaem",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "crfaraneum",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "sradioem",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "cdiene",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "cucme",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "bucme",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "perzaeze",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "crauce",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "cuoraeme",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "crfaera",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "pioemel",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "eooeme",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "word-reversed",
+   "keytype": "homophonic",
+   "language": "latin",
+   "test_bits": 3.0866851018783055,
+   "word_rate": 0.22824162594717087,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.003,
+   "key": {
+    "a": "i",
+    "c": "s",
+    "d": "s",
+    "e": "t",
+    "f": "s",
+    "g": "a",
+    "h": "i",
+    "i": "l",
+    "k": "u",
+    "l": "s",
+    "m": "u",
+    "n": "i",
+    "o": "i",
+    "p": "s",
+    "q": "t",
+    "r": "u",
+    "s": "s",
+    "t": "u",
+    "x": "l",
+    "y": "e"
+   },
+   "sample": [
+    "eiliseu siisse illis siisui illiisse essiius",
+    "euiisuis uiuis s uiis eius ius",
+    "illiuit etius e uiis eis ese illiis"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "illiiu",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "euiiu",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "isseu",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "uliiu",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "esitisis",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "illiisis",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "uisisses",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "siisis",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "siissiu",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "eissisuisu",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "sissitiu",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "esiiui",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "eseui",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "aseui",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "uiissisi",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "eissei",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "estisiui",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "eissiis",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "uitiuit",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "ittiui",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "word-reversed",
+   "keytype": "homophonic",
+   "language": "italian",
+   "test_bits": 2.90624665961782,
+   "word_rate": 0.1448197719708236,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.003,
+   "key": {
+    "a": "o",
+    "c": "o",
+    "d": "n",
+    "e": "o",
+    "f": "n",
+    "g": "i",
+    "h": "n",
+    "i": "n",
+    "k": "n",
+    "l": "n",
+    "m": "c",
+    "n": "a",
+    "o": "o",
+    "p": "n",
+    "q": "n",
+    "r": "n",
+    "s": "o",
+    "t": "n",
+    "x": "r",
+    "y": "i"
+   },
+   "sample": [
+    "ianonin nononi annon nonono annononi iononno",
+    "inononon nonno o nono inno ono",
+    "annonon ionno i nono ino ini annono"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "annoon",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "inoon",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "onnin",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "nnoon",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "inoonoon",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "annonoon",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "connonin",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "nonoon",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "nonnoon",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "innonononn",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "ononooon",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "inoono",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "inino",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "inino",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "nonnoono",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "inonio",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "inonoono",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "innoono",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "nooonon",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "oooono",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "word-reversed",
+   "keytype": "homophonic",
+   "language": "venetian",
+   "test_bits": 3.2824184327372095,
+   "word_rate": 0.053749734438070955,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.003,
+   "key": {
+    "a": "e",
+    "c": "a",
+    "d": "i",
+    "e": "e",
+    "f": "i",
+    "g": "g",
+    "h": "t",
+    "i": "l",
+    "k": "t",
+    "l": "n",
+    "m": "s",
+    "n": "e",
+    "o": "e",
+    "p": "r",
+    "q": "l",
+    "r": "n",
+    "s": "a",
+    "t": "t",
+    "x": "s",
+    "y": "u"
+   },
+   "sample": [
+    "ueleiut netaru ellei netate elletaru uanetta",
+    "unetanei netta a neta utta eta",
+    "elletel uetta u neta uta uiu elleta"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "elleet",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "uneet",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "eniut",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "nleet",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "uieetaer",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "elletaer",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "seitaiur",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "ietaer",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "netraet",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "utiatateit",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "ataneeet",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "uneete",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "uiute",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "giute",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "netraere",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "utaiue",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "uietaete",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "utiaeta",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "neeetel",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "eeeete",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "line-mirrored",
+   "keytype": "mono",
+   "language": "latin",
+   "test_bits": 3.6089546627716147,
+   "word_rate": 0.0417817435025848,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.002,
+   "key": {
+    "a": "i",
+    "c": "m",
+    "d": "o",
+    "e": "r",
+    "f": "g",
+    "g": "y",
+    "h": "u",
+    "i": "l",
+    "k": "a",
+    "l": "t",
+    "m": "f",
+    "n": "p",
+    "o": "e",
+    "p": "b",
+    "q": "x",
+    "r": "d",
+    "s": "s",
+    "t": "n",
+    "x": "z",
+    "y": "c"
+   },
+   "sample": [
+    "csteuam plliumbc tiumne pllio teumbc cplioca",
+    "enm cunm deus s diaum cdeumdeo",
+    "pllium coc cum deum c crunm pllinex"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "plliea",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "cdiea",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "etocn",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "dliea",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "coerumeb",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "plliumeb",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "feoumocb",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "geumeb",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "teubmen",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "cugmumaeon",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "sumtiren",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "ctieae",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "cocne",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "yocne",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "deubmebe",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "cumoce",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "corumene",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "cugmeum",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "direnex",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "errene",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "line-mirrored",
+   "keytype": "mono",
+   "language": "italian",
+   "test_bits": 3.773982062429241,
+   "word_rate": 0.05743219318745131,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.002,
+   "key": {
+    "a": "o",
+    "c": "i",
+    "d": "r",
+    "e": "s",
+    "f": "z",
+    "g": "b",
+    "h": "c",
+    "i": "u",
+    "k": "t",
+    "l": "d",
+    "m": "f",
+    "n": "q",
+    "o": "e",
+    "p": "m",
+    "q": "l",
+    "r": "p",
+    "s": "h",
+    "t": "n",
+    "x": "k",
+    "y": "a"
+   },
+   "sample": [
+    "ahdecti quuocima docine quuor decima aquorat",
+    "eni acni pech h potci apeciper",
+    "quuoci ara aci peci a ascni quuonel"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "quuoet",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "apoet",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "edran",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "puoet",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "aresciem",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "quuociem",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "ferciram",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "zeciem",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "decmien",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "aczicitern",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "hcidosen",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "adoete",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "arane",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "brane",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "pecmieme",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "acirae",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "arsciene",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "aczieci",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "posenel",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "essene",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "line-mirrored",
+   "keytype": "mono",
+   "language": "venetian",
+   "test_bits": 3.7307704205035632,
+   "word_rate": 0.015862899228099994,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.002,
+   "key": {
+    "a": "e",
+    "c": "o",
+    "d": "n",
+    "e": "s",
+    "f": "h",
+    "g": "f",
+    "h": "t",
+    "i": "u",
+    "k": "c",
+    "l": "d",
+    "m": "z",
+    "n": "q",
+    "o": "a",
+    "p": "g",
+    "q": "l",
+    "r": "p",
+    "s": "r",
+    "t": "m",
+    "x": "x",
+    "y": "i"
+   },
+   "sample": [
+    "irdatco quuetogi detoma quuen datogi iquenic",
+    "amo itmo patr r pecto ipatopan",
+    "quueto ini ito pato i istmo quuemal"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "quueac",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "ipeac",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "adnim",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "pueac",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "inastoag",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "quuetoag",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "zantonig",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "hatoag",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "datgoam",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "ithotocanm",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "rtodesam",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "ideaca",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "inima",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "fnima",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "patgoaga",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "itonia",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "instoama",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "ithoato",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "pesamal",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "assama",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "line-mirrored",
+   "keytype": "homophonic",
+   "language": "latin",
+   "test_bits": 3.050307833261161,
+   "word_rate": 0.2184689469584307,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.003,
+   "key": {
+    "a": "i",
+    "c": "a",
+    "d": "s",
+    "e": "s",
+    "f": "t",
+    "g": "i",
+    "h": "t",
+    "i": "l",
+    "k": "t",
+    "l": "s",
+    "m": "l",
+    "n": "i",
+    "o": "i",
+    "p": "t",
+    "q": "s",
+    "r": "s",
+    "s": "a",
+    "t": "t",
+    "x": "h",
+    "y": "e"
+   },
+   "sample": [
+    "easitta illitate sitati illis sitate eiliset",
+    "ita etta sita a sitta esitasis",
+    "illita ese eta sita e estta illitis"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "illiit",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "esiit",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "isset",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "sliit",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "esistait",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "illitait",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "listaset",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "titait",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "sittait",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "ettatatist",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "atasisit",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "esiiti",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "eseti",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "iseti",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "sittaiti",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "etasei",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "esstaiti",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "ettaita",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "sisitis",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "issiti",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "line-mirrored",
+   "keytype": "homophonic",
+   "language": "italian",
+   "test_bits": 3.1321907787867187,
+   "word_rate": 0.15600878124778697,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.003,
+   "key": {
+    "a": "e",
+    "c": "a",
+    "d": "l",
+    "e": "t",
+    "f": "n",
+    "g": "m",
+    "h": "r",
+    "i": "u",
+    "k": "r",
+    "l": "d",
+    "m": "s",
+    "n": "a",
+    "o": "e",
+    "p": "r",
+    "q": "l",
+    "r": "d",
+    "s": "a",
+    "t": "r",
+    "x": "t",
+    "y": "a"
+   },
+   "sample": [
+    "aaderra auuerara derare auuel derara aauelar",
+    "era arra dera a derra aderadel",
+    "auuera ala ara dera a atrra auuerel"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "auueer",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "adeer",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "edlar",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "dueer",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "aletraer",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "auueraer",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "selralar",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "neraer",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "derraer",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "arnararelr",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "aradeter",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "adeere",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "alare",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "mlare",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "derraere",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "aralae",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "altraere",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "arnaera",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "deterel",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "ettere",
+     "name": null
+    }
+   ],
+   "R1": false,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "letters",
+   "direction": "line-mirrored",
+   "keytype": "homophonic",
+   "language": "venetian",
+   "test_bits": 3.249548010959896,
+   "word_rate": 0.02676864244741874,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.003,
+   "key": {
+    "a": "n",
+    "c": "a",
+    "d": "e",
+    "e": "s",
+    "f": "r",
+    "g": "u",
+    "h": "t",
+    "i": "a",
+    "k": "i",
+    "l": "i",
+    "m": "i",
+    "n": "l",
+    "o": "n",
+    "p": "i",
+    "q": "a",
+    "r": "i",
+    "s": "a",
+    "t": "i",
+    "x": "i",
+    "y": "u"
+   },
+   "sample": [
+    "uaintia laantaiu intain laane intaiu ulaneui",
+    "nia utia inta a inita uintaine",
+    "laanta ueu uta inta u ustia laanina"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "laanni",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "uinni",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "nieui",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "ianni",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "uenstani",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "laantani",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "inetaeui",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "rntani",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "intiani",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "utratainei",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "atainsni",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "uinnin",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "ueuin",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "ueuin",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "intianin",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "utaeun",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "uestanin",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "utranta",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "insnina",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "nssnin",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "forwards",
+   "keytype": "mono",
+   "language": "latin",
+   "test_bits": 3.2595989692962823,
+   "word_rate": 0.12867018508882777,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.01,
+   "key": {
+    "a": "i",
+    "c": "f",
+    "cfh": "z",
+    "ch": "u",
+    "ckh": "r",
+    "cph": "g",
+    "cth": "l",
+    "d": "s",
+    "e": "i",
+    "ee": "a",
+    "eee": "x",
+    "f": "q",
+    "g": "k",
+    "h": "h",
+    "i": "c",
+    "ii": "f",
+    "iiin": "b",
+    "iin": "m",
+    "in": "n",
+    "k": "r",
+    "l": "t",
+    "m": "o",
+    "n": "z",
+    "o": "e",
+    "p": "x",
+    "q": "p",
+    "r": "t",
+    "s": "d",
+    "sh": "p",
+    "t": "r",
+    "x": "y",
+    "y": "t"
+   },
+   "sample": [
+    "rtsint txuet sim eruit txuim retdt",
+    "setuett urit d pet lt fre",
+    "perim lit t uet ut tst uim"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "reim",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "reitt",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "rtste",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "reict",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "xeuiest",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "xeuim",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "xtsuseo",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "xeueq",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "reget",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "rseruzt",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "reiitud",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "ereitt",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "ertst",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "ertsk",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "exeget",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "etsut",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "ereuist",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "uezt",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "pereiit",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "ereae",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "forwards",
+   "keytype": "mono",
+   "language": "italian",
+   "test_bits": 3.462930344886314,
+   "word_rate": 0.1623429718278451,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.01,
+   "key": {
+    "a": "o",
+    "c": "q",
+    "cfh": "y",
+    "ch": "u",
+    "ckh": "c",
+    "cph": "z",
+    "cth": "m",
+    "d": "r",
+    "e": "i",
+    "ee": "t",
+    "eee": "p",
+    "f": "f",
+    "g": "h",
+    "h": "q",
+    "i": "g",
+    "ii": "z",
+    "iiin": "y",
+    "iin": "n",
+    "in": "l",
+    "k": "s",
+    "l": "r",
+    "m": "r",
+    "n": "x",
+    "o": "e",
+    "p": "b",
+    "q": "d",
+    "r": "n",
+    "s": "l",
+    "sh": "u",
+    "t": "l",
+    "x": "k",
+    "y": "a"
+   },
+   "sample": [
+    "sarola abuer ron eluor abuon cerla",
+    "renuena uson l uen ma qle",
+    "delon mia a uen ua ara uon"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "seon",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "seona",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "larre",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "seogn",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "beuiera",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "beuon",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "barurer",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "beuef",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "lezer",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "lresuya",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "leiorul",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "eseora",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "elara",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "elarh",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "ebezen",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "earua",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "eleuira",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "ueya",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "deleion",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "elete",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "forwards",
+   "keytype": "mono",
+   "language": "venetian",
+   "test_bits": 3.3288102624739127,
+   "word_rate": 0.11529026982829109,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.01,
+   "key": {
+    "a": "e",
+    "c": "b",
+    "cfh": "q",
+    "ch": "c",
+    "ckh": "u",
+    "cph": "x",
+    "cth": "t",
+    "d": "d",
+    "e": "i",
+    "ee": "i",
+    "eee": "u",
+    "f": "g",
+    "g": "m",
+    "h": "z",
+    "i": "b",
+    "ii": "h",
+    "iiin": "y",
+    "iin": "l",
+    "in": "i",
+    "k": "r",
+    "l": "l",
+    "m": "o",
+    "n": "f",
+    "o": "a",
+    "p": "s",
+    "q": "p",
+    "r": "i",
+    "s": "n",
+    "sh": "d",
+    "t": "r",
+    "x": "k",
+    "y": "o"
+   },
+   "sample": [
+    "rodeio oscal del arcel oscel ualno",
+    "daicaio crei n dai to bra",
+    "parel tio o cai co odo cel"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "rael",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "raeio",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "rodla",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "raebi",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "saciado",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "sacel",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "sodcdao",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "sacag",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "raxal",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "rdarcqo",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "raielcn",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "araelo",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "arodo",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "arodm",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "asaxai",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "aodco",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "aracido",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "caqo",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "paraiei",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "araia",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "forwards",
+   "keytype": "homophonic",
+   "language": "latin",
+   "test_bits": 2.9170498434942838,
+   "word_rate": 0.08451646472905672,
+   "star_hits": 1,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.006,
+   "key": {
+    "a": "e",
+    "c": "p",
+    "cfh": "r",
+    "ch": "u",
+    "ckh": "r",
+    "cph": "r",
+    "cth": "r",
+    "d": "r",
+    "e": "a",
+    "ee": "a",
+    "eee": "a",
+    "f": "n",
+    "g": "l",
+    "h": "r",
+    "i": "s",
+    "ii": "s",
+    "iiin": "r",
+    "iin": "t",
+    "in": "t",
+    "k": "r",
+    "l": "t",
+    "m": "t",
+    "n": "c",
+    "o": "e",
+    "p": "s",
+    "q": "p",
+    "r": "t",
+    "s": "s",
+    "sh": "p",
+    "t": "r",
+    "x": "o",
+    "y": "e"
+   },
+   "sample": [
+    "rerete esuet ret eruet esuet retse",
+    "retuete uret s pet re pre",
+    "peret rae e uet ue ere uet"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "reet",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "reete",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "rerte",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "reest",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "seuaere",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "seuet",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "seruret",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "seuen",
+     "name": "semen"
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "reret",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "rrerure",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "reaetus",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "ereete",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "erere",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "ererl",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "eseret",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "eerue",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "ereuare",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "uere",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "pereaet",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "ereae",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": true,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "forwards",
+   "keytype": "homophonic",
+   "language": "italian",
+   "test_bits": 3.0345283694335303,
+   "word_rate": 0.20709135508808443,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.006,
+   "key": {
+    "a": "l",
+    "c": "l",
+    "cfh": "n",
+    "ch": "e",
+    "ckh": "l",
+    "cph": "r",
+    "cth": "l",
+    "d": "l",
+    "e": "l",
+    "ee": "l",
+    "eee": "i",
+    "f": "i",
+    "g": "u",
+    "h": "i",
+    "i": "i",
+    "ii": "u",
+    "iiin": "e",
+    "iin": "a",
+    "in": "a",
+    "k": "l",
+    "l": "a",
+    "m": "a",
+    "n": "g",
+    "o": "l",
+    "p": "i",
+    "q": "a",
+    "r": "a",
+    "s": "a",
+    "sh": "a",
+    "t": "l",
+    "x": "a",
+    "y": "a"
+   },
+   "sample": [
+    "lallaa aiela lla llela aiela llaaa",
+    "llaelaa ella a ala la lll",
+    "allla lla a ela ea ala ela"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "llla",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "lllaa",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "lalal",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "lllia",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "ilellla",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "ilela",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "ialella",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "ileli",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "llrla",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "llllena",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "llllaea",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "llllaa",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "llala",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "llalu",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "lilrla",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "lalea",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "lllella",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "elna",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "allllla",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "lllll",
+     "name": null
+    }
+   ],
+   "R1": false,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "forwards",
+   "keytype": "homophonic",
+   "language": "venetian",
+   "test_bits": 3.035283769636736,
+   "word_rate": 0.2024083847468966,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.006,
+   "key": {
+    "a": "e",
+    "c": "l",
+    "cfh": "f",
+    "ch": "u",
+    "ckh": "n",
+    "cph": "l",
+    "cth": "m",
+    "d": "n",
+    "e": "i",
+    "ee": "i",
+    "eee": "a",
+    "f": "d",
+    "g": "r",
+    "h": "m",
+    "i": "l",
+    "ii": "a",
+    "iiin": "s",
+    "iin": "l",
+    "in": "l",
+    "k": "l",
+    "l": "l",
+    "m": "r",
+    "n": "i",
+    "o": "e",
+    "p": "l",
+    "q": "d",
+    "r": "l",
+    "s": "n",
+    "sh": "u",
+    "t": "l",
+    "x": "d",
+    "y": "a"
+   },
+   "sample": [
+    "lanela aluel nel eluel aluel nelna",
+    "neluela ulel n uel ma lle",
+    "delel mia a uel ua ana uel"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "leel",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "leela",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "lanle",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "leell",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "leuiena",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "leuel",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "lanuner",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "leued",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "lelel",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "lnelufa",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "leielun",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "eleela",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "elana",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "elanr",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "elelel",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "eanua",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "eleuina",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "uefa",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "deleiel",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "eleie",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "word-reversed",
+   "keytype": "mono",
+   "language": "latin",
+   "test_bits": 3.393377289260425,
+   "word_rate": 0.11915557868133501,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.004,
+   "key": {
+    "a": "u",
+    "c": "x",
+    "cfh": "k",
+    "ch": "a",
+    "ckh": "l",
+    "cph": "x",
+    "cth": "t",
+    "d": "e",
+    "e": "r",
+    "ee": "r",
+    "eee": "h",
+    "f": "m",
+    "g": "b",
+    "h": "g",
+    "i": "l",
+    "ii": "h",
+    "iiin": "y",
+    "iin": "q",
+    "in": "q",
+    "k": "i",
+    "l": "s",
+    "m": "d",
+    "n": "z",
+    "o": "t",
+    "p": "n",
+    "q": "a",
+    "r": "c",
+    "s": "o",
+    "sh": "o",
+    "t": "e",
+    "x": "f",
+    "y": "p"
+   },
+   "sample": [
+    "pquepi stanp que suaet quanp postl",
+    "pctacte cuia o cto pt tex",
+    "queta prt p cta pa pep qua"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "quti",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "pcuti",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "tsepe",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "cluti",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "petratn",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "quatn",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "dteaepn",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "mtatn",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "stxte",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "pkaitee",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "oasurte",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "psutit",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "pepet",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "bepet",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "ctxtnt",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "paept",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "peratet",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "pkta",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "curteta",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "trtet",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "word-reversed",
+   "keytype": "mono",
+   "language": "italian",
+   "test_bits": 3.3694765309294517,
+   "word_rate": 0.2474540994573701,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.004,
+   "key": {
+    "a": "e",
+    "c": "x",
+    "cfh": "y",
+    "ch": "e",
+    "ckh": "m",
+    "cph": "f",
+    "cth": "u",
+    "d": "l",
+    "e": "t",
+    "ee": "t",
+    "eee": "c",
+    "f": "z",
+    "g": "k",
+    "h": "h",
+    "i": "b",
+    "ii": "g",
+    "iiin": "p",
+    "iin": "p",
+    "in": "p",
+    "k": "r",
+    "l": "d",
+    "m": "m",
+    "n": "q",
+    "o": "i",
+    "p": "n",
+    "q": "o",
+    "r": "u",
+    "s": "l",
+    "sh": "i",
+    "t": "s",
+    "x": "k",
+    "y": "a"
+   },
+   "sample": [
+    "apelar diena pel deesi peena aldim",
+    "auieuil uere l uii au isx",
+    "pesio atu a uie ae ala pee"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "peir",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "aueir",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "idlas",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "ubeir",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "alitein",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "peein",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "milelan",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "ziein",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "difis",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "ayerils",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "ledetis",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "adeiri",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "alasi",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "klasi",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "uifini",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "aelai",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "alteisi",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "ayie",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "uetisio",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "itisi",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "word-reversed",
+   "keytype": "mono",
+   "language": "venetian",
+   "test_bits": 3.583669669677311,
+   "word_rate": 0.10399167471939344,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.004,
+   "key": {
+    "a": "a",
+    "c": "k",
+    "cfh": "y",
+    "ch": "o",
+    "ckh": "u",
+    "cph": "z",
+    "cth": "u",
+    "d": "u",
+    "e": "t",
+    "ee": "t",
+    "eee": "g",
+    "f": "c",
+    "g": "x",
+    "h": "q",
+    "i": "b",
+    "ii": "f",
+    "iiin": "f",
+    "iin": "c",
+    "in": "p",
+    "k": "r",
+    "l": "c",
+    "m": "d",
+    "n": "h",
+    "o": "i",
+    "p": "l",
+    "q": "o",
+    "r": "m",
+    "s": "n",
+    "sh": "e",
+    "t": "t",
+    "x": "k",
+    "y": "s"
+   },
+   "sample": [
+    "spausr ciols cau caoti caols snciu",
+    "smiomiu maro n mie su itk",
+    "catio stu s mio so sus cao"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "cair",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "smair",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "icust",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "mbair",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "suitoil",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "caoil",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "diuousl",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "cioil",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "cizit",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "syoriut",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "nocatit",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "scairi",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "susti",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "xusti",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "mizili",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "sousi",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "sutoiti",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "syio",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "matitio",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "ititi",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "word-reversed",
+   "keytype": "homophonic",
+   "language": "latin",
+   "test_bits": 3.032590459293945,
+   "word_rate": 0.11320894967665204,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.008,
+   "key": {
+    "a": "t",
+    "c": "t",
+    "cfh": "r",
+    "ch": "i",
+    "ckh": "a",
+    "cph": "e",
+    "cth": "e",
+    "d": "e",
+    "e": "r",
+    "ee": "r",
+    "eee": "i",
+    "f": "a",
+    "g": "a",
+    "h": "n",
+    "i": "n",
+    "ii": "r",
+    "iiin": "s",
+    "iin": "e",
+    "in": "e",
+    "k": "a",
+    "l": "e",
+    "m": "e",
+    "n": "c",
+    "o": "t",
+    "p": "a",
+    "q": "e",
+    "r": "e",
+    "s": "a",
+    "sh": "e",
+    "t": "a",
+    "x": "m",
+    "y": "p"
+   },
+   "sample": [
+    "petepa etiap ete etiat etiap paeta",
+    "petiete etai a ete pe tat",
+    "etate pre p eti pi pep eti"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "etta",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "petta",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "teepa",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "entta",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "petrita",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "etita",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "eteiepa",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "atita",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "eteta",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "priatea",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "aietrta",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "pettat",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "pepat",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "aepat",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "etetat",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "piept",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "peritat",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "prti",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "etrtate",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "trtat",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "word-reversed",
+   "keytype": "homophonic",
+   "language": "italian",
+   "test_bits": 3.1025592465500207,
+   "word_rate": 0.12220322604623504,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.008,
+   "key": {
+    "a": "i",
+    "c": "a",
+    "cfh": "x",
+    "ch": "o",
+    "ckh": "n",
+    "cph": "e",
+    "cth": "n",
+    "d": "n",
+    "e": "n",
+    "ee": "n",
+    "eee": "o",
+    "f": "n",
+    "g": "s",
+    "h": "u",
+    "i": "t",
+    "ii": "d",
+    "iiin": "d",
+    "iin": "d",
+    "in": "d",
+    "k": "n",
+    "l": "d",
+    "m": "d",
+    "n": "u",
+    "o": "i",
+    "p": "n",
+    "q": "a",
+    "r": "s",
+    "s": "u",
+    "sh": "o",
+    "t": "n",
+    "x": "l",
+    "y": "i"
+   },
+   "sample": [
+    "idinin dioni din dioni dioni iudin",
+    "isiosin sino u sio in ina",
+    "dinia inn i sio io ini dio"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "diin",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "isiin",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "idnin",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "stiin",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "ininoin",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "dioin",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "dinonin",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "nioin",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "diein",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "ixoninn",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "uodinin",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "idiini",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "inini",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "snini",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "sieini",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "ionii",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "innoini",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "ixio",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "sininia",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "inini",
+     "name": null
+    }
+   ],
+   "R1": false,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "word-reversed",
+   "keytype": "homophonic",
+   "language": "venetian",
+   "test_bits": 3.1074968207660727,
+   "word_rate": 0.17787854010257936,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.008,
+   "key": {
+    "a": "e",
+    "c": "l",
+    "cfh": "a",
+    "ch": "a",
+    "ckh": "l",
+    "cph": "l",
+    "cth": "l",
+    "d": "l",
+    "e": "l",
+    "ee": "l",
+    "eee": "l",
+    "f": "l",
+    "g": "a",
+    "h": "u",
+    "i": "i",
+    "ii": "i",
+    "iiin": "d",
+    "iin": "d",
+    "in": "b",
+    "k": "l",
+    "l": "n",
+    "m": "s",
+    "n": "r",
+    "o": "e",
+    "p": "r",
+    "q": "l",
+    "r": "d",
+    "s": "l",
+    "sh": "a",
+    "t": "l",
+    "x": "f",
+    "y": "e"
+   },
+   "sample": [
+    "ebelel neare del neale deare elnel",
+    "edeadel dela l dea el ell",
+    "delel ell e dea ea ele dea"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "deel",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "edeel",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "enlel",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "dieel",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "elelaer",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "deaer",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "selaler",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "leaer",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "nelel",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "eaalell",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "lanelel",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "eneele",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "elele",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "alele",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "delere",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "ealee",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "ellaele",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "eaea",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "delelel",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "elele",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "line-mirrored",
+   "keytype": "mono",
+   "language": "latin",
+   "test_bits": 3.3525960524893037,
+   "word_rate": 0.09997770014123245,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.004,
+   "key": {
+    "a": "o",
+    "c": "f",
+    "cfh": "f",
+    "ch": "s",
+    "ckh": "b",
+    "cph": "x",
+    "cth": "a",
+    "d": "n",
+    "e": "u",
+    "ee": "a",
+    "eee": "g",
+    "f": "q",
+    "g": "y",
+    "h": "l",
+    "i": "l",
+    "ii": "h",
+    "iiin": "z",
+    "iin": "c",
+    "in": "p",
+    "k": "n",
+    "l": "d",
+    "m": "f",
+    "n": "f",
+    "o": "e",
+    "p": "l",
+    "q": "t",
+    "r": "p",
+    "s": "r",
+    "sh": "m",
+    "t": "r",
+    "x": "k",
+    "y": "i"
+   },
+   "sample": [
+    "irdeb cosli dosre con desli iponin",
+    "erf ia pem r pons ipespen",
+    "cos ini is pes i iua coret"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "coen",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "ipoen",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "ednir",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "ploen",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "ineusel",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "cosel",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "fensnil",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "qesel",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "dexer",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "ifsnenr",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "rsdouer",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "idoene",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "inire",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "ynire",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "pexele",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "isnie",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "inusere",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "ifes",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "poueret",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "eaere",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "line-mirrored",
+   "keytype": "mono",
+   "language": "italian",
+   "test_bits": 3.35922233445502,
+   "word_rate": 0.24559577789340667,
+   "star_hits": 1,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.004,
+   "key": {
+    "a": "e",
+    "c": "z",
+    "cfh": "y",
+    "ch": "e",
+    "ckh": "m",
+    "cph": "h",
+    "cth": "c",
+    "d": "l",
+    "e": "l",
+    "ee": "t",
+    "eee": "b",
+    "f": "s",
+    "g": "k",
+    "h": "x",
+    "i": "i",
+    "ii": "h",
+    "iiin": "g",
+    "iin": "d",
+    "in": "p",
+    "k": "r",
+    "l": "u",
+    "m": "b",
+    "n": "q",
+    "o": "e",
+    "p": "n",
+    "q": "i",
+    "r": "d",
+    "s": "s",
+    "sh": "o",
+    "t": "r",
+    "x": "f",
+    "y": "a"
+   },
+   "sample": [
+    "asuem deena ueere del ueena apelar",
+    "erz ac deo s dere adeedel",
+    "dee ala ae dee a alc derei"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "deer",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "adeer",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "eular",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "dieer",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "aleleen",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "deeen",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "belelan",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "seeen",
+     "name": "semen"
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "ueher",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "ayerelr",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "seueler",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "aueere",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "alare",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "klare",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "dehene",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "aelae",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "alleere",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "ayee",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "delerei",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "etere",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": true,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "line-mirrored",
+   "keytype": "mono",
+   "language": "venetian",
+   "test_bits": 3.3623381342082683,
+   "word_rate": 0.11261428677618375,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.004,
+   "key": {
+    "a": "e",
+    "c": "h",
+    "cfh": "b",
+    "ch": "i",
+    "ckh": "i",
+    "cph": "y",
+    "cth": "m",
+    "d": "n",
+    "e": "t",
+    "ee": "t",
+    "eee": "g",
+    "f": "c",
+    "g": "k",
+    "h": "q",
+    "i": "p",
+    "ii": "f",
+    "iiin": "z",
+    "iin": "s",
+    "in": "p",
+    "k": "r",
+    "l": "d",
+    "m": "x",
+    "n": "z",
+    "o": "e",
+    "p": "u",
+    "q": "l",
+    "r": "s",
+    "s": "i",
+    "sh": "o",
+    "t": "u",
+    "x": "k",
+    "y": "a"
+   },
+   "sample": [
+    "aidei seiua deiue sen deiua apenar",
+    "euh am seo i seri aseisen",
+    "sei ana ai sei a atm seuel"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "seer",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "aseer",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "ednau",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "speer",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "anetieu",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "seieu",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "xeninau",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "ceieu",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "deyeu",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "abirenu",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "iideteu",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "adeere",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "anaue",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "knaue",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "seyeue",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "ainae",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "antieue",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "abei",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "seteuel",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "eteue",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "line-mirrored",
+   "keytype": "homophonic",
+   "language": "latin",
+   "test_bits": 2.9533701341850382,
+   "word_rate": 0.3388091875418122,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.008,
+   "key": {
+    "a": "i",
+    "c": "e",
+    "cfh": "n",
+    "ch": "s",
+    "ckh": "s",
+    "cph": "i",
+    "cth": "t",
+    "d": "t",
+    "e": "i",
+    "ee": "a",
+    "eee": "s",
+    "f": "s",
+    "g": "n",
+    "h": "c",
+    "i": "u",
+    "ii": "r",
+    "iiin": "n",
+    "iin": "s",
+    "in": "d",
+    "k": "t",
+    "l": "s",
+    "m": "l",
+    "n": "c",
+    "o": "i",
+    "p": "t",
+    "q": "s",
+    "r": "s",
+    "s": "s",
+    "sh": "s",
+    "t": "t",
+    "x": "s",
+    "y": "e"
+   },
+   "sample": [
+    "essis siste sisti sit siste editet",
+    "ite et sis s sits esissit",
+    "sis ete es sis e eit sitis"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "siit",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "esiit",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "istet",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "suiit",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "etiisit",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "sisit",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "litstet",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "sisit",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "siiit",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "enstitt",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "sssiiit",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "esiiti",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "eteti",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "nteti",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "siiiti",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "estei",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "etisiti",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "enis",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "siiitis",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "iaiti",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "line-mirrored",
+   "keytype": "homophonic",
+   "language": "italian",
+   "test_bits": 2.9303130291485155,
+   "word_rate": 0.24492678213037983,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.008,
+   "key": {
+    "a": "o",
+    "c": "i",
+    "cfh": "a",
+    "ch": "o",
+    "ckh": "n",
+    "cph": "d",
+    "cth": "n",
+    "d": "n",
+    "e": "n",
+    "ee": "n",
+    "eee": "e",
+    "f": "n",
+    "g": "d",
+    "h": "u",
+    "i": "n",
+    "ii": "t",
+    "iiin": "c",
+    "iin": "c",
+    "in": "c",
+    "k": "n",
+    "l": "n",
+    "m": "n",
+    "n": "t",
+    "o": "o",
+    "p": "n",
+    "q": "n",
+    "r": "n",
+    "s": "n",
+    "sh": "o",
+    "t": "n",
+    "x": "e",
+    "y": "i"
+   },
+   "sample": [
+    "innon cooni noono con nooni iconin",
+    "oni in noo n nono inoonon",
+    "coo ini io noo i inn conon"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "coon",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "inoon",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "onnin",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "nnoon",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "inonoon",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "cooon",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "nononin",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "nooon",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "nodon",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "iaononn",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "nononon",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "inoono",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "inino",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "dnino",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "nodono",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "ionio",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "innoono",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "iaoo",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "nononon",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "onono",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  },
+  {
+   "inventory": "groups",
+   "direction": "line-mirrored",
+   "keytype": "homophonic",
+   "language": "venetian",
+   "test_bits": 3.1744185835036407,
+   "word_rate": 0.06920389504199807,
+   "star_hits": 0,
+   "star_null_p95": 0.0,
+   "star_null_mean": 0.008,
+   "key": {
+    "a": "l",
+    "c": "c",
+    "cfh": "l",
+    "ch": "a",
+    "ckh": "i",
+    "cph": "e",
+    "cth": "o",
+    "d": "e",
+    "e": "t",
+    "ee": "t",
+    "eee": "u",
+    "f": "r",
+    "g": "t",
+    "h": "b",
+    "i": "l",
+    "ii": "h",
+    "iiin": "i",
+    "iin": "e",
+    "in": "e",
+    "k": "e",
+    "l": "e",
+    "m": "e",
+    "n": "b",
+    "o": "l",
+    "p": "a",
+    "q": "a",
+    "r": "e",
+    "s": "a",
+    "sh": "o",
+    "t": "e",
+    "x": "d",
+    "y": "n"
+   },
+   "sample": [
+    "naeli elaan elael ele elaan nelene",
+    "lec no elo a elea nelaele",
+    "ela nen na ela n nto elela"
+   ],
+   "star_words": [
+    {
+     "voynich": "koaiin",
+     "decoded": "elle",
+     "name": null
+    },
+    {
+     "voynich": "koary",
+     "decoded": "nelle",
+     "name": null
+    },
+    {
+     "voynich": "tydlo",
+     "decoded": "leene",
+     "name": null
+    },
+    {
+     "voynich": "koair",
+     "decoded": "ellle",
+     "name": null
+    },
+    {
+     "voynich": "pocheody",
+     "decoded": "neltala",
+     "name": null
+    },
+    {
+     "voynich": "pochaiin",
+     "decoded": "elala",
+     "name": null
+    },
+    {
+     "voynich": "pydchdom",
+     "decoded": "eleaena",
+     "name": null
+    },
+    {
+     "voynich": "pochof",
+     "decoded": "rlala",
+     "name": null
+    },
+    {
+     "voynich": "tocphol",
+     "decoded": "elele",
+     "name": null
+    },
+    {
+     "voynich": "tdokchcfhy",
+     "decoded": "nlaelee",
+     "name": null
+    },
+    {
+     "voynich": "toealchs",
+     "decoded": "aaeltle",
+     "name": null
+    },
+    {
+     "voynich": "okoaly",
+     "decoded": "nellel",
+     "name": null
+    },
+    {
+     "voynich": "otydy",
+     "decoded": "nenel",
+     "name": null
+    },
+    {
+     "voynich": "otydg",
+     "decoded": "tenel",
+     "name": null
+    },
+    {
+     "voynich": "opocphor",
+     "decoded": "elelal",
+     "name": null
+    },
+    {
+     "voynich": "oydchy",
+     "decoded": "naenl",
+     "name": null
+    },
+    {
+     "voynich": "otochedy",
+     "decoded": "netalel",
+     "name": null
+    },
+    {
+     "voynich": "chocfhy",
+     "decoded": "nlla",
+     "name": null
+    },
+    {
+     "voynich": "qotoear",
+     "decoded": "eltlela",
+     "name": null
+    },
+    {
+     "voynich": "otoeeo",
+     "decoded": "ltlel",
+     "name": null
+    }
+   ],
+   "R1": true,
+   "R2": false,
+   "R3": false,
+   "decodes": false
+  }
+ ],
+ "positive": [
+  {
+   "language": "latin",
+   "keytype": "mono",
+   "test_bits": 2.905745858348675,
+   "word_rate": 1.0,
+   "letters_recovered": 1.0,
+   "sample": "fugias quod amarum fieri potest et salomondixit homo qui",
+   "passes": true
+  },
+  {
+   "language": "latin",
+   "keytype": "mono",
+   "test_bits": 2.905745858348675,
+   "word_rate": 1.0,
+   "letters_recovered": 1.0,
+   "sample": "fugias quod amarum fieri potest et salomondixit homo qui",
+   "passes": true
+  },
+  {
+   "language": "latin",
+   "keytype": "mono",
+   "test_bits": 2.905745858348675,
+   "word_rate": 1.0,
+   "letters_recovered": 1.0,
+   "sample": "fugias quod amarum fieri potest et salomondixit homo qui",
+   "passes": true
+  },
+  {
+   "language": "latin",
+   "keytype": "homophonic",
+   "test_bits": 2.905213148086068,
+   "word_rate": 0.9965254577041294,
+   "letters_recovered": 0.999470957566804,
+   "sample": "fugias quod amarum fieri potest et salomondixit homo qui",
+   "passes": true
+  },
+  {
+   "language": "latin",
+   "keytype": "homophonic",
+   "test_bits": 2.9063194920589908,
+   "word_rate": 0.9542295870640117,
+   "letters_recovered": 0.99255347820445,
+   "sample": "fugias quod amarum fieri potest et salomondisit homo qui",
+   "passes": true
+  },
+  {
+   "language": "latin",
+   "keytype": "homophonic",
+   "test_bits": 2.9067727436086304,
+   "word_rate": 0.9964586395830549,
+   "letters_recovered": 0.9994609756341023,
+   "sample": "fugias quod amarum fieri potest et salomondixit homo qui",
+   "passes": true
+  },
+  {
+   "language": "italian",
+   "keytype": "mono",
+   "test_bits": 2.7640723053497775,
+   "word_rate": 1.0,
+   "letters_recovered": 1.0,
+   "sample": "imprese di iacopo di zarino erano ignoranti uennono a",
+   "passes": true
+  },
+  {
+   "language": "italian",
+   "keytype": "mono",
+   "test_bits": 2.7640723053497775,
+   "word_rate": 1.0,
+   "letters_recovered": 1.0,
+   "sample": "imprese di iacopo di zarino erano ignoranti uennono a",
+   "passes": true
+  },
+  {
+   "language": "italian",
+   "keytype": "mono",
+   "test_bits": 2.7640723053497775,
+   "word_rate": 1.0,
+   "letters_recovered": 1.0,
+   "sample": "imprese di iacopo di zarino erano ignoranti uennono a",
+   "passes": true
+  },
+  {
+   "language": "italian",
+   "keytype": "homophonic",
+   "test_bits": 2.80973594104541,
+   "word_rate": 0.9403633491311216,
+   "letters_recovered": 0.9850989874565513,
+   "sample": "imprese di iacopo di tarino erano ignoranti uennono a",
+   "passes": true
+  },
+  {
+   "language": "italian",
+   "keytype": "homophonic",
+   "test_bits": 2.801070455504868,
+   "word_rate": 0.941350710900474,
+   "letters_recovered": 0.9850989874565513,
+   "sample": "imprese di iacopo di tarino erano ignoranti uennono a",
+   "passes": true
+  },
+  {
+   "language": "italian",
+   "keytype": "homophonic",
+   "test_bits": 2.7915847346918596,
+   "word_rate": 0.9433254344391785,
+   "letters_recovered": 0.9850989874565513,
+   "sample": "imprese di iacopo di tarino erano ignoranti uennono a",
+   "passes": true
+  }
+ ],
+ "baseline": [
+  {
+   "language": "latin",
+   "keytype": "mono",
+   "test_bits": 4.8298228501634455,
+   "word_rate": 0.012109623964308477
+  },
+  {
+   "language": "latin",
+   "keytype": "mono",
+   "test_bits": 4.82421800283521,
+   "word_rate": 0.013313504709298209
+  },
+  {
+   "language": "latin",
+   "keytype": "mono",
+   "test_bits": 4.8372916796104555,
+   "word_rate": 0.012746972594008922
+  },
+  {
+   "language": "latin",
+   "keytype": "mono",
+   "test_bits": 4.820445100371374,
+   "word_rate": 0.013455137738120529
+  },
+  {
+   "language": "latin",
+   "keytype": "mono",
+   "test_bits": 4.8310937522871695,
+   "word_rate": 0.012534523050775442
+  },
+  {
+   "language": "italian",
+   "keytype": "mono",
+   "test_bits": 4.970597765532933,
+   "word_rate": 0.017208413001912046
+  },
+  {
+   "language": "italian",
+   "keytype": "mono",
+   "test_bits": 4.967257020112513,
+   "word_rate": 0.01557963317045535
+  },
+  {
+   "language": "italian",
+   "keytype": "mono",
+   "test_bits": 4.971498890585096,
+   "word_rate": 0.018270660718079455
+  },
+  {
+   "language": "italian",
+   "keytype": "mono",
+   "test_bits": 4.985668581520833,
+   "word_rate": 0.01989944054953615
+  },
+  {
+   "language": "italian",
+   "keytype": "mono",
+   "test_bits": 4.96904054780128,
+   "word_rate": 0.019120458891013385
+  },
+  {
+   "language": "venetian",
+   "keytype": "mono",
+   "test_bits": 5.047806115359718,
+   "word_rate": 0.006090220239359819
+  },
+  {
+   "language": "venetian",
+   "keytype": "mono",
+   "test_bits": 5.050969091678962,
+   "word_rate": 0.006090220239359819
+  },
+  {
+   "language": "venetian",
+   "keytype": "mono",
+   "test_bits": 5.065018398952166,
+   "word_rate": 0.005382055095248212
+  },
+  {
+   "language": "venetian",
+   "keytype": "mono",
+   "test_bits": 5.063644340940892,
+   "word_rate": 0.005806954181715176
+  },
+  {
+   "language": "venetian",
+   "keytype": "mono",
+   "test_bits": 5.063461902589563,
+   "word_rate": 0.006373486297004461
+  },
+  {
+   "language": "latin",
+   "keytype": "homophonic",
+   "test_bits": 3.3573296224798477,
+   "word_rate": 0.3031654981941789
+  },
+  {
+   "language": "latin",
+   "keytype": "homophonic",
+   "test_bits": 3.355420113888702,
+   "word_rate": 0.30429856242475745
+  },
+  {
+   "language": "latin",
+   "keytype": "homophonic",
+   "test_bits": 3.358264687846651,
+   "word_rate": 0.30323631470859
+  },
+  {
+   "language": "latin",
+   "keytype": "homophonic",
+   "test_bits": 3.357138402420145,
+   "word_rate": 0.3033779477374124
+  },
+  {
+   "language": "latin",
+   "keytype": "homophonic",
+   "test_bits": 3.36076780434395,
+   "word_rate": 0.30139508533389986
+  },
+  {
+   "language": "italian",
+   "keytype": "homophonic",
+   "test_bits": 3.2135301461597154,
+   "word_rate": 0.10395864315558388
+  },
+  {
+   "language": "italian",
+   "keytype": "homophonic",
+   "test_bits": 3.215744185727843,
+   "word_rate": 0.1041002761844062
+  },
+  {
+   "language": "italian",
+   "keytype": "homophonic",
+   "test_bits": 3.2133276202708485,
+   "word_rate": 0.10395864315558388
+  },
+  {
+   "language": "italian",
+   "keytype": "homophonic",
+   "test_bits": 3.216997912050608,
+   "word_rate": 0.10395864315558388
+  },
+  {
+   "language": "italian",
+   "keytype": "homophonic",
+   "test_bits": 3.2163919979517273,
+   "word_rate": 0.10360456058352809
+  },
+  {
+   "language": "venetian",
+   "keytype": "homophonic",
+   "test_bits": 4.186596873763143,
+   "word_rate": 0.03222151405707811
+  },
+  {
+   "language": "venetian",
+   "keytype": "homophonic",
+   "test_bits": 4.18229611744074,
+   "word_rate": 0.03002620211033213
+  },
+  {
+   "language": "venetian",
+   "keytype": "homophonic",
+   "test_bits": 4.191599300116989,
+   "word_rate": 0.027689257134763827
+  },
+  {
+   "language": "venetian",
+   "keytype": "homophonic",
+   "test_bits": 4.186114765987911,
+   "word_rate": 0.025352312159195523
+  },
+  {
+   "language": "venetian",
+   "keytype": "homophonic",
+   "test_bits": 4.187182493204022,
+   "word_rate": 0.02910558742298704
+  }
+ ],
+ "settings": {
+  "seed": 1453,
+  "restarts": 6,
+  "steps": 6000,
+  "min_sign_count": 20,
+  "train_folios": 103,
+  "test_folios": 104
+ },
+ "conditional_entropy_bits": {
+  "voynich_letters": 2.0900461733376514,
+  "voynich_groups": 2.3537341390720092,
+  "latin": 3.3004925202135333,
+  "italian": 3.103620033728072
+ }
+}
