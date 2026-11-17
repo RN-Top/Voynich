@@ -217,32 +217,23 @@ This repository includes tools to build two files for structural analysis:
 
 ### 1. `voynich_integrated.json` — Unified integrated dataset
 
-**What it contains:**
-- Folio ID (in order: f1r, f1v, f2r, f2v, ..., f116v)
-- Image path(s) for each folio
-- Full transcribed text with locus labels (m:main, l:left, r:right, etc.)
-- Classification flag: `integrated`, `text-only`, `image-only`, or `foldout`
+**What it contains:** the whole manuscript as one file. One entry per page (227, including
+foldout panels and the Rosettes page), in book order. Each entry ties together:
+- the page's place in the book (order, quire, page in quire, Currier language and hand)
+- the drawing: illustration type (herbal, zodiac, etc.) and the ZL3b transcriber's notes on it
+- the Yale Beinecke photo(s) of the page, as full-resolution IIIF links (`images`, `image_paths`)
+- the writing, split the way it sits on the page: paragraphs, labels next to drawings (with
+  position), text in circles and along radii, and every place a drawing cuts a line (`drawing_breaks`)
 
 **To regenerate:**
 
 ```bash
-# 1. Obtain Voynich transcription in format:
-#    folio_id: m: text | l: text | r: text
-#    Save as: voynich_transcription.txt
-
-# 2. Run the build script
-python3 build_integrated.py
-
-# Output: voynich_integrated.json + summary statistics
+python3 build_integrated.py                   # uses Data/Zl3b-n.txt + Data/yale_ms408_images.csv
+python3 build_integrated.py --refresh-images  # re-downloads Yale's image list first
 ```
 
-**Expected output summary (with full Voynich data):**
-- Folios processed: 116 (complete manuscript)
-- Integrated (text + image): ~110
-- Text-only: ~2
-- Image-only: ~2
-- Foldouts: ~2
-- Unmatched: 0
+The script stops with an error if any page is missing its text or its photo, or if any
+transcription line is left out.
 
 ### 2. `voynich_control.json` — Negative control
 
