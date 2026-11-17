@@ -668,3 +668,21 @@ reading of it.
 4. Try ending-level position models (per-ending line-final rates) before four-state
    machines. The per-ending table suggests position is carried by individual endings
    more than by the C/L/P/R grouping.
+
+## Reading backwards: was the manuscript flipped? (November 2026)
+
+Pre-registered in `analyses/backwards_prereg.md` (committed before the run). Code: `analyses/backwards_test.py`.
+Details: `output/backwards_report.md`. Each test uses something with a built-in direction, because most text
+statistics give the same answer forwards and backwards.
+
+- **Words in a line: left to right.** Writers squeeze the end of the line they are writing towards. Last words
+  are shorter than first words (4.74 vs 5.47 letters) and end in -m far more often (622 vs 15). Within-line
+  shuffle p < 1e-4 for both.
+- **Lines in a paragraph: top to bottom.** The shortest line of a paragraph is the bottom line in 164 paragraphs
+  and the top line in only 7 (p < 1e-4).
+- **Letters in a word: same direction as Latin and Italian.** Word endings are less varied than word beginnings,
+  just as in Caesar, Isidore, Bede and Dante (L_k below 0 for k = 1–3, page-resampled intervals all below 0).
+  Spelled backwards it would look less like those languages, not more.
+- **Pages in the book: cannot be tested from the text.** Only 2 of 207 pages (f68r1, f84v) end mid-paragraph,
+  so the writing never runs from one page onto the next.
+- **Verdict:** nothing in the text reads better backwards. Book order is the one direction the text can't settle.
