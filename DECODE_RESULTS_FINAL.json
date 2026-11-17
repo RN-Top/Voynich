@@ -1,18 +1,26 @@
 {
-  "final_score": 295785,
+  "final_score": 318743,
   "pharmaceutical_words": [
     "dare",
-    "flos",
+    "fiat",
+    "fice",
     "gold",
+    "mel",
+    "misce",
+    "oleum",
     "sal",
     "vin"
   ],
   "word_frequencies": {
     "sal": 188,
-    "vin": 81,
-    "gold": 5,
+    "oleum": 66,
+    "gold": 20,
+    "fice": 7,
     "dare": 5,
-    "flos": 1
+    "misce": 2,
+    "vin": 1,
+    "fiat": 1,
+    "mel": 1
   },
   "total_folios": 227,
   "status": "COMPLETE"
