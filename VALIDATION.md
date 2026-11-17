@@ -699,3 +699,14 @@ and topic words fall in its text. **No preference** in either direction. Label w
 Pre-registered in `analyses/rerun_integrated_prereg.md`. The new file decides plant pages by what is drawn, not by folio range.
 **Plant openings vs star names still holds** (14 vs 4.5, p = 0.0001, survives Holm). The herb → star → remedy hint fades
 (p = 0.075 → 0.21). The ground test is still not supported. Details: `output/rerun_integrated_report.md`.
+
+## Fontana's cipher methods applied to the Voynich (November 2026, pre-registered)
+
+Pre-registration: `analyses/fontana_cipher_prereg.md`. Code: `analyses/fontana_cipher_decoder.py`. Report:
+[`output/fontana_cipher_report.md`](output/fontana_cipher_report.md).
+
+- **Not supported.** None of 36 runs (invented-alphabet substitution, one or several signs per letter; forwards,
+  word-reversed or mirrored; EVA letters or letter groups; Latin, Italian or Venetian) decodes the text.
+- The solver recovers real Latin and Italian put through the same ciphers almost perfectly (99–100% of letters),
+  so the method works; the Voynich just does not behave like a letter substitution of these languages.
+- The star-name pairs (koaiin ~ okoaly, etc.) do not decode to star or plant names under any key.
