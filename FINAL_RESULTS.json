@@ -1,0 +1,54 @@
+{
+  "experiments": 5,
+  "experiment_1_extended_score": 356571,
+  "experiment_2_recipes_found": 72,
+  "experiment_3_ensemble_words": {
+    "flos": 3,
+    "dare": 3,
+    "vin": 3,
+    "gold": 3,
+    "sal": 3,
+    "aqua": 3
+  },
+  "experiment_4_recipe_sequences": 0,
+  "experiment_5_variant_scores": [
+    356571,
+    1685345
+  ],
+  "best_mapping": {
+    "s": "s",
+    "a": "a",
+    "l": "l",
+    "d": "d",
+    "o": "o",
+    "r": "r",
+    "b": "x",
+    "c": "c",
+    "e": "n",
+    "f": "g",
+    "g": "k",
+    "h": "h",
+    "i": "m",
+    "j": "p",
+    "k": "e",
+    "m": "q",
+    "n": "v",
+    "p": "y",
+    "q": "i",
+    "t": "j",
+    "u": "w",
+    "v": "t",
+    "w": "f",
+    "x": "z",
+    "y": "u",
+    "z": "b"
+  },
+  "top_words": [
+    "flos",
+    "dare",
+    "vin",
+    "gold",
+    "sal",
+    "aqua"
+  ]
+}
