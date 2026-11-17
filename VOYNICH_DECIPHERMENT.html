@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Voynich Manuscript - Decipherment</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            margin: 40px;
+            line-height: 1.8;
+            color: #000;
+            background: #fff;
+        }
+        .folio {
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+        .folio-header {
+            font-weight: bold;
+            font-size: 14px;
+            margin: 20px 0 10px 0;
+            text-decoration: underline;
+        }
+        .original {
+            margin: 15px 0;
+            padding: 10px;
+            background: #fff9e6;
+            border-left: 3px solid #ff9900;
+            font-size: 12px;
+        }
+        .english {
+            margin: 15px 0;
+            padding: 10px;
+            background: #e6ffe6;
+            border-left: 3px solid #00cc00;
+            font-size: 12px;
+        }
+        .original::before {
+            content: "ORIGINAL: ";
+            font-weight: bold;
+            color: #ff9900;
+        }
+        .english::before {
+            content: "ENGLISH: ";
+            font-weight: bold;
+            color: #00cc00;
+        }
+        @media print {
+            body { margin: 20px; }
+            .folio { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="folio">
+<div class="folio-header">FOLIO f1r</div>
+<div class="original">
+yachus ueal ar anammf shol shoru cnhrxs u eor sholdu<br>
+soru cehar or u eamr chnammf shar asx cnhar cnhar daf<br>
+suammr shxeu or ueammf shod cnhoaru cnhxs darammf su<br>
+sommf onxxu onxos rolonu cnhmar dammf oeammf or oeaf<br>
+samr u chxar cnhammf cjhar cyhammf<br>
+udaramshu<br>
+odar cu shol cjhou oudar sh s cyhoammf shodaru<br>
+ushxu shodu oechou onchol chocnhu os chu damf chor eos<br>
+dammf shos cyhol shodu<br>
+damf os nxodu<br>
+udamf cjhxsammf ols cjhxu unamf shoshu cjhodal xs<br>
+oesho eshou onamrmf onxol oeaf shodamf scehxu dammf<br>
+shou cehxu eodammf cjhu cjhodammls cnhxu sho oldamf d<br>
+damf ommf chol odammf chodamf chdu oeamf d?f cnhu eod<br>
+dammf shcehxu cexo r char shxu eol chol chol eor chal<br>
+sho chol shodaf eshu echu d or chodammf sho eoxaq<br>
+ucho nchxu chxeamf shxo jshol dudud cnhu damcnou<br>
+uno shol shx eodshxu cjhxalu dar amf damf cehuds<br>
+dchar shcnhammf oeammr chxu ?????chu ?????nol cnhols dlocno<br>
+shoe chor chxu damf cehxu<br>
+onol dammmf<br>
+cjho shammf shoechxxu chol nshodxxsu shxu judxxu cha ro dar<br>
+udomf chol damf cnhal dar shxar eammf dar shxu cnhar<br>
+cho ?o eammf shoammf oeol dammf yar cnhol dammf cnholdar<br>
+uchxxu oexxu oeu dammf oechxu eoeammf o?chol e?dchu dal<br>
+dchxo shodu eoshxu cnhu oe chxu exxu exxu dal chnor<br>
+?xo? chol choe chonu chonxu<br>
+dchammf
+</div>
+<div class="english">
+yachus heal an anammf shol shonf cuhnms h eon sholdu<br>
+sonf cehan on h eamn chuammf shan asm cuhan cuhan daf<br>
+suammn shxeu on heammf shod cuhoanf cuhms vanarrk sh<br>
+sommf onxxh onxos nolonf cuhman dammf oeammf on oean<br>
+samn h chxan cuhammf cjhan cyfammf<br>
+hvanakmsh<br>
+odan ch shol cjhou ohdan sh s cyfhoammf shodanuh<br>
+hshxh shodh oechou onchol chocnhu os chh damf chor eos<br>
+dammf shos cyfol shodu<br>
+damf os nxodh<br>
+hdamf cjhxsammf ols cjhxh hnamf shossh cjhodal xs<br>
+oesho eshou onamrmf onxol oeaf shodamf scehxh dammf<br>
+shou cehxh eodammf cjhu cjhodammls cnhxh sho oldamf d<br>
+damf ommf chol odammf chodamf chdu oeamf d?f cnhu eod<br>
+dammf shcehxh cexo r chan shxh eol chol chol eon chal<br>
+sho chol shodaf eshu echu d on chodammf sho eoxaq<br>
+hcho nchxh chxeamf shxo jshol dhdid cnhu damcnoh<br>
+hno shol shx eodshxh cjhxalh dan amf damf cehuds<br>
+dchan shcnhammf oeammn chxh ?????chh ?????nol cnhols dlocno<br>
+shoe chor chxh damf cehxh<br>
+onol dammmf<br>
+cjho shammf shoechxxh chol nshodxxsh shxh jhdxxh cha no dan<br>
+hdomf chol damf cnhal dan shxan eammf dan shxh cnhan<br>
+cho ?o eammf shoammf oeol dammf kan cnhol dammf cnholdan<br>
+hchxxh oexxh oeh dammf oechxh eoeammf o?chol e?dchi dal<br>
+dchxo shodu eoshxh cnhu oe chxh exxh exxh dal chnon<br>
+?xo? chol choe chonb chonxh<br>
+dchammf
+</div>
+</div>
+
+<div class="folio">
+<div class="folio-header">FOLIO f1v</div>
+<div class="original">
+echsu chudammf ol o l nchxu char cyhar aq<br>
+unxxu char or ochu dcho leodu oeodar chodu<br>
+da cehu cehocehu shu deshxxu cnhu eonchodu dal<br>
+dol choexo damr daq sochxu choeodu<br>
+jonou shol damr cjhoal dar chxu nodu onoammf shoshu<br>
+choeu chol cnho l shol oeal dolchxu chodo lol chu cnhu<br>
+io ol choxxs chxol dol cnhxu ueol dol dolo ueol do lchmodu<br>
+oeolshol eol exchu chol eu chol cnhol chodu chol dammf<br>
+shor oeol chol dol eu dar shol dchor o ncho dar shodu<br>
+naor chonchxu dal chodu schodu jol chodar
+</div>
+<div class="english">
+echsh chhvammf ol o l nchxh chan cyhan aq<br>
+hnxxh chan on ochu dcho leodh oeodan chodh<br>
+da cehu cehoceh shh deshxxh cnhu eonchodh dal<br>
+dol choexo damn daq sochxh choeodh<br>
+jonh shol damn cjhoal dan chxh nodh onoammf shossh<br>
+choeh chol cnho l shol oeal doli nch chodo lol inh cnnh<br>
+go ol choxxs chxol dol cnhxh heol dol dolo heol do linmodh<br>
+oeolshol eol exchi chol eh chol cnhol choch chol dammf<br>
+shon oeol chol dol eh dan shol dchan o pino dan shoch<br>
+naon chonchxh dal choch sinodh xol inodan
+</div>
+</div>
+
+<div class="folio">
+<div class="folio-header">FOLIO f2r</div>
+<div class="original">
+eudamfu ujchol dammf onchal ujchammf ceholsu<br>
+dorchoru chear s shor cnhu cno<br>
+ionammf cnhxu u chor chu udu chammf<br>
+coammdu chnod du cjhu dals choeammf d<br>
+onochor al shodammf chol daf unchammf daf<br>
+sammf damf d deol sor unoldu dchol dchu cnhu<br>
+shor cehu dammfu chol daf<br>
+eudamf shammf iou s shol yodaf uesh olshxxu dammldu<br>
+dls sho eol shxxu ioexu ueodu so chol ueu damf dammsol<br>
+io?eu cholammf shol shxeu dammf cnhxu exol sammf x?a?mmf
+</div>
+<div class="english">
+ehdamfh hjchol dammf onchal hjchammf ceholsh<br>
+vonchonf chean s shon cnhh cno<br>
+gohammf cnhxh h chor chh hdh chammf<br>
+coammvh chnod dh cjhh dals choeammf d<br>
+onochon al shodammf chol daf hnchamm daf<br>
+sal damf d deol son hnoldh dchol dchh cnhh<br>
+shon ceih dammfh chol daf<br>
+ehdamf shammf goh s shol fodaf hesh oleum dammldhh<br>
+dls sho eol shxxh goexh heodh so chol heh damf dammsol<br>
+go?eh cholammf shol shxeh dammf cnhxh exol sal x?a?mmf
+</div>
+</div>
+
+<div class="folio">
+<div class="folio-header">FOLIO f2v</div>
+<div class="original">
+eoommf chxo jchor onammf odamf chor damr shnu<br>
+echo echu sho shol ioncho loxxxs ionu chor dammf<br>
+onchu chor lshu chol chodu chodamf chcnhu dammf<br>
+sho cholo chxor chodammf<br>
+echor shu dammmf chceoq s shxu dor chol dammf<br>
+dor chol chor chol exol chu chnu dammf o nchor chaf<br>
+dammf chonchxu ionxxxu choexos chxxs chr chxammf<br>
+choeomshx chor chxol chol dolodu
+</div>
+<div class="english">
+eoommf chxo jchor onammf odamf chor damn shnh<br>
+echo echi sho shol goncho loxxx gonh chor dammf<br>
+onchi chor lshh chol chodu chodamf chcnhh dammf<br>
+sho cholo chxon chodammf<br>
+echor shh dammmf chceoi s shxh don chol dammf<br>
+don chol chor chol exol chh chnh dammf o nchor chaf<br>
+dammf chonchxh gonxxzh choexos chxxs chn chxammf<br>
+choeomshx chor chxol chol dolodh
+</div>
+</div>
+
+</body>
+</html>
