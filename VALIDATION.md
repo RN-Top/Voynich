@@ -668,3 +668,34 @@ reading of it.
 4. Try ending-level position models (per-ending line-final rates) before four-state
    machines. The per-ending table suggests position is carried by individual endings
    more than by the C/L/P/R grouping.
+
+## Reading backwards: was the manuscript flipped? (November 2026)
+
+Pre-registered in `analyses/backwards_prereg.md` (committed before the run). Code: `analyses/backwards_test.py`.
+Details: `output/backwards_report.md`. Each test uses something with a built-in direction, because most text
+statistics give the same answer forwards and backwards.
+
+- **Words in a line: left to right.** Writers squeeze the end of the line they are writing towards. Last words
+  are shorter than first words (4.74 vs 5.47 letters) and end in -m far more often (622 vs 15). Within-line
+  shuffle p < 1e-4 for both.
+- **Lines in a paragraph: top to bottom.** The shortest line of a paragraph is the bottom line in 164 paragraphs
+  and the top line in only 7 (p < 1e-4).
+- **Letters in a word: same direction as Latin and Italian.** Word endings are less varied than word beginnings,
+  just as in Caesar, Isidore, Bede and Dante (L_k below 0 for k = 1–3, page-resampled intervals all below 0).
+  Spelled backwards it would look less like those languages, not more.
+- **Pages in the book: cannot be tested from the text.** Only 2 of 207 pages (f68r1, f84v) end mid-paragraph,
+  so the writing never runs from one page onto the next.
+- **Verdict:** nothing in the text reads better backwards. Book order is the one direction the text can't settle.
+
+## Whole integrated file, forwards vs backwards (November 2026)
+
+Pre-registered in `analyses/whole_file_direction_prereg.md`. The full file (pages, lines, words and letters all reversed,
+with labels and drawings kept on their page) was scored against the forward file, using where each page's label words
+and topic words fall in its text. **No preference** in either direction. Label words sit mid-text both ways
+(0.485 vs 0.515, shuffled 0.500). Details: `output/whole_file_direction_report.md`.
+
+## Earlier leads re-run on the integrated file (November 2026)
+
+Pre-registered in `analyses/rerun_integrated_prereg.md`. The new file decides plant pages by what is drawn, not by folio range.
+**Plant openings vs star names still holds** (14 vs 4.5, p = 0.0001, survives Holm). The herb → star → remedy hint fades
+(p = 0.075 → 0.21). The ground test is still not supported. Details: `output/rerun_integrated_report.md`.
