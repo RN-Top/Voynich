@@ -1,0 +1,19 @@
+{
+  "final_score": 295785,
+  "pharmaceutical_words": [
+    "dare",
+    "flos",
+    "gold",
+    "sal",
+    "vin"
+  ],
+  "word_frequencies": {
+    "sal": 188,
+    "vin": 81,
+    "gold": 5,
+    "dare": 5,
+    "flos": 1
+  },
+  "total_folios": 227,
+  "status": "COMPLETE"
+}
