@@ -42,14 +42,18 @@
       "image_match": "how the page was tied to its photo: 'Yale label', 'checked' (looked at), or 'page order' (foldout panels in the same order)"
     },
     "control_type": "negative_control_shuffled_words",
-    "shuffle_seed": 42
+    "shuffle_seed": 42,
+    "folios_with_images": 214,
+    "folios_without_images": 13,
+    "yale_image_coverage": "94.3%",
+    "total_yale_images_linked": 216
   },
   "folios": [
     {
       "folio_id": "f1r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006076/full/full/0/default.jpg"
+        "images/yale/002_1r.jpg"
       ],
       "text_lines": [
         {
@@ -466,13 +470,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 215
+      "word_count": 215,
+      "image_files": [
+        "002_1r.jpg"
+      ]
     },
     {
       "folio_id": "f1v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006077/full/full/0/default.jpg"
+        "images/yale/003_1v.jpg"
       ],
       "text_lines": [
         {
@@ -640,13 +647,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 92
+      "word_count": 92,
+      "image_files": [
+        "003_1v.jpg"
+      ]
     },
     {
       "folio_id": "f2r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006078/full/full/0/default.jpg"
+        "images/yale/004_2r.jpg"
       ],
       "text_lines": [
         {
@@ -862,13 +872,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 105
+      "word_count": 105,
+      "image_files": [
+        "004_2r.jpg"
+      ]
     },
     {
       "folio_id": "f2v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006079/full/full/0/default.jpg"
+        "images/yale/005_2v.jpg"
       ],
       "text_lines": [
         {
@@ -991,13 +1004,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 61
+      "word_count": 61,
+      "image_files": [
+        "005_2v.jpg"
+      ]
     },
     {
       "folio_id": "f3r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006080/full/full/0/default.jpg"
+        "images/yale/006_3r.jpg"
       ],
       "text_lines": [
         {
@@ -1257,13 +1273,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 114
+      "word_count": 114,
+      "image_files": [
+        "006_3r.jpg"
+      ]
     },
     {
       "folio_id": "f3v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006081/full/full/0/default.jpg"
+        "images/yale/007_3v.jpg"
       ],
       "text_lines": [
         {
@@ -1452,13 +1471,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 85
+      "word_count": 85,
+      "image_files": [
+        "007_3v.jpg"
+      ]
     },
     {
       "folio_id": "f4r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006082/full/full/0/default.jpg"
+        "images/yale/008_4r.jpg"
       ],
       "text_lines": [
         {
@@ -1619,13 +1641,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 64
+      "word_count": 64,
+      "image_files": [
+        "008_4r.jpg"
+      ]
     },
     {
       "folio_id": "f4v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006083/full/full/0/default.jpg"
+        "images/yale/009_4v.jpg"
       ],
       "text_lines": [
         {
@@ -1813,13 +1838,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 84
+      "word_count": 84,
+      "image_files": [
+        "009_4v.jpg"
+      ]
     },
     {
       "folio_id": "f5r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006084/full/full/0/default.jpg"
+        "images/yale/010_5r.jpg"
       ],
       "text_lines": [
         {
@@ -1928,13 +1956,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 54
+      "word_count": 54,
+      "image_files": [
+        "010_5r.jpg"
+      ]
     },
     {
       "folio_id": "f5v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006085/full/full/0/default.jpg"
+        "images/yale/011_5v.jpg"
       ],
       "text_lines": [
         {
@@ -2030,13 +2061,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 48
+      "word_count": 48,
+      "image_files": [
+        "011_5v.jpg"
+      ]
     },
     {
       "folio_id": "f6r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006086/full/full/0/default.jpg"
+        "images/yale/012_6r.jpg"
       ],
       "text_lines": [
         {
@@ -2226,13 +2260,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 86
+      "word_count": 86,
+      "image_files": [
+        "012_6r.jpg"
+      ]
     },
     {
       "folio_id": "f6v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006087/full/full/0/default.jpg"
+        "images/yale/013_6v.jpg"
       ],
       "text_lines": [
         {
@@ -2501,13 +2538,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 116
+      "word_count": 116,
+      "image_files": [
+        "013_6v.jpg"
+      ]
     },
     {
       "folio_id": "f7r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006088/full/full/0/default.jpg"
+        "images/yale/014_7r.jpg"
       ],
       "text_lines": [
         {
@@ -2649,13 +2689,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 66
+      "word_count": 66,
+      "image_files": [
+        "014_7r.jpg"
+      ]
     },
     {
       "folio_id": "f7v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006089/full/full/0/default.jpg"
+        "images/yale/015_7v.jpg"
       ],
       "text_lines": [
         {
@@ -2802,13 +2845,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 78
+      "word_count": 78,
+      "image_files": [
+        "015_7v.jpg"
+      ]
     },
     {
       "folio_id": "f8r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006090/full/full/0/default.jpg"
+        "images/yale/016_8r.jpg"
       ],
       "text_lines": [
         {
@@ -3112,13 +3158,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 151
+      "word_count": 151,
+      "image_files": [
+        "016_8r.jpg"
+      ]
     },
     {
       "folio_id": "f8v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006091/full/full/0/default.jpg"
+        "images/yale/017_8v.jpg"
       ],
       "text_lines": [
         {
@@ -3361,13 +3410,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 118
+      "word_count": 118,
+      "image_files": [
+        "017_8v.jpg"
+      ]
     },
     {
       "folio_id": "f9r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006092/full/full/0/default.jpg"
+        "images/yale/018_9r.jpg"
       ],
       "text_lines": [
         {
@@ -3528,13 +3580,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 85
+      "word_count": 85,
+      "image_files": [
+        "018_9r.jpg"
+      ]
     },
     {
       "folio_id": "f9v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006093/full/full/0/default.jpg"
+        "images/yale/019_9v.jpg"
       ],
       "text_lines": [
         {
@@ -3710,13 +3765,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 86
+      "word_count": 86,
+      "image_files": [
+        "019_9v.jpg"
+      ]
     },
     {
       "folio_id": "f10r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006094/full/full/0/default.jpg"
+        "images/yale/020_10r.jpg"
       ],
       "text_lines": [
         {
@@ -3898,13 +3956,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 92
+      "word_count": 92,
+      "image_files": [
+        "020_10r.jpg"
+      ]
     },
     {
       "folio_id": "f10v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006095/full/full/0/default.jpg"
+        "images/yale/021_10v.jpg"
       ],
       "text_lines": [
         {
@@ -4016,13 +4077,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 57
+      "word_count": 57,
+      "image_files": [
+        "021_10v.jpg"
+      ]
     },
     {
       "folio_id": "f11r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006096/full/full/0/default.jpg"
+        "images/yale/022_11r.jpg"
       ],
       "text_lines": [
         {
@@ -4136,13 +4200,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 59
+      "word_count": 59,
+      "image_files": [
+        "022_11r.jpg"
+      ]
     },
     {
       "folio_id": "f11v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006097/full/full/0/default.jpg"
+        "images/yale/023_11v.jpg"
       ],
       "text_lines": [
         {
@@ -4247,13 +4314,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 50
+      "word_count": 50,
+      "image_files": [
+        "023_11v.jpg"
+      ]
     },
     {
       "folio_id": "f13r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006098/full/full/0/default.jpg"
+        "images/yale/024_13r.jpg"
       ],
       "text_lines": [
         {
@@ -4406,13 +4476,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 77
+      "word_count": 77,
+      "image_files": [
+        "024_13r.jpg"
+      ]
     },
     {
       "folio_id": "f13v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006099/full/full/0/default.jpg"
+        "images/yale/025_13v.jpg"
       ],
       "text_lines": [
         {
@@ -4557,13 +4630,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 69
+      "word_count": 69,
+      "image_files": [
+        "025_13v.jpg"
+      ]
     },
     {
       "folio_id": "f14r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006100/full/full/0/default.jpg"
+        "images/yale/026_14r.jpg"
       ],
       "text_lines": [
         {
@@ -4736,13 +4812,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 76
+      "word_count": 76,
+      "image_files": [
+        "026_14r.jpg"
+      ]
     },
     {
       "folio_id": "f14v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006101/full/full/0/default.jpg"
+        "images/yale/027_14v.jpg"
       ],
       "text_lines": [
         {
@@ -4886,13 +4965,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 75
+      "word_count": 75,
+      "image_files": [
+        "027_14v.jpg"
+      ]
     },
     {
       "folio_id": "f15r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006102/full/full/0/default.jpg"
+        "images/yale/028_15r.jpg"
       ],
       "text_lines": [
         {
@@ -5097,13 +5179,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 94
+      "word_count": 94,
+      "image_files": [
+        "028_15r.jpg"
+      ]
     },
     {
       "folio_id": "f15v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006103/full/full/0/default.jpg"
+        "images/yale/029_15v.jpg"
       ],
       "text_lines": [
         {
@@ -5265,13 +5350,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 72
+      "word_count": 72,
+      "image_files": [
+        "029_15v.jpg"
+      ]
     },
     {
       "folio_id": "f16r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006104/full/full/0/default.jpg"
+        "images/yale/030_16r.jpg"
       ],
       "text_lines": [
         {
@@ -5452,13 +5540,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 84
+      "word_count": 84,
+      "image_files": [
+        "030_16r.jpg"
+      ]
     },
     {
       "folio_id": "f16v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006105/full/full/0/default.jpg"
+        "images/yale/031_16v.jpg"
       ],
       "text_lines": [
         {
@@ -5631,13 +5722,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 76
+      "word_count": 76,
+      "image_files": [
+        "031_16v.jpg"
+      ]
     },
     {
       "folio_id": "f17r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006106/full/full/0/default.jpg"
+        "images/yale/032_17r.jpg"
       ],
       "text_lines": [
         {
@@ -5814,13 +5908,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 80
+      "word_count": 80,
+      "image_files": [
+        "032_17r.jpg"
+      ]
     },
     {
       "folio_id": "f17v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006107/full/full/0/default.jpg"
+        "images/yale/033_17v.jpg"
       ],
       "text_lines": [
         {
@@ -6122,13 +6219,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 135
+      "word_count": 135,
+      "image_files": [
+        "033_17v.jpg"
+      ]
     },
     {
       "folio_id": "f18r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006108/full/full/0/default.jpg"
+        "images/yale/034_18r.jpg"
       ],
       "text_lines": [
         {
@@ -6316,13 +6416,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 84
+      "word_count": 84,
+      "image_files": [
+        "034_18r.jpg"
+      ]
     },
     {
       "folio_id": "f18v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006109/full/full/0/default.jpg"
+        "images/yale/035_18v.jpg"
       ],
       "text_lines": [
         {
@@ -6467,13 +6570,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 69
+      "word_count": 69,
+      "image_files": [
+        "035_18v.jpg"
+      ]
     },
     {
       "folio_id": "f19r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006110/full/full/0/default.jpg"
+        "images/yale/036_19r.jpg"
       ],
       "text_lines": [
         {
@@ -6648,13 +6754,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 78
+      "word_count": 78,
+      "image_files": [
+        "036_19r.jpg"
+      ]
     },
     {
       "folio_id": "f19v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006111/full/full/0/default.jpg"
+        "images/yale/037_19v.jpg"
       ],
       "text_lines": [
         {
@@ -6836,13 +6945,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 78
+      "word_count": 78,
+      "image_files": [
+        "037_19v.jpg"
+      ]
     },
     {
       "folio_id": "f20r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006112/full/full/0/default.jpg"
+        "images/yale/038_20r.jpg"
       ],
       "text_lines": [
         {
@@ -7028,13 +7140,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 89
+      "word_count": 89,
+      "image_files": [
+        "038_20r.jpg"
+      ]
     },
     {
       "folio_id": "f20v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006113/full/full/0/default.jpg"
+        "images/yale/039_20v.jpg"
       ],
       "text_lines": [
         {
@@ -7203,13 +7318,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 86
+      "word_count": 86,
+      "image_files": [
+        "039_20v.jpg"
+      ]
     },
     {
       "folio_id": "f21r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006114/full/full/0/default.jpg"
+        "images/yale/040_21r.jpg"
       ],
       "text_lines": [
         {
@@ -7403,13 +7521,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 104
+      "word_count": 104,
+      "image_files": [
+        "040_21r.jpg"
+      ]
     },
     {
       "folio_id": "f21v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006115/full/full/0/default.jpg"
+        "images/yale/041_21v.jpg"
       ],
       "text_lines": [
         {
@@ -7529,13 +7650,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 58
+      "word_count": 58,
+      "image_files": [
+        "041_21v.jpg"
+      ]
     },
     {
       "folio_id": "f22r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006116/full/full/0/default.jpg"
+        "images/yale/042_22r.jpg"
       ],
       "text_lines": [
         {
@@ -7743,13 +7867,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 111
+      "word_count": 111,
+      "image_files": [
+        "042_22r.jpg"
+      ]
     },
     {
       "folio_id": "f22v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006117/full/full/0/default.jpg"
+        "images/yale/043_22v.jpg"
       ],
       "text_lines": [
         {
@@ -7944,13 +8071,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 77
+      "word_count": 77,
+      "image_files": [
+        "043_22v.jpg"
+      ]
     },
     {
       "folio_id": "f23r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006118/full/full/0/default.jpg"
+        "images/yale/044_23r.jpg"
       ],
       "text_lines": [
         {
@@ -8143,13 +8273,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 110
+      "word_count": 110,
+      "image_files": [
+        "044_23r.jpg"
+      ]
     },
     {
       "folio_id": "f23v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006119/full/full/0/default.jpg"
+        "images/yale/045_23v.jpg"
       ],
       "text_lines": [
         {
@@ -8334,13 +8467,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 95
+      "word_count": 95,
+      "image_files": [
+        "045_23v.jpg"
+      ]
     },
     {
       "folio_id": "f24r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006120/full/full/0/default.jpg"
+        "images/yale/046_24r.jpg"
       ],
       "text_lines": [
         {
@@ -8596,13 +8732,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 110
+      "word_count": 110,
+      "image_files": [
+        "046_24r.jpg"
+      ]
     },
     {
       "folio_id": "f24v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006121/full/full/0/default.jpg"
+        "images/yale/047_24v.jpg"
       ],
       "text_lines": [
         {
@@ -8805,13 +8944,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 85
+      "word_count": 85,
+      "image_files": [
+        "047_24v.jpg"
+      ]
     },
     {
       "folio_id": "f25r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006122/full/full/0/default.jpg"
+        "images/yale/048_25r.jpg"
       ],
       "text_lines": [
         {
@@ -8913,13 +9055,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 47
+      "word_count": 47,
+      "image_files": [
+        "048_25r.jpg"
+      ]
     },
     {
       "folio_id": "f25v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006123/full/full/0/default.jpg"
+        "images/yale/049_25v.jpg"
       ],
       "text_lines": [
         {
@@ -9034,13 +9179,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 60
+      "word_count": 60,
+      "image_files": [
+        "049_25v.jpg"
+      ]
     },
     {
       "folio_id": "f26r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006124/full/full/0/default.jpg"
+        "images/yale/050_26r.jpg"
       ],
       "text_lines": [
         {
@@ -9206,13 +9354,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 90
+      "word_count": 90,
+      "image_files": [
+        "050_26r.jpg"
+      ]
     },
     {
       "folio_id": "f26v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006125/full/full/0/default.jpg"
+        "images/yale/051_26v.jpg"
       ],
       "text_lines": [
         {
@@ -9374,13 +9525,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 93
+      "word_count": 93,
+      "image_files": [
+        "051_26v.jpg"
+      ]
     },
     {
       "folio_id": "f27r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006126/full/full/0/default.jpg"
+        "images/yale/052_27r.jpg"
       ],
       "text_lines": [
         {
@@ -9571,13 +9725,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 94
+      "word_count": 94,
+      "image_files": [
+        "052_27r.jpg"
+      ]
     },
     {
       "folio_id": "f27v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006127/full/full/0/default.jpg"
+        "images/yale/053_27v.jpg"
       ],
       "text_lines": [
         {
@@ -9700,13 +9857,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 61
+      "word_count": 61,
+      "image_files": [
+        "053_27v.jpg"
+      ]
     },
     {
       "folio_id": "f28r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006128/full/full/0/default.jpg"
+        "images/yale/054_28r.jpg"
       ],
       "text_lines": [
         {
@@ -9843,13 +10003,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 68
+      "word_count": 68,
+      "image_files": [
+        "054_28r.jpg"
+      ]
     },
     {
       "folio_id": "f28v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006129/full/full/0/default.jpg"
+        "images/yale/055_28v.jpg"
       ],
       "text_lines": [
         {
@@ -9986,13 +10149,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 68
+      "word_count": 68,
+      "image_files": [
+        "055_28v.jpg"
+      ]
     },
     {
       "folio_id": "f29r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006130/full/full/0/default.jpg"
+        "images/yale/056_29r.jpg"
       ],
       "text_lines": [
         {
@@ -10126,13 +10292,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 65
+      "word_count": 65,
+      "image_files": [
+        "056_29r.jpg"
+      ]
     },
     {
       "folio_id": "f29v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006131/full/full/0/default.jpg"
+        "images/yale/057_29v.jpg"
       ],
       "text_lines": [
         {
@@ -10316,13 +10485,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 94
+      "word_count": 94,
+      "image_files": [
+        "057_29v.jpg"
+      ]
     },
     {
       "folio_id": "f30r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006132/full/full/0/default.jpg"
+        "images/yale/058_30r.jpg"
       ],
       "text_lines": [
         {
@@ -10518,13 +10690,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 99
+      "word_count": 99,
+      "image_files": [
+        "058_30r.jpg"
+      ]
     },
     {
       "folio_id": "f30v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006133/full/full/0/default.jpg"
+        "images/yale/059_30v.jpg"
       ],
       "text_lines": [
         {
@@ -10670,13 +10845,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 63
+      "word_count": 63,
+      "image_files": [
+        "059_30v.jpg"
+      ]
     },
     {
       "folio_id": "f31r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006134/full/full/0/default.jpg"
+        "images/yale/060_31r.jpg"
       ],
       "text_lines": [
         {
@@ -10897,13 +11075,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 103
+      "word_count": 103,
+      "image_files": [
+        "060_31r.jpg"
+      ]
     },
     {
       "folio_id": "f31v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006135/full/full/0/default.jpg"
+        "images/yale/061_31v.jpg"
       ],
       "text_lines": [
         {
@@ -11096,13 +11277,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 110
+      "word_count": 110,
+      "image_files": [
+        "061_31v.jpg"
+      ]
     },
     {
       "folio_id": "f32r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006136/full/full/0/default.jpg"
+        "images/yale/062_32r.jpg"
       ],
       "text_lines": [
         {
@@ -11317,13 +11501,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 76
+      "word_count": 76,
+      "image_files": [
+        "062_32r.jpg"
+      ]
     },
     {
       "folio_id": "f32v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006137/full/full/0/default.jpg"
+        "images/yale/063_32v.jpg"
       ],
       "text_lines": [
         {
@@ -11495,13 +11682,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 89
+      "word_count": 89,
+      "image_files": [
+        "063_32v.jpg"
+      ]
     },
     {
       "folio_id": "f33r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006138/full/full/0/default.jpg"
+        "images/yale/064_33r.jpg"
       ],
       "text_lines": [
         {
@@ -11630,13 +11820,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 74
+      "word_count": 74,
+      "image_files": [
+        "064_33r.jpg"
+      ]
     },
     {
       "folio_id": "f33v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006139/full/full/0/default.jpg"
+        "images/yale/065_33v.jpg"
       ],
       "text_lines": [
         {
@@ -11833,13 +12026,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 114
+      "word_count": 114,
+      "image_files": [
+        "065_33v.jpg"
+      ]
     },
     {
       "folio_id": "f34r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006140/full/full/0/default.jpg"
+        "images/yale/066_34r.jpg"
       ],
       "text_lines": [
         {
@@ -12099,13 +12295,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 149
+      "word_count": 149,
+      "image_files": [
+        "066_34r.jpg"
+      ]
     },
     {
       "folio_id": "f34v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006141/full/full/0/default.jpg"
+        "images/yale/067_34v.jpg"
       ],
       "text_lines": [
         {
@@ -12305,13 +12504,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 117
+      "word_count": 117,
+      "image_files": [
+        "067_34v.jpg"
+      ]
     },
     {
       "folio_id": "f35r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006142/full/full/0/default.jpg"
+        "images/yale/068_35r.jpg"
       ],
       "text_lines": [
         {
@@ -12516,13 +12718,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 94
+      "word_count": 94,
+      "image_files": [
+        "068_35r.jpg"
+      ]
     },
     {
       "folio_id": "f35v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006143/full/full/0/default.jpg"
+        "images/yale/069_35v.jpg"
       ],
       "text_lines": [
         {
@@ -12766,13 +12971,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 91
+      "word_count": 91,
+      "image_files": [
+        "069_35v.jpg"
+      ]
     },
     {
       "folio_id": "f36r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006144/full/full/0/default.jpg"
+        "images/yale/070_36r.jpg"
       ],
       "text_lines": [
         {
@@ -12904,13 +13112,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 63
+      "word_count": 63,
+      "image_files": [
+        "070_36r.jpg"
+      ]
     },
     {
       "folio_id": "f36v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006145/full/full/0/default.jpg"
+        "images/yale/071_36v.jpg"
       ],
       "text_lines": [
         {
@@ -13090,13 +13301,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 76
+      "word_count": 76,
+      "image_files": [
+        "071_36v.jpg"
+      ]
     },
     {
       "folio_id": "f37r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006146/full/full/0/default.jpg"
+        "images/yale/072_37r.jpg"
       ],
       "text_lines": [
         {
@@ -13257,13 +13471,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 78
+      "word_count": 78,
+      "image_files": [
+        "072_37r.jpg"
+      ]
     },
     {
       "folio_id": "f37v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006147/full/full/0/default.jpg"
+        "images/yale/073_37v.jpg"
       ],
       "text_lines": [
         {
@@ -13519,13 +13736,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 89
+      "word_count": 89,
+      "image_files": [
+        "073_37v.jpg"
+      ]
     },
     {
       "folio_id": "f38r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006148/full/full/0/default.jpg"
+        "images/yale/074_38r.jpg"
       ],
       "text_lines": [
         {
@@ -13617,13 +13837,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 44
+      "word_count": 44,
+      "image_files": [
+        "074_38r.jpg"
+      ]
     },
     {
       "folio_id": "f38v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006149/full/full/0/default.jpg"
+        "images/yale/075_38v.jpg"
       ],
       "text_lines": [
         {
@@ -13753,13 +13976,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 68
+      "word_count": 68,
+      "image_files": [
+        "075_38v.jpg"
+      ]
     },
     {
       "folio_id": "f39r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006150/full/full/0/default.jpg"
+        "images/yale/076_39r.jpg"
       ],
       "text_lines": [
         {
@@ -14034,13 +14260,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 157
+      "word_count": 157,
+      "image_files": [
+        "076_39r.jpg"
+      ]
     },
     {
       "folio_id": "f39v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006151/full/full/0/default.jpg"
+        "images/yale/077_39v.jpg"
       ],
       "text_lines": [
         {
@@ -14290,13 +14519,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 146
+      "word_count": 146,
+      "image_files": [
+        "077_39v.jpg"
+      ]
     },
     {
       "folio_id": "f40r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006152/full/full/0/default.jpg"
+        "images/yale/078_40r.jpg"
       ],
       "text_lines": [
         {
@@ -14482,13 +14714,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 103
+      "word_count": 103,
+      "image_files": [
+        "078_40r.jpg"
+      ]
     },
     {
       "folio_id": "f40v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006153/full/full/0/default.jpg"
+        "images/yale/079_40v.jpg"
       ],
       "text_lines": [
         {
@@ -14732,13 +14967,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 105
+      "word_count": 105,
+      "image_files": [
+        "079_40v.jpg"
+      ]
     },
     {
       "folio_id": "f41r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006154/full/full/0/default.jpg"
+        "images/yale/080_41r.jpg"
       ],
       "text_lines": [
         {
@@ -14918,13 +15156,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 97
+      "word_count": 97,
+      "image_files": [
+        "080_41r.jpg"
+      ]
     },
     {
       "folio_id": "f41v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006155/full/full/0/default.jpg"
+        "images/yale/081_41v.jpg"
       ],
       "text_lines": [
         {
@@ -15052,13 +15293,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 66
+      "word_count": 66,
+      "image_files": [
+        "081_41v.jpg"
+      ]
     },
     {
       "folio_id": "f42r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006156/full/full/0/default.jpg"
+        "images/yale/082_42r.jpg"
       ],
       "text_lines": [
         {
@@ -15366,13 +15610,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 141
+      "word_count": 141,
+      "image_files": [
+        "082_42r.jpg"
+      ]
     },
     {
       "folio_id": "f42v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006157/full/full/0/default.jpg"
+        "images/yale/083_42v.jpg"
       ],
       "text_lines": [
         {
@@ -15606,13 +15853,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 116
+      "word_count": 116,
+      "image_files": [
+        "083_42v.jpg"
+      ]
     },
     {
       "folio_id": "f43r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006158/full/full/0/default.jpg"
+        "images/yale/084_43r.jpg"
       ],
       "text_lines": [
         {
@@ -15869,13 +16119,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 153
+      "word_count": 153,
+      "image_files": [
+        "084_43r.jpg"
+      ]
     },
     {
       "folio_id": "f43v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006159/full/full/0/default.jpg"
+        "images/yale/085_43v.jpg"
       ],
       "text_lines": [
         {
@@ -16144,13 +16397,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 151
+      "word_count": 151,
+      "image_files": [
+        "085_43v.jpg"
+      ]
     },
     {
       "folio_id": "f44r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006160/full/full/0/default.jpg"
+        "images/yale/086_44r.jpg"
       ],
       "text_lines": [
         {
@@ -16307,13 +16563,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 74
+      "word_count": 74,
+      "image_files": [
+        "086_44r.jpg"
+      ]
     },
     {
       "folio_id": "f44v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006161/full/full/0/default.jpg"
+        "images/yale/087_44v.jpg"
       ],
       "text_lines": [
         {
@@ -16510,13 +16769,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 100
+      "word_count": 100,
+      "image_files": [
+        "087_44v.jpg"
+      ]
     },
     {
       "folio_id": "f45r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006162/full/full/0/default.jpg"
+        "images/yale/088_45r.jpg"
       ],
       "text_lines": [
         {
@@ -16688,13 +16950,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 89
+      "word_count": 89,
+      "image_files": [
+        "088_45r.jpg"
+      ]
     },
     {
       "folio_id": "f45v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006163/full/full/0/default.jpg"
+        "images/yale/089_45v.jpg"
       ],
       "text_lines": [
         {
@@ -16862,13 +17127,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 85
+      "word_count": 85,
+      "image_files": [
+        "089_45v.jpg"
+      ]
     },
     {
       "folio_id": "f46r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006164/full/full/0/default.jpg"
+        "images/yale/090_46r.jpg"
       ],
       "text_lines": [
         {
@@ -17142,13 +17410,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 163
+      "word_count": 163,
+      "image_files": [
+        "090_46r.jpg"
+      ]
     },
     {
       "folio_id": "f46v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006165/full/full/0/default.jpg"
+        "images/yale/091_46v.jpg"
       ],
       "text_lines": [
         {
@@ -17356,13 +17627,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 111
+      "word_count": 111,
+      "image_files": [
+        "091_46v.jpg"
+      ]
     },
     {
       "folio_id": "f47r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006166/full/full/0/default.jpg"
+        "images/yale/092_47r.jpg"
       ],
       "text_lines": [
         {
@@ -17521,13 +17795,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 76
+      "word_count": 76,
+      "image_files": [
+        "092_47r.jpg"
+      ]
     },
     {
       "folio_id": "f47v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006167/full/full/0/default.jpg"
+        "images/yale/093_47v.jpg"
       ],
       "text_lines": [
         {
@@ -17716,13 +17993,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 85
+      "word_count": 85,
+      "image_files": [
+        "093_47v.jpg"
+      ]
     },
     {
       "folio_id": "f48r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006168/full/full/0/default.jpg"
+        "images/yale/094_48r.jpg"
       ],
       "text_lines": [
         {
@@ -17880,13 +18160,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 89
+      "word_count": 89,
+      "image_files": [
+        "094_48r.jpg"
+      ]
     },
     {
       "folio_id": "f48v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006169/full/full/0/default.jpg"
+        "images/yale/095_48v.jpg"
       ],
       "text_lines": [
         {
@@ -18097,13 +18380,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 128
+      "word_count": 128,
+      "image_files": [
+        "095_48v.jpg"
+      ]
     },
     {
       "folio_id": "f49r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006170/full/full/0/default.jpg"
+        "images/yale/096_49r.jpg"
       ],
       "text_lines": [
         {
@@ -18370,13 +18656,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 114
+      "word_count": 114,
+      "image_files": [
+        "096_49r.jpg"
+      ]
     },
     {
       "folio_id": "f49v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006171/full/full/0/default.jpg"
+        "images/yale/097_49v.jpg"
       ],
       "text_lines": [
         {
@@ -18915,13 +19204,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 169
+      "word_count": 169,
+      "image_files": [
+        "097_49v.jpg"
+      ]
     },
     {
       "folio_id": "f50r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006172/full/full/0/default.jpg"
+        "images/yale/098_50r.jpg"
       ],
       "text_lines": [
         {
@@ -19090,13 +19382,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 93
+      "word_count": 93,
+      "image_files": [
+        "098_50r.jpg"
+      ]
     },
     {
       "folio_id": "f50v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006173/full/full/0/default.jpg"
+        "images/yale/099_50v.jpg"
       ],
       "text_lines": [
         {
@@ -19279,13 +19574,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 100
+      "word_count": 100,
+      "image_files": [
+        "099_50v.jpg"
+      ]
     },
     {
       "folio_id": "f51r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006174/full/full/0/default.jpg"
+        "images/yale/100_51r.jpg"
       ],
       "text_lines": [
         {
@@ -19485,13 +19783,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 89
+      "word_count": 89,
+      "image_files": [
+        "100_51r.jpg"
+      ]
     },
     {
       "folio_id": "f51v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006175/full/full/0/default.jpg"
+        "images/yale/101_51v.jpg"
       ],
       "text_lines": [
         {
@@ -19670,13 +19971,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 82
+      "word_count": 82,
+      "image_files": [
+        "101_51v.jpg"
+      ]
     },
     {
       "folio_id": "f52r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006176/full/full/0/default.jpg"
+        "images/yale/102_52r.jpg"
       ],
       "text_lines": [
         {
@@ -19807,13 +20111,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 69
+      "word_count": 69,
+      "image_files": [
+        "102_52r.jpg"
+      ]
     },
     {
       "folio_id": "f52v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006177/full/full/0/default.jpg"
+        "images/yale/103_52v.jpg"
       ],
       "text_lines": [
         {
@@ -19995,13 +20302,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 78
+      "word_count": 78,
+      "image_files": [
+        "103_52v.jpg"
+      ]
     },
     {
       "folio_id": "f53r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006178/full/full/0/default.jpg"
+        "images/yale/104_53r.jpg"
       ],
       "text_lines": [
         {
@@ -20131,13 +20441,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 61
+      "word_count": 61,
+      "image_files": [
+        "104_53r.jpg"
+      ]
     },
     {
       "folio_id": "f53v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006179/full/full/0/default.jpg"
+        "images/yale/105_53v.jpg"
       ],
       "text_lines": [
         {
@@ -20307,13 +20620,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 73
+      "word_count": 73,
+      "image_files": [
+        "105_53v.jpg"
+      ]
     },
     {
       "folio_id": "f54r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006180/full/full/0/default.jpg"
+        "images/yale/106_54r.jpg"
       ],
       "text_lines": [
         {
@@ -20513,13 +20829,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 110
+      "word_count": 110,
+      "image_files": [
+        "106_54r.jpg"
+      ]
     },
     {
       "folio_id": "f54v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006181/full/full/0/default.jpg"
+        "images/yale/107_54v.jpg"
       ],
       "text_lines": [
         {
@@ -20730,13 +21049,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 93
+      "word_count": 93,
+      "image_files": [
+        "107_54v.jpg"
+      ]
     },
     {
       "folio_id": "f55r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006182/full/full/0/default.jpg"
+        "images/yale/108_55r.jpg"
       ],
       "text_lines": [
         {
@@ -20957,13 +21279,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 124
+      "word_count": 124,
+      "image_files": [
+        "108_55r.jpg"
+      ]
     },
     {
       "folio_id": "f55v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006183/full/full/0/default.jpg"
+        "images/yale/109_55v.jpg"
       ],
       "text_lines": [
         {
@@ -21158,13 +21483,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 105
+      "word_count": 105,
+      "image_files": [
+        "109_55v.jpg"
+      ]
     },
     {
       "folio_id": "f56r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006184/full/full/0/default.jpg"
+        "images/yale/110_56r.jpg"
       ],
       "text_lines": [
         {
@@ -21406,13 +21734,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 103
+      "word_count": 103,
+      "image_files": [
+        "110_56r.jpg"
+      ]
     },
     {
       "folio_id": "f56v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006185/full/full/0/default.jpg"
+        "images/yale/111_56v.jpg"
       ],
       "text_lines": [
         {
@@ -21621,13 +21952,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 91
+      "word_count": 91,
+      "image_files": [
+        "111_56v.jpg"
+      ]
     },
     {
       "folio_id": "f57r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006186/full/full/0/default.jpg"
+        "images/yale/112_57r.jpg"
       ],
       "text_lines": [
         {
@@ -21797,13 +22131,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 87
+      "word_count": 87,
+      "image_files": [
+        "112_57r.jpg"
+      ]
     },
     {
       "folio_id": "f57v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006187/full/full/0/default.jpg"
+        "images/yale/113_57v.jpg"
       ],
       "text_lines": [
         {
@@ -22098,13 +22435,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 198
+      "word_count": 198,
+      "image_files": [
+        "113_57v.jpg"
+      ]
     },
     {
       "folio_id": "f58r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006188/full/full/0/default.jpg"
+        "images/yale/114_58r.jpg"
       ],
       "text_lines": [
         {
@@ -22775,13 +23115,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 378
+      "word_count": 378,
+      "image_files": [
+        "114_58r.jpg"
+      ]
     },
     {
       "folio_id": "f58v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006189/full/full/0/default.jpg"
+        "images/yale/115_58v.jpg"
       ],
       "text_lines": [
         {
@@ -23435,13 +23778,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 375
+      "word_count": 375,
+      "image_files": [
+        "115_58v.jpg"
+      ]
     },
     {
       "folio_id": "f65r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006190/full/full/0/default.jpg"
+        "images/yale/116_65r.jpg"
       ],
       "text_lines": [
         {
@@ -23457,13 +23803,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 3
+      "word_count": 3,
+      "image_files": [
+        "116_65r.jpg"
+      ]
     },
     {
       "folio_id": "f65v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006191/full/full/0/default.jpg"
+        "images/yale/117_65v.jpg"
       ],
       "text_lines": [
         {
@@ -23556,13 +23905,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 45
+      "word_count": 45,
+      "image_files": [
+        "117_65v.jpg"
+      ]
     },
     {
       "folio_id": "f66r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006192/full/full/0/default.jpg"
+        "images/yale/118_66r.jpg"
       ],
       "text_lines": [
         {
@@ -24490,13 +24842,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 348
+      "word_count": 348,
+      "image_files": [
+        "118_66r.jpg"
+      ]
     },
     {
       "folio_id": "f66v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006193/full/full/0/default.jpg"
+        "images/yale/119_66v.jpg"
       ],
       "text_lines": [
         {
@@ -24707,13 +25062,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 114
+      "word_count": 114,
+      "image_files": [
+        "119_66v.jpg"
+      ]
     },
     {
       "folio_id": "f67r1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006194/full/full/0/default.jpg"
+        "images/yale/120_67r.jpg"
       ],
       "text_lines": [
         {
@@ -25019,13 +25377,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 167
+      "word_count": 167,
+      "image_files": [
+        "120_67r.jpg"
+      ]
     },
     {
       "folio_id": "f67r2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006194/full/full/0/default.jpg"
+        "images/yale/120_67r.jpg"
       ],
       "text_lines": [
         {
@@ -25739,13 +26100,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 190
+      "word_count": 190,
+      "image_files": [
+        "120_67r.jpg"
+      ]
     },
     {
       "folio_id": "f67v2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006195/full/full/0/default.jpg"
+        "images/yale/121_67v.jpg"
       ],
       "text_lines": [
         {
@@ -25967,13 +26331,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 62
+      "word_count": 62,
+      "image_files": [
+        "121_67v.jpg"
+      ]
     },
     {
       "folio_id": "f67v1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006195/full/full/0/default.jpg"
+        "images/yale/121_67v.jpg"
       ],
       "text_lines": [
         {
@@ -26255,13 +26622,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 73
+      "word_count": 73,
+      "image_files": [
+        "121_67v.jpg"
+      ]
     },
     {
       "folio_id": "f68r1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006196/full/full/0/default.jpg"
+        "images/yale/122_68r.jpg"
       ],
       "text_lines": [
         {
@@ -26591,13 +26961,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 65
+      "word_count": 65,
+      "image_files": [
+        "122_68r.jpg"
+      ]
     },
     {
       "folio_id": "f68r2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006196/full/full/0/default.jpg"
+        "images/yale/122_68r.jpg"
       ],
       "text_lines": [
         {
@@ -26902,13 +27275,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 82
+      "word_count": 82,
+      "image_files": [
+        "122_68r.jpg"
+      ]
     },
     {
       "folio_id": "f68r3",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006196/full/full/0/default.jpg"
+        "images/yale/122_68r.jpg"
       ],
       "text_lines": [
         {
@@ -27174,13 +27550,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 106
+      "word_count": 106,
+      "image_files": [
+        "122_68r.jpg"
+      ]
     },
     {
       "folio_id": "f68v3",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006197/full/full/0/default.jpg"
+        "images/yale/123_68v.jpg"
       ],
       "text_lines": [
         {
@@ -27488,13 +27867,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 169
+      "word_count": 169,
+      "image_files": [
+        "123_68v.jpg"
+      ]
     },
     {
       "folio_id": "f68v2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006197/full/full/0/default.jpg"
+        "images/yale/123_68v.jpg"
       ],
       "text_lines": [
         {
@@ -27729,13 +28111,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 103
+      "word_count": 103,
+      "image_files": [
+        "123_68v.jpg"
+      ]
     },
     {
       "folio_id": "f68v1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006197/full/full/0/default.jpg"
+        "images/yale/123_68v.jpg"
       ],
       "text_lines": [
         {
@@ -27908,13 +28293,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 97
+      "word_count": 97,
+      "image_files": [
+        "123_68v.jpg"
+      ]
     },
     {
       "folio_id": "f69r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006198/full/full/0/default.jpg"
+        "images/yale/124_69r.jpg"
       ],
       "text_lines": [
         {
@@ -28421,13 +28809,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 158
+      "word_count": 158,
+      "image_files": [
+        "124_69r.jpg"
+      ]
     },
     {
       "folio_id": "f69v",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006199/full/full/0/default.jpg"
+        "images/yale/125_69v_and_70r.jpg"
       ],
       "text_lines": [
         {
@@ -28792,14 +29183,15 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 142
+      "word_count": 142,
+      "image_files": [
+        "125_69v_and_70r.jpg"
+      ]
     },
     {
       "folio_id": "f70r1",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006199/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@Cc",
@@ -29049,14 +29441,13 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 112
+      "word_count": 112,
+      "image_files": []
     },
     {
       "folio_id": "f70r2",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006199/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@P1",
@@ -29440,13 +29831,14 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 246
+      "word_count": 246,
+      "image_files": []
     },
     {
       "folio_id": "f70v2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006200/full/full/0/default.jpg"
+        "images/yale/126_70v_part.jpg"
       ],
       "text_lines": [
         {
@@ -29814,13 +30206,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 131
+      "word_count": 131,
+      "image_files": [
+        "126_70v_part.jpg"
+      ]
     },
     {
       "folio_id": "f70v1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006201/full/full/0/default.jpg"
+        "images/yale/126_70v_part.jpg"
       ],
       "text_lines": [
         {
@@ -30031,13 +30426,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 86
+      "word_count": 86,
+      "image_files": [
+        "126_70v_part.jpg"
+      ]
     },
     {
       "folio_id": "f71r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006202/full/full/0/default.jpg"
+        "images/yale/128_71r.jpg"
       ],
       "text_lines": [
         {
@@ -30259,13 +30657,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 90
+      "word_count": 90,
+      "image_files": [
+        "128_71r.jpg"
+      ]
     },
     {
       "folio_id": "f71v",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006203/full/full/0/default.jpg"
+        "images/yale/129_71v_and_72r.jpg"
       ],
       "text_lines": [
         {
@@ -30497,14 +30898,15 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 100
+      "word_count": 100,
+      "image_files": [
+        "129_71v_and_72r.jpg"
+      ]
     },
     {
       "folio_id": "f72r1",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006203/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@Cc",
@@ -30740,14 +31142,13 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 105
+      "word_count": 105,
+      "image_files": []
     },
     {
       "folio_id": "f72r2",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006203/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@Lz",
@@ -31089,14 +31490,13 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 113
+      "word_count": 113,
+      "image_files": []
     },
     {
       "folio_id": "f72r3",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006203/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@Cc",
@@ -31504,13 +31904,14 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 165
+      "word_count": 165,
+      "image_files": []
     },
     {
       "folio_id": "f72v3",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006204/full/full/0/default.jpg"
+        "images/yale/130_72v_part.jpg"
       ],
       "text_lines": [
         {
@@ -31866,13 +32267,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 119
+      "word_count": 119,
+      "image_files": [
+        "130_72v_part.jpg"
+      ]
     },
     {
       "folio_id": "f72v2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006204/full/full/0/default.jpg"
+        "images/yale/130_72v_part.jpg"
       ],
       "text_lines": [
         {
@@ -32217,13 +32621,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 108
+      "word_count": 108,
+      "image_files": [
+        "130_72v_part.jpg"
+      ]
     },
     {
       "folio_id": "f72v1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006205/full/full/0/default.jpg"
+        "images/yale/130_72v_part.jpg"
       ],
       "text_lines": [
         {
@@ -32564,13 +32971,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 104
+      "word_count": 104,
+      "image_files": [
+        "130_72v_part.jpg"
+      ]
     },
     {
       "folio_id": "f73r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006206/full/full/0/default.jpg"
+        "images/yale/132_73r.jpg"
       ],
       "text_lines": [
         {
@@ -32903,13 +33313,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 96
+      "word_count": 96,
+      "image_files": [
+        "132_73r.jpg"
+      ]
     },
     {
       "folio_id": "f73v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006207/full/full/0/default.jpg"
+        "images/yale/133_73v.jpg"
       ],
       "text_lines": [
         {
@@ -33245,13 +33658,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 99
+      "word_count": 99,
+      "image_files": [
+        "133_73v.jpg"
+      ]
     },
     {
       "folio_id": "f75r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006208/full/full/0/default.jpg"
+        "images/yale/134_75r.jpg"
       ],
       "text_lines": [
         {
@@ -34046,13 +34462,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 418
+      "word_count": 418,
+      "image_files": [
+        "134_75r.jpg"
+      ]
     },
     {
       "folio_id": "f75v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006209/full/full/0/default.jpg"
+        "images/yale/135_75v.jpg"
       ],
       "text_lines": [
         {
@@ -34908,13 +35327,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 360
+      "word_count": 360,
+      "image_files": [
+        "135_75v.jpg"
+      ]
     },
     {
       "folio_id": "f76r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006210/full/full/0/default.jpg"
+        "images/yale/136_76r.jpg"
       ],
       "text_lines": [
         {
@@ -35882,13 +36304,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 570
+      "word_count": 570,
+      "image_files": [
+        "136_76r.jpg"
+      ]
     },
     {
       "folio_id": "f76v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006211/full/full/0/default.jpg"
+        "images/yale/137_76v.jpg"
       ],
       "text_lines": [
         {
@@ -36581,13 +37006,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 400
+      "word_count": 400,
+      "image_files": [
+        "137_76v.jpg"
+      ]
     },
     {
       "folio_id": "f77r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006212/full/full/0/default.jpg"
+        "images/yale/138_77r.jpg"
       ],
       "text_lines": [
         {
@@ -37275,13 +37703,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 332
+      "word_count": 332,
+      "image_files": [
+        "138_77r.jpg"
+      ]
     },
     {
       "folio_id": "f77v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006213/full/full/0/default.jpg"
+        "images/yale/139_77v.jpg"
       ],
       "text_lines": [
         {
@@ -37934,13 +38365,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 332
+      "word_count": 332,
+      "image_files": [
+        "139_77v.jpg"
+      ]
     },
     {
       "folio_id": "f78r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006214/full/full/0/default.jpg"
+        "images/yale/140_78r.jpg"
       ],
       "text_lines": [
         {
@@ -38573,13 +39007,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 298
+      "word_count": 298,
+      "image_files": [
+        "140_78r.jpg"
+      ]
     },
     {
       "folio_id": "f78v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006215/full/full/0/default.jpg"
+        "images/yale/141_78v.jpg"
       ],
       "text_lines": [
         {
@@ -39104,13 +39541,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 295
+      "word_count": 295,
+      "image_files": [
+        "141_78v.jpg"
+      ]
     },
     {
       "folio_id": "f79r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006216/full/full/0/default.jpg"
+        "images/yale/142_79r.jpg"
       ],
       "text_lines": [
         {
@@ -39807,13 +40247,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 383
+      "word_count": 383,
+      "image_files": [
+        "142_79r.jpg"
+      ]
     },
     {
       "folio_id": "f79v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006217/full/full/0/default.jpg"
+        "images/yale/143_79v.jpg"
       ],
       "text_lines": [
         {
@@ -40469,13 +40912,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 356
+      "word_count": 356,
+      "image_files": [
+        "143_79v.jpg"
+      ]
     },
     {
       "folio_id": "f80r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006218/full/full/0/default.jpg"
+        "images/yale/144_80r.jpg"
       ],
       "text_lines": [
         {
@@ -41298,13 +41744,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 446
+      "word_count": 446,
+      "image_files": [
+        "144_80r.jpg"
+      ]
     },
     {
       "folio_id": "f80v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006219/full/full/0/default.jpg"
+        "images/yale/145_80v.jpg"
       ],
       "text_lines": [
         {
@@ -41994,13 +42443,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 376
+      "word_count": 376,
+      "image_files": [
+        "145_80v.jpg"
+      ]
     },
     {
       "folio_id": "f81r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006220/full/full/0/default.jpg"
+        "images/yale/146_81r.jpg"
       ],
       "text_lines": [
         {
@@ -42433,13 +42885,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 210
+      "word_count": 210,
+      "image_files": [
+        "146_81r.jpg"
+      ]
     },
     {
       "folio_id": "f81v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006221/full/full/0/default.jpg"
+        "images/yale/147_81v.jpg"
       ],
       "text_lines": [
         {
@@ -42896,13 +43351,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 255
+      "word_count": 255,
+      "image_files": [
+        "147_81v.jpg"
+      ]
     },
     {
       "folio_id": "f82r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006222/full/full/0/default.jpg"
+        "images/yale/148_82r.jpg"
       ],
       "text_lines": [
         {
@@ -43514,13 +43972,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 291
+      "word_count": 291,
+      "image_files": [
+        "148_82r.jpg"
+      ]
     },
     {
       "folio_id": "f82v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006223/full/full/0/default.jpg"
+        "images/yale/149_82v.jpg"
       ],
       "text_lines": [
         {
@@ -44182,13 +44643,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 320
+      "word_count": 320,
+      "image_files": [
+        "149_82v.jpg"
+      ]
     },
     {
       "folio_id": "f83r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006224/full/full/0/default.jpg"
+        "images/yale/150_83r.jpg"
       ],
       "text_lines": [
         {
@@ -44924,13 +45388,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 345
+      "word_count": 345,
+      "image_files": [
+        "150_83r.jpg"
+      ]
     },
     {
       "folio_id": "f83v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006225/full/full/0/default.jpg"
+        "images/yale/151_83v.jpg"
       ],
       "text_lines": [
         {
@@ -45442,13 +45909,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 261
+      "word_count": 261,
+      "image_files": [
+        "151_83v.jpg"
+      ]
     },
     {
       "folio_id": "f84r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006226/full/full/0/default.jpg"
+        "images/yale/152_84r.jpg"
       ],
       "text_lines": [
         {
@@ -46151,13 +46621,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 368
+      "word_count": 368,
+      "image_files": [
+        "152_84r.jpg"
+      ]
     },
     {
       "folio_id": "f84v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006227/full/full/0/default.jpg"
+        "images/yale/153_84v.jpg"
       ],
       "text_lines": [
         {
@@ -46861,13 +47334,17 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 341
+      "word_count": 341,
+      "image_files": [
+        "153_84v.jpg"
+      ]
     },
     {
       "folio_id": "f85r1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006228/full/full/0/default.jpg"
+        "images/yale/154_85r_part_part_of_85_86_foldout.jpg",
+        "images/yale/155_85r_part_86v_part_part_of_85_86_foldout.jpg"
       ],
       "text_lines": [
         {
@@ -47465,13 +47942,18 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 347
+      "word_count": 347,
+      "image_files": [
+        "154_85r_part_part_of_85_86_foldout.jpg",
+        "155_85r_part_86v_part_part_of_85_86_foldout.jpg"
+      ]
     },
     {
       "folio_id": "f85r2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006229/full/full/0/default.jpg"
+        "images/yale/154_85r_part_part_of_85_86_foldout.jpg",
+        "images/yale/155_85r_part_86v_part_part_of_85_86_foldout.jpg"
       ],
       "text_lines": [
         {
@@ -47801,14 +48283,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 156
+      "word_count": 156,
+      "image_files": [
+        "154_85r_part_part_of_85_86_foldout.jpg",
+        "155_85r_part_86v_part_part_of_85_86_foldout.jpg"
+      ]
     },
     {
       "folio_id": "fRos",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006231/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@L0",
@@ -49473,13 +49957,14 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 540
+      "word_count": 540,
+      "image_files": []
     },
     {
       "folio_id": "f86v4",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006229/full/full/0/default.jpg"
+        "images/yale/156_86v_part_part_of_85_86_foldout.jpg"
       ],
       "text_lines": [
         {
@@ -49739,13 +50224,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 191
+      "word_count": 191,
+      "image_files": [
+        "156_86v_part_part_of_85_86_foldout.jpg"
+      ]
     },
     {
       "folio_id": "f86v6",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006229/full/full/0/default.jpg"
+        "images/yale/156_86v_part_part_of_85_86_foldout.jpg"
       ],
       "text_lines": [
         {
@@ -50556,13 +51044,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 490
+      "word_count": 490,
+      "image_files": [
+        "156_86v_part_part_of_85_86_foldout.jpg"
+      ]
     },
     {
       "folio_id": "f86v5",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006230/full/full/0/default.jpg"
+        "images/yale/156_86v_part_part_of_85_86_foldout.jpg"
       ],
       "text_lines": [
         {
@@ -51231,13 +51722,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 390
+      "word_count": 390,
+      "image_files": [
+        "156_86v_part_part_of_85_86_foldout.jpg"
+      ]
     },
     {
       "folio_id": "f86v3",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006230/full/full/0/default.jpg"
+        "images/yale/156_86v_part_part_of_85_86_foldout.jpg"
       ],
       "text_lines": [
         {
@@ -51776,13 +52270,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 281
+      "word_count": 281,
+      "image_files": [
+        "156_86v_part_part_of_85_86_foldout.jpg"
+      ]
     },
     {
       "folio_id": "f87r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006232/full/full/0/default.jpg"
+        "images/yale/158_87r.jpg"
       ],
       "text_lines": [
         {
@@ -52002,13 +52499,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 102
+      "word_count": 102,
+      "image_files": [
+        "158_87r.jpg"
+      ]
     },
     {
       "folio_id": "f87v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1043429/full/full/0/default.jpg"
+        "images/yale/159_87v.jpg"
       ],
       "text_lines": [
         {
@@ -52218,13 +52718,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 92
+      "word_count": 92,
+      "image_files": [
+        "159_87v.jpg"
+      ]
     },
     {
       "folio_id": "f88r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1037112/full/full/0/default.jpg"
+        "images/yale/160_88r.jpg"
       ],
       "text_lines": [
         {
@@ -52597,13 +53100,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 150
+      "word_count": 150,
+      "image_files": [
+        "160_88r.jpg"
+      ]
     },
     {
       "folio_id": "f88v",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006233/full/full/0/default.jpg"
+        "images/yale/161_88v_and_89r.jpg"
       ],
       "text_lines": [
         {
@@ -52964,14 +53470,15 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 145
+      "word_count": 145,
+      "image_files": [
+        "161_88v_and_89r.jpg"
+      ]
     },
     {
       "folio_id": "f89r1",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006233/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@Lc",
@@ -53306,14 +53813,13 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 141
+      "word_count": 141,
+      "image_files": []
     },
     {
       "folio_id": "f89r2",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006233/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@Lc",
@@ -53790,13 +54296,14 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 234
+      "word_count": 234,
+      "image_files": []
     },
     {
       "folio_id": "f89v2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006234/full/full/0/default.jpg"
+        "images/yale/162_89v_part.jpg"
       ],
       "text_lines": [
         {
@@ -54172,13 +54679,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 181
+      "word_count": 181,
+      "image_files": [
+        "162_89v_part.jpg"
+      ]
     },
     {
       "folio_id": "f89v1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006235/full/full/0/default.jpg"
+        "images/yale/162_89v_part.jpg"
       ],
       "text_lines": [
         {
@@ -54506,13 +55016,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 154
+      "word_count": 154,
+      "image_files": [
+        "162_89v_part.jpg"
+      ]
     },
     {
       "folio_id": "f90r1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006235/full/full/0/default.jpg"
+        "images/yale/164_90r.jpg"
       ],
       "text_lines": [
         {
@@ -54650,13 +55163,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 69
+      "word_count": 69,
+      "image_files": [
+        "164_90r.jpg"
+      ]
     },
     {
       "folio_id": "f90r2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006235/full/full/0/default.jpg"
+        "images/yale/164_90r.jpg"
       ],
       "text_lines": [
         {
@@ -54751,13 +55267,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 47
+      "word_count": 47,
+      "image_files": [
+        "164_90r.jpg"
+      ]
     },
     {
       "folio_id": "f90v2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006236/full/full/0/default.jpg"
+        "images/yale/165_90v_part.jpg"
       ],
       "text_lines": [
         {
@@ -54887,13 +55406,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 68
+      "word_count": 68,
+      "image_files": [
+        "165_90v_part.jpg"
+      ]
     },
     {
       "folio_id": "f90v1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006237/full/full/0/default.jpg"
+        "images/yale/165_90v_part.jpg"
       ],
       "text_lines": [
         {
@@ -55072,13 +55594,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 96
+      "word_count": 96,
+      "image_files": [
+        "165_90v_part.jpg"
+      ]
     },
     {
       "folio_id": "f93r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006238/full/full/0/default.jpg"
+        "images/yale/166_93r.jpg"
       ],
       "text_lines": [
         {
@@ -55460,13 +55985,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 152
+      "word_count": 152,
+      "image_files": [
+        "166_93r.jpg"
+      ]
     },
     {
       "folio_id": "f93v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006239/full/full/0/default.jpg"
+        "images/yale/167_93v.jpg"
       ],
       "text_lines": [
         {
@@ -55631,13 +56159,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 89
+      "word_count": 89,
+      "image_files": [
+        "167_93v.jpg"
+      ]
     },
     {
       "folio_id": "f94r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006240/full/full/0/default.jpg"
+        "images/yale/168_94r.jpg"
       ],
       "text_lines": [
         {
@@ -55785,13 +56316,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 79
+      "word_count": 79,
+      "image_files": [
+        "168_94r.jpg"
+      ]
     },
     {
       "folio_id": "f94v",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006241/full/full/0/default.jpg"
+        "images/yale/169_94v_and_95r.jpg"
       ],
       "text_lines": [
         {
@@ -55978,14 +56512,15 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 97
+      "word_count": 97,
+      "image_files": [
+        "169_94v_and_95r.jpg"
+      ]
     },
     {
       "folio_id": "f95r1",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006241/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@P0",
@@ -56169,14 +56704,13 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 102
+      "word_count": 102,
+      "image_files": []
     },
     {
       "folio_id": "f95r2",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006241/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@P0",
@@ -56323,13 +56857,14 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 79
+      "word_count": 79,
+      "image_files": []
     },
     {
       "folio_id": "f95v2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006242/full/full/0/default.jpg"
+        "images/yale/170_95v_part.jpg"
       ],
       "text_lines": [
         {
@@ -56444,13 +56979,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 60
+      "word_count": 60,
+      "image_files": [
+        "170_95v_part.jpg"
+      ]
     },
     {
       "folio_id": "f95v1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006243/full/full/0/default.jpg"
+        "images/yale/170_95v_part.jpg"
       ],
       "text_lines": [
         {
@@ -56665,13 +57203,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 118
+      "word_count": 118,
+      "image_files": [
+        "170_95v_part.jpg"
+      ]
     },
     {
       "folio_id": "f96r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006244/full/full/0/default.jpg"
+        "images/yale/172_96r.jpg"
       ],
       "text_lines": [
         {
@@ -56852,13 +57393,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 84
+      "word_count": 84,
+      "image_files": [
+        "172_96r.jpg"
+      ]
     },
     {
       "folio_id": "f96v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006245/full/full/0/default.jpg"
+        "images/yale/173_96v.jpg"
       ],
       "text_lines": [
         {
@@ -57011,13 +57555,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 56
+      "word_count": 56,
+      "image_files": [
+        "173_96v.jpg"
+      ]
     },
     {
       "folio_id": "f99r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006246/full/full/0/default.jpg"
+        "images/yale/174_99r.jpg"
       ],
       "text_lines": [
         {
@@ -57581,13 +58128,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 194
+      "word_count": 194,
+      "image_files": [
+        "174_99r.jpg"
+      ]
     },
     {
       "folio_id": "f99v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006247/full/full/0/default.jpg"
+        "images/yale/175_99v.jpg"
       ],
       "text_lines": [
         {
@@ -58077,13 +58627,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 176
+      "word_count": 176,
+      "image_files": [
+        "175_99v.jpg"
+      ]
     },
     {
       "folio_id": "f100r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006248/full/full/0/default.jpg"
+        "images/yale/176_100r.jpg"
       ],
       "text_lines": [
         {
@@ -58388,13 +58941,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 110
+      "word_count": 110,
+      "image_files": [
+        "176_100r.jpg"
+      ]
     },
     {
       "folio_id": "f100v",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006249/full/full/0/default.jpg"
+        "images/yale/177_100v_and_101r.jpg"
       ],
       "text_lines": [
         {
@@ -58647,13 +59203,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 93
+      "word_count": 93,
+      "image_files": [
+        "177_100v_and_101r.jpg"
+      ]
     },
     {
       "folio_id": "f101r",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006249/full/full/0/default.jpg"
+        "images/yale/177_100v_and_101r.jpg"
       ],
       "text_lines": [
         {
@@ -58956,15 +59515,15 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 227
+      "word_count": 227,
+      "image_files": [
+        "177_100v_and_101r.jpg"
+      ]
     },
     {
       "folio_id": "f101v",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006250/full/full/0/default.jpg",
-        "https://collections.library.yale.edu/iiif/2/1006251/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@Lf",
@@ -59380,14 +59939,13 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 215
+      "word_count": 215,
+      "image_files": []
     },
     {
       "folio_id": "f102r1",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006251/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@Lc",
@@ -59618,14 +60176,13 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 107
+      "word_count": 107,
+      "image_files": []
     },
     {
       "folio_id": "f102r2",
       "type": "foldout",
-      "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006251/full/full/0/default.jpg"
-      ],
+      "image_paths": [],
       "text_lines": [
         {
           "locus": "@Lc",
@@ -59928,13 +60485,14 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 144
+      "word_count": 144,
+      "image_files": []
     },
     {
       "folio_id": "f102v2",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006252/full/full/0/default.jpg"
+        "images/yale/180_102v_part.jpg"
       ],
       "text_lines": [
         {
@@ -60403,13 +60961,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 190
+      "word_count": 190,
+      "image_files": [
+        "180_102v_part.jpg"
+      ]
     },
     {
       "folio_id": "f102v1",
       "type": "foldout",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006253/full/full/0/default.jpg"
+        "images/yale/180_102v_part.jpg"
       ],
       "text_lines": [
         {
@@ -60711,13 +61272,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 128
+      "word_count": 128,
+      "image_files": [
+        "180_102v_part.jpg"
+      ]
     },
     {
       "folio_id": "f103r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006254/full/full/0/default.jpg"
+        "images/yale/182_103r.jpg"
       ],
       "text_lines": [
         {
@@ -61633,13 +62197,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 532
+      "word_count": 532,
+      "image_files": [
+        "182_103r.jpg"
+      ]
     },
     {
       "folio_id": "f103v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006255/full/full/0/default.jpg"
+        "images/yale/183_103v.jpg"
       ],
       "text_lines": [
         {
@@ -62421,13 +62988,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 454
+      "word_count": 454,
+      "image_files": [
+        "183_103v.jpg"
+      ]
     },
     {
       "folio_id": "f104r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006256/full/full/0/default.jpg"
+        "images/yale/184_104r.jpg"
       ],
       "text_lines": [
         {
@@ -63196,13 +63766,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 448
+      "word_count": 448,
+      "image_files": [
+        "184_104r.jpg"
+      ]
     },
     {
       "folio_id": "f104v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006257/full/full/0/default.jpg"
+        "images/yale/185_104v.jpg"
       ],
       "text_lines": [
         {
@@ -63993,13 +64566,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 477
+      "word_count": 477,
+      "image_files": [
+        "185_104v.jpg"
+      ]
     },
     {
       "folio_id": "f105r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006258/full/full/0/default.jpg"
+        "images/yale/186_105r.jpg"
       ],
       "text_lines": [
         {
@@ -64643,13 +65219,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 379
+      "word_count": 379,
+      "image_files": [
+        "186_105r.jpg"
+      ]
     },
     {
       "folio_id": "f105v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006259/full/full/0/default.jpg"
+        "images/yale/187_105v.jpg"
       ],
       "text_lines": [
         {
@@ -65320,13 +65899,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 399
+      "word_count": 399,
+      "image_files": [
+        "187_105v.jpg"
+      ]
     },
     {
       "folio_id": "f106r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006260/full/full/0/default.jpg"
+        "images/yale/188_106r.jpg"
       ],
       "text_lines": [
         {
@@ -66093,13 +66675,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 432
+      "word_count": 432,
+      "image_files": [
+        "188_106r.jpg"
+      ]
     },
     {
       "folio_id": "f106v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006261/full/full/0/default.jpg"
+        "images/yale/189_106v.jpg"
       ],
       "text_lines": [
         {
@@ -66878,13 +67463,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 444
+      "word_count": 444,
+      "image_files": [
+        "189_106v.jpg"
+      ]
     },
     {
       "folio_id": "f107r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006262/full/full/0/default.jpg"
+        "images/yale/190_107r.jpg"
       ],
       "text_lines": [
         {
@@ -67734,13 +68322,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 487
+      "word_count": 487,
+      "image_files": [
+        "190_107r.jpg"
+      ]
     },
     {
       "folio_id": "f107v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006263/full/full/0/default.jpg"
+        "images/yale/191_107v.jpg"
       ],
       "text_lines": [
         {
@@ -68551,13 +69142,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 462
+      "word_count": 462,
+      "image_files": [
+        "191_107v.jpg"
+      ]
     },
     {
       "folio_id": "f108r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006264/full/full/0/default.jpg"
+        "images/yale/192_108r.jpg"
       ],
       "text_lines": [
         {
@@ -69407,13 +70001,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 494
+      "word_count": 494,
+      "image_files": [
+        "192_108r.jpg"
+      ]
     },
     {
       "folio_id": "f108v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006265/full/full/0/default.jpg"
+        "images/yale/193_108v.jpg"
       ],
       "text_lines": [
         {
@@ -70371,13 +70968,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 581
+      "word_count": 581,
+      "image_files": [
+        "193_108v.jpg"
+      ]
     },
     {
       "folio_id": "f111r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006266/full/full/0/default.jpg"
+        "images/yale/194_111r.jpg"
       ],
       "text_lines": [
         {
@@ -71385,13 +71985,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 624
+      "word_count": 624,
+      "image_files": [
+        "194_111r.jpg"
+      ]
     },
     {
       "folio_id": "f111v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006267/full/full/0/default.jpg"
+        "images/yale/195_111v.jpg"
       ],
       "text_lines": [
         {
@@ -72322,13 +72925,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 568
+      "word_count": 568,
+      "image_files": [
+        "195_111v.jpg"
+      ]
     },
     {
       "folio_id": "f112r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006268/full/full/0/default.jpg"
+        "images/yale/196_112r.jpg"
       ],
       "text_lines": [
         {
@@ -73050,13 +73656,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 401
+      "word_count": 401,
+      "image_files": [
+        "196_112r.jpg"
+      ]
     },
     {
       "folio_id": "f112v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006269/full/full/0/default.jpg"
+        "images/yale/197_112v.jpg"
       ],
       "text_lines": [
         {
@@ -73811,13 +74420,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 420
+      "word_count": 420,
+      "image_files": [
+        "197_112v.jpg"
+      ]
     },
     {
       "folio_id": "f113r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006270/full/full/0/default.jpg"
+        "images/yale/198_113r.jpg"
       ],
       "text_lines": [
         {
@@ -74709,13 +75321,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 529
+      "word_count": 529,
+      "image_files": [
+        "198_113r.jpg"
+      ]
     },
     {
       "folio_id": "f113v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006271/full/full/0/default.jpg"
+        "images/yale/199_113v.jpg"
       ],
       "text_lines": [
         {
@@ -75566,13 +76181,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 502
+      "word_count": 502,
+      "image_files": [
+        "199_113v.jpg"
+      ]
     },
     {
       "folio_id": "f114r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006272/full/full/0/default.jpg"
+        "images/yale/200_114r.jpg"
       ],
       "text_lines": [
         {
@@ -76353,13 +76971,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 460
+      "word_count": 460,
+      "image_files": [
+        "200_114r.jpg"
+      ]
     },
     {
       "folio_id": "f114v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006273/full/full/0/default.jpg"
+        "images/yale/201_114v.jpg"
       ],
       "text_lines": [
         {
@@ -77028,13 +77649,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 376
+      "word_count": 376,
+      "image_files": [
+        "201_114v.jpg"
+      ]
     },
     {
       "folio_id": "f115r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006274/full/full/0/default.jpg"
+        "images/yale/202_115r.jpg"
       ],
       "text_lines": [
         {
@@ -77816,13 +78440,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 461
+      "word_count": 461,
+      "image_files": [
+        "202_115r.jpg"
+      ]
     },
     {
       "folio_id": "f115v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006275/full/full/0/default.jpg"
+        "images/yale/203_115v.jpg"
       ],
       "text_lines": [
         {
@@ -78553,13 +79180,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 410
+      "word_count": 410,
+      "image_files": [
+        "203_115v.jpg"
+      ]
     },
     {
       "folio_id": "f116r",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006276/full/full/0/default.jpg"
+        "images/yale/204_116r.jpg"
       ],
       "text_lines": [
         {
@@ -79468,13 +80098,16 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 553
+      "word_count": 553,
+      "image_files": [
+        "204_116r.jpg"
+      ]
     },
     {
       "folio_id": "f116v",
       "type": "integrated",
       "image_paths": [
-        "https://collections.library.yale.edu/iiif/2/1006277/full/full/0/default.jpg"
+        "images/yale/205_116v.jpg"
       ],
       "text_lines": [
         {
@@ -79489,7 +80122,10 @@
       ],
       "has_text": true,
       "has_image": true,
-      "word_count": 2
+      "word_count": 2,
+      "image_files": [
+        "205_116v.jpg"
+      ]
     }
   ]
 }
