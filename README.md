@@ -1,15 +1,18 @@
 # Deciphering the Voynich Manuscript
 
-**The goal of this project is to read the Voynich Manuscript.**
+**We are going to read the Voynich Manuscript.** That is the mission of this repository: solve it and recover what
+it says.
 
-We are working from the bottom up. First we pin down how the text is built: its letters, words, lines and how they
-connect to the drawings. Then we use that structure to find meaning. Every step is tested, so whatever reading comes
-out at the end stands on evidence and not on guesswork.
+The text was written by a person, for readers, about plants, stars, bodies and medicines. It has grammar and
+structure, so it can be cracked. We are building the solution from the bottom up. First we map exactly how the text
+works: its letters, words, lines and how they tie to the drawings. Then we turn that structure into meaning. We keep
+every idea on the table. Each step is tested hard, so when the reading comes, it will hold up.
 
 Investigation lead: Erin Toppe
 Paleographic consultation and independent review: Juan Gabriel Molina
 
-**Status:** the structure layer is well along. The first leads toward meaning are in, and nothing is read yet.
+**Status:** the structure is largely mapped, and the first bridges from text to meaning are found. Next: turn those
+bridges into readable words.
 
 ---
 
