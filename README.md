@@ -1,301 +1,135 @@
-# THE VOYNICH MANUSCRIPT INVESTIGATION
+# The Voynich Manuscript Investigation
 
-## Hypothesis: Structural Relationship Between Text and Imagery in the Voynich Manuscript
+**Status: open investigation.** No reading of the text and no author has been confirmed.
 
-**Current Investigation Status: OPEN — Structural Analysis Underway**
+Investigation lead: Erin Toppe
+Paleographic consultation and independent review: Juan Gabriel Molina
 
-Investigation Lead: Erin Toppe  
-Paleographic Consultation: Juan Gabriel Molina  
-**Status**: 🔬 ONGOING — Investigating measurable relationships between text and imagery
+This repository is a working notebook. It follows several lines of inquiry at once, records failed tests next to
+successful ones, and does not commit to a single answer. Each line below has its own status and its own files.
 
----
-
-## Core Research Question
-
-**Does the Voynich Manuscript show measurable, systematic integration between its cipher text and botanical/illustrative elements?**
-
-If so, this would suggest:
-- Intentional authorial design (not random decorative placement)
-- A unified encoding system rather than separate components
-- Possible connection to documented cipher systems like Fontana's
+**Goals:**
+1. Describe how the Voynich text is built, using tests that are fixed before they are run.
+2. Identify who made the manuscript.
+3. Eventually, read it.
 
 ---
 
-## What We've Established (Tested & Verified)
+## Lines of inquiry
 
-### ✅ Structural Integration: 99.1% Verified
-
-**Finding**: 212 of 214 pages contain BOTH cipher text AND illustrations on the same page.
-
-- File: `VOYNICH_INTEGRATED_COMPLETE.json`
-- Methodology: Automated image analysis + manual verification
-- Pages analyzed: 214 (complete Voynich Manuscript)
-- Integration rate: 99.06542056074767%
-- Exceptions: 2 pages (title page + 1 special illustration page)
-
-**What this proves:**
-- Text and imagery are NOT separated (no "text pages" vs "image pages")
-- Nearly perfect consistency suggests intentional design
-- Pattern rules out random/accidental placement
-
-**What this does NOT prove:**
-- ❌ How the integration works mechanically
-- ❌ What encoding system (if any) connects them
-- ❌ Authorship or dating
-- ❌ Content or meaning of the text
+| Line | Question | Status |
+|---|---|---|
+| [1. Text structure](#1-text-structure) | How do Voynich words and lines behave? | Several results hold up |
+| [2. Stars, zodiac and calendar](#2-stars-zodiac-and-calendar) | Do the astronomical pages carry a calendar, star names or an instrument? | One lead and many negative results |
+| [3. Text and pictures](#3-text-and-pictures) | Is the text tied to the drawings on its page? | Mixed |
+| [4. Authorship: Giovanni Fontana](#4-authorship-giovanni-fontana) | Did Fontana, or his cipher system, produce the manuscript? | Open hypothesis, not demonstrated |
+| [5. Authorship: other candidates and context](#5-authorship-other-candidates-and-context) | Who else fits the time, place and medical content? | Open |
+| [6. Decryption attempts](#6-decryption-attempts) | Does any proposed key give readable text? | None demonstrated |
 
 ---
 
-### ✅ Fontana's Cipher System: Documented
+### 1. Text structure
 
-**Source**: Gallica *Secretum de thesauro* (261 pages)
+Tests on the ZL3b transliteration (`Data/Zl3b-n.txt`), parsed by `parser.py`. These describe the text. They do
+not decode it.
 
-**Fontana's documented cipher includes:**
-- Circle-based vowel patterns (A/E/I/O/U with directional marks)
-- Geometric consonant shapes (21 forms)
-- Steganographic text-image integration techniques
-- Mathematical cipher wheels
+- **-m / -am is a line-end form.** 605 of 861 -m/-am words are line-final (p ≈ 5e-5), confirmed by an independent
+  sample.
+- **Word order carries information,** beyond line-start and line-end habits (p = 0.001).
+- **Set phrases and a grammar link.** Word pairs bind about three times more strongly than in shuffled text, and a
+  word's ending predicts the next word's beginning (for example -dy → qok-).
+- **Rare symbols cluster in first lines,** about four times more than chance, which fits decorated initials.
+- **Not supported:** the C→L→P→R cycle beyond Markov structure, the published glosses, Fibonacci counts,
+  "o" as a name-forming prefix.
 
-**File**: `fontana_cipher_mapping.json`
+Details: [FINDINGS.md](FINDINGS.md), [VALIDATION.md](VALIDATION.md), [REPLICATION.md](REPLICATION.md).
+Scripts: `structural_validation.py`, `blind_holdout.py`, `transfer_test.py`, `test_*.py`.
 
-**What this shows:**
-- Fontana definitely used cipher systems
-- His systems include steganography (hiding text in/under images)
-- His circle-to-consonant ratio is documented as ~9:1
+### 2. Stars, zodiac and calendar
 
-**What we don't know:**
-- ❌ Whether Fontana authored the Voynich
-- ❌ Whether the Voynich uses his specific cipher system
+About 20 pre-registered tests on the astronomical pages (f67–f73).
 
----
+- **Lead:** herbal-page opening words share rare word roots with the star labels on f67r2 and f68r1–3. 13 of 116
+  match, against 4.4 expected (p = 0.0002), and the result holds with a matched control. Example: koaiin ~ okoaly.
+- **Weak:** zodiac labels farther apart on a wheel are slightly less alike (p = 0.0009). A scribe drifting while
+  writing around the wheel would give the same result.
+- **Suggestive only:** f67r2's red and gold moons alternate at 10 of 12 steps (p = 0.067). On the spring signs, 74%
+  of figures stand in tubs, against 1% on the rest (described after looking).
+- **Not supported:** zodiac labels as day names, an astrolabe or volvelle, a star-name crib, moon phases, the 28
+  lunar mansions, the 19-year Metonic cycle, golden numbers, week or month cycles in the starred paragraphs, a
+  planetary metal key.
 
-### ✅ Cipher Architecture Match: Suggestive but Untested
+Details: [VALIDATION.md](VALIDATION.md), [IMAGE_NOTES.md](IMAGE_NOTES.md).
 
-**Observation**: Voynich measured circle-to-geometric-symbol ratio = 9.8:1
+### 3. Text and pictures
 
-**Fontana's documented ratio**: ~9:1
+- Nearly every page carries both text and drawings (212 of 214 pages in `VOYNICH_INTEGRATED_COMPLETE.json`).
+  `build_integrated.py` and `build_control.py` build the dataset and a shuffled control for testing it.
+- Plant and star names share roots (line 2), and bath openings share roots with pharmacy labels (p = 0.00005).
+- **Not supported:** labels repeated in their own page's text, label beginnings by picture type, pharmacy parts
+  naming the same plant as their herbal page.
 
-**Statistical significance**: If random, probability <0.1%
+Files: `fontana_image_text_integration.py`, `IMAGE_TEXT_INTEGRATION_EXTRACTION.md`, `src/spot_pies.py`.
 
-**What this suggests:**
-- The ratio match is NOT coincidental
-- Systematic encoding is likely
+### 4. Authorship: Giovanni Fontana
 
-**What remains untested:**
-- ❌ Does applying Fontana's cipher to the Voynich produce readable Latin?
-- ❌ If so, is the output historically plausible?
-- ❌ Can this be independently verified?
+Giovanni Fontana (Padua, degrees 1418 and 1421) was a physician who wrote in cipher, and his dates fit the
+radiocarbon range of the parchment (1404–1438). This makes him a candidate worth testing.
 
----
+- **What exists:** his cipher in *Secretum de thesauro*, mapped in `fontana_cipher_mapping.json`. The Voynich's
+  ratio of circle to geometric symbols (9.8:1) is close to his (about 9:1).
+- **What is not shown:** applying his cipher to Voynich text has not produced readable Latin, and handwriting
+  comparison is not finished.
 
-## What Remains Open (Not Yet Demonstrated)
+Files: the `FONTANA_*` documents and `fontana_*.py` scripts, `LETTER_ANALYSIS_BL_vs_FONTANA.md`,
+`BRITISH_LIBRARY_*` (BL MS 635), `LJS51_*` (Penn LJS 51), `MOLINA_COLLABORATION.json`.
 
-### ❌ Functional Decryption
-No reproducible, step-by-step example showing:
-- Specific Voynich passage → cipher symbol extraction → Fontana cipher application → readable output
+### 5. Authorship: other candidates and context
 
-### ❌ Content Validation
-No verification that:
-- Any decoded passages make historical sense
-- Medical/pharmaceutical terminology is authentic
-- Translations are independent (not predefined phrases distributed across pages)
+The medical content points to someone trained in university medicine around 1410–1430.
 
-### ❌ Authorship
-No evidence for or against Fontana authorship:
-- Paleographic analysis incomplete
-- Handwriting comparison not finalized
-- Historical records not yet cross-referenced
+- Padua and other medical student groups of the period: `CANDIDATE_MEDICAL_STUDENT_GROUPS.md`,
+  `MEDICAL_STUDENT_COHORTS_RESEARCH.md`, `documented_students_1410_1430.md`.
+- The Rhazes and university-curriculum thread: `VOYNICH_RHAZES_CONNECTION_SUMMARY.md`,
+  `VOYNICH_AUTHOR_UNIVERSITY_TRAINING.md`, `PRIMARY_SOURCE_CHAIN.md`.
+- Medical vocabulary from the Book of Fermoy for comparison: `fermoy_ms23e29.txt`, `extract_fermoy_*.py`.
+- Archive access and leads still to check: `CIPERB_ACCESS_RESEARCH_REPORT.md`, `IMMEDIATE_ACTION_PRIMARY_SOURCES.md`.
 
-### ❌ Methodology Testing
-No independent verification that:
-- The integrated analysis approach actually works
-- Results are reproducible by other researchers
-- The theory can be falsified (clear test cases identified)
+What counts as verified so far is tracked in `VERIFIED_VS_UNVERIFIED_FINDINGS.md`.
 
----
+### 6. Decryption attempts
 
-## Current Artifacts in This Repository
-
-### Data Files
-- **`VOYNICH_INTEGRATED_COMPLETE.json`** — Integration analysis (99.1% text+image pages)
-- **`fontana_cipher_mapping.json`** — Fontana's documented 26-character cipher system
-
-### Analysis Scripts
-- `complete_voynich_decryption.py` — Attempts complete decryption methodology
-- `full_decryption.py` — Explores decryption approaches
-- `create_authentic_translations.py` — Documents translation methodology
-- `update_latin_translations.py` — Shows translation process
-- `generate_english_translation.py` — Translation generation approach
-- `generate_book.py` — Book format generation from decoded output
-- `generate_english_books.py` — English book generation
-
-### Training & Testing Scripts
-- `fontana_train_model.py` — Trains AI model on Fontana's cipher
-- `fontana_cipher_demo.py` — Interactive cipher demonstration
-- `fontana_cipher_tests.py` — Tests cipher mapping accuracy
-
-### Source Materials
-- `voynich_manuscript/` — Original Voynich page images
-- `Fontana.pdf` — Complete digitization of *Secretum de thesauro*
-
-**Removed files (moved to analysis):**
-- ~~VOYNICH_FULLY_DECRYPTED.json~~ — Claimed complete decryption (unverified)
-- ~~VOYNICH_FULLY_DECRYPTED_ENGLISH.json~~ — Claimed translation (unverified)
-- ~~Book formats (HTML/PDF/EPUB)~~ — Generated from unverified decryption
-- ~~CSV exports~~ — Generated from unverified decryption
+Scripts such as `decipher_voynich.py`, `full_decryption.py` and `complete_voynich_decryption.py` record approaches
+that were tried. **None has produced a verified reading.** Earlier "fully decrypted" outputs were removed because
+they could not be verified. The 90.2% blind prediction, 99.79% Macer Floridus and Δ = −1.018 claims were withdrawn
+(see [VALIDATION.md](VALIDATION.md)).
 
 ---
 
-## For Researchers Verifying This Investigation
+## How this investigation works
 
-### What you CAN test:
-1. **Integration statistics** — Load `VOYNICH_INTEGRATED_COMPLETE.json` and verify 99.1% of pages have both text and images
-2. **Cipher architecture** — Compare Voynich's circle:geometric ratio (9.8:1) against random expectations
-3. **Fontana's system** — Review `fontana_cipher_mapping.json` against *Secretum de thesauro*
-4. **Methodology** — Review scripts in this repo to understand our decryption approaches
+- **Fix the test before running it.** The prediction, statistic, null model and threshold are committed before
+  the first run.
+- **Record every result.** Negative results and design mistakes stay in [VALIDATION.md](VALIDATION.md).
+- **Keep authorship open.** A candidate stays a hypothesis until a test that could fail supports it.
 
-### What we CANNOT claim:
-- ❌ "The Voynich is decrypted" — We have not demonstrated working decryption
-- ❌ "Fontana wrote it" — We have not verified authorship
-- ❌ "We know what it says" — We have not validated any content
-- ❌ "This solves the Voynich" — We have identified one testable hypothesis
+Note: the detailed pre-registrations, test code and reports (`analyses/`, `output/`, `archive/`) were removed in the
+13 October 2026 cleanup (commit `3522d65`). They are still in the git history before that commit.
 
-### What we're asking for:
-1. **Independent verification** of the 99.1% integration statistic
-2. **Attempts to apply Fontana's cipher** to Voynich text (with reproducible methodology)
-3. **Paleographic analysis** comparing Voynich handwriting to Fontana's documented hands
-4. **Historians** evaluating whether any decoded content is plausible for 15th-century Padua
-5. **Critical feedback** on whether this approach is sound or flawed
+## Help wanted
 
----
+1. An independent check of the structural results (see [REPLICATION.md](REPLICATION.md)).
+2. Has the plant-name / star-label root link been reported before?
+3. Paleographers who can compare the Voynich hands with Fontana's and with other Padua-trained physicians.
+4. Historians of 15th-century medicine and astronomy.
+5. Criticism of the methods.
 
-## Investigation Roadmap (What's Next)
-
-### Immediate priorities:
-1. **Demonstrate one working example** — Pick a Voynich folio, apply Fontana's cipher step-by-step, show reproducible output
-2. **Falsifiability** — Define what would prove/disprove the hypothesis
-3. **Independent validation** — Find researchers willing to test the integration claim
-
-### Medium term:
-1. **Paleographic expert review** — Have Juan's handwriting analysis formally completed
-2. **Historical context** — If decryption works, verify content against medical knowledge of 1421
-3. **Methodology publication** — Write up the structural analysis for academic review
-
-### Long term:
-1. **Broader cipher testing** — Test other documented 15th-century cipher systems against Voynich
-2. **Manuscript dating** — Radiocarbon/ink analysis to confirm period
-3. **Institutional confirmation** — Cross-reference with archives if evidence supports Fontana authorship
-
----
-
-## Honest Assessment
-
-**What we have:**
-- ✅ Strong statistical evidence of intentional integration (99.1%)
-- ✅ Documented cipher system (Fontana's) that *could* match
-- ✅ Suggestive (but unproven) architectural parallels
-
-**What we don't have:**
-- ❌ A working decryption example
-- ❌ Verified content
-- ❌ Proven authorship
-- ❌ Independent verification
-
-**The investigation is honest:**
-- We removed speculative output files
-- We're keeping methodology scripts (show what we tried)
-- We're stating clearly what's proven vs. what's open
-- We're asking for independent verification
-
-**This is an ongoing investigation, not a solved case.**
-
----
-
-## Building the Integrated Dataset
-
-This repository includes tools to build two files for structural analysis:
-
-### 1. `voynich_integrated.json` — Unified integrated dataset
-
-**What it contains:**
-- Folio ID (in order: f1r, f1v, f2r, f2v, ..., f116v)
-- Image path(s) for each folio
-- Full transcribed text with locus labels (m:main, l:left, r:right, etc.)
-- Classification flag: `integrated`, `text-only`, `image-only`, or `foldout`
-
-**To regenerate:**
+## Getting started
 
 ```bash
-# 1. Obtain Voynich transcription in format:
-#    folio_id: m: text | l: text | r: text
-#    Save as: voynich_transcription.txt
-
-# 2. Run the build script
-python3 build_integrated.py
-
-# Output: voynich_integrated.json + summary statistics
+pip install -r requirements.txt
+python structural_validation.py   # main structural tests
+streamlit run app.py              # interactive app
 ```
 
-**Expected output summary (with full Voynich data):**
-- Folios processed: 116 (complete manuscript)
-- Integrated (text + image): ~110
-- Text-only: ~2
-- Image-only: ~2
-- Foldouts: ~2
-- Unmatched: 0
-
-### 2. `voynich_control.json` — Negative control
-
-**What it is:**
-A version of `voynich_integrated.json` where text is shuffled ACROSS folios while preserving:
-- Word frequencies (exact distribution preserved)
-- Folio structure (same # of lines per folio)
-- Image paths (unchanged)
-- Overall text statistics
-
-**Why it matters:**
-Any analysis run on both files should show:
-- Real file: measurable text-image relationships
-- Control file: no meaningful relationships (null hypothesis)
-- Difference proves relationships are real, not statistical artifact
-
-**To regenerate:**
-
-```bash
-# 1. Build integrated file first (see above)
-python3 build_integrated.py
-
-# 2. Generate control file
-python3 build_control.py
-
-# Output: voynich_control.json
-```
-
-**Validation (from control generation):**
-- Word frequencies: ✓ Exact match
-- Folio structure: ✓ Preserved
-- Text distribution: ✓ Randomized
-- Images: ✓ Unchanged
-
----
-
-## How to Contribute
-
-If you're interested in this research:
-1. Obtain a complete Voynich transcription (Takeshi Takahashi's transcription or similar)
-2. Format as `folio_id: m: text | l: text | r: text` in `voynich_transcription.txt`
-3. Run `python3 build_integrated.py` to generate `voynich_integrated.json`
-4. Run `python3 build_control.py` to generate `voynich_control.json`
-5. Test the structural hypothesis on both files
-6. Share results and feedback
-
-**Resources:**
-- Takeshi Takahashi Voynich transcription: https://voynich.library.yale.edu/
-- Fontana's cipher system: `fontana_cipher_mapping.json`
-- Analysis scripts: See `/` directory
-
----
-
-*Investigation Last Updated: 2026-10-14*  
-*Repository Status: Refocused on honest structural analysis*  
-*Next Review Point: When concrete decryption example is demonstrated or methodology is proven false*
+*Last updated: 17 November 2026*
