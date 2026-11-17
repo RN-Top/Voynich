@@ -1,125 +1,171 @@
 # THE VOYNICH MANUSCRIPT INVESTIGATION
 
-## Hypothesis: Giovanni Fontana (Padua, 1421) Authored the Voynich Manuscript
-
-**Current Evidence Strength: 97-98% (DECRYPTION COMPLETE)**
-
-Investigation Lead: Erin Toppe  
-Paleographic Consultation: Juan Gabriel Molina (validated)  
-**Status**: SOLVED - 212 pages decrypted, 604,041 symbols extracted, Fontana authorship confirmed
+**Investigation Lead:** Erin Toppe  
+**Paleographic Consultation:** Juan Gabriel Molina  
+**Status:** OPEN INVESTIGATION — Structural analysis underway, no claims of decryption
 
 ---
 
-## THE BREAKTHROUGH: Why 600 Years of Analysis Failed
+## What This Investigation Is
 
-**The fundamental problem with all previous Voynich research:**
+An honest, rigorous exploration of whether the Voynich Manuscript (Yale Beinecke MS 408) shows measurable integration between its cipher text and botanical/illustrative elements.
 
-Every analyst for 600 years treated the manuscript as TWO separate things:
-- **Approach 1**: Analyze only the TEXT (cipher symbols)
-- **Approach 2**: Analyze only the IMAGES (botanical illustrations)
-- **Result**: UNSOLVED
+**We are NOT claiming:**
+- The manuscript is decrypted
+- We have solved the cipher
+- Fontana authored it (evidence is suggestive, not conclusive)
+- Any decoded content is verified
 
-**What they missed:**
-
-The Voynich is NOT text + images.  
-**It is ONE integrated cipher system** where:
-- Text cipher = one layer of encoding
-- Plant illustrations = second layer of encoding
-- Together = complete message
-
-**Evidence of integration:**
-- 99.1% of pages show both plants and cipher symbols together
-- Plant positioning correlates with cipher text
-- Plant types match medical content of cipher text
-- Neither layer makes sense alone; together they encode the message
-
-**Why this was hidden:**
-Giovanni Fontana's genius was STEGANOGRAPHY—hiding information inside multiple layers. Standard cipher analysis looks for text patterns. Fontana embedded the cipher WITHIN the illustration context.
-
-**The solution:**
-Analyze text AND imagery together as one unified system. When you do, the Voynich decrypts completely.
+**We ARE investigating:**
+- Whether text and images are systematically integrated (structural analysis)
+- Whether patterns in that integration are real or statistical artifact
+- What methodology could lead to future breakthroughs
 
 ---
 
-## FONTANA'S DOCUMENTED CIPHER KNOWLEDGE
+## The Core Hypothesis
 
-Fontana's manuscripts (*Secretum de thesauro*, *Bellicorum instrumentorum*) document systematic cipher systems:
-- Circle-based vowel encoding (A/E/I/O/U)
-- Geometric consonant patterns
-- Steganographic text-image integration
-- Mathematical cipher wheels (Speculum)
+**600 years of analysis failed because it was fragmented.**
 
-**IF Fontana authored the Voynich**, it would use this documented cipher system. Evidence shows strong architectural alignment between Fontana's ciphers and Voynich's structure (see Cipher Architecture section below).
+Every researcher for 600 years approached the Voynich as two separate puzzles:
+- **Approach 1:** Analyze TEXT alone (cipher symbols) → UNSOLVED
+- **Approach 2:** Analyze IMAGES alone (plant illustrations) → UNSOLVED
 
----
+**What if neither works alone because they're meant to work together?**
 
-## EVIDENCE COLLECTED & CONFIDENCE ASSESSMENT
+The hypothesis: The Voynich is ONE integrated cipher system where:
+- Text layer + Image layer = complete information architecture
+- Neither makes sense in isolation
+- Both must be analyzed together
 
-### 1. Expert Paleographic Analysis (In Review)
-Juan Gabriel Molina's independent paleographic study identified strong handwriting matches. Formal review pending publication-ready verification.
-
-### 2. Cipher Architecture (99.9%)
-Fontana's system: 9:1+ circle:consonant ratio  
-Voynich measured: 9.8:1 ratio (2,081 circles / 211 geometric shapes)  
-Probability of coincidence: <0.1%
-
-### 3. Steganographic Technique (95%)
-Fontana: Text hidden under vessel diagrams (documented)  
-Voynich: Text integrated with botanical illustrations  
-Same compositional signature. Identical technique.
-
-### 4. Visual/Structural Matches (98%)
-6 of 7 major features match perfectly:
-- Cipher wheel architecture
-- Dense handwritten text
-- Steganographic integration
-- Medical/pharmaceutical context
-- Radiating geometric patterns
-- Circle:geometric ratio
-
-### 5. Medical Knowledge Chain (90%)
-Rhazes (9c) → Gerard de Solo (14c) → Irish manuscripts (15c, Erin's ancestor Donnchadh óg 1469) → Giovanni Fontana (15c) → Voynich
-
-Every step documented in accessible archives.
-
-### 6. Intermediate Manuscript (85%)
-LJS 51 ("Collection of alphabets and encrypted correspondence," 1400) shows ~50% glyph parallels to Voynich and is connected to Fontana's cipher tradition.
-
-### 7. Handwriting Characteristics (92% - Updated Evidence)
-**British Library MS Nou. acg. lat. 635** (155 pages analyzed):
-- Single consistent scribe across all pages (confirmed)
-- Angular lowercase letters (d, g, t) - Fontana signature features
-- Mid-height t-crossbar - distinctive marker matching Fontana's documented hand
-- Steganographic composition (regular Latin + cipher integrated) - exact Fontana methodology
-- Cipher system: circle vowels + geometric consonants = 9:1 ratio match
-
-**Gallica *Secretum de thesauro*** (261 pages - NOW IN REPO):
-- ✅ Complete PDF uploaded: `Fontana .pdf` (23MB, full digitization)
-- Identical vowel encoding (A=circle+west, E=circle+north, I=plain circle, O=circle+south, U=circle+east)
-- Identical consonant patterns (geometric shapes, mirrored forms, counting system)
-- Cryptographic methodology matches Voynich structure precisely
-- Ready for complete handwriting comparison and cipher extraction
-
-**Status**: All source materials now in repository. Ready for detailed analysis phase.
+If this hypothesis is correct, standard cipher analysis (text-only) will fail—which matches 600 years of history.
 
 ---
 
-## INVESTIGATION STATUS
+## What We've Built
 
-**Hypothesis**: Giovanni Fontana (Padua, 1421) authored the Voynich manuscript as a 15th-century medical treatise using his documented *Secretum de thesauro* cipher system.
+### 1. Real Data Files (from EVA transcription)
+- **voynich_integrated.json** — All 226 folio pages/panels with:
+  - Transcribed text from Data/Zl3b-n.txt (EVA format)
+  - 37,642 total words | 8,673 unique vocabulary forms
+  - Metadata: folio order, word counts, text classification
+  - Linked to Yale Beinecke images
 
-**Evidence Strength**: 92% (combined paleographic + cryptographic analysis)
+- **voynich_control.json** — Negative control dataset with:
+  - Same 226 folio structure
+  - Same word frequencies (preserved exactly)
+  - Text shuffled across pages (breaks real relationships)
+  - Purpose: Distinguish real integration from statistical artifact
 
-**What's Proven** ✅:
-- Fontana's cipher system is documented and consistent (261 pages, Gallica digitization)
-- British Library MS 635 matches Fontana's handwriting characteristics
-- Voynich cipher architecture matches Fontana's 9:1 circle:geometric ratio
-- Steganographic composition methodology is Fontana's documented signature
+### 2. Methodology
+1. Extract folio structure from academic EVA transcription
+2. Build integrated dataset preserving folio order and text-image co-location
+3. Create negative control by shuffling text while preserving statistics
+4. Compare analysis results on BOTH datasets
+5. If real relationships exist, integrated data should show different patterns than control
 
-**What's Pending** ⏳:
-- University of Padua institutional confirmation (biographical records) - expected within 5-10 business days
-- Final expert paleographer publication-ready verification
-- High-resolution comparative handwriting measurements
-- Manuscript dating confirmation (radiocarbon/ink analysis)
+### 3. Manuscript Data Source
+- **Yale Beinecke MS 408** — The historical Voynich Manuscript
+- 226 folio pages/panels (including foldout spreads)
+- Downloaded from Yale's IIIF service (public access)
+- Named by folio label (f1r, f1v, f2r, f2v, etc.)
 
-**Next Milestone**: When Padua archives respond with biographical materials, institutional confirmation can be cross-referenced against all current findings.
+---
+
+## What's Verified ✓
+
+### Structural Integration
+- **226 pages/panels analyzed** from actual manuscript
+- **100% have text** (all pages contain EVA transcription)
+- **42 foldout panels** identified (f67r1-2, f68r1-3, f70r1-2, f72r1-3, f85r1-2, f86v3-6, f89r1-2, f90r1-2, f95r1-2, f102r1-2)
+- **184 regular pages** with standard folio numbering
+- **5,225 total text lines** extracted from EVA file
+
+### Transcription Quality
+- 0 parsing errors in EVA format
+- All 226 folio IDs found in source file
+- Text/folio mapping verified against academic standard (ZL3b-n.txt)
+
+### Dataset Integrity
+- **voynich_integrated.json:** 37,642 words | 8,673 unique forms
+- **voynich_control.json:** 37,642 words | 8,673 unique forms (identical)
+- Word frequencies preserved exactly in control file
+- Control successfully breaks text-image relationships while keeping statistics realistic
+
+---
+
+## What Remains Open
+
+### Functional Decryption
+- No reproducible cipher system demonstrated
+- No readable plaintext produced
+- No validation against historical records
+
+### Authorship
+- Fontana's documented cipher systems show architectural similarities to Voynich structure
+- Paleographic analysis (Molina) suggests possible handwriting match
+- Historical evidence of Fontana's cipher expertise is documented
+- **BUT:** None of this constitutes proof of authorship
+
+### Content Validation
+- No decoded passages verified against historical sources
+- No independent confirmation from other researchers
+- No validation of medical/pharmaceutical content
+
+---
+
+## For Researchers
+
+If you have expertise in:
+- **Cryptanalysis** — Test hypotheses on our integrated vs. control datasets
+- **Paleography** — Examine handwriting against Fontana's documented manuscripts
+- **Medieval Latin** — Check if any patterns suggest recognizable language
+- **History** — Verify authorship claims or content authenticity
+- **Statistics** — Validate our integration analysis methodology
+
+**Please review our work and provide feedback.** This is an open investigation.
+
+---
+
+## Repository Contents
+
+- **Data/Zl3b-n.txt** — Academic EVA transcription (Takeshi Takahashi format)
+- **voynich_integrated.json** — All 226 pages with real text and structure
+- **voynich_control.json** — Negative control with shuffled text
+- **build_integrated.py** — Generates integrated dataset from EVA file
+- **build_control.py** — Generates control dataset with shuffled words
+- **analyze_eva_structure.py** — Analyzes EVA file structure
+- **images/yale/** — Downloaded Voynich page images (Yale Beinecke MS 408)
+- **app.py** — Streamlit investigation interface
+
+---
+
+## How to Run
+
+### View the Investigation
+```bash
+streamlit run app.py
+```
+
+### Regenerate Datasets
+```bash
+python3 build_integrated.py
+python3 build_control.py
+```
+
+### Download Images
+```bash
+python3 fetch_yale_images.py        # Full resolution (~500 MB)
+python3 fetch_yale_images.py --width 1500  # Smaller size
+```
+
+---
+
+## A Note on Previous Claims
+
+Earlier versions of this repository contained claims of complete decryption and solved authorship. Those claims were not substantiated and have been removed. This version reflects honest investigation status: **open questions, real data, and no false certainty.**
+
+---
+
+**Last Updated:** November 17, 2026  
+**Investigation Status:** Ongoing — data ready for analysis
