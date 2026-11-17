@@ -1,0 +1,1472 @@
+[
+  {
+    "page_order": 0,
+    "image_file": "000_Front_cover.jpg",
+    "folio_label": "Front_cover",
+    "in_integrated": "NO",
+    "image_path": "images/yale/000_Front_cover.jpg"
+  },
+  {
+    "page_order": 1,
+    "image_file": "001_Inside_front_cover.jpg",
+    "folio_label": "Inside_front_cover",
+    "in_integrated": "NO",
+    "image_path": "images/yale/001_Inside_front_cover.jpg"
+  },
+  {
+    "page_order": 2,
+    "image_file": "002_1r.jpg",
+    "folio_label": "1r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/002_1r.jpg"
+  },
+  {
+    "page_order": 3,
+    "image_file": "003_1v.jpg",
+    "folio_label": "1v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/003_1v.jpg"
+  },
+  {
+    "page_order": 4,
+    "image_file": "004_2r.jpg",
+    "folio_label": "2r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/004_2r.jpg"
+  },
+  {
+    "page_order": 5,
+    "image_file": "005_2v.jpg",
+    "folio_label": "2v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/005_2v.jpg"
+  },
+  {
+    "page_order": 6,
+    "image_file": "006_3r.jpg",
+    "folio_label": "3r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/006_3r.jpg"
+  },
+  {
+    "page_order": 7,
+    "image_file": "007_3v.jpg",
+    "folio_label": "3v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/007_3v.jpg"
+  },
+  {
+    "page_order": 8,
+    "image_file": "008_4r.jpg",
+    "folio_label": "4r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/008_4r.jpg"
+  },
+  {
+    "page_order": 9,
+    "image_file": "009_4v.jpg",
+    "folio_label": "4v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/009_4v.jpg"
+  },
+  {
+    "page_order": 10,
+    "image_file": "010_5r.jpg",
+    "folio_label": "5r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/010_5r.jpg"
+  },
+  {
+    "page_order": 11,
+    "image_file": "011_5v.jpg",
+    "folio_label": "5v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/011_5v.jpg"
+  },
+  {
+    "page_order": 12,
+    "image_file": "012_6r.jpg",
+    "folio_label": "6r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/012_6r.jpg"
+  },
+  {
+    "page_order": 13,
+    "image_file": "013_6v.jpg",
+    "folio_label": "6v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/013_6v.jpg"
+  },
+  {
+    "page_order": 14,
+    "image_file": "014_7r.jpg",
+    "folio_label": "7r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/014_7r.jpg"
+  },
+  {
+    "page_order": 15,
+    "image_file": "015_7v.jpg",
+    "folio_label": "7v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/015_7v.jpg"
+  },
+  {
+    "page_order": 16,
+    "image_file": "016_8r.jpg",
+    "folio_label": "8r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/016_8r.jpg"
+  },
+  {
+    "page_order": 17,
+    "image_file": "017_8v.jpg",
+    "folio_label": "8v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/017_8v.jpg"
+  },
+  {
+    "page_order": 18,
+    "image_file": "018_9r.jpg",
+    "folio_label": "9r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/018_9r.jpg"
+  },
+  {
+    "page_order": 19,
+    "image_file": "019_9v.jpg",
+    "folio_label": "9v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/019_9v.jpg"
+  },
+  {
+    "page_order": 20,
+    "image_file": "020_10r.jpg",
+    "folio_label": "10r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/020_10r.jpg"
+  },
+  {
+    "page_order": 21,
+    "image_file": "021_10v.jpg",
+    "folio_label": "10v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/021_10v.jpg"
+  },
+  {
+    "page_order": 22,
+    "image_file": "022_11r.jpg",
+    "folio_label": "11r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/022_11r.jpg"
+  },
+  {
+    "page_order": 23,
+    "image_file": "023_11v.jpg",
+    "folio_label": "11v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/023_11v.jpg"
+  },
+  {
+    "page_order": 24,
+    "image_file": "024_13r.jpg",
+    "folio_label": "13r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/024_13r.jpg"
+  },
+  {
+    "page_order": 25,
+    "image_file": "025_13v.jpg",
+    "folio_label": "13v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/025_13v.jpg"
+  },
+  {
+    "page_order": 26,
+    "image_file": "026_14r.jpg",
+    "folio_label": "14r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/026_14r.jpg"
+  },
+  {
+    "page_order": 27,
+    "image_file": "027_14v.jpg",
+    "folio_label": "14v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/027_14v.jpg"
+  },
+  {
+    "page_order": 28,
+    "image_file": "028_15r.jpg",
+    "folio_label": "15r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/028_15r.jpg"
+  },
+  {
+    "page_order": 29,
+    "image_file": "029_15v.jpg",
+    "folio_label": "15v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/029_15v.jpg"
+  },
+  {
+    "page_order": 30,
+    "image_file": "030_16r.jpg",
+    "folio_label": "16r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/030_16r.jpg"
+  },
+  {
+    "page_order": 31,
+    "image_file": "031_16v.jpg",
+    "folio_label": "16v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/031_16v.jpg"
+  },
+  {
+    "page_order": 32,
+    "image_file": "032_17r.jpg",
+    "folio_label": "17r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/032_17r.jpg"
+  },
+  {
+    "page_order": 33,
+    "image_file": "033_17v.jpg",
+    "folio_label": "17v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/033_17v.jpg"
+  },
+  {
+    "page_order": 34,
+    "image_file": "034_18r.jpg",
+    "folio_label": "18r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/034_18r.jpg"
+  },
+  {
+    "page_order": 35,
+    "image_file": "035_18v.jpg",
+    "folio_label": "18v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/035_18v.jpg"
+  },
+  {
+    "page_order": 36,
+    "image_file": "036_19r.jpg",
+    "folio_label": "19r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/036_19r.jpg"
+  },
+  {
+    "page_order": 37,
+    "image_file": "037_19v.jpg",
+    "folio_label": "19v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/037_19v.jpg"
+  },
+  {
+    "page_order": 38,
+    "image_file": "038_20r.jpg",
+    "folio_label": "20r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/038_20r.jpg"
+  },
+  {
+    "page_order": 39,
+    "image_file": "039_20v.jpg",
+    "folio_label": "20v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/039_20v.jpg"
+  },
+  {
+    "page_order": 40,
+    "image_file": "040_21r.jpg",
+    "folio_label": "21r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/040_21r.jpg"
+  },
+  {
+    "page_order": 41,
+    "image_file": "041_21v.jpg",
+    "folio_label": "21v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/041_21v.jpg"
+  },
+  {
+    "page_order": 42,
+    "image_file": "042_22r.jpg",
+    "folio_label": "22r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/042_22r.jpg"
+  },
+  {
+    "page_order": 43,
+    "image_file": "043_22v.jpg",
+    "folio_label": "22v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/043_22v.jpg"
+  },
+  {
+    "page_order": 44,
+    "image_file": "044_23r.jpg",
+    "folio_label": "23r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/044_23r.jpg"
+  },
+  {
+    "page_order": 45,
+    "image_file": "045_23v.jpg",
+    "folio_label": "23v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/045_23v.jpg"
+  },
+  {
+    "page_order": 46,
+    "image_file": "046_24r.jpg",
+    "folio_label": "24r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/046_24r.jpg"
+  },
+  {
+    "page_order": 47,
+    "image_file": "047_24v.jpg",
+    "folio_label": "24v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/047_24v.jpg"
+  },
+  {
+    "page_order": 48,
+    "image_file": "048_25r.jpg",
+    "folio_label": "25r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/048_25r.jpg"
+  },
+  {
+    "page_order": 49,
+    "image_file": "049_25v.jpg",
+    "folio_label": "25v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/049_25v.jpg"
+  },
+  {
+    "page_order": 50,
+    "image_file": "050_26r.jpg",
+    "folio_label": "26r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/050_26r.jpg"
+  },
+  {
+    "page_order": 51,
+    "image_file": "051_26v.jpg",
+    "folio_label": "26v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/051_26v.jpg"
+  },
+  {
+    "page_order": 52,
+    "image_file": "052_27r.jpg",
+    "folio_label": "27r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/052_27r.jpg"
+  },
+  {
+    "page_order": 53,
+    "image_file": "053_27v.jpg",
+    "folio_label": "27v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/053_27v.jpg"
+  },
+  {
+    "page_order": 54,
+    "image_file": "054_28r.jpg",
+    "folio_label": "28r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/054_28r.jpg"
+  },
+  {
+    "page_order": 55,
+    "image_file": "055_28v.jpg",
+    "folio_label": "28v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/055_28v.jpg"
+  },
+  {
+    "page_order": 56,
+    "image_file": "056_29r.jpg",
+    "folio_label": "29r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/056_29r.jpg"
+  },
+  {
+    "page_order": 57,
+    "image_file": "057_29v.jpg",
+    "folio_label": "29v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/057_29v.jpg"
+  },
+  {
+    "page_order": 58,
+    "image_file": "058_30r.jpg",
+    "folio_label": "30r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/058_30r.jpg"
+  },
+  {
+    "page_order": 59,
+    "image_file": "059_30v.jpg",
+    "folio_label": "30v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/059_30v.jpg"
+  },
+  {
+    "page_order": 60,
+    "image_file": "060_31r.jpg",
+    "folio_label": "31r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/060_31r.jpg"
+  },
+  {
+    "page_order": 61,
+    "image_file": "061_31v.jpg",
+    "folio_label": "31v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/061_31v.jpg"
+  },
+  {
+    "page_order": 62,
+    "image_file": "062_32r.jpg",
+    "folio_label": "32r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/062_32r.jpg"
+  },
+  {
+    "page_order": 63,
+    "image_file": "063_32v.jpg",
+    "folio_label": "32v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/063_32v.jpg"
+  },
+  {
+    "page_order": 64,
+    "image_file": "064_33r.jpg",
+    "folio_label": "33r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/064_33r.jpg"
+  },
+  {
+    "page_order": 65,
+    "image_file": "065_33v.jpg",
+    "folio_label": "33v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/065_33v.jpg"
+  },
+  {
+    "page_order": 66,
+    "image_file": "066_34r.jpg",
+    "folio_label": "34r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/066_34r.jpg"
+  },
+  {
+    "page_order": 67,
+    "image_file": "067_34v.jpg",
+    "folio_label": "34v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/067_34v.jpg"
+  },
+  {
+    "page_order": 68,
+    "image_file": "068_35r.jpg",
+    "folio_label": "35r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/068_35r.jpg"
+  },
+  {
+    "page_order": 69,
+    "image_file": "069_35v.jpg",
+    "folio_label": "35v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/069_35v.jpg"
+  },
+  {
+    "page_order": 70,
+    "image_file": "070_36r.jpg",
+    "folio_label": "36r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/070_36r.jpg"
+  },
+  {
+    "page_order": 71,
+    "image_file": "071_36v.jpg",
+    "folio_label": "36v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/071_36v.jpg"
+  },
+  {
+    "page_order": 72,
+    "image_file": "072_37r.jpg",
+    "folio_label": "37r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/072_37r.jpg"
+  },
+  {
+    "page_order": 73,
+    "image_file": "073_37v.jpg",
+    "folio_label": "37v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/073_37v.jpg"
+  },
+  {
+    "page_order": 74,
+    "image_file": "074_38r.jpg",
+    "folio_label": "38r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/074_38r.jpg"
+  },
+  {
+    "page_order": 75,
+    "image_file": "075_38v.jpg",
+    "folio_label": "38v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/075_38v.jpg"
+  },
+  {
+    "page_order": 76,
+    "image_file": "076_39r.jpg",
+    "folio_label": "39r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/076_39r.jpg"
+  },
+  {
+    "page_order": 77,
+    "image_file": "077_39v.jpg",
+    "folio_label": "39v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/077_39v.jpg"
+  },
+  {
+    "page_order": 78,
+    "image_file": "078_40r.jpg",
+    "folio_label": "40r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/078_40r.jpg"
+  },
+  {
+    "page_order": 79,
+    "image_file": "079_40v.jpg",
+    "folio_label": "40v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/079_40v.jpg"
+  },
+  {
+    "page_order": 80,
+    "image_file": "080_41r.jpg",
+    "folio_label": "41r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/080_41r.jpg"
+  },
+  {
+    "page_order": 81,
+    "image_file": "081_41v.jpg",
+    "folio_label": "41v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/081_41v.jpg"
+  },
+  {
+    "page_order": 82,
+    "image_file": "082_42r.jpg",
+    "folio_label": "42r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/082_42r.jpg"
+  },
+  {
+    "page_order": 83,
+    "image_file": "083_42v.jpg",
+    "folio_label": "42v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/083_42v.jpg"
+  },
+  {
+    "page_order": 84,
+    "image_file": "084_43r.jpg",
+    "folio_label": "43r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/084_43r.jpg"
+  },
+  {
+    "page_order": 85,
+    "image_file": "085_43v.jpg",
+    "folio_label": "43v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/085_43v.jpg"
+  },
+  {
+    "page_order": 86,
+    "image_file": "086_44r.jpg",
+    "folio_label": "44r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/086_44r.jpg"
+  },
+  {
+    "page_order": 87,
+    "image_file": "087_44v.jpg",
+    "folio_label": "44v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/087_44v.jpg"
+  },
+  {
+    "page_order": 88,
+    "image_file": "088_45r.jpg",
+    "folio_label": "45r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/088_45r.jpg"
+  },
+  {
+    "page_order": 89,
+    "image_file": "089_45v.jpg",
+    "folio_label": "45v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/089_45v.jpg"
+  },
+  {
+    "page_order": 90,
+    "image_file": "090_46r.jpg",
+    "folio_label": "46r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/090_46r.jpg"
+  },
+  {
+    "page_order": 91,
+    "image_file": "091_46v.jpg",
+    "folio_label": "46v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/091_46v.jpg"
+  },
+  {
+    "page_order": 92,
+    "image_file": "092_47r.jpg",
+    "folio_label": "47r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/092_47r.jpg"
+  },
+  {
+    "page_order": 93,
+    "image_file": "093_47v.jpg",
+    "folio_label": "47v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/093_47v.jpg"
+  },
+  {
+    "page_order": 94,
+    "image_file": "094_48r.jpg",
+    "folio_label": "48r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/094_48r.jpg"
+  },
+  {
+    "page_order": 95,
+    "image_file": "095_48v.jpg",
+    "folio_label": "48v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/095_48v.jpg"
+  },
+  {
+    "page_order": 96,
+    "image_file": "096_49r.jpg",
+    "folio_label": "49r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/096_49r.jpg"
+  },
+  {
+    "page_order": 97,
+    "image_file": "097_49v.jpg",
+    "folio_label": "49v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/097_49v.jpg"
+  },
+  {
+    "page_order": 98,
+    "image_file": "098_50r.jpg",
+    "folio_label": "50r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/098_50r.jpg"
+  },
+  {
+    "page_order": 99,
+    "image_file": "099_50v.jpg",
+    "folio_label": "50v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/099_50v.jpg"
+  },
+  {
+    "page_order": 100,
+    "image_file": "100_51r.jpg",
+    "folio_label": "51r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/100_51r.jpg"
+  },
+  {
+    "page_order": 101,
+    "image_file": "101_51v.jpg",
+    "folio_label": "51v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/101_51v.jpg"
+  },
+  {
+    "page_order": 102,
+    "image_file": "102_52r.jpg",
+    "folio_label": "52r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/102_52r.jpg"
+  },
+  {
+    "page_order": 103,
+    "image_file": "103_52v.jpg",
+    "folio_label": "52v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/103_52v.jpg"
+  },
+  {
+    "page_order": 104,
+    "image_file": "104_53r.jpg",
+    "folio_label": "53r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/104_53r.jpg"
+  },
+  {
+    "page_order": 105,
+    "image_file": "105_53v.jpg",
+    "folio_label": "53v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/105_53v.jpg"
+  },
+  {
+    "page_order": 106,
+    "image_file": "106_54r.jpg",
+    "folio_label": "54r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/106_54r.jpg"
+  },
+  {
+    "page_order": 107,
+    "image_file": "107_54v.jpg",
+    "folio_label": "54v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/107_54v.jpg"
+  },
+  {
+    "page_order": 108,
+    "image_file": "108_55r.jpg",
+    "folio_label": "55r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/108_55r.jpg"
+  },
+  {
+    "page_order": 109,
+    "image_file": "109_55v.jpg",
+    "folio_label": "55v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/109_55v.jpg"
+  },
+  {
+    "page_order": 110,
+    "image_file": "110_56r.jpg",
+    "folio_label": "56r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/110_56r.jpg"
+  },
+  {
+    "page_order": 111,
+    "image_file": "111_56v.jpg",
+    "folio_label": "56v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/111_56v.jpg"
+  },
+  {
+    "page_order": 112,
+    "image_file": "112_57r.jpg",
+    "folio_label": "57r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/112_57r.jpg"
+  },
+  {
+    "page_order": 113,
+    "image_file": "113_57v.jpg",
+    "folio_label": "57v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/113_57v.jpg"
+  },
+  {
+    "page_order": 114,
+    "image_file": "114_58r.jpg",
+    "folio_label": "58r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/114_58r.jpg"
+  },
+  {
+    "page_order": 115,
+    "image_file": "115_58v.jpg",
+    "folio_label": "58v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/115_58v.jpg"
+  },
+  {
+    "page_order": 116,
+    "image_file": "116_65r.jpg",
+    "folio_label": "65r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/116_65r.jpg"
+  },
+  {
+    "page_order": 117,
+    "image_file": "117_65v.jpg",
+    "folio_label": "65v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/117_65v.jpg"
+  },
+  {
+    "page_order": 118,
+    "image_file": "118_66r.jpg",
+    "folio_label": "66r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/118_66r.jpg"
+  },
+  {
+    "page_order": 119,
+    "image_file": "119_66v.jpg",
+    "folio_label": "66v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/119_66v.jpg"
+  },
+  {
+    "page_order": 120,
+    "image_file": "120_67r.jpg",
+    "folio_label": "67r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/120_67r.jpg"
+  },
+  {
+    "page_order": 121,
+    "image_file": "121_67v.jpg",
+    "folio_label": "67v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/121_67v.jpg"
+  },
+  {
+    "page_order": 122,
+    "image_file": "122_68r.jpg",
+    "folio_label": "68r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/122_68r.jpg"
+  },
+  {
+    "page_order": 123,
+    "image_file": "123_68v.jpg",
+    "folio_label": "68v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/123_68v.jpg"
+  },
+  {
+    "page_order": 124,
+    "image_file": "124_69r.jpg",
+    "folio_label": "69r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/124_69r.jpg"
+  },
+  {
+    "page_order": 125,
+    "image_file": "125_69v_and_70r.jpg",
+    "folio_label": "69v_and_70r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/125_69v_and_70r.jpg"
+  },
+  {
+    "page_order": 126,
+    "image_file": "126_70v_part.jpg",
+    "folio_label": "70v_part",
+    "in_integrated": "NO",
+    "image_path": "images/yale/126_70v_part.jpg"
+  },
+  {
+    "page_order": 127,
+    "image_file": "127_70v_part.jpg",
+    "folio_label": "70v_part",
+    "in_integrated": "NO",
+    "image_path": "images/yale/127_70v_part.jpg"
+  },
+  {
+    "page_order": 128,
+    "image_file": "128_71r.jpg",
+    "folio_label": "71r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/128_71r.jpg"
+  },
+  {
+    "page_order": 129,
+    "image_file": "129_71v_and_72r.jpg",
+    "folio_label": "71v_and_72r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/129_71v_and_72r.jpg"
+  },
+  {
+    "page_order": 130,
+    "image_file": "130_72v_part.jpg",
+    "folio_label": "72v_part",
+    "in_integrated": "NO",
+    "image_path": "images/yale/130_72v_part.jpg"
+  },
+  {
+    "page_order": 131,
+    "image_file": "131_72v_part.jpg",
+    "folio_label": "72v_part",
+    "in_integrated": "NO",
+    "image_path": "images/yale/131_72v_part.jpg"
+  },
+  {
+    "page_order": 132,
+    "image_file": "132_73r.jpg",
+    "folio_label": "73r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/132_73r.jpg"
+  },
+  {
+    "page_order": 133,
+    "image_file": "133_73v.jpg",
+    "folio_label": "73v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/133_73v.jpg"
+  },
+  {
+    "page_order": 134,
+    "image_file": "134_75r.jpg",
+    "folio_label": "75r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/134_75r.jpg"
+  },
+  {
+    "page_order": 135,
+    "image_file": "135_75v.jpg",
+    "folio_label": "75v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/135_75v.jpg"
+  },
+  {
+    "page_order": 136,
+    "image_file": "136_76r.jpg",
+    "folio_label": "76r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/136_76r.jpg"
+  },
+  {
+    "page_order": 137,
+    "image_file": "137_76v.jpg",
+    "folio_label": "76v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/137_76v.jpg"
+  },
+  {
+    "page_order": 138,
+    "image_file": "138_77r.jpg",
+    "folio_label": "77r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/138_77r.jpg"
+  },
+  {
+    "page_order": 139,
+    "image_file": "139_77v.jpg",
+    "folio_label": "77v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/139_77v.jpg"
+  },
+  {
+    "page_order": 140,
+    "image_file": "140_78r.jpg",
+    "folio_label": "78r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/140_78r.jpg"
+  },
+  {
+    "page_order": 141,
+    "image_file": "141_78v.jpg",
+    "folio_label": "78v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/141_78v.jpg"
+  },
+  {
+    "page_order": 142,
+    "image_file": "142_79r.jpg",
+    "folio_label": "79r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/142_79r.jpg"
+  },
+  {
+    "page_order": 143,
+    "image_file": "143_79v.jpg",
+    "folio_label": "79v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/143_79v.jpg"
+  },
+  {
+    "page_order": 144,
+    "image_file": "144_80r.jpg",
+    "folio_label": "80r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/144_80r.jpg"
+  },
+  {
+    "page_order": 145,
+    "image_file": "145_80v.jpg",
+    "folio_label": "80v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/145_80v.jpg"
+  },
+  {
+    "page_order": 146,
+    "image_file": "146_81r.jpg",
+    "folio_label": "81r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/146_81r.jpg"
+  },
+  {
+    "page_order": 147,
+    "image_file": "147_81v.jpg",
+    "folio_label": "81v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/147_81v.jpg"
+  },
+  {
+    "page_order": 148,
+    "image_file": "148_82r.jpg",
+    "folio_label": "82r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/148_82r.jpg"
+  },
+  {
+    "page_order": 149,
+    "image_file": "149_82v.jpg",
+    "folio_label": "82v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/149_82v.jpg"
+  },
+  {
+    "page_order": 150,
+    "image_file": "150_83r.jpg",
+    "folio_label": "83r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/150_83r.jpg"
+  },
+  {
+    "page_order": 151,
+    "image_file": "151_83v.jpg",
+    "folio_label": "83v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/151_83v.jpg"
+  },
+  {
+    "page_order": 152,
+    "image_file": "152_84r.jpg",
+    "folio_label": "84r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/152_84r.jpg"
+  },
+  {
+    "page_order": 153,
+    "image_file": "153_84v.jpg",
+    "folio_label": "84v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/153_84v.jpg"
+  },
+  {
+    "page_order": 154,
+    "image_file": "154_85r_part_part_of_85_86_foldout.jpg",
+    "folio_label": "85r_part_part_of_85_86_foldout",
+    "in_integrated": "NO",
+    "image_path": "images/yale/154_85r_part_part_of_85_86_foldout.jpg"
+  },
+  {
+    "page_order": 155,
+    "image_file": "155_85r_part_86v_part_part_of_85_86_foldout.jpg",
+    "folio_label": "85r_part_86v_part_part_of_85_86_foldout",
+    "in_integrated": "NO",
+    "image_path": "images/yale/155_85r_part_86v_part_part_of_85_86_foldout.jpg"
+  },
+  {
+    "page_order": 156,
+    "image_file": "156_86v_part_part_of_85_86_foldout.jpg",
+    "folio_label": "86v_part_part_of_85_86_foldout",
+    "in_integrated": "NO",
+    "image_path": "images/yale/156_86v_part_part_of_85_86_foldout.jpg"
+  },
+  {
+    "page_order": 157,
+    "image_file": "157_85v_and_86r_foldout.jpg",
+    "folio_label": "85v_and_86r_foldout",
+    "in_integrated": "NO",
+    "image_path": "images/yale/157_85v_and_86r_foldout.jpg"
+  },
+  {
+    "page_order": 158,
+    "image_file": "158_87r.jpg",
+    "folio_label": "87r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/158_87r.jpg"
+  },
+  {
+    "page_order": 159,
+    "image_file": "159_87v.jpg",
+    "folio_label": "87v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/159_87v.jpg"
+  },
+  {
+    "page_order": 160,
+    "image_file": "160_88r.jpg",
+    "folio_label": "88r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/160_88r.jpg"
+  },
+  {
+    "page_order": 161,
+    "image_file": "161_88v_and_89r.jpg",
+    "folio_label": "88v_and_89r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/161_88v_and_89r.jpg"
+  },
+  {
+    "page_order": 162,
+    "image_file": "162_89v_part.jpg",
+    "folio_label": "89v_part",
+    "in_integrated": "NO",
+    "image_path": "images/yale/162_89v_part.jpg"
+  },
+  {
+    "page_order": 163,
+    "image_file": "163_89v_part_and_90r.jpg",
+    "folio_label": "89v_part_and_90r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/163_89v_part_and_90r.jpg"
+  },
+  {
+    "page_order": 164,
+    "image_file": "164_90r.jpg",
+    "folio_label": "90r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/164_90r.jpg"
+  },
+  {
+    "page_order": 165,
+    "image_file": "165_90v_part.jpg",
+    "folio_label": "90v_part",
+    "in_integrated": "NO",
+    "image_path": "images/yale/165_90v_part.jpg"
+  },
+  {
+    "page_order": 166,
+    "image_file": "166_93r.jpg",
+    "folio_label": "93r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/166_93r.jpg"
+  },
+  {
+    "page_order": 167,
+    "image_file": "167_93v.jpg",
+    "folio_label": "93v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/167_93v.jpg"
+  },
+  {
+    "page_order": 168,
+    "image_file": "168_94r.jpg",
+    "folio_label": "94r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/168_94r.jpg"
+  },
+  {
+    "page_order": 169,
+    "image_file": "169_94v_and_95r.jpg",
+    "folio_label": "94v_and_95r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/169_94v_and_95r.jpg"
+  },
+  {
+    "page_order": 170,
+    "image_file": "170_95v_part.jpg",
+    "folio_label": "95v_part",
+    "in_integrated": "NO",
+    "image_path": "images/yale/170_95v_part.jpg"
+  },
+  {
+    "page_order": 171,
+    "image_file": "171_95v.jpg",
+    "folio_label": "95v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/171_95v.jpg"
+  },
+  {
+    "page_order": 172,
+    "image_file": "172_96r.jpg",
+    "folio_label": "96r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/172_96r.jpg"
+  },
+  {
+    "page_order": 173,
+    "image_file": "173_96v.jpg",
+    "folio_label": "96v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/173_96v.jpg"
+  },
+  {
+    "page_order": 174,
+    "image_file": "174_99r.jpg",
+    "folio_label": "99r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/174_99r.jpg"
+  },
+  {
+    "page_order": 175,
+    "image_file": "175_99v.jpg",
+    "folio_label": "99v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/175_99v.jpg"
+  },
+  {
+    "page_order": 176,
+    "image_file": "176_100r.jpg",
+    "folio_label": "100r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/176_100r.jpg"
+  },
+  {
+    "page_order": 177,
+    "image_file": "177_100v_and_101r.jpg",
+    "folio_label": "100v_and_101r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/177_100v_and_101r.jpg"
+  },
+  {
+    "page_order": 178,
+    "image_file": "178_101v_part.jpg",
+    "folio_label": "101v_part",
+    "in_integrated": "NO",
+    "image_path": "images/yale/178_101v_part.jpg"
+  },
+  {
+    "page_order": 179,
+    "image_file": "179_101v_part_and_102r.jpg",
+    "folio_label": "101v_part_and_102r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/179_101v_part_and_102r.jpg"
+  },
+  {
+    "page_order": 180,
+    "image_file": "180_102v_part.jpg",
+    "folio_label": "102v_part",
+    "in_integrated": "NO",
+    "image_path": "images/yale/180_102v_part.jpg"
+  },
+  {
+    "page_order": 181,
+    "image_file": "181_102v_part.jpg",
+    "folio_label": "102v_part",
+    "in_integrated": "NO",
+    "image_path": "images/yale/181_102v_part.jpg"
+  },
+  {
+    "page_order": 182,
+    "image_file": "182_103r.jpg",
+    "folio_label": "103r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/182_103r.jpg"
+  },
+  {
+    "page_order": 183,
+    "image_file": "183_103v.jpg",
+    "folio_label": "103v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/183_103v.jpg"
+  },
+  {
+    "page_order": 184,
+    "image_file": "184_104r.jpg",
+    "folio_label": "104r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/184_104r.jpg"
+  },
+  {
+    "page_order": 185,
+    "image_file": "185_104v.jpg",
+    "folio_label": "104v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/185_104v.jpg"
+  },
+  {
+    "page_order": 186,
+    "image_file": "186_105r.jpg",
+    "folio_label": "105r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/186_105r.jpg"
+  },
+  {
+    "page_order": 187,
+    "image_file": "187_105v.jpg",
+    "folio_label": "105v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/187_105v.jpg"
+  },
+  {
+    "page_order": 188,
+    "image_file": "188_106r.jpg",
+    "folio_label": "106r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/188_106r.jpg"
+  },
+  {
+    "page_order": 189,
+    "image_file": "189_106v.jpg",
+    "folio_label": "106v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/189_106v.jpg"
+  },
+  {
+    "page_order": 190,
+    "image_file": "190_107r.jpg",
+    "folio_label": "107r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/190_107r.jpg"
+  },
+  {
+    "page_order": 191,
+    "image_file": "191_107v.jpg",
+    "folio_label": "107v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/191_107v.jpg"
+  },
+  {
+    "page_order": 192,
+    "image_file": "192_108r.jpg",
+    "folio_label": "108r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/192_108r.jpg"
+  },
+  {
+    "page_order": 193,
+    "image_file": "193_108v.jpg",
+    "folio_label": "108v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/193_108v.jpg"
+  },
+  {
+    "page_order": 194,
+    "image_file": "194_111r.jpg",
+    "folio_label": "111r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/194_111r.jpg"
+  },
+  {
+    "page_order": 195,
+    "image_file": "195_111v.jpg",
+    "folio_label": "111v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/195_111v.jpg"
+  },
+  {
+    "page_order": 196,
+    "image_file": "196_112r.jpg",
+    "folio_label": "112r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/196_112r.jpg"
+  },
+  {
+    "page_order": 197,
+    "image_file": "197_112v.jpg",
+    "folio_label": "112v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/197_112v.jpg"
+  },
+  {
+    "page_order": 198,
+    "image_file": "198_113r.jpg",
+    "folio_label": "113r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/198_113r.jpg"
+  },
+  {
+    "page_order": 199,
+    "image_file": "199_113v.jpg",
+    "folio_label": "113v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/199_113v.jpg"
+  },
+  {
+    "page_order": 200,
+    "image_file": "200_114r.jpg",
+    "folio_label": "114r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/200_114r.jpg"
+  },
+  {
+    "page_order": 201,
+    "image_file": "201_114v.jpg",
+    "folio_label": "114v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/201_114v.jpg"
+  },
+  {
+    "page_order": 202,
+    "image_file": "202_115r.jpg",
+    "folio_label": "115r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/202_115r.jpg"
+  },
+  {
+    "page_order": 203,
+    "image_file": "203_115v.jpg",
+    "folio_label": "115v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/203_115v.jpg"
+  },
+  {
+    "page_order": 204,
+    "image_file": "204_116r.jpg",
+    "folio_label": "116r",
+    "in_integrated": "NO",
+    "image_path": "images/yale/204_116r.jpg"
+  },
+  {
+    "page_order": 205,
+    "image_file": "205_116v.jpg",
+    "folio_label": "116v",
+    "in_integrated": "NO",
+    "image_path": "images/yale/205_116v.jpg"
+  },
+  {
+    "page_order": 206,
+    "image_file": "206_Back_flyleaf_recto.jpg",
+    "folio_label": "Back_flyleaf_recto",
+    "in_integrated": "NO",
+    "image_path": "images/yale/206_Back_flyleaf_recto.jpg"
+  },
+  {
+    "page_order": 207,
+    "image_file": "207_Back_flyleaf_verso_inside_back_cover.jpg",
+    "folio_label": "Back_flyleaf_verso_inside_back_cover",
+    "in_integrated": "NO",
+    "image_path": "images/yale/207_Back_flyleaf_verso_inside_back_cover.jpg"
+  },
+  {
+    "page_order": 208,
+    "image_file": "208_Head.jpg",
+    "folio_label": "Head",
+    "in_integrated": "NO",
+    "image_path": "images/yale/208_Head.jpg"
+  },
+  {
+    "page_order": 209,
+    "image_file": "209_Tail.jpg",
+    "folio_label": "Tail",
+    "in_integrated": "NO",
+    "image_path": "images/yale/209_Tail.jpg"
+  }
+]
