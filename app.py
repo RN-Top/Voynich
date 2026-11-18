@@ -37,6 +37,25 @@ except:
 
 st.markdown("---")
 
+# QUICK TEST SECTION - Right on homepage
+st.markdown("## 🧪 Test the Decryption Yourself")
+
+col1, col2, col3 = st.columns(3)
+with col1:
+    if st.button("▶️ RUN TEST NOW", key="homepage_test_btn", use_container_width=True):
+        st.markdown("### Testing...")
+        st.info("Go to the **Testing & Verification** tab below to run the test")
+
+with col2:
+    st.write("")
+
+with col3:
+    st.markdown("[📂 View on GitHub](https://github.com/RN-Top/Voynich)")
+
+st.markdown("**No installation needed.** Click the button above or go to the Testing tab below to verify the 82.9% decryption.")
+
+st.markdown("---")
+
 # TABS
 tab1, tab2, tab3, tab4 = st.tabs(["🔬 Investigation Status", "📊 Integration Data", "📋 Methodology", "🧪 Testing & Verification"])
 
@@ -543,5 +562,17 @@ with tab4:
     """)
 
 st.markdown("---")
-st.markdown("*Investigation Last Updated: 2026-11-18*")
-st.markdown("*Status: 82.9% decrypted - testing materials ready*")
+
+# FOOTER WITH GITHUB LINK
+st.markdown("""
+---
+### 📂 Get the Files & Source Code
+**[→ Visit GitHub Repository](https://github.com/RN-Top/Voynich)**
+
+All testing files, data, documentation, and source code available there.
+
+---
+*Investigation Last Updated: 2026-11-18*
+*Status: 82.9% decrypted - testing materials ready*
+*Analysis by: Erin Toppe | Expert Review: Juan Gabriel Molina*
+""")
