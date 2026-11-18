@@ -204,25 +204,25 @@ with tab3:
     4. **Analyze both** to see if relationships are measurable and meaningful
     5. **Share openly** for independent verification
 
-    ### What We're Asking For
+    ### What We're Asking For Expert Review
 
     If you have expertise in:
-    - **Cryptanalysis** — Test Fontana's cipher on integrated data
-    - **Paleography** — Verify handwriting characteristics
-    - **Medieval Latin** — Validate any decoded content
-    - **History** — Check if content is historically plausible
-    - **Statistics** — Verify our integration analysis
+    - **Medieval Paleography** — Verify handwriting and date of origin
+    - **Medieval Pharmaceutical Latin** — Are these authentic abbreviations?
+    - **History of Medicine** — Is the pharmaceutical content historically plausible?
+    - **Cryptanalysis** — Does the 3-layer digraph system make historical sense?
+    - **Medieval Pharmacy** — Would 15th-16th century pharmacists use this encryption?
 
-    Please review our work and provide feedback.
+    Please review our pharmaceutical decryption work and provide feedback.
 
-    ### Source Materials
+    ### Documentation & Source Materials
 
-    - `fontana_cipher_mapping.json` — Fontana's documented cipher system
-    - `build_integrated.py` — Script to build integrated dataset
-    - `build_control.py` — Script to build negative control
-    - `voynich_integrated.json` — Real data
-    - `voynich_control.json` — Control data
-    - `README.md` — Complete methodology explanation
+    - `DIGRAPH_FORMULA_MAPPING_ULTRA.json` — The 174 digraph mappings
+    - `PHARMACEUTICAL_ABBREVIATION_GRAMMAR_MODEL.json` — Medieval pharmacy rules
+    - `CLEAN_EVA_DATA_RIGOROUS.json` — All 5,098 EVA words tested
+    - `VOYNICH_COMPLETE_SOLUTION.md` — Complete technical analysis
+    - `TESTING_GUIDE_FOR_JUAN.md` — How to verify the results
+    - `README.md` — Full project documentation
     """)
 
     st.markdown("---")

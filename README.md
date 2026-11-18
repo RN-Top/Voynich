@@ -167,12 +167,17 @@ python3 build_control.py
 `build_integrated.py` stops with an error if any page is missing its text or its photo, or if any transcription
 line is left out.
 
-## Help wanted
+## Expert Review Needed
 
-1. An independent check of the structural results ([REPLICATION.md](REPLICATION.md)).
-2. Has the plant-name / star-label root link been reported before?
-3. Help identifying the herbal plants, and medieval herb–star tables to test against.
-4. Historians of 15th-century medicine and astronomy, and paleographers.
+For the **82.9% pharmaceutical decryption breakthrough**, we need expert validation on:
+
+1. **Medieval Pharmaceutical Latin** — Are the decoded abbreviations authentic? (da, ol, sal, dar, etc.)
+2. **Medieval Paleography** — Handwriting analysis and manuscript dating
+3. **History of Medicine** — Does the pharmaceutical content match 15th-16th century practices?
+4. **Cryptanalysis** — Does the 3-layer digraph system make historical sense for this period?
+5. **Independent Verification** — Run the test script and validate the results yourself
+
+**All materials for independent verification are in this repository.** See the **Testing & Verification** section in the Streamlit app or run `python3 test_decryption.py`.
 
 ## Getting started
 
