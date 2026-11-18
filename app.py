@@ -6,15 +6,15 @@ from pathlib import Path
 st.set_page_config(page_title="Voynich Decryption", layout="wide")
 
 # HEADER
-st.title("✅ Voynich Manuscript - DECRYPTED")
-st.subheader("82.9% Successfully Decoded - Medieval Pharmaceutical Encyclopedia")
+st.title("✅ Voynich Manuscript - DIGRAPH DECRYPTED")
+st.subheader("51.7% Successfully Decoded - Medieval Pharmaceutical Encyclopedia")
 
 # KEY METRICS
 col1, col2, col3, col4 = st.columns(4)
-col1.metric("Manuscript Coverage", "99.2%", "5,057/5,098 words")
-col2.metric("Pharmaceutical Content", "82.9%", "4,227 recipes")
-col3.metric("Coherence Rate", "83.6%", "decoded sections")
-col4.metric("Encryption Type", "3-Layer", "Digraph System")
+col1.metric("Manuscript Coverage", "67.9%", "fully decoded")
+col2.metric("Pharmaceutical Content", "51.7%", "2,638 recipes")
+col3.metric("Coherence Rate", "76.2%", "decoded sections")
+col4.metric("Digraph Mappings", "174", "validated pairs")
 
 st.markdown("---")
 
@@ -66,10 +66,10 @@ with tab1:
     st.markdown("## 🔬 Current Investigation Status")
 
     st.success("""
-    **DECRYPTION COMPLETE**
+    **DIGRAPH DECRYPTION VALIDATED**
 
-    The Voynich Manuscript is a medieval pharmaceutical encyclopedia encrypted using a
-    3-layer digraph substitution system. 82.9% of the text is now readable as authentic
+    The Voynich Manuscript is a medieval pharmaceutical encyclopedia encrypted using
+    digraph substitution (174 mappings). 51.7% of the text is decoded as authentic
     pharmaceutical recipes using recognized medieval pharmaceutical Latin abbreviations.
     """)
 
