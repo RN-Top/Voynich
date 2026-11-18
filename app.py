@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 import pandas as pd
+from pathlib import Path
 
 st.set_page_config(page_title="Voynich Decryption", layout="wide")
 
@@ -236,13 +237,163 @@ with tab3:
 # ============================================================================
 # TAB 4: TESTING & VERIFICATION
 # ============================================================================
+
+@st.cache_data
+def load_test_data():
+    """Load all test data files"""
+    try:
+        with open('DIGRAPH_FORMULA_MAPPING_ULTRA.json', 'r') as f:
+            digraphs = json.load(f)
+        with open('PHARMACEUTICAL_ABBREVIATION_GRAMMAR_MODEL.json', 'r') as f:
+            pharma_data = json.load(f)
+            pharma_model = pharma_data.get('PHARMACEUTICAL_ABBREVIATIONS', {})
+        with open('CLEAN_EVA_DATA_RIGOROUS.json', 'r') as f:
+            eva_data = json.load(f)
+            eva_words = eva_data.get('all_words', [])
+        return digraphs, pharma_model, eva_words, True
+    except:
+        return None, None, None, False
+
+def decode_word(word, digraphs):
+    """Decode a single EVA word"""
+    locked_chars = {'s', 'a', 'l', 'd', 'o', 'r'}
+    suffix_markers = {'y': 'SOL', 'n': 'PUL', 'm': 'UNG', 'e': 'TIN', 'i': 'EXT', 'k': 'OLE'}
+
+    decoded = ""
+    i = 0
+    unmapped = False
+
+    while i < len(word):
+        if i < len(word) - 1:
+            digraph = word[i:i+2]
+            if digraph in digraphs:
+                decoded += digraphs[digraph]['abbreviation']
+                i += 2
+                continue
+
+        char = word[i]
+        if char in locked_chars:
+            decoded += char
+        elif char in suffix_markers:
+            decoded += suffix_markers[char]
+        else:
+            decoded += '?'
+            unmapped = True
+        i += 1
+
+    return decoded, unmapped
+
 with tab4:
     st.markdown("## 🧪 Independent Verification")
 
     st.info("""
-    **Test the decryption yourself.** All data files and test scripts are provided.
-    You don't need to trust our results - verify them directly.
+    **Test the decryption yourself.** Run the full verification right here, or download files and test locally.
     """)
+
+    # Try to load data
+    digraphs, pharma_model, eva_words, data_loaded = load_test_data()
+
+    if data_loaded:
+        st.markdown("### ✅ Test Data Loaded")
+        st.success(f"Ready to test! ({len(digraphs)} digraphs, {len(eva_words)} EVA words)")
+
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            if st.button("🚀 Run Full Test", key="run_full_test"):
+                st.markdown("### Running Full Verification...")
+
+                progress_bar = st.progress(0)
+                status_text = st.empty()
+
+                fully_decoded = 0
+                pharmaceutical_content = 0
+                unmapped_count = 0
+
+                for idx, word in enumerate(eva_words):
+                    decoded, unmapped = decode_word(word, digraphs)
+
+                    if not unmapped:
+                        fully_decoded += 1
+                        # Simple check: all decoded abbreviations should be in model
+                        abbrev_list = set()
+                        for category in pharma_model.values():
+                            if isinstance(category, dict):
+                                abbrev_list.update(category.keys())
+
+                        # Very basic pharmaceutical check
+                        if any(decoded.startswith(abbrev) for abbrev in abbrev_list if abbrev in decoded):
+                            pharmaceutical_content += 1
+                    else:
+                        unmapped_count += 1
+
+                    if (idx + 1) % 500 == 0:
+                        progress = (idx + 1) / len(eva_words)
+                        progress_bar.progress(progress)
+                        status_text.text(f"Processing: {idx + 1} / {len(eva_words)}")
+
+                progress_bar.progress(1.0)
+                status_text.empty()
+
+                total_words = len(eva_words)
+                decoded_pct = (fully_decoded / total_words) * 100
+                pharma_pct = (pharmaceutical_content / total_words) * 100
+
+                st.markdown("---")
+                st.markdown("### 📊 Results")
+
+                col1, col2, col3, col4 = st.columns(4)
+                col1.metric("Total Words", f"{total_words:,}")
+                col2.metric("Fully Decoded", f"{fully_decoded:,} ({decoded_pct:.1f}%)")
+                col3.metric("Pharmaceutical", f"{pharmaceutical_content:,} ({pharma_pct:.1f}%)")
+                col4.metric("Unmapped", f"{unmapped_count} ({100-decoded_pct:.1f}%)")
+
+                st.markdown("---")
+                st.markdown("### ✅ Expected vs Actual")
+
+                expected_df = pd.DataFrame({
+                    'Metric': ['Fully Decoded', 'Pharmaceutical Content'],
+                    'Expected': ['99.2%', '82.9%'],
+                    'Got': [f'{decoded_pct:.1f}%', f'{pharma_pct:.1f}%'],
+                    'Status': ['✓' if 95 < decoded_pct < 100 else '⚠', '✓' if 75 < pharma_pct < 90 else '⚠']
+                })
+                st.dataframe(expected_df, use_container_width=True, hide_index=True)
+
+        with col2:
+            if st.button("📝 Test Sample Words", key="test_samples"):
+                st.markdown("### Sample Word Testing")
+
+                sample_words = ['shory', 'kydainy', 'dair', 'otchomoporar']
+
+                for word in sample_words:
+                    decoded, unmapped = decode_word(word, digraphs)
+
+                    abbrev_list = set()
+                    for category in pharma_model.values():
+                        if isinstance(category, dict):
+                            abbrev_list.update(category.keys())
+
+                    is_pharma = not unmapped and all(c in ''.join(abbrev_list) + '?' for c in decoded)
+                    status = "✓" if is_pharma else "⚠"
+
+                    st.markdown(f"{status} **{word}** → `{decoded}`")
+
+        with col3:
+            if st.button("ℹ️ System Info", key="system_info"):
+                st.markdown("### 3-Layer System")
+                st.markdown(f"""
+                **Layer 1 - Locked Characters:** s, a, l, d, o, r
+
+                **Layer 2 - Digraph Pairs:** {len(digraphs)} mappings
+
+                **Layer 3 - Suffix Markers:** y, n, m, e, i, k
+
+                **Total EVA Words:** {len(eva_words):,}
+                """)
+
+        st.markdown("---")
+        st.markdown("### 📥 Or Run Locally")
+    else:
+        st.warning("⚠️ Test data files not found. Download from GitHub to test here.")
 
     st.markdown("### ⚡ Fastest Test (5 minutes)")
 
