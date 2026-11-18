@@ -1,0 +1,709 @@
+{
+  "total_recipes": 3949,
+  "formula_types": {
+    "f.r.p": 2024,
+    "f.v.p": 1925
+  },
+  "sample_recipes": [
+    {
+      "folio": "1r",
+      "raw": "<f1r.1,@P0>       <%>fachys.ykal.ar.ataiin.shol.shory.[cth:oto]res.y.kor.sholdy<",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.1,@p0>       <%>fachys.ykal.ar.ataiin.shol.shory.[cth:oto]res.y.kor.sholdy<!@254;>",
+      "full_text": "f r p fachys ykal ar ataiin shol shory cth oto res y kor sholdy"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.2,+P0>       sory.ckhar.or,y.kair.chtaiin.shar.ase.cthar.cthar,dan",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.2,+p0>       sory.ckhar.or,y.kair.chtaiin.shar.ase.cthar.cthar,dan",
+      "full_text": "f r p sory ckhar or y kair chtaiin shar ase cthar cthar dan"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.3,+P0>       syaiir.sheky.or.ykaiin.shod.cthoary.cthes.daraiin.sy",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.3,+p0>       syaiir.sheky.or.ykaiin.shod.cthoary.cthes.daraiin.sy",
+      "full_text": "f r p syaiir sheky or ykaiin shod cthoary cthes daraiin sy"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.4,+P0>       soiin.oteey.oteo[s:r],roloty.cthiar,daiin.okaiin.or.okan",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.4,+p0>       soiin.oteey.oteo[s:r],roloty.cthiar,daiin.okaiin.or.okan",
+      "full_text": "f r p soiin oteey oteo s r roloty cthiar daiin okaiin or okan"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.5,+P0>       sair,y.chear.cthaiin.cphar.cfhaiin",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.5,+p0>       sair,y.chear.cthaiin.cphar.cfhaiin",
+      "full_text": "f r p sair y chear cthaiin cphar cfhaiin"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.7,*P0>       <%><!@252;>odar.{c'y}.shol.cphoy.oydar.sh.s.cfhoaiin.shodary",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.7,*p0>       <%><!@252;>odar.{c'y}.shol.cphoy.oydar.sh.s.cfhoaiin.shodary",
+      "full_text": "f r p odar c y shol cphoy oydar sh s cfhoaiin shodary"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.8,+P0>       yshey.shody.okchoy.otchol.chocthy.os,chy.dain.chor.kos",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.8,+p0>       yshey.shody.okchoy.otchol.chocthy.os,chy.dain.chor.kos",
+      "full_text": "f r p yshey shody okchoy otchol chocthy os chy dain chor kos"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.9,+P0>       daiin.shos.cfhol.shody",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.9,+p0>       daiin.shos.cfhol.shody",
+      "full_text": "f r p daiin shos cfhol shody"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.11,*P0>      <%><!@253;>ydain.cphesaiin.ols.cphey.ytain.shoshy.cphodal,es",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.11,*p0>      <%><!@253;>ydain.cphesaiin.ols.cphey.ytain.shoshy.cphodal,es",
+      "full_text": "f r p ydain cphesaiin ols cphey ytain shoshy cphodal es"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.12,+P0>      oksho.kshoy.otairin.oteol.okan.shodain.sckhey.daiin",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.12,+p0>      oksho.kshoy.otairin.oteol.okan.shodain.sckhey.daiin",
+      "full_text": "f r p oksho kshoy otairin oteol okan shodain sckhey daiin"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.13,+P0>      shoy.ckhey.kodaiin.cphy.cphodaiils.cthey.sho.oldain.d",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.13,+p0>      shoy.ckhey.kodaiin.cphy.cphodaiils.cthey.sho.oldain.d",
+      "full_text": "f r p shoy ckhey kodaiin cphy cphodaiils cthey sho oldain d"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.14,+P0>      dain.oiin.chol.odaiin.chodain.chdy.ok[a:o]in.d?n.cthy.kod",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.14,+p0>      dain.oiin.chol.odaiin.chodain.chdy.ok[a:o]in.d?n.cthy.kod",
+      "full_text": "f r p dain oiin chol odaiin chodain chdy ok a o in d n"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.15,+P0>      daiin.shckhey.{ck}eo.r.char.shey.kol.chol.chol.kor.chal",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.15,+p0>      daiin.shckhey.{ck}eo.r.char.shey.kol.chol.chol.kor.chal",
+      "full_text": "f r p daiin shckhey ck eo r char shey kol chol chol kor chal"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.16,+P0>      sho.chol.shodan.kshy.kchy.d.or.chodaiin.sho.koeam",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.16,+p0>      sho.chol.shodan.kshy.kchy.d.or.chodaiin.sho.koeam",
+      "full_text": "f r p sho chol shodan kshy kchy d or chodaiin sho koeam"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.17,+P0>      ycho.tchey.chekain.sheo,pshol.dydyd.cthy.dai[{cto}:@194;]y",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.17,+p0>      ycho.tchey.chekain.sheo,pshol.dydyd.cthy.dai[{cto}:@194;]y",
+      "full_text": "f r p ycho tchey chekain sheo pshol dydyd cthy dai cto y"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.18,+P0>      yto.shol.she.kodshey.cphealy.dar,ain.dain.ckhyds",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.18,+p0>      yto.shol.she.kodshey.cphealy.dar,ain.dain.ckhyds",
+      "full_text": "f r p yto shol she kodshey cphealy dar ain dain ckhyds"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.19,+P0>      dchar.shcthaiin.okaiir.chey.@192;chy.@130;tol.cthols.dlo{ct}o",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.19,+p0>      dchar.shcthaiin.okaiir.chey.@192;chy.@130;tol.cthols.dlo{ct}o",
+      "full_text": "f r p dchar shcthaiin okaiir chey chy tol cthols dlo ct o"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.20,+P0>      shok.chor.chey.dain.ckhey",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.20,+p0>      shok.chor.chey.dain.ckhey",
+      "full_text": "f r p shok chor chey dain ckhey"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.22,*P0>      <%>cpho.shaiin.shokcheey.chol.tshodeesy.shey.pydeey.cha.ro,dar",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.22,*p0>      <%>cpho.shaiin.shokcheey.chol.tshodeesy.shey.pydeey.cha.ro,dar",
+      "full_text": "f r p cpho shaiin shokcheey chol tshodeesy shey pydeey cha ro dar"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.23,+P0>      ydoin.chol.dain.cthal.dar.shear.kaiin.dar.shey.cthar",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.23,+p0>      ydoin.chol.dain.cthal.dar.shear.kaiin.dar.shey.cthar",
+      "full_text": "f r p ydoin chol dain cthal dar shear kaiin dar shey cthar"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.24,+P0>      cho.?o.kaiin.shoaiin.okol.daiin.far.cthol.daiin.ctholdar",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.24,+p0>      cho.?o.kaiin.shoaiin.okol.daiin.far.cthol.daiin.ctholdar",
+      "full_text": "f r p cho o kaiin shoaiin okol daiin far cthol daiin ctholdar"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.25,+P0>      ycheey.okeey.oky.daiin.okchey.kokaiin.o?chol.k?dchy.dal",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.25,+p0>      ycheey.okeey.oky.daiin.okchey.kokaiin.o?chol.k?dchy.dal",
+      "full_text": "f r p ycheey okeey oky daiin okchey kokaiin o chol k dchy dal"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.26,+P0>      dcheo.shody.koshey.cthy.ok,chey.keey.keey,dal.chtor",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.26,+p0>      dcheo.shody.koshey.cthy.ok,chey.keey.keey,dal.chtor",
+      "full_text": "f r p dcheo shody koshey cthy ok chey keey keey dal chtor"
+    },
+    {
+      "folio": "1r",
+      "raw": "<f1r.27,+P0>      ?eo?.chol.chok.choty.chotey",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f1r.27,+p0>      ?eo?.chol.chok.choty.chotey",
+      "full_text": "f r p eo chol chok choty chotey"
+    },
+    {
+      "folio": "1v",
+      "raw": "<f1v.1,@P0>       <%>kchsy.chydaiin.ol<->o,l,tchey.char.cfhar,am",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f1v.1,@p0>       <%>kchsy.chydaiin.ol<->o,l,tchey.char.cfhar,am",
+      "full_text": "f v p kchsy chydaiin ol o l tchey char cfhar am"
+    },
+    {
+      "folio": "1v",
+      "raw": "<f1v.2,+P0>       yteey.char.or.ochy<->dcho.lkody.okodar.chody",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f1v.2,+p0>       yteey.char.or.ochy<->dcho.lkody.okodar.chody",
+      "full_text": "f v p yteey char or ochy dcho lkody okodar chody"
+    },
+    {
+      "folio": "1v",
+      "raw": "<f1v.3,+P0>       da,ckhy.ckhockhy.shy<->dksheey.cthy.kotchody.dal",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f1v.3,+p0>       da,ckhy.ckhockhy.shy<->dksheey.cthy.kotchody.dal",
+      "full_text": "f v p da ckhy ckhockhy shy dksheey cthy kotchody dal"
+    },
+    {
+      "folio": "1v",
+      "raw": "<f1v.4,+P0>       dol.chokeo.dair.dam<->sochey.chokody<$>",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f1v.4,+p0>       dol.chokeo.dair.dam<->sochey.chokody<$>",
+      "full_text": "f v p dol chokeo dair dam sochey chokody"
+    },
+    {
+      "folio": "1v",
+      "raw": "<f1v.5,+P0>       <%>potoy.shol.dair.cphoal<->dar.chey.tody.otoaiin.shoshy",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f1v.5,+p0>       <%>potoy.shol.dair.cphoal<->dar.chey.tody.otoaiin.shoshy",
+      "full_text": "f v p potoy shol dair cphoal dar chey tody otoaiin shoshy"
+    },
+    {
+      "folio": "1v",
+      "raw": "<f1v.6,+P0>       choky.chol.ctho,l,shol.okal<->dolchey.chodo.lol.chy.cthy",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f1v.6,+p0>       choky.chol.ctho,l,shol.okal<->dolchey.chodo.lol.chy.cthy",
+      "full_text": "f v p choky chol ctho l shol okal dolchey chodo lol chy cthy"
+    },
+    {
+      "folio": "1v",
+      "raw": "<f1v.7,+P0>       qo<!bar over o>.ol,choees.cheol.dol.cthey<->ykol.dol.dolo.ykol",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f1v.7,+p0>       qo<!bar over o>.ol,choees.cheol.dol.cthey<->ykol.dol.dolo.ykol.do,lchiody<!corr?>",
+      "full_text": "f v p qo bar over o ol choees cheol dol cthey ykol dol dolo"
+    },
+    {
+      "folio": "1v",
+      "raw": "<f1v.8,+P0>       okolshol.kol,kechy.chol.ky<->chol.cthol.chody.chol.daiin",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f1v.8,+p0>       okolshol.kol,kechy.chol.ky<->chol.cthol.chody.chol.daiin",
+      "full_text": "f v p okolshol kol kechy chol ky chol cthol chody chol daiin"
+    },
+    {
+      "folio": "1v",
+      "raw": "<f1v.9,+P0>       shor.okol.chol.dol,ky.dar<->shol.dchor.o,tcho.dar.[sh:{@209;h}",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f1v.9,+p0>       shor.okol.chol.dol,ky.dar<->shol.dchor.o,tcho.dar.[sh:{@209;h}]ody",
+      "full_text": "f v p shor okol chol dol ky dar shol dchor o tcho dar sh"
+    },
+    {
+      "folio": "1v",
+      "raw": "<f1v.10,+P0>      taor.chotchey.dal.chody<->schody.pol.chodar<$>",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f1v.10,+p0>      taor.chotchey.dal.chody<->schody.pol.chodar<$>",
+      "full_text": "f v p taor chotchey dal chody schody pol chodar"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.1,@P0>       <%>kydainy.ypchol.daiin.otchal<->ypchaiin.ckholsy",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.1,@p0>       <%>kydainy.ypchol.daiin.otchal<->ypchaiin.ckholsy",
+      "full_text": "f r p kydainy ypchol daiin otchal ypchaiin ckholsy"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.2,+P0>       dorchory<->chkar.s<->shor.cthy.{cto}",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.2,+p0>       dorchory<->chkar.s<->shor.cthy.{cto}",
+      "full_text": "f r p dorchory chkar s shor cthy cto"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.3,+P0>       qotaiin<->cthey.y<->chor.chy.ydy<->chaiin",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.3,+p0>       qotaiin<->cthey.y<->chor.chy.ydy<->chaiin",
+      "full_text": "f r p qotaiin cthey y chor chy ydy chaiin"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.4,+P0>       {c'o}aiidy<->chtod,dy<->cphy.dals<->chokaiin.d",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.4,+p0>       {c'o}aiidy<->chtod,dy<->cphy.dals<->chokaiin.d",
+      "full_text": "f r p c o aiidy chtod dy cphy dals chokaiin d"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.5,+P0>       otochor.al<->shodaiin<->chol,dan<->ytchaiin.dan",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.5,+p0>       otochor.al<->shodaiin<->chol,dan<->ytchaiin.dan",
+      "full_text": "f r p otochor al shodaiin chol dan ytchaiin dan"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.6,+P0>       saiin.dain,d<->dkol.sor<->ytoldy<->dchol.dchy.cthy",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.6,+p0>       saiin.dain,d<->dkol.sor<->ytoldy<->dchol.dchy.cthy",
+      "full_text": "f r p saiin dain d dkol sor ytoldy dchol dchy cthy"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.7,+P0>       shor.ckhy.daiiny<->chol,dan<$>",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.7,+p0>       shor.ckhy.daiiny<->chol,dan<$>",
+      "full_text": "f r p shor ckhy daiiny chol dan"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.8,+P0>       <%>kydain.shaiin.qoy.s.shol.fodan<->yksh.olsheey.daiildy",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.8,+p0>       <%>kydain.shaiin.qoy.s.shol.fodan<->yksh.olsheey.daiildy",
+      "full_text": "f r p kydain shaiin qoy s shol fodan yksh olsheey daiildy"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.9,+P0>       dls,sho.kol.sheey.qokey.ykody.so<->chol,yky.dain.daiisol",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.9,+p0>       dls,sho.kol.sheey.qokey.ykody.so<->chol,yky.dain.daiisol",
+      "full_text": "f r p dls sho kol sheey qokey ykody so chol yky dain daiisol"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.10,+P0>      qo'ky.cholaiin.shol.sheky.daiin<->cthey.keol.saiin.e'a'iin",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.10,+p0>      qo'ky.cholaiin.shol.sheky.daiin<->cthey.keol.saiin.e'a'iin",
+      "full_text": "f r p qo ky cholaiin shol sheky daiin cthey keol saiin e a iin"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.11,+P0>      ychain.dal.chy.dalor.shan.dan<->olsaiin.sheey.ckhor",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.11,+p0>      ychain.dal.chy.dalor.shan.dan<->olsaiin.sheey.ckhor",
+      "full_text": "f r p ychain dal chy dalor shan dan olsaiin sheey ckhor"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.12,+P0>      okol.chy.chor.cthor.yor.an.chan<->saiin.chety.chyky.sal",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.12,+p0>      okol.chy.chor.cthor.yor.an.chan<->saiin.chety.chyky.sal",
+      "full_text": "f r p okol chy chor cthor yor an chan saiin chety chyky sal"
+    },
+    {
+      "folio": "2r",
+      "raw": "<f2r.13,+P0>      sho.ykeey.chey.daiin.chcthy<$>",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f2r.13,+p0>      sho.ykeey.chey.daiin.chcthy<$>",
+      "full_text": "f r p sho ykeey chey daiin chcthy"
+    },
+    {
+      "folio": "2v",
+      "raw": "<f2v.1,@P0>       <%>kooiin.cheo,pchor.otaiin,odain.chor<->dair.shty",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f2v.1,@p0>       <%>kooiin.cheo,pchor.otaiin,odain.chor<->dair.shty",
+      "full_text": "f v p kooiin cheo pchor otaiin odain chor dair shty"
+    },
+    {
+      "folio": "2v",
+      "raw": "<f2v.2,+P0>       kcho,kchy.sho.shol.qotcho.loeees.qoty<->chor.daiin",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f2v.2,+p0>       kcho,kchy.sho.shol.qotcho.loeees.qoty<->chor.daiin",
+      "full_text": "f v p kcho kchy sho shol qotcho loeees qoty chor daiin"
+    },
+    {
+      "folio": "2v",
+      "raw": "<f2v.3,+P0>       otchy.chor.lshy.chol.chody.chodain<->chcthy.daiin",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f2v.3,+p0>       otchy.chor.lshy.chol.chody.chodain<->chcthy.daiin",
+      "full_text": "f v p otchy chor lshy chol chody chodain chcthy daiin"
+    },
+    {
+      "folio": "2v",
+      "raw": "<f2v.4,+P0>       sho.cholo.cheor.chodaiin<$>",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f2v.4,+p0>       sho.cholo.cheor.chodaiin<$>",
+      "full_text": "f v p sho cholo cheor chodaiin"
+    },
+    {
+      "folio": "2v",
+      "raw": "<f2v.5,+P0>       <%>kchor<!mark above o>.shy.daiiin.ch{cko}m<->s,shey.dor,chol,",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f2v.5,+p0>       <%>kchor<!mark above o>.shy.daiiin.ch{cko}m<->s,shey.dor,chol,daiin",
+      "full_text": "f v p kchor mark above o shy daiiin ch cko m s shey dor"
+    },
+    {
+      "folio": "2v",
+      "raw": "<f2v.6,+P0>       dor.chol.chor.chol.keol.chy.chty<->daiin.o,tchor.chan",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f2v.6,+p0>       dor.chol.chor.chol.keol.chy.chty<->daiin.o,tchor.chan",
+      "full_text": "f v p dor chol chor chol keol chy chty daiin o tchor chan"
+    },
+    {
+      "folio": "2v",
+      "raw": "<f2v.7,+P0>       daiin.chotchey.qoteeey.chokeos<->chees.chr.cheaiin",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f2v.7,+p0>       daiin.chotchey.qoteeey.chokeos<->chees.chr.cheaiin",
+      "full_text": "f v p daiin chotchey qoteeey chokeos chees chr cheaiin"
+    },
+    {
+      "folio": "2v",
+      "raw": "<f2v.8,+P0>       chokoishe.chor.cheol.chol.dolody<$>",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f2v.8,+p0>       chokoishe.chor.cheol.chol.dolody<$>",
+      "full_text": "f v p chokoishe chor cheol chol dolody"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.1,@P0>       <%>tsheos.qopal.chol.cthol.daimg",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.1,@p0>       <%>tsheos.qopal.chol.cthol.daimg",
+      "full_text": "f r p tsheos qopal chol cthol daimg"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.2,+P0>       ycheor.chor.dam.qotcham.cham",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.2,+p0>       ycheor.chor.dam.qotcham.cham",
+      "full_text": "f r p ycheor chor dam qotcham cham"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.3,+P0>       ochor.qocheor.chol.daiin.cthy",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.3,+p0>       ochor.qocheor.chol.daiin.cthy",
+      "full_text": "f r p ochor qocheor chol daiin cthy"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.4,+P0>       schey.chor.chal.chag.cham.cho",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.4,+p0>       schey.chor.chal.chag.cham.cho",
+      "full_text": "f r p schey chor chal chag cham cho"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.5,+P0>       qokol.chololy.s.cham.cthol",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.5,+p0>       qokol.chololy.s.cham.cthol",
+      "full_text": "f r p qokol chololy s cham cthol"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.6,+P0>       ychtaiin.chor.cthom.otaldam",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.6,+p0>       ychtaiin.chor.cthom.otaldam",
+      "full_text": "f r p ychtaiin chor cthom otaldam"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.7,+P0>       otchol.qodaiin.chom.shom.damo",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.7,+p0>       otchol.qodaiin.chom.shom.damo",
+      "full_text": "f r p otchol qodaiin chom shom damo"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.8,+P0>       ysheor.chor.chol.oky.dago",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.8,+p0>       ysheor.chor.chol.oky.dago",
+      "full_text": "f r p ysheor chor chol oky dago"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.9,+P0>       sho.vor.sheoldam.otchody.ol",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.9,+p0>       sho.vor.sheoldam.otchody.ol",
+      "full_text": "f r p sho vor sheoldam otchody ol"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.10,+P0>      ydar.cholcthom<$>",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.10,+p0>      ydar.cholcthom<$>",
+      "full_text": "f r p ydar cholcthom"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.11,+P0>      <%>pcheol.shol.sols.sheol.shey",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.11,+p0>      <%>pcheol.shol.sols.sheol.shey",
+      "full_text": "f r p pcheol shol sols sheol shey"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.12,+P0>      okadaiin.qokchor.qo,schodam.octhy",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.12,+p0>      okadaiin.qokchor.qo,schodam.octhy",
+      "full_text": "f r p okadaiin qokchor qo schodam octhy"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.13,+P0>      qokeey.qot,shey.qokody.qokshey.cheody",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.13,+p0>      qokeey.qot,shey.qokody.qokshey.cheody",
+      "full_text": "f r p qokeey qot shey qokody qokshey cheody"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.14,+P0>      chor.qodair.okeey.qokeey<$>",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.14,+p0>      chor.qodair.okeey.qokeey<$>",
+      "full_text": "f r p chor qodair okeey qokeey"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.15,+P0>      <%>tsheoarom.shor.or.chor.olchsy.chom.otchom<->oporar",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.15,+p0>      <%>tsheoarom.shor.or.chor.olchsy.chom.otchom<->oporar",
+      "full_text": "f r p tsheoarom shor or chor olchsy chom otchom oporar"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.16,+P0>      oteol.chol.s.cheol.ekshy.qokeom.qokol.daiin<->soleeg",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.16,+p0>      oteol.chol.s.cheol.ekshy.qokeom.qokol.daiin<->soleeg",
+      "full_text": "f r p oteol chol s cheol ekshy qokeom qokol daiin soleeg"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.17,+P0>      soeom.okeom.yteody.qokeeodal.sam<$>",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.17,+p0>      soeom.okeom.yteody.qokeeodal.sam<$>",
+      "full_text": "f r p soeom okeom yteody qokeeodal sam"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.18,+P0>      <%>pcheoldom.shodaiin.qopchor.qopol.opchol,qoty<->otolom",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.18,+p0>      <%>pcheoldom.shodaiin.qopchor.qopol.opchol,qoty<->otolom",
+      "full_text": "f r p pcheoldom shodaiin qopchor qopol opchol qoty otolom"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.19,+P0>      otchor.ol,cheor.qoeor.dair.qoteol.qosaiin<->chor.cthy",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.19,+p0>      otchor.ol,cheor.qoeor.dair.qoteol.qosaiin<->chor.cthy",
+      "full_text": "f r p otchor ol cheor qoeor dair qoteol qosaiin chor cthy"
+    },
+    {
+      "folio": "3r",
+      "raw": "<f3r.20,+P0>      ycheor.chol.odaiin.chol.s.aiin.okol,or.am<$>",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f3r.20,+p0>      ycheor.chol.odaiin.chol.s.aiin.okol,or.am<$>",
+      "full_text": "f r p ycheor chol odaiin chol s aiin okol or am"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.1,@P0>       <%>koaiin.cphor.qotoy.sha.ckhol.ykoaiin.s.oly",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.1,@p0>       <%>koaiin.cphor.qotoy.sha.ckhol.ykoaiin.s.oly",
+      "full_text": "f v p koaiin cphor qotoy sha ckhol ykoaiin s oly"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.2,+P0>       daiidy.qoteeol.okeeor.okor.olytol.dol,dar",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.2,+p0>       daiidy.qoteeol.okeeor.okor.olytol.dol,dar",
+      "full_text": "f v p daiidy qoteeol okeeor okor olytol dol dar"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.3,+P0>       okom.chol.shol.seees.chom.cheeykam.okai",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.3,+p0>       okom.chol.shol.seees.chom.cheeykam.okai",
+      "full_text": "f v p okom chol shol seees chom cheeykam okai"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.4,+P0>       qodar.ees.eey.kcheol.okal.do.r.chear,een",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.4,+p0>       qodar.ees.eey.kcheol.okal.do.r.chear,een",
+      "full_text": "f v p qodar ees eey kcheol okal do r chear een"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.5,+P0>       ychear.otchal.cho,r.char.ckh[a:y]",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.5,+p0>       ychear.otchal.cho,r.char.ckh[a:y]",
+      "full_text": "f v p ychear otchal cho r char ckh a y"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.6,+P0>       or.cheor.kor.chodaly.chom<$>",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.6,+p0>       or.cheor.kor.chodaly.chom<$>",
+      "full_text": "f v p or cheor kor chodaly chom"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.7,+P0>       <%>tchor.otcham.chor.cfham.s",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.7,+p0>       <%>tchor.otcham.chor.cfham.s",
+      "full_text": "f v p tchor otcham chor cfham s"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.8,+P0>       ykchy.kchom.chor.chckhol.oka",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.8,+p0>       ykchy.kchom.chor.chckhol.oka",
+      "full_text": "f v p ykchy kchom chor chckhol oka"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.9,+P0>       ytcheear.okeol.cthodoaly.chor.cthy",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.9,+p0>       ytcheear.okeol.cthodoaly.chor.cthy",
+      "full_text": "f v p ytcheear okeol cthodoaly chor cthy"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.10,+P0>      ochos.daiin.qokshol.daiim.chol.okary",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.10,+p0>      ochos.daiin.qokshol.daiim.chol.okary",
+      "full_text": "f v p ochos daiin qokshol daiim chol okary"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.11,+P0>      sho.shockho.ckhy.tchor.chodaiin.chom",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.11,+p0>      sho.shockho.ckhy.tchor.chodaiin.chom",
+      "full_text": "f v p sho shockho ckhy tchor chodaiin chom"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.12,+P0>      osh.chodair.ytchy.tchor.kcham.s",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.12,+p0>      osh.chodair.ytchy.tchor.kcham.s",
+      "full_text": "f v p osh chodair ytchy tchor kcham s"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.13,+P0>      shar.shkaiin.qokchy.yty.cthal.chky",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.13,+p0>      shar.shkaiin.qokchy.yty.cthal.chky",
+      "full_text": "f v p shar shkaiin qokchy yty cthal chky"
+    },
+    {
+      "folio": "3v",
+      "raw": "<f3v.14,+P0>      dain.sheam.y,keam<$>",
+      "formula_header": "f.v.p",
+      "partial_decode": "<f3v.14,+p0>      dain.sheam.y,keam<$>",
+      "full_text": "f v p dain sheam y keam"
+    },
+    {
+      "folio": "4r",
+      "raw": "<f4r.1,@P0>       <%>kodalchy.chpady.sheol.ol,sheey.qotey<->doiin.chor.ytoy",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f4r.1,@p0>       <%>kodalchy.chpady.sheol.ol,sheey.qotey<->doiin.chor.ytoy",
+      "full_text": "f r p kodalchy chpady sheol ol sheey qotey doiin chor ytoy"
+    },
+    {
+      "folio": "4r",
+      "raw": "<f4r.2,+P0>       dchor.shol.shol.cthol.shtchy.chaiin.@163;s<->choraiin.chom",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f4r.2,+p0>       dchor.shol.shol.cthol.shtchy.chaiin.@163;s<->choraiin.chom",
+      "full_text": "f r p dchor shol shol cthol shtchy chaiin s choraiin chom"
+    },
+    {
+      "folio": "4r",
+      "raw": "<f4r.3,+P0>       otchol.chol.chy.chaiin.qotaiin<->daiin.shain",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f4r.3,+p0>       otchol.chol.chy.chaiin.qotaiin<->daiin.shain",
+      "full_text": "f r p otchol chol chy chaiin qotaiin daiin shain"
+    },
+    {
+      "folio": "4r",
+      "raw": "<f4r.4,+P0>       qotchol,chy.yty.daiin.okaiin.cthy<$>",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f4r.4,+p0>       qotchol,chy.yty.daiin.okaiin.cthy<$>",
+      "full_text": "f r p qotchol chy yty daiin okaiin cthy"
+    },
+    {
+      "folio": "4r",
+      "raw": "<f4r.5,+P0>       <%>pydaiin.qotchy.dy,tydy",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f4r.5,+p0>       <%>pydaiin.qotchy.dy,tydy",
+      "full_text": "f r p pydaiin qotchy dy tydy"
+    },
+    {
+      "folio": "4r",
+      "raw": "<f4r.6,+P0>       chor.shytchy.dytcheey",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f4r.6,+p0>       chor.shytchy.dytcheey",
+      "full_text": "f r p chor shytchy dytcheey"
+    },
+    {
+      "folio": "4r",
+      "raw": "<f4r.7,+P0>       qotaiin.cthol.daiin.cthom",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f4r.7,+p0>       qotaiin.cthol.daiin.cthom",
+      "full_text": "f r p qotaiin cthol daiin cthom"
+    },
+    {
+      "folio": "4r",
+      "raw": "<f4r.8,+P0>       shor.shol.shol.cthy.cpholdy",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f4r.8,+p0>       shor.shol.shol.cthy.cpholdy",
+      "full_text": "f r p shor shol shol cthy cpholdy"
+    },
+    {
+      "folio": "4r",
+      "raw": "<f4r.9,+P0>       daiin.ckhochy.tchy.kor,aiin",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f4r.9,+p0>       daiin.ckhochy.tchy.kor,aiin",
+      "full_text": "f r p daiin ckhochy tchy kor aiin"
+    },
+    {
+      "folio": "4r",
+      "raw": "<f4r.10,+P0>      odal.shor.shyshol.cphaiin",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f4r.10,+p0>      odal.shor.shyshol.cphaiin",
+      "full_text": "f r p odal shor shyshol cphaiin"
+    },
+    {
+      "folio": "4r",
+      "raw": "<f4r.11,+P0>      qotchoiin.she[o:a]r.qoty",
+      "formula_header": "f.r.p",
+      "partial_decode": "<f4r.11,+p0>      qotchoiin.she[o:a]r.qoty",
+      "full_text": "f r p qotchoiin she o a r qoty"
+    }
+  ]
+}
