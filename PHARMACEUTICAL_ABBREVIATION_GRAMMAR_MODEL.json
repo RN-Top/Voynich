@@ -1,0 +1,107 @@
+{
+  "MODEL_NAME": "Medieval Pharmaceutical Abbreviation Grammar Validator",
+  "PURPOSE": "Think like a 14th-15th century pharmacist. Text is 95% abbreviations. Validate character mappings by whether they produce coherent pharmaceutical abbreviation sequences.",
+  "CORE_PRINCIPLE": "The text is NOT random gibberish. It is ABBREVIATION SEQUENCES. Each character mapping must be tested by: can the decrypted words be parsed into real pharmaceutical abbreviations that follow recipe logic?",
+
+  "PHARMACEUTICAL_ABBREVIATIONS": {
+    "INGREDIENTS_OILS": {
+      "ol": {"meaning": "oleum (oil)", "type": "ingredient", "can_follow": ["cum", "in", "per", "ex", "et", "ad"], "can_precede": ["ad", "dar", "da", "per", ","]},
+      "col": {"meaning": "cum+ol (with oil)", "type": "ingredient_phrase", "can_follow": ["sal", "rad"], "can_precede": ["ad", "dar", "da"]},
+      "iol": {"meaning": "in+ol (in oil)", "type": "ingredient_phrase", "can_follow": ["sal", "rad"], "can_precede": ["ad", "dar", "da"]},
+      "pol": {"meaning": "per+ol (by oil)", "type": "ingredient_phrase", "can_follow": ["sal", "rad"], "can_precede": ["ad", "dar", "da"]},
+      "eol": {"meaning": "et+ol (and oil)", "type": "ingredient_phrase", "can_follow": ["sal", "rad"], "can_precede": ["ad", "dar", "da"]},
+      "xol": {"meaning": "ex+ol (extracted oil)", "type": "ingredient_phrase", "can_follow": ["sal", "rad"], "can_precede": ["ad", "dar", "da"]},
+      "rol": {"meaning": "oleum variant", "type": "ingredient", "can_follow": ["cum", "per"], "can_precede": ["ad", "dar", "da"]},
+      "sol": {"meaning": "sol/sole (oil)", "type": "ingredient", "can_follow": ["cum", "per"], "can_precede": ["ad", "dar", "da"]}
+    },
+
+    "INGREDIENTS_OTHER": {
+      "sal": {"meaning": "sal (salt)", "type": "ingredient", "can_follow": ["cum", "in", "per"], "can_precede": ["ol", "col", "iol", "pol", "ad", "dar"]},
+      "rad": {"meaning": "radix (root)", "type": "ingredient", "can_follow": ["cum", "in", "per"], "can_precede": ["ol", "col", "iol", "pol", "ad", "dar"]},
+      "vin": {"meaning": "vinum (wine)", "type": "ingredient", "can_follow": ["cum", "in", "per"], "can_precede": ["ol", "ad", "dar"]},
+      "mel": {"meaning": "mel (honey)", "type": "ingredient", "can_follow": ["cum", "in", "per"], "can_precede": ["ol", "ad", "dar"]},
+      "aqua": {"meaning": "aqua (water)", "type": "ingredient", "can_follow": ["cum", "in", "per"], "can_precede": ["ol", "ad", "dar"]},
+      "herb": {"meaning": "herba (herb)", "type": "ingredient", "can_follow": ["cum", "in", "per"], "can_precede": ["ol", "ad", "dar"]},
+      "flor": {"meaning": "flos (flower)", "type": "ingredient", "can_follow": ["cum", "in", "per"], "can_precede": ["ol", "ad", "dar"]}
+    },
+
+    "ACTIONS_VERBS": {
+      "da": {"meaning": "dare (give - imperative)", "type": "verb_action", "can_follow": ["ad", "per", "in"], "can_precede": ["ad", "dol", "febr", "ol", "sal"]},
+      "dar": {"meaning": "dare (give/apply)", "type": "verb_action", "can_follow": ["ad", "per", "in"], "can_precede": ["ad", "dol", "febr", "ol", "sal"]},
+      "dal": {"meaning": "dare variant", "type": "verb_action", "can_follow": ["ad", "per", "in"], "can_precede": ["ad", "dol", "febr", "ol", "sal"]},
+      "dan": {"meaning": "dare + n (give + object)", "type": "verb_action", "can_follow": ["ad", "per", "in"], "can_precede": ["ad", "dol", "febr", "ol", "sal"]},
+      "fac": {"meaning": "facere (make)", "type": "verb_action", "can_follow": ["ad", "per"], "can_precede": ["ad", "ol", "sal"]},
+      "rec": {"meaning": "recipe (take)", "type": "verb_action", "can_follow": ["ad", "per"], "can_precede": ["ad", "ol", "sal"]},
+      "coq": {"meaning": "coquere (cook)", "type": "verb_action", "can_follow": ["ad", "per"], "can_precede": ["ad", "ol", "sal"]},
+      "misc": {"meaning": "miscere (mix)", "type": "verb_action", "can_follow": ["ad", "per"], "can_precede": ["ad", "ol", "sal"]},
+      "dist": {"meaning": "distillare (distill)", "type": "verb_action", "can_follow": ["ad", "per"], "can_precede": ["ad", "ol", "sal"]},
+      "inf": {"meaning": "infundere (infuse)", "type": "verb_action", "can_follow": ["ad", "per"], "can_precede": ["ad", "ol", "sal"]}
+    },
+
+    "MEDICAL_CONDITIONS": {
+      "dol": {"meaning": "dolor (pain)", "type": "condition", "can_follow": ["ad", "pro"], "can_precede": ["ad", "dar", "da"]},
+      "febr": {"meaning": "febris (fever)", "type": "condition", "can_follow": ["ad", "pro"], "can_precede": ["ad", "dar", "da"]},
+      "inflamm": {"meaning": "inflammatio (inflammation)", "type": "condition", "can_follow": ["ad", "pro"], "can_precede": ["ad", "dar", "da"]},
+      "vulner": {"meaning": "vulnus (wound)", "type": "condition", "can_follow": ["ad", "pro"], "can_precede": ["ad", "dar", "da"]},
+      "ulcer": {"meaning": "ulcus (ulcer)", "type": "condition", "can_follow": ["ad", "pro"], "can_precede": ["ad", "dar", "da"]},
+      "scab": {"meaning": "scabies (scab)", "type": "condition", "can_follow": ["ad", "pro"], "can_precede": ["ad", "dar", "da"]}
+    },
+
+    "PREPOSITIONS_CONNECTORS": {
+      "ad": {"meaning": "ad (to/at)", "type": "preposition", "can_follow": ["dar", "da", "dal", "dan", "per", "cum"], "can_precede": ["dol", "febr", "inflamm", "vulner", "ol", "sal"]},
+      "in": {"meaning": "in (in)", "type": "preposition", "can_follow": ["cum", "per"], "can_precede": ["ol", "sal", "rad"]},
+      "per": {"meaning": "per (by/through)", "type": "preposition", "can_follow": ["dar", "da"], "can_precede": ["ol", "sal", "rad"]},
+      "pro": {"meaning": "pro (for)", "type": "preposition", "can_follow": ["dar", "da"], "can_precede": ["dol", "febr", "inflamm"]},
+      "cum": {"meaning": "cum (with)", "type": "conjunction", "can_follow": ["sal", "rad"], "can_precede": ["ol", "sal", "rad"]},
+      "et": {"meaning": "et (and)", "type": "conjunction", "can_follow": ["sal", "ol", "rad"], "can_precede": ["ol", "sal", "rad"]},
+      "or": {"meaning": "or (choice/alternative)", "type": "conjunction", "can_follow": ["sal", "ol", "rad"], "can_precede": ["sal", "ol", "rad"]},
+      "de": {"meaning": "de (of)", "type": "preposition", "can_follow": ["sal", "rad"], "can_precede": ["sal", "rad"]},
+      "ab": {"meaning": "ab (from)", "type": "preposition", "can_follow": ["cum", "per"], "can_precede": ["sal", "rad"]},
+      "sub": {"meaning": "sub (under)", "type": "preposition", "can_follow": ["dar", "da"], "can_precede": ["sal", "rad"]}
+    }
+  },
+
+  "PHARMACEUTICAL_RECIPE_STRUCTURE": {
+    "PATTERN_1": "[INGREDIENT] + [PREP_METHOD] + [ACTION] + [TARGET]",
+    "PATTERN_2": "[INGREDIENT] + [INGREDIENT_CONNECTOR] + [INGREDIENT] + [ACTION] + [TARGET]",
+    "PATTERN_3": "[PREP_INSTRUCTION] + [INGREDIENT] + [ACTION] + [INDICATION]",
+    "PATTERN_4": "[ACTION] + [INGREDIENT] + [PREPOSITION] + [CONDITION]",
+
+    "EXAMPLE_RECIPES": [
+      {"text": "sal ol dar ad dol", "meaning": "salt oil give to pain", "structure": "ingredient + ingredient + action + preposition + condition", "validity": "REAL - oil-based salt remedy for pain"},
+      {"text": "rad col dar ad febr", "meaning": "root with-oil give to fever", "structure": "ingredient + ingredient_phrase + action + preposition + condition", "validity": "REAL - oil remedy for fever"},
+      {"text": "mel vin misc ad inflamm", "meaning": "honey wine mix to inflammation", "structure": "ingredient + ingredient + action + preposition + condition", "validity": "REAL - honey-wine mixture for inflammation"},
+      {"text": "aqua sal da ad vulner", "meaning": "water salt give to wound", "structure": "ingredient + ingredient + action + preposition + condition", "validity": "REAL - salt water for wounds"}
+    ]
+  },
+
+  "VALIDATION_RULES": {
+    "RULE_1": "Each abbreviation in a sequence must have MEANING - no unknown abbreviations allowed",
+    "RULE_2": "Abbreviations must follow PHARMACEUTICAL GRAMMAR - what can follow what matters",
+    "RULE_3": "Recipes must follow recognizable STRUCTURE - ingredient → preparation → action → indication",
+    "RULE_4": "Medical conditions (dol, febr, etc.) require ACTION before them or PREPOSITION",
+    "RULE_5": "Actions (dar, da, fac) require either INGREDIENT or TARGET to make sense",
+    "RULE_6": "Prepositions (ad, per, in) must connect ACTIONS to TARGETS or ACTIONS to INGREDIENTS",
+    "RULE_7": "A sequence is PHARMACEUTICAL if it parses 100% and follows recipe structure"
+  },
+
+  "CHARACTER_MAPPING_TESTING_PROCESS": {
+    "STEP_1": "Start with locked characters (s, a, l, d, o, r) - these are PROVEN to work",
+    "STEP_2": "For each unknown EVA character, test mapping to different Latin letters",
+    "STEP_3": "For each test mapping, decrypt ALL words containing that character",
+    "STEP_4": "Parse each decrypted word into abbreviation sequences using the grammar model above",
+    "STEP_5": "Count: how many words parse into 100% valid pharmaceutical abbreviations?",
+    "STEP_6": "Accept mapping ONLY IF 60%+ of words parse into valid pharmaceutical sequences",
+    "STEP_7": "Lock that mapping and move to next character (prevents collisions)",
+    "STEP_8": "Build incremental mapping: locked + validated character by character"
+  },
+
+  "WHAT_MAKES_A_CHARACTER_MAPPING_VALID": {
+    "MUST_HAVE": "60%+ of words containing the character decrypt to 100% valid pharmaceutical abbreviation sequences",
+    "MUST_NOT_HAVE": "Gibberish mixed with abbreviations is INVALID - all parts must be recognizable abbreviations",
+    "MUST_SHOW": "Pattern of coherent pharmaceutical recipes, not random pharmaceutical words scattered in noise",
+    "MUST_AVOID": "Collisions - each EVA character maps to ONE unique Latin letter"
+  },
+
+  "KEY_INSIGHT": "A medieval pharmacist reading abbreviated recipes would recognize EVERY abbreviation. If 60%+ of decrypted words parse into recognizable pharmaceutical sequences, the mapping is CORRECT. If decrypted words contain unrecognizable letter combinations mixed with abbreviations, the mapping is WRONG."
+}

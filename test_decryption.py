@@ -14,9 +14,11 @@ def load_data():
         with open('DIGRAPH_FORMULA_MAPPING_ULTRA.json', 'r') as f:
             digraphs = json.load(f)
         with open('PHARMACEUTICAL_ABBREVIATION_GRAMMAR_MODEL.json', 'r') as f:
-            pharma_model = json.load(f)
+            pharma_data = json.load(f)
+            pharma_model = pharma_data.get('PHARMACEUTICAL_ABBREVIATIONS', {})
         with open('CLEAN_EVA_DATA_RIGOROUS.json', 'r') as f:
-            eva_words = json.load(f)
+            eva_data = json.load(f)
+            eva_words = eva_data.get('all_words', [])
         return digraphs, pharma_model, eva_words
     except FileNotFoundError as e:
         print(f"❌ ERROR: Missing file: {e}")
@@ -60,10 +62,14 @@ def decode_word(word, digraphs):
 
 def parse_abbreviations(decoded_text, pharma_model):
     """Parse decoded text into pharmaceutical abbreviations"""
-    abbrev_list = pharma_model.get('abbreviations', {})
+    # Build flat list of all abbreviations from nested structure
+    abbrev_list = set()
+    for category in pharma_model.values():
+        if isinstance(category, dict):
+            abbrev_list.update(category.keys())
 
     # Greedy matching: longest abbreviations first
-    sorted_abbrevs = sorted(abbrev_list.keys(), key=len, reverse=True)
+    sorted_abbrevs = sorted(abbrev_list, key=len, reverse=True)
 
     parsed = []
     i = 0
@@ -85,7 +91,11 @@ def parse_abbreviations(decoded_text, pharma_model):
 
 def verify_pharmaceutical(parsed, pharma_model):
     """Check if all parsed abbreviations are in the pharmaceutical model"""
-    abbrev_list = pharma_model.get('abbreviations', {})
+    # Build flat list of all abbreviations
+    abbrev_list = set()
+    for category in pharma_model.values():
+        if isinstance(category, dict):
+            abbrev_list.update(category.keys())
 
     for abbrev in parsed:
         if abbrev == '?':
@@ -104,8 +114,9 @@ def run_tests():
     # Load data
     print("📁 Loading data files...")
     digraphs, pharma_model, eva_words = load_data()
+    abbrev_count = sum(len(cat) for cat in pharma_model.values() if isinstance(cat, dict))
     print(f"   ✓ Digraph mappings: {len(digraphs)}")
-    print(f"   ✓ Pharmaceutical abbreviations: {len(pharma_model.get('abbreviations', {}))}")
+    print(f"   ✓ Pharmaceutical abbreviations: {abbrev_count}")
     print(f"   ✓ EVA words to test: {len(eva_words)}\n")
 
     # Test 1: Sample words

@@ -1,0 +1,1386 @@
+{
+  "ol": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "locked",
+    "frequency": 771
+  },
+  "da": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "locked",
+    "frequency": 605
+  },
+  "or": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "locked",
+    "frequency": 394
+  },
+  "ad": {
+    "abbreviation": "ad",
+    "meaning": "ad (to/at)",
+    "type": "locked",
+    "frequency": 9
+  },
+  "ch": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 1742,
+    "correlation": 233,
+    "strength_pct": 13.375430539609644
+  },
+  "he": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 1331,
+    "correlation": 152,
+    "strength_pct": 11.419984973703983
+  },
+  "ed": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed",
+    "frequency": 961,
+    "correlation": 143,
+    "strength_pct": 14.880332986472425
+  },
+  "sh": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 913,
+    "correlation": 162,
+    "strength_pct": 17.743702081051477
+  },
+  "qo": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 879,
+    "correlation": 127,
+    "strength_pct": 14.448236632536974
+  },
+  "ai": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 846,
+    "correlation": 670,
+    "strength_pct": 79.19621749408984
+  },
+  "in": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 713,
+    "correlation": 712,
+    "strength_pct": 99.85974754558205
+  },
+  "ok": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 711,
+    "correlation": 110,
+    "strength_pct": 15.471167369901547
+  },
+  "ho": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 654,
+    "correlation": 219,
+    "strength_pct": 33.48623853211009
+  },
+  "ot": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 631,
+    "correlation": 80,
+    "strength_pct": 12.678288431061807
+  },
+  "ii": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 576,
+    "correlation": 518,
+    "strength_pct": 89.93055555555556
+  },
+  "ar": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed",
+    "frequency": 500,
+    "correlation": 154,
+    "strength_pct": 30.8
+  },
+  "pc": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 485,
+    "correlation": 63,
+    "strength_pct": 12.989690721649485
+  },
+  "ke": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 468,
+    "correlation": 69,
+    "strength_pct": 14.743589743589743
+  },
+  "eo": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 456,
+    "correlation": 139,
+    "strength_pct": 30.482456140350877
+  },
+  "al": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed",
+    "frequency": 420,
+    "correlation": 124,
+    "strength_pct": 29.523809523809526
+  },
+  "od": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed",
+    "frequency": 360,
+    "correlation": 130,
+    "strength_pct": 36.111111111111114
+  },
+  "op": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 350,
+    "correlation": 43,
+    "strength_pct": 12.285714285714286
+  },
+  "ka": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 329,
+    "correlation": 141,
+    "strength_pct": 42.857142857142854
+  },
+  "hd": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed",
+    "frequency": 285,
+    "correlation": 59,
+    "strength_pct": 20.70175438596491
+  },
+  "ta": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 211,
+    "correlation": 79,
+    "strength_pct": 37.44075829383886
+  },
+  "lk": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 195,
+    "correlation": 93,
+    "strength_pct": 47.69230769230769
+  },
+  "kc": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 170,
+    "correlation": 20,
+    "strength_pct": 11.764705882352942
+  },
+  "ir": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed",
+    "frequency": 148,
+    "correlation": 52,
+    "strength_pct": 35.13513513513514
+  },
+  "po": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 144,
+    "correlation": 83,
+    "strength_pct": 57.638888888888886
+  },
+  "ha": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 132,
+    "correlation": 31,
+    "strength_pct": 23.484848484848484
+  },
+  "to": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 129,
+    "correlation": 59,
+    "strength_pct": 45.736434108527135
+  },
+  "ra": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed",
+    "frequency": 128,
+    "correlation": 38,
+    "strength_pct": 29.6875
+  },
+  "fc": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 104,
+    "correlation": 24,
+    "strength_pct": 23.076923076923077
+  },
+  "ko": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 103,
+    "correlation": 46,
+    "strength_pct": 44.66019417475728
+  },
+  "ky": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 103,
+    "correlation": 13,
+    "strength_pct": 12.62135922330097
+  },
+  "cp": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 95,
+    "correlation": 12,
+    "strength_pct": 12.631578947368421
+  },
+  "ph": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 95,
+    "correlation": 12,
+    "strength_pct": 12.631578947368421
+  },
+  "pa": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 94,
+    "correlation": 27,
+    "strength_pct": 28.72340425531915
+  },
+  "am": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed",
+    "frequency": 93,
+    "correlation": 30,
+    "strength_pct": 32.25806451612903
+  },
+  "ro": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed",
+    "frequency": 92,
+    "correlation": 36,
+    "strength_pct": 39.130434782608695
+  },
+  "lc": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 88,
+    "correlation": 47,
+    "strength_pct": 53.40909090909091
+  },
+  "lo": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 82,
+    "correlation": 44,
+    "strength_pct": 53.65853658536585
+  },
+  "ls": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 80,
+    "correlation": 41,
+    "strength_pct": 51.25
+  },
+  "ct": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 80,
+    "correlation": 10,
+    "strength_pct": 12.5
+  },
+  "th": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 80,
+    "correlation": 10,
+    "strength_pct": 12.5
+  },
+  "ld": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 79,
+    "correlation": 48,
+    "strength_pct": 60.75949367088607
+  },
+  "ly": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 77,
+    "correlation": 38,
+    "strength_pct": 49.35064935064935
+  },
+  "of": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 77,
+    "correlation": 8,
+    "strength_pct": 10.38961038961039
+  },
+  "ck": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 73,
+    "correlation": 10,
+    "strength_pct": 13.698630136986301
+  },
+  "kh": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 73,
+    "correlation": 10,
+    "strength_pct": 13.698630136986301
+  },
+  "ts": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 70,
+    "correlation": 9,
+    "strength_pct": 12.857142857142858
+  },
+  "do": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed",
+    "frequency": 64,
+    "correlation": 23,
+    "strength_pct": 35.9375
+  },
+  "ea": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 61,
+    "correlation": 7,
+    "strength_pct": 11.475409836065573
+  },
+  "ps": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 56,
+    "correlation": 10,
+    "strength_pct": 17.857142857142858
+  },
+  "la": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 56,
+    "correlation": 33,
+    "strength_pct": 58.92857142857143
+  },
+  "yd": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed",
+    "frequency": 55,
+    "correlation": 23,
+    "strength_pct": 41.81818181818182
+  },
+  "yt": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 55,
+    "correlation": 7,
+    "strength_pct": 12.727272727272727
+  },
+  "es": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 52,
+    "correlation": 6,
+    "strength_pct": 11.538461538461538
+  },
+  "oa": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 51,
+    "correlation": 19,
+    "strength_pct": 37.254901960784316
+  },
+  "ks": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 51,
+    "correlation": 9,
+    "strength_pct": 17.647058823529413
+  },
+  "oe": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed",
+    "frequency": 50,
+    "correlation": 6,
+    "strength_pct": 12.0
+  },
+  "yk": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 49,
+    "correlation": 9,
+    "strength_pct": 18.367346938775512
+  },
+  "ry": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed",
+    "frequency": 49,
+    "correlation": 13,
+    "strength_pct": 26.53061224489796
+  },
+  "sa": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 48,
+    "correlation": 16,
+    "strength_pct": 33.333333333333336
+  },
+  "oi": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed",
+    "frequency": 46,
+    "correlation": 38,
+    "strength_pct": 82.6086956521739
+  },
+  "py": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed",
+    "frequency": 44,
+    "correlation": 9,
+    "strength_pct": 20.454545454545453
+  },
+  "fo": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 38,
+    "correlation": 22,
+    "strength_pct": 57.89473684210526
+  },
+  "dc": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 33,
+    "correlation": 5,
+    "strength_pct": 15.151515151515152
+  },
+  "oy": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 31,
+    "correlation": 4,
+    "strength_pct": 12.903225806451612
+  },
+  "so": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 30,
+    "correlation": 14,
+    "strength_pct": 46.666666666666664
+  },
+  "cf": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 30,
+    "correlation": 8,
+    "strength_pct": 26.666666666666668
+  },
+  "fh": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 30,
+    "correlation": 8,
+    "strength_pct": 26.666666666666668
+  },
+  "rc": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed",
+    "frequency": 30,
+    "correlation": 15,
+    "strength_pct": 50.0
+  },
+  "hs": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 29,
+    "correlation": 3,
+    "strength_pct": 10.344827586206897
+  },
+  "lt": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 29,
+    "correlation": 16,
+    "strength_pct": 55.172413793103445
+  },
+  "lp": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 28,
+    "correlation": 18,
+    "strength_pct": 64.28571428571429
+  },
+  "de": {
+    "abbreviation": "de",
+    "meaning": "de (of)",
+    "type": "mixed",
+    "frequency": 27,
+    "correlation": 27,
+    "strength_pct": 100.0
+  },
+  "hk": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 27,
+    "correlation": 3,
+    "strength_pct": 11.11111111111111
+  },
+  "ys": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed",
+    "frequency": 24,
+    "correlation": 5,
+    "strength_pct": 20.833333333333332
+  },
+  "om": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed",
+    "frequency": 24,
+    "correlation": 4,
+    "strength_pct": 16.666666666666668
+  },
+  "ds": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed",
+    "frequency": 24,
+    "correlation": 7,
+    "strength_pct": 29.166666666666668
+  },
+  "yc": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed",
+    "frequency": 22,
+    "correlation": 3,
+    "strength_pct": 13.636363636363637
+  },
+  "et": {
+    "abbreviation": "et",
+    "meaning": "et (and)",
+    "type": "mixed",
+    "frequency": 22,
+    "correlation": 22,
+    "strength_pct": 100.0
+  },
+  "sy": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed",
+    "frequency": 21,
+    "correlation": 3,
+    "strength_pct": 14.285714285714286
+  },
+  "pd": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed",
+    "frequency": 21,
+    "correlation": 15,
+    "strength_pct": 71.42857142857143
+  },
+  "dy": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added",
+    "frequency": 1238,
+    "correlation": 101,
+    "strength_pct": 8.15831987075929
+  },
+  "ee": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added",
+    "frequency": 616,
+    "correlation": 59,
+    "strength_pct": 9.577922077922079
+  },
+  "ey": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added",
+    "frequency": 490,
+    "correlation": 33,
+    "strength_pct": 6.73469387755102
+  },
+  "hy": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added",
+    "frequency": 336,
+    "correlation": 26,
+    "strength_pct": 7.738095238095238
+  },
+  "te": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added",
+    "frequency": 281,
+    "correlation": 28,
+    "strength_pct": 9.9644128113879
+  },
+  "tc": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added",
+    "frequency": 196,
+    "correlation": 19,
+    "strength_pct": 9.693877551020408
+  },
+  "oc": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v2",
+    "frequency": 89,
+    "correlation": 8,
+    "strength_pct": 8.98876404494382
+  },
+  "ty": {
+    "abbreviation": "et",
+    "meaning": "et (and)",
+    "type": "mixed_added_v2",
+    "frequency": 77,
+    "correlation": 7,
+    "strength_pct": 9.090909090909092
+  },
+  "os": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v2",
+    "frequency": 73,
+    "correlation": 7,
+    "strength_pct": 9.58904109589041
+  },
+  "hc": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v2",
+    "frequency": 71,
+    "correlation": 7,
+    "strength_pct": 9.859154929577464
+  },
+  "yp": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v2",
+    "frequency": 51,
+    "correlation": 5,
+    "strength_pct": 9.803921568627452
+  },
+  "ek": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 44,
+    "correlation": 3,
+    "strength_pct": 6.818181818181818
+  },
+  "ec": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 43,
+    "correlation": 3,
+    "strength_pct": 6.976744186046512
+  },
+  "ep": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 41,
+    "correlation": 4,
+    "strength_pct": 9.75609756097561
+  },
+  "fa": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 20,
+    "correlation": 6,
+    "strength_pct": 30.0
+  },
+  "ht": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 20,
+    "correlation": 4,
+    "strength_pct": 20.0
+  },
+  "lf": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 20,
+    "correlation": 17,
+    "strength_pct": 85.0
+  },
+  "hp": {
+    "abbreviation": "ad",
+    "meaning": "ad (to/at)",
+    "type": "mixed_added_v3",
+    "frequency": 19,
+    "correlation": 2,
+    "strength_pct": 10.526315789473685
+  },
+  "dl": {
+    "abbreviation": "dol",
+    "meaning": "dolor (pain)",
+    "type": "mixed_added_v3",
+    "frequency": 19,
+    "correlation": 1,
+    "strength_pct": 5.2631578947368425
+  },
+  "yo": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 19,
+    "correlation": 7,
+    "strength_pct": 36.8421052631579
+  },
+  "oo": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 18,
+    "correlation": 5,
+    "strength_pct": 27.77777777777778
+  },
+  "ef": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 17,
+    "correlation": 2,
+    "strength_pct": 11.764705882352942
+  },
+  "rs": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 15,
+    "correlation": 9,
+    "strength_pct": 60.0
+  },
+  "fy": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 14,
+    "correlation": 1,
+    "strength_pct": 7.142857142857143
+  },
+  "il": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 13,
+    "correlation": 4,
+    "strength_pct": 30.76923076923077
+  },
+  "rd": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 13,
+    "correlation": 7,
+    "strength_pct": 53.84615384615385
+  },
+  "yf": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 13,
+    "correlation": 3,
+    "strength_pct": 23.076923076923077
+  },
+  "fs": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 13,
+    "correlation": 2,
+    "strength_pct": 15.384615384615385
+  },
+  "qe": {
+    "abbreviation": "et",
+    "meaning": "et (and)",
+    "type": "mixed_added_v3",
+    "frequency": 13,
+    "correlation": 3,
+    "strength_pct": 23.076923076923077
+  },
+  "td": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 9,
+    "correlation": 2,
+    "strength_pct": 22.22222222222222
+  },
+  "as": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 9,
+    "correlation": 2,
+    "strength_pct": 22.22222222222222
+  },
+  "ay": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 9,
+    "correlation": 1,
+    "strength_pct": 11.11111111111111
+  },
+  "an": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 8,
+    "correlation": 4,
+    "strength_pct": 50.0
+  },
+  "im": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 8,
+    "correlation": 3,
+    "strength_pct": 37.5
+  },
+  "hl": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 8,
+    "correlation": 1,
+    "strength_pct": 12.5
+  },
+  "dk": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 8,
+    "correlation": 1,
+    "strength_pct": 12.5
+  },
+  "no": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 8,
+    "correlation": 8,
+    "strength_pct": 100.0
+  },
+  "ak": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 8,
+    "correlation": 2,
+    "strength_pct": 25.0
+  },
+  "sd": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 7,
+    "correlation": 3,
+    "strength_pct": 42.857142857142854
+  },
+  "sc": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 7,
+    "correlation": 2,
+    "strength_pct": 28.571428571428573
+  },
+  "yl": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 7,
+    "correlation": 2,
+    "strength_pct": 28.571428571428573
+  },
+  "qk": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 6,
+    "correlation": 2,
+    "strength_pct": 33.333333333333336
+  },
+  "dd": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 6,
+    "correlation": 1,
+    "strength_pct": 16.666666666666668
+  },
+  "le": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 6,
+    "correlation": 5,
+    "strength_pct": 83.33333333333333
+  },
+  "is": {
+    "abbreviation": "sal",
+    "meaning": "sal (salt)",
+    "type": "mixed_added_v3",
+    "frequency": 6,
+    "correlation": 2,
+    "strength_pct": 33.333333333333336
+  },
+  "ny": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 5,
+    "correlation": 4,
+    "strength_pct": 80.0
+  },
+  "kd": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 5,
+    "correlation": 1,
+    "strength_pct": 20.0
+  },
+  "lr": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 5,
+    "correlation": 2,
+    "strength_pct": 40.0
+  },
+  "ki": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 5,
+    "correlation": 2,
+    "strength_pct": 40.0
+  },
+  "mo": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 4,
+    "correlation": 1,
+    "strength_pct": 25.0
+  },
+  "hf": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 4,
+    "correlation": 2,
+    "strength_pct": 50.0
+  },
+  "ya": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 4,
+    "correlation": 3,
+    "strength_pct": 75.0
+  },
+  "kl": {
+    "abbreviation": "eol",
+    "meaning": "et+ol (and oil)",
+    "type": "mixed_added_v3",
+    "frequency": 4,
+    "correlation": 1,
+    "strength_pct": 25.0
+  },
+  "yy": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 4,
+    "correlation": 1,
+    "strength_pct": 25.0
+  },
+  "ao": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 4,
+    "correlation": 2,
+    "strength_pct": 50.0
+  },
+  "rp": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 4,
+    "correlation": 1,
+    "strength_pct": 25.0
+  },
+  "rk": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 4,
+    "correlation": 2,
+    "strength_pct": 50.0
+  },
+  "qc": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 4,
+    "correlation": 1,
+    "strength_pct": 25.0
+  },
+  "ll": {
+    "abbreviation": "pol",
+    "meaning": "per+ol (by oil)",
+    "type": "mixed_added_v3",
+    "frequency": 4,
+    "correlation": 1,
+    "strength_pct": 25.0
+  },
+  "ac": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 3,
+    "correlation": 2,
+    "strength_pct": 66.66666666666667
+  },
+  "hr": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 3,
+    "correlation": 1,
+    "strength_pct": 33.333333333333336
+  },
+  "id": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 3,
+    "correlation": 3,
+    "strength_pct": 100.0
+  },
+  "ss": {
+    "abbreviation": "dol",
+    "meaning": "dolor (pain)",
+    "type": "mixed_added_v3",
+    "frequency": 3,
+    "correlation": 1,
+    "strength_pct": 33.333333333333336
+  },
+  "ns": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 2,
+    "correlation": 2,
+    "strength_pct": 100.0
+  },
+  "sp": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 2,
+    "correlation": 1,
+    "strength_pct": 50.0
+  },
+  "fd": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 2,
+    "correlation": 1,
+    "strength_pct": 50.0
+  },
+  "ri": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 2,
+    "correlation": 2,
+    "strength_pct": 100.0
+  },
+  "sk": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 2,
+    "correlation": 1,
+    "strength_pct": 50.0
+  },
+  "rl": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 2,
+    "correlation": 1,
+    "strength_pct": 50.0
+  },
+  "iy": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 2,
+    "correlation": 1,
+    "strength_pct": 50.0
+  },
+  "tl": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 2,
+    "correlation": 1,
+    "strength_pct": 50.0
+  },
+  "yr": {
+    "abbreviation": "dar",
+    "meaning": "dare (give/apply)",
+    "type": "mixed_added_v3",
+    "frequency": 2,
+    "correlation": 1,
+    "strength_pct": 50.0
+  },
+  "md": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 2,
+    "correlation": 1,
+    "strength_pct": 50.0
+  },
+  "at": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "mg": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "ze": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "io": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "nc": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "st": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "qf": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "qp": {
+    "abbreviation": "pol",
+    "meaning": "per+ol (by oil)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "lx": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "xy": {
+    "abbreviation": "ol",
+    "meaning": "oleum (oil)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "rf": {
+    "abbreviation": "or",
+    "meaning": "or (choice/alternative)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "na": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "ax": {
+    "abbreviation": "da",
+    "meaning": "dare (give - imperative)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "qa": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "di": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  },
+  "oq": {
+    "abbreviation": "in",
+    "meaning": "in (in)",
+    "type": "mixed_added_v3",
+    "frequency": 1,
+    "correlation": 1,
+    "strength_pct": 100.0
+  }
+}
