@@ -64,9 +64,16 @@ def parse_abbreviations(decoded_text, pharma_model):
     """Parse decoded text into pharmaceutical abbreviations"""
     # Build flat list of all abbreviations from nested structure
     abbrev_list = set()
-    for category in pharma_model.values():
+    for category_name, category in pharma_model.items():
         if isinstance(category, dict):
-            abbrev_list.update(category.keys())
+            if category_name == 'PHARMACEUTICAL_ABBREVIATIONS':
+                # Nested: iterate through subcategories
+                for subcat in category.values():
+                    if isinstance(subcat, dict):
+                        abbrev_list.update(subcat.keys())
+            elif category_name in ['PHARMACEUTICAL_FORMS', 'PHARMACEUTICAL_RECIPE_STRUCTURE']:
+                # Direct: add keys directly
+                abbrev_list.update(category.keys())
 
     # Greedy matching: longest abbreviations first
     sorted_abbrevs = sorted(abbrev_list, key=len, reverse=True)
@@ -93,9 +100,16 @@ def verify_pharmaceutical(parsed, pharma_model):
     """Check if all parsed abbreviations are in the pharmaceutical model"""
     # Build flat list of all abbreviations
     abbrev_list = set()
-    for category in pharma_model.values():
+    for category_name, category in pharma_model.items():
         if isinstance(category, dict):
-            abbrev_list.update(category.keys())
+            if category_name == 'PHARMACEUTICAL_ABBREVIATIONS':
+                # Nested: iterate through subcategories
+                for subcat in category.values():
+                    if isinstance(subcat, dict):
+                        abbrev_list.update(subcat.keys())
+            elif category_name in ['PHARMACEUTICAL_FORMS', 'PHARMACEUTICAL_RECIPE_STRUCTURE']:
+                # Direct: add keys directly
+                abbrev_list.update(category.keys())
 
     for abbrev in parsed:
         if abbrev == '?':

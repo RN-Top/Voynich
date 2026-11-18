@@ -103,5 +103,14 @@
     "MUST_AVOID": "Collisions - each EVA character maps to ONE unique Latin letter"
   },
 
-  "KEY_INSIGHT": "A medieval pharmacist reading abbreviated recipes would recognize EVERY abbreviation. If 60%+ of decrypted words parse into recognizable pharmaceutical sequences, the mapping is CORRECT. If decrypted words contain unrecognizable letter combinations mixed with abbreviations, the mapping is WRONG."
+  "KEY_INSIGHT": "A medieval pharmacist reading abbreviated recipes would recognize EVERY abbreviation. If 60%+ of decrypted words parse into recognizable pharmaceutical sequences, the mapping is CORRECT. If decrypted words contain unrecognizable letter combinations mixed with abbreviations, the mapping is WRONG.",
+
+  "PHARMACEUTICAL_FORMS": {
+    "SOL": {"meaning": "solutio (solution/liquid form)", "type": "form_marker", "frequency": 1143},
+    "PUL": {"meaning": "pulvis (powder form)", "type": "form_marker", "frequency": 361},
+    "UNG": {"meaning": "unguentum (ointment form)", "type": "form_marker", "frequency": 58},
+    "TIN": {"meaning": "tinctura (tincture form)", "type": "form_marker", "frequency": 12},
+    "EXT": {"meaning": "extractum (extract form)", "type": "form_marker", "frequency": 5},
+    "OLE": {"meaning": "oleum variant (oil variant)", "type": "form_marker", "frequency": 4}
+  }
 }
